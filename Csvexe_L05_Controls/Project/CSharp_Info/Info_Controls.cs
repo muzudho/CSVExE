@@ -3,33 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Middle
+namespace Xenon.Controls
 {
-
-    /// <summary>
-    /// チェックボックスの値の型。
-    /// </summary>
-    public enum EnumCheckboxValueType
+    class Info_Controls
     {
 
 
 
-        #region 用意
+        #region プロパティー
         //────────────────────────────────────────
 
-        /// <summary>
-        /// false,true。
-        /// </summary>
-        Bool,
-
-        /// <summary>
-        /// 0:偽,1:真。
-        /// </summary>
-        Zero_One
-
+        static public String SName_Library
+        {
+            get
+            {
+                return "Csvexe_L05_Controls";
+            }
+        }
+        
         //────────────────────────────────────────
         #endregion
-
+        
 
 
     }

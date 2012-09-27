@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{223F9CF4-E3C5-4077-972E-6F9964078484}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.Controls</RootNamespace>
+    <AssemblyName>Csvexe_L05_Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax">
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table">
+      <HintPath>..\..\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L03_Operating">
+      <HintPath>..\..\Csvexe_L03_Operating\Project\bin\Debug\Csvexe_L03_Operating.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L04_Middle">
+      <HintPath>..\..\Csvexe_L04_Middle\Project\bin\Debug\Csvexe_L04_Middle.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolCheckbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolLabel.designer.cs">
+      <DependentUpon>CustomcontrolLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolListbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolListbox.designer.cs">
+      <DependentUpon>CustomcontrolListbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolPanel.designer.cs">
+      <DependentUpon>CustomcontrolPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolTabcontrol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolTabcontrol.Designer.cs">
+      <DependentUpon>CustomcontrolTabcontrol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\ControlCommonImpl.cs" />
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolPicturebox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\CustomControl\CustomcontrolPicturebox.designer.cs">
+      <DependentUpon>CustomcontrolPicturebox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\Util\Utility_Expression_NodeImpl.cs" />
+    <Compile Include="CSharp_Impl\Functionwrapper\FunctionexecutableAbstract.cs" />
+    <Compile Include="CSharp_Impl\Functionwrapper\Functionlist_FormChkImpl.cs" />
+    <Compile Include="CSharp_Impl\Functionwrapper\Functionlist_FormTbpImpl.cs" />
+    <Compile Include="CSharp_Impl\Listbox\MemoryBrushesImpl.cs" />
+    <Compile Include="CSharp_Impl\ToMemory\ToMemory_CellImpl.cs" />
+    <Compile Include="CSharp_Impl\ToMemory\ExpressionDataTargetUpdaterImpl.cs" />
+    <Compile Include="CSharp_Impl\ToMemory\ExpressionToMemory_FcellImpl.cs" />
+    <Compile Include="CSharp_Impl\Functionwrapper\Functionlist_FormImpl.cs" />
+    <Compile Include="CSharp_Impl\Functionwrapper\Functionlist_FormLstImpl.cs" />
+    <Compile Include="CSharp_Impl\Functionwrapper\Remover_AllEventhandlersImpl.cs" />
+    <Compile Include="CSharp_Impl\Util\Utility_Usercontrol.cs" />
+    <Compile Include="CSharp_Impl\UserControl\MemoryButtonImpl.cs" />
+    <Compile Include="CSharp_Impl\UserControl\MemoryVirticalscrollbarImpl.cs" />
+    <Compile Include="CSharp_Impl\Util\Utility_Format.cs" />
+    <Compile Include="CSharp_Interface\ListboxItemDrawer.cs" />
+    <Compile Include="CSharp_Impl\Listbox\ListboxItemDrawer_01Impl.cs" />
+    <Compile Include="CSharp_Impl\UserControl\Mainwnd_FormWrappingImpl.cs" />
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolCheckbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolCheckbox.designer.cs">
+      <DependentUpon>UsercontrolCheckbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\CustomControl\CustomcontrolListbox.resx">
+      <DependentUpon>CustomcontrolListbox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\CustomControl\CustomcontrolTextbox.resx">
+      <DependentUpon>CustomcontrolTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\CustomControl\CustomcontrolWindow.resx">
+      <DependentUpon>CustomcontrolWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolCheckbox.resx">
+      <DependentUpon>UsercontrolCheckbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolButton.resx">
+      <DependentUpon>UsercontrolButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolCombobox.resx">
+      <DependentUpon>UsercontrolCombobox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolLabel.resx">
+      <DependentUpon>UsercontrolLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolListbox.resx">
+      <DependentUpon>UsercontrolListbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolNumericUpDown.resx">
+      <DependentUpon>UsercontrolNumericUpDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolTabPane.resx">
+      <DependentUpon>UsercontrolTabPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolTextbox.resx">
+      <DependentUpon>UsercontrolTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolImage.resx">
+      <DependentUpon>UsercontrolImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolTabPage.resx">
+      <DependentUpon>UsercontrolTabPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolArea.resx">
+      <DependentUpon>UsercontrolArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolPanel.resx">
+      <DependentUpon>UsercontrolPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\UserControl\UsercontrolWindow.resx">
+      <DependentUpon>UsercontrolWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolButton.designer.cs">
+      <DependentUpon>UsercontrolButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolCombobox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolCombobox.designer.cs">
+      <DependentUpon>UsercontrolCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolLabel.designer.cs">
+      <DependentUpon>UsercontrolLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolListbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolListbox.designer.cs">
+      <DependentUpon>UsercontrolListbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolNumericUpDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolNumericUpDown.designer.cs">
+      <DependentUpon>UsercontrolNumericUpDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolTabPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolTabPane.Designer.cs">
+      <DependentUpon>UsercontrolTabPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolTextbox.designer.cs">
+      <DependentUpon>UsercontrolTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolImage.designer.cs">
+      <DependentUpon>UsercontrolImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolWindow.Designer.cs">
+      <DependentUpon>UsercontrolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolTabPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolTabPage.designer.cs">
+      <DependentUpon>UsercontrolTabPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolArea.designer.cs">
+      <DependentUpon>UsercontrolArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\UserControl\UsercontrolPanel.designer.cs">
+      <DependentUpon>UsercontrolPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Info\Info_Controls.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows インストーラ 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Impl\CustomControl\%40これは、カスタムコントロール.htm" />
+    <Content Include="CSharp_Impl\CustomControl\%40インターフェースは作りたくない、Controlのメソッド数が多すぎる。.txt" />
+    <Content Include="CSharp_Impl\ToMemory\%40これは、＜data-target＞.htm" />
+    <Content Include="CSharp_Impl\Functionwrapper\%40これは、＜event＞.htm" />
+    <Content Include="CSharp_Impl\Util\%40これは、ユーティリティー.htm" />
+    <Content Include="CSharp_Impl\Listbox\%40これは、リストボックスの表示指定.htm" />
+    <Content Include="CSharp_Impl\UserControl\%40これは、ユーザーコントロール.htm" />
+    <Content Include="CSharp_Impl\UserControl\%40インターフェースは作りたくない、Controlのメソッド数が多すぎる。.txt" />
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

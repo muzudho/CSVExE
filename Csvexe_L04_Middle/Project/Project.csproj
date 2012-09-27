@@ -108,7 +108,7 @@
     <Compile Include="CSharp_Interface\84_Function\Subroutine_Function30_1.cs" />
     <Compile Include="CSharp_Interface\84_Function\Subroutine_Function30_2.cs" />
     <Compile Include="CSharp_Interface\84_Function\UsercontrolPerformer.cs" />
-    <Compile Include="CSharp_Interface\01_MasterData\EnumCheckboxValueType.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\EnumCheckboxValuetype.cs" />
     <Compile Include="CSharp_Interface\91_CustomControl\ControlCommon.cs" />
     <Compile Include="CSharp_Interface\38_ToMemory\ToMemory_Cell.cs" />
     <Compile Include="CSharp_Interface\92_Eventhandler\Remover_AllEventhandlers.cs" />
