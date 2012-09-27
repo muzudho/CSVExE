@@ -1,0 +1,123 @@
+﻿//
+// Cushion
+//
+// アプリケーションを作るうえで、よく使うことになるもの。
+//
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+
+namespace Xenon.Syntax
+{
+    /// <summary>
+    /// 警告データ
+    /// </summary>
+    public interface Log_RecordReport
+    {
+
+
+
+        #region アクション
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 警告タイトル。
+        /// </summary>
+        void SetTitle(string sErrorNumber, Log_Method log_Method);
+
+        /// <summary>
+        /// 警告メッセージの定型部分を簡単に作成します。
+        /// </summary>
+        /// <returns></returns>
+        string Message_Givechapterandverse(
+            Givechapterandverse_Node cur_Gcav
+            );
+
+        /// <summary>
+        /// 警告メッセージの定型部分を簡単に作成します。
+        /// </summary>
+        /// <returns></returns>
+        string Message_SException(
+            Exception ex
+            );
+
+        /// <summary>
+        /// 警告メッセージの定型部分を簡単に作成します。
+        /// </summary>
+        /// <returns></returns>
+        string Message_SSeparator();
+
+        /// <summary>
+        /// 「%1%」形式で文章中で使える文字列。
+        /// </summary>
+        /// <param name="number">「%1%」で使う数字。1から始まる連番。</param>
+        /// <param name="sMessage">「%1%」に対応する文字列。</param>
+        void AddP1p(int nNumber, object sMessage);
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+        #region プロパティー
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// プログラムを停止させるか、続行させるかの区別。
+        /// </summary>
+        EnumReport EnumReport
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 警告メッセージのテンプレート。
+        /// </summary>
+        string SMessage
+        {
+            set;
+        }
+
+        /// <summary>
+        /// 警告メッセージ
+        /// </summary>
+        string SMsg(Log_Reports d_Logging_orNull);
+
+        /// <summary>
+        /// 警告タイトル
+        /// </summary>
+        string STitle
+        {
+            //set;
+            get;
+        }
+
+        /// <summary>
+        /// 人間オペレーターが修正するべき箇所を特定する情報など。
+        /// </summary>
+        string SConfigStack
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// グループ・タグ。情報を見たい人が、表示する情報を絞り込むために使われます。
+        /// </summary>
+        string SGroupTag
+        {
+            set;
+            get;
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+    }
+}
