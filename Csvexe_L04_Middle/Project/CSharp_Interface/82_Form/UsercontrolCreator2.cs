@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+using Xenon.Syntax;
+
+namespace Xenon.Middle
 {
-    class Info_Syntax
+
+    /// <summary>
+    /// 1と2がある。
+    /// 旧名：FcCreator
+    /// </summary>
+    public interface UsercontrolCreator2
     {
 
 
 
-        #region プロパティー
+        #region アクション
         //────────────────────────────────────────
 
-        static public String SName_Library
-        {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
-        }
+        Usercontrol Perform(
+            Expression_Node_StringImpl expr_Name_Ucontrol,
+            MemoryApplication memoryApplication
+            );
 
         //────────────────────────────────────────
         #endregion

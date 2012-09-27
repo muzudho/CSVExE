@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+namespace Xenon.Middle
 {
-    class Info_Syntax
+    class Info_Middle
     {
 
 
@@ -17,7 +17,7 @@ namespace Xenon.Syntax
         {
             get
             {
-                return "Csvexe_L01_Syntax";
+                return "Csvexe_L04_Middle";
             }
         }
 

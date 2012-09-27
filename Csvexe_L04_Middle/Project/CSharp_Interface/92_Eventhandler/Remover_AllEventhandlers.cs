@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+using Xenon.Syntax;
+
+namespace Xenon.Middle
 {
-    class Info_Syntax
+    public interface Remover_AllEventhandlers
     {
 
 
 
-        #region プロパティー
+        #region アクション
         //────────────────────────────────────────
 
-        static public String SName_Library
-        {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
-        }
+        void Resume(
+            Log_Reports log_Reports
+            );
+
+        /// <summary>
+        /// 全てのイベントハンドラーを削除します。
+        /// </summary>
+        void Suppress(
+            Log_Reports log_Reports
+            );
 
         //────────────────────────────────────────
         #endregion

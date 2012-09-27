@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B560D7EA-D354-4B9D-B8C3-B54EC2E345EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.Middle</RootNamespace>
+    <AssemblyName>Csvexe_L04_Middle</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax">
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L03_Operating">
+      <HintPath>..\..\Csvexe_L03_Operating\Project\bin\Debug\Csvexe_L03_Operating.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CSharp_Interface\01_MasterData\EnumTypedb.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesFile.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesTypedb.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\ValuesTypeData.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesSe.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesStg.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesSc.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesFld.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesC.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesVar.cs" />
+    <Compile Include="CSharp_Interface\20_Userformtable\FieldUserformtable.cs" />
+    <Compile Include="CSharp_Interface\21_AaEditorXml\Dictionary_Fsetvar_Givechapterandverse.cs" />
+    <Compile Include="CSharp_Interface\21_AaEditorXml\MemorySetvarContainer.cs" />
+    <Compile Include="CSharp_Interface\21_AaEditorXml\MemoryAaeditorxml_Editor.cs" />
+    <Compile Include="CSharp_Interface\22_AaToolXml\MemoryAaeditorxml.cs" />
+    <Compile Include="CSharp_Interface\21_AaEditorXml\MemoryAatoolxml_Editor.cs" />
+    <Compile Include="CSharp_Interface\22_AaToolXml\Dictionary_AatoolxmlEditor.cs" />
+    <Compile Include="CSharp_Interface\22_AaToolXml\MemoryAatoolxml.cs" />
+    <Compile Include="CSharp_Info\Info_Middle.cs" />
+    <Compile Include="CSharp_Interface\16_GcavToExpr\Log_TextIndented_GivechapterandverseToExpression.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\ValuesAttr.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesFnc.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\NamesNode.cs" />
+    <Compile Include="CSharp_Impl\11_PmName\PmNameImpl_.cs" />
+    <Compile Include="CSharp_Impl\11_PmName\PmNames.cs" />
+    <Compile Include="CSharp_Interface\32_Expressionv\Expressionv_5FAllFieldsIsEmpty.cs" />
+    <Compile Include="CSharp_Interface\35_Expression\RecordsetStorage.cs" />
+    <Compile Include="CSharp_Interface\32_Expressionv\Expressionv_3FListboxValidation.cs" />
+    <Compile Include="CSharp_Interface\32_Expressionv\Expressionv_4ADisplay.cs" />
+    <Compile Include="CSharp_Interface\32_Expressionv\Expressionv_5FAllTrue.cs" />
+    <Compile Include="CSharp_Interface\32_Expressionv\Expressionv_4ASelectRecord.cs" />
+    <Compile Include="CSharp_Interface\38_ToMemory\ToM_Performer.cs" />
+    <Compile Include="CSharp_Interface\40_Expression\Builder_ExpressionValue.cs" />
+    <Compile Include="CSharp_Interface\16_GcavToExpr\GivechapterandverseToExpression_Event.cs" />
+    <Compile Include="CSharp_Interface\82_Form\UsercontrolCreator2.cs" />
+    <Compile Include="CSharp_Interface\82_Form\UsercontrolCreator1.cs" />
+    <Compile Include="CSharp_Interface\82_Form\UsercontrolStyleSetter.cs" />
+    <Compile Include="CSharp_Interface\82_Form\XToMemory_Form.cs" />
+    <Compile Include="CSharp_Interface\83_Toolwindow\Form_Toolwindow.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryBackup.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryCodefileinfo.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryCodefiles.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryAatoolxmlDialog.cs" />
+    <Compile Include="CSharp_Interface\84_Function\Subroutine_Function30_1.cs" />
+    <Compile Include="CSharp_Interface\84_Function\Subroutine_Function30_2.cs" />
+    <Compile Include="CSharp_Interface\84_Function\UsercontrolPerformer.cs" />
+    <Compile Include="CSharp_Interface\01_MasterData\EnumCheckboxValueType.cs" />
+    <Compile Include="CSharp_Interface\91_CustomControl\ControlCommon.cs" />
+    <Compile Include="CSharp_Interface\38_ToMemory\ToMemory_Cell.cs" />
+    <Compile Include="CSharp_Interface\92_Eventhandler\Remover_AllEventhandlers.cs" />
+    <Compile Include="CSharp_Interface\35_Expression\EventMonitor.cs" />
+    <Compile Include="CSharp_Interface\20_Userformtable\TableUserformconfig.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryBrushes.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryForms.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryFunctions.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryApplication.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryLogwriter.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryTogethers.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryTables.cs" />
+    <Compile Include="CSharp_Interface\31_Expression_old\Expressionv_TextValidator_Old.cs" />
+    <Compile Include="CSharp_Interface\31_Expression_old\Expressionv_Validator_Old.cs" />
+    <Compile Include="CSharp_Interface\31_Expression_old\EnumValidation_Old.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryValidators.cs" />
+    <Compile Include="CSharp_Interface\93_UserControl\Usercontrol.cs" />
+    <Compile Include="CSharp_Interface\92_Eventhandler\EventhandlerLib.cs" />
+    <Compile Include="CSharp_Interface\20_Userformtable\RecordUserformconfig.cs" />
+    <Compile Include="CSharp_Interface\91_CustomControl\Customcontrol.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryRecordset.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryVariables.cs" />
+    <Compile Include="CSharp_Interface\20_Userformtable\XenonName.cs" />
+    <Compile Include="CSharp_Interface\93_UserControl\Mainwnd_FormWrapping.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+    <Content Include="CSharp_Interface\21_AaEditorXml\%40これは、＜f-set-var＞.txt" />
+    <Content Include="CSharp_Interface\35_Expression\%40これは、設定データの内部形式。.txt" />
+    <Content Include="CSharp_Interface\38_ToMemory\%40これは、設定データの実行。.txt" />
+    <Content Include="CSharp_Interface\40_Expression\%40これは、手入力データ。.txt" />
+    <Content Include="CSharp_Interface\91_CustomControl\%40これは、カスタムコントロール。.txt" />
+    <Content Include="CSharp_Interface\38_ToMemory\%40これは、＜data-target＞。.txt" />
+    <Content Include="CSharp_Interface\92_Eventhandler\%40これは、＜event＞。.txt" />
+    <Content Include="CSharp_Interface\20_Userformtable\%40これは、ユーザーフォーム設定ファイル。.txt" />
+    <Content Include="CSharp_Interface\81_Application\%40これは、自由配置フォーム機能。.txt" />
+    <Content Include="CSharp_Interface\31_Expression_old\%40これは、使っている、旧validator設定ファイル。.txt" />
+    <Content Include="CSharp_Interface\93_UserControl\%40これは、ユーザーコントロール。.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

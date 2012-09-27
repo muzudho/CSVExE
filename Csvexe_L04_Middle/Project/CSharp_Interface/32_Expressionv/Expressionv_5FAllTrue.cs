@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+using Xenon.Syntax;
+
+namespace Xenon.Middle
 {
-    class Info_Syntax
+    public interface Expressionv_5FAllTrue : Expressionv_Elem99
     {
 
 
@@ -13,12 +15,13 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        static public String SName_Library
+        /// <summary>
+        /// ＜a-empty-field＞要素のリスト。
+        /// </summary>
+        List<Expressionv_Elem99> List_Expressionv_AEmptyField
         {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
+            get;
+            set;
         }
 
         //────────────────────────────────────────

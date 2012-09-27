@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+namespace Xenon.Middle
 {
-    class Info_Syntax
+    public abstract class NamesStg
     {
 
 
 
-        #region プロパティー
+        #region 用意
         //────────────────────────────────────────
+        //
+        // トゥゲザー名
+        //
 
-        static public String SName_Library
-        {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
-        }
+        public const string S_STG_BEGIN_APPLICATION = "Stg:Begin-Application;";
 
         //────────────────────────────────────────
         #endregion

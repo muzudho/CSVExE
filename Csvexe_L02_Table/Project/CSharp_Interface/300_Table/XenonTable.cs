@@ -176,7 +176,7 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        Expression_Node_Filepath Expression_Fpath_ConfigStack
+        Expression_Node_Filepath Expression_Filepath_ConfigStack
         {
             get;
         }

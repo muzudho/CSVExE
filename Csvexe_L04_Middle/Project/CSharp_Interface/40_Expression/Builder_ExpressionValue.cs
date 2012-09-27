@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+using Xenon.Syntax;
+
+namespace Xenon.Middle
 {
-    class Info_Syntax
+
+    /// <summary>
+    ///
+    /// </summary>
+    public interface Builder_ExpressionValue
     {
 
 
 
-        #region プロパティー
+        #region アクション
         //────────────────────────────────────────
 
-        static public String SName_Library
-        {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
-        }
+        Expression_Node_String build(
+            string sValue,
+            Givechapterandverse_Node parent_Gcav,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports
+            );
 
         //────────────────────────────────────────
         #endregion

@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+namespace Xenon.Middle
 {
-    class Info_Syntax
+    /// <summary>
+    /// テキストボックス用バリデーター。
+    /// </summary>
+    public interface Expressionv_TextValidator_Old : Expressionv_Validator_Old
     {
 
 
-
-        #region プロパティー
+        
+        #region アクション
         //────────────────────────────────────────
 
-        static public String SName_Library
-        {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
-        }
+        EnumValidation_Old JudgeValidity(string sText);
 
         //────────────────────────────────────────
         #endregion

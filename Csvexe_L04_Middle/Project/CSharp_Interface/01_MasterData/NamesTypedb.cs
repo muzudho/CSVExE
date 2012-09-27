@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+namespace Xenon.Middle
 {
-    class Info_Syntax
+
+
+    /// <summary>
+    /// データベースのフィールドの型。
+    /// </summary>
+    public class NamesTypedb
     {
 
 
 
-        #region プロパティー
+        #region 用意
         //────────────────────────────────────────
 
-        static public String SName_Library
-        {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
-        }
+        public const string S_INT = "int";
+
+        public const string S_STRING = "string";
+
+        public const string S_BOOL = "bool";
 
         //────────────────────────────────────────
         #endregion

@@ -97,7 +97,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性＝””。
         /// </summary>
-        DictionaryGivechapterandverse_String DictionaryGivechapterandverse_SAttr
+        DictionaryGivechapterandverse_String Dictionary_SAttribute_Givechapterandverse
         {
             get;
         }
@@ -105,7 +105,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 子要素のリスト。
         /// </summary>
-        ListGivechapterandverse_Node ListGivechapterandverse_Child
+        ListGivechapterandverse_Node List_ChildGivechapterandverse
         {
             get;
         }

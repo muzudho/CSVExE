@@ -29,7 +29,7 @@ namespace Xenon.Table
         public XenonTableImpl(string sName, Expression_Node_Filepath ec_Fpath_ConfigStack)
             : base("ノード名未指定", ec_Fpath_ConfigStack.Cur_Givechapterandverse)
         {
-            this.expression_Fpath_ConfigStack = ec_Fpath_ConfigStack;
+            this.expression_Filepath_ConfigStack = ec_Fpath_ConfigStack;
 
             this.dataTable = new DataTable();
             this.SName = sName;
@@ -119,7 +119,7 @@ namespace Xenon.Table
             s.AppendI(0, "<OTableImplクラス>");
             s.Append(Environment.NewLine);
 
-            this.Expression_Fpath_ConfigStack.Cur_Givechapterandverse.ToText_Content(s);
+            this.Expression_Filepath_ConfigStack.Cur_Givechapterandverse.ToText_Content(s);
 
             s.AppendI(0, "</OTableImplクラス>");
             s.Append(Environment.NewLine);
@@ -1547,13 +1547,13 @@ namespace Xenon.Table
         /// あれば、テーブルのファイル・パスなど。
         /// なければヌル可？
         /// </summary>
-        private Expression_Node_Filepath expression_Fpath_ConfigStack;
+        private Expression_Node_Filepath expression_Filepath_ConfigStack;
 
-        public Expression_Node_Filepath Expression_Fpath_ConfigStack
+        public Expression_Node_Filepath Expression_Filepath_ConfigStack
         {
             get
             {
-                return expression_Fpath_ConfigStack;
+                return expression_Filepath_ConfigStack;
             }
         }
 

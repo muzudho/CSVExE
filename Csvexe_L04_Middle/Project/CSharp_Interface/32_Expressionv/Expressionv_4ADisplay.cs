@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+using Xenon.Syntax;
+
+namespace Xenon.Middle
 {
-    class Info_Syntax
+    public interface Expressionv_4ADisplay : Expressionv_Elem99
     {
 
 
@@ -13,12 +15,15 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        static public String SName_Library
+        /// <summary>
+        /// 属性＝””
+        /// 
+        /// ｔｙｐｅ、ｄｅｓｃｒｉｐｔｉｏｎ
+        /// </summary>
+        Dictionary<string, string> Dictionary_SAttribute
         {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
+            get;
+            set;
         }
 
         //────────────────────────────────────────

@@ -3,28 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Syntax
+namespace Xenon.Middle
 {
-    class Info_Syntax
-    {
 
+
+
+    public interface FieldUserformtable
+    {
 
 
         #region プロパティー
         //────────────────────────────────────────
 
-        static public String SName_Library
+        string SName
         {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
+            get;
+            set;
+        }
+
+
+        EnumTypedb Typedb
+        {
+            get;
+            set;
+        }
+
+
+        object Data
+        {
+            get;
+            set;
         }
 
         //────────────────────────────────────────
         #endregion
 
 
-
     }
+
+
+
 }

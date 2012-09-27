@@ -68,7 +68,7 @@ namespace Xenon.Syntax
             //
             //
             //
-            this.DictionaryGivechapterandverse_SAttr.Clear( this, log_Reports);
+            this.Dictionary_SAttribute_Givechapterandverse.Clear( this, log_Reports);
 
 
             //
@@ -78,7 +78,7 @@ namespace Xenon.Syntax
             //
             //
             //
-            this.ListGivechapterandverse_Child.Clear(log_Reports);
+            this.List_ChildGivechapterandverse.Clear(log_Reports);
 
 
             //
@@ -151,7 +151,7 @@ namespace Xenon.Syntax
             //
             s.AppendI(1, "string属性");
             s.NewLine();
-            this.DictionaryGivechapterandverse_SAttr.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
+            this.Dictionary_SAttribute_Givechapterandverse.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
             {
                 s.AppendI(1, "[");
                 s.Append(sKey);
@@ -165,7 +165,7 @@ namespace Xenon.Syntax
             //
             // 子要素
             //
-            this.ListGivechapterandverse_Child.ToText_Content(s);
+            this.List_ChildGivechapterandverse.ToText_Content(s);
 
 
             s.AppendI(0, "</");
@@ -298,7 +298,7 @@ namespace Xenon.Syntax
 
             if (log_Reports.BSuccessful)
             {
-                this.ListGivechapterandverse_Child.ForEach(delegate(Givechapterandverse_Node child_Gcav, ref bool bBreak)
+                this.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node child_Gcav, ref bool bBreak)
                 {
                     if (sName == child_Gcav.SName)
                     {
@@ -414,7 +414,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 子要素のリスト。（格納順序を保つこと）
         /// </summary>
-        public ListGivechapterandverse_Node ListGivechapterandverse_Child
+        public ListGivechapterandverse_Node List_ChildGivechapterandverse
         {
             get
             {
@@ -426,7 +426,7 @@ namespace Xenon.Syntax
 
         private DictionaryGivechapterandverse_String dictionaryGivechapterandverse_SAttr;
 
-        public DictionaryGivechapterandverse_String DictionaryGivechapterandverse_SAttr
+        public DictionaryGivechapterandverse_String Dictionary_SAttribute_Givechapterandverse
         {
             get
             {

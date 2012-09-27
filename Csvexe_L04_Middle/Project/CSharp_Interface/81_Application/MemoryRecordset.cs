@@ -2,23 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;//Form
 
-namespace Xenon.Syntax
+using Xenon.Syntax;//N_FilePath
+
+namespace Xenon.Middle
 {
-    class Info_Syntax
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface MemoryRecordset
     {
 
 
 
-        #region プロパティー
+        #region アクション
         //────────────────────────────────────────
 
-        static public String SName_Library
+        /// <summary>
+        /// レコードセットの一時記憶。
+        /// </summary>
+        RecordsetStorage RecordsetStorage
         {
-            get
-            {
-                return "Csvexe_L01_Syntax";
-            }
+            get;
+            set;
         }
 
         //────────────────────────────────────────
@@ -27,4 +35,5 @@ namespace Xenon.Syntax
 
 
     }
+
 }
