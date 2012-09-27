@@ -3,44 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Middle
+namespace Xenon.Expr
 {
-
-
-
-    public interface FieldUserformtable
+    class Info_Expr
     {
+
 
 
         #region プロパティー
         //────────────────────────────────────────
 
-        string SName
+        static public String SName_Library
         {
-            get;
-            set;
-        }
-
-
-        EnumTypedb EnumTypedb
-        {
-            get;
-            set;
-        }
-
-
-        object Data
-        {
-            get;
-            set;
+            get
+            {
+                return "Csvexe_L06_Expr";
+            }
         }
 
         //────────────────────────────────────────
         #endregion
 
 
+
     }
-
-
-
 }

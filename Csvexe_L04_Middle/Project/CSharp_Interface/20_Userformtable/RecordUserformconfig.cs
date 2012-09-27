@@ -28,7 +28,7 @@ namespace Xenon.Middle
 
         void TryGetBool(out bool out_BValue, string sName, Log_Reports log_Reports);
 
-        void TryGetCfFilepath(out Givechapterandverse_Filepath out_BValue, string sName, bool bRequired, Log_Reports log_Reports);
+        void TryGetFilepath_Givechapterandverse(out Givechapterandverse_Filepath out_BValue, string sName, bool bRequired, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion

@@ -24,7 +24,7 @@ namespace Xenon.Middle
             set;
         }
 
-        List<RecordUserformconfig> List_FoRecord
+        List<RecordUserformconfig> List_RecordUserformconfig
         {
             get;
             set;
@@ -33,7 +33,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 親要素。
         /// </summary>
-        Givechapterandverse_Node Givechapterandverse_Mynode
+        Givechapterandverse_Node Cur_Givechapterandverse
         {
             get;
         }

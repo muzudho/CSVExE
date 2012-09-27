@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{98040E88-D816-451C-A2FF-0C934E9AF70A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.Expr</RootNamespace>
+    <AssemblyName>Csvexe_L06_Expr</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax">
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table">
+      <HintPath>..\..\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L04_Middle">
+      <HintPath>..\..\Csvexe_L04_Middle\Project\bin\Debug\Csvexe_L04_Middle.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L05_Controls">
+      <HintPath>..\..\Csvexe_L05_Controls\Project\bin\Debug\Csvexe_L05_Controls.exe</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSharp_Impl\110_Userformconfig\FieldUserformtableImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\Expression_SfcaseImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\Expression_SfcellImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\Expression_SfswitchImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\Expression_FtextTemplate.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\FieldListImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\P5_CellsSelecterImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\P1_RecordSetLoader.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\P4_RecordSetSaverImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\P2_ReccondCellImpl.cs" />
+    <Compile Include="CSharp_Impl\220_Expr_f\Expression_FfncImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_5FAllFieldsIsEmptyImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_Elem99Impl.cs" />
+    <Compile Include="CSharp_Impl\240_Expr_v_old\Expressionv_AllTextValidator_Old.cs" />
+    <Compile Include="CSharp_Impl\240_Expr_v_old\Expressionv_IntRangeTextValidator_Old.cs" />
+    <Compile Include="CSharp_Impl\240_Expr_v_old\Expressionv_MatchTextValidator_Old.cs" />
+    <Compile Include="CSharp_Impl\240_Expr_v_old\Expressionv_SpacesTextValidator_Old.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\Expression_ControlImpl.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\Expression_NodeImpl.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\Expression_Node_FunctionImpl.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\RecordsetStorageImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_6AEmptyFieldImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_4ADisplayImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_5FAllTrueImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_3FListboxValidationImpl.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\Expression_FvarImpl.cs" />
+    <Compile Include="CSharp_Impl\230_Expr_v\Expressionv_4ASelectRecordImpl.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\Expression_ValuecontrolImpl.cs" />
+    <Compile Include="CSharp_Impl\280_Expr\Expression_FparamImpl.cs" />
+    <Compile Include="CSharp_Impl\100_Name\XenonNameImpl.cs" />
+    <Compile Include="CSharp_Impl\110_Userformconfig\TableUserformconfigImpl.cs" />
+    <Compile Include="CSharp_Impl\110_Userformconfig\RecordUserformconfigImpl.cs" />
+    <Compile Include="CSharp_Info\Info_Expr.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Impl\280_Expr\%40これは、内部形式。.txt" />
+    <Content Include="CSharp_Impl\280_Expr\%40これは、フォーム_コンポーネントの内部形式。.txt" />
+    <Content Include="CSharp_Impl\230_Expr_v\%40これは、新validation設定ファイル。.txt" />
+    <Content Include="CSharp_Impl\240_Expr_v_old\%40これは、旧validation設定ファイル。.txt" />
+    <Content Include="CSharp_Impl\110_Userformconfig\%40これは、レイアウト設定ファイル。.txt" />
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

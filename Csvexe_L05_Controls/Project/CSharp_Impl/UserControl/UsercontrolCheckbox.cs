@@ -226,7 +226,7 @@ namespace Xenon.Controls
                 t.NewLine();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Givechapterandverse_Mynode));
+                t.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
 
                 r.SMessage = t.ToString();
                 log_Reports.EndCreateReport();
