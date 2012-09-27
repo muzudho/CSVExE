@@ -1,0 +1,70 @@
+﻿サンプル
+
+＜validation-config＞
+	＜control＞
+
+
+
+        ＜ｓｔａｒｔｕｐ－ｓｐｅｃｉａｌ－ｒｕｌｅ＞
+
+            ＜f-listbox-for-items
+                name                ="VAR_ループカウンター_スキルリスト"
+                begin               ="10"
+                end                 ="39"
+            ＞
+
+                ＜a-item-value＞
+                    <f-var value="VAR_ループカウンター_スキルリスト" />
+                ＜/a-item-value＞
+
+                ＜a-item-label＞
+                    <f-var value="VAR_ループカウンター_スキルリスト" />
+                    <ｆ－ｓｔｒ value=":" />
+                    <f-cell select="NAME" ｆｒｏｍ="Ut:アイテム_テーブル">
+                        <ａ－ｗｈｅｒｅ field="ID" required="false" >
+                            <f-cell ｆｒｏｍ="Ut:敵ルーチン_テーブル">
+                                <ａｔｔｒｉｂｕｔｅ name=”ｓｅｌｅｃｔ” ｄｅｓｃｒｉｐｔｉｏｎ="select属性が「SK10～SK39」">
+                                    <ｆ－ｓｔｒ value="SK" />
+                                    <f-var value="VAR_ループカウンター_スキルリスト" />
+                                </ａｔｔｒｉｂｕｔｅ>
+                                <ａ－ｗｈｅｒｅ field="ID" ｌｏｏｋｕｐ－ｖａｌｕｅ="$VAR_選択モンスターID" required="false" ignored-zero-supply="true" />
+                            </f-cell>
+                        </ａ－ｗｈｅｒｅ>
+                    </f-cell>
+                ＜/a-itam-label＞
+
+
+                ＜a-item-gray-out＞
+                    ＜f-all-true＞
+                        ＜a-empty-field＞
+                            <f-cell ｆｒｏｍ="USR_敵ルーチン_テーブル">
+                                <ａｔｔｒｉｂｕｔｅ name=”ｓｅｌｅｃｔ” ｄｅｓｃｒｉｐｔｉｏｎ="select属性が「SK10～SK29」">
+                                    <ｆ－ｓｔｒ value="SK" />
+                                    <f-var value="VAR_ループカウンター_スキルリスト" />
+                                </ａｔｔｒｉｂｕｔｅ>
+                                <ａ－ｗｈｅｒｅ field="ID" ｌｏｏｋｕｐ－ｖａｌｕｅ="$VAR_選択モンスターID" required="false" />
+                            </f-cell>
+                        ＜/a-empty-field＞
+                    
+                        ＜a-empty-field＞
+                            <f-cell ｆｒｏｍ="USR_敵ルーチン_テーブル">
+                                <ａｔｔｒｉｂｕｔｅ name=”ｓｅｌｅｃｔ” ｄｅｓｃｒｉｐｔｉｏｎ="「LVA10～29」">
+                                    <ｆ－ｓｔｒ value="LVA" />
+                                    <f-var value="VAR_ループカウンター_スキルリスト" />
+                                </ａｔｔｒｉｂｕｔｅ>
+                                <ａ－ｗｈｅｒｅ field="ID" ｌｏｏｋｕｐ－ｖａｌｕｅ="$VAR_選択モンスターID" required="false" />
+                            </f-cell>
+                        ＜/a-empty-field＞
+
+                    ＜/f-all-true＞
+                    
+                ＜/a-item-gray-out＞
+                
+            ＜/f-listbox-for-items＞
+
+
+        ＜/ｓｔａｒｔｕｐ－ｓｐｅｃｉａｌ－ｒｕｌｅ＞
+
+	＜/control＞
+
+＜/validation-config＞
