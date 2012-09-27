@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C1D6010-F3FB-4B49-979B-780B73467D7E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.Operating</RootNamespace>
+    <AssemblyName>Csvexe_L03_Operating</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table">
+      <HintPath>..\..\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.DirectX.DirectInput, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CSharp_Impl\200_DragAndDrop\DragsTextlistboxToImgImpl.cs" />
+    <Compile Include="CSharp_Impl\300_Datebackup\DatebackupImpl.cs" />
+    <Compile Include="CSharp_Impl\410_Gamepad_keyconfig\KeyconfigImpl.cs" />
+    <Compile Include="CSharp_Impl\410_Gamepad_keyconfig\KeyconfigPadImpl.cs" />
+    <Compile Include="CSharp_Impl\410_Gamepad_keyconfig\XTo_KeyconfigImpl.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Memory_GameController.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Gamepadmainloop_Receipt_SubImpl.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Gamepadmainloop_Receipt_ViewConfig.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Gamepadmainloop_Receipt_ViewTest.cs" />
+    <Compile Include="CSharp_Impl\490_Gamepad_Mainloop_SampleVer\Gamepadmainloop_Input_SampleImpl.cs" />
+    <Compile Include="CSharp_Impl\490_Gamepad_Mainloop_SampleVer\Gamepadmainloop_SampleImpl.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Program.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Form1.designer.cs">
+      <DependentUpon>Usercontrol_Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Page1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Page1.Designer.cs">
+      <DependentUpon>Usercontrol_Page1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Page2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Page2.designer.cs">
+      <DependentUpon>Usercontrol_Page2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Page3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_Page3.designer.cs">
+      <DependentUpon>Usercontrol_Page3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_VwdKeycnf.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_VwdKeycnf.designer.cs">
+      <DependentUpon>Usercontrol_VwdKeycnf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_VwdTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Usercontrol_VwdTest.designer.cs">
+      <DependentUpon>Usercontrol_VwdTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\450_Gamepad\Utility_KeyconfigBit.cs" />
+    <Compile Include="CSharp_Impl\450_Gamepad\Utility_KeyconfigArray.cs" />
+    <Compile Include="CSharp_Impl\510_Style_Cgav\RecordXenonStyleImpl.cs" />
+    <Compile Include="CSharp_Impl\520_Style_Memory\XenonColorImpl.cs" />
+    <Compile Include="CSharp_Impl\520_Style_Memory\XenonStyleImpl.cs" />
+    <Compile Include="CSharp_Impl\590_Style\MemoryStylesImpl.cs" />
+    <Compile Include="CSharp_Impl\540_Style_MemoryTo\MemoryToMemory_Stylesheet.cs" />
+    <Compile Include="CSharp_Impl\509_Style_Builder\BuilderBrush.cs" />
+    <Compile Include="CSharp_Impl\509_Style_Builder\BuilderColor.cs" />
+    <Compile Include="CSharp_Impl\509_Style_Builder\BuilderPen.cs" />
+    <Compile Include="CSharp_Impl\508_Style_Enum\EnumTextalign.cs" />
+    <Compile Include="CSharp_Impl\530_Style_XToMemory\XToMemory_Style.cs" />
+    <Compile Include="CSharp_Impl\650_Srs_EncodingItem\EncodingItemImpl.cs" />
+    <Compile Include="CSharp_Impl\660_Srs_ExAction\GloballistAction00001.cs" />
+    <Compile Include="CSharp_Impl\660_Srs_ExAction\GloballistAction00002.cs" />
+    <Compile Include="CSharp_Impl\660_Srs_ExAction\GloballistAction00003.cs" />
+    <Compile Include="CSharp_Impl\660_Srs_ExAction\GloballistAction00004.cs" />
+    <Compile Include="CSharp_Impl\680_Srs_Globallistconfig\GloballistconfigHumanImpl.cs" />
+    <Compile Include="CSharp_Impl\680_Srs_Globallistconfig\GloballistconfigNumberImpl.cs" />
+    <Compile Include="CSharp_Impl\680_Srs_Globallistconfig\GloballistconfigTypesectionImpl.cs" />
+    <Compile Include="CSharp_Impl\680_Srs_Globallistconfig\GloballistconfigTypesectionListImpl.cs" />
+    <Compile Include="CSharp_Impl\680_Srs_Globallistconfig\GloballistconfigVariableImpl.cs" />
+    <Compile Include="CSharp_Impl\680_Srs_Globallistconfig\MemoryGloballistconfigImpl.cs" />
+    <Compile Include="CSharp_Impl\670_Srs_Globallist\MemoryGloballistLineImpl.cs" />
+    <Compile Include="CSharp_Impl\670_Srs_Globallist\MemoryGloballistImpl.cs" />
+    <Compile Include="CSharp_Impl\691_Srs_Logic\GloballistAction00005.cs" />
+    <Compile Include="CSharp_Impl\690_Srs_SearchOfGloballistLine\ResultOfGloballistconfigElementSearchImpl.cs" />
+    <Compile Include="CSharp_Impl\600_Srs\SrsAttrName.cs" />
+    <Compile Include="CSharp_Info\Info_Operating.cs" />
+    <Compile Include="CSharp_Interface\200_DragAndDrop\OperationOfDroppedFile.cs" />
+    <Compile Include="CSharp_Impl\200_DragAndDrop\OperationOfDroppedImageImpl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSharp_Impl\200_DragAndDrop\OperationOfDroppedFileImpl.cs" />
+    <Compile Include="CSharp_Interface\300_Datebackup\Datebackup.cs" />
+    <Compile Include="CSharp_Interface\400_Gamepad\EnumGamepadkeyBit.cs" />
+    <Compile Include="CSharp_Interface\400_Gamepad\EnumGamepadkeyIx.cs" />
+    <Compile Include="CSharp_Interface\400_Gamepad\Gamepadmainloop.cs" />
+    <Compile Include="CSharp_Interface\400_Gamepad\Gamepadmainloop_Input.cs" />
+    <Compile Include="CSharp_Interface\400_Gamepad\Gamepadmainloop_Receipt_View.cs" />
+    <Compile Include="CSharp_Interface\500_Style\MemoryStyles.cs" />
+    <Compile Include="CSharp_Interface\500_Style\XenonColor.cs" />
+    <Compile Include="CSharp_Interface\500_Style\XenonStyle.cs" />
+    <Compile Include="CSharp_Interface\500_Style\RecordXenonStyle.cs" />
+    <Compile Include="CSharp_Interface\650_Srs_EncodingItem\EncodingItem.cs" />
+    <Compile Include="CSharp_Interface\680_Srs_Globallistconfig\GloballistconfigHuman.cs" />
+    <Compile Include="CSharp_Interface\680_Srs_Globallistconfig\GloballistconfigNumber.cs" />
+    <Compile Include="CSharp_Interface\680_Srs_Globallistconfig\GloballistconfigTypesection.cs" />
+    <Compile Include="CSharp_Interface\680_Srs_Globallistconfig\GloballistconfigTypesectionList.cs" />
+    <Compile Include="CSharp_Interface\680_Srs_Globallistconfig\GloballistconfigVariable.cs" />
+    <Compile Include="CSharp_Interface\680_Srs_Globallistconfig\MemoryGloballistconfig.cs" />
+    <Compile Include="CSharp_Interface\670_Srs_Globallist\MemoryGloballistLine.cs" />
+    <Compile Include="CSharp_Interface\670_Srs_Globallist\MemoryGloballist.cs" />
+    <Compile Include="CSharp_Interface\690_Srs_SearchOfGloballistLine\ResultOfGloballistconfigElementSearch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Impl\300_Datebackup\%40これは、日付別バックアップ機能.txt" />
+    <Content Include="CSharp_Impl\450_Gamepad\%40説明書.txt" />
+    <Content Include="CSharp_Impl\509_Style_Builder\%40これは、HTMLのstyle属性のようなもの.txt" />
+    <Content Include="CSharp_Impl\650_Srs_EncodingItem\%40これは、エンコーディング名.txt" />
+    <Content Include="CSharp_Impl\660_Srs_ExAction\%40アクション一覧.txt" />
+    <Content Include="CSharp_Impl\680_Srs_Globallistconfig\%40これは、「SRSグローバルリスト」の設定.txt" />
+    <Content Include="CSharp_Impl\670_Srs_Globallist\%40これは、「SRSグローバルリスト」.txt" />
+    <Content Include="CSharp_Impl\690_Srs_SearchOfGloballistLine\%40これは、「SRSグローバルリスト」の１行データ.txt" />
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+    <Content Include="CSharp_Interface\500_Style\%40これは、HTMLのstyle属性のようなもの.txt" />
+    <Content Include="CSharp_Interface\650_Srs_EncodingItem\%40これは、エンコーディング名.txt" />
+    <Content Include="CSharp_Interface\680_Srs_Globallistconfig\%40これは、「SRSグローバルリスト」の設定.txt" />
+    <Content Include="CSharp_Interface\670_Srs_Globallist\%40これは、「SRSグローバルリスト」.txt" />
+    <Content Include="CSharp_Interface\690_Srs_SearchOfGloballistLine\%40これは、「SRSグローバルリスト」の１行データ.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_Form1.resx">
+      <DependentUpon>Usercontrol_Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_Page1.resx">
+      <DependentUpon>Usercontrol_Page1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_Page2.resx">
+      <DependentUpon>Usercontrol_Page2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_Page3.resx">
+      <DependentUpon>Usercontrol_Page3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_VwdKeycnf.resx">
+      <DependentUpon>Usercontrol_VwdKeycnf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_VwdTest.resx">
+      <DependentUpon>Usercontrol_VwdTest.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CSharp_Interface\600_Srs\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

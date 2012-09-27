@@ -1,0 +1,43 @@
+﻿								2011-05-20
+								鬼畜大王
+			説明書
+
+
+//
+// （１）XInputを使うか、DirectInputを使うか？
+//
+// 調べてみると、XInput は XBox360用のコントローラーにしか対応していない上に
+// C＃のサンプルが not available （使えません） でした。
+//
+// DirectInput を使うことにします。
+//
+
+//
+// （２）
+// Microsoft.DirectX
+// Microsoft.DirectX.DirectInput
+// の２つのDLLを[参照設定]に追加します。
+// [参照設定]を右クリック、[参照設定の追加(R)]をクリック、[.NET]タブから。
+//
+// using Microsoft.DirectX;
+// using Microsoft.DirectX.DirectInput;
+// を追加。
+//
+//
+// Microsoft.DirectX が見つからない場合は、[参照]ボタンで直接します。
+//
+//C:\Windows\Microsoft.NET\～
+//
+// Visual Studio 2010 以降は、別途「DirectX SDK」をインストールする必要があります。
+// 「DirectX」は古い技術（WindowsXP頃まで）のようで、XInput に移行していっているようです。
+
+
+//
+// （３）
+// Visual Studio のデバッグモードで実行すると、
+// 「LoaderLock が検出されました。」という例外で落ちることがあります。
+// 
+// メニューの [デバッグ] → [例外] から、
+// [Managed Debugging Assistants] - [LoaderLock] の項目の
+// [スローされるとき]フィールドのチェックを外します。
+//
