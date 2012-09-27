@@ -18,11 +18,9 @@ namespace Xenon.Operating
 
         /// <summary>
         /// 前景色。設定されていなければヌル。
-        /// 
-        /// 旧名：MoColor
         /// </summary>
         /// <returns></returns>
-        XenonColor ForeColor
+        XenonColor ForeXenonColor
         {
             set;
             get;

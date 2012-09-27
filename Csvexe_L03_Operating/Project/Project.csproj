@@ -182,6 +182,7 @@
   <ItemGroup>
     <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_Form1.resx">
       <DependentUpon>Usercontrol_Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharp_Impl\450_Gamepad\Usercontrol_Page1.resx">
       <DependentUpon>Usercontrol_Page1.cs</DependentUpon>

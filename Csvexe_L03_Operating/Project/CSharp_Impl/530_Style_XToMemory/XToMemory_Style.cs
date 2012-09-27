@@ -54,9 +54,9 @@ namespace Xenon.Operating
                         }
                         else
                         {
-                            o_Style.ForeColor = new XenonColorImpl();
-                            o_Style.ForeColor.Color = colorResult.Color;
-                            o_Style.ForeColor.SName_Color = sValue;
+                            o_Style.ForeXenonColor = new XenonColorImpl();
+                            o_Style.ForeXenonColor.Color = colorResult.Color;
+                            o_Style.ForeXenonColor.SName_Color = sValue;
                         }
                     }
                     else

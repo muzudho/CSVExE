@@ -33,7 +33,7 @@ namespace Xenon.Operating
         /// 前景色。設定されていなければヌル。
         /// </summary>
         /// <returns>設定されていなければヌル。</returns>
-        public XenonColor ForeColor
+        public XenonColor ForeXenonColor
         {
             set
             {
