@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3031CF1-C6A4-4152-B770-A5B75AE9743C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.Functions</RootNamespace>
+    <AssemblyName>Csvexe_L11_Functions</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax">
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table">
+      <HintPath>..\..\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L03_Operating">
+      <HintPath>..\..\Csvexe_L03_Operating\Project\bin\Debug\Csvexe_L03_Operating.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L04_Middle">
+      <HintPath>..\..\Csvexe_L04_Middle\Project\bin\Debug\Csvexe_L04_Middle.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L05_Controls">
+      <HintPath>..\..\Csvexe_L05_Controls\Project\bin\Debug\Csvexe_L05_Controls.exe</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L06_Expr">
+      <HintPath>..\..\Csvexe_L06_Expr\Project\bin\Debug\Csvexe_L06_Expr.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L07_GcavToExpr">
+      <HintPath>..\..\Csvexe_L07_GcavToExpr\Project\bin\Debug\Csvexe_L07_GcavToExpr.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L09_MiddleImpl">
+      <HintPath>..\..\Csvexe_L09_MiddleImpl\Project\bin\Debug\Csvexe_L09_MiddleImpl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CSharp_Impl\110_GcavToFunc\GivechapterandverseToFunction20_ItemImpl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function44Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function45Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function46Impl.cs" />
+    <Compile Include="CSharp_Impl\900_Utility\Utility_Listbox.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function25Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_FunctionAbstract.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function04Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function05Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function06Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function11Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function17Impl_OLD.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function19Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function20Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function21Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function22Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function27Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function28Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function29Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function30Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function31Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function32Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function33Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function34Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function35Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function36Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function37Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function38Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function39Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function40Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function42Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function43Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_FunctionNullImpl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Collection_Function.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function_OnEditorSelected_Impl.cs" />
+    <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function_BootCsvEditorImpl.cs" />
+    <Compile Include="CSharp_Impl\140_Functionperformer\EventMonitorImpl.cs" />
+    <Compile Include="CSharp_Impl\140_Functionperformer\Exe_2FunctionImpl.cs" />
+    <Compile Include="CSharp_Impl\130_Usercontrolperformer\UsercontrolPerformerImpl.cs" />
+    <Compile Include="CSharp_Impl\150_Eventperformer\Exe_1EventImpl.cs" />
+    <Compile Include="CSharp_Impl\110_GcavToFunc\GivechapterandverseToFunction_ListImpl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSharp_Impl\110_GcavToFunc\GivechapterandverseToFunction00_ItemImpl.cs" />
+    <Compile Include="CSharp_Impl\900_Utility\Utility_Textformat.cs" />
+    <Compile Include="CSharp_Info\Info_FunctionsImpl.cs" />
+    <Compile Include="CSharp_Interface\GivechapterandverseToFunction_Item.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Impl\900_Utility\%40これは、リストボックスのユーティリティー。.txt" />
+    <Content Include="CSharp_Impl\120_Functions\%40関数一覧.txt" />
+    <Content Include="CSharp_Impl\130_Usercontrolperformer\%40これは、フォーム_コンポーネントのイベントアクション実行機能。.txt" />
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

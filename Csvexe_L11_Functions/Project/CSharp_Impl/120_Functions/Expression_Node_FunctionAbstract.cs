@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using System.Drawing;
+using System.Windows.Forms;
+using Xenon.Syntax;
+using Xenon.Middle;
+using Xenon.Expr;
+
+
+namespace Xenon.Functions
+{
+
+    /// <summary>
+    /// システム定義アクション。（Ｓａ）
+    /// 
+    /// イベントハンドラーに対応している。
+    /// </summary>
+    public abstract class Expression_Node_FunctionAbstract : Expression_Node_FunctionImpl
+    {
+
+
+
+        #region 生成と破棄
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// コンストラクター。
+        /// 
+        /// コンストラクターで生成したインスタンスは内容未設定です。必ず、#NewInstance でもう一度インスタンスを作って、そっちを使ってください。
+        /// </summary>
+        /// <param name="sNodeName"></param>
+        /// <param name="parent_Ec"></param>
+        /// <param name="cur_Gcav"></param>
+        public Expression_Node_FunctionAbstract(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+            : base(null/*parent_Expression*/, null/*cur_Gcav*/, listS_ArgName)
+        {
+            this.EnumEventhandler = enumEventhandler;
+            this.functiontranslatoritem = functiontranslatoritem;
+        }
+
+        public abstract override Expression_Node_Function NewInstance(
+            Expression_Node_String parent_Expression,
+            Givechapterandverse_Node cur_Gcav,
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging);
+
+        //────────────────────────────────────────
+        #endregion
+
+
+        
+        #region アクション
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// アクション実行。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        {
+            Log_Method pg_Method = new Log_MethodImpl(0);
+            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", pg_Logging);
+
+            if (pg_Method.CanWarning())
+            {
+                pg_Method.WriteWarning_ToConsole(" ▲▲▲▲▲オーバーライド実装してください。");
+            }
+
+            pg_Method.EndMethod(pg_Logging);
+            return "";
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+        #region プロパティー
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 最新仕様での関数変換一覧。
+        /// </summary>
+        private GivechapterandverseToFunction_Item functiontranslatoritem;
+
+        public GivechapterandverseToFunction_Item Functiontranslatoritem
+        {
+            get
+            {
+                return this.functiontranslatoritem;
+            }
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+    }
+}
