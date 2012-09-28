@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{225AB35F-3FC9-4EBA-BA71-D86549026A93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.Sprites</RootNamespace>
+    <AssemblyName>Csvexe_L09_Sprites</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax">
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L03b_GridPanel">
+      <HintPath>..\..\Csvexe_L03b_GridPanel\Project\bin\Debug\Csvexe_L03b_GridPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSharp_Info\Info_Sprite.cs" />
+    <Compile Include="CSharp_Interface\SpriteDictionary\MemorySpriteDictionary.cs" />
+    <Compile Include="CSharp_Impl\SpriteDictionary\MemorySpriteDictionaryImpl.cs" />
+    <Compile Include="CSharp_Interface\SpriteMouseController\ControllerOfSpriteMouse.cs" />
+    <Compile Include="CSharp_Interface\Sprite\Sprite.cs" />
+    <Compile Include="CSharp_Impl\Sprite\SpriteImpl.cs" />
+    <Compile Include="CSharp_Impl\SpriteMouseController\ControllerOfSpriteMouseImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Impl\SpriteDictionary\%40これは、スプライト一覧。.txt" />
+    <Content Include="CSharp_Impl\SpriteMouseController\%40これは、スプライトのマウス操作機能。.txt" />
+    <Content Include="CSharp_Impl\Sprite\%40これは、スプライト。.txt" />
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+    <Content Include="CSharp_Interface\SpriteDictionary\%40これは、スプライト一覧。.txt" />
+    <Content Include="CSharp_Interface\SpriteMouseController\%40これは、スプライトのマウス操作機能。.txt" />
+    <Content Include="CSharp_Interface\Sprite\%40これは、スプライト。.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
