@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C1EC9EA-4F31-4B9E-8D40-2525CF4F6796}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.MiddleImpl</RootNamespace>
+    <AssemblyName>Csvexe_L09_MiddleImpl</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L03_Operating, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L03_Operating\Project\bin\Debug\Csvexe_L03_Operating.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L04_Middle, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L04_Middle\Project\bin\Debug\Csvexe_L04_Middle.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L05_Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L05_Controls\Project\bin\Debug\Csvexe_L05_Controls.exe</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L06_Expr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L06_Expr\Project\bin\Debug\Csvexe_L06_Expr.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L07_GcavToExpr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L07_GcavToExpr\Project\bin\Debug\Csvexe_L07_GcavToExpr.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L08_XToGcav, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Csvexe_L08_XToGcav\Project\bin\Debug\Csvexe_L08_XToGcav.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSharp_Impl\110_Toolconfig_ExAction\Writer_Aaeditorxml.cs" />
+    <Compile Include="CSharp_Impl\110_Toolconfig_ExAction\Writer_Aatoolxml.cs" />
+    <Compile Include="CSharp_Impl\120_Toolconfig_Input\Dictionary_Fsetvar_GivechapterandverseImpl.cs" />
+    <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemoryAaeditorxml_EditorImpl.cs" />
+    <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemoryAatoolxml_EditorImpl.cs" />
+    <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemoryAaeditorxmlImpl.cs" />
+    <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemorySetverContainerImpl.cs" />
+    <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\Dictionary_AatoolxmlEditorImpl.cs" />
+    <Compile Include="CSharp_Impl\200_GcavToExpr\GivechapterandverseToExpression_EventImpl.cs" />
+    <Compile Include="CSharp_Impl\AccessorEjector.cs" />
+    <Compile Include="CSharp_Impl\900_Listbox\ListboxItemDrawer_02Impl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryBackupImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryFunctionsImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryApplicationImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryLogwriterImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryTogethersImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryCodefileinfoImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryCodefilesImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryTablesImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryFormsImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryRecordsetImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryAatoolxmlImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryValidatorsImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryVariablesImpl.cs" />
+    <Compile Include="CSharp_Info\Info_MiddleImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSharp_Impl\120_Toolconfig_Input\%40これは、＜input＞.txt" />
+    <Content Include="CSharp_Impl\130_Toolconfig_EditorConfig\%40これは、＜project＞.txt" />
+    <Content Include="CSharp_Impl\500_Application\%40これは、自由配置フォーム機能。.txt" />
+    <Content Include="CSharp_Info\ソースコード整理状況.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
