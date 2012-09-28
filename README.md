@@ -1,9 +1,8 @@
-*MarkdownŒ`®‚Ìreadmeƒtƒ@ƒCƒ‹‚ğ‰‚ß‚Ä‘‚¢‚Ä‚İ‚éB
-‘‚¯‚Ä‚¢‚Ü‚·‚©H‚P’i—–ÚB
+ï»¿*Markdownå½¢å¼ã®readmeãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆã‚ã¦æ›¸ã„ã¦ã¿ã‚‹ã€‚
+æ›¸ã‘ã¦ã„ã¾ã™ã‹ï¼Ÿï¼‘æ®µè½ç›®ã€‚
 
-‚Q’i—–ÚB
+ï¼’æ®µè½ç›®ã€‚
 
 
-Don't write filename "[" "]".
-commit failure.
+Self Note. Don't write filename "[" "]".commit failure.
 
