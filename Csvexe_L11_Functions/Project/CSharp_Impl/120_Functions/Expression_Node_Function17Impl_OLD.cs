@@ -65,10 +65,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function17Impl_OLD(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -76,13 +76,13 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, null, pg_Logging);
+            f0.DicExpression_Attr.Set(Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, null, log_Reports);
 
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -97,19 +97,19 @@ namespace Xenon.Functions
         /// <summary>
         /// 
         /// </summary>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName;
-            this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             // デバッグ
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
 
             // タスク・デスクリプション
@@ -119,14 +119,14 @@ namespace Xenon.Functions
 
                 string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                     Request_SelectingImpl.Unconstraint,
-                    pg_Logging
+                    log_Reports
                     );
 
-                pg_Logging.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName + "]アクションを実行。";
+                log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName + "]アクションを実行。";
             }
             else
             {
-                pg_Logging.SComment_EventCreationMe += "／追記：[" + sFncName + "]アクションを実行。";
+                log_Reports.SComment_EventCreationMe += "／追記：[" + sFncName + "]アクションを実行。";
             }
 
 
@@ -137,36 +137,36 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + pg_Method.SHead + ":＞";
+                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + log_Method.SHead + ":＞";
 
 
                 Expression_Node_String e_ArgFilePath;
-                this.TrySelectAttr(out e_ArgFilePath, Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                this.TrySelectAttr(out e_ArgFilePath, Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 // ファイルパス
                 if (null == e_ArgFilePath)
                 {
-                    if (pg_Logging.BSuccessful)
+                    if (log_Reports.BSuccessful)
                     {
                         // 正常時
-                        if (pg_Method.CanDebug(1))
+                        if (log_Method.CanDebug(1))
                         {
-                            pg_Method.WriteDebug_ToConsole("①[" + Expression_Node_Function17Impl_OLD.S_PM_FILEPATH + "]はヌルだった。");
+                            log_Method.WriteDebug_ToConsole("①[" + Expression_Node_Function17Impl_OLD.S_PM_FILEPATH + "]はヌルだった。");
                         }
 
                         throw new Exception("バリデーション設定ファイルのファイルパスを１つ１つ当たるプログラムが未実装です。");
 
                         //// 変数名。
                         //Expression_Node_String e_Atom;
-                        //this.TrySelectAttr(out e_Atom, Ec_Sf17Impl_OLD.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                        //this.TrySelectAttr(out e_Atom, Ec_Sf17Impl_OLD.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                         //// ファイルパス。
-                        //pg_Logging.Log_Callstack.Push(pg_Method, "④");
-                        //Expression_Node_Filepath efp = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(e_Atom, true, pg_Logging);
-                        //pg_Logging.Log_Callstack.Pop(pg_Method, "④");
+                        //log_Reports.Log_Callstack.Push(log_Method, "④");
+                        //Expression_Node_Filepath efp = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(e_Atom, true, log_Reports);
+                        //log_Reports.Log_Callstack.Pop(log_Method, "④");
 
                         //e_ArgFilePath = efp;
-                        //this.DicExpression_Attr.Set(Ec_Sf17Impl_OLD.S_PM_FILEPATH, efp, pg_Logging);
+                        //this.DicExpression_Attr.Set(Ec_Sf17Impl_OLD.S_PM_FILEPATH, efp, log_Reports);
                     }
                     else
                     {
@@ -174,25 +174,25 @@ namespace Xenon.Functions
                 }
                 else
                 {
-                    if (pg_Method.CanDebug(1))
+                    if (log_Method.CanDebug(1))
                     {
-                        pg_Method.WriteDebug_ToConsole( "②");
+                        log_Method.WriteDebug_ToConsole( "②");
                     }
                 }
 
 
                 //絶対ファイルパス
                 string sFpatha_vcnf;
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
-                    if (pg_Method.CanDebug(1))
+                    if (log_Method.CanDebug(1))
                     {
-                        pg_Method.WriteDebug_ToConsole( "③");
+                        log_Method.WriteDebug_ToConsole( "③");
                     }
 
-                    sFpatha_vcnf = e_ArgFilePath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
-                    if (!pg_Logging.BSuccessful)
+                    sFpatha_vcnf = e_ArgFilePath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    if (!log_Reports.BSuccessful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -200,25 +200,25 @@ namespace Xenon.Functions
                 }
                 else
                 {
-                    if (pg_Method.CanDebug(1))
+                    if (log_Method.CanDebug(1))
                     {
-                        pg_Method.WriteDebug_ToConsole( "④");
+                        log_Method.WriteDebug_ToConsole( "④");
                     }
 
                     sFpatha_vcnf = "";
                 }
 
                 // 『バリデーション設定ファイル』を読み込みます。
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
-                    if (pg_Method.CanDebug(1))
+                    if (log_Method.CanDebug(1))
                     {
-                        pg_Method.WriteDebug_ToConsole( "⑤sFpatha_vcnf=[" + sFpatha_vcnf + "]");
+                        log_Method.WriteDebug_ToConsole( "⑤sFpatha_vcnf=[" + sFpatha_vcnf + "]");
                     }
 
-                    this.Owner_MemoryApplication.MemoryValidators.LoadFile(sFpatha_vcnf,this.Owner_MemoryApplication, pg_Logging);//ここでバグる。
+                    this.Owner_MemoryApplication.MemoryValidators.LoadFile(sFpatha_vcnf,this.Owner_MemoryApplication, log_Reports);//ここでバグる。
                 }
             }
 
@@ -235,7 +235,7 @@ namespace Xenon.Functions
             //
             ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
 
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 

@@ -46,10 +46,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorImpl(this.EnumEventhandler, this.ListS_ArgName, this.Functiontranslatoritem);
@@ -57,7 +57,7 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             //「プロジェクト選択時」のイベントハンドラーを上書き要求。
             {
@@ -66,13 +66,13 @@ namespace Xenon.Functions
                         f0,
                         cur_Gcav,
                         owner_MemoryApplication,
-                        pg_Logging
+                        log_Reports
                         );
                 ((Expression_Node_Function_BootCsvEditorImpl)f0).Functionitem_OnProjectSelected = expr_Func;
             }
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -89,11 +89,11 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             //（１）メソッド開始
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -108,7 +108,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.On_P2_NewModelSetup(pg_Logging);
+                this.On_P2_NewModelSetup(log_Reports);
 
 
                 //
@@ -134,7 +134,7 @@ namespace Xenon.Functions
                             this,
                             this.Cur_Givechapterandverse,
                             this.Owner_MemoryApplication,
-                            pg_Logging
+                            log_Reports
                             );
 
                     this.Owner_MemoryApplication.MemoryForms.Mainwnd_FormWrapping.Form.KeyDown += new System.Windows.Forms.KeyEventHandler(((Expression_Node_FunctionImpl)expr_Func).Execute_OnKey);
@@ -149,7 +149,7 @@ namespace Xenon.Functions
                 //
                 //
                 {
-                    this.Owner_MemoryApplication.MemoryAatoolxml.P101_LoadAatoolxml(this.Owner_MemoryApplication, cf_ThisMethod, pg_Logging);
+                    this.Owner_MemoryApplication.MemoryAatoolxml.P101_LoadAatoolxml(this.Owner_MemoryApplication, cf_ThisMethod, log_Reports);
                 }
 
 
@@ -160,7 +160,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     this.Owner_MemoryApplication.MemoryForms.Form_Toolwindow.Clear();
 
@@ -175,7 +175,7 @@ namespace Xenon.Functions
                         this.Cur_Givechapterandverse,
                         //EnumEventhandler.Unknown,
                         this.Owner_MemoryApplication,
-                        pg_Logging
+                        log_Reports
                         );
                     //expr_Func.InitializeBeforeUse(this.Owner_MemoryApplication);
                     this.Owner_MemoryApplication.MemoryForms.Form_Toolwindow.OnEditorSelected += expr_Func.Execute_OnEditorSelected;
@@ -189,10 +189,10 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     this.Functionitem_OnProjectSelected.Execute_OnEditorSelected(
-                        this.ExpressionfncPrmset.Sender, null, false, pg_Logging);
+                        this.ExpressionfncPrmset.Sender, null, false, log_Reports);
                 }
 
 
@@ -204,7 +204,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // タイトルは、外部ファイルで記述します。
 
@@ -219,8 +219,8 @@ namespace Xenon.Functions
 
                         // エディター設定ファイルに記載されているエディターの表示タイトル。
                         sb.Append(this.Owner_MemoryApplication.MemoryVariables.GetStringByVariablename(
-                            new Expression_Leaf_StringImpl(NamesVar.S_SS_TITLE_EDITOR,null,new Givechapterandverse_NodeImpl(pg_Method.SHead,null)),
-                            false,pg_Logging));
+                            new Expression_Leaf_StringImpl(NamesVar.S_SS_TITLE_EDITOR,null,new Givechapterandverse_NodeImpl(log_Method.SHead,null)),
+                            false,log_Reports));
 
                         // レイアウト・テーブルに記載されているエディター名。
                         sb.Append(mainwnd_FormWrapping.UsercontrolText);
@@ -243,7 +243,7 @@ namespace Xenon.Functions
             //
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 
@@ -258,7 +258,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 独自実装のモデルをセットアップするタイミング。
         /// </summary>
-        protected virtual void On_P2_NewModelSetup(Log_Reports pg_Logging)
+        protected virtual void On_P2_NewModelSetup(Log_Reports log_Reports)
         {
         }
 

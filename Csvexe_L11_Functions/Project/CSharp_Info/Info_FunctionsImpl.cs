@@ -18,16 +18,16 @@ namespace Xenon.Functions
         //────────────────────────────────────────
 
         static public void WriteErrorLog(
-            Log_Method pg_Method,
+            Log_Method log_Method,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             // エラーログ出力。
             owner_MemoryApplication.MemoryLogwriter.WriteErrorLog(
                 owner_MemoryApplication,
-                pg_Logging,
-                pg_Method.SHead);
+                log_Reports,
+                log_Method.SHead);
                 //Info_Functions.SName_Library + ":" + sClassName + sMethodNameWithSharp);
         }
 

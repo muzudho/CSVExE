@@ -44,14 +44,14 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function44Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             return f0;
         }
@@ -68,7 +68,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 今日の分のバックアップを取ります。
         /// </summary>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             //
             //
@@ -77,8 +77,8 @@ namespace Xenon.Functions
             //
             //
             //
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
@@ -86,7 +86,7 @@ namespace Xenon.Functions
 
 
                 // 日付毎のバックアップ（バックアップ対象ファイルを、設定ファイルから読取り後）
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
@@ -112,19 +112,19 @@ namespace Xenon.Functions
                         Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Givechapterandverse);
 
                         // フォルダーパス。
-                        pg_Logging.Log_Callstack.Push(pg_Method, "⑥");
+                        log_Reports.Log_Callstack.Push(log_Method, "⑥");
                         ec_Fopath_BackupBase = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
                             ec_Atom,
                             true,
-                            pg_Logging
+                            log_Reports
                             );
-                        pg_Logging.Log_Callstack.Pop(pg_Method, "⑥");
+                        log_Reports.Log_Callstack.Pop(log_Method, "⑥");
                     }
 
                     dateBackup.List_Expression_Filepath_Request = this.Expression_FilepathList_Backup;// バックアップ対象のファイルのパス一覧。
                     dateBackup.Expression_Filepath_Backuphome = ec_Fopath_BackupBase;
                     dateBackup.SName_Sub = this.Owner_MemoryApplication.MemoryBackup.SName_SubFolder;
-                    dateBackup.Perform(pg_Logging);
+                    dateBackup.Perform(log_Reports);
                 }
             }
 
@@ -132,7 +132,7 @@ namespace Xenon.Functions
             //
             //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 

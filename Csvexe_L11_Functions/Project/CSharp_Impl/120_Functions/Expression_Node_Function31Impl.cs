@@ -49,10 +49,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function31Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -60,12 +60,12 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function31Impl.S_PM_NAME_FC, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(Expression_Node_Function31Impl.S_PM_NAME_FC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -83,13 +83,13 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             //
             //
@@ -103,18 +103,18 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sFncName0 + "]アクションを実行。";
                 }
 
 
                 this.Perform2(
-                    pg_Logging
+                    log_Reports
                     );
 
 
@@ -136,43 +136,43 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sFncName0 + "]アクションを実行。";
                 }
 
 
                 this.Perform2(
-                    pg_Logging
+                    log_Reports
                     );
             }
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 
         //────────────────────────────────────────
 
         protected void Perform2(
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
 
             //
@@ -183,17 +183,17 @@ namespace Xenon.Functions
             //
             //
             List<Usercontrol> list_FcUc;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
 
                 Expression_Node_String ec_ArgFcName;
-                this.TrySelectAttr(out ec_ArgFcName, Expression_Node_Function31Impl.S_PM_NAME_FC, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                this.TrySelectAttr(out ec_ArgFcName, Expression_Node_Function31Impl.S_PM_NAME_FC, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 list_FcUc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                     ec_ArgFcName,
                     true,
-                    pg_Logging
+                    log_Reports
                     );
             }
             else
@@ -201,7 +201,7 @@ namespace Xenon.Functions
                 list_FcUc = new List<Usercontrol>();
             }
 
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
                 Usercontrol uct = list_FcUc[0];
@@ -212,20 +212,20 @@ namespace Xenon.Functions
 
                     // ウィンドウを閉じます。
                     uctWnd.Close(
-                        pg_Logging
+                        log_Reports
                         );
                 }
 
                 // 子コントロールのゴミは残る？
                 uct.Destruct(
-                    pg_Logging
+                    log_Reports
                     );
             }
 
 
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
 
-            //if (pg_Logging.BSuccessful)
+            //if (log_Reports.BSuccessful)
             //{
             //    //essageBox.Show(this.GetType().Name + "#Perform: アクションのtype=[" + this.Type + "]", "デバッグ中です。（アクション「" + this.Type + "」として指定されています）");
 

@@ -44,7 +44,7 @@ namespace Xenon.Functions
         public abstract override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
             Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging);
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion
@@ -59,17 +59,17 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", log_Reports);
 
-            if (pg_Method.CanWarning())
+            if (log_Method.CanWarning())
             {
-                pg_Method.WriteWarning_ToConsole(" ▲▲▲▲▲オーバーライド実装してください。");
+                log_Method.WriteWarning_ToConsole(" ▲▲▲▲▲オーバーライド実装してください。");
             }
 
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 

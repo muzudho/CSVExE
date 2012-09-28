@@ -48,10 +48,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function29Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -59,12 +59,12 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function29Impl.S_PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(Expression_Node_Function29Impl.S_PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -81,33 +81,33 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + pg_Method.SHead + "＞";
+                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + log_Method.SHead + "＞";
 
 
                 if (this.ExpressionfncPrmset.Sender is Customcontrol)
                 {
                     Customcontrol cct = (Customcontrol)this.ExpressionfncPrmset.Sender;
 
-                    string sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                    string sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    pg_Logging.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
+                    log_Reports.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe += "／追加：NAction29を実行。";
+                    log_Reports.SComment_EventCreationMe += "／追加：NAction29を実行。";
                 }
 
 
-                this.Perform2(pg_Logging);
+                this.Perform2(log_Reports);
 
                 //
                 //
@@ -127,40 +127,40 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    pg_Logging.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
+                    log_Reports.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe += "／追加：NAction29を実行。";
+                    log_Reports.SComment_EventCreationMe += "／追加：NAction29を実行。";
                 }
 
-                this.Perform2(pg_Logging);
+                this.Perform2(log_Reports);
             }
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 
         //────────────────────────────────────────
 
         protected void Perform2(
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
 
 
@@ -168,7 +168,7 @@ namespace Xenon.Functions
             // 指定された引数から、または、
             // このNAction29要素を含んでいる ｃｏｎｔｒｏｌ要素から、コントロールの名前を取得。
             List<Usercontrol> list_Usercontrol;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
 
@@ -178,9 +178,9 @@ namespace Xenon.Functions
                 //
                 // コントロール名が指定されていれば、そのコントロール名。
                 //
-                this.TrySelectAttr(out ec_Name_Control, Expression_Node_Function29Impl.S_PM_NAME_CONTROL, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                this.TrySelectAttr(out ec_Name_Control, Expression_Node_Function29Impl.S_PM_NAME_CONTROL, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-                string sName_Control = ec_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                string sName_Control = ec_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
 
                 if ("" == sName_Control.Trim())
@@ -188,15 +188,15 @@ namespace Xenon.Functions
                     //コントロール名が指定されていない場合。
                     //
                     //  ・このシステム関数を含んでいるイベント要素→コントロール要素と辿り、コントロール名を取得。
-                    Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, pg_Logging);
+                    Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
 
                     if (null != cf_Event)
                     {
-                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, pg_Logging);
+                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
 
                         if (null != owner_Givechapterandverse_Control)
                         {
-                            bool bHit = owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, pg_Logging);
+                            bool bHit = owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
 
                             if (bHit)
                             {
@@ -204,7 +204,7 @@ namespace Xenon.Functions
                                 ec_Name_Control.AppendTextNode(
                                     sName_Control,
                                     this.Cur_Givechapterandverse,
-                                    pg_Logging
+                                    log_Reports
                                     );
                             }
                         }
@@ -226,7 +226,7 @@ namespace Xenon.Functions
                 list_Usercontrol = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                     ec_Name_Control,
                     true,
-                    pg_Logging
+                    log_Reports
                     );
             }
             else
@@ -239,12 +239,12 @@ namespace Xenon.Functions
             //
             // 妥当性判定を行います。
             //
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 if (0 < list_Usercontrol.Count)
                 {
                     Usercontrol uct = list_Usercontrol[0];
-                    uct.JudgeValidity(pg_Logging);
+                    uct.JudgeValidity(log_Reports);
                 }
 
                 //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　妥当性判定を行った。");
@@ -253,7 +253,7 @@ namespace Xenon.Functions
 
 
 
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 //
                 // 指定のコントロールの内容を、データ・ソースから読取り直して最新表示します。
@@ -274,7 +274,7 @@ namespace Xenon.Functions
                     {
                         // 手入力による更新。
 
-                        uct.UsercontrolToMemory(pg_Logging);
+                        uct.UsercontrolToMemory(log_Reports);
                     }
                 }
 
@@ -286,7 +286,7 @@ namespace Xenon.Functions
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

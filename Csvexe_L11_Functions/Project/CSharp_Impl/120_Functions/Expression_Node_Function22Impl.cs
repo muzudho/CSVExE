@@ -59,10 +59,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function22Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -70,10 +70,10 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -96,19 +96,19 @@ namespace Xenon.Functions
         /// ファイルからテーブルを読み取り、モデルに内容を挿入します。
         /// </summary>
         /// <param name="moMre"></param>
-        /// <param name="pg_Logging"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        /// <param name="log_Reports"></param>
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName;
-            this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
             //
             //
@@ -128,14 +128,14 @@ namespace Xenon.Functions
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
-                        pg_Logging
+                        log_Reports
                         );
 
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName + "]アクションを実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sFncName + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sFncName + "]アクションを実行。";
                 }
 
                 //
@@ -174,9 +174,9 @@ namespace Xenon.Functions
                 //
                 //
                 XenonTable o_Table_Aafiles;
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
-                    o_Table_Aafiles = this.Read_AaFilesCsv(pg_Logging);
+                    o_Table_Aafiles = this.Read_AaFilesCsv(log_Reports);
                 }
                 else
                 {
@@ -191,29 +191,29 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
-                    this.Owner_MemoryApplication.MemoryTables.AddXenonTable(o_Table_Aafiles, pg_Logging);
+                    this.Owner_MemoryApplication.MemoryTables.AddXenonTable(o_Table_Aafiles, log_Reports);
                 }
 
 
                 //
                 // 「Aa_Files.csvに書かれているテーブルと、スクリプトファイル」を読取り、登録。
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
-                    this.ReadAndRegisterFiles(o_Table_Aafiles, pg_Logging);
+                    this.ReadAndRegisterFiles(o_Table_Aafiles, log_Reports);
                 }
 
 
                 //
                 // 日別バックアップ用の準備
                 //
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
-                    this.RegisterDateBackup(pg_Logging);
+                    this.RegisterDateBackup(log_Reports);
                 }
 
 
@@ -229,11 +229,11 @@ namespace Xenon.Functions
 
                     //
                     // 「テーブルに書かれているテーブル」を読取り、登録。
-                    if (pg_Logging.BSuccessful)
+                    if (log_Reports.BSuccessful)
                     {
                         // 正常時
 
-                        this.ReadAndRegisterFiles(o_Table_Aaformscsv, pg_Logging);
+                        this.ReadAndRegisterFiles(o_Table_Aaformscsv, log_Reports);
                     }
                 }
 
@@ -258,10 +258,10 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_EmptynameTable:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー529！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー529！", log_Method);
 
                 StringBuilder s = new StringBuilder();
                 s.Append("引数 [" + PmNames.S_NAME_TABLE.SName_Pm + "] を指定してください。");
@@ -272,7 +272,7 @@ namespace Xenon.Functions
                 s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
                 r.SMessage = s.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -280,7 +280,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 
@@ -290,16 +290,16 @@ namespace Xenon.Functions
         /// 「Aa_Files.csv」を読み取る要求を作成します。
         /// 旧名：ReadIndexRequest
         /// </summary>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
-        private Request_ReadsTable CreateReadRequest_AaFilesCsv(Log_Reports pg_Logging)
+        private Request_ReadsTable CreateReadRequest_AaFilesCsv(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "CreateReadRequest_AaFilesCsv",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "CreateReadRequest_AaFilesCsv",log_Reports);
 
-            if (pg_Method.CanDebug(1))
+            if (log_Method.CanDebug(1))
             {
-                pg_Method.WriteDebug_ToConsole("「ファイルズ登録ファイル」を読取る要求を作成します。");
+                log_Method.WriteDebug_ToConsole("「ファイルズ登録ファイル」を読取る要求を作成します。");
             }
 
             //
@@ -322,25 +322,25 @@ namespace Xenon.Functions
             {
                 // 変数名。
                 Expression_Node_Filepath ec_Fpath_Aafilescsv;
-                pg_Logging.Log_Callstack.Push(pg_Method, "⑦");
+                log_Reports.Log_Callstack.Push(log_Method, "⑦");
                 ec_Fpath_Aafilescsv = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
-                    new Expression_Leaf_StringImpl(NamesVar.S_SP_FILES, null, new Givechapterandverse_NodeImpl(pg_Method.SHead, null)),
-                    true,pg_Logging);
-                pg_Logging.Log_Callstack.Pop(pg_Method, "⑦");
+                    new Expression_Leaf_StringImpl(NamesVar.S_SP_FILES, null, new Givechapterandverse_NodeImpl(log_Method.SHead, null)),
+                    true,log_Reports);
+                log_Reports.Log_Callstack.Pop(log_Method, "⑦");
 
                 forIndexTable_Request.Expression_Filepath = ec_Fpath_Aafilescsv;
 
-                //this.TrySelectAttr(out ec_Atom, Ec_Sf22Impl.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, pg_Logging);
-                //if (pg_Logging.BSuccessful)
+                //this.TrySelectAttr(out ec_Atom, Ec_Sf22Impl.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                //if (log_Reports.BSuccessful)
                 //{
                 //    // ファイルパス。
-                //    pg_Logging.Log_Callstack.Push(pg_Method, "②");
+                //    log_Reports.Log_Callstack.Push(log_Method, "②");
                 //    forIndexTable_Request.Expression_Node_Filepath = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
                 //        ec_Fpath_Aafilescsv,
                 //        true,
-                //        pg_Logging
+                //        log_Reports
                 //        );
-                //    pg_Logging.Log_Callstack.Pop(pg_Method, "②");
+                //    log_Reports.Log_Callstack.Pop(log_Method, "②");
                 //}
             }
 
@@ -351,7 +351,7 @@ namespace Xenon.Functions
             goto gt_EndMethod;
             //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return forIndexTable_Request;
         }
 
@@ -376,17 +376,17 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private XenonTable Read_AaFilesCsv(Log_Reports pg_Logging)
+        private XenonTable Read_AaFilesCsv(Log_Reports log_Reports)
         {
             //「Aa_Files.csv」を読み取る要求を作成します。
-            Request_ReadsTable forAafilescsv_Request = this.CreateReadRequest_AaFilesCsv(pg_Logging);
+            Request_ReadsTable forAafilescsv_Request = this.CreateReadRequest_AaFilesCsv(log_Reports);
             XenonTableformat forAafilescsv_Format = this.ReadIndexFormat();
 
             //
             // 「Aa_Files.csv」読取り
             CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
             XenonTable o_AaFilesTable;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
 
@@ -394,9 +394,9 @@ namespace Xenon.Functions
                         forAafilescsv_Request,
                         forAafilescsv_Format,
                         true,
-                        pg_Logging
+                        log_Reports
                         );
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -422,7 +422,7 @@ namespace Xenon.Functions
         /// </summary>
         private void ReadAndRegisterFiles(
             XenonTable o_Table_Aafiles,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //
@@ -432,8 +432,8 @@ namespace Xenon.Functions
             //
             //
             //
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "ReadAndRegisterFiles",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "ReadAndRegisterFiles",log_Reports);
 
 
             string err_STypedata;
@@ -446,11 +446,11 @@ namespace Xenon.Functions
             //
             //
             string sFpatha_Aafilescsv;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 sFpatha_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint, pg_Logging);
-                if (!pg_Logging.BSuccessful)
+                    Request_SelectingImpl.Unconstraint, log_Reports);
+                if (!log_Reports.BSuccessful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -470,7 +470,7 @@ namespace Xenon.Functions
             //
             //
             bool bExistsField_TypeData;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 if (o_Table_Aafiles.DataTable.Columns.Contains(NamesFld.S_TYPE_DATA))
                 {
@@ -488,7 +488,7 @@ namespace Xenon.Functions
 
 
             int err_NRow=1;//行番号
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
 
                 //
@@ -502,9 +502,9 @@ namespace Xenon.Functions
                     Request_ReadsTable requestRead = this.CreateReadRequest(
                         dataRow,
                         o_Table_Aafiles,
-                        pg_Logging);
+                        log_Reports);
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         //既エラー時、ループ抜け。
                         break;
@@ -523,23 +523,23 @@ namespace Xenon.Functions
                         //
 
                         XenonTableformat forTable_format = this.Read_RequestPart_Table(
-                            dataRow, sFpatha_Aafilescsv, pg_Logging);
+                            dataRow, sFpatha_Aafilescsv, log_Reports);
 
                         XenonTable oTable;
                         // テーブル読取の実行。（書き出し専用の場合は、登録だけする）
                         oTable = this.ReadTable(
                             requestRead,
                             forTable_format,
-                            pg_Logging
+                            log_Reports
                             );
 
                         // テーブルは読み込まなくても、登録はする。
-                        if (pg_Logging.BSuccessful)
+                        if (log_Reports.BSuccessful)
                         {
                             // アプリケーション・モデルに、テーブルを登録
                             this.Owner_MemoryApplication.MemoryTables.AddXenonTable(
                                 oTable,
-                                pg_Logging
+                                log_Reports
                                 );
                         }
                         //
@@ -556,20 +556,20 @@ namespace Xenon.Functions
                             dataRow,
                             sFpatha_Aafilescsv,
                             o_Table_Aafiles,
-                            pg_Logging
+                            log_Reports
                             );
 
                         // 登録
-                        if (pg_Logging.BSuccessful)
+                        if (log_Reports.BSuccessful)
                         {
                             this.Owner_MemoryApplication.MemoryCodefiles.Add(
                                 moScriptfileInfo,
-                                pg_Logging
+                                log_Reports
                                 );
                         }
 
                         //requestRead.
-                        pg_Method.WriteDebug_ToConsole("sTypeData=[" + requestRead.STypedata + "]");
+                        log_Method.WriteDebug_ToConsole("sTypeData=[" + requestRead.STypedata + "]");
                     }
                     else
                     {
@@ -590,10 +590,10 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_TypeData:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー301！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー301！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("未定義のデータ・タイプです。");
@@ -620,7 +620,7 @@ namespace Xenon.Functions
                 }
 
                 r.SMessage = s.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -628,7 +628,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────
@@ -644,12 +644,12 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="dataRow"></param>
         /// <param name="o_IndexTable"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
         private Request_ReadsTable CreateReadRequest(
             DataRow dataRow,
             XenonTable o_Table_Aafiles,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //
@@ -659,8 +659,8 @@ namespace Xenon.Functions
             //
             //
             //
-            Log_Method pg_Method = new Log_MethodImpl(1);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "CreateReadRequest",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(1);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "CreateReadRequest",log_Reports);
 
 
             //
@@ -672,13 +672,13 @@ namespace Xenon.Functions
             // 「インデックス_テーブル」の絶対ファイルパス
             Expression_Node_Filepath ec_Fpath_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack;
             string sFpatha_Aafilescsv = ec_Fpath_Aafilescsv.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, pg_Logging);
-            //if (pg_Method.CanDebug(1))
+                Request_SelectingImpl.Unconstraint, log_Reports);
+            //if (log_Method.CanDebug(1))
             //{
-            //    pg_Method.WriteDebug_ToConsole("「Aa_Files.csv」のファイルパス＝[" + sFpatha_Aafilescsv + "]");
+            //    log_Method.WriteDebug_ToConsole("「Aa_Files.csv」のファイルパス＝[" + sFpatha_Aafilescsv + "]");
             //}
 
-            if (!pg_Logging.BSuccessful)
+            if (!log_Reports.BSuccessful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -695,13 +695,13 @@ namespace Xenon.Functions
                     out sTableName,
                     o_Table_Aafiles.SName,
                     sName_Field,
-                    pg_Method,
-                    pg_Logging))
+                    log_Method,
+                    log_Reports))
                 {
 
                 }
 
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // エラー
                     goto gt_EndMethod;
@@ -723,15 +723,15 @@ namespace Xenon.Functions
                         out sTableUnit,
                         o_Table_Aafiles.SName,
                         sName_Field,
-                        pg_Method,
-                        pg_Logging);
+                        log_Method,
+                        log_Reports);
 
                     if (bBool)
                     {
 
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -756,13 +756,13 @@ namespace Xenon.Functions
                         out sValue,
                         o_Table_Aafiles.SName,
                         sName_Field,
-                        pg_Method,
-                        pg_Logging))
+                        log_Method,
+                        log_Reports))
                     {
 
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -786,10 +786,10 @@ namespace Xenon.Functions
                     sFpatha_Aafilescsv,
                     dataRow,
                     o_Table_Aafiles,
-                    pg_Logging
+                    log_Reports
                     );
 
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     forTable_request.Expression_Filepath = ec_Fpath;
                 }
@@ -808,13 +808,13 @@ namespace Xenon.Functions
                         out sNamevar,
                         o_Table_Aafiles.SName,
                         sName_Field,
-                        pg_Method,
-                        pg_Logging))
+                        log_Method,
+                        log_Reports))
                     {
 
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -829,7 +829,7 @@ namespace Xenon.Functions
                 {
                     // 指定があれば、ファイルパスを変数にセット。
                     this.Owner_MemoryApplication.MemoryVariables.SetFilepathValue(
-                        sNamevar, ec_Fpath, false, pg_Logging);
+                        sNamevar, ec_Fpath, false, log_Reports);
 
                 }
             }
@@ -847,10 +847,10 @@ namespace Xenon.Functions
                         out bDateBackup,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                         false,
-                        pg_Logging
+                        log_Reports
                         );
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -882,11 +882,11 @@ namespace Xenon.Functions
                         out sField,
                         o_Table_Aafiles.SName,
                         sName_Field,
-                        pg_Method,
-                        pg_Logging
+                        log_Method,
+                        log_Reports
                         );
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -909,7 +909,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return forTable_request;
         }
 
@@ -923,18 +923,18 @@ namespace Xenon.Functions
         /// <param name="sFpatha_Aafiles"></param>
         /// <param name="dataRow"></param>
         /// <param name="o_IndexTable"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         private void Read_Folder_File(
             out Expression_Node_Filepath ec_Fpath,
             string sTableNameToPuts,
             string sFpatha_Aafiles,
             DataRow dataRow,
             XenonTable o_IndexTable,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Read_Folder_File",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Read_Folder_File",log_Reports);
 
 
             string sFpath;//バックアップ用に使い回す文字列。
@@ -952,8 +952,8 @@ namespace Xenon.Functions
                         out sNamevarFolder,
                         o_IndexTable.SName,
                         sFieldName2,
-                        pg_Method,
-                        pg_Logging))
+                        log_Method,
+                        log_Reports))
                     {
                         // 正常、スルー。
                     }
@@ -971,8 +971,8 @@ namespace Xenon.Functions
                     out sFpath,
                     o_IndexTable.SName,
                     sName_Field,
-                    pg_Method,
-                    pg_Logging))
+                    log_Method,
+                    log_Reports))
                 {
 
                     if ("" != sNamevarFolder.Trim())
@@ -981,34 +981,34 @@ namespace Xenon.Functions
 
                         Expression_Node_String ec_Namevar_Folder = new Expression_Leaf_StringImpl(sNamevarFolder.Trim(), null, new Givechapterandverse_NodeImpl(o_IndexTable.SName, null));//todo:
 
-                        pg_Logging.Log_Callstack.Push(pg_Method, "③");
+                        log_Reports.Log_Callstack.Push(log_Method, "③");
                         Expression_Node_Filepath ec_Fopath = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
-                            ec_Namevar_Folder, true, pg_Logging);
-                        pg_Logging.Log_Callstack.Pop(pg_Method, "③");
+                            ec_Namevar_Folder, true, log_Reports);
+                        log_Reports.Log_Callstack.Pop(log_Method, "③");
 
                         if (null == ec_Fopath)
                         {
                             goto gt_Error_NullFolder;
                         }
 
-                        //if (pg_Method.CanDebug(1))
+                        //if (log_Method.CanDebug(1))
                         //{
-                        //    pg_Method.WriteDebug_ToConsole(".csvのFOLDER列に[" + sNamevarFolder + "]と指定されていました。");
+                        //    log_Method.WriteDebug_ToConsole(".csvのFOLDER列に[" + sNamevarFolder + "]と指定されていました。");
                         //}
 
-                        pg_Logging.Log_Callstack.Push(pg_Method, "⑧");
+                        log_Reports.Log_Callstack.Push(log_Method, "⑧");
                         //bug:フォルダーパスだと Execute_OnExpressionString は空白を返す？？
-                        string sFopath2 = ec_Fopath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                        string sFopath2 = ec_Fopath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                         if ("" == sFopath2)
                         {
                             //bug:フォルダーパスだと Execute_OnExpressionString は空白を返すようなので、入力値をそのまま返すことにした。
                             sFopath2 = ec_Fopath.SHumaninput.Trim();
                         }
-                        pg_Logging.Log_Callstack.Pop(pg_Method, "⑧");
+                        log_Reports.Log_Callstack.Pop(log_Method, "⑧");
 
-                        //if (pg_Method.CanDebug(1))
+                        //if (log_Method.CanDebug(1))
                         //{
-                        //    pg_Method.WriteDebug_ToConsole("[" + sNamevarFolder + "]変数の内容は["+sFopath2+"]");
+                        //    log_Method.WriteDebug_ToConsole("[" + sNamevarFolder + "]変数の内容は["+sFopath2+"]");
                         //    //this.Owner_MemoryApplication.MemoryVariables.WriteDebug_ToConsole();
                         //}
 
@@ -1035,9 +1035,9 @@ namespace Xenon.Functions
                     //cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L11_1", new Givechapterandverse_NodeImpl(s.ToString(), null));
                 }
 
-                cf_Fpath1.InitPath(sFpath, pg_Logging);
+                cf_Fpath1.InitPath(sFpath, log_Reports);
 
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // エラー
                     goto gt_EndMethod;
@@ -1052,10 +1052,10 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullFolder:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー502！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー502！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("フォルダーパスの取得に失敗しました。");
@@ -1065,7 +1065,7 @@ namespace Xenon.Functions
                 s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
                 r.SMessage = s.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -1073,7 +1073,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────
@@ -1083,12 +1083,12 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="dataRow"></param>
         /// <param name="forIndexTable_csvAbsFilePath"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
         private XenonTableformat Read_RequestPart_Table(
             DataRow dataRow,
             string sForIndexTable_csvFpatha,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //
@@ -1107,9 +1107,9 @@ namespace Xenon.Functions
                     out bRowColRev,
                     EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                     false,
-                    pg_Logging
+                    log_Reports
                     );
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // エラー
                     goto gt_EndMethod;
@@ -1134,9 +1134,9 @@ namespace Xenon.Functions
                     out bAllIntFields,
                     EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                     false,
-                    pg_Logging
+                    log_Reports
                     );
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // エラー
                     goto gt_EndMethod;
@@ -1162,9 +1162,9 @@ namespace Xenon.Functions
                         out bCommaEnding,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                         false,
-                        pg_Logging
+                        log_Reports
                         );
-                    if (!pg_Logging.BSuccessful)
+                    if (!log_Reports.BSuccessful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1198,13 +1198,13 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="dataRow"></param>
         /// <param name="forIndexTable_csvAbsFilePath"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
         private MemoryCodefileinfo Read_RequestPart_Script(
             DataRow dataRow,
             string sFpatha_Aafilescsv,
             XenonTable o_Table_Aafiles,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //
@@ -1214,8 +1214,8 @@ namespace Xenon.Functions
             //
             //
             //
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Read_RequestPart_Script",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Read_RequestPart_Script",log_Reports);
 
             //
             // 「各テーブル」の引数
@@ -1233,8 +1233,8 @@ namespace Xenon.Functions
                     out sName,
                     sFpatha_Aafilescsv,
                     NamesFld.S_NAME,
-                    pg_Method,
-                    pg_Logging
+                    log_Method,
+                    log_Reports
                     );
 
                 if (bParsedSuccessful)
@@ -1255,8 +1255,8 @@ namespace Xenon.Functions
                     out sTypedata,
                     sFpatha_Aafilescsv,
                     NamesFld.S_NAME,
-                    pg_Method,
-                    pg_Logging
+                    log_Method,
+                    log_Reports
                     );
 
                 if (bParsedSuccessful)
@@ -1277,7 +1277,7 @@ namespace Xenon.Functions
                     sFpatha_Aafilescsv,
                     dataRow,
                     o_Table_Aafiles,
-                    pg_Logging
+                    log_Reports
                     );
 
                 result.Expression_Filepath = ec_Fpath;
@@ -1288,7 +1288,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return result;
         }
 
@@ -1299,16 +1299,16 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="forTable_request"></param>
         /// <param name="forTable_format"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
         private XenonTable ReadTable(
             Request_ReadsTable forSubTable_Request_TblReads,
             XenonTableformat o_TableFormat_ForSubTable_Puts,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             XenonTable o_Tbl;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
 
@@ -1321,15 +1321,15 @@ namespace Xenon.Functions
                         forSubTable_Request_TblReads,
                         o_TableFormat_ForSubTable_Puts,
                         true,
-                        pg_Logging
+                        log_Reports
                         );
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
                 }
 
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
@@ -1355,9 +1355,9 @@ namespace Xenon.Functions
         /// <summary>
         /// 「日別バックアップ」するテーブルの登録。
         /// </summary>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         private void RegisterDateBackup(
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //
@@ -1375,9 +1375,9 @@ namespace Xenon.Functions
                     out bDateBackupFlag,
                     EnumOperationIfErrorvalue.Error,
                     null,
-                    pg_Logging
+                    log_Reports
                     );
-                if (!pg_Logging.BSuccessful)
+                if (!log_Reports.BSuccessful)
                 {
                     // エラー
                     goto gt_EndMethod;
@@ -1398,9 +1398,9 @@ namespace Xenon.Functions
                         Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L11_2", oTable);//  txt.ToString() + "のDataBackup");
                         cf_Fpath.InitPath(
                             oTable.Expression_Filepath_ConfigStack.SHumaninput,
-                            pg_Logging
+                            log_Reports
                             );
-                        if (!pg_Logging.BSuccessful)
+                        if (!log_Reports.BSuccessful)
                         {
                             // 既エラー。
                             goto gt_EndMethod;

@@ -44,14 +44,14 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function11Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             return f0;
         }
@@ -69,20 +69,20 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
-        /// <param name="pg_Logging"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        /// <param name="log_Reports"></param>
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                if (pg_Logging.CanStopwatch)
+                if (log_Reports.CanStopwatch)
                 {
                     string sFncName;
-                    this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
-                    pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
-                    pg_Method.Log_Stopwatch.Begin();
+                    this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
+                    log_Method.Log_Stopwatch.Begin();
                 }
 
                 //
@@ -112,7 +112,7 @@ namespace Xenon.Functions
                 ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
             }
 
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 

@@ -31,21 +31,21 @@ namespace Xenon.Functions
         /// <param name="sender"></param>
         /// <param name="cf_Event"></param>
         /// <param name="moWorkbench"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         public void Perform(
             object sender,
             Givechapterandverse_Node cf_Event,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",log_Reports);
 
             Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl("＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:＞", null);
             EventMonitorImpl eventMonitor = new EventMonitorImpl(cf_Event, cf_ThisMethod);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
 
                 // コメント作成
@@ -54,13 +54,13 @@ namespace Xenon.Functions
 
                     string sName_Control;
                     {
-                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, pg_Logging);
-                        owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, pg_Logging);
+                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
                     }
 
                     string sEventName;
                     {
-                        cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, false, pg_Logging);
+                        cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
                     }
 
                     int nActionCount;
@@ -86,8 +86,8 @@ namespace Xenon.Functions
                         sb.Append("]");
                     }
 
-                    pg_Method.Log_Stopwatch.SMessage = sb.ToString();
-                    pg_Method.Log_Stopwatch.Begin();
+                    log_Method.Log_Stopwatch.SMessage = sb.ToString();
+                    log_Method.Log_Stopwatch.Begin();
 
                 }
 
@@ -102,14 +102,14 @@ namespace Xenon.Functions
 
                     if (null == ccFc.ControlCommon.Owner_MemoryApplication)
                     {
-                        pg_Method.WriteDebug_ToConsole("null==ccFc.ControlCommon.Owner_MemoryApplication がヌルでした。");
+                        log_Method.WriteDebug_ToConsole("null==ccFc.ControlCommon.Owner_MemoryApplication がヌルでした。");
                     }
                     else
                     {
-                        ccFc.ControlCommon.Owner_MemoryApplication.MemoryForms.AddStatus_ActionUsercontrolNameBegin(pg_Logging);
+                        ccFc.ControlCommon.Owner_MemoryApplication.MemoryForms.AddStatus_ActionUsercontrolNameBegin(log_Reports);
 
-                        string sName_Usercontrol = sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
-                        ccFc.ControlCommon.Owner_MemoryApplication.MemoryForms.AddStatus_ActionUsercontrolName(sName_Usercontrol, pg_Logging);
+                        string sName_Usercontrol = sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                        ccFc.ControlCommon.Owner_MemoryApplication.MemoryForms.AddStatus_ActionUsercontrolName(sName_Usercontrol, log_Reports);
                     }
 
                 }
@@ -126,7 +126,7 @@ namespace Xenon.Functions
                 Expression_Node_Function expr_Func = actionPerformer.GivechapterandverseToFunction(
                     s_Action,
                     owner_MemoryApplication,
-                    pg_Logging
+                    log_Reports
                     );
 
                 // システム定義関数の実行
@@ -134,7 +134,7 @@ namespace Xenon.Functions
                     expr_Func,
                     sender,
                     eventMonitor,
-                    pg_Logging
+                    log_Reports
                     );
 
                 while (eventMonitor.BNowactionworking)
@@ -150,7 +150,7 @@ namespace Xenon.Functions
             });
 
 
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

@@ -29,7 +29,7 @@ namespace Xenon.Functions
             Givechapterandverse_Node cur_Cf_Action,
             Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
         );
 
         //────────────────────────────────────────
@@ -40,7 +40,7 @@ namespace Xenon.Functions
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
             Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             );
 
         void Translate_Step2(
@@ -49,7 +49,7 @@ namespace Xenon.Functions
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
             Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             );
 
         //────────────────────────────────────────

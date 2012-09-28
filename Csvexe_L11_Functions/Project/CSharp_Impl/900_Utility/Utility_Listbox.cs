@@ -28,11 +28,11 @@ namespace Xenon.Functions
             Usercontrol uct,
             Expression_Node_String ec_TableName,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, "Util_Listbox", "BindTableToDataSource",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, "Util_Listbox", "BindTableToDataSource",log_Reports);
             //
             //
 
@@ -50,7 +50,7 @@ namespace Xenon.Functions
             XenonTable o_Table = owner_MemoryApplication.MemoryTables.GetXenonTableByName(
                 ec_TableName,
                 true,
-                pg_Logging
+                log_Reports
                 );
 
             if (null == o_Table)
@@ -91,7 +91,7 @@ namespace Xenon.Functions
             }
             else
             {
-                string sName_Usercontrol = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                string sName_Usercontrol = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
                 MessageBox.Show("該当する型のないコントロールでした。[" + sName_Usercontrol + "]", "▲L11エラー③！");
             }
@@ -100,7 +100,7 @@ namespace Xenon.Functions
             //
             //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

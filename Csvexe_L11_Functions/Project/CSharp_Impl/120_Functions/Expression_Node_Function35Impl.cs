@@ -46,14 +46,14 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function35Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             return f0;
         }
@@ -66,18 +66,18 @@ namespace Xenon.Functions
         #region アクション
         //────────────────────────────────────────
 
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
 
             //
@@ -93,14 +93,14 @@ namespace Xenon.Functions
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
-                        pg_Logging
+                        log_Reports
                         );
 
-                    pg_Logging.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe = "[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe = "[" + sFncName0 + "]アクションを実行。";
                 }
 
                 //
@@ -118,27 +118,27 @@ namespace Xenon.Functions
                 //
                 // このNAction29要素を含んでいる ｃｏｎｔｒｏｌ要素から、コントロールの名前を取得。
                 List<Usercontrol> list_FcUc;
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
-                    Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, pg_Logging);
+                    Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
 
                     if (null != cf_Event)
                     {
-                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, pg_Logging);
+                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
 
                         if (null != owner_Givechapterandverse_Control)
                         {
                             string sName_Usercontrol;
-                            owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, pg_Logging);
+                            owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
 
 
                             Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Givechapterandverse);
                             ec_Str.AppendTextNode(
                                 sName_Usercontrol,
                                 this.Cur_Givechapterandverse,
-                                pg_Logging
+                                log_Reports
                                 );
 
                             ec_FcName1 = ec_Str;
@@ -160,7 +160,7 @@ namespace Xenon.Functions
                     list_FcUc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                         ec_FcName1,
                         true,
-                        pg_Logging
+                        log_Reports
                         );
                 }
                 else
@@ -184,8 +184,8 @@ namespace Xenon.Functions
                 //
 
                 // 最初の１個のみ有効。必ずあるとする。
-                List<Expression_Node_String> ecList_View = fct.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_VIEW, false, Request_SelectingImpl.One, pg_Logging);
-                if (!pg_Logging.BSuccessful)
+                List<Expression_Node_String> ecList_View = fct.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_VIEW, false, Request_SelectingImpl.One, log_Reports);
+                if (!log_Reports.BSuccessful)
                 {
                     goto gt_EndMethod;
                 }
@@ -207,14 +207,14 @@ namespace Xenon.Functions
 
                 object errorRule = null;
                 Expression_Node_String err_Ec_DataTarget = null;
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
                     ec_View.ListExpression_Child.ForEach(delegate(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak)
                     {
                         string sFncName;
-                        ec_Child.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                        ec_Child.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                         if (
                             NamesNode.S_FNC == ec_Child.Cur_Givechapterandverse.SName &&
@@ -260,11 +260,11 @@ namespace Xenon.Functions
 
                                 List<Expression_Node_String> ecList_DataTarget;
                                 {
-                                    List<Expression_Node_String> ecList_Data = uctLst.ControlCommon.Expression_Control.SelectDirectchildByNodename( NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, pg_Logging);
-                                    ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, pg_Logging);
+                                    List<Expression_Node_String> ecList_Data = uctLst.ControlCommon.Expression_Control.SelectDirectchildByNodename( NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                                    ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
                                 }
 
-                                if (!pg_Logging.BSuccessful)
+                                if (!log_Reports.BSuccessful)
                                 {
                                     goto gt_EndMethod2;
                                 }
@@ -275,7 +275,7 @@ namespace Xenon.Functions
                                 if (null != ec_DataTarget)
                                 {
                                     bool bHit = ec_DataTarget.TrySelectAttr(
-                                        out ec_ItemValueToVariable, PmNames.S_NAME_VAR.SName_Pm, true, Request_SelectingImpl.Unconstraint, pg_Logging);
+                                        out ec_ItemValueToVariable, PmNames.S_NAME_VAR.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                                     if (bHit)
                                     {
                                         drawer.Expression_ValueVariableName = ec_ItemValueToVariable;
@@ -301,9 +301,9 @@ namespace Xenon.Functions
 
                             //
                             // ＜ｆｎｃ　ｎａｍｅ＝”Ｓｆ：ｉｔｅｍ－ｌａｂｅｌ；”＞
-                            List<Expression_Node_String> ecList_Fnc = ec_Child.SelectDirectchildByNodename(NamesNode.S_FNC, false, Request_SelectingImpl.Unconstraint, pg_Logging);
-                            ecList_Fnc = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Fnc, PmNames.S_NAME.SName_Pm, NamesFnc.S_ITEM_LABEL2, false, Request_SelectingImpl.First_Exist, pg_Logging);
-                            if (!pg_Logging.BSuccessful)
+                            List<Expression_Node_String> ecList_Fnc = ec_Child.SelectDirectchildByNodename(NamesNode.S_FNC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                            ecList_Fnc = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Fnc, PmNames.S_NAME.SName_Pm, NamesFnc.S_ITEM_LABEL2, false, Request_SelectingImpl.First_Exist, log_Reports);
+                            if (!log_Reports.BSuccessful)
                             {
                                 // エラー。
                                 goto gt_EndMethod2;
@@ -311,7 +311,7 @@ namespace Xenon.Functions
 
                             drawer.Expression_ItemLabel = ecList_Fnc[0];
 
-                            if (pg_Logging.BSuccessful)
+                            if (log_Reports.BSuccessful)
                             {
                                 //
                                 // 描画プログラムの変更。
@@ -338,61 +338,61 @@ namespace Xenon.Functions
             //
                     // エラー。
                     gt_Error_NotListbox:
-                        if (pg_Logging.CanCreateReport)
+                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー1103！", pg_Method);
+                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー1103！", log_Method);
 
                             StringBuilder t = new StringBuilder();
                             t.Append("コントロールがリストボックスではありませんでした。");
                             t.Append(Environment.NewLine);
                             t.Append("コントロール名＝[");
-                            t.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging));
+                            t.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                             t.Append("]");
                             t.Append(Environment.NewLine);
                             t.Append("クラス＝[");
                             t.Append(fct.GetType().Name);
                             t.Append("]");
                             r.SMessage = t.ToString();
-                            pg_Logging.EndCreateReport();
+                            log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod2;
 
                     //
                     // エラー。
                     gt_Error_NotFoundDataTarget:
-                        if (pg_Logging.CanCreateReport)
+                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー110726！", pg_Method);
+                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー110726！", log_Method);
 
                             StringBuilder s = new StringBuilder();
                             s.Append("＜ｄａｔａ　＞要素がありませんでした。");
 
                             s.Append(Environment.NewLine);
                             s.Append("コントロール名＝[");
-                            s.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging));
+                            s.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                             s.Append("]");
 
                             r.SMessage = s.ToString();
-                            pg_Logging.EndCreateReport();
+                            log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod2;
 
                     //
                     // エラー。
                     gt_Error_NullItemValueToVariable:
-                        if (pg_Logging.CanCreateReport)
+                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー110725！", pg_Method);
+                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー110725！", log_Method);
 
                             Log_TextIndented s = new Log_TextIndentedImpl();
                             s.Append("＜ｄａｔａ　＞に　[" + PmNames.S_NAME_VAR.SName_Pm + "]　属性がありませんでした。");
                             s.NewLine();
 
                             s.Append("コントロール名＝[");
-                            s.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging));
+                            s.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                             s.Append("]");
                             s.NewLine();
 
@@ -404,17 +404,17 @@ namespace Xenon.Functions
                             err_Ec_DataTarget.Cur_Givechapterandverse.ToText_Content(s);
 
                             r.SMessage = s.ToString();
-                            pg_Logging.EndCreateReport();
+                            log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod2;
 
             //
                     // エラー。
                     gt_Error_UndefinedView:
-                        if (pg_Logging.CanCreateReport)
+                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー1104！", pg_Method);
+                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー1104！", log_Method);
 
                             Log_TextIndented s = new Log_TextIndentedImpl();
                             s.Append("＜ｖｉｅｗ＞の中に、未定義の要素がありました。");
@@ -433,7 +433,7 @@ namespace Xenon.Functions
                             s.NewLine();
 
                             r.SMessage = s.ToString();
-                            pg_Logging.EndCreateReport();
+                            log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod2;
 
@@ -477,27 +477,27 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullFcUc:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1105！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー1105！", log_Method);
 
                 StringBuilder t = new StringBuilder();
                 t.Append("コントロール（fcUc）を取得できませんでした。");
                 t.Append(Environment.NewLine);
                 t.Append("コントロール名＝[");
-                t.Append(err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging));
+                t.Append(err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                 t.Append("]");
                 r.SMessage = t.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_EmptyView:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1106！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー1106！", log_Method);
 
                 StringBuilder t = new StringBuilder();
                 t.Append("＜ｖｉｅｗ＞の中に有効な要素がありませんでした。");
@@ -507,11 +507,11 @@ namespace Xenon.Functions
                 t.Append(Environment.NewLine);
 
                 t.Append("コントロール名＝[");
-                t.Append(err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging));
+                t.Append(err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                 t.Append("]");
 
                 r.SMessage = t.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -519,7 +519,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             // 必ずフラグをオフにします。
             ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
             return "";

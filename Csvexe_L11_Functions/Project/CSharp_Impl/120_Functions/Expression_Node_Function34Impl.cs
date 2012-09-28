@@ -60,10 +60,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function34Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -71,14 +71,14 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_NAME_VAR, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
-            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_VALUE, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
-            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_FLOWSKIP, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_NAME_VAR, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_VALUE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_FLOWSKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -96,10 +96,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)// EventArgs e
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)// EventArgs e
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -107,7 +107,7 @@ namespace Xenon.Functions
             {
                 this.Perform2(
                     this.ExpressionfncPrmset.Sender,
-                    pg_Logging
+                    log_Reports
                     );
 
             }
@@ -118,7 +118,7 @@ namespace Xenon.Functions
 
                 this.Perform2(
                     this.ExpressionfncPrmset.Sender,
-                    pg_Logging
+                    log_Reports
                     );
 
                 //
@@ -136,7 +136,7 @@ namespace Xenon.Functions
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 
@@ -147,15 +147,15 @@ namespace Xenon.Functions
         /// </summary>
         protected void Perform2(
             object sender,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
 
 
             string sFlowSkip;
-            this.TrySelectAttr( out sFlowSkip, Expression_Node_Function34Impl.S_PM_FLOWSKIP, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr( out sFlowSkip, Expression_Node_Function34Impl.S_PM_FLOWSKIP, false, Request_SelectingImpl.Unconstraint, log_Reports);
             if ("" != sFlowSkip.Trim())
             {
                 // 処理をスキップします。
@@ -164,17 +164,17 @@ namespace Xenon.Functions
 
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
             //
             //
 
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
 
@@ -182,13 +182,13 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    pg_Logging.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    pg_Logging.SComment_EventCreationMe += "／追加：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追加：[" + sFncName0 + "]アクションを実行。";
                 }
             }
             else
@@ -197,7 +197,7 @@ namespace Xenon.Functions
 
 
             Expression_Node_String ec_ArgVarName;
-            this.TrySelectAttr(out ec_ArgVarName, Expression_Node_Function34Impl.S_PM_NAME_VAR, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out ec_ArgVarName, Expression_Node_Function34Impl.S_PM_NAME_VAR, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (null == ec_ArgVarName)
             {
@@ -206,25 +206,25 @@ namespace Xenon.Functions
 
 
             Expression_Node_String ec_ArgValue;
-            this.TrySelectAttr(out ec_ArgValue, Expression_Node_Function34Impl.S_PM_VALUE, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out ec_ArgValue, Expression_Node_Function34Impl.S_PM_VALUE, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (null == ec_ArgValue)
             {
                 goto gt_Error_NullArgValue;
             }
 
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 // 正常時
 
                 this.Owner_MemoryApplication.MemoryVariables.SetVariable(
                     new XenonNameImpl(
-                        ec_ArgVarName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging),
+                        ec_ArgVarName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports),
                         ec_ArgVarName.Cur_Givechapterandverse
                         ),
                     ec_ArgValue,
                     true,
-                    pg_Logging
+                    log_Reports
                     );
             }
 
@@ -234,10 +234,10 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullArgVarName:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1203！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー1203！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
@@ -248,15 +248,15 @@ namespace Xenon.Functions
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
                 r.SMessage = t.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullArgValue:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1204！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー1204！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
@@ -267,7 +267,7 @@ namespace Xenon.Functions
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
                 r.SMessage = t.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -275,7 +275,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

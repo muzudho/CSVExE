@@ -35,7 +35,7 @@ namespace Xenon.Functions
             Expression_Node_String parent_Expression,
             Givechapterandverse_Node cur_Gcav,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             this.owner_MemoryApplication = owner_MemoryApplication;
@@ -54,36 +54,36 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="s_Action"></param>
         /// <param name="bRequired"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Node_Function Translate(
             Givechapterandverse_Node action_Gcav,
             bool bRequired,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate",log_Reports);
             //
             //
 
             string sName_Fnc;
             if (action_Gcav.Dictionary_SAttribute_Givechapterandverse.ContainsKey(PmNames.S_NAME.SName_Pm))
             {
-                action_Gcav.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, pg_Logging);
+                action_Gcav.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
             }
             else
             {
-                sName_Fnc = "＜エラー:" + pg_Method.SHead + "＞";
+                sName_Fnc = "＜エラー:" + log_Method.SHead + "＞";
             }
 
 
             Expression_Node_Function expr_Func = Collection_Function.NewFunction2( sName_Fnc,
-                null, action_Gcav, this.Owner_MemoryApplication, pg_Logging);
+                null, action_Gcav, this.Owner_MemoryApplication, log_Reports);
 
 
 
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 if (null != expr_Func)
                 {
@@ -94,11 +94,11 @@ namespace Xenon.Functions
                         action_Gcav,//これは生成時に指定できない？
                         pg_ParsingLog,
                         this.Owner_MemoryApplication,
-                        pg_Logging
+                        log_Reports
                         );
                     if (Log_ReportsImpl.BDebugmode_Static && pg_ParsingLog.BEnabled)
                     {
-                        pg_Method.WriteInfo_ToConsole(" pg_ParsingLog=" + Environment.NewLine + pg_ParsingLog.ToString());
+                        log_Method.WriteInfo_ToConsole(" pg_ParsingLog=" + Environment.NewLine + pg_ParsingLog.ToString());
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace Xenon.Functions
             goto gt_EndMethod;
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return expr_Func;
         }
 

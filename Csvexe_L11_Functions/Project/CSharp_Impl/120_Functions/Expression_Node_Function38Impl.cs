@@ -53,10 +53,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function38Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -64,13 +64,13 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function38Impl.S_PM_FROM, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
-            f0.DicExpression_Attr.Set(Expression_Node_Function38Impl.S_PM_TO, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(Expression_Node_Function38Impl.S_PM_FROM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.DicExpression_Attr.Set(Expression_Node_Function38Impl.S_PM_TO, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -87,10 +87,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -100,7 +100,7 @@ namespace Xenon.Functions
 
 
                 this.Perform3(
-                    pg_Logging
+                    log_Reports
                     );
 
                 //
@@ -115,31 +115,31 @@ namespace Xenon.Functions
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
                 this.Perform3(
-                    pg_Logging
+                    log_Reports
                     );
             }
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 
         //────────────────────────────────────────
 
         protected void Perform3(
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform3",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform3",log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
                 string sFncName;
-                this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
-                pg_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
-                pg_Method.Log_Stopwatch.Begin();
+                this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
+                log_Method.Log_Stopwatch.Begin();
             }
             //
             //
@@ -153,12 +153,12 @@ namespace Xenon.Functions
 
                 // ID？ 『f-var value="Us:クリップmr_SK10;"』のように記述されているので、変数展開して "6001"等 を取得する。
                 string sFrom;
-                this.TrySelectAttr(out sFrom, Expression_Node_Function38Impl.S_PM_FROM, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                this.TrySelectAttr(out sFrom, Expression_Node_Function38Impl.S_PM_FROM, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 //ystem.Console.WriteLine(this.GetType().Name + "#Perform: ”ｆｒｏｍ”の型＝[" + this.In_nFrom.GetType().Name + "]　”ｆｒｏｍ”の子要素数＝[" + this.In_nFrom.ChildNList.Count + "] sFrom＝[" + sFrom + "]");
 
                 // 『Sf:cell;』で、セルが指定されているはず。
                 Expression_Node_String ec_ArgTo;
-                this.TrySelectAttr(out ec_ArgTo, Expression_Node_Function38Impl.S_PM_TO, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                this.TrySelectAttr(out ec_ArgTo, Expression_Node_Function38Impl.S_PM_TO, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 {
                     string sNodeName;
@@ -166,7 +166,7 @@ namespace Xenon.Functions
 
                     // ａｒｇ３はバグで、ｎａｍｅ属性は取得できない。
                     //string sFncName;
-                    //e_ArgTo.TrySelectAttr(out sFncName, PmNames.NAME.SAttrName, true, Request_SelectingImpl.Unconstraint, pg_Logging);
+                    //e_ArgTo.TrySelectAttr(out sFncName, PmNames.NAME.SAttrName, true, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     if (!(NamesNode.S_ARG == sNodeName))// && E_SysFnc38Impl.S_ARG_TO == sFncName
                     {
@@ -177,13 +177,13 @@ namespace Xenon.Functions
                     }
                 }
 
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     toM.ToMemory_ParentFcells(
                         sFrom,
                         ec_ArgTo,// Ｓｆ：ｃｅｌｌ；の親を指定すること。
                         this.Owner_MemoryApplication,
-                        pg_Logging
+                        log_Reports
                         );
                 }
 
@@ -195,10 +195,10 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotTo:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー110！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー110！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("[" + Expression_Node_Function38Impl.S_PM_TO + "]要素が変でした。");
@@ -215,7 +215,7 @@ namespace Xenon.Functions
                 //s.NewLine();
 
                 r.SMessage = s.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -223,7 +223,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

@@ -41,11 +41,11 @@ namespace Xenon.Functions
             Expression_Node_Function cur_Expr_Func,
             MemoryApplication owner_MemoryApplication,
             Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate_Step1",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate_Step1",log_Reports);
 
             //
             // アクション型引数の引数
@@ -54,7 +54,7 @@ namespace Xenon.Functions
             action_Gcav.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Arg, ref bool bBreak)
             {
                 string sName_Attr;
-                s_Arg.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Attr, true, pg_Logging);
+                s_Arg.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Attr, true, log_Reports);
 
                 if (cur_Expr_Func.ListS_ArgName.Contains(sName_Attr))
                 {
@@ -67,7 +67,7 @@ namespace Xenon.Functions
                         cur_Expr_Func,
                         owner_MemoryApplication,
                         pg_ParsingLog,
-                        pg_Logging
+                        log_Reports
                         );
                 }
                 else
@@ -82,10 +82,10 @@ namespace Xenon.Functions
             //
             gt_Error_UndefinedArgName:
                 bBreak = true;
-                if (pg_Logging.CanCreateReport)
+                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー702！", pg_Method);
+                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    r.SetTitle("▲エラー702！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append("未対応の引数名です。[");
@@ -104,7 +104,7 @@ namespace Xenon.Functions
                     s.NewLine();
 
                     r.SMessage = s.ToString();
-                    pg_Logging.EndCreateReport();
+                    log_Reports.EndCreateReport();
                 }
             //
             //
@@ -115,7 +115,7 @@ namespace Xenon.Functions
             goto gt_EndMethod;
 
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────
@@ -126,7 +126,7 @@ namespace Xenon.Functions
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
             Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
         }
@@ -142,13 +142,13 @@ namespace Xenon.Functions
             Givechapterandverse_Node action_Gcav,
             Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate",log_Reports);
 
-            if (pg_Method.CanDebug(1))
+            if (log_Method.CanDebug(1))
             {
                 pg_ParsingLog.Increment(action_Gcav.SName);
             }
@@ -171,7 +171,7 @@ namespace Xenon.Functions
                     parent_Expression_Null,
                     action_Gcav,
                     owner_MemoryApplication,
-                    pg_Logging
+                    log_Reports
                     );
             }
 
@@ -181,7 +181,7 @@ namespace Xenon.Functions
                 expr_Func,
                 owner_MemoryApplication,
                 pg_ParsingLog,
-                pg_Logging
+                log_Reports
                 );
 
             this.Translate_Step2(
@@ -190,7 +190,7 @@ namespace Xenon.Functions
                 expr_Func,
                 owner_MemoryApplication,
                 pg_ParsingLog,
-                pg_Logging
+                log_Reports
                 );
 
 
@@ -204,7 +204,7 @@ namespace Xenon.Functions
                 pg_ParsingLog.Decrement(action_Gcav.SName);
             }
 
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
 
             return expr_Func;
         }

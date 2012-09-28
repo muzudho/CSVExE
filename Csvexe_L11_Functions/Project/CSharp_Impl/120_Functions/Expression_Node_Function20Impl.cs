@@ -54,10 +54,10 @@ namespace Xenon.Functions
 
         public override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports pg_Logging)
+            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
             //
 
             Expression_Node_Function f0 = new Expression_Node_Function20Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
@@ -65,13 +65,13 @@ namespace Xenon.Functions
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function20Impl.S_PM_NAME_TABLE, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
-            f0.DicExpression_Attr.Set(Expression_Node_Function20Impl.S_PM_NAME_FC_LST, new Expression_Node_StringImpl(this, cur_Gcav), pg_Logging);
+            f0.DicExpression_Attr.Set(Expression_Node_Function20Impl.S_PM_NAME_TABLE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.DicExpression_Attr.Set(Expression_Node_Function20Impl.S_PM_NAME_FC_LST, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return f0;
         }
 
@@ -88,19 +88,19 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
-        /// <param name="pg_Logging"></param>
-        public override string Expression_ExecuteMain(Log_Reports pg_Logging)
+        /// <param name="log_Reports"></param>
+        public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = "「E■[" + sFncName0 + "]アクション」実行(A)";
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.SMessage = "「E■[" + sFncName0 + "]アクション」実行(A)";
+                log_Method.Log_Stopwatch.Begin();
             }
 
 
@@ -111,14 +111,14 @@ namespace Xenon.Functions
                 {
                     Customcontrol ccFc = (Customcontrol)this.ExpressionfncPrmset.Sender;
 
-                    sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                    sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
                     sName_Usercontrol = "（▲不明101！）";
-                    pg_Logging.SComment_EventCreationMe += "／追記：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.SComment_EventCreationMe += "／追記：[" + sFncName0 + "]アクションを実行。";
                 }
 
                 //
@@ -131,7 +131,7 @@ namespace Xenon.Functions
 
 
                 List<Usercontrol> ucFcList;
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
@@ -142,10 +142,10 @@ namespace Xenon.Functions
                     // まず取得。
                     //
                     Expression_Node_String ec_ArgListboxName;
-                    this.TrySelectAttr(out ec_ArgListboxName, Expression_Node_Function20Impl.S_PM_NAME_FC_LST, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                    this.TrySelectAttr(out ec_ArgListboxName, Expression_Node_Function20Impl.S_PM_NAME_FC_LST, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     ucFcList = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
-                        ec_ArgListboxName, true, pg_Logging);
+                        ec_ArgListboxName, true, log_Reports);
                 }
                 else
                 {
@@ -154,7 +154,7 @@ namespace Xenon.Functions
 
 
                 // リストボックスにテーブルのデータソースを関連付けます。
-                if (pg_Logging.BSuccessful)
+                if (log_Reports.BSuccessful)
                 {
                     // 正常時
 
@@ -164,25 +164,25 @@ namespace Xenon.Functions
 
                     Expression_Node_String ec_TableName = null;
                     string sTableName;
-                    this.TrySelectAttr(out sTableName, Expression_Node_Function20Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                    this.TrySelectAttr(out sTableName, Expression_Node_Function20Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     if ("" != sTableName)//this.E_SysArgDic.ContainsKey(E_SysFnc20Impl.S_ARG_TABLE_NAME)
                     {
                         //テーブル名を指定（アクション用引数）
-                        this.TrySelectAttr(out ec_TableName, Expression_Node_Function20Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+                        this.TrySelectAttr(out ec_TableName, Expression_Node_Function20Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                         // #デバッグ
-                        if (pg_Method.CanWarning())
+                        if (log_Method.CanWarning())
                         {
-                            pg_Method.WriteWarning_ToConsole(" ＜ａｒｇ３　ｔａｂｌｅＮａｍｅ＝”[" + ec_TableName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging) + "]”＞属性でした。");
+                            log_Method.WriteWarning_ToConsole(" ＜ａｒｇ３　ｔａｂｌｅＮａｍｅ＝”[" + ec_TableName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]”＞属性でした。");
                         }
                     }
                     else
                     {
                         // #デバッグ
-                        if (pg_Method.CanWarning())
+                        if (log_Method.CanWarning())
                         {
-                            pg_Method.WriteWarning_ToConsole(" ＜ａｒｇ３　ｔａｂｌｅＮａｍｅ＝”☆”＞属性が未指定でした。");
+                            log_Method.WriteWarning_ToConsole(" ＜ａｒｇ３　ｔａｂｌｅＮａｍｅ＝”☆”＞属性が未指定でした。");
                         }
 
 
@@ -192,7 +192,7 @@ namespace Xenon.Functions
 
                         Givechapterandverse_Node owner_Givechapterandverse_Control;
                         {
-                            owner_Givechapterandverse_Control = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_CONTROL1, true, pg_Logging);
+                            owner_Givechapterandverse_Control = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
                         }
 
                         //
@@ -200,11 +200,11 @@ namespace Xenon.Functions
                         // ＜ｄａｔａ　ｔａｒｇｅｔ＝”ｌｉｓｔ－ｂｏｘ”＞
                         // 　　　　＜ａｒｇ５　ｎａｍｅ＝”ｔａｂｌｅＮａｍｅ”　ｖａｌｕｅ＝”☆”＞
                         //
-                        List<Givechapterandverse_Node> cfList_Data = owner_Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_DATA, false, pg_Logging);
+                        List<Givechapterandverse_Node> cfList_Data = owner_Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_DATA, false, log_Reports);
                         foreach (Givechapterandverse_Node cf_Data in cfList_Data)
                         {
                             string sAccess;
-                            cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, pg_Logging);
+                            cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
 
                             List<string> sList_Access = new CsvTo_ListImpl().Read(sAccess);
 
@@ -213,9 +213,9 @@ namespace Xenon.Functions
                                 // ＜ｄａｔａ　ａｃｃｅｓｓ＝”ｆｒｏｍ”＞
 
                                 string sDataMemory;
-                                cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out sDataMemory, true, pg_Logging);
+                                cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out sDataMemory, true, log_Reports);
 
-                                if (!pg_Logging.BSuccessful)
+                                if (!log_Reports.BSuccessful)
                                 {
                                     goto gt_EndMethod;
                                 }
@@ -223,8 +223,8 @@ namespace Xenon.Functions
                                 if (ValuesAttr.S_RECORDS == sDataMemory)
                                 {
 
-                                    cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_TABLE, out sTableName, true, pg_Logging);
-                                    if (!pg_Logging.BSuccessful)
+                                    cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_TABLE, out sTableName, true, log_Reports);
+                                    if (!log_Reports.BSuccessful)
                                     {
                                         goto gt_EndMethod;
                                     }
@@ -232,25 +232,25 @@ namespace Xenon.Functions
                                     ec_TableName = new Expression_Leaf_StringImpl(sTableName, this, cf_Data);
 
                                     // #デバッグ
-                                    if (pg_Method.CanWarning())
+                                    if (log_Method.CanWarning())
                                     {
-                                        pg_Method.WriteWarning_ToConsole(" ＜ｄａｔａ　ｔａｂｌｅＮａｍｅ＝”[" + sTableName + "]”＞属性でした。");
+                                        log_Method.WriteWarning_ToConsole(" ＜ｄａｔａ　ｔａｂｌｅＮａｍｅ＝”[" + sTableName + "]”＞属性でした。");
                                     }
                                 }
                                 else
                                 {
                                     //#連続エラー
-                                    if (pg_Logging.CanCreateReport)
+                                    if (log_Reports.CanCreateReport)
                                     {
-                                        Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                                        r.SetTitle("▲エラー902！", pg_Method);
+                                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                                        r.SetTitle("▲エラー902！", log_Method);
 
                                         StringBuilder s = new StringBuilder();
                                         s.Append("＜ｄａｔａ　ｍｅｍｏｒｙ＝”[");
                                         s.Append(sDataMemory);
                                         s.Append("]”＞属性でした。");
                                         r.SMessage = s.ToString();
-                                        pg_Logging.EndCreateReport();
+                                        log_Reports.EndCreateReport();
                                     }
                                 }
                             }
@@ -264,9 +264,9 @@ namespace Xenon.Functions
                         if (null == ec_TableName)
                         {
                             // エラー処理？
-                            if (pg_Method.CanError())
+                            if (log_Method.CanError())
                             {
-                                pg_Method.WriteError_ToConsole(" 直接指定されなかったので、既に＜ｄａｔａ＞にｔａｂｌｅＮａｍｅ属性があると期待しましたが、ありませんでした。");
+                                log_Method.WriteError_ToConsole(" 直接指定されなかったので、既に＜ｄａｔａ＞にｔａｂｌｅＮａｍｅ属性があると期待しましたが、ありませんでした。");
                             }
 
                             sTableName = "";//string sTableName = "";
@@ -279,7 +279,7 @@ namespace Xenon.Functions
                         fcUc,// リストボックス・コントロール
                         ec_TableName,
                         this.Owner_MemoryApplication,
-                        pg_Logging
+                        log_Reports
                         );
                     //↑この中で時間かかってる。
                 }
@@ -298,7 +298,7 @@ namespace Xenon.Functions
             //
             //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return "";
         }
 

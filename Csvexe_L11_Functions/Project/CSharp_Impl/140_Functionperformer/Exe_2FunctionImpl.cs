@@ -27,31 +27,31 @@ namespace Xenon.Functions
         /// イベントハンドラーの作成。
         /// </summary>
         /// <param name="s_Action"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Node_Function GivechapterandverseToFunction(
             Givechapterandverse_Node action_Gcav,
             MemoryApplication owner_MemoryApplication,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "GivechapterandverseToFunction",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "GivechapterandverseToFunction",log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.Begin();
             }
             //
 
 
             Expression_Node_Function expr_Func;
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 expr_Func = owner_MemoryApplication.MemoryForms.GivechapterandverseToFunction.Translate(
                     action_Gcav,
                     true,
-                    pg_Logging
+                    log_Reports
                     );
             }
             else
@@ -63,7 +63,7 @@ namespace Xenon.Functions
             goto gt_EndMethod;
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
             return expr_Func;
         }
 
@@ -75,20 +75,20 @@ namespace Xenon.Functions
         /// <param name="fc_EventHandler"></param>
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         public void PerformUsercontrol(
             Expression_Node_Function expr_Func,
             object sender,
             EventMonitorImpl eventMonitor,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
         )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "PerformUsercontrol",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "PerformUsercontrol",log_Reports);
 
-            if (pg_Logging.CanStopwatch)
+            if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.Begin();
+                log_Method.Log_Stopwatch.Begin();
             }
             //
             //
@@ -97,19 +97,19 @@ namespace Xenon.Functions
             string sConfigStack_EventOrigin = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:＞";
 
             string sFncName;
-            expr_Func.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, pg_Logging);
+            expr_Func.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             //
             // アクションの実行
             //
             //ystem.Console.WriteLine(this.GetType().Name + "#PerformAllFcs: 【開始】E_Action実行します。");
-            if (pg_Logging.BSuccessful)
+            if (log_Reports.BSuccessful)
             {
                 if (null != expr_Func)
                 {
-                    if (pg_Method.CanWarning())
+                    if (log_Method.CanWarning())
                     {
-                        pg_Method.WriteWarning_ToConsole(" 【実行】イベント=[" + expr_Func.EnumEventhandler + "] システム関数=[" + sFncName + "] ");
+                        log_Method.WriteWarning_ToConsole(" 【実行】イベント=[" + expr_Func.EnumEventhandler + "] システム関数=[" + sFncName + "] ");
                     }
 
                     switch (expr_Func.EnumEventhandler)
@@ -120,7 +120,7 @@ namespace Xenon.Functions
                                     sender,
                                     eventMonitor,
                                     sConfigStack_EventOrigin,
-                                    pg_Logging
+                                    log_Reports
                                     );
                             }
                             break;
@@ -132,7 +132,7 @@ namespace Xenon.Functions
                                     sender,
                                     eventMonitor,
                                     sConfigStack_EventOrigin,
-                                    pg_Logging
+                                    log_Reports
                                     );
                             }
                             break;
@@ -158,16 +158,15 @@ namespace Xenon.Functions
 
             goto gt_EndMethod;
         //
-        //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotSupportedEnum:
             // アクションしていない、アクションは終了したという判断。
             eventMonitor.BNowactionworking = false;
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー202！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー202！", log_Method);
 
                 string sActionName = "（エラー処理未実装 " + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform）";
 
@@ -192,15 +191,14 @@ namespace Xenon.Functions
                 //todo: t.Append(r.Message_Givechapterandverse(e_Uic.Cur_Givechapterandverse));
 
                 r.SMessage = t.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
         //
-        //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

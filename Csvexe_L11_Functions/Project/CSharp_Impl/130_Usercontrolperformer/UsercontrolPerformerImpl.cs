@@ -45,20 +45,20 @@ namespace Xenon.Functions
         /// <param name="sender"></param>
         /// <param name="nFcName">コントロール名。</param>
         /// <param name="oEventName"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         public void Perform_Usercontrol(
             object sender,
             Expression_Node_String ec_FcName,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //.WriteLine(this.GetType().Name + "#PerformFc: 【アクション_パフォーマー開始】");
 
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_Fc",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_Fc",log_Reports);
             //
             //
             sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_Fc:" + o_Name_Event.SValue + "＞";
@@ -67,11 +67,11 @@ namespace Xenon.Functions
 
             Usercontrol ucFc = null;
 
-            string sFcName1 = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+            string sFcName1 = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
             owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol ucFc2, ref bool bRemove, ref bool bBreak)
             {
-                string sFcName2 = ucFc2.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+                string sFcName2 = ucFc2.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
                 if (sFcName2 == sFcName1)
                 {
@@ -88,7 +88,7 @@ namespace Xenon.Functions
                     o_Name_Event,
                     owner_MemoryApplication,
                     sConfigStack_EventOrigin,
-                    pg_Logging
+                    log_Reports
                     );
             }
             else
@@ -102,7 +102,7 @@ namespace Xenon.Functions
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
 
             //.WriteLine(this.GetType().Name + "#PerformFc: 【アクション_パフォーマー終了】");
         }
@@ -116,27 +116,27 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         public void Perform_UsercontrolNameStartsWith(
             object sender,
             string sFcNameStarts,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
             //.WriteLine(this.GetType().Name + "#Perform_FcNameStartsWith: 【アクション_パフォーマー開始】");
 
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_FcNameStartsWith",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_FcNameStartsWith",log_Reports);
             //
             //
             sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_FcNameStartsWith:" + o_Name_Event.SValue + "＞";
 
             Dictionary<string, Usercontrol> dic = owner_MemoryApplication.MemoryForms.ItemsStartsWith(
                 sFcNameStarts,
-                pg_Logging
+                log_Reports
                 );
 
             foreach (Usercontrol ucFc in dic.Values)
@@ -149,7 +149,7 @@ namespace Xenon.Functions
                         o_Name_Event,
                         owner_MemoryApplication,
                         sConfigStack_EventOrigin,
-                        pg_Logging
+                        log_Reports
                         );
                 }
                 else
@@ -157,14 +157,14 @@ namespace Xenon.Functions
                     //
                     //
                     //
-                    //string sFcName3 = ucFc.ControlCommon.Expression_Name_Control.E_Execute(pg_Logging);
+                    //string sFcName3 = ucFc.ControlCommon.Expression_Name_Control.E_Execute(log_Reports);
                     //.WriteLine(this.GetType().Name + "#Perform_FcNameStartsWith: ■[" + sFcName_prm + "]という名前のコントロールはありませんでした。");
                 }
             }
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
 
             //.WriteLine(this.GetType().Name + "#Perform_FcNameStartsWith: 【アクション_パフォーマー終了】");
         }
@@ -180,18 +180,18 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         public void Perform_AllUsercontrols(
             List<string> sFcNameList,
             object sender,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_AllFcs",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_AllFcs",log_Reports);
             //
             //
             string sConfigStack = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_AllFcs:" + o_Name_Event.SValue + "＞";
@@ -208,10 +208,10 @@ namespace Xenon.Functions
                 }
 
                 Expression_Leaf_StringImpl ec_FcName = new Expression_Leaf_StringImpl(null, cf_ThisMethod);
-                ec_FcName.SetString( sName_Usercontrol, pg_Logging);
+                ec_FcName.SetString( sName_Usercontrol, log_Reports);
 
 
-                List<Usercontrol> list_UcFc = owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(ec_FcName, true, pg_Logging);
+                List<Usercontrol> list_UcFc = owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(ec_FcName, true, log_Reports);
                 if (list_UcFc.Count < 1)
                 {
                     // 正常。
@@ -228,7 +228,7 @@ namespace Xenon.Functions
                         o_Name_Event,
                         owner_MemoryApplication,
                         sConfigStack_EventOrigin,
-                        pg_Logging
+                        log_Reports
                         );
                 }
 
@@ -238,7 +238,7 @@ namespace Xenon.Functions
 
             //
             //
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────
@@ -252,21 +252,21 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         protected void Perform_UsercontrolImpl(
             object sender,
             Usercontrol ucFc,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_FcImpl",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_FcImpl",log_Reports);
             //
             //
-            string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, pg_Logging);
+            string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
             sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_FcImpl:" + o_Name_Event.SValue + "＞";
 
 
@@ -287,13 +287,13 @@ namespace Xenon.Functions
             //}
 
 
-            List<Givechapterandverse_Node> cfList_Event = ucFc.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, pg_Logging);
+            List<Givechapterandverse_Node> cfList_Event = ucFc.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
             foreach (Givechapterandverse_Node cf_Event in cfList_Event)
             {
 
                 string sEventName;
-                cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, pg_Logging);
-                if (!pg_Logging.BSuccessful)
+                cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+                if (!log_Reports.BSuccessful)
                 {
                     goto gt_EndMethod;
                 }
@@ -305,7 +305,7 @@ namespace Xenon.Functions
                         sender,
                         cf_Event,
                         owner_MemoryApplication,
-                        pg_Logging
+                        log_Reports
                         );
 
                 }//oEventName
@@ -317,7 +317,7 @@ namespace Xenon.Functions
             //
             //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────
@@ -329,18 +329,18 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
-        /// <param name="pg_Logging"></param>
+        /// <param name="log_Reports"></param>
         public void Perform(
             object sender,
             string sName_Usercontrol,
             string sEventName,
             MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
-            Log_Reports pg_Logging
+            Log_Reports log_Reports
             )
         {
-            Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",pg_Logging);
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",log_Reports);
             //
             //
             sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:" + sEventName + "＞";
@@ -354,7 +354,7 @@ namespace Xenon.Functions
             {
                 string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                     Request_SelectingImpl.Unconstraint,
-                    pg_Logging
+                    log_Reports
                     );
 
 
@@ -368,11 +368,11 @@ namespace Xenon.Functions
                     //.WriteLine(this.GetType().Name + "#Perform_PrjSelected: ■■コントロール=[" + fcNameStr2 + "] イベント数=[" + fcUc.ControlCommon.OFcnfControl.OEvents.Count + "]");
 
                     Givechapterandverse_Node cf_HitEvent = null;
-                    List<Givechapterandverse_Node> cfList_Event = ucFc.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, pg_Logging);
+                    List<Givechapterandverse_Node> cfList_Event = ucFc.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
                     foreach (Givechapterandverse_Node cf_Event in cfList_Event)
                     {
                         string sFncName;
-                        cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, pg_Logging);
+                        cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                         if (sFncName == sEventName)
                         {
@@ -390,20 +390,20 @@ namespace Xenon.Functions
                             sender,
                             cf_HitEvent,
                             owner_MemoryApplication,
-                            pg_Logging
+                            log_Reports
                             );
                     }
                     else
                     {
                         string sFcName3 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                             Request_SelectingImpl.Unconstraint,
-                            pg_Logging
+                            log_Reports
                             );
 
-                        if (pg_Logging.CanCreateReport)
+                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー1108！", pg_Method);
+                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー1108！", log_Method);
 
                             StringBuilder t = new StringBuilder();
                             t.Append("[");
@@ -420,7 +420,7 @@ namespace Xenon.Functions
                             // ヒント
 
                             r.SMessage = t.ToString();
-                            pg_Logging.EndCreateReport();
+                            log_Reports.EndCreateReport();
                         }
                     }
 
@@ -442,10 +442,10 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundUsercontrol:
-            if (pg_Logging.CanCreateReport)
+            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1107！", pg_Method);
+                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー1107！", log_Method);
 
                 StringBuilder t = new StringBuilder();
                 t.Append("[");
@@ -457,7 +457,7 @@ namespace Xenon.Functions
                 // ヒント
 
                 r.SMessage = t.ToString();
-                pg_Logging.EndCreateReport();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -465,7 +465,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            pg_Method.EndMethod(pg_Logging);
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────
