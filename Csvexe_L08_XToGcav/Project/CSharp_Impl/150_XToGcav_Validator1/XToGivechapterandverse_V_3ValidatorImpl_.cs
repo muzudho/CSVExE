@@ -30,7 +30,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_ChildNodes",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_ChildNodes",log_Reports);
             //
             //
 
@@ -81,7 +81,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

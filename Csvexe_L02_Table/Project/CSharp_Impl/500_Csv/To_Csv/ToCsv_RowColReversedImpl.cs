@@ -49,7 +49,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "ToCsvText",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ToCsvText",log_Reports);
 
             string sResult = "";
 
@@ -85,7 +85,7 @@ namespace Xenon.Table
 
 
             List<List<string>> rsltTable = this.ToModel(table, log_Reports);
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -107,11 +107,11 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("（プログラム内部エラー）tableがヌルでした。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -132,7 +132,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "ToModel",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ToModel",log_Reports);
 
             XenonFielddefinition err_FldDef;
 
@@ -157,7 +157,7 @@ namespace Xenon.Table
 
 
 
-            bool bAllIntFields = table.XenonTableformat.BAllintfields;
+            bool bAllIntFields = table.XenonTableformat.IsAllintfieldsActivated;
 
             DataRow dataRow;
 
@@ -179,13 +179,13 @@ namespace Xenon.Table
                 {
                     XenonFielddefinition fieldDefinition = list_FieldDefinition[nC];
 
-                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.SName_Trimupper))
+                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
                     else
                     {
-                        sList_FieldNameRow.Add(fieldDefinition.SName_Humaninput);
+                        sList_FieldNameRow.Add(fieldDefinition.Name_Humaninput);
                     }
                 }
                 rsltTable.Add(sList_FieldNameRow);
@@ -213,7 +213,7 @@ namespace Xenon.Table
                 {
                     XenonFielddefinition fieldDefinition = list_FieldDefinition[nC];
 
-                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.SName_Trimupper))
+                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
@@ -261,13 +261,13 @@ namespace Xenon.Table
                 {
                     XenonFielddefinition fieldDefinition = list_FieldDefinition[nC];
 
-                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.SName_Trimupper))
+                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
                     else
                     {
-                        sList_FieldNameRow.Add(fieldDefinition.SComment);
+                        sList_FieldNameRow.Add(fieldDefinition.Comment);
                     }
                 }
                 rsltTable.Add(sList_FieldNameRow);
@@ -296,7 +296,7 @@ namespace Xenon.Table
                         fieldType = fieldDefinition.Type;
                         //fieldTypeNumber = fieldDefinition.TypeNumber;
 
-                        if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.SName_Trimupper))
+                        if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
                         {
                             // 出力しないフィールドの場合、無視します。
                         }
@@ -352,11 +352,11 @@ namespace Xenon.Table
                 s.Append("（プログラム内部エラー）未定義のフィールド型=[");
                 s.Append(err_FldDef.Type.ToString());
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -375,7 +375,7 @@ namespace Xenon.Table
             XenonTable table
             )
         {
-            bool bCommaEnding = table.XenonTableformat.BCommaending;
+            bool bCommaEnding = table.XenonTableformat.IsCommaending;
 
 
             //

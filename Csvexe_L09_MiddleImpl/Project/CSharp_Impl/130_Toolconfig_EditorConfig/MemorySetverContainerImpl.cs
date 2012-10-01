@@ -57,7 +57,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadFile_Aaxml",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile_Aaxml",log_Reports);
 
             string sFpatha;
             {
@@ -65,7 +65,7 @@ namespace Xenon.MiddleImpl
                     Request_SelectingImpl.Unconstraint,
                     log_Reports//out sErrorMsg
                     );//絶対ファイルパス
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -95,24 +95,24 @@ namespace Xenon.MiddleImpl
                         XmlElement xFsetvar = (XmlElement)xNode_Fsetvar;
 
                         //ｎａｍｅ－ｖａｒ属性
-                        string sNamevar = xFsetvar.GetAttribute(PmNames.S_NAME_VAR.SName_Attr);
+                        string sNamevar = xFsetvar.GetAttribute(PmNames.S_NAME_VAR.Name_Attribute);
 
                         //ｆｏｌｄｅｒ属性
-                        string sFolder = xFsetvar.GetAttribute(PmNames.S_FOLDER.SName_Attr);
+                        string sFolder = xFsetvar.GetAttribute(PmNames.S_FOLDER.Name_Attribute);
 
                         //ｖａｌｕｅ属性
-                        string sValue = xFsetvar.GetAttribute(PmNames.S_VALUE.SName_Attr);
+                        string sValue = xFsetvar.GetAttribute(PmNames.S_VALUE.Name_Attribute);
 
                         //ｄｅｓｃｒｉｐｔｉｏｎ属性
-                        string sDescription = xFsetvar.GetAttribute(PmNames.S_DESCRIPTION.SName_Attr);
+                        string sDescription = xFsetvar.GetAttribute(PmNames.S_DESCRIPTION.Name_Attribute);
 
                         Givechapterandverse_Node cf_Fsetvar = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR,
                             null//todo:親ノード
                             );
-                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.SName_Pm, sNamevar, log_Reports);
-                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_FOLDER.SName_Pm, sFolder, log_Reports);
-                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_VALUE.SName_Pm, sValue, log_Reports);
-                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.SName_Pm, sDescription, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
 
 
                         this.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.Add(cf_Fsetvar, log_Reports);
@@ -133,16 +133,16 @@ namespace Xenon.MiddleImpl
                                 {
                                     Expression_Node_Filepath ec_Folder = moVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(sFolder, ec_Fpath_Aaxml, cf_Fsetvar), true, log_Reports);
 
-                                    if (log_Reports.BSuccessful)
+                                    if (log_Reports.Successful)
                                     {
-                                        cf_Fpath.SetSDirectory_Base(
+                                        cf_Fpath.SetDirectory_Base(
                                             ec_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
                                             //sFolder
                                             );
                                     }
                                 }
 
-                                if (log_Reports.BSuccessful)
+                                if (log_Reports.Successful)
                                 {
                                     Expression_Node_Filepath ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
                                     moVariables.PutFilepath(
@@ -167,7 +167,7 @@ namespace Xenon.MiddleImpl
                     }
 
 
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         //既エラー
                         break;
@@ -177,7 +177,7 @@ namespace Xenon.MiddleImpl
 
 
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -207,7 +207,7 @@ namespace Xenon.MiddleImpl
                 //ヒント
                 s.Append(r.Message_Givechapterandverse(ec_Fpath_Aaxml.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -237,7 +237,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetFilepathByFsetvarname",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetFilepathByFsetvarname",log_Reports);
             //
             //
 
@@ -248,15 +248,15 @@ namespace Xenon.MiddleImpl
             {
                 //ｎａｍｅ－ｖａｒ属性
                 string sNamevar_Cur;
-                s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar_Cur, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar_Cur, true, log_Reports);
 
                 if (sNamevar_Cur == sNamevar_Expected)
                 {
                     string sFolder;
-                    s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
+                    s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
 
                     string sValue;
-                    s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                     {
                         Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("『エディター設定ファイル』の[" + sNamevar_Expected + "]要素_L09Mid_2[" + sValue + "]", this.Parent_Givechapterandverse);
@@ -274,20 +274,20 @@ namespace Xenon.MiddleImpl
                             Expression_Node_Filepath ec_Fpath_Folder = moVariables.GetExpressionfilepathByVariablename(ec_Namevar_Folder, true, log_Reports);
                             log_Reports.Log_Callstack.Pop(log_Method, "②");
 
-                            if (log_Reports.BSuccessful)
+                            if (log_Reports.Successful)
                             {
                                 string sDirectory = ec_Fpath_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                                 if (log_Method.CanDebug(1))
                                 {
                                     log_Method.WriteDebug_ToConsole("folder=[" + sFolder + "] directory=[" + sDirectory + "]");
                                 }
-                                cf_Fpath.SetSDirectory_Base(
+                                cf_Fpath.SetDirectory_Base(
                                     sDirectory
                                     );
                             }
                         }
 
-                        if (!log_Reports.BSuccessful)
+                        if (!log_Reports.Successful)
                         {
                             // 既エラー。
                             bBreak = true;
@@ -329,25 +329,25 @@ namespace Xenon.MiddleImpl
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("次の要素は必要でしたが、記述されていませんでした。<" + NamesNode.S_EDITOR + ">要素の中に。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("<" + NamesNode.S_F_SET_VAR + " name=\"" + sNamevar_Expected + "\" >");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("もしかして？");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("　・『設定ファイル』に、必要な内容が書けていない？");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("　・設定ファイル情報:");
                 s.Append(r.Message_Givechapterandverse(this.Parent_Givechapterandverse));
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -367,18 +367,18 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public void WriteDebug_ToConsole(Dictionary_Fsetvar_Givechapterandverse stDic_Project, Log_Reports log_Reports)
         {
-            System.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 input要素の個数？=[" + stDic_Project.List_ChildGivechapterandverse.NCount + "]");
+            System.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 input要素の個数？=[" + stDic_Project.List_ChildGivechapterandverse.Count + "]");
 
             stDic_Project.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
             {
                 string sNamevar;
-                s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
 
                 string sValue;
-                s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                 string sDescription;
-                s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
 
                 System.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 名=[" + sNamevar + "] value=[" + sValue + "] 説明=[" + sDescription + "]");
             });

@@ -31,7 +31,7 @@ namespace Xenon.Syntax
         {
             this.sText = "";
 
-            this.dicS_P1p = new Dictionary<int, string>();
+            this.dictionary_NumberAndValue_Parameter = new Dictionary<int, string>();
 
             ////
             //// 最初に追加した要素を 0、
@@ -61,7 +61,7 @@ namespace Xenon.Syntax
         {
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "GetP1pNumbers",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "GetP1pNumbers",log_Reports);
 
             //
             //
@@ -137,14 +137,14 @@ namespace Xenon.Syntax
         {
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Compile",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Compile",log_Reports);
 
             //
             //
             //
             //
 
-            String sTxtTmpl = this.SText;
+            String sTxtTmpl = this.Text;
             //.WriteLine("★★★★★★★★" + this.GetType().Name + "#Compile: txtTmpl＝[" + txtTmpl + "]");
             //essageBox.Show("★★★★★★★★" + this.GetType().Name + "#Compile: txtTmpl＝[" + txtTmpl + "]", this.GetType().Name + "#Compile:(TextTemplate)");
 
@@ -208,9 +208,9 @@ namespace Xenon.Syntax
                             // %数字%を、HData化して追加。
                             Expression_P1pImpl ec_P1p = new Expression_P1pImpl(null,parent_Gcav);
                             ec_P1p.NP1p = nParameterIndex;
-                            ec_P1p.DicS_P1p = this.DicS_P1p;
+                            ec_P1p.DicS_P1p = this.Dictionary_NumberAndValue_Parameter;
 
-                            result.ListExpression_Child.Add(
+                            result.List_Expression_Child.Add(
                                 ec_P1p,
                                 log_Reports
                                 );
@@ -278,7 +278,7 @@ namespace Xenon.Syntax
 
         public String Perform()
         {
-            String sTxtTmpl = this.SText;
+            String sTxtTmpl = this.Text;
 
             StringBuilder sb = new StringBuilder();
 
@@ -349,7 +349,7 @@ namespace Xenon.Syntax
                                 // 引数から値を取得。
 
                             //string paramValue = this.Parameters[parameterIndex];
-                            string sParamValue = this.DicS_P1p[nParameterIndex];
+                            string sParamValue = this.Dictionary_NumberAndValue_Parameter[nParameterIndex];
 
                                 //.WriteLine(this.GetType().Name + "#Perform: paramValue＝[" + paramValue + "]");
                                 sb.Append(sParamValue);
@@ -422,7 +422,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 「%1%:%2%」といった文字列（テキスト_テンプレートと呼ぶ）。
         /// </summary>
-        public string SText
+        public string Text
         {
             get
             {
@@ -436,25 +436,25 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private Dictionary<int, string> dicS_P1p;
+        private Dictionary<int, string> dictionary_NumberAndValue_Parameter;
 
         /// <summary>
         /// [1]=101
         /// [2]=赤
         /// といったディクショナリー。
         /// 
-        /// 数字は %1%や、p1pの名前の中の数字。[1]から始める。
+        /// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
         /// Xn_L05_E:E_FtextTemplate#E_ExecuteでAddされます。
         /// </summary>
-        public Dictionary<int, string> DicS_P1p
+        public Dictionary<int, string> Dictionary_NumberAndValue_Parameter
         {
             get
             {
-                return dicS_P1p;
+                return dictionary_NumberAndValue_Parameter;
             }
             set
             {
-                dicS_P1p = value;
+                dictionary_NumberAndValue_Parameter = value;
             }
         }
 

@@ -58,7 +58,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Perform",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform",log_Reports);
             //
             //
 
@@ -79,7 +79,7 @@ namespace Xenon.Controls
             // 描画する文字列を作成します。
             string sItemDisplayText = this.P1_GetItemString(e.Index, ccLst, log_Reports);
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 失敗していれば中断。
                 goto gt_EndMethod;
@@ -107,9 +107,9 @@ namespace Xenon.Controls
                         err_Expressionv_ADisplay = ecv_ADisplay;
 
                         string sType;
-                        if (ecv_ADisplay.Dictionary_SAttribute.ContainsKey(PmNames.S_TYPE.SName_Pm))
+                        if (ecv_ADisplay.Dictionary_SAttribute.ContainsKey(PmNames.S_TYPE.Name_Pm))
                         {
-                            sType = ecv_ADisplay.Dictionary_SAttribute[PmNames.S_TYPE.SName_Pm];
+                            sType = ecv_ADisplay.Dictionary_SAttribute[PmNames.S_TYPE.Name_Pm];
                         }
                         else
                         {
@@ -194,23 +194,23 @@ namespace Xenon.Controls
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("＜ａ－ｄｉｓｐｌａｙ＞の未対応のtype属性です。");
-                t.NewLine();
+                t.Newline();
 
-                if (err_Expressionv_ADisplay.Dictionary_SAttribute.ContainsKey(PmNames.S_TYPE.SName_Pm))
+                if (err_Expressionv_ADisplay.Dictionary_SAttribute.ContainsKey(PmNames.S_TYPE.Name_Pm))
                 {
                     t.Append("sType＝[");
-                    t.Append(err_Expressionv_ADisplay.Dictionary_SAttribute[PmNames.S_TYPE.SName_Pm]);
+                    t.Append(err_Expressionv_ADisplay.Dictionary_SAttribute[PmNames.S_TYPE.Name_Pm]);
                     t.Append("]");
                 }
                 else
                 {
                     t.Append("sType＝なし");
                 }
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -238,7 +238,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "P1_GetItemLabel",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "P1_GetItemLabel",log_Reports);
             //
             //
             string sDisplayText;
@@ -272,7 +272,7 @@ namespace Xenon.Controls
                 // データソースがセットされていない場合。
                 goto gt_Error_10;
             }
-            else if (!log_Reports.BSuccessful)
+            else if (!log_Reports.Successful)
             {
                 goto gt_Error_20;
             }
@@ -294,7 +294,7 @@ namespace Xenon.Controls
                 log_Reports
                 );
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 sDisplayText = "(エラー発生中)";
             }
@@ -310,7 +310,7 @@ namespace Xenon.Controls
 
                 // 項目数だけエラーダイアログボックスが出てくるので、省略。
                 //Log_RecordReport r = log_Reports.NewReport(EnumReport.Error);
-                //r.SMessage = Info_Forms.LibraryName + ":" + this.GetType().Name + "#P1_GetItemString: リストボックスにDataSourceテーブルが指定されていません。";
+                //r.Message = Info_Forms.LibraryName + ":" + this.GetType().Name + "#P1_GetItemString: リストボックスにDataSourceテーブルが指定されていません。";
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -320,7 +320,7 @@ namespace Xenon.Controls
 
                 // 項目数だけエラーダイアログボックスが出てくるので、省略。
                 //Log_RecordReport r = log_Reports.NewReport(EnumReport.Error);
-                //r.SMessage = Info_Forms.LibraryName + ":" + this.GetType().Name + "#P1_GetItemString: リストボックスにDataSourceTableが指定されていません";
+                //r.Message = Info_Forms.LibraryName + ":" + this.GetType().Name + "#P1_GetItemString: リストボックスにDataSourceTableが指定されていません";
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -387,7 +387,7 @@ namespace Xenon.Controls
                 RecordXenonStyle sStyleRec = this.Owner_MemoryApplication.MemoryStyles.Dictionary_RecordStyle[sStyleAttrNames];
 
                 XenonStyle o_Style = new XToMemory_Style().Parse(
-                    sStyleRec.SStyle,
+                    sStyleRec.Style,
                     log_Reports
                     );
 
@@ -455,7 +455,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "P4_Main",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "P4_Main",log_Reports);
             //
             //
 
@@ -465,7 +465,7 @@ namespace Xenon.Controls
             Brush foreBrush;
             Exception err_Excp;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -558,32 +558,32 @@ namespace Xenon.Controls
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("描画失敗。詳細不明。");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("displayText＝[");
                 t.Append(sDisplayText);
                 t.Append("]");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("e.Font＝[");
                 t.Append(e.Font.ToString());
                 t.Append("]");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("foreBrush＝[");
                 t.Append(foreBrush.ToString());
                 t.Append("]");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("e.Bounds＝[");
                 t.Append(e.Bounds.ToString());
                 t.Append("]");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

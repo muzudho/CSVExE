@@ -32,7 +32,7 @@ namespace Xenon.Functions
         /// <summary>
         /// コントロールの名前。
         /// </summary>
-        public static readonly string S_PM_FC_NAME = PmNames.S_NAME_CONTROL.SName_Pm;
+        public static readonly string S_PM_FC_NAME = PmNames.S_NAME_CONTROL.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -53,17 +53,17 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function36Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function36Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function36Impl.S_PM_FC_NAME, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function36Impl.S_PM_FC_NAME, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -86,7 +86,7 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -101,18 +101,18 @@ namespace Xenon.Functions
                         log_Reports
                         );
 
-                    log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + this.GetType().Name + "]を実行。";
+                    log_Reports.Comment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + this.GetType().Name + "]を実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe += "／追記：[" + this.GetType().Name + "]を実行。";
+                    log_Reports.Comment_EventCreationMe += "／追記：[" + this.GetType().Name + "]を実行。";
                 }
 
                 //
                 //
                 //
                 //
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 this.Perform2(
@@ -142,11 +142,11 @@ namespace Xenon.Functions
                         log_Reports
                         );
 
-                    log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + this.GetType().Name + "]を実行。";
+                    log_Reports.Comment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + this.GetType().Name + "]を実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe += "／追記：[" + this.GetType().Name + "]を実行。";
+                    log_Reports.Comment_EventCreationMe += "／追記：[" + this.GetType().Name + "]を実行。";
                 }
 
                 this.Perform2(
@@ -167,14 +167,14 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName0 + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
             //
@@ -184,12 +184,12 @@ namespace Xenon.Functions
             // 指定された引数から、または、
             // この＜action＞要素を含んでいる ｃｏｎｔｒｏｌ要素から、コントロールの名前を取得。
             List<Usercontrol> list_FcUc = new List<Usercontrol>();
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
                 Expression_Node_String ec_FcName_Prm;
-                this.TrySelectAttr(out ec_FcName_Prm, Expression_Node_Function36Impl.S_PM_FC_NAME, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_FcName_Prm, Expression_Node_Function36Impl.S_PM_FC_NAME, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 string sFcName_Prm = ec_FcName_Prm.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports);
 
@@ -211,7 +211,7 @@ namespace Xenon.Functions
                         if (null != owner_Givechapterandverse_Control)
                         {
                             string sName;
-                            bool bHit = owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
+                            bool bHit = owner_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
 
                             if (bHit)
                             {
@@ -291,12 +291,12 @@ namespace Xenon.Functions
 
             foreach (Usercontrol fcUc in list_FcUc)
             {
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     ////
                     //// 妥当性判定を行います。
                     ////
-                    //if (log_Reports.BSuccessful)
+                    //if (log_Reports.Successful)
                     //{
                     //    fcUc.JudgeValidity(
                     //        log_Reports

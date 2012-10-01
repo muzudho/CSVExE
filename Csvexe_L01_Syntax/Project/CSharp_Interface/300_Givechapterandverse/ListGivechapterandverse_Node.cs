@@ -90,7 +90,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 要素の個数。
         /// </summary>
-        int NCount
+        int Count
         {
             get;
         }

@@ -39,7 +39,7 @@ namespace Xenon.Operating
         /// <summary>
         /// テーブル上のID。
         /// </summary>
-        public string SId
+        public string Id
         {
             set
             {
@@ -58,7 +58,7 @@ namespace Xenon.Operating
         /// <summary>
         /// スタイル属性1件分の記述。
         /// </summary>
-        public string SStyle
+        public string Style
         {
             set
             {

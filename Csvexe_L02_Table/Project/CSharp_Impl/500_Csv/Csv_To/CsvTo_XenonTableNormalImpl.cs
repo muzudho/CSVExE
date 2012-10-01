@@ -47,13 +47,13 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Read(1)",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Read(1)",log_Reports);
 
-            XenonTable xenonTable = new XenonTableImpl(forTable_request.SName_PutToTable,forTable_request.Expression_Filepath);
+            XenonTable xenonTable = new XenonTableImpl(forTable_request.Name_PutToTable,forTable_request.Expression_Filepath);
             //table.SName = forTable_request.STableNameToPuts;
-            xenonTable.STableunit = forTable_request.STableunit;
-            xenonTable.STypedata = forTable_request.STypedata;
-            xenonTable.BDatebackup = forTable_request.BDatebackup;
+            xenonTable.Tableunit = forTable_request.Tableunit;
+            xenonTable.Typedata = forTable_request.Typedata;
+            xenonTable.IsDatebackupActivated = forTable_request.IsDatebackupActivated;
             xenonTable.XenonTableformat = forTable_puts;
 
 
@@ -180,7 +180,7 @@ namespace Xenon.Table
                         {
                             string sFieldComment = sFields[nColumnIx];
 
-                            list_FldDef[nColumnIx].SComment = sFieldComment;
+                            list_FldDef[nColumnIx].Comment = sFieldComment;
                         }
 
                         // 2行目は、テーブルのデータとしては持ちません。
@@ -255,7 +255,7 @@ namespace Xenon.Table
 
             // テーブルのフィールド定義。
             xenonTable.CreateTable(list_FldDef,log_Reports);
-            if(log_Reports.BSuccessful)
+            if(log_Reports.Successful)
             {
                 // データ本体のセット。
                 xenonTable.AddRecordList(dataTableRows, list_FldDef, log_Reports);
@@ -273,7 +273,7 @@ namespace Xenon.Table
                 r.SetTitle("▲エラー132！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
-                s.NewLine();
+                s.Newline();
                 
                 s.Append("フィールド定義の数が合いませんでした。");
                 s.Append(Environment.NewLine);
@@ -291,7 +291,7 @@ namespace Xenon.Table
                 // ヒント
                 s.Append(err_Excp.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

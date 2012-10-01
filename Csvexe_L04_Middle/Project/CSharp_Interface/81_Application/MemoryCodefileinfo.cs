@@ -23,7 +23,7 @@ namespace Xenon.Middle
         /// <summary>
         /// コードファイル呼出名。
         /// </summary>
-        string SName
+        string Name
         {
             get;
             set;
@@ -34,7 +34,7 @@ namespace Xenon.Middle
         /// <summary>
         /// タイプデータ。
         /// </summary>
-        string STypedata
+        string Typedata
         {
             get;
             set;

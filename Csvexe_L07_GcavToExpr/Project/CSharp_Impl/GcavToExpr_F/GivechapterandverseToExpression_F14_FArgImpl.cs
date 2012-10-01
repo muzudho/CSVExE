@@ -36,7 +36,7 @@ namespace Xenon.GcavToExpr
         {
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             //
             // デバッグオープンの前に。
@@ -44,13 +44,13 @@ namespace Xenon.GcavToExpr
             // 「S■ａｒｇ１　ｎａｍｅ＝”★”」属性
             //
             string sName_MyFnc;
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, false, log_Reports);
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, false, log_Reports);
 
             if (log_Method.CanDebug(1))
             {
                 Dictionary<string, string> s_Dic = new Dictionary<string, string>();
-                s_Dic.Add(PmNames.S_NAME.SName_Pm, sName_MyFnc);
-                pg_ParsingLog.Increment("(6.ａｒｇ１・３要素)" + cur_Cf.SName, s_Dic);
+                s_Dic.Add(PmNames.S_NAME.Name_Pm, sName_MyFnc);
+                pg_ParsingLog.Increment("(6.ａｒｇ１・３要素)" + cur_Cf.Name, s_Dic);
             }
 
             //
@@ -58,7 +58,7 @@ namespace Xenon.GcavToExpr
 
             if (log_Method.CanDebug(2))
             {
-                log_Method.WriteDebug_ToConsole( "「S■ａｒｇ１・３」要素　解析開始┌────────────────┐　自ａｒｇ１・３は、e_Parent=[" + parent_Ec.Cur_Givechapterandverse.SName + "]の”" + sName_MyFnc + "”属性になる。");
+                log_Method.WriteDebug_ToConsole( "「S■ａｒｇ１・３」要素　解析開始┌────────────────┐　自ａｒｇ１・３は、e_Parent=[" + parent_Ec.Cur_Givechapterandverse.Name + "]の”" + sName_MyFnc + "”属性になる。");
             }
 
 
@@ -67,17 +67,17 @@ namespace Xenon.GcavToExpr
                 bool bRequired;
                 //todo: bRequired = true;//エラー。
                 bRequired = false;
-                parent_Ec.TrySelectAttr(out parent_SName_Fnc, PmNames.S_NAME.SName_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
-                if (!log_Reports.BSuccessful)
+                parent_Ec.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                if (!log_Reports.Successful)
                 {
                     goto gt_EndMethod;
                 }
 
                 //if (0 < d_InMethod.NDebugLevel)
                 //{
-                //    if (NamesNode.S_FNC != e_Parent.Cur_Givechapterandverse.SName)
+                //    if (NamesNode.S_FNC != e_Parent.Cur_Givechapterandverse.Name)
                 //    {
-                //        d_InMethod.WriteDebug_ToConsole(1, "ｆｎｃ以外の親要素「E■[" + e_Parent.Cur_Givechapterandverse.SName + "]」");
+                //        d_InMethod.WriteDebug_ToConsole(1, "ｆｎｃ以外の親要素「E■[" + e_Parent.Cur_Givechapterandverse.Name + "]」");
                 //    }
                 //}
             }
@@ -99,7 +99,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 元からあった。
                 this.ParseAttr_InGivechapterandverseToExpression(
@@ -119,7 +119,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.ParseChild_InGivechapterandverseToExpression(
                     cur_Cf,
@@ -140,9 +140,9 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                parent_Ec.DicExpression_Attr.Set(sName_MyFnc, cur_Ec, log_Reports);
+                parent_Ec.Dictionary_Expression_Attribute.Set(sName_MyFnc, cur_Ec, log_Reports);
             }
 
             goto gt_EndMethod;
@@ -151,7 +151,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
 
             if (log_Method.CanDebug(2))

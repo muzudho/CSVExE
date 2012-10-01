@@ -54,9 +54,9 @@ namespace Xenon.Syntax
             sb.Append("【");
             sb.Append(sErrorNumber);
             sb.Append("】（");
-            sb.Append(log_Method.SHead);
+            sb.Append(log_Method.Fullname);
             sb.Append("）");
-            this.STitle = sb.ToString();
+            this.Title = sb.ToString();
         }
 
         //────────────────────────────────────────
@@ -78,27 +78,27 @@ namespace Xenon.Syntax
             else
             {
                 s.Append("　　問題箇所ヒント：");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
                 parent_Gcav.ToText_Path(s);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append(this.Message_SSeparator());
 
                 s.Append("　　問題内部ヒント：");
-                s.NewLine();
+                s.Newline();
                 parent_Gcav.ToText_Content(s);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append(this.Message_SSeparator());
 
                 s.Append("　　問題を報告したオブジェクトの型: ");
                 s.Append(parent_Gcav.GetType());
                 s.Append("　（これはラッパークラスということもあるかも知れません）");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
             }
 
 
@@ -191,7 +191,7 @@ namespace Xenon.Syntax
         /// <param name="sMessage">「%1%」に対応する文字列。</param>
         public void AddP1p(int nNumber, object sMessage)
         {
-            this.p1pText.DicS_P1p.Add(nNumber, sMessage.ToString());
+            this.p1pText.Dictionary_NumberAndValue_Parameter.Add(nNumber, sMessage.ToString());
         }
 
         //────────────────────────────────────────
@@ -252,16 +252,16 @@ namespace Xenon.Syntax
         /// <summary>
         /// 本文。
         /// </summary>
-        public string SMessage
+        public string Message
         {
             set
             {
                 // テンプレート
-                this.p1pText.SText = value;
+                this.p1pText.Text = value;
             }
         }
 
-        public string SMsg(Log_Reports log_Reports)
+        public string GetMessage(Log_Reports log_Reports)
         {
             Expression_Node_String ec_Str = this.p1pText.Compile(log_Reports);
 
@@ -282,7 +282,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 警告タイトル。
         /// </summary>
-        public string STitle
+        public string Title
         {
             set
             {
@@ -302,7 +302,7 @@ namespace Xenon.Syntax
         /// 人間オペレーターは、ここを修正しろ、といった情報。
         /// 例：「xxxファイルのxx行目のxxx」
         /// </summary>
-        public string SConfigStack
+        public string Logstack
         {
             set
             {
@@ -321,7 +321,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// グループ・タグ。情報を見たい人が、表示する情報を絞り込むために使われます。
         /// </summary>
-        public string SGroupTag
+        public string Tag_Group
         {
             set
             {

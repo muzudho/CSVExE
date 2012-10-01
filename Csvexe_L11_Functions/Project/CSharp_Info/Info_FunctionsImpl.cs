@@ -27,8 +27,8 @@ namespace Xenon.Functions
             owner_MemoryApplication.MemoryLogwriter.WriteErrorLog(
                 owner_MemoryApplication,
                 log_Reports,
-                log_Method.SHead);
-                //Info_Functions.SName_Library + ":" + sClassName + sMethodNameWithSharp);
+                log_Method.Fullname);
+                //Info_Functions.Name_Library + ":" + sClassName + sMethodNameWithSharp);
         }
 
         //────────────────────────────────────────
@@ -39,7 +39,7 @@ namespace Xenon.Functions
         #region プロパティー
         //────────────────────────────────────────
 
-        static public String SName_Library
+        static public String Name_Library
         {
             get
             {

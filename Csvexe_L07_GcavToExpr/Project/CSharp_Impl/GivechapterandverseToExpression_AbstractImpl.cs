@@ -25,7 +25,7 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, "SToE_AbstractImpl", "ParseChild_InAnotherLibrary",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, "SToE_AbstractImpl", "ParseChild_InAnotherLibrary",log_Reports);
 
             GivechapterandverseToExpression_F14n16 dammy = new GivechapterandverseToExpression_F14_FncImpl_();//メソッドが使いたいだけなので、何でもいい。
             dammy.ParseChild_InGivechapterandverseToExpression(
@@ -43,7 +43,7 @@ namespace Xenon.GcavToExpr
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                //d_ParsingLog.Decrement(s_Cur.SName_Node);
+                //d_ParsingLog.Decrement(s_Cur.Name_Node);
             }
             log_Method.EndMethod(log_Reports);
         }
@@ -59,7 +59,7 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "ParseChild_InSToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "ParseChild_InSToE",log_Reports);
             //
             //
 
@@ -72,7 +72,7 @@ namespace Xenon.GcavToExpr
             //
             // 親ノード名、親ファンク名
             //
-            string parent_SName_Node = parent_Expr.Cur_Givechapterandverse.SName;
+            string parent_SName_Node = parent_Expr.Cur_Givechapterandverse.Name;
             string parent_SName_Fnc = "";
             {
                 bool bRequired;
@@ -89,13 +89,13 @@ namespace Xenon.GcavToExpr
 
 
                 log_Reports.Log_Callstack.Push(log_Method, "①");
-                bool bHit = parent_Expr.DicExpression_Attr.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.SName_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = parent_Expr.Dictionary_Expression_Attribute.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
                 log_Reports.Log_Callstack.Pop(log_Method, "①");
             }
 
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole( "開始┌──┐　s_Curノード名=[" + cur_Gcav.SName + "]　子要素数=[" + cur_Gcav.List_ChildGivechapterandverse.NCount + "]");
+                log_Method.WriteDebug_ToConsole( "開始┌──┐　s_Curノード名=[" + cur_Gcav.Name + "]　子要素数=[" + cur_Gcav.List_ChildGivechapterandverse.Count + "]");
             }
 
 
@@ -111,7 +111,7 @@ namespace Xenon.GcavToExpr
             cur_Gcav.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Child, ref bool bBreak)
             {
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 強制終了。
                     bBreak = true;
@@ -119,7 +119,7 @@ namespace Xenon.GcavToExpr
                 }
 
 
-                string sName_MyNode = s_Child.SName;
+                string sName_MyNode = s_Child.Name;
                 string sName_MyFnc = "";
                 {
                     bool bRequired;
@@ -134,7 +134,7 @@ namespace Xenon.GcavToExpr
                     }
 
                     log_Reports.Log_Callstack.Push(log_Method, "②");
-                    s_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, bRequired, log_Reports);
+                    s_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, bRequired, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "②");
                 }
 
@@ -191,7 +191,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Expr.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -205,43 +205,43 @@ namespace Xenon.GcavToExpr
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("　(Fcnf) 子 ＜f-●●＞要素を書くところに、未定義の要素＜");
-                s.Append(err_Givechapterandverse_Node2.SName);
+                s.Append(err_Givechapterandverse_Node2.Name);
                 s.Append("＞が書かれていました。これには未対応です。");
-                s.NewLine();
+                s.Newline();
                 s.Append("クラス=[");
                 s.Append(err_Givechapterandverse_Node2.GetType().Name);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("┌────┐書けるキー（個数＝[");
                 s.Append(this.Dictionary_GivechapterandverseToExpression.Count);
                 s.Append("]）");
-                s.NewLine();
+                s.Newline();
                 foreach (string sKey in this.Dictionary_GivechapterandverseToExpression.Keys)
                 {
                     s.Append(sKey);
-                    s.NewLine();
+                    s.Newline();
                 }
                 s.Append("└────┘");
-                s.NewLine();
+                s.Newline();
 
                 if (null != parent_Expr)
                 {
                     s.Append("親要素は[");
-                    s.Append(parent_Expr.Cur_Givechapterandverse.SName);
+                    s.Append(parent_Expr.Cur_Givechapterandverse.Name);
                     s.Append("]");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(err_Givechapterandverse_Node2));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -250,7 +250,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                //d_ParsingLog.Decrement(s_Cur.SName_Node);
+                //d_ParsingLog.Decrement(s_Cur.Name_Node);
             }
             log_Method.EndMethod(log_Reports);
 

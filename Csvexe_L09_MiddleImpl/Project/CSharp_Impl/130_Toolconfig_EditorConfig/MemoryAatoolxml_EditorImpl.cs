@@ -27,7 +27,7 @@ namespace Xenon.MiddleImpl
         public MemoryAatoolxml_EditorImpl(Givechapterandverse_Node parent_Cf)
             : base(parent_Cf)
         {
-            this.sName = "";
+            this.name = "";
         }
 
         //────────────────────────────────────────
@@ -39,7 +39,7 @@ namespace Xenon.MiddleImpl
         {
             this.parent_Givechapterandverse = null;
 
-            this.sName = "";
+            this.name = "";
             this.dictionary_Fsetvar_Givechapterandverse = new Dictionary_Fsetvar_GivechapterandverseImpl();
         }
 
@@ -51,20 +51,20 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sName;
+        private string name;
 
         /// <summary>
         /// エディター名
         /// </summary>
-        public string SName
+        public string Name
         {
             get
             {
-                return sName;
+                return name;
             }
             set
             {
-                sName = value;
+                name = value;
             }
         }
 

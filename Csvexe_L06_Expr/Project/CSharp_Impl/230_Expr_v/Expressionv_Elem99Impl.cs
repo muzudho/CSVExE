@@ -47,13 +47,13 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
             StringBuilder sb_Result = new StringBuilder();
 
-            List<Expression_Node_String> ecList_Child = this.ListExpression_Child.SelectList(
+            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(
                 Request_SelectingImpl.Unconstraint,
                 log_Reports
                 );
@@ -150,7 +150,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = sb_Result.ToString();
+                r.Message = sb_Result.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -168,7 +168,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = sb_Result.ToString();
+                r.Message = sb_Result.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

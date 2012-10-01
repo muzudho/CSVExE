@@ -58,10 +58,10 @@ namespace Xenon.Functions
             //.WriteLine(this.GetType().Name + "#PerformFc: 【アクション_パフォーマー開始】");
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_Fc",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_Fc",log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_Fc:" + o_Name_Event.SValue + "＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_Fc:" + o_Name_Event.SValue + "＞";
 
 
 
@@ -129,10 +129,10 @@ namespace Xenon.Functions
             //.WriteLine(this.GetType().Name + "#Perform_FcNameStartsWith: 【アクション_パフォーマー開始】");
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_FcNameStartsWith",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_FcNameStartsWith",log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_FcNameStartsWith:" + o_Name_Event.SValue + "＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_FcNameStartsWith:" + o_Name_Event.SValue + "＞";
 
             Dictionary<string, Usercontrol> dic = owner_MemoryApplication.MemoryForms.ItemsStartsWith(
                 sFcNameStarts,
@@ -191,10 +191,10 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_AllFcs",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_AllFcs",log_Reports);
             //
             //
-            string sConfigStack = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_AllFcs:" + o_Name_Event.SValue + "＞";
+            string sConfigStack = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_AllFcs:" + o_Name_Event.SValue + "＞";
             sConfigStack_EventOrigin += sConfigStack;
             Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl(sConfigStack, null);
 
@@ -263,11 +263,11 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_FcImpl",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_FcImpl",log_Reports);
             //
             //
             string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-            sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_FcImpl:" + o_Name_Event.SValue + "＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_FcImpl:" + o_Name_Event.SValue + "＞";
 
 
             if (null == ucFc.ControlCommon.Givechapterandverse_Control)
@@ -292,8 +292,8 @@ namespace Xenon.Functions
             {
 
                 string sEventName;
-                cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
-                if (!log_Reports.BSuccessful)
+                cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+                if (!log_Reports.Successful)
                 {
                     goto gt_EndMethod;
                 }
@@ -340,10 +340,10 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:" + sEventName + "＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:" + sEventName + "＞";
 
 
             //.WriteLine(this.GetType().Name + "#Perform:◆◆◆◆◆◆ 【アクション_パフォーマー開始】");
@@ -372,7 +372,7 @@ namespace Xenon.Functions
                     foreach (Givechapterandverse_Node cf_Event in cfList_Event)
                     {
                         string sFncName;
-                        cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                        cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                         if (sFncName == sEventName)
                         {
@@ -419,7 +419,7 @@ namespace Xenon.Functions
 
                             // ヒント
 
-                            r.SMessage = t.ToString();
+                            r.Message = t.ToString();
                             log_Reports.EndCreateReport();
                         }
                     }
@@ -456,7 +456,7 @@ namespace Xenon.Functions
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

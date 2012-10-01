@@ -27,11 +27,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(39)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(39)" + cur_Cf.Name);
             }
 
             //
@@ -61,11 +61,11 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_TYPE;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
                         Expression_Leaf_String ec_Leaf = new Expression_Leaf_StringImpl(sValue, parent_Expr, cur_Cf);
-                        ecv_AEmptyFld.DicExpression_Attr.Set(pmName.SName_Pm, ec_Leaf, log_Reports);
+                        ecv_AEmptyFld.Dictionary_Expression_Attribute.Set(pmName.Name_Pm, ec_Leaf, log_Reports);
                         //evAEmptyFld.Dictionary_SAttribute.Add(sAttrName, s_Cur.SAttrDic.Get(sAttrName, true, log_Reports));
                     }
                     else
@@ -77,11 +77,11 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_DESCRIPTION;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
                         Expression_Leaf_String ec_Leaf = new Expression_Leaf_StringImpl(sValue, parent_Expr, cur_Cf);
-                        ecv_AEmptyFld.DicExpression_Attr.Set(pmName.SName_Pm, ec_Leaf, log_Reports);
+                        ecv_AEmptyFld.Dictionary_Expression_Attribute.Set(pmName.Name_Pm, ec_Leaf, log_Reports);
                     }
                     else
                     {
@@ -100,7 +100,7 @@ namespace Xenon.GcavToExpr
             //
             {
                 // TODO:?
-                parent_Expr.ListExpression_Child.Add(ecv_AEmptyFld, log_Reports);
+                parent_Expr.List_Expression_Child.Add(ecv_AEmptyFld, log_Reports);
             }
 
 
@@ -130,7 +130,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

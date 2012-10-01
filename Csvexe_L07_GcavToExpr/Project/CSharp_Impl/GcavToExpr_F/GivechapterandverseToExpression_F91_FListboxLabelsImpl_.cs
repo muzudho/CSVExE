@@ -26,7 +26,7 @@ namespace Xenon.GcavToExpr
         {
 
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE", log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE", log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -68,7 +68,7 @@ namespace Xenon.GcavToExpr
             cur_Cf.List_ChildGivechapterandverse.ForEach(delegate( Givechapterandverse_Node child_Cf, ref bool bBreak2)
             {
                 string sName_Fnc;
-                child_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
+                child_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
 
                 if (log_Method.CanDebug(1))
                 {
@@ -110,7 +110,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 親
                     //
-                    cur_Expr.ListExpression_Child.Add(child_Expr, log_Reports);
+                    cur_Expr.List_Expression_Child.Add(child_Expr, log_Reports);
                 }
                 else if (NamesFnc.S_ITEM_LABEL2 == sName_Fnc)
                 {
@@ -144,7 +144,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 親
                     //
-                    cur_Expr.ListExpression_Child.Add(child_Expr, log_Reports);
+                    cur_Expr.List_Expression_Child.Add(child_Expr, log_Reports);
                 }
                 else if (NamesFnc.S_ITEM_GRAY_OUT == sName_Fnc)
                 {
@@ -178,7 +178,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 親
                     //
-                    cur_Expr.ListExpression_Child.Add(child_Expr, log_Reports);
+                    cur_Expr.List_Expression_Child.Add(child_Expr, log_Reports);
                 }
                 else
                 {
@@ -191,9 +191,9 @@ namespace Xenon.GcavToExpr
                         StringBuilder t = new StringBuilder();
                         t.Append("＜f-listbox-for-items＞要素の中に、未対応の属性名がありました。");
                         t.Append("未対応の属性＝＜");
-                        t.Append(child_Cf.SName);
+                        t.Append(child_Cf.Name);
                         t.Append("＞");
-                        r.SMessage = t.ToString();
+                        r.Message = t.ToString();
                         log_Reports.EndCreateReport();
                     }
 
@@ -218,7 +218,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Expr.ListExpression_Child.Add(cur_Expr, log_Reports);
+            parent_Expr.List_Expression_Child.Add(cur_Expr, log_Reports);
             //
             log_Method.EndMethod(log_Reports);
         }

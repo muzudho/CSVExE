@@ -47,7 +47,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Perform",log_Reports);
 
 
             string result;
@@ -91,7 +91,7 @@ namespace Xenon.Table
 
 
             TextP1pImpl formatString = new TextP1pImpl();
-            formatString.SText = recordFields[0].ToString();//例："%1%:%2%"
+            formatString.Text = recordFields[0].ToString();//例："%1%:%2%"
             //.Console.WriteLine(this.GetType().Name + "#CreateText: recordFields[0].ToString()=[" + recordFields[0].ToString() + "]");
 
             FieldToParameters fieldToParameters = new FieldToParameters();
@@ -108,7 +108,7 @@ namespace Xenon.Table
                     log_Reports
                     );
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     result = "（エラー）";
@@ -117,7 +117,7 @@ namespace Xenon.Table
             }
 
             fieldToParameters.Perform(ref formatString, dataRowView, xenonTable, log_Reports);
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 result = "（エラー）";
@@ -138,7 +138,7 @@ namespace Xenon.Table
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー131！", log_Method);
-                r.SMessage = "(エラー。テーブルが未指定です）";
+                r.Message = "(エラー。テーブルが未指定です）";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

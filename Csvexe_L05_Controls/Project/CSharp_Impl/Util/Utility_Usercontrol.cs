@@ -39,7 +39,7 @@ namespace Xenon.Controls
             Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, "Util_Fo", "ParseFontSize",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, "Util_Fo", "ParseFontSize",log_Reports);
 
             float nFontSizePt;
             Exception err_Excp;
@@ -85,7 +85,7 @@ namespace Xenon.Controls
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲設定エラー4041！", pg_Method);
-                r.SMessage = "コントロール設定ファイルの読取エラー：" + err_Excp.Message;
+                r.Message = "コントロール設定ファイルの読取エラー：" + err_Excp.Message;
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

@@ -50,7 +50,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetEditorByName",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetEditorByName",log_Reports);
 
             MemoryAatoolxml_Editor result;
 
@@ -81,7 +81,7 @@ namespace Xenon.MiddleImpl
                         s.Append("]");
                         s.Append(Environment.NewLine);
 
-                        r.SMessage = s.ToString();
+                        r.Message = s.ToString();
                         log_Reports.EndCreateReport();
                     }
                     goto gt_EndMethod;
@@ -108,7 +108,7 @@ namespace Xenon.MiddleImpl
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Dammy = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "CreateMessage_Debug",d_Logging_Dammy);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "CreateMessage_Debug",d_Logging_Dammy);
             //
             //
 
@@ -116,7 +116,7 @@ namespace Xenon.MiddleImpl
 
             foreach (MemoryAatoolxml_Editor aatool_Editor in this.Dictionary_Item.Values)
             {
-                //ystem.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 project名=[" + st_Project.SName + "]");
+                //ystem.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 project名=[" + st_Project.Name + "]");
 
                 aatool_Editor.WriteDebug_ToConsole(aatool_Editor.Dictionary_Fsetvar_Givechapterandverse, log_Reports);
             }
@@ -126,7 +126,7 @@ namespace Xenon.MiddleImpl
             //
             d_Logging_Dammy.EndCreateReport();
             log_Method.EndMethod(d_Logging_Dammy);
-            if (!d_Logging_Dammy.BSuccessful)
+            if (!d_Logging_Dammy.Successful)
             {
                 log_Method.WriteDebug_ToConsole(d_Logging_Dammy.ToMessage());
             }

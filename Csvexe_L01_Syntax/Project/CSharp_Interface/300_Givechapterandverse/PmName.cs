@@ -21,7 +21,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性名。書式「Pm:☆;」。
         /// </summary>
-        string SName_Pm
+        string Name_Pm
         {
             get;
         }
@@ -31,7 +31,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性名の部分だけ。
         /// </summary>
-        string SName_Attr
+        string Name_Attribute
         {
             get;
         }

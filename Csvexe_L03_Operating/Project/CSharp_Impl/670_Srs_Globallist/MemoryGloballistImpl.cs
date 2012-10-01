@@ -55,17 +55,17 @@ namespace Xenon.Operating
         {
             Dictionary<int, MemoryGloballistLine> glLineList;
 
-            if (this.dictionary_Typesection.ContainsKey(glLine.SType))
+            if (this.dictionary_Typesection.ContainsKey(glLine.Name_Type))
             {
-                glLineList = this.dictionary_Typesection[glLine.SType];
+                glLineList = this.dictionary_Typesection[glLine.Name_Type];
             }
             else
             {
                 glLineList = new Dictionary<int, MemoryGloballistLine>();
-                this.dictionary_Typesection.Add(glLine.SType, glLineList);
+                this.dictionary_Typesection.Add(glLine.Name_Type, glLineList);
             }
 
-            glLineList.Add(glLine.NNumber, glLine);
+            glLineList.Add(glLine.Number, glLine);
         }
 
         //────────────────────────────────────────

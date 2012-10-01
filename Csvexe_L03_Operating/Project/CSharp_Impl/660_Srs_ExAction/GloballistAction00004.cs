@@ -29,7 +29,7 @@ namespace Xenon.Operating
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Perform",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Perform",log_Reports);
 
             bool bResult;
 
@@ -61,7 +61,7 @@ namespace Xenon.Operating
                     {
                         Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー0801087！", pg_Method);
-                        r.SMessage = "[" + ex.GetType().Name + "]：" + ex.Message;
+                        r.Message = "[" + ex.GetType().Name + "]：" + ex.Message;
                         log_Reports.EndCreateReport();
                     }
                 }
@@ -76,7 +76,7 @@ namespace Xenon.Operating
                 {
                     Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー1086！", pg_Method);
-                    r.SMessage = ex.Message;
+                    r.Message = ex.Message;
                     log_Reports.EndCreateReport();
                 }
             }
@@ -86,7 +86,7 @@ namespace Xenon.Operating
                 {
                     Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー1085！", pg_Method);
-                    r.SMessage = ex.Message;
+                    r.Message = ex.Message;
                     log_Reports.EndCreateReport();
                 }
             }
@@ -96,7 +96,7 @@ namespace Xenon.Operating
                 {
                     Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー0801084！", pg_Method);
-                    r.SMessage = "["+ex.GetType().Name+"]："+ex.Message;
+                    r.Message = "["+ex.GetType().Name+"]："+ex.Message;
                     log_Reports.EndCreateReport();
                 }
             }

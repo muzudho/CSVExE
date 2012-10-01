@@ -56,9 +56,9 @@ namespace Xenon.Expr
         {
             StringBuilder s = new StringBuilder();
 
-            if (log_Reports.BSuccessful)//null != log_Reports && 
+            if (log_Reports.Successful)//null != log_Reports && 
             {
-                List<Expression_Node_String> ecList = this.ListExpression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
 
                 foreach (Expression_Node_String ec_11 in ecList)
                 {
@@ -77,7 +77,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
             string sResult;
@@ -127,7 +127,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "GetFilePath",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "GetFilePath",log_Reports);
             //
             //
 

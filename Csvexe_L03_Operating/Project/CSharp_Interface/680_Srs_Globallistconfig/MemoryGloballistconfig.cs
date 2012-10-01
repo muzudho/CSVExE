@@ -24,7 +24,7 @@ namespace Xenon.Operating
         /// 担当者名を全て返します。
         /// </summary>
         /// <returns></returns>
-        List<string> GetSHumans();
+        List<string> GetNameHumans();
 
         /// <summary>
         /// 指定の番号の変数について、担当者が複数いたとき、どの担当者が優先されるかを調べます。

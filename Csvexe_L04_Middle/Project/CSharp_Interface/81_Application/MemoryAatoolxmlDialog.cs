@@ -22,7 +22,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 選択しているエディター名
         /// </summary>
-        string SName_SelectedEditor
+        string Name_SelectedEditor
         {
             get;
             set;
@@ -49,7 +49,7 @@ namespace Xenon.Middle
         /// <summary>
         /// このファイアログを開いているアプリケーションの名前
         /// </summary>
-        string SName_Application
+        string Name_Application
         {
             get;
             set;

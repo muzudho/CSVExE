@@ -32,11 +32,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(30)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(30)" + cur_Cf.Name);
             }
 
             //
@@ -67,7 +67,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.ParseAttr_InGivechapterandverseToExpression(
                     cur_Cf,
@@ -105,7 +105,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                parent_Ec.ListExpression_Child.Add(ec_Cur, log_Reports);
+                parent_Ec.List_Expression_Child.Add(ec_Cur, log_Reports);
             }
 
             goto gt_EndMethod;
@@ -127,7 +127,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -138,7 +138,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

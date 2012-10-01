@@ -61,7 +61,7 @@ namespace Xenon.Table
                 true,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful || !bHit)
+            if (!log_Reports.Successful || !bHit)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -71,7 +71,7 @@ namespace Xenon.Table
             foreach (XenonFielddefinition o_FldDef in list_FieldDef)
             {
                 this.list_FieldKeies.Add(
-                    new XenonFieldkey(sList_FieldName[nIx], o_FldDef.GetTypeString(), o_FldDef.SComment));
+                    new XenonFieldkey(sList_FieldName[nIx], o_FldDef.GetTypeString(), o_FldDef.Comment));
 
                 nIx++;
             }
@@ -108,7 +108,7 @@ namespace Xenon.Table
                     log_Reports,
                     fieldKey.SDescription
                 );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -119,22 +119,22 @@ namespace Xenon.Table
 
                 if (XenonFielddefinitionImpl.S_STRING == fieldKey.SType)
                 {
-                    ref_FormatString.DicS_P1p.Add(nP1pNumber, XenonValue_StringImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_StringImpl.ParseString(obj));
                 }
                 if (XenonFielddefinitionImpl.S_INT == fieldKey.SType)
                 {
-                    ref_FormatString.DicS_P1p.Add(nP1pNumber, XenonValue_IntImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_IntImpl.ParseString(obj));
                 }
                 else if (XenonFielddefinitionImpl.S_BOOL == fieldKey.SType)
                 {
-                    ref_FormatString.DicS_P1p.Add(nP1pNumber, XenonValue_BoolImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_BoolImpl.ParseString(obj));
                 }
                 else
                 {
                     //
                     // 未定義の型は、string扱い。
                     //
-                    ref_FormatString.DicS_P1p.Add(nP1pNumber, XenonValue_StringImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_StringImpl.ParseString(obj));
                 }
 
                 nP1pNumber++;

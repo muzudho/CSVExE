@@ -31,7 +31,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -66,7 +66,7 @@ namespace Xenon.XToGcav
             //
             XmlElement err_XAction;
             Exception err_Excp;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 //
@@ -118,7 +118,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
             }
@@ -143,7 +143,7 @@ namespace Xenon.XToGcav
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -163,7 +163,7 @@ namespace Xenon.XToGcav
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -194,7 +194,7 @@ namespace Xenon.XToGcav
             {
                 Log_Method log_Method = new Log_MethodImpl(0);
                 Log_Reports d_Logging_ThisMethod = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS_F_4Map get",d_Logging_ThisMethod);
+                log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS_F_4Map get",d_Logging_ThisMethod);
                 //
                 //
 

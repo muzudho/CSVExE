@@ -32,7 +32,7 @@ namespace Xenon.Functions
         /// <summary>
         /// トゥゲザー名。
         /// </summary>
-        public static string S_PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.SName_Pm;
+        public static string S_PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -52,17 +52,17 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function27Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function27Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -85,14 +85,14 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 if (this.ExpressionfncPrmset.Sender is Customcontrol)
@@ -101,11 +101,11 @@ namespace Xenon.Functions
 
                     string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
+                    log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe = "NAction27を実行。";
+                    log_Reports.Comment_EventCreationMe = "NAction27を実行。";
                 }
 
 
@@ -128,14 +128,14 @@ namespace Xenon.Functions
 
                     string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
+                    log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe = "NAction27を実行。";
+                    log_Reports.Comment_EventCreationMe = "NAction27を実行。";
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     this.Perform2(
                         log_Reports
@@ -166,11 +166,11 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = Utility_Textformat.Format_StopwatchComment(
+                log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
                     this.Cur_Givechapterandverse,
                     log_Reports
@@ -181,10 +181,10 @@ namespace Xenon.Functions
 
 
             Givechapterandverse_Node cf_TgTogether;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sArg_Name_Together;
-                this.TrySelectAttr(out sArg_Name_Together, Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sArg_Name_Together, Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 if ("" != sArg_Name_Together.Trim())
                 {
@@ -234,7 +234,7 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 //
@@ -255,7 +255,7 @@ namespace Xenon.Functions
                 foreach (Givechapterandverse_Node cf_RfrTarget in cfList_RfrTarget)
                 {
                     string sName;
-                    cf_RfrTarget.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                    cf_RfrTarget.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                     Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, cf_RfrTarget);
                     ec_Str.AppendTextNode(
@@ -266,7 +266,7 @@ namespace Xenon.Functions
 
 
                     List<Usercontrol> list_FcUc2;
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         list_FcUc2 = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                             ec_Str,
@@ -279,7 +279,7 @@ namespace Xenon.Functions
                         list_FcUc2 = new List<Usercontrol>();
                     }
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         Usercontrol fcUc2 = list_FcUc2[0];
 
@@ -315,13 +315,13 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_ByName",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByName",log_Reports);
 
             // 指定のコントロールの内容を、データ・ソースから読取り直して最新表示します。
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = Utility_Textformat.Format_StopwatchComment(
+                log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
                     this.Cur_Givechapterandverse,
                     log_Reports
@@ -341,7 +341,7 @@ namespace Xenon.Functions
             cf_TgTogether = null;
             {
                 Expression_Node_String ec_Arg_Name_Together;
-                this.TrySelectAttr(out ec_Arg_Name_Together, Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Arg_Name_Together, Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 string sExpectedFncName = ec_Arg_Name_Together.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
@@ -349,7 +349,7 @@ namespace Xenon.Functions
                 foreach (Givechapterandverse_Node cf_Together in listCf_Together)
                 {
                     string sFncName;
-                    cf_Together.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                    cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                     if(sExpectedFncName == sFncName)
                     {
@@ -360,7 +360,7 @@ namespace Xenon.Functions
             }
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Owner_MemoryApplication.MemoryTogethers.RefreshDataByTogether(
                     cf_TgTogether,
@@ -386,11 +386,11 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_ByNoName",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByNoName",log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = Utility_Textformat.Format_StopwatchComment(
+                log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
                     this.Cur_Givechapterandverse,
                     log_Reports
@@ -402,7 +402,7 @@ namespace Xenon.Functions
             //
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (null != this.Cur_Givechapterandverse)
             {
@@ -445,7 +445,7 @@ namespace Xenon.Functions
 
                         // 指定のコントロールの内容を、データ・ソースから読取り直して最新表示します。
 
-                        if (log_Reports.BSuccessful)
+                        if (log_Reports.Successful)
                         {
                             //
                             // トゥゲザー＜ｔｏｇｅｔｈｅｒ＞を使います。
@@ -492,21 +492,21 @@ namespace Xenon.Functions
                 s.Append("[");
                 s.Append(sFncName0);
                 s.Append("]アクションを実行しようとしましたが、");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("トゥゲザー名が指定されていなかったので、自動判定をしようとしたとき、");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("このアクションの親コントロールは　指定されていませんでした。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("プログラムのミスかもしれません。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -521,21 +521,21 @@ namespace Xenon.Functions
                 t.Append("[");
                 t.Append(sFncName0);
                 t.Append("]アクションを実行しようとしましたが、");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("トゥゲザー名が指定されていなかったので、自動判定をしようとしたとき、");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("このアクションの親イベントは　指定されていませんでした。");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("プログラムのミスかもしれません。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -550,21 +550,21 @@ namespace Xenon.Functions
                 t.Append("[");
                 t.Append(sFncName0);
                 t.Append("]アクションを実行しようとしましたが、");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("トゥゲザー名が指定されていなかったので、自動判定をしようとしたとき、");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("このアクションのアクション設定は　指定されていませんでした。");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("プログラムのミスかもしれません。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -592,7 +592,7 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_ByNoName_1Fcnf",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByNoName_1Fcnf",log_Reports);
 
             //
             //
@@ -604,8 +604,8 @@ namespace Xenon.Functions
             string sIn;
             {
                 string sFcName3;
-                cf_Fc.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
-                if (!log_Reports.BSuccessful)
+                cf_Fc.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
+                if (!log_Reports.Successful)
                 {
                     cf_TgTogether = null;
                     goto gt_EndMethod;
@@ -615,8 +615,8 @@ namespace Xenon.Functions
                 // 末尾に「*」は無い。
 
                 string sEventName;
-                cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
-                if (!log_Reports.BSuccessful)
+                cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+                if (!log_Reports.Successful)
                 {
                     cf_TgTogether = null;
                     goto gt_EndMethod;
@@ -638,7 +638,7 @@ namespace Xenon.Functions
             foreach (Givechapterandverse_Node cf_Together in listCf_Together)
             {
                 string sOn2;
-                cf_Together.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn2, false, log_Reports);
+                cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn2, false, log_Reports);
 
                 if (sEventNameTrim==sOn2)
                 {
@@ -647,7 +647,7 @@ namespace Xenon.Functions
                         this.Owner_MemoryApplication.MemoryTogethers.Givechapterandverse_Togetherconfig
                         );
 
-                    cf_TgTogether.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_IN.SName_Pm, sIn, log_Reports);
+                    cf_TgTogether.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_IN.Name_Pm, sIn, log_Reports);
 
 
                     //
@@ -681,13 +681,13 @@ namespace Xenon.Functions
             List<Givechapterandverse_Node> cfList_Result = new List<Givechapterandverse_Node>();
 
             string sTargetList;
-            cf_Together.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_TARGET1, out sTargetList, false, log_Reports);
+            cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_TARGET1, out sTargetList, false, log_Reports);
             List<string> sList_Target = new CsvTo_ListImpl().Read(sTargetList);
 
             foreach (string sTarget in sList_Target)
             {
                 Givechapterandverse_NodeImpl cf_RfrTarget = new Givechapterandverse_NodeImpl(NamesNode.S_TARGET, cf_Together);
-                cf_RfrTarget.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME.SName_Pm, sTarget, log_Reports);
+                cf_RfrTarget.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sTarget, log_Reports);
                 cfList_Result.Add(cf_RfrTarget);
             }
 
@@ -708,7 +708,7 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform_ByNoName_2Frfr",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByNoName_2Frfr",log_Reports);
 
             //
             //
@@ -717,10 +717,10 @@ namespace Xenon.Functions
             //
             //
             string sFcName3;
-            s_Fc.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
+            s_Fc.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
 
             string sEventName;
-            cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+            cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
 
             StringBuilder sIn = new StringBuilder();
             sIn.Append(sFcName3);
@@ -728,7 +728,7 @@ namespace Xenon.Functions
             sIn.Append(sEventName);
 
             Givechapterandverse_Node sTg_TogetherIn = new Givechapterandverse_NodeImpl(NamesNode.S_TOGETHER_IN, this.Cur_Givechapterandverse);
-            sTg_TogetherIn.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_VALUE.SName_Pm, sIn.ToString(), this.Cur_Givechapterandverse, false, log_Reports);
+            sTg_TogetherIn.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_VALUE.Name_Pm, sIn.ToString(), this.Cur_Givechapterandverse, false, log_Reports);
 
 
             //
@@ -746,10 +746,10 @@ namespace Xenon.Functions
             //
             //
             cf_TgTogether = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sExpectedValue;
-                sTg_TogetherIn.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sExpectedValue, false, log_Reports);
+                sTg_TogetherIn.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sExpectedValue, false, log_Reports);
 
                 if ("" != sExpectedValue)
                 {
@@ -757,7 +757,7 @@ namespace Xenon.Functions
                     foreach (Givechapterandverse_Node cf_Together in listCf_Together)
                     {
                         string sIn2;
-                        cf_Together.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn2, false, log_Reports);
+                        cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn2, false, log_Reports);
 
                         if (sExpectedValue == sIn2)
                         {

@@ -105,7 +105,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "SetupStyle",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SetupStyle",log_Reports);
             //
 
             // 自動入力ここから
@@ -233,14 +233,14 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "CreateFunctionlist",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "CreateFunctionlist",log_Reports);
             //
             //
             Functionlist fw_Result = null;
 
             //.WriteLine(this.GetType().Name + "#CreateEventActionList: ＜構築＞【開始】　イベントに対応ついたアクションリストを追加します。　（リストボックス）");
 
-            switch (sToE_Event.SName)
+            switch (sToE_Event.Name)
             {
                 case NamesSe.S_LOAD:
                     {
@@ -335,7 +335,7 @@ namespace Xenon.Controls
                 t.Append("指定されたイベントの名前");
                 t.Append(Environment.NewLine);
                 t.Append("rEvent.Name=[");
-                t.Append(sToE_Event.SName);
+                t.Append(sToE_Event.Name);
                 t.Append("]には対応できません。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -343,7 +343,7 @@ namespace Xenon.Controls
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(sToE_Event.Givechapterandverse_Event));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -415,7 +415,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(10)",log_Reports);
             //
             //
 
@@ -456,7 +456,7 @@ namespace Xenon.Controls
             // エラー。
 
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "AppendChild",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "AppendChild",log_Reports);
             //
             //
 
@@ -481,7 +481,7 @@ namespace Xenon.Controls
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -504,7 +504,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "AddValidator",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "AddValidator",log_Reports);
             //
             //
 
@@ -532,7 +532,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "AddValidator_FListboxForItems",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "AddValidator_FListboxForItems",log_Reports);
             //
             //
 
@@ -599,7 +599,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "RefreshData",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "RefreshData",log_Reports);
             //
             //
 
@@ -629,7 +629,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UsercontrolToMemory",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UsercontrolToMemory",log_Reports);
             //
             //
 
@@ -651,7 +651,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "SelectItem",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SelectItem",log_Reports);
             //
             //
 
@@ -705,7 +705,7 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UcListbox_DrawItem",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UcListbox_DrawItem",log_Reports_ThisMethod);
 
             //
             //
@@ -734,7 +734,7 @@ namespace Xenon.Controls
                         {
                             StringBuilder sb = new StringBuilder();
 
-                            sb.Append(Info_Controls.SName_Library + ":" + this.GetType().Name + "#OnCreated:【一時記憶セット】");
+                            sb.Append(Info_Controls.Name_Library + ":" + this.GetType().Name + "#OnCreated:【一時記憶セット】");
                             sb.Append("　FC＝[" + this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod) + "]");
 
                             // #デバッグ出力
@@ -762,7 +762,7 @@ namespace Xenon.Controls
             //
             //
 
-            if (!log_Reports_ThisMethod.BSuccessful)
+            if (!log_Reports_ThisMethod.Successful)
             {
                 //
                 // エラーログ出力。
@@ -771,7 +771,7 @@ namespace Xenon.Controls
                 this.ControlCommon.Owner_MemoryApplication.MemoryLogwriter.WriteErrorLog(
                     this.ControlCommon.Owner_MemoryApplication,
                     log_Reports_ThisMethod,
-                    pg_Method.SHead
+                    pg_Method.Fullname
                     );
             }
 
@@ -801,7 +801,7 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
             Log_Reports log_Reports_Dammy = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UcListbox_Paint",log_Reports_Dammy);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UcListbox_Paint",log_Reports_Dammy);
 
 
             UsercontrolListbox ucLst = (UsercontrolListbox)sender;
@@ -959,7 +959,7 @@ namespace Xenon.Controls
                     {
                         pg_Method.WriteError_ToConsole(
                             "▲L05エラー①！ "+
-                            pg_Method.SHead + ":根本的なエラー？"
+                            pg_Method.Fullname + ":根本的なエラー？"
                             );
                         //essageBox.Show(
                         //    );
@@ -1072,7 +1072,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "JudgeValidity",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "JudgeValidity",log_Reports);
             //
             //
 
@@ -1649,7 +1649,7 @@ namespace Xenon.Controls
             {
                 Log_Method pg_Method = new Log_MethodImpl(0);
                 Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-                pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UsercontrolText get",log_Reports_ThisMethod);
+                pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UsercontrolText get",log_Reports_ThisMethod);
                 //
                 //
 
@@ -1691,7 +1691,7 @@ namespace Xenon.Controls
                         goto gt_Error_NameField;
                     }
 
-                    if (log_Reports_ThisMethod.BSuccessful)
+                    if (log_Reports_ThisMethod.Successful)
                     {
                         int nInt;
                         if (XenonValue_IntImpl.TryParse(
@@ -1710,7 +1710,7 @@ namespace Xenon.Controls
                             sResult = "＜エラー＞";
                         }
 
-                        if (!log_Reports_ThisMethod.BSuccessful)
+                        if (!log_Reports_ThisMethod.Successful)
                         {
                             // エラー
                             sResult = "＜エラー＞";
@@ -1752,7 +1752,7 @@ namespace Xenon.Controls
                     // 例外ヒント
                     t.Append(r.Message_SException(err_Excp));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports_ThisMethod.EndCreateReport();
                 }
                 goto gt_EndMethod;
@@ -1823,14 +1823,14 @@ namespace Xenon.Controls
             {
                 Log_Method pg_Method = new Log_MethodImpl(0);
                 Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-                pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Expression_Name_Control set",log_Reports_ThisMethod);
+                pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Expression_Name_Control set",log_Reports_ThisMethod);
                 //
                 //
 
                 if (null == value)
                 {
                     // Visual Studio のビジュアルエディターで置いた時は、FcNameを設定できずにnullが設定されます。
-                    Givechapterandverse_Node cf_Node = new Givechapterandverse_NodeImpl(Info_Controls.SName_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
+                    Givechapterandverse_Node cf_Node = new Givechapterandverse_NodeImpl(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
                     this.CustomcontrolListbox1.ControlCommon.Expression_Name_Control = new Expression_Node_StringImpl(null, cf_Node);
                     this.CustomcontrolListbox1.Name = this.Name;
                 }

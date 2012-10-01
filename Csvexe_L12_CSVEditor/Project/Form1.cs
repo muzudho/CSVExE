@@ -36,7 +36,7 @@ namespace Xenon.Csvexe
         public static void RegisterFunctions(Log_Reports pg_Logging)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_CSVEditorImpl.SName_Library, "Form1", "static RegisterFunctions",pg_Logging);
+            pg_Method.BeginMethod(Info_CSVEditorImpl.Name_Library, "Form1", "static RegisterFunctions",pg_Logging);
             //
 
             GivechapterandverseToFunction_Item transUnknown = new GivechapterandverseToFunction00_ItemImpl();//暫定
@@ -94,11 +94,11 @@ namespace Xenon.Csvexe
             //
             Log_Method pg_Method = new Log_MethodImpl(0);
             // デバッグモード静的設定の後で。
-            pg_Method.BeginMethod(Info_CSVEditorImpl.SName_Library, this, "Form1_Load", out pg_Logging_ThisMethod);
+            pg_Method.BeginMethod(Info_CSVEditorImpl.Name_Library, this, "Form1_Load", out pg_Logging_ThisMethod);
             //
 
             Expression_Node_String parent_Expression_Null = null;
-            Givechapterandverse_Node cur_Gcav = new Givechapterandverse_NodeImpl(pg_Method.SHead, null);
+            Givechapterandverse_Node cur_Gcav = new Givechapterandverse_NodeImpl(pg_Method.Fullname, null);
 
 
 
@@ -129,7 +129,7 @@ namespace Xenon.Csvexe
             //
             //
             //
-            if (pg_Logging_ThisMethod.BSuccessful)
+            if (pg_Logging_ThisMethod.Successful)
             {
 
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
@@ -153,14 +153,14 @@ namespace Xenon.Csvexe
             //
             //
             //
-            if (!pg_Logging_ThisMethod.BSuccessful)
+            if (!pg_Logging_ThisMethod.Successful)
             {
                 // 異常時
 
                 this.MemoryCsvEditor.MemoryLogwriter.WriteErrorLog(
                     this.MemoryCsvEditor,
                     pg_Logging_ThisMethod,
-                    pg_Method.SHead
+                    pg_Method.Fullname
                     );
             }
 
@@ -190,7 +190,7 @@ namespace Xenon.Csvexe
         //private void Form1_Paint(object sender, PaintEventArgs e)
         //{
         //    Log_Method pg_Method = new Log_MethodImpl(0);
-        //    pg_Method.SetPath(Info_CSVEditorImpl.SName_Library, this, "Form1_Paint");
+        //    pg_Method.SetPath(Info_CSVEditorImpl.Name_Library, this, "Form1_Paint");
         //    Log_Reports pg_Logging_Master = new Log_ReportsImpl(pg_Method);
         //    pg_Method.BeginMethod(pg_Logging_Master);
 

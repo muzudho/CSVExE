@@ -93,7 +93,7 @@ namespace Xenon.Table
         /// <summary>
         /// required="" 属性。
         /// </summary>
-        string SRequired
+        string Required
         {
             get;
             set;
@@ -115,7 +115,7 @@ namespace Xenon.Table
         /// <summary>
         /// storage="" 属性。
         /// </summary>
-        string SStorage
+        string Storage
         {
             get;
             set;
@@ -126,7 +126,7 @@ namespace Xenon.Table
         /// <summary>
         /// 属性。
         /// </summary>
-        string SDescription
+        string Description
         {
             get;
             set;

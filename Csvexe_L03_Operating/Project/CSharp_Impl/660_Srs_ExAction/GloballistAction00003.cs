@@ -35,7 +35,7 @@ namespace Xenon.Operating
             foreach (GloballistconfigTypesection typeSection in moGlcnf.TypesectionList.List_Item)
             {
                 XmlElement typeElm = doc.CreateElement("type");
-                typeElm.SetAttribute(SrsAttrName.S_NAME, typeSection.SType);
+                typeElm.SetAttribute(SrsAttrName.S_NAME, typeSection.Name_Type);
                 rootElm.AppendChild(typeElm);
             }
 
@@ -44,22 +44,22 @@ namespace Xenon.Operating
             foreach (GloballistconfigHuman human in moGlcnf.Dictionary_Human.Values)
             {
                 XmlElement humanElm = doc.CreateElement("human");
-                humanElm.SetAttribute(SrsAttrName.S_NAME, human.SName);
+                humanElm.SetAttribute(SrsAttrName.S_NAME, human.Name);
                 rootElm.AppendChild(humanElm);
 
                 // 担当変数の型の情報の追加
                 foreach (GloballistconfigVariable var in human.Dictionary_Variable.Values)
                 {
                     XmlElement varElm = doc.CreateElement("variable");
-                    varElm.SetAttribute("type", var.SType);
+                    varElm.SetAttribute("type", var.Name_Type);
                     humanElm.AppendChild(varElm);
 
                     // 担当変数の情報の追加
                     foreach (GloballistconfigNumber num in var.Dictionary_Number.Values)
                     {
                         XmlElement numElm = doc.CreateElement("number");
-                        numElm.SetAttribute("range", num.SRange);
-                        numElm.SetAttribute("priority", num.Priority.SHumaninput);
+                        numElm.SetAttribute("range", num.Text_Range);
+                        numElm.SetAttribute("priority", num.Priority.Humaninput);
                         varElm.AppendChild(numElm);
                     }
                 }

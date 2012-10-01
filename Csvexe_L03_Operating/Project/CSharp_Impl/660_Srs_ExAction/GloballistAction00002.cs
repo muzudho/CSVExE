@@ -21,7 +21,7 @@ namespace Xenon.Operating
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Perform",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Perform",log_Reports);
 
             // グローバルリスト・コンフィグ設定ファイルの内容。
             MemoryGloballistconfig moGlcnf = new MemoryGloballistconfigImpl();
@@ -30,7 +30,7 @@ namespace Xenon.Operating
 
             Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_2", parent_Givechapterandverse_Node);
             cf_Fpath.InitPath(sFpath_Glcnf, log_Reports);
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -39,7 +39,7 @@ namespace Xenon.Operating
             Expression_Node_Filepath ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
             string sFpatha_Xml = ec_Fpath.Execute_OnExpressionString(
                 Request_SelectingImpl.Unconstraint, log_Reports);
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -48,7 +48,7 @@ namespace Xenon.Operating
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -83,7 +83,7 @@ namespace Xenon.Operating
                         t.Append("]：");
                         t.Append(ex.Message);
 
-                        r.SMessage = t.ToString();
+                        r.Message = t.ToString();
                         log_Reports.EndCreateReport();
                     }
                 }
@@ -115,13 +115,13 @@ namespace Xenon.Operating
                         t.Append("]：");
                         t.Append(ex.Message);
 
-                        r.SMessage = t.ToString();
+                        r.Message = t.ToString();
                         log_Reports.EndCreateReport();
                     }
                 }
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
                 try
@@ -137,7 +137,7 @@ namespace Xenon.Operating
                     {
                         XmlNode x_TypeNode = typeNL.Item(nTypeIndex);
 
-                        if (log_Reports.BSuccessful)
+                        if (log_Reports.Successful)
                         {
                             // 正常時
 
@@ -151,7 +151,7 @@ namespace Xenon.Operating
                                 string sType = x_TypeElm.Attributes.GetNamedItem(SrsAttrName.S_NAME).Value;
 
                                 GloballistconfigTypesectionImpl typeSection = new GloballistconfigTypesectionImpl();
-                                typeSection.SType = sType;
+                                typeSection.Name_Type = sType;
 
                                 moGlcnf.TypesectionList.List_Item.Add(typeSection);
                             }
@@ -169,7 +169,7 @@ namespace Xenon.Operating
                     {
                         XmlNode x_HumanNode = x_HumanNL.Item(nHumanIndex);
 
-                        if (log_Reports.BSuccessful)
+                        if (log_Reports.Successful)
                         {
                             // 正常時
 
@@ -181,9 +181,9 @@ namespace Xenon.Operating
                                 XmlElement x_HumanElm = (XmlElement)x_HumanNode;
 
                                 GloballistconfigHuman human = new GloballistconfigHumanImpl();
-                                human.SName = x_HumanElm.Attributes.GetNamedItem(SrsAttrName.S_NAME).Value;
+                                human.Name = x_HumanElm.Attributes.GetNamedItem(SrsAttrName.S_NAME).Value;
 
-                                moGlcnf.Dictionary_Human.Add(human.SName, human);
+                                moGlcnf.Dictionary_Human.Add(human.Name, human);
 
                                 // variable要素を列挙
                                 System.Xml.XmlNodeList x_VariableNL = x_HumanElm.GetElementsByTagName("variable");
@@ -200,23 +200,23 @@ namespace Xenon.Operating
                                         XmlElement x_VariableElm = (XmlElement)x_VariableNode;
 
                                         GloballistconfigVariable variable = new GloballistconfigVariableImpl();
-                                        variable.SType = x_VariableElm.Attributes.GetNamedItem("type").Value;
+                                        variable.Name_Type = x_VariableElm.Attributes.GetNamedItem("type").Value;
 
                                         // 変数の連想配列に、項目を追加
-                                        if (human.Dictionary_Variable.ContainsKey(variable.SType))
+                                        if (human.Dictionary_Variable.ContainsKey(variable.Name_Type))
                                         {
                                             // エラー
                                             if (log_Reports.CanCreateReport)
                                             {
                                                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                                                 r.SetTitle("▲エラー1002！", pg_Method);
-                                                r.SMessage = "指定された変数の型["+variable.SType+"]が、重複されて記述されています。";
+                                                r.Message = "指定された変数の型["+variable.Name_Type+"]が、重複されて記述されています。";
                                                 log_Reports.EndCreateReport();
                                             }
                                         }
                                         else
                                         {
-                                            human.Dictionary_Variable.Add(variable.SType, variable);
+                                            human.Dictionary_Variable.Add(variable.Name_Type, variable);
 
 
                                             // number要素を列挙
@@ -234,14 +234,14 @@ namespace Xenon.Operating
                                                     XmlElement numberElm = (XmlElement)numberNode;
 
                                                     GloballistconfigNumber numberObj = new GloballistconfigNumberImpl();
-                                                    numberObj.SRange = numberElm.Attributes.GetNamedItem("range").Value;
+                                                    numberObj.Text_Range = numberElm.Attributes.GetNamedItem("range").Value;
 
                                                     XenonValue_IntImpl oPriority = new XenonValue_IntImpl("!ハードコーディング_LoaderOfGlobalListConfigXml");
-                                                    oPriority.SHumaninput = numberElm.Attributes.GetNamedItem("priority").Value;
+                                                    oPriority.Humaninput = numberElm.Attributes.GetNamedItem("priority").Value;
                                                     numberObj.Priority = oPriority;
 
                                                     // 変数の連想配列に、変数番号オブジェクトを追加
-                                                    variable.Dictionary_Number.Add(numberObj.SRange, numberObj);
+                                                    variable.Dictionary_Number.Add(numberObj.Text_Range, numberObj);
                                                 }
                                             }
                                         }
@@ -264,7 +264,7 @@ namespace Xenon.Operating
                     {
                         Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー080103！", pg_Method);
-                        r.SMessage = "『SRSグローバルリスト』設定ファイルが見つかりません。：" + ex.Message;
+                        r.Message = "『SRSグローバルリスト』設定ファイルが見つかりません。：" + ex.Message;
                         log_Reports.EndCreateReport();
                     }
                 }
@@ -296,7 +296,7 @@ namespace Xenon.Operating
                         t.Append("]：");
                         t.Append(ex.Message);
 
-                        r.SMessage = t.ToString();
+                        r.Message = t.ToString();
                         log_Reports.EndCreateReport();
                     }
                 }

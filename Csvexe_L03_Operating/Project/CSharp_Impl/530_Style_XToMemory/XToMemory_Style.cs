@@ -22,7 +22,7 @@ namespace Xenon.Operating
         public XenonStyle Parse(string sText, Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Parse",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Parse",log_Reports);
 
             XenonStyle o_Style = new XenonStyleImpl();
 
@@ -48,7 +48,7 @@ namespace Xenon.Operating
                             {
                                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー4301！", pg_Method);
-                                r.SMessage = "color属性に["+sValue+"]が指定されましたが、対応していない値です。";
+                                r.Message = "color属性に["+sValue+"]が指定されましたが、対応していない値です。";
                                 log_Reports.EndCreateReport();
                             }
                         }
@@ -56,7 +56,7 @@ namespace Xenon.Operating
                         {
                             o_Style.ForeXenonColor = new XenonColorImpl();
                             o_Style.ForeXenonColor.Color = colorResult.Color;
-                            o_Style.ForeXenonColor.SName_Color = sValue;
+                            o_Style.ForeXenonColor.Name_Color = sValue;
                         }
                     }
                     else

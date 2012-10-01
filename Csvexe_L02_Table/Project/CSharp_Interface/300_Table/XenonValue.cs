@@ -25,7 +25,7 @@ namespace Xenon.Table
         /// できていないなら偽。
         /// 空白は真。
         /// </summary>
-        bool BValidated
+        bool IsValidated
         {
             get;
         }
@@ -34,7 +34,7 @@ namespace Xenon.Table
         /// 入力データそのままの形。
         /// (human input text)
         /// </summary>
-        string SHumaninput
+        string Humaninput
         {
             get;
             set;

@@ -35,7 +35,7 @@ namespace Xenon.Operating
 
             foreach (GloballistconfigTypesection typeSection in this.list_Items)
             {
-                if (typeSection.SType == sType)
+                if (typeSection.Name_Type == sType)
                 {
                     bResult = true;
                     break;

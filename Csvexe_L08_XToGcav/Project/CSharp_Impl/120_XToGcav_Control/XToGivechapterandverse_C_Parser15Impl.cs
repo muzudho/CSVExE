@@ -40,7 +40,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -54,7 +54,7 @@ namespace Xenon.XToGcav
             //
             //
             Givechapterandverse_Node cur_Cf;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
             }
@@ -72,7 +72,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Parse_SAttribute(cur_X, cur_Cf, memoryApplication, log_Reports);
             }
@@ -86,7 +86,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Test_Attributes(cur_X, cur_Cf, log_Reports);
             }
@@ -100,7 +100,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Parse_ChildNodes(cur_X, cur_Cf, memoryApplication, log_Reports);
             }
@@ -114,7 +114,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Test_ChildNodes(cur_X, cur_Cf, log_Reports);
             }
@@ -128,7 +128,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.LinkToParent(cur_Cf, parent_Cf, memoryApplication, log_Reports);
             }
@@ -168,7 +168,7 @@ namespace Xenon.XToGcav
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_SAttr",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_SAttr",log_Reports);
 
 
             //
@@ -187,7 +187,7 @@ namespace Xenon.XToGcav
                     PmName pmName = PmNames.FromSAttribute(xAttr.Name);
                     if (null != pmName)
                     {
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.Add(pmName.SName_Pm, xAttr.Value, cur_Cf, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(pmName.Name_Pm, xAttr.Value, cur_Cf, true, log_Reports);
                     }
                     else
                     {
@@ -202,7 +202,7 @@ namespace Xenon.XToGcav
                         //}
 
                         //throw new Exception("廃止方針のAdd([" + x_Attr.Name + "], [" + x_Attr.Value + "])");
-                        //s_Cur.Dictionary_SAttribute_Givechapterandverse.Add(x_Attr.Name, x_Attr.Value, s_Cur, true, log_Reports);
+                        //s_Cur.Dictionary_Attribute_Givechapterandverse.Add(x_Attr.Name, x_Attr.Value, s_Cur, true, log_Reports);
                     }
                 }
                 else
@@ -228,18 +228,18 @@ namespace Xenon.XToGcav
                 s.Append("[");
                 s.Append(cur_X.Name);
                 s.Append("]要素を探索中に、未対応の属性が記述されていました。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("xAttr.Name=[");
                 s.Append(err_XAttr.Name);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -269,7 +269,7 @@ namespace Xenon.XToGcav
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Test_Attributes",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Test_Attributes",log_Reports);
 
             //
             // 必須属性の有無テスト
@@ -279,7 +279,7 @@ namespace Xenon.XToGcav
             {
                 foreach (string sName_Attr in this.List_SName_RequiredPm)
                 {
-                    if (!cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(sName_Attr))
+                    if (!cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(sName_Attr))
                     {
                         // エラー。
                         err_SName_Attr = sName_Attr;
@@ -307,7 +307,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

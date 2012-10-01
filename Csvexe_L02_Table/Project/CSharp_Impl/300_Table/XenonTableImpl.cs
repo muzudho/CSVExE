@@ -32,7 +32,7 @@ namespace Xenon.Table
             this.expression_Filepath_ConfigStack = ec_Fpath_ConfigStack;
 
             this.dataTable = new DataTable();
-            this.SName = sName;
+            this.Name = sName;
             this.xenonTableFormat = new XenonTableformatImpl();
             this.listO_FieldDefinition = new List<XenonFielddefinition>();
         }
@@ -45,7 +45,7 @@ namespace Xenon.Table
         public void CreateTable(List<XenonFielddefinition> oList_NewFldDef, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "CreateTable",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "CreateTable",log_Reports);
 
             //
             //
@@ -61,7 +61,7 @@ namespace Xenon.Table
                 // 列の型を決めます。
                 try
                 {
-                    this.dataTable.Columns.Add(o_FldDef.SName_Trimupper, o_FldDef.Type);
+                    this.dataTable.Columns.Add(o_FldDef.Name_Trimupper, o_FldDef.Type);
                 }
                 catch (DuplicateNameException e)
                 {
@@ -91,7 +91,7 @@ namespace Xenon.Table
                 s.Append(this.dataTable.TableName);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -163,7 +163,7 @@ namespace Xenon.Table
                 // セルのソースヒント名
                 //
                 string sSourceHintNameOfCell;
-                if ("" == o_FldDef.SName_Trimupper)
+                if ("" == o_FldDef.Name_Trimupper)
                 {
                     // 名無しフィールド
 
@@ -176,16 +176,16 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    sSourceHintNameOfCell = o_FldDef.SName_Humaninput;
+                    sSourceHintNameOfCell = o_FldDef.Name_Humaninput;
                 }
 
                 if (o_FldDef.Type == typeof(XenonValue_StringImpl))
                 {
 
                     XenonValue_StringImpl stringCellData = new XenonValue_StringImpl(sSourceHintNameOfCell);
-                    stringCellData.SHumaninput = "";
+                    stringCellData.Humaninput = "";
 
-                    if ("" == o_FldDef.SName_Trimupper)
+                    if ("" == o_FldDef.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -193,15 +193,15 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.SName_Trimupper] = stringCellData;
+                        newDataRow[o_FldDef.Name_Trimupper] = stringCellData;
                     }
                 }
                 else if (o_FldDef.Type == typeof(XenonValue_IntImpl))
                 {
                     XenonValue_IntImpl intCellData = new XenonValue_IntImpl(sSourceHintNameOfCell);
-                    intCellData.SHumaninput = "";
+                    intCellData.Humaninput = "";
 
-                    if ("" == o_FldDef.SName_Trimupper)
+                    if ("" == o_FldDef.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -209,15 +209,15 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.SName_Trimupper] = intCellData;
+                        newDataRow[o_FldDef.Name_Trimupper] = intCellData;
                     }
                 }
                 else if (o_FldDef.Type == typeof(XenonValue_BoolImpl))
                 {
                     XenonValue_BoolImpl boolCellData = new XenonValue_BoolImpl(sSourceHintNameOfCell);
-                    boolCellData.SHumaninput = "";
+                    boolCellData.Humaninput = "";
 
-                    if ("" == o_FldDef.SName_Trimupper)
+                    if ("" == o_FldDef.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -225,22 +225,22 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.SName_Trimupper] = boolCellData;
+                        newDataRow[o_FldDef.Name_Trimupper] = boolCellData;
                     }
                 }
                 else
                 {
                     Log_TextIndented t = new Log_TextIndentedImpl();
-                    t.Append("▲エラー431！(" + Info_Table.SName_Library + ")");
-                    t.NewLine();
+                    t.Append("▲エラー431！(" + Info_Table.Name_Library + ")");
+                    t.Newline();
                     t.Append("この列は、未定義の型です。[" + o_FldDef.Type.Name + "]");
                     sErrorMsg = t.ToString();
 
                     // 文字列型を入れる。
                     XenonValue_StringImpl stringCellData = new XenonValue_StringImpl(sSourceHintNameOfCell);
-                    stringCellData.SHumaninput = "";
+                    stringCellData.Humaninput = "";
 
-                    if ("" == o_FldDef.SName_Trimupper)
+                    if ("" == o_FldDef.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -248,7 +248,7 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.SName_Trimupper] = stringCellData;
+                        newDataRow[o_FldDef.Name_Trimupper] = stringCellData;
                     }
                 }
 
@@ -279,7 +279,7 @@ namespace Xenon.Table
             List<List<string>> rows, List<XenonFielddefinition> oList_fldDef, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "AddRecordList",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "AddRecordList",log_Reports);
 
             //
             //
@@ -321,7 +321,7 @@ namespace Xenon.Table
                 //for (int nCIx = 0; nCIx < sRow.Count; nCIx++)
                 {
                     // 引き渡されたデータを、行オブジェクトにセット
-                    string sColumnName_TrimUpper = oList_fldDef[nCIx].SName_Trimupper;
+                    string sColumnName_TrimUpper = oList_fldDef[nCIx].Name_Trimupper;
                     if ("" == sColumnName_TrimUpper)
                     {
                         // 列定義になく、データ領域に溢れていたので追加された列か、
@@ -353,7 +353,7 @@ namespace Xenon.Table
                         // 列名がないので、列インデックスで指定して、データを追加。
                         // 値の型：OValue_StringImpl
                         XenonValue_StringImpl o_StringCellData = new XenonValue_StringImpl(sSourceHintNameOfCell);
-                        o_StringCellData.SHumaninput = sList_Column[nCIx];
+                        o_StringCellData.Humaninput = sList_Column[nCIx];
                         dataRow[nCIx] = o_StringCellData;
                     }
                     else
@@ -406,7 +406,7 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("列定義の個数より　フィールド数の少ない入力テーブルが指定されました。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("実データのこの行の列数[");
                 s.Append(err_SList_Column.Count);
@@ -415,30 +415,30 @@ namespace Xenon.Table
                 s.Append("] フィールド定義の個数=[");
                 s.Append(oList_fldDef.Count);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("──────────────────────────────テーブルに存在する列名");
-                s.NewLine();
+                s.Newline();
                 foreach (DataColumn col in err_DataRow.Table.Columns)
                 {
                     s.Append("実列名＝[" + col.ColumnName + "]");
-                    s.NewLine();
+                    s.Newline();
                 }
                 s.Append("──────────────────────────────");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("──────────────────────────────定義に存在する列名");
-                s.NewLine();
+                s.Newline();
                 foreach (XenonFielddefinitionImpl o_FldDef in oList_fldDef)
                 {
-                    s.Append("定義列名＝[" + o_FldDef.SName_Humaninput + "]");
-                    s.NewLine();
+                    s.Append("定義列名＝[" + o_FldDef.Name_Humaninput + "]");
+                    s.Newline();
                 }
                 s.Append("──────────────────────────────");
-                s.NewLine();
+                s.Newline();
 
                 //s.Append("──────────────────────────────実データ");
-                //s.NewLine();
+                //s.Newline();
                 //foreach (List<string> fields in rows)
                 //{
                 //    foreach (string sCell in fields)
@@ -448,14 +448,14 @@ namespace Xenon.Table
                 //        s.Append("]");
                 //        break;
                 //    }
-                //    s.NewLine();
+                //    s.Newline();
                 //}
                 //s.Append("──────────────────────────────");
-                //s.NewLine();
+                //s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -469,32 +469,32 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("フィールド名[" + err_SColumnName_TrimUpper + "]が指定されましたが、ありません。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("──────────────────────────────テーブルに存在する列名");
-                s.NewLine();
+                s.Newline();
                 foreach (DataColumn col in err_DataRow.Table.Columns)
                 {
                     s.Append("実列名＝[" + col.ColumnName + "]");
-                    s.NewLine();
+                    s.Newline();
                 }
                 s.Append("──────────────────────────────");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("──────────────────────────────定義に存在する列名");
-                s.NewLine();
+                s.Newline();
                 foreach (XenonFielddefinitionImpl o_FldDef in oList_fldDef)
                 {
-                    s.Append("定義列名＝[" + o_FldDef.SName_Humaninput + "]");
-                    s.NewLine();
+                    s.Append("定義列名＝[" + o_FldDef.Name_Humaninput + "]");
+                    s.Newline();
                 }
                 s.Append("──────────────────────────────");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excep));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -710,7 +710,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "TryGetFieldDefinitionByName",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "TryGetFieldDefinitionByName",log_Reports);
 
             bool bResult = true;
             oList_FieldDefinition = new List<XenonFielddefinition>();
@@ -734,7 +734,7 @@ namespace Xenon.Table
 
                 foreach (XenonFielddefinitionImpl fieldDefinition in this.List_Fielddefinition)
                 {
-                    if (fieldDefinition.SName_Trimupper == sExpectedFieldNameUpper)
+                    if (fieldDefinition.Name_Trimupper == sExpectedFieldNameUpper)
                     {
                         oList_FieldDefinition.Add(fieldDefinition);
                         nCount++;
@@ -800,14 +800,14 @@ namespace Xenon.Table
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append("[");
-                    s.Append(this.SName);
+                    s.Append(this.Name);
                     s.Append("]テーブルの列定義を調べようとしましたが、列名が指定されていません。sExpectedFieldNameList.Count＝[");
                     s.Append(sList_ExpectedFieldName.Count);
                     s.Append("]");
 
                     // ヒント
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -824,7 +824,7 @@ namespace Xenon.Table
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append("[");
-                    s.Append(this.SName);
+                    s.Append(this.Name);
                     s.Append("]テーブルに、[");
 
                     s.Append(err_SExpectedFieldName);
@@ -832,7 +832,7 @@ namespace Xenon.Table
 
                     // ヒント
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -859,7 +859,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "SelectByNo",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "SelectByNo",log_Reports);
 
             //
             //
@@ -875,7 +875,7 @@ namespace Xenon.Table
                 result = null;
                 goto gt_Error_Spaces;
             }
-            else if (!intCellDataParam.BValidated)
+            else if (!intCellDataParam.IsValidated)
             {
                 // エラーデータなら中断。
                 result = null;
@@ -890,7 +890,7 @@ namespace Xenon.Table
                 null,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー
                 result = null;
@@ -916,7 +916,7 @@ namespace Xenon.Table
                             {
                                 // 空白なら無視
                             }
-                            else if (!intCellData.BValidated)
+                            else if (!intCellData.IsValidated)
                             {
                                 // エラーデータなら無視
                             }
@@ -931,7 +931,7 @@ namespace Xenon.Table
                                     null,
                                     log_Reports
                                     );
-                                if (!log_Reports.BSuccessful)
+                                if (!log_Reports.Successful)
                                 {
                                     // 既エラー
                                     result = null;
@@ -965,7 +965,7 @@ namespace Xenon.Table
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー641！", log_Method);
-                r.SMessage = "（空白なので中断）";
+                r.Message = "（空白なので中断）";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -975,7 +975,7 @@ namespace Xenon.Table
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー642！", log_Method);
-                r.SMessage = "（エラーデータなので中断）";
+                r.Message = "（エラーデータなので中断）";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1003,7 +1003,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "SelectByInt",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "SelectByInt",log_Reports);
 
             //
             //
@@ -1018,7 +1018,7 @@ namespace Xenon.Table
                 result = null;
                 goto gt_Error_Spaces;
             }
-            else if (!expectedIntParam.BValidated)
+            else if (!expectedIntParam.IsValidated)
             {
                 // エラーデータなら中断。
                 result = null;
@@ -1034,7 +1034,7 @@ namespace Xenon.Table
                 null,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful || !bParsed)
+            if (!log_Reports.Successful || !bParsed)
             {
                 // 既エラー
                 result = null;
@@ -1058,7 +1058,7 @@ namespace Xenon.Table
                         {
                             // 空白なら無視
                         }
-                        else if (!intCellData.BValidated)
+                        else if (!intCellData.IsValidated)
                         {
                             // エラーデータなら無視
                         }
@@ -1073,7 +1073,7 @@ namespace Xenon.Table
                                 null,
                                 log_Reports
                                 );
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // 既エラー
                                 result = null;
@@ -1115,7 +1115,7 @@ namespace Xenon.Table
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー651！", log_Method);
-                r.SMessage = "＜空白で中断＞";
+                r.Message = "＜空白で中断＞";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1125,7 +1125,7 @@ namespace Xenon.Table
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー652！", log_Method);
-                r.SMessage = "＜エラーデータで中断＞";
+                r.Message = "＜エラーデータで中断＞";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1138,7 +1138,7 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1167,7 +1167,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "SelectByString", log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "SelectByString", log_Reports);
 
             //
             //
@@ -1184,7 +1184,7 @@ namespace Xenon.Table
             //    {
             //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
             //        r.SetTitle("▲エラー652！", this.GetType().Name, InfxenonTable.LibraryName);
-            //        r.SMessage = "＜エラーデータで中断 BValidated=false＞";
+            //        r.Message = "＜エラーデータで中断 BValidated=false＞";
             //        log_Reports.EndCreateReport();
             //    }
             //    goto gt_EndMethod;
@@ -1200,7 +1200,7 @@ namespace Xenon.Table
                 log_Method,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful || !bParsed)
+            if (!log_Reports.Successful || !bParsed)
             {
                 // 既エラー
                 goto gt_EndMethod;
@@ -1219,7 +1219,7 @@ namespace Xenon.Table
                     {
                         XenonValue_StringImpl stringCellData = (XenonValue_StringImpl)cellData;
 
-                        if (!stringCellData.BValidated)
+                        if (!stringCellData.IsValidated)
                         {
                             // エラーデータなら無視
                         }
@@ -1235,7 +1235,7 @@ namespace Xenon.Table
                                 log_Method,
                                 log_Reports
                                 );
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // 既エラー
                                 goto gt_EndMethod;
@@ -1279,7 +1279,7 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1298,12 +1298,12 @@ namespace Xenon.Table
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append("必ず存在する最初の１件を返さなければなりませんが、そうではありませんでした。");
-                    s.NewLine();
+                    s.Newline();
                     s.Append("count=[");
                     s.Append(list_Result.Count);
                     s.Append("]");
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -1324,7 +1324,7 @@ namespace Xenon.Table
             foreach (XenonFielddefinitionImpl fieldDefinition in listO_FieldDefinition)
             {
                 t.Append("[");
-                t.Append(fieldDefinition.SName_Humaninput);
+                t.Append(fieldDefinition.Name_Humaninput);
                 t.Append(":");
                 t.Append(fieldDefinition.Type);
                 t.Append("]");
@@ -1351,7 +1351,7 @@ namespace Xenon.Table
         public bool ContainsField(string sName_Field, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "ContainsField",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ContainsField",log_Reports);
 
             bool bResult;
 
@@ -1384,13 +1384,13 @@ namespace Xenon.Table
 
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append("[" + sName_Field + "]フィールドは、[" + this.SName + "]には存在しませんでした。");
+                sb.Append("[" + sName_Field + "]フィールドは、[" + this.Name + "]には存在しませんでした。");
                 sb.Append(Environment.NewLine);
-                sb.Append("テーブル名＝[" + this.SName + "]");
+                sb.Append("テーブル名＝[" + this.Name + "]");
                 sb.Append(Environment.NewLine);
-                sb.Append("データ・タイプ＝[" + this.STypedata + "]");
+                sb.Append("データ・タイプ＝[" + this.Typedata + "]");
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
         //────────────────────────────────────────
@@ -1468,7 +1468,7 @@ namespace Xenon.Table
         /// <summary>
         /// このテーブルの名前。なければ空文字列。
         /// </summary>
-        public string SName
+        public string Name
         {
             get
             {
@@ -1490,7 +1490,7 @@ namespace Xenon.Table
         /// <summary>
         /// このテーブルの「テーブル_ユニット名」。なければ空文字列。
         /// </summary>
-        public string STableunit
+        public string Tableunit
         {
             get
             {
@@ -1510,7 +1510,7 @@ namespace Xenon.Table
         /// 「TYPE_DATA」フィールド値。
         /// 「T:～;」
         /// </summary>
-        public string STypedata
+        public string Typedata
         {
             get
             {
@@ -1529,7 +1529,7 @@ namespace Xenon.Table
         /// <summary>
         /// 「日別バックアップ」を行うなら真。
         /// </summary>
-        public bool BDatebackup
+        public bool IsDatebackupActivated
         {
             get
             {

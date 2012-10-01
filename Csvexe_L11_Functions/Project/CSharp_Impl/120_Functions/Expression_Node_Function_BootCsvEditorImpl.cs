@@ -49,15 +49,15 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorImpl(this.EnumEventhandler, this.ListS_ArgName, this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorImpl(this.EnumEventhandler, this.List_NameArgument, this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             //「プロジェクト選択時」のイベントハンドラーを上書き要求。
             {
@@ -93,11 +93,11 @@ namespace Xenon.Functions
         {
             //（１）メソッド開始
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                string sConfigStack_ThisMethod = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";
+                string sConfigStack_ThisMethod = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";
                 Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl(sConfigStack_ThisMethod, null);
 
 
@@ -160,7 +160,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     this.Owner_MemoryApplication.MemoryForms.Form_Toolwindow.Clear();
 
@@ -189,7 +189,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     this.Functionitem_OnProjectSelected.Execute_OnEditorSelected(
                         this.ExpressionfncPrmset.Sender, null, false, log_Reports);
@@ -204,7 +204,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // タイトルは、外部ファイルで記述します。
 
@@ -219,7 +219,7 @@ namespace Xenon.Functions
 
                         // エディター設定ファイルに記載されているエディターの表示タイトル。
                         sb.Append(this.Owner_MemoryApplication.MemoryVariables.GetStringByVariablename(
-                            new Expression_Leaf_StringImpl(NamesVar.S_SS_TITLE_EDITOR,null,new Givechapterandverse_NodeImpl(log_Method.SHead,null)),
+                            new Expression_Leaf_StringImpl(NamesVar.S_SS_TITLE_EDITOR,null,new Givechapterandverse_NodeImpl(log_Method.Fullname,null)),
                             false,log_Reports));
 
                         // レイアウト・テーブルに記載されているエディター名。

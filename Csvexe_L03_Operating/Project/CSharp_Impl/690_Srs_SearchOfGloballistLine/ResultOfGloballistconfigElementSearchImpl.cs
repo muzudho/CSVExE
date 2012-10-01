@@ -39,11 +39,11 @@ namespace Xenon.Operating
         {
             StringBuilder text = new StringBuilder();
 
-            text.Append(this.SType);
+            text.Append(this.Name_Type);
             text.Append(" / ");
-            text.Append(this.SNumberRange);
+            text.Append(this.Text_NumberRange);
             text.Append(" / Priority=");
-            text.Append(this.SPriority);
+            text.Append(this.Priority);
 
             return text.ToString();
         }
@@ -61,7 +61,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数の型
         /// </summary>
-        public string SType
+        public string Name_Type
         {
             set
             {
@@ -80,7 +80,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数番号の範囲
         /// </summary>
-        public string SNumberRange
+        public string Text_NumberRange
         {
             set
             {
@@ -99,7 +99,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 優先度
         /// </summary>
-        public string SPriority
+        public string Priority
         {
             set
             {

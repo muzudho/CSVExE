@@ -51,13 +51,13 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
             string sResult = "";
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラーが出ていたら、さっさと抜ける。
                 sResult = "＜「E■ｆ－ｆｎｃ」エラー101＞";
@@ -66,7 +66,7 @@ namespace Xenon.Expr
 
             // ｎａｍｅ属性
             string sFncName;
-            if (!this.DicExpression_Attr.TrySelect(out sFncName, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports))
+            if (!this.Dictionary_Expression_Attribute.TrySelect(out sFncName, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports))
             {
                 // エラー時
                 sResult = "＜エラー：ｎａｍｅ属性無し＞";
@@ -93,16 +93,16 @@ namespace Xenon.Expr
             {
                 // ＜ａｒｇ＞一覧
                 DicExpression_Node_String ecDic_Argument = new DicExpression_Node_StringImpl(ec_CommonFunction.Cur_Givechapterandverse);
-                this.DicExpression_Attr.ForEach(delegate(string sAttrName, Expression_Node_String e_Attr, ref bool bBreak)
+                this.Dictionary_Expression_Attribute.ForEach(delegate(string sAttrName, Expression_Node_String e_Attr, ref bool bBreak)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         ecDic_Argument.Set(sAttrName, e_Attr, log_Reports);
                     }
                 });
 
                 // 関数に引数を渡したい。
-                ec_CommonFunction.DicExpression_Param = ecDic_Argument;
+                ec_CommonFunction.Dictionary_Expression_Parameter = ecDic_Argument;
 
                 //ystem.Console.WriteLine(this.GetType().Name + "#Expression_ExecuteMain: ★★★＜ｆ－ｆｎｃ＞要素実行 sCall=[" + sCall + "] e_Function.クラス名=[" + e_DefFunction.GetType().Name + "]");// ＜ａｒｇ＞=[" + d_sArg.ToString() + "]
                 // e_Function=" + Environment.NewLine + s2.ToString()
@@ -156,7 +156,7 @@ namespace Xenon.Expr
         //        {
         //            //ｗｈｅｒｅ
         //            Expression_Node_String e_Awhr_RecordSetLoadFrom;//ソース情報利用
-        //            bool bHit = this.DicExpression_Attr.TryGet(
+        //            bool bHit = this.Dictionary_Expression_Attribute.TryGet(
         //                 out e_Awhr_RecordSetLoadFrom,
         //                NamesNode.S_RECORD_SET_LOAD_FROM5,
         //                false,
@@ -204,7 +204,7 @@ namespace Xenon.Expr
 
         //        bool bExpectedValueRequired;
         //        {
-        //            bool parseSuccessful = bool.TryParse(selectSt.SRequired, out bExpectedValueRequired);
+        //            bool parseSuccessful = bool.TryParse(selectSt.Required, out bExpectedValueRequired);
         //        }
 
 
@@ -252,7 +252,7 @@ namespace Xenon.Expr
 
 
         //            dst_Rs.AddList(dst_Row, log_Reports);
-        //            if (!log_Reports.BSuccessful)
+        //            if (!log_Reports.Successful)
         //            {
         //                // 既エラー。
         //                goto gt_EndMethod;
@@ -285,12 +285,12 @@ namespace Xenon.Expr
         //        Log_TextIndented t = new Log_TextIndentedImpl();
 
         //        t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-        //        t.NewLine();
+        //        t.Newline();
 
         //        // ヒント
         //        t.Append(r.Message_Givechapterandverse(s_ParentNode_Query));
 
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -394,7 +394,7 @@ namespace Xenon.Expr
 
         //        // ヒント
 
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -418,7 +418,7 @@ namespace Xenon.Expr
 
         //        // ヒント
 
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -441,7 +441,7 @@ namespace Xenon.Expr
 
         //        // ヒント
 
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -464,7 +464,7 @@ namespace Xenon.Expr
 
         //        // ヒント
 
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;

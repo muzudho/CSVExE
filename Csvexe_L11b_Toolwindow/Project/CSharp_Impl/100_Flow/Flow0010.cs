@@ -31,11 +31,11 @@ namespace Xenon.Toolwindow
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Toolwindow.SName_Library, this, "GetFileAbsPath",pg_Logging);
+            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "GetFileAbsPath",pg_Logging);
 
             string sFpatha_xml;
 
-            if (pg_Logging.BSuccessful)
+            if (pg_Logging.Successful)
             {
                 // 正常時
 
@@ -47,7 +47,7 @@ namespace Xenon.Toolwindow
                     sFpath,
                     pg_Logging
                     );
-                if (!pg_Logging.BSuccessful)
+                if (!pg_Logging.Successful)
                 {
                     // 既エラー。
                     sFpatha_xml = "";
@@ -57,7 +57,7 @@ namespace Xenon.Toolwindow
                 Expression_Node_Filepath ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
                 sFpatha_xml = ec_Fpath.Execute_OnExpressionString(
                     Request_SelectingImpl.Unconstraint, pg_Logging);
-                if (!pg_Logging.BSuccessful)
+                if (!pg_Logging.Successful)
                 {
                     // 既エラー。
                     sFpatha_xml = "";

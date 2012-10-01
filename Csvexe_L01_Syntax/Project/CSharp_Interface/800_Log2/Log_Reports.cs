@@ -132,7 +132,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// このロガーを new したイベントの説明。
         /// </summary>
-        string SComment_EventCreationMe
+        string Comment_EventCreationMe
         {
             get;
             set;
@@ -143,7 +143,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// メッセージの件数。
         /// </summary>
-        int NCount
+        int Count
         {
             get;
         }
@@ -169,7 +169,7 @@ namespace Xenon.Syntax
         /// 問題が発生していなければ真。
         /// </summary>
         /// <returns></returns>
-        bool BSuccessful
+        bool Successful
         {
             get;
         }
@@ -177,7 +177,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// デバッグモード（実行時間計測）なら真。
         /// </summary>
-        bool BDebugmode_Stopwatch
+        bool Debugmode_Stopwatch
         {
             set;
         }

@@ -29,7 +29,7 @@ namespace Xenon.Syntax
 
             request_Selecting = Request_SelectingImpl.Unconstraint;
             this.ecList_Child = new ListExpression_Node_StringImpl(this);
-            this.ecDic_Attr = new DicExpression_Node_StringImpl(this.Cur_Givechapterandverse);
+            this.dictionary_Expression_Attribute = new DicExpression_Node_StringImpl(this.Cur_Givechapterandverse);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Xenon.Syntax
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ForSnapshot = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "ToText_Snapshot",log_Reports_ForSnapshot);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "ToText_Snapshot",log_Reports_ForSnapshot);
 
             log_Reports_ForSnapshot.BeginCreateReport(EnumReport.Dammy);
             s.Increment();
@@ -75,7 +75,7 @@ namespace Xenon.Syntax
 
             // ノード名
             s.AppendI(0,"「E■[");
-            s.Append(this.Cur_Givechapterandverse.SName);
+            s.Append(this.Cur_Givechapterandverse.Name);
             s.Append("]　");
 
             // クラス名
@@ -88,29 +88,29 @@ namespace Xenon.Syntax
             s.Append("]");
 
             s.Append("」");
-            s.NewLine();
+            s.Newline();
 
             // 属性リスト
-            this.DicExpression_Attr.ToText_Snapshot(s);
+            this.Dictionary_Expression_Attribute.ToText_Snapshot(s);
 
             // 子リスト
-            if (this.ListExpression_Child.NCount < 1)
+            if (this.List_Expression_Child.Count < 1)
             {
                 s.AppendI(0, "子無し");
-                s.NewLine();
+                s.Newline();
             }
             else
             {
                 s.AppendI(0, "┌────────┐子数＝[");
-                s.Append(this.ListExpression_Child.NCount);
+                s.Append(this.List_Expression_Child.Count);
                 s.Append("]");
-                s.NewLine();
-                this.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                s.Newline();
+                this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
                     e_Child.ToText_Snapshot(s);
                 });
                 s.AppendI(0, "└────────┘");
-                s.NewLine();
+                s.Newline();
             }
 
             goto gt_EndMethod;
@@ -133,7 +133,7 @@ namespace Xenon.Syntax
         /// <param name="request"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
-        public bool TrySelectAttr(
+        public bool TrySelectAttribute(
             out Expression_Node_String ec_Result_Out,
             string sName,
             bool bRequired,
@@ -141,13 +141,13 @@ namespace Xenon.Syntax
             Log_Reports log_Reports
             )
         {
-            return this.DicExpression_Attr.TrySelect(
+            return this.Dictionary_Expression_Attribute.TrySelect(
                 out ec_Result_Out, sName, bRequired, request, log_Reports);
         }
 
         //────────────────────────────────────────
 
-        public bool TrySelectAttr(
+        public bool TrySelectAttribute(
             out string sResult_Out,
             string sName,
             bool bRequired,
@@ -157,12 +157,12 @@ namespace Xenon.Syntax
         {
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "TryGetAttr",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TrySelectAttribute", log_Reports);
 
             //
             //
 
-            bool bResult = this.DicExpression_Attr.TrySelect(out sResult_Out, sName, bRequired, request, log_Reports);
+            bool bResult = this.Dictionary_Expression_Attribute.TrySelect(out sResult_Out, sName, bRequired, request, log_Reports);
 
             goto gt_EndMethod;
         //
@@ -189,7 +189,7 @@ namespace Xenon.Syntax
             Expression_Leaf_StringImpl ec_Child = new Expression_Leaf_StringImpl(null, parent_Gcav);
             ec_Child.SetString(sHumanInput, log_Reports);
 
-            this.ListExpression_Child.Add(ec_Child, log_Reports);
+            this.List_Expression_Child.Add(ec_Child, log_Reports);
         }
 
         //────────────────────────────────────────
@@ -199,14 +199,14 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "E_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "E_ExecuteMain",log_Reports);
 
             //
             //
 
             StringBuilder sb_Result = new StringBuilder();
 
-            List<Expression_Node_String> ecList_Child = this.ListExpression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
 
             switch (this.request_Selecting.EnumHitcount)
             {
@@ -296,7 +296,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb_Result.ToString();
+                r.Message = sb_Result.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -314,7 +314,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb_Result.ToString();
+                r.Message = sb_Result.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -340,7 +340,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Execute_OnEString①",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnEString①",log_Reports);
             //
             //
 
@@ -369,7 +369,7 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public Expression_Node_Filepath Execute_OnExpressionString_AsFilePath(
+        public Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
             Request_Selecting request,
             Log_Reports log_Reports
             )
@@ -390,7 +390,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, ec_Caller, "Execute_OnEString_AsFilePath_Impl",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, ec_Caller, "Execute_OnEString_AsFilePath_Impl",log_Reports);
             //
             //
             //
@@ -404,7 +404,7 @@ namespace Xenon.Syntax
             {
                 Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L01_1", ec_Caller.Cur_Givechapterandverse);
                 cf_Fpath.InitPath(sFpath, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     ec_Fpath_result = null;
@@ -450,7 +450,7 @@ namespace Xenon.Syntax
             {
                 result = null;
             }
-            else if (ec_Me.Parent_Expression.Cur_Givechapterandverse.SName == sName_Node)
+            else if (ec_Me.Parent_Expression.Cur_Givechapterandverse.Name == sName_Node)
             {
                 result = ec_Me.Parent_Expression;
             }
@@ -477,15 +477,15 @@ namespace Xenon.Syntax
             string sExpectedNodeName, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Divide3Blocks",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Divide3Blocks",log_Reports);
 
             List<Expression_Node_String> result = new List<Expression_Node_String>();
 
-            this.ListExpression_Child.ForEach(delegate(Expression_Node_String ec_Child, ref bool bRemove2, ref bool bBreak2)
+            this.List_Expression_Child.ForEach(delegate(Expression_Node_String ec_Child, ref bool bRemove2, ref bool bBreak2)
             {
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
-                    if (ec_Child.Cur_Givechapterandverse.SName == sExpectedNodeName)
+                    if (ec_Child.Cur_Givechapterandverse.Name == sExpectedNodeName)
                     {
                         result.Add(ec_Child);
 
@@ -561,7 +561,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -582,7 +582,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -610,7 +610,7 @@ namespace Xenon.Syntax
             List<Expression_Node_String> listExpression, string sName_ExpectedNode, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, "Expression_Node_StringImpl", "SelectItemByNodeName",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Expression_Node_StringImpl", "SelectItemByNodeName",log_Reports);
 
             List<Expression_Node_String> result = new List<Expression_Node_String>();
 
@@ -619,9 +619,9 @@ namespace Xenon.Syntax
             {
                 Expression_Node_String ec_Item = listExpression[nI];
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
-                    if (ec_Item.Cur_Givechapterandverse.SName == sName_ExpectedNode)
+                    if (ec_Item.Cur_Givechapterandverse.Name == sName_ExpectedNode)
                     {
                         result.Add(ec_Item);
 
@@ -699,7 +699,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -720,7 +720,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -812,7 +812,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 子＜●●＞要素リスト。
         /// </summary>
-        public ListExpression_Node_String ListExpression_Child
+        public ListExpression_Node_String List_Expression_Child
         {
             get
             {
@@ -822,16 +822,16 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private DicExpression_Node_String ecDic_Attr;
+        private DicExpression_Node_String dictionary_Expression_Attribute;
 
         /// <summary>
         /// 属性="" マップ。
         /// </summary>
-        public DicExpression_Node_String DicExpression_Attr
+        public DicExpression_Node_String Dictionary_Expression_Attribute
         {
             get
             {
-                return ecDic_Attr;
+                return dictionary_Expression_Attribute;
             }
         }
 

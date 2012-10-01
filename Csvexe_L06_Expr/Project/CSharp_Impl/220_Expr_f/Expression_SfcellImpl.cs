@@ -84,7 +84,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -98,7 +98,7 @@ namespace Xenon.Expr
 
             string sResult;
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラーが出ていたら、さっさと抜ける。
                 sResult = "＜「E■ｆ－ｃｅｌｌ」エラー101＞";
@@ -112,7 +112,7 @@ namespace Xenon.Expr
             Selectstatement selectSt;
             bool bOneCellSelectCondition;//「フィールド名　＝　値」の形のみ true。
             bool bExists_Awhr;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.E_Execute_P1_CleateSelect(
                     out bOneCellSelectCondition,
@@ -130,7 +130,7 @@ namespace Xenon.Expr
             }
 
             bool bExists_Into;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // into属性の有無。
                 if ("" != selectSt.Expression_Into.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
@@ -150,7 +150,7 @@ namespace Xenon.Expr
             }
 
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラーが出ていたら、さっさと抜ける。
                 sResult = "＜「E■ｆ－ｃｅｌｌ」エラー103＞";
@@ -161,7 +161,7 @@ namespace Xenon.Expr
             // ｆｒｏｍ句のテーブルを読み込みます。
             XenonTable o_FromTable = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_From, true, log_Reports);
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラーが出ていたら、さっさと抜ける。
                 sResult = "＜「E■ｆ－ｃｅｌｌ」エラー104＞";
@@ -189,7 +189,7 @@ namespace Xenon.Expr
                     log_Reports
                     );
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // エラーが出ていたら、さっさと抜ける。
                     sResult = "＜「E■ｆ－ｃｅｌｌ」エラー105＞";
@@ -215,7 +215,7 @@ namespace Xenon.Expr
                     log_Reports
                     );
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // エラーが出ていたら、さっさと抜ける。
                     sResult = "＜「E■ｆ－ｃｅｌｌ」エラー106＞";
@@ -261,7 +261,7 @@ namespace Xenon.Expr
                 this.Request_Selecting,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラーが出ていたら、さっさと抜ける。
                 sResult = "＜「E■ｆ－ｃｅｌｌ」エラー401＞";
@@ -305,7 +305,7 @@ namespace Xenon.Expr
                 //ystem.Console.WriteLine(Info_E.LibraryName + ":E_FcellImpl#Expression_ExecuteMain: into属性が指定されています。e_Into=[" + selectSt.Expression_Into.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
                 o_IntoTableInfoOnly = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_Into, true, log_Reports);
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // エラーが出ていたら、さっさと抜ける。
                     sResult = "＜「E■ｆ－ｃｅｌｌ」エラー601＞";
@@ -315,7 +315,7 @@ namespace Xenon.Expr
 
                 // テーブルから、指定の列だけを抽出したサブ・テーブルを作ります。
                 XenonTable o_NewTable = Utility_Table.CreateSubTableBySelect(
-                    o_FromTable.SName + "のサブテーブル＜E_FcellImpl.cs＞",
+                    o_FromTable.Name + "のサブテーブル＜E_FcellImpl.cs＞",
                     selectSt.List_SName_SelectField,
                     o_IntoTableInfoOnly.Expression_Filepath_ConfigStack,
                     selectSt.EnumWherelogic,
@@ -324,7 +324,7 @@ namespace Xenon.Expr
                     log_Reports
                     );
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // エラーが出ていたら、さっさと抜ける。
                     sResult = "＜「E■ｆ－ｃｅｌｌ」エラー602＞";
@@ -339,7 +339,7 @@ namespace Xenon.Expr
                 // 新規なら追加、既存なら上書き。
                 this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable[selectSt.Expression_Into.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)] = o_NewTable;
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // エラーが出ていたら、さっさと抜ける。
                     sResult = "＜「E■ｆ－ｃｅｌｌ」エラー603＞";
@@ -366,13 +366,13 @@ namespace Xenon.Expr
                     Log_TextIndented t = new Log_TextIndentedImpl();
 
                     t.Append("　レコードセットを絞り込めませんでした。");
-                    t.NewLine();
-                    t.NewLine();
+                    t.Newline();
+                    t.Newline();
 
                     // ヒント
                     t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -390,13 +390,13 @@ namespace Xenon.Expr
                 t.Append(sFieldListList.Count);
                 t.Append("]");
 
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -426,15 +426,15 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_ParseChildReccndList",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_ParseChildReccndList",log_Reports);
             //
             //
 
             string err_SOpe;
 
             //　「E■＠ｗｈｅｒｅ」の子要素＜ｒｅｃ－ｃｏｎｄ＞。
-            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　src_E_ReccondParent＝[" + src_E_ReccondListParent.Cur_Givechapterandverse.SName_Node + "]　属性数＝[" + src_E_ReccondListParent.E_AttrDic.Count + "]　子要素数＝[" + src_E_ReccondListParent.CountChildNodes + "]");
-            foreach (Expression_Node_String ec_Reccond_Src in parent_Expression_ReccondList_Src.ListExpression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports))
+            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　src_E_ReccondParent＝[" + src_E_ReccondListParent.Cur_Givechapterandverse.Name_Node + "]　属性数＝[" + src_E_ReccondListParent.E_AttrDic.Count + "]　子要素数＝[" + src_E_ReccondListParent.CountChildNodes + "]");
+            foreach (Expression_Node_String ec_Reccond_Src in parent_Expression_ReccondList_Src.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports))
             {
                 // logic属性=""
                 EnumLogic enumLogic = EnumLogic.None;
@@ -458,10 +458,10 @@ namespace Xenon.Expr
                 bool bRead_Value = false;
                 bool bRead_Description = false;
 
-                if (NamesNode.S_FNC == ec_Reccond_Src.Cur_Givechapterandverse.SName)
+                if (NamesNode.S_FNC == ec_Reccond_Src.Cur_Givechapterandverse.Name)
                 {
                     string sFncName;
-                    ec_Reccond_Src.DicExpression_Attr.TrySelect(out sFncName, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    ec_Reccond_Src.Dictionary_Expression_Attribute.TrySelect(out sFncName, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                     if (sFncName == NamesFnc.S_REC_COND)
                     {
                         //
@@ -473,40 +473,40 @@ namespace Xenon.Expr
 
                         //
                         //
-                        ec_Reccond_Src.DicExpression_Attr.ForEach(
+                        ec_Reccond_Src.Dictionary_Expression_Attribute.ForEach(
                             delegate(string sPmName, Expression_Node_String ec_Attr2, ref bool bBreak)
                             {
                                 //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　[属性] " + sAttrName + "＝”" + e_Attr.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”");
 
-                                if (sPmName == PmNames.S_LOGIC.SName_Pm)
+                                if (sPmName == PmNames.S_LOGIC.Name_Pm)
                                 {
                                     // 「＠ｌｏｇｉｃ」値
                                     enumLogic = Utility_Table.LogicStringToEnum(ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                                     bRead_Logic = true;
                                 }
-                                else if (sPmName == PmNames.S_FIELD.SName_Pm)
+                                else if (sPmName == PmNames.S_FIELD.Name_Pm)
                                 {
                                     // field属性="" （logic属性がない場合は必須）
                                     sField = ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                                     bRead_Field = true;
                                 }
-                                else if (sPmName == PmNames.S_OPE.SName_Pm)
+                                else if (sPmName == PmNames.S_OPE.Name_Pm)
                                 {
                                     // ope属性=""
                                     sOpe = ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                                     bRead_Ope = true;
                                 }
-                                else if (sPmName == PmNames.S_VALUE.SName_Pm)
+                                else if (sPmName == PmNames.S_VALUE.Name_Pm)
                                 {
                                     // #エラー？ todo: valueは属性にせず、子要素にしたい。
                                     throw new Exception("※valueは属性にせず、子要素にしたい。★★★★★★★★★☆★★★★★★★★★☆★★★★★★★★★☆");
-                                    System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　※valueは属性にせず、子要素にしたい。★★★★★★★★★☆★★★★★★★★★☆★★★★★★★★★☆");
+                                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　※valueは属性にせず、子要素にしたい。★★★★★★★★★☆★★★★★★★★★☆★★★★★★★★★☆");
 
                                     // value属性=""
                                     sValue = ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                                     bRead_Value = true;
                                 }
-                                else if (sPmName == PmNames.S_DESCRIPTION.SName_Pm)
+                                else if (sPmName == PmNames.S_DESCRIPTION.Name_Pm)
                                 {
                                     throw new Exception("使ってる？");
                                     ec_Description = ec_Attr2;
@@ -521,7 +521,7 @@ namespace Xenon.Expr
 
                         // 「E■ｆｎｃ」の子要素。
                         //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の子要素数＝[" + src_E_Reccond.CountChildNodes + "]");
-                        ec_Reccond_Src.ListExpression_Child.ForEach(
+                        ec_Reccond_Src.List_Expression_Child.ForEach(
                             delegate(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak)
                             {
                                 //
@@ -535,19 +535,19 @@ namespace Xenon.Expr
                                 //
                                 //
                                 if (
-                                    NamesNode.S_F_STR == ec_Child.Cur_Givechapterandverse.SName ||
-                                    NamesNode.S_F_VAR == ec_Child.Cur_Givechapterandverse.SName ||
-                                    NamesNode.S_FNC == ec_Child.Cur_Givechapterandverse.SName
+                                    NamesNode.S_F_STR == ec_Child.Cur_Givechapterandverse.Name ||
+                                    NamesNode.S_F_VAR == ec_Child.Cur_Givechapterandverse.Name ||
+                                    NamesNode.S_FNC == ec_Child.Cur_Givechapterandverse.Name
                                     )
                                 {
                                     sValue = ec_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                                     bRead_Value = true;
-                                    //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の子要素=[" + e_Child.Cur_Givechapterandverse.SName_Node + "]　sValue=[" + sValue + "]");
+                                    //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の子要素=[" + e_Child.Cur_Givechapterandverse.Name_Node + "]　sValue=[" + sValue + "]");
                                 }
                                 else
                                 {
                                     // #エラー？ todo:未定義の子要素。
-                                    System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の未定義の子要素=[" + ec_Child.Cur_Givechapterandverse.SName + "]");
+                                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の未定義の子要素=[" + ec_Child.Cur_Givechapterandverse.Name + "]");
                                 }
                             }
                         );
@@ -555,13 +555,13 @@ namespace Xenon.Expr
                     else
                     {
                         // #エラー？ todo:エラー
-                        System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: ＜ｆｎｃ＞だったが、「Ｓｆ：ｒｅｃ－ｃｏｎｄ；」ではなかった。");
+                        System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: ＜ｆｎｃ＞だったが、「Ｓｆ：ｒｅｃ－ｃｏｎｄ；」ではなかった。");
                     }
                 }
                 else
                 {
                     // #エラー todo:エラー
-                    System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」でも、「E■ｒｅｃ－ｃｏｎｄ」でもなかった。　未定義の子要素＜" + ec_Reccond_Src.Cur_Givechapterandverse.SName + "＞。");
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」でも、「E■ｒｅｃ－ｃｏｎｄ」でもなかった。　未定義の子要素＜" + ec_Reccond_Src.Cur_Givechapterandverse.Name + "＞。");
                 }
 
 
@@ -659,7 +659,7 @@ namespace Xenon.Expr
                         // value属性="" TODO:子要素としてのvalue値もあるはず。
                         //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: value解析。["+sValue+"]");
 
-                        dst_Recordcondition.SValue = sValue;
+                        dst_Recordcondition.Value = sValue;
                     }
 
 
@@ -693,13 +693,13 @@ namespace Xenon.Expr
                     else
                     {
                         // #エラー？
-                        System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 親要素に、この要素できませんでした。");
+                        System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 親要素に、この要素できませんでした。");
                     }
                 }
                 else
                 {
                     // #エラー？
-                    System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 親要素に、この要素は追加しません。　bRead_Logic＝[" + bRead_Logic + "]　bRead_Field＝[" + bRead_Field + "]　bRead_Ope＝[" + bRead_Ope + "]　bRead_Value＝[" + bRead_Value + "]　bRead_Description＝[" + bRead_Description + "]");
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 親要素に、この要素は追加しません。　bRead_Logic＝[" + bRead_Logic + "]　bRead_Field＝[" + bRead_Field + "]　bRead_Ope＝[" + bRead_Ope + "]　bRead_Value＝[" + bRead_Value + "]　bRead_Description＝[" + bRead_Description + "]");
                 }
             }//foreach
 
@@ -717,7 +717,7 @@ namespace Xenon.Expr
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("ope属性には、＝の「eq」、！＝の「neq」、＜の「lt」、＜＝の「lteq」、＞の「gt」、＞＝の「gteq」しか設定してはいけません。");
-                s.NewLine();
+                s.Newline();
                 s.Append("ope＝[");
                 s.Append(err_SOpe);
                 s.Append("]");
@@ -728,10 +728,10 @@ namespace Xenon.Expr
 
                 s.Append(r.Message_SSeparator());
                 s.Append("　　ヒント：");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -741,7 +741,7 @@ namespace Xenon.Expr
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　「E■[" + src_E_ReccondListParent.Cur_Givechapterandverse.SName_Node + "]」解析　終了└────────────────┘");
+            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　「E■[" + src_E_ReccondListParent.Cur_Givechapterandverse.Name_Node + "]」解析　終了└────────────────┘");
         }
 
 
@@ -762,7 +762,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "E_Execute_P1_CleateSelect",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "E_Execute_P1_CleateSelect",log_Reports);
             //
             //
 
@@ -782,12 +782,12 @@ namespace Xenon.Expr
             //　　　　抽出する列名のリスト。
             //
             Expression_Node_String ec_Aselect = null;//ソース情報利用のE
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                this.DicExpression_Attr.TrySelect(out ec_Aselect, PmNames.S_SELECT.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.Dictionary_Expression_Attribute.TrySelect(out ec_Aselect, PmNames.S_SELECT.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 selectSt.List_SName_SelectField = new CsvTo_ListImpl().Read(ec_Aselect.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
             }
@@ -795,10 +795,10 @@ namespace Xenon.Expr
             //
             // （２）into 属性
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Expression_Node_String ec_Into;//ソース情報利用のE
-                bool bHit = this.DicExpression_Attr.TrySelect(out ec_Into, "into", false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_Into, "into", false, Request_SelectingImpl.Unconstraint, log_Reports);
                 if (bHit)
                 {
                     selectSt.Expression_Into = ec_Into;
@@ -809,15 +809,15 @@ namespace Xenon.Expr
             //
             // （３）「E■＠ｗｈｅｒｅ」。無いものもある。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Expression_Node_String ec_Awhr1_Src;
-                this.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
                     string sValue;
-                    e_Child.TrySelectAttr(out sValue, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    e_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    if (NamesNode.S_FNC == e_Child.Cur_Givechapterandverse.SName &&
+                    if (NamesNode.S_FNC == e_Child.Cur_Givechapterandverse.Name &&
                         NamesFnc.S_WHERE == sValue)
                     {
                         ec_Awhr1_Src = e_Child;// Expression_Node_StringImpl である必要がある。E_String_AtomImplではダメ。
@@ -851,22 +851,22 @@ namespace Xenon.Expr
                         Log_TextIndented s = new Log_TextIndentedImpl();
 
                         s.Append("ｆ－ｃｅｌｌ要素の子ｗｈｅｒｅ要素が、Ｅ＿Ｓｔｒｉｎｇ＿ＡｔｏｍＩｍｐｌクラスでした。これはエラーです。");
-                        s.NewLine();
+                        s.Newline();
 
                         Expression_Leaf_StringImpl ec_Leaf = (Expression_Leaf_StringImpl)ec_Awhr1_Src;
 
-                        s.Append("子要素の数＝[" + ec_Leaf.ListExpression_Child.NCount + "]");
-                        s.NewLine();
+                        s.Append("子要素の数＝[" + ec_Leaf.List_Expression_Child.Count + "]");
+                        s.Newline();
                         //s.Append("属性の数＝[" + e_Atom.E_AttrDic.Count + "]");
-                        //s.NewLine();
-                        //s.Append("親のノード名＝[" + e_Atom.E_ParentNode.Cur_Givechapterandverse.SName_Node + "]");
-                        //s.NewLine();
+                        //s.Newline();
+                        //s.Append("親のノード名＝[" + e_Atom.E_ParentNode.Cur_Givechapterandverse.Name_Node + "]");
+                        //s.Newline();
 
                         //
                         // ヒント：this
                         s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                        r.SMessage = s.ToString();
+                        r.Message = s.ToString();
                         log_Reports.EndCreateReport();
                     }
                     goto gt_EndMethod2;
@@ -908,7 +908,7 @@ namespace Xenon.Expr
             // （３）ｒｅｑｕｉｒｅｄ＝”★”
             // 　　　レコードが１件以上ヒットすることが必須か。"true","TRUE"等。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // ＜ｆ－ｃｅｌｌ　ｒｅｑｕｉｒｅｄ＝”☆”＞を使う。
 
@@ -919,10 +919,10 @@ namespace Xenon.Expr
                 // 
 
                 string sRequired;
-                bool bHit = this.DicExpression_Attr.TrySelect(out sRequired, PmNames.S_REQUIRED.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out sRequired, PmNames.S_REQUIRED.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 if (bHit)
                 {
-                    selectSt.SRequired = sRequired;
+                    selectSt.Required = sRequired;
                 }
                 else
                 {
@@ -935,21 +935,21 @@ namespace Xenon.Expr
                     // ｗｈｅｒｅ属性で「E■ｗｈｅｒｅ」（ｆｎｃ）を持っているはず。（無条件のときは持っていない）
                     //
                     Expression_Node_String ec_Whr;//属性利用
-                    bool bHit2 = this.DicExpression_Attr.TrySelect(out ec_Whr, PmNames.S_WHERE.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit2 = this.Dictionary_Expression_Attribute.TrySelect(out ec_Whr, PmNames.S_WHERE.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                     if (bHit2)
                     {
-                        bool bHit3 = ec_Whr.DicExpression_Attr.TrySelect(out sRequired, PmNames.S_REQUIRED.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        bool bHit3 = ec_Whr.Dictionary_Expression_Attribute.TrySelect(out sRequired, PmNames.S_REQUIRED.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                         if (bHit3)
                         {
-                            selectSt.SRequired = sRequired;
-                            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect: ＜ｆ－ｃｅｌｌ＞が　ｒｅｑｕｉｒｅｄ属性を持っていなかったので、ｗｈｅｒｅのｒｅｑｕｉｒｅｄ属性から取得した。[" + selectSt.SRequired + "]");
+                            selectSt.Required = sRequired;
+                            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect: ＜ｆ－ｃｅｌｌ＞が　ｒｅｑｕｉｒｅｄ属性を持っていなかったので、ｗｈｅｒｅのｒｅｑｕｉｒｅｄ属性から取得した。[" + selectSt.Required + "]");
                         }
                         else
                         {
                             // ｗｈｅｒｅのｒｅｑｕｉｒｅｄ設定が未指定。
 
                             // #エラー
-                            System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect: ＜ｆ－ｃｅｌｌ＞が　ｒｅｑｕｉｒｅｄ属性を持っていなかったので、ｗｈｅｒｅのｒｅｑｕｉｒｅｄ属性から取得しようとしたが、ｗｈｅｒｅのｒｅｑｕｉｒｅｄは未設定だった。[" + selectSt.SRequired + "]");
+                            System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect: ＜ｆ－ｃｅｌｌ＞が　ｒｅｑｕｉｒｅｄ属性を持っていなかったので、ｗｈｅｒｅのｒｅｑｕｉｒｅｄ属性から取得しようとしたが、ｗｈｅｒｅのｒｅｑｕｉｒｅｄは未設定だった。[" + selectSt.Required + "]");
                         }
                     }
                     else
@@ -961,7 +961,7 @@ namespace Xenon.Expr
                         //// ｒｅｑｕｉｒｅｄ設定が未指定。
 
                         //// #エラー
-                        //System.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect: ＜ｆ－ｃｅｌｌ＞が　ｒｅｑｕｉｒｅｄ属性を持っていなかったので、ｗｈｅｒｅのｒｅｑｕｉｒｅｄ属性から取得しようとしたが、ｗｈｅｒｅは未設定だった。[" + selectSt.SRequired + "]");
+                        //System.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect: ＜ｆ－ｃｅｌｌ＞が　ｒｅｑｕｉｒｅｄ属性を持っていなかったので、ｗｈｅｒｅのｒｅｑｕｉｒｅｄ属性から取得しようとしたが、ｗｈｅｒｅは未設定だった。[" + selectSt.Required + "]");
 
                         //if (bDbg1)
                         //{
@@ -981,11 +981,11 @@ namespace Xenon.Expr
             //
             // （４）テーブル名。"Ut:モンスター表"等。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // ＜ｆ－ｃｅｌｌ　ｆｒｏｍ＝”☆”＞を使う。
                 Expression_Node_String ec_From;//ソース情報利用
-                bool bHit = this.DicExpression_Attr.TrySelect(out ec_From, PmNames.S_FROM.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_From, PmNames.S_FROM.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                 if (bHit)
                 {
                     selectSt.Expression_From = ec_From;
@@ -1019,10 +1019,10 @@ namespace Xenon.Expr
             //
             // ｆ－ｃｅｌｌの子要素の数は、ｗｈｅｒｅ要素１つ、または 0 が正しい。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 子要素。
-                List<Expression_Node_String> ecList = this.ListExpression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
                 //if (0 < e_List.Count)
                 if (1 < ecList.Count)
                 {
@@ -1032,7 +1032,7 @@ namespace Xenon.Expr
 
             //
             // （２）探したいキー値の有無。"1000"等。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 // key属性（＠ｗｈｅｒｅ）、record-set-load-ｆｒｏｍ属性のどちらかが書かれているはず。
@@ -1066,7 +1066,7 @@ namespace Xenon.Expr
             //
             // （５）あれば、「E■＠ｗｈｅｒｅ」の解析。（2012-02-07）
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (bExists_Awhr_Out)
                 {
@@ -1076,7 +1076,7 @@ namespace Xenon.Expr
                     // 「E■＠ｗｈｅｒｅ」の ｌｏｇｉｃ属性を取得しておく。
                     {
                         string sLogic;
-                        bool bHit = ec_Awhr_Src.TrySelectAttr(out sLogic, PmNames.S_LOGIC.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        bool bHit = ec_Awhr_Src.TrySelectAttribute(out sLogic, PmNames.S_LOGIC.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                         if (bHit)
                         {
                             selectSt.EnumWherelogic = Utility_Table.LogicStringToEnum(sLogic);
@@ -1095,7 +1095,7 @@ namespace Xenon.Expr
                     // 「E■＠ｗｈｅｒｅ」条件が無い場合。
 
                     // #警告。正常。
-                    System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#E_Execute_P1_SelectSt: 条件がないタイプ（ｗｈｅｒｅを持たない）です。親ノード=" + this.Cur_Givechapterandverse.Parent_Givechapterandverse);
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute_P1_SelectSt: 条件がないタイプ（ｗｈｅｒｅを持たない）です。親ノード=" + this.Cur_Givechapterandverse.Parent_Givechapterandverse);
                 }
             }
 
@@ -1107,7 +1107,7 @@ namespace Xenon.Expr
             //　（１）「E■ｒｅｃ－ｃｏｎｄ」が１つだけ入っている形式
             //　（２）「E■ｒｅｃ－ｃｏｎｄ」が１つ以上入っている形式
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (0 == selectSt.List_Recordcondition.Count())
                 {
@@ -1126,7 +1126,7 @@ namespace Xenon.Expr
                     if (null == firstReccond)
                     {
                         // #エラー？ TODO:エラー？
-                        System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#E_Execute_P1_SelectSt: ｒｅｃ－ｃｏｎｄリストにヌルが入っていた。エラー？");
+                        System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute_P1_SelectSt: ｒｅｃ－ｃｏｎｄリストにヌルが入っていた。エラー？");
 
                         // 条件ハズレ。
                         goto end_conditionSpec;
@@ -1140,7 +1140,7 @@ namespace Xenon.Expr
                     }
 
                     // ｆｉｅｌｄ属性には１つのフィールド名が書かれている。（ｓｅｌｅｃｔではないので、そうでなければエラー）
-                    List<string> sList_FieldName = new CsvTo_ListImpl().Read(firstReccond.SField);
+                    List<string> sList_FieldName = new CsvTo_ListImpl().Read(firstReccond.Name_Field);
                     if (1 != sList_FieldName.Count)
                     {
                         // 条件ハズレ。
@@ -1148,7 +1148,7 @@ namespace Xenon.Expr
                     }
 
                     // ｖａｌｕｅを持つ。
-                    if ("" == firstReccond.SValue.Trim())
+                    if ("" == firstReccond.Value.Trim())
                     {
                         // 条件ハズレ。
                         goto end_conditionSpec;
@@ -1185,28 +1185,28 @@ namespace Xenon.Expr
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
-                s.Append("「E■[" + this.Cur_Givechapterandverse.SName + "]」（ｆ－ｃｅｌｌを想定）に、子要素が２つ以上ありました。これはエラーです。");
-                s.NewLine();
+                s.Append("「E■[" + this.Cur_Givechapterandverse.Name + "]」（ｆ－ｃｅｌｌを想定）に、子要素が２つ以上ありました。これはエラーです。");
+                s.Newline();
 
-                List<Expression_Node_String> e_List = this.ListExpression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+                List<Expression_Node_String> e_List = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
                 s.Append("┌────────┐　子要素の数＝[" + e_List.Count + "]");
-                s.NewLine();
+                s.Newline();
 
                 foreach (Expression_Node_String ec_Child in e_List)
                 {
-                    s.Append("「E■[" + ec_Child.Cur_Givechapterandverse.SName + "]」");
-                    s.NewLine();
+                    s.Append("「E■[" + ec_Child.Cur_Givechapterandverse.Name + "]」");
+                    s.Newline();
                 }
 
                 s.Append("└────────┘");
-                s.NewLine();
+                s.Newline();
 
 
                 //
                 // ヒント：this
                 s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1220,40 +1220,40 @@ namespace Xenon.Expr
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("　＜f-cell＞要素の key値（または子要素）の指定がありません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("out_bExists_Awhr=[");
                 s.Append(bExists_Awhr_Out);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim()=[");
                 s.Append(selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim());
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
 
-                s.Append("┌────────┐　属性の数＝[" + this.DicExpression_Attr.NCount + "]");
-                s.NewLine();
-                this.DicExpression_Attr.ForEach(delegate(string sName3, Expression_Node_String e_Attr3, ref bool bBreak)
+                s.Append("┌────────┐　属性の数＝[" + this.Dictionary_Expression_Attribute.Count + "]");
+                s.Newline();
+                this.Dictionary_Expression_Attribute.ForEach(delegate(string sName3, Expression_Node_String e_Attr3, ref bool bBreak)
                 {
-                    s.Append("属　[" + sName3 + "]＝「E■[" + e_Attr3.Cur_Givechapterandverse.SName + "]　値＝[" + e_Attr3.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]」");
-                    s.NewLine();
+                    s.Append("属　[" + sName3 + "]＝「E■[" + e_Attr3.Cur_Givechapterandverse.Name + "]　値＝[" + e_Attr3.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]」");
+                    s.Newline();
                 });
                 s.Append("└────────┘");
-                s.NewLine();
+                s.Newline();
 
 
-                s.Append("┌────────┐　子の数＝[" + this.ListExpression_Child.NCount + "]");
-                s.NewLine();
-                this.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                s.Append("┌────────┐　子の数＝[" + this.List_Expression_Child.Count + "]");
+                s.Newline();
+                this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
-                    s.Append("子　[" + e_Child.Cur_Givechapterandverse.SName + "]＝[" + e_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
-                    s.NewLine();
+                    s.Append("子　[" + e_Child.Cur_Givechapterandverse.Name + "]＝[" + e_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                    s.Newline();
                 });
                 s.Append("└────────┘");
-                s.NewLine();
+                s.Newline();
 
 
                 //
@@ -1262,10 +1262,10 @@ namespace Xenon.Expr
 
                 s.Append(r.Message_SSeparator());
                 s.Append("　　ヒント：");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1279,13 +1279,13 @@ namespace Xenon.Expr
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　テーブル名が指定されていません。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cf_Fcell));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1313,7 +1313,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "E_Execute_P2_Select",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "E_Execute_P2_Select",log_Reports);
             //
             //
 
@@ -1335,7 +1335,7 @@ namespace Xenon.Expr
             {
                 {
                     Expression_Node_String ec_Awhr_RecordSetLoadFrom;//ソース情報利用
-                    bool bHit = this.DicExpression_Attr.TrySelect(
+                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(
                          out ec_Awhr_RecordSetLoadFrom,
                         NamesNode.S_RECORD_SET_LOAD_FROM,
                         false,
@@ -1401,7 +1401,7 @@ namespace Xenon.Expr
                 //        foreach (string sKey in oRecord.Keys)
                 //        {
                 //            XenonValue oValue = oRecord[sKey];
-                //            txt.Append("　要素＝[" + sKey + ":"+ oValue.SHumaninput + "]");
+                //            txt.Append("　要素＝[" + sKey + ":"+ oValue.Humaninput + "]");
                 //        }
                 //    }
 
@@ -1427,7 +1427,7 @@ namespace Xenon.Expr
 
                 bool bExpectedValueRequired;
                 {
-                    bool parseSuccessful = bool.TryParse(selectSt.SRequired, out bExpectedValueRequired);
+                    bool parseSuccessful = bool.TryParse(selectSt.Required, out bExpectedValueRequired);
                 }
 
 
@@ -1493,7 +1493,7 @@ namespace Xenon.Expr
 
 
                     reslt_Rs.AddList(dst_Row, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -1516,12 +1516,12 @@ namespace Xenon.Expr
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1546,7 +1546,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "E_Execute_P4",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "E_Execute_P4",log_Reports);
             //
             //
 
@@ -1648,7 +1648,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1690,7 +1690,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1730,7 +1730,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1774,7 +1774,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

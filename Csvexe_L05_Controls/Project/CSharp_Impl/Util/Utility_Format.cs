@@ -20,7 +20,7 @@ namespace Xenon.Controls
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(Info_Controls.SName_Library);
+            sb.Append(Info_Controls.Name_Library);
             sb.Append(":");
             sb.Append("#ToString: 計測");
 

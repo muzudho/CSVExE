@@ -29,11 +29,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(29)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(29)" + cur_Cf.Name);
             }
 
             //
@@ -41,7 +41,7 @@ namespace Xenon.GcavToExpr
             //
             //
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -70,14 +70,14 @@ namespace Xenon.GcavToExpr
             string parent_SName_Fnc = "";
             string sName_MyFnc = "";
             {
-                bool bHit9 = parent_Ec.DicExpression_Attr.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit9 = parent_Ec.Dictionary_Expression_Attribute.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     goto gt_EndMethod;
                 }
-                else if (NamesNode.S_FNC == parent_Ec.Cur_Givechapterandverse.SName && "" == parent_SName_Fnc)
+                else if (NamesNode.S_FNC == parent_Ec.Cur_Givechapterandverse.Name && "" == parent_SName_Fnc)
                 {
                     //
                     // エラー。親要素が、ｎａｍｅ属性を持たない「E■ｆｎｃ」だった。
@@ -87,9 +87,9 @@ namespace Xenon.GcavToExpr
             }
 
             // 　　「E■ｆｎｃ」には、ｎａｍｅ＝”★”属性が必須。
-            bool bHit = cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, true, log_Reports);
+            bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, true, log_Reports);
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -106,7 +106,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 「E■ｆｎｃ」要素を作成。
 
@@ -131,8 +131,8 @@ namespace Xenon.GcavToExpr
                     // コントロール名を取得し、コントロールの値を返すように設定。
 
                     string sFcName;
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sFcName, true, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sFcName, true, log_Reports);
+                    if (!log_Reports.Successful)
                     {
                         goto gt_EndMethod;
                     }
@@ -180,7 +180,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 元からあった。
                 this.ParseAttr_InGivechapterandverseToExpression(
@@ -201,7 +201,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if(NamesFnc.S_TEXT_TEMPLATE == sName_MyFnc)
                 {
@@ -267,7 +267,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 //
@@ -278,13 +278,13 @@ namespace Xenon.GcavToExpr
                     sName_MyFnc.StartsWith(NamesFnc.S_UF)//ユーザー定義関数
                     || NamesFnc.S_TEXT_TEMPLATE == sName_MyFnc//テンプレート
                     || NamesFnc.S_SWITCH == sName_MyFnc//スイッチ文
-                    || (NamesNode.S_FNC == cur_Cf.SName && NamesFnc.S_VALUE_CONTROL == sName_MyFnc)//todo:
-                    || (NamesNode.S_FNC == parent_Ec.Cur_Givechapterandverse.SName)
+                    || (NamesNode.S_FNC == cur_Cf.Name && NamesFnc.S_VALUE_CONTROL == sName_MyFnc)//todo:
+                    || (NamesNode.S_FNC == parent_Ec.Cur_Givechapterandverse.Name)
                     || (NamesFnc.S_CELL == sName_MyFnc || NamesFnc.S_TEXT_TEMPLATE == sName_MyFnc)
-                    || ( sName_MyFnc == NamesFnc.S_REC_COND && NamesNode.S_FNC == parent_Ec.Cur_Givechapterandverse.SName && NamesFnc.S_WHERE == parent_SName_Fnc)//親が＜ｒｅｃ－ｃｏｎｄ＞で、自＜ｆｎｃ　ｎａｍｅ＝”Ｓｆ：Ｗｈｅｒｅ；”＞要素
+                    || ( sName_MyFnc == NamesFnc.S_REC_COND && NamesNode.S_FNC == parent_Ec.Cur_Givechapterandverse.Name && NamesFnc.S_WHERE == parent_SName_Fnc)//親が＜ｒｅｃ－ｃｏｎｄ＞で、自＜ｆｎｃ　ｎａｍｅ＝”Ｓｆ：Ｗｈｅｒｅ；”＞要素
                     )
                 {                    
-                    parent_Ec.ListExpression_Child.Add(cur_Ec, log_Reports);
+                    parent_Ec.List_Expression_Child.Add(cur_Ec, log_Reports);
                 }
                 else
                 {
@@ -292,7 +292,7 @@ namespace Xenon.GcavToExpr
 
                     goto gt_Error_CanNotAddParent;
                     // todo:
-                    //throw new Exception(Info_SToE.LibraryName + ":" + this.GetType().Name + "#SToE:（１８）★★親要素へ連結不能　　　　・親「E■[" + e_Parent.Cur_Givechapterandverse.SName + "]　ｎａｍｅ＝”[" + sParentFncName + "]”」　←　自「S■[" + s_AFnc.SName_Node + "]　ｎａｍｅ＝”[" + sFncName + "]”」中止。　／エラー。親要素に追加しようとしましたが、予想しない親要素でした。");
+                    //throw new Exception(Info_SToE.LibraryName + ":" + this.GetType().Name + "#SToE:（１８）★★親要素へ連結不能　　　　・親「E■[" + e_Parent.Cur_Givechapterandverse.Name + "]　ｎａｍｅ＝”[" + sParentFncName + "]”」　←　自「S■[" + s_AFnc.Name_Node + "]　ｎａｍｅ＝”[" + sFncName + "]”」中止。　／エラー。親要素に追加しようとしましたが、予想しない親要素でした。");
                 }
 
             }
@@ -304,34 +304,34 @@ namespace Xenon.GcavToExpr
             // 終わり際に、デバッグ
             //
             //
-            if (log_Method.CanDebug(10) && log_Reports.BSuccessful)
+            if (log_Method.CanDebug(10) && log_Reports.Successful)
             {
                 if (null != cur_Ec)//既にエラーが出ている場合。
                 {
-                    log_Method.WriteDebug_ToConsole("（１９） 自要素の属性の数=[" + cur_Ec.DicExpression_Attr.NCount + "]");
+                    log_Method.WriteDebug_ToConsole("（１９） 自要素の属性の数=[" + cur_Ec.Dictionary_Expression_Attribute.Count + "]");
 
-                    log_Method.WriteDebug_ToConsole("（２１） ┌────┐自要素。その子要素の数=[" + cur_Ec.ListExpression_Child.NCount + "]");
+                    log_Method.WriteDebug_ToConsole("（２１） ┌────┐自要素。その子要素の数=[" + cur_Ec.List_Expression_Child.Count + "]");
 
-                    cur_Ec.ListExpression_Child.ForEach(
+                    cur_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            log_Method.WriteDebug_ToConsole( "「S■" + e_Child.Cur_Givechapterandverse.SName + "」");
+                            log_Method.WriteDebug_ToConsole( "「S■" + e_Child.Cur_Givechapterandverse.Name + "」");
                         });
 
                     log_Method.WriteDebug_ToConsole( "（２２） └────┘");
 
-                    log_Method.WriteDebug_ToConsole( "（２３）└────────────────┘ 「S■[" + cur_Cf.SName + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”」（ｆｎｃ）要素解析終了。");
+                    log_Method.WriteDebug_ToConsole( "（２３）└────────────────┘ 「S■[" + cur_Cf.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”」（ｆｎｃ）要素解析終了。");
 
 
                     //
                     // ｎａｍｅ属性の指定は必須です。
                     //
                     string sName8;
-                    bool bHit8 = cur_Ec.DicExpression_Attr.TrySelect(out sName8, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit8 = cur_Ec.Dictionary_Expression_Attribute.TrySelect(out sName8, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                     if (!bHit8)
                     {
                         // todo:
-                        throw new Exception(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE:（２４）ｆｎｃ要素にｎａｍｅ属性が指定されていないのはエラーです①。");
+                        throw new Exception(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE:（２４）ｆｎｃ要素にｎａｍｅ属性が指定されていないのはエラーです①。");
                     }
                     else if ("" == sName8)
                     {
@@ -372,7 +372,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(parent_Ec.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -401,7 +401,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(parent_Ec.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -430,7 +430,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(parent_Ec.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -449,7 +449,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -460,7 +460,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }
@@ -477,96 +477,96 @@ namespace Xenon.GcavToExpr
             )
         {
             s.Append("コメント「[" + sComment + "]」");
-            s.NewLine();
+            s.Newline();
 
             //
             // 自
             //
-            s.Append("期待の自「S■[" + cur_Cf.SName + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”」");
-            s.NewLine();
+            s.Append("期待の自「S■[" + cur_Cf.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”」");
+            s.Newline();
 
             if (null != cur_Ec)
             {
                 //
                 // 属
                 //
-                s.Append("┌────┐属性の数=[" + cur_Ec.DicExpression_Attr.NCount + "]");
-                s.NewLine();
-                cur_Ec.DicExpression_Attr.ForEach(
+                s.Append("┌────┐属性の数=[" + cur_Ec.Dictionary_Expression_Attribute.Count + "]");
+                s.Newline();
+                cur_Ec.Dictionary_Expression_Attribute.ForEach(
                     delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                     {
                         s.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”");
-                        s.NewLine();
+                        s.Newline();
                     });
                 s.Append("└────┘");
-                s.NewLine();
+                s.Newline();
 
                 //
                 // 子
                 //
-                s.Append("┌────┐子要素の数=[" + cur_Ec.ListExpression_Child.NCount + "]");
-                s.NewLine();
-                cur_Ec.ListExpression_Child.ForEach(
+                s.Append("┌────┐子要素の数=[" + cur_Ec.List_Expression_Child.Count + "]");
+                s.Newline();
+                cur_Ec.List_Expression_Child.ForEach(
                     delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                     {
-                        s.Append("子「S■" + e_Child.Cur_Givechapterandverse.SName + "」");
-                        s.NewLine();
+                        s.Append("子「S■" + e_Child.Cur_Givechapterandverse.Name + "」");
+                        s.Newline();
                     });
                 s.Append("└────┘");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
             }
             else
             {
                 s.Append("実際の自「ヌル」");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
             }
 
 
-            s.Append("期待の親「E■[" + NamesNode.S_ARG + "]　ｎａｍｅ＝”[" + PmNames.S_WHERE.SName_Pm + "]”」");
-            s.NewLine();
+            s.Append("期待の親「E■[" + NamesNode.S_ARG + "]　ｎａｍｅ＝”[" + PmNames.S_WHERE.Name_Pm + "]”」");
+            s.Newline();
             if (null != parent_Ec)
             {
                 //
                 // 親
                 //
-                s.Append("実際の親「E■[" + parent_Ec.Cur_Givechapterandverse.SName + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”」");
-                s.NewLine();
+                s.Append("実際の親「E■[" + parent_Ec.Cur_Givechapterandverse.Name + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”」");
+                s.Newline();
 
                 //
                 // 属
                 //
-                s.Append("┌────┐属性の数=[" + parent_Ec.DicExpression_Attr.NCount + "]");
-                s.NewLine();
-                parent_Ec.DicExpression_Attr.ForEach(
+                s.Append("┌────┐属性の数=[" + parent_Ec.Dictionary_Expression_Attribute.Count + "]");
+                s.Newline();
+                parent_Ec.Dictionary_Expression_Attribute.ForEach(
                     delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                     {
                         s.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”");
-                        s.NewLine();
+                        s.Newline();
                     });
                 s.Append("└────┘");
-                s.NewLine();
+                s.Newline();
 
                 //
                 // 子
                 //
-                s.Append("┌────┐子要素の数=[" + parent_Ec.ListExpression_Child.NCount + "]");
-                s.NewLine();
-                parent_Ec.ListExpression_Child.ForEach(
+                s.Append("┌────┐子要素の数=[" + parent_Ec.List_Expression_Child.Count + "]");
+                s.Newline();
+                parent_Ec.List_Expression_Child.ForEach(
                     delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                     {
-                        s.Append("子「S■" + e_Child.Cur_Givechapterandverse.SName + "」");
-                        s.NewLine();
+                        s.Append("子「S■" + e_Child.Cur_Givechapterandverse.Name + "」");
+                        s.Newline();
                     });
                 s.Append("└────┘");
-                s.NewLine();
+                s.Newline();
             }
             else
             {
                 s.Append("親「ヌル」");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
             }
         }
 
@@ -582,10 +582,10 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "ParseChild_Special_",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "ParseChild_Special_",log_Reports);
             //
             //
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -599,32 +599,32 @@ namespace Xenon.GcavToExpr
             //
             cur_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Child, ref bool bBreak)
             {
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
-                    if (NamesNode.S_ARG == s_Child.SName)
+                    if (NamesNode.S_ARG == s_Child.Name)
                     {
                         //━━━━━
                         // ａｒｇ
                         //━━━━━
 
                         string sName_MyFnc;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, false, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, false, log_Reports);
 
                         string sName_ChildFnc;
-                        s_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_ChildFnc, false, log_Reports);
+                        s_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_ChildFnc, false, log_Reports);
 
 
                         //
                         bool bNormalize = false;
                         if(
                             // 親が「E■ｆｎｃ」
-                            NamesNode.S_FNC==cur_Ec.Cur_Givechapterandverse.SName &&
+                            NamesNode.S_FNC==cur_Ec.Cur_Givechapterandverse.Name &&
                             NamesFnc.S_CELL == sName_MyFnc
                             )
                         {
                             if (
                                 // 子が「ｎａｍｅ＝”ｓｅｌｅｃｔ”」
-                                PmNames.S_SELECT.SName_Pm == sName_ChildFnc
+                                PmNames.S_SELECT.Name_Pm == sName_ChildFnc
                                 )
                             {
                                 bNormalize = true;
@@ -649,16 +649,16 @@ namespace Xenon.GcavToExpr
                             //
                             // ｖａｌｕｅ＝”” 属性が指定されていれば、その値をそのまま取得。
                             //
-                            s_Child.Dictionary_SAttribute_Givechapterandverse.ForEach(delegate(string sPmName2, string sAttrValue2, ref bool bBreak2)
+                            s_Child.Dictionary_Attribute_Givechapterandverse.ForEach(delegate(string sPmName2, string sAttrValue2, ref bool bBreak2)
                             {
-                                if (PmNames.S_VALUE.SName_Pm == sPmName2)
+                                if (PmNames.S_VALUE.Name_Pm == sPmName2)
                                 {
                                     // value属性が指定されていた場合。
-                                    s_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                                    s_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                                     // 「E■ａｒｇ１」は作らずに、親要素の属性として追加。
                                     Expression_Node_String e_Value = new Expression_Leaf_StringImpl(sValue, cur_Ec, cur_Ec.Cur_Givechapterandverse);
-                                    cur_Ec.DicExpression_Attr.Set(sName_ChildFnc, e_Value, log_Reports);
+                                    cur_Ec.Dictionary_Expression_Attribute.Set(sName_ChildFnc, e_Value, log_Reports);
                                 }
                             });
 
@@ -666,7 +666,7 @@ namespace Xenon.GcavToExpr
                             //
                             // 子要素の有無。
                             //
-                            if (0 < s_Child.List_ChildGivechapterandverse.NCount)
+                            if (0 < s_Child.List_ChildGivechapterandverse.Count)
                             {
                                 // 子要素が指定されている場合。
 
@@ -695,7 +695,7 @@ namespace Xenon.GcavToExpr
                                     //
                                     // 「E■ａｒｇ１」は作らずに、親要素の属性として追加。
                                     //
-                                    cur_Ec.DicExpression_Attr.Set(sName_ChildFnc, ec_Value, log_Reports);
+                                    cur_Ec.Dictionary_Expression_Attribute.Set(sName_ChildFnc, ec_Value, log_Reports);
                                 }
                             }
                             else
@@ -703,14 +703,14 @@ namespace Xenon.GcavToExpr
                                 if ("" == sValue)
                                 {
                                     // todo:
-                                    throw new Exception(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#ParseChild:（３） 「S■[" + cur_Cf.SName + "]」の子要素「S■[" + s_Child.SName + "]」に、value属性がありませんでした。子要素もありませんでした。");
+                                    throw new Exception(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#ParseChild:（３） 「S■[" + cur_Cf.Name + "]」の子要素「S■[" + s_Child.Name + "]」に、value属性がありませんでした。子要素もありませんでした。");
                                 }
                             }
                         }
 
 
                     }
-                    else if (NamesNode.S_F_VAR == s_Child.SName)
+                    else if (NamesNode.S_F_VAR == s_Child.Name)
                     {
                         //━━━━━
                         // ｆ－ｖａｒ
@@ -727,7 +727,7 @@ namespace Xenon.GcavToExpr
                             log_Reports
                             );
                     }
-                    else if (NamesNode.S_F_STR == s_Child.SName)
+                    else if (NamesNode.S_F_STR == s_Child.Name)
                     {
                         //━━━━━
                         // ｆ－ｓｔｒ
@@ -745,7 +745,7 @@ namespace Xenon.GcavToExpr
                             log_Reports
                             );
                     }
-                    else if (NamesNode.S_FNC == s_Child.SName)
+                    else if (NamesNode.S_FNC == s_Child.Name)
                     {
                         //━━━━━
                         // ｆｎｃ
@@ -771,7 +771,7 @@ namespace Xenon.GcavToExpr
                         pg_ParsingLog.Decrement();
 
                     }
-                    else if (NamesNode.S_F_PARAM == s_Child.SName)
+                    else if (NamesNode.S_F_PARAM == s_Child.Name)
                     {
                         //━━━━━
                         // ｆ－ｐａｒａｍ
@@ -793,7 +793,7 @@ namespace Xenon.GcavToExpr
                     {
                         // todo:2
                         goto gt_Error_UndefinedChlid;
-                        throw new Exception(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#ParseChild:（１６） 「S■[" + cur_Cf.SName + "]」に、未定義の子要素「S■[" + s_Child.SName + "]」がありました。");
+                        throw new Exception(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#ParseChild:（１６） 「S■[" + cur_Cf.Name + "]」に、未定義の子要素「S■[" + s_Child.Name + "]」がありました。");
                     }
                 }
 
@@ -808,45 +808,45 @@ namespace Xenon.GcavToExpr
 
                     StringBuilder s = new StringBuilder();
                     s.Append("「S■[");
-                    s.Append(cur_Cf.SName);
+                    s.Append(cur_Cf.Name);
                     s.Append("]」に、未定義の子要素「S■[");
-                    s.Append(s_Child.SName);
+                    s.Append(s_Child.Name);
                     s.Append("]」がありました。");
                     s.Append(Environment.NewLine);
 
                     //
                     // s属
                     //
-                    s.Append(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE: ┌────┐string属性の数=[" + cur_Cf.Dictionary_SAttribute_Givechapterandverse.NCount + "]");
+                    s.Append(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: ┌────┐string属性の数=[" + cur_Cf.Dictionary_Attribute_Givechapterandverse.Count + "]");
                     s.Append(Environment.NewLine);
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.ForEach(delegate(string sKey2, string sValue2, ref bool bBreak2)
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.ForEach(delegate(string sKey2, string sValue2, ref bool bBreak2)
                     {
-                        s.Append(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE: s属　[" + sKey2 + "]＝[" + sValue2 + "]");
+                        s.Append(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: s属　[" + sKey2 + "]＝[" + sValue2 + "]");
                         s.Append(Environment.NewLine);
                     });
-                    s.Append(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE: └────┘");
+                    s.Append(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: └────┘");
                     s.Append(Environment.NewLine);
 
 
                     //
                     // 子
                     //
-                    s.Append(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE: ┌────┐子要素の数=[" + cur_Cf.List_ChildGivechapterandverse.NCount + "]");
+                    s.Append(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: ┌────┐子要素の数=[" + cur_Cf.List_ChildGivechapterandverse.Count + "]");
                     s.Append(Environment.NewLine);
                     cur_Cf.List_ChildGivechapterandverse.ForEach(
                         delegate(Givechapterandverse_Node cf_Child2, ref bool bBreak5)
                         {
-                            s.Append(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE: 子「S■" + cf_Child2.SName + "」");
+                            s.Append(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: 子「S■" + cf_Child2.Name + "」");
                             s.Append(Environment.NewLine);
                         });
-                    s.Append(Info_GivechapterandverseToExpression.SName_Library + ":" + this.GetType().Name + "#SToE: └────┘");
+                    s.Append(Info_GivechapterandverseToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: └────┘");
                     s.Append(Environment.NewLine);
 
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
                 goto gt_EndMethod2;
@@ -876,7 +876,7 @@ namespace Xenon.GcavToExpr
             // a-●●要素や、switch要素など。
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "ParseChild_SpecialSwitch_",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "ParseChild_SpecialSwitch_",log_Reports);
 
             //
             //
@@ -887,7 +887,7 @@ namespace Xenon.GcavToExpr
             // データ_ソース、データ_ターゲット、＜ｆｎｃ　＞の子要素。
 
 
-            string sName_OwnerNode = owner_Ec.Cur_Givechapterandverse.SName;
+            string sName_OwnerNode = owner_Ec.Cur_Givechapterandverse.Name;
             string sName_OwnerFnc = "";
             {
                 bool bRequired;
@@ -902,30 +902,30 @@ namespace Xenon.GcavToExpr
                 {
                     bRequired = false;
                 }
-                bool bHit = owner_Ec.DicExpression_Attr.TrySelect(out sName_OwnerFnc, PmNames.S_NAME.SName_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = owner_Ec.Dictionary_Expression_Attribute.TrySelect(out sName_OwnerFnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
             }
 
 
             string sName_MyFnc;
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, true, log_Reports);
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, true, log_Reports);
 
             //
             // ＜ｆ－ｓｗｉｔｃｈ＞要素であれば、子Ｓｆ：ｃａｓｅ；要素が何個もある。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (NamesFnc.S_SWITCH == sName_MyFnc)
                 {
                     cur_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Child, ref bool bBreak)
                     {
                         Givechapterandverse_Node err_CfAttr;
-                        if (log_Reports.BSuccessful)
+                        if (log_Reports.Successful)
                         {
                             string sName;
-                            s_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                            s_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                             if (
-                                NamesNode.S_FNC == s_Child.SName
+                                NamesNode.S_FNC == s_Child.Name
                                 && NamesFnc.S_CASE == sName
                                 )
                             {
@@ -938,7 +938,7 @@ namespace Xenon.GcavToExpr
                                     log_Reports
                                     );
                             }
-                            else if (NamesNode.S_ARG == s_Child.SName)
+                            else if (NamesNode.S_ARG == s_Child.Name)
                             {
                                 // todo:＜ａｒｇ＞。恐らくｓｗｉｔｃｈＶａｌｕｅなど。
                                 GivechapterandverseToExpression_F14n16 to = new GivechapterandverseToExpression_F14_FArgImpl();
@@ -971,20 +971,20 @@ namespace Xenon.GcavToExpr
                             Log_TextIndented t = new Log_TextIndentedImpl();
 
                             t.Append("「ａ－ｃａｓｅ」という名前の要素を期待しましたが、[");
-                            t.Append(err_CfAttr.SName);
+                            t.Append(err_CfAttr.Name);
                             t.Append("]でした。[");
                             t.Append(err_CfAttr.GetType().Name);
                             t.Append("]クラスでした。");
-                            t.NewLine();
+                            t.Newline();
 
                             t.Append("　プログラムにミスがあるかもしれません。");
-                            t.NewLine();
-                            t.NewLine();
+                            t.Newline();
+                            t.Newline();
 
                             // ヒント
                             t.Append(r.Message_Givechapterandverse(err_CfAttr));
 
-                            r.SMessage = t.ToString();
+                            r.Message = t.ToString();
                             log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod2;
@@ -1017,7 +1017,7 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "ParseChild_Special_",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "ParseChild_Special_",log_Reports);
 
             //
             //
@@ -1028,7 +1028,7 @@ namespace Xenon.GcavToExpr
             // データ_ソース、データ_ターゲット、＜ｆｎｃ　＞の子要素。
 
 
-            string sName_OwnerNode = owner_Ec.Cur_Givechapterandverse.SName;
+            string sName_OwnerNode = owner_Ec.Cur_Givechapterandverse.Name;
             string sName_OwnerFnc = "";
             {
                 bool bRequired;
@@ -1043,7 +1043,7 @@ namespace Xenon.GcavToExpr
                 {
                     bRequired = false;
                 }
-                bool bHit = owner_Ec.DicExpression_Attr.TrySelect(out sName_OwnerFnc, PmNames.S_NAME.SName_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = owner_Ec.Dictionary_Expression_Attribute.TrySelect(out sName_OwnerFnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
             }
 
 
@@ -1062,7 +1062,7 @@ namespace Xenon.GcavToExpr
             cur_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node cf_Child, ref bool bBreak)
             {
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (null == cf_Child)
                     {
@@ -1071,7 +1071,7 @@ namespace Xenon.GcavToExpr
                     }
                     else
                     {
-                        string sName_AtNode = cf_Child.SName;
+                        string sName_AtNode = cf_Child.Name;
                         string sName_AtFnc = "";
                         {
                             bool bRequired;
@@ -1090,7 +1090,7 @@ namespace Xenon.GcavToExpr
                                 bRequired = false;
                             }
 
-                            cf_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_AtFnc, bRequired, log_Reports);
+                            cf_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_AtFnc, bRequired, log_Reports);
                         }
 
 
@@ -1121,7 +1121,7 @@ namespace Xenon.GcavToExpr
                             else if (
                                 NamesFnc.S_TEXT_TEMPLATE == sName_OwnerFnc &&
                                 //NamesNode.S_F_TEXT_TEMPLATE2 == sOwnerNodeName &&
-                                PmNames.S_TABLE.SName_Pm == sName_AtFnc
+                                PmNames.S_TABLE.Name_Pm == sName_AtFnc
                                 )
                             {
                                 // 【追加 2012-06-05】
@@ -1134,7 +1134,7 @@ namespace Xenon.GcavToExpr
 
                                 if (log_Method.CanDebug(2))
                                 {
-                                    log_Method.WriteDebug_ToConsole("テキストテンプレートのテーブル属性。親要素「S■[" + sName_OwnerNode + "]　ｎａｍｅ＝”[" + sName_OwnerFnc + "]”」　自要素「[" + sName_AtNode + "]　ｎａｍｅ＝”[" + sName_AtFnc + "]”」 子要素数=[" + cf_Child.List_ChildGivechapterandverse.NCount + "]　string属性数＝[" + cf_Child.Dictionary_SAttribute_Givechapterandverse.NCount + "]　S_Elm属性数＝[" + cf_Child.Dictionary_SAttribute_Givechapterandverse.NCount + "]");
+                                    log_Method.WriteDebug_ToConsole("テキストテンプレートのテーブル属性。親要素「S■[" + sName_OwnerNode + "]　ｎａｍｅ＝”[" + sName_OwnerFnc + "]”」　自要素「[" + sName_AtNode + "]　ｎａｍｅ＝”[" + sName_AtFnc + "]”」 子要素数=[" + cf_Child.List_ChildGivechapterandverse.Count + "]　string属性数＝[" + cf_Child.Dictionary_Attribute_Givechapterandverse.Count + "]　S_Elm属性数＝[" + cf_Child.Dictionary_Attribute_Givechapterandverse.Count + "]");
                                 }
 
                                 //
@@ -1143,7 +1143,7 @@ namespace Xenon.GcavToExpr
                                 //
                                 //
                                 string sValue;
-                                cf_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                                cf_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                                 Expression_Node_String ec_Tbl = new Expression_Node_StringImpl(owner_Ec, cf_Child);
                                 ec_Tbl.AppendTextNode(
@@ -1152,8 +1152,8 @@ namespace Xenon.GcavToExpr
                                     log_Reports
                                     );
 
-                                owner_Ec.DicExpression_Attr.Set(
-                                    PmNames.S_TABLE.SName_Pm,
+                                owner_Ec.Dictionary_Expression_Attribute.Set(
+                                    PmNames.S_TABLE.Name_Pm,
                                     ec_Tbl,
                                     log_Reports
                                     );
@@ -1229,21 +1229,21 @@ namespace Xenon.GcavToExpr
 
                     Log_TextIndented t = new Log_TextIndentedImpl();
 
-                    t.Append("　<" + cur_Cf.SName + ">要素に、ヌルのattr要素が入っていました。");
-                    t.NewLine();
+                    t.Append("　<" + cur_Cf.Name + ">要素に、ヌルのattr要素が入っていました。");
+                    t.Newline();
 
                     t.Append("　プログラムのミスかも知れません。");
-                    t.NewLine();
-                    t.NewLine();
+                    t.Newline();
+                    t.Newline();
 
-                    t.Append("　　・(Fcnf) ＜" + cur_Cf.SName + "＞ 要素に、＜ａ－ｗｈｅｒｅ＞要素がないものには未対応です。");
-                    t.NewLine();
-                    t.NewLine();
+                    t.Append("　　・(Fcnf) ＜" + cur_Cf.Name + "＞ 要素に、＜ａ－ｗｈｅｒｅ＞要素がないものには未対応です。");
+                    t.Newline();
+                    t.Newline();
 
                     // ヒント
                     t.Append(r.Message_Givechapterandverse(cf_Child));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
                 goto gt_nextAttr;
@@ -1257,28 +1257,28 @@ namespace Xenon.GcavToExpr
                     Log_TextIndented s = new Log_TextIndentedImpl();
 
                     s.Append("「S■ａｒｇ３」のname属性で、「p1p」、「p2p」などのattr要素の名前を期待しましたが、「S■[");
-                    s.Append(err_Cf_AtElm.SName);
+                    s.Append(err_Cf_AtElm.Name);
                     s.Append("]　name=”[" + err_SAtFncName + "]”」でした。");
-                    s.NewLine();
+                    s.Newline();
                     s.Append("[");
                     s.Append(err_Cf_AtElm.GetType().Name);
                     s.Append("]クラスでした。");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     s.Append("親「S■[" + sName_OwnerNode + "]　ｎａｍｅ＝”[" + sName_OwnerFnc + "]”」");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     s.Append("　プログラムにミスがあるかもしれません。");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(err_Cf_AtElm));
                     s.Append(r.Message_SException(err_E));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
                 goto gt_nextAttr;
@@ -1292,26 +1292,26 @@ namespace Xenon.GcavToExpr
                     Log_TextIndented s = new Log_TextIndentedImpl();
 
                     s.Append("（タイプ１）「select」、「ｆｒｏｍ」など、attr要素の名前を期待しましたが、[");
-                    s.Append(err_Cf_AtElm.SName);
+                    s.Append(err_Cf_AtElm.Name);
                     s.Append("]でした。[");
                     s.Append(err_Cf_AtElm.GetType().Name);
                     s.Append("]クラスでした。");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     s.Append("親「S■[" + sName_OwnerNode + "]　ｎａｍｅ＝”[" + sName_OwnerFnc + "]”」");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     s.Append("　プログラムにミスがあるかもしれません。");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(err_Cf_AtElm));
                     s.Append(r.Message_SException(err_E));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
                 goto gt_nextAttr;
@@ -1354,7 +1354,7 @@ namespace Xenon.GcavToExpr
                     //
 
                     // ｌｏｏｋｕｐ－ｉｄ属性。 //Ｓｆ：ｔｅｘｔ－ｔｅｍｐｌａｔｅ；用。
-                    dic_B.Add(PmNames.S_LOOKUP_ID.SName_Pm, new GivechapterandverseToExpression_F16_LookupIdImpl_());
+                    dic_B.Add(PmNames.S_LOOKUP_ID.Name_Pm, new GivechapterandverseToExpression_F16_LookupIdImpl_());
 
 
                     // "ｃａｓｅ" 、”ａｒｇ１”は？→別の場所。

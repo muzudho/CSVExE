@@ -38,7 +38,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToCf",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToCf",log_Reports);
             //
             //
 
@@ -73,7 +73,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Test_Attributes(cur_X, cur_Cf, log_Reports);
             }
@@ -88,7 +88,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XToGivechapterandverse_C14_HubImpl to = new XToGivechapterandverse_C14_HubImpl();
                 to.XToGivechapterandverse(
@@ -108,7 +108,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.LinkToParent(cur_Cf, parent_Cf, memoryApplication, log_Reports);
             }
@@ -135,13 +135,13 @@ namespace Xenon.XToGcav
         protected override void Test_Attributes(XmlElement cur_X, Givechapterandverse_Node cur_Cf, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Test_Attributes",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Test_Attributes",log_Reports);
 
             string sMemory;
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out sMemory, false, log_Reports);
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out sMemory, false, log_Reports);
 
             string sAccess_Src;
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess_Src, false, log_Reports);
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess_Src, false, log_Reports);
 
             //
             // ａｃｃｅｓｓ
@@ -214,11 +214,11 @@ namespace Xenon.XToGcav
                 //ａｃｃｅｓｓ属性に「ｔｏ」が指定されていない時に、ｔａｒｇｅｔ属性に「ｎｏｎｅ」「ｃｅｌｌ」「ｌｉｓｔｂｏｘ」以外のものが設定されていました。これはエラーです。
                 //
                 //ａｃｃｅｓｓ属性に「ｔｏ」が指定されていない場合は、ｔａｒｇｅｔ属性は「ｎｏｎｅ」「ｃｅｌｌ」「ｌｉｓｔｂｏｘ」のいずれかにしなければなりません。
-                s.Append(PmNames.S_ACCESS.SName_Attr);
+                s.Append(PmNames.S_ACCESS.Name_Attribute);
                 s.Append("属性に「");
                 s.Append(ValuesAttr.S_TO);
                 s.Append("」が指定されていない時に、");
-                s.Append(PmNames.S_MEMORY.SName_Attr);
+                s.Append(PmNames.S_MEMORY.Name_Attribute);
                 s.Append("属性に「");
                 s.Append(ValuesAttr.S_NONE);
                 s.Append("」「");
@@ -226,14 +226,14 @@ namespace Xenon.XToGcav
                 s.Append("」「");
                 s.Append(ValuesAttr.S_RECORDS);
                 s.Append("」以外のものが設定されていました。これはエラーです。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
-                s.Append(PmNames.S_ACCESS.SName_Attr);
+                s.Append(PmNames.S_ACCESS.Name_Attribute);
                 s.Append("属性に「");
                 s.Append(ValuesAttr.S_TO);
                 s.Append("」が指定されていない場合は、");
-                s.Append(PmNames.S_MEMORY.SName_Attr);
+                s.Append(PmNames.S_MEMORY.Name_Attribute);
                 s.Append("属性は「");
                 s.Append(ValuesAttr.S_NONE);
                 s.Append("」「");
@@ -241,13 +241,13 @@ namespace Xenon.XToGcav
                 s.Append("」「");
                 s.Append(ValuesAttr.S_RECORDS);
                 s.Append("」のいずれかにしなければなりません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -259,7 +259,7 @@ namespace Xenon.XToGcav
                 r.SetTitle("▲エラー809！", log_Method);
 
                 StringBuilder s = new StringBuilder();
-                s.Append(PmNames.S_MEMORY.SName_Attr+"属性値[" + sMemory + "]はエラーです。");
+                s.Append(PmNames.S_MEMORY.Name_Attribute+"属性値[" + sMemory + "]はエラーです。");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
                 s.Append("「" + ValuesAttr.S_CELL + "」「" + ValuesAttr.S_RECORDS + "」「" + ValuesAttr.S_VARIABLE + "」、のいずれかを指定してください。");
@@ -269,7 +269,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -281,7 +281,7 @@ namespace Xenon.XToGcav
                 r.SetTitle("▲エラー809！", log_Method);
 
                 StringBuilder s = new StringBuilder();
-                s.Append(PmNames.S_ACCESS.SName_Attr+"属性値[" + err_sAccess + "]はエラーです。指定全文=[" + sAccess_Src + "]");
+                s.Append(PmNames.S_ACCESS.Name_Attribute+"属性値[" + err_sAccess + "]はエラーです。指定全文=[" + sAccess_Src + "]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
                 s.Append("「" + ValuesAttr.S_FROM + "」、「" + ValuesAttr.S_TO + "」、指定なし、のいずれかを指定してください。");
@@ -291,7 +291,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -311,7 +311,7 @@ namespace Xenon.XToGcav
         protected override void LinkToParent(Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             string sAccess;
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
 
             bool bHit = false;
 

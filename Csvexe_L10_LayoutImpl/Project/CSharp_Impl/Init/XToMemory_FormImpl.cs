@@ -50,7 +50,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "LoadUserformconfigFile",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "LoadUserformconfigFile",pg_Logging);
             //
             //
 
@@ -58,11 +58,11 @@ namespace Xenon.Layout
             //
             // データ・タイプです。
             string sTypeData;
-            if (pg_Logging.BSuccessful)
+            if (pg_Logging.Successful)
             {
-                if (null != o_Table_Form.STypedata)
+                if (null != o_Table_Form.Typedata)
                 {
-                    sTypeData = o_Table_Form.STypedata;
+                    sTypeData = o_Table_Form.Typedata;
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace Xenon.Layout
                 sTypeData = "";
             }
 
-            if (pg_Logging.BSuccessful)
+            if (pg_Logging.Successful)
             {
                 // TREEフィールドの有無チェック
 
@@ -92,7 +92,7 @@ namespace Xenon.Layout
 
             string sFoundName;
             string sFoundNameRef;
-            if (pg_Logging.BSuccessful)
+            if (pg_Logging.Successful)
             {
                 // NAMEフィールドの存在する有無
                 bool bExistsName = o_Table_Form.DataTable.Columns.Contains("NAME");
@@ -123,14 +123,14 @@ namespace Xenon.Layout
                         XenonValue_StringImpl.TryParse(
                             dataRow[sFieldName],// この連想配列は大文字・小文字を区別しないのが欠点。
                             out sFoundNameRef,
-                            o_Table_Form.SName,
+                            o_Table_Form.Name,
                             sFieldName,
                             pg_Method,
                             pg_Logging
                             );
                         pg_Logging.Log_Callstack.Pop(pg_Method, "①");
 
-                        if (!pg_Logging.BSuccessful)
+                        if (!pg_Logging.Successful)
                         {
                             // エラー
                             goto gt_EndMethod;
@@ -156,14 +156,14 @@ namespace Xenon.Layout
                         XenonValue_StringImpl.TryParse(
                             dataRow[sFieldName],
                             out sFoundName,
-                            o_Table_Form.SName,
+                            o_Table_Form.Name,
                             sFieldName,
                             pg_Method,
                             pg_Logging
                             );
                         pg_Logging.Log_Callstack.Pop(pg_Method, "②");
 
-                        if (!pg_Logging.BSuccessful)
+                        if (!pg_Logging.Successful)
                         {
                             // エラー
                             goto gt_EndMethod;
@@ -206,7 +206,7 @@ namespace Xenon.Layout
                         continue;
                     }
 
-                    if (pg_Logging.BSuccessful)
+                    if (pg_Logging.Successful)
                     {
                         //
                         // レイアウト・テーブル一覧。
@@ -235,7 +235,7 @@ namespace Xenon.Layout
                         }
                     }
 
-                    if (pg_Logging.BSuccessful)
+                    if (pg_Logging.Successful)
                     {
                         //
                         // レイアウト・テーブル（リスト）
@@ -259,7 +259,7 @@ namespace Xenon.Layout
                     }
 
 
-                    if (pg_Logging.BSuccessful)
+                    if (pg_Logging.Successful)
                     {
                         // 正常時。
 
@@ -290,35 +290,35 @@ namespace Xenon.Layout
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定のテーブル[");
-                s.Append(o_Table_Form.SName);
+                s.Append(o_Table_Form.Name);
                 s.Append("に、");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("TREEフィールドが見つかりませんでした。TREEフィールドは必要です。");
-                s.NewLine();
+                s.Newline();
 
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //
                 // 問題箇所ヒント
                 //
                 s.Append("　BaseDirectory=[");
-                s.Append(o_Table_Form.Expression_Filepath_ConfigStack.SDirectory_Base);
+                s.Append(o_Table_Form.Expression_Filepath_ConfigStack.Directory_Base);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("　HumanInputText=[");
-                s.Append(o_Table_Form.Expression_Filepath_ConfigStack.SHumaninput);
+                s.Append(o_Table_Form.Expression_Filepath_ConfigStack.Humaninput);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(o_Table_Form));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -333,50 +333,50 @@ namespace Xenon.Layout
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
                 t.Append("指定のテーブル[");
-                t.Append(o_Table_Form.SName);
+                t.Append(o_Table_Form.Name);
                 t.Append("の中に、");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("NAMEとNAME_REFフィールドの両方に記述があるものがありました。");
-                t.NewLine();
+                t.Newline();
                 t.Append("両方同時に記述してはいけません。");
-                t.NewLine();
+                t.Newline();
 
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 t.Append("NAME=[");
                 t.Append(sFoundName);
                 t.Append("]");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("NAME_REF=[");
                 t.Append(sFoundNameRef);
                 t.Append("]");
-                t.NewLine();
+                t.Newline();
 
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 //
                 // 問題箇所ヒント
                 //
                 t.Append("　BaseDirectory=[");
-                t.Append(o_Table_Form.Expression_Filepath_ConfigStack.SDirectory_Base);
+                t.Append(o_Table_Form.Expression_Filepath_ConfigStack.Directory_Base);
                 t.Append("]");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 t.Append("　HumanInputText=[");
-                t.Append(o_Table_Form.Expression_Filepath_ConfigStack.SHumaninput);
+                t.Append(o_Table_Form.Expression_Filepath_ConfigStack.Humaninput);
                 t.Append("]");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(o_Table_Form));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -408,7 +408,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "Read_Layout",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "Read_Layout",pg_Logging);
             //
             //
 
@@ -428,7 +428,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     //フィールド有り
 
@@ -454,7 +454,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "③");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -481,7 +481,7 @@ namespace Xenon.Layout
                 string sFieldName = NamesFld.S_NO;
 
                 bool bContained = o_Table_Form.ContainsField(sFieldName, false, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     if (bContained)
                     {
@@ -495,7 +495,7 @@ namespace Xenon.Layout
                             );
                         pg_Logging.Log_Callstack.Pop(pg_Method, "④");
 
-                        if (!pg_Logging.BSuccessful)
+                        if (!pg_Logging.Successful)
                         {
                             // エラー
                             goto gt_EndMethod;
@@ -530,14 +530,14 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑤");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -547,7 +547,7 @@ namespace Xenon.Layout
                     {
                         // コントロール名。
                         fo_Record.Set( NamesFld.S_NAME, EnumTypedb.String, sValue, pg_Logging);
-                        //fo_Record.SName = sValue;
+                        //fo_Record.Name = sValue;
                     }
                     else
                     {
@@ -557,10 +557,10 @@ namespace Xenon.Layout
 
                         // コントロール名。
                         fo_Record.Set(NamesFld.S_NAME, EnumTypedb.String, "＜エラー＞", pg_Logging);
-                        //fo_Record.SName = "＜エラー＞";
+                        //fo_Record.Name = "＜エラー＞";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -593,14 +593,14 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑦");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -617,7 +617,7 @@ namespace Xenon.Layout
                         //fo_Record.SType = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -635,14 +635,14 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑧");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -659,7 +659,7 @@ namespace Xenon.Layout
                         //fo_Record.SText = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -677,13 +677,13 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑨");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -693,7 +693,7 @@ namespace Xenon.Layout
                     {
                         Givechapterandverse_Filepath cf_Fpath_Control = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L10_1", o_Table_Form);
                         cf_Fpath_Control.InitPath(sValue, pg_Logging);
-                        if (pg_Logging.BSuccessful)
+                        if (pg_Logging.Successful)
                         {
                             fo_Record.Set(NamesFld.S_FILE, EnumTypedb.GcavFilepath, cf_Fpath_Control, pg_Logging);
                             //fo_Record.Cf_File = cf_Fpath_Control;
@@ -703,14 +703,14 @@ namespace Xenon.Layout
                     {
                         Givechapterandverse_Filepath cf_Fpath_Control = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L10_2", o_Table_Form);
                         cf_Fpath_Control.InitPath("", pg_Logging);
-                        if (pg_Logging.BSuccessful)
+                        if (pg_Logging.Successful)
                         {
                             fo_Record.Set(NamesFld.S_FILE, EnumTypedb.GcavFilepath, cf_Fpath_Control, pg_Logging);
                             //fo_Record.Cf_File = cf_Fpath;
                         }
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -729,7 +729,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑩");
@@ -742,7 +742,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑩");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -782,7 +782,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑪");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -820,7 +820,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑫");
                     bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
@@ -832,7 +832,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑫");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -861,7 +861,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑬");
                     bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
@@ -873,7 +873,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑬");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -907,7 +907,7 @@ namespace Xenon.Layout
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -924,7 +924,7 @@ namespace Xenon.Layout
                         //fo_Record.SNewLine = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -952,13 +952,13 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑮");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -975,7 +975,7 @@ namespace Xenon.Layout
                         //fo_Record.SScrollBars = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -993,13 +993,13 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑯");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -1016,7 +1016,7 @@ namespace Xenon.Layout
                         //fo_Record.SChkValueType = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         goto gt_EndMethod;
                     }
@@ -1033,13 +1033,13 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑰");
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -1056,7 +1056,7 @@ namespace Xenon.Layout
                         //fo_Record.SFontSizePt = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1085,7 +1085,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑱");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1117,7 +1117,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑲");
                     bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
@@ -1129,7 +1129,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑲");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1153,7 +1153,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑳");
                     bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
@@ -1165,7 +1165,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "⑳");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1189,7 +1189,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２１）");
                     bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
@@ -1201,7 +1201,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "（２１）");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1225,7 +1225,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２２）");
                     bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
@@ -1237,7 +1237,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "（２２）");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1261,7 +1261,7 @@ namespace Xenon.Layout
 
                 // フィールドが無ければ、その時点でエラー。
                 o_Table_Form.ContainsField(sFieldName, true, pg_Logging);
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２３）");
                     bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
@@ -1273,7 +1273,7 @@ namespace Xenon.Layout
                         );
                     pg_Logging.Log_Callstack.Pop(pg_Method, "（２３）");
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1302,7 +1302,7 @@ namespace Xenon.Layout
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -1319,7 +1319,7 @@ namespace Xenon.Layout
                         //fo_Record.SBackColor = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1368,7 +1368,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "Read_LayoutLst",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "Read_LayoutLst",pg_Logging);
             //
             //
 
@@ -1402,7 +1402,7 @@ namespace Xenon.Layout
                     {
                         Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー921！", pg_Method);
-                        r.SMessage = "[" + sFieldName + "]フィールドは、[" + o_Table_Form.SName + "]には存在しませんでした。";
+                        r.Message = "[" + sFieldName + "]フィールドは、[" + o_Table_Form.Name + "]には存在しませんでした。";
                         pg_Logging.EndCreateReport();
                     }
                 }
@@ -1434,7 +1434,7 @@ namespace Xenon.Layout
                     }
                     else
                     {
-                        if (!pg_Logging.BSuccessful)
+                        if (!pg_Logging.Successful)
                         {
                             // エラー
                             goto gt_EndMethod;
@@ -1474,7 +1474,7 @@ namespace Xenon.Layout
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -1491,7 +1491,7 @@ namespace Xenon.Layout
                         //fo_Record.SItemDisplayFormat = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -1517,7 +1517,7 @@ namespace Xenon.Layout
                     bool bBool = XenonValue_StringImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         sFieldName,
                         pg_Method,
                         pg_Logging);
@@ -1534,7 +1534,7 @@ namespace Xenon.Layout
                         //fo_Record.SListValueField = "";
                     }
 
-                    if (!pg_Logging.BSuccessful)
+                    if (!pg_Logging.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;

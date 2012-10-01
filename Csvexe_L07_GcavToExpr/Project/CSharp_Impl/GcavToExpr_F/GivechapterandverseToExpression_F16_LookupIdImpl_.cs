@@ -32,11 +32,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(9)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(9)" + cur_Cf.Name);
             }
 
             //
@@ -66,7 +66,7 @@ namespace Xenon.GcavToExpr
                 PmName pmName = PmNames.S_VALUE;
 
                 string sValue;
-                bool bHit = cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
                 if (bHit)
                 {
 
@@ -98,7 +98,7 @@ namespace Xenon.GcavToExpr
                     //
                     //
                     //
-                    parent_Ec.DicExpression_Attr.Set(PmNames.S_LOOKUP_ID.SName_Pm, cur_Ec, log_Reports);
+                    parent_Ec.Dictionary_Expression_Attribute.Set(PmNames.S_LOOKUP_ID.Name_Pm, cur_Ec, log_Reports);
 
                     goto gt_EndMethod;
                 }
@@ -136,7 +136,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Ec.DicExpression_Attr.Set(PmNames.S_LOOKUP_ID.SName_Pm, cur_Ec, log_Reports);
+            parent_Ec.Dictionary_Expression_Attribute.Set(PmNames.S_LOOKUP_ID.Name_Pm, cur_Ec, log_Reports);
 
 
             //
@@ -149,12 +149,12 @@ namespace Xenon.GcavToExpr
             if (log_Method.CanDebug(1))
             {
                 string parent_SName_Fnc;
-                parent_Ec.DicExpression_Attr.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 親＜[" + parent_Ec.Cur_Givechapterandverse.SName + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”　＞");
+                parent_Ec.Dictionary_Expression_Attribute.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 親＜[" + parent_Ec.Cur_Givechapterandverse.Name + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”　＞");
 
                 string sName_MyFnc;
-                cur_Ec.DicExpression_Attr.TrySelect(out sName_MyFnc, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 自＜[" + cur_Ec.Cur_Givechapterandverse.SName + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”　＞");
+                cur_Ec.Dictionary_Expression_Attribute.TrySelect(out sName_MyFnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 自＜[" + cur_Ec.Cur_Givechapterandverse.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”　＞");
             }
 
 
@@ -164,7 +164,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

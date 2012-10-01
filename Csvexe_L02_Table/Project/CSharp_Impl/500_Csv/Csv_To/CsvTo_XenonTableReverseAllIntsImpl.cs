@@ -35,7 +35,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Read",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Read",log_Reports);
 
             //
             //
@@ -43,10 +43,10 @@ namespace Xenon.Table
             //
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
-            XenonTable xenonTable = new XenonTableImpl(forTable_Request.SName_PutToTable, forTable_Request.Expression_Filepath);
-            xenonTable.STableunit = forTable_Request.STableunit;
-            xenonTable.STypedata = forTable_Request.STypedata;
-            xenonTable.BDatebackup = forTable_Request.BDatebackup;
+            XenonTable xenonTable = new XenonTableImpl(forTable_Request.Name_PutToTable, forTable_Request.Expression_Filepath);
+            xenonTable.Tableunit = forTable_Request.Tableunit;
+            xenonTable.Typedata = forTable_Request.Typedata;
+            xenonTable.IsDatebackupActivated = forTable_Request.IsDatebackupActivated;
             xenonTable.XenonTableformat = forTable_Format;
 
 
@@ -145,7 +145,7 @@ namespace Xenon.Table
                         //
                         nColumnIndex = 1;
                         {
-                            fieldDefinition.SComment = sToken;
+                            fieldDefinition.Comment = sToken;
                         }
 
                     }
@@ -216,7 +216,7 @@ namespace Xenon.Table
 
             // テーブル作成。テーブルのフィールド型定義と、データ本体をセットします。
             xenonTable.CreateTable(list_FldDef,log_Reports);
-            if( log_Reports.BSuccessful)
+            if( log_Reports.Successful)
             {
                 xenonTable.AddRecordList(rows, list_FldDef, log_Reports);
                 //essageBox.Show("CSV読取後のテーブル作成終わり", "TableCsvLibデバッグ");

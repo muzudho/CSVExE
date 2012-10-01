@@ -42,15 +42,15 @@ namespace Xenon.Controls
             //.WriteLine(this.GetType().NFcName + "#: 【開始】データのアップデートを始める。");
 
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "ToM_ToSelectedField",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ToM_ToSelectedField",log_Reports);
             //
             //
 
             string sName_SelectedFld;
             {
-                bool bHit = ec_Fcell.TrySelectAttr(
+                bool bHit = ec_Fcell.TrySelectAttribute(
                     out sName_SelectedFld,
-                    PmNames.S_SELECT.SName_Pm,
+                    PmNames.S_SELECT.Name_Pm,
                     true,
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
@@ -68,7 +68,7 @@ namespace Xenon.Controls
 
                 // 空欄も自動処理
                 XenonValue_StringImpl cellData = new XenonValue_StringImpl(sConfigStack_StringOfCell);
-                cellData.SHumaninput = sValue_Output;
+                cellData.Humaninput = sValue_Output;
 
 
                 row[sName_SelectedFld] = cellData;
@@ -77,14 +77,14 @@ namespace Xenon.Controls
             {
                 // 空欄も自動処理
                 XenonValue_IntImpl cellData = new XenonValue_IntImpl(sConfigStack_StringOfCell);
-                cellData.SHumaninput = sValue_Output;
+                cellData.Humaninput = sValue_Output;
                 row[sName_SelectedFld] = cellData;
             }
             else if (selFldDefinition.Type == typeof(XenonValue_BoolImpl))
             {
                 // 空欄も自動処理
                 XenonValue_BoolImpl cellData = new XenonValue_BoolImpl(sConfigStack_StringOfCell);
-                cellData.SHumaninput = sValue_Output;
+                cellData.Humaninput = sValue_Output;
                 row[sName_SelectedFld] = cellData;
 
                 //if ("" == outputValueStr.Trim())
@@ -105,7 +105,7 @@ namespace Xenon.Controls
                 //        // エラー中断。
                 //        WarningReport dr = new WarningReport();
                 //        dr.STitle = "▲エラー1213！（"+Info_Forms.LibraryName+"）";
-                //        dr.SMessage = "数値型のフィールドに文字[" + outputValueStr + "]を入れようとしました。";
+                //        dr.Message = "数値型のフィールドに文字[" + outputValueStr + "]を入れようとしました。";
                 //        log_Reports.Add(dr);
                 //        return;
                 //    }
@@ -131,7 +131,7 @@ namespace Xenon.Controls
                     // ヒント
                     t.Append(r.Message_Givechapterandverse(ec_Fcell.Cur_Givechapterandverse));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }

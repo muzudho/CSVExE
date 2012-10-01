@@ -44,10 +44,10 @@ namespace Xenon.Table
                 if (bRequired)
                 {
                     Log_TextIndented t = new Log_TextIndentedImpl();
-                    t.Append("▲エラー202！（" + Info_Table.SName_Library + "）");
-                    t.NewLine();
+                    t.Append("▲エラー202！（" + Info_Table.Name_Library + "）");
+                    t.Newline();
                     t.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
-                    t.NewLine();
+                    t.Newline();
 
                     t.Append("指定された値のクラス=[");
                     t.Append(value.GetType().Name);
@@ -130,10 +130,10 @@ namespace Xenon.Table
         gt_Error_AnotherType:
             {
                 Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー201！（" + Info_Table.SName_Library + "）");
-                t.NewLine();
+                t.Append("▲エラー201！（" + Info_Table.Name_Library + "）");
+                t.Newline();
                 t.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("指定された値のクラス=[");
                 t.Append(value.GetType().Name);

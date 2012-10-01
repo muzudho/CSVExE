@@ -32,12 +32,12 @@ namespace Xenon.Functions
         /// <summary>
         /// 元となるテーブル名。//カンマ区切りで複数指定できる。
         /// </summary>
-        public static readonly string S_PM_NAME_TABLE_SRC = PmNames.S_NAME_TABLE_SRC.SName_Pm;
+        public static readonly string S_PM_NAME_TABLE_SRC = PmNames.S_NAME_TABLE_SRC.Name_Pm;
 
         /// <summary>
         /// 外部アプリケーションを実行するなら、そのファイルパス。なければ空文字列。
         /// </summary>
-        public static string S_PM_FILEPATH_EXTERNALAPPLICATION = PmNames.S_FILEPATH_EXTERNALAPPLICATION.SName_Pm;
+        public static string S_PM_FILEPATH_EXTERNALAPPLICATION = PmNames.S_FILEPATH_EXTERNALAPPLICATION.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -57,18 +57,18 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "E_Sa06Impl",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "E_Sa06Impl",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function06Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function06Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function06Impl.S_PM_NAME_TABLE_SRC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function06Impl.S_PM_FILEPATH_EXTERNALAPPLICATION, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function06Impl.S_PM_NAME_TABLE_SRC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function06Impl.S_PM_FILEPATH_EXTERNALAPPLICATION, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -91,16 +91,16 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)// EventArgs e
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
                 string sFncName;
-                this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 if (log_Reports.CanStopwatch)
                 {
-                    log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
+                    log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName + "]実行";
                     log_Method.Log_Stopwatch.Begin();
                 }
 
@@ -111,11 +111,11 @@ namespace Xenon.Functions
 
                     string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    log_Reports.SComment_EventCreationMe = "[" + fcNameStr + "]コントロールが、[" + sFncName + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe = "[" + fcNameStr + "]コントロールが、[" + sFncName + "]アクションを実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe = "[" + sFncName + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe = "[" + sFncName + "]アクションを実行。";
                 }
 
 
@@ -124,7 +124,7 @@ namespace Xenon.Functions
                 XenonTable o_Table_Src;
                 {
                     Expression_Node_String ec_ArgTableName;
-                    this.TrySelectAttr(out ec_ArgTableName, Expression_Node_Function06Impl.S_PM_NAME_TABLE_SRC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function06Impl.S_PM_NAME_TABLE_SRC, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
                         ec_ArgTableName,
@@ -135,7 +135,7 @@ namespace Xenon.Functions
 
 
                 Expression_Node_Filepath ec_Fpath_Csv;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     ec_Fpath_Csv = o_Table_Src.Expression_Filepath_ConfigStack;
                 }
@@ -147,14 +147,14 @@ namespace Xenon.Functions
 
                 // CSVファイルパス
                 string sFpatha_csv;//絶対ファイルパス
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
 
                     // TODO ファイルパスの妥当性判定も欲しい
                     sFpatha_csv = ec_Fpath_Csv.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -169,14 +169,14 @@ namespace Xenon.Functions
                 // 外部アプリケーションの起動。
                 //
                 Expression_Node_String ec_Fpath_ArgExternalApplication;
-                this.TrySelectAttr(out ec_Fpath_ArgExternalApplication, Expression_Node_Function06Impl.S_PM_FILEPATH_EXTERNALAPPLICATION, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Fpath_ArgExternalApplication, Expression_Node_Function06Impl.S_PM_FILEPATH_EXTERNALAPPLICATION, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 string sEaFilePath = ec_Fpath_ArgExternalApplication.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
                 if ("" != sEaFilePath)
                 {
                     Expression_Node_Filepath ec_Fpath_App;
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 
@@ -187,7 +187,7 @@ namespace Xenon.Functions
                             log_Reports
                             );
 
-                        ec_Fpath_App = ecValue.Execute_OnExpressionString_AsFilePath(
+                        ec_Fpath_App = ecValue.Execute_OnExpressionString_AsFilepath(
                             Request_SelectingImpl.Unconstraint,
                             log_Reports
                             );
@@ -199,7 +199,7 @@ namespace Xenon.Functions
 
 
                     string sFpatha_ExternalApplication;//絶対ファイルパス
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 
@@ -207,7 +207,7 @@ namespace Xenon.Functions
                         // 外部プログラムの起動
                         sFpatha_ExternalApplication = ec_Fpath_App.Execute_OnExpressionString(
                             Request_SelectingImpl.Unconstraint, log_Reports);
-                        if (!log_Reports.BSuccessful)
+                        if (!log_Reports.Successful)
                         {
                             // 既エラー。
                             goto gt_EndMethod;
@@ -218,7 +218,7 @@ namespace Xenon.Functions
                         sFpatha_ExternalApplication = "";
                     }
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 

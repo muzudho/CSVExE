@@ -51,14 +51,14 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
             string sResult;
 
             //
             List<Usercontrol> ucList_Fc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(this.Expression_UsercontrolName, true, log_Reports);
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (1 != ucList_Fc.Count)
                 {
@@ -93,7 +93,7 @@ namespace Xenon.Expr
                 s.Append("[");
                 s.Append(this.Expression_UsercontrolName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                 s.Append("]");
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -112,7 +112,7 @@ namespace Xenon.Expr
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "ToString",log_Reports_ThisMethod);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "ToString",log_Reports_ThisMethod);
 
             log_Reports_ThisMethod.BeginCreateReport(EnumReport.Dammy);
 
@@ -122,7 +122,7 @@ namespace Xenon.Expr
             sb.Append(" ");
             sb.Append(this.Cur_Givechapterandverse.Parent_Givechapterandverse);
             sb.Append(" [");
-            sb.Append(this.DicExpression_Attr.ToString());
+            sb.Append(this.Dictionary_Expression_Attribute.ToString());
             sb.Append("] 変数名");
             sb.Append(this.Expression_UsercontrolName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod));
             sb.Append("");

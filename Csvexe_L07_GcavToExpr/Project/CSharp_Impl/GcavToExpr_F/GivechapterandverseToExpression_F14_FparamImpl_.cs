@@ -36,11 +36,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(28)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(28)" + cur_Cf.Name);
             }
 
             //
@@ -66,7 +66,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 非必須　ｃａｌｌ＝””　ｃａｌｌ属性がなくても正常です。子要素を見に行きます。
                 this.ParseAttr_InGivechapterandverseToExpression(
@@ -107,7 +107,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                parent_Ec.ListExpression_Child.Add(cur_Ec, log_Reports);
+                parent_Ec.List_Expression_Child.Add(cur_Ec, log_Reports);
             }
 
             //
@@ -117,7 +117,7 @@ namespace Xenon.GcavToExpr
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

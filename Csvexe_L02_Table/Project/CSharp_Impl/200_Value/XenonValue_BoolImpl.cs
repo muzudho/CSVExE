@@ -44,11 +44,11 @@ namespace Xenon.Table
             txt.Append("クラス");
 
             txt.AppendI(1, "humanInputString=[");
-            txt.Append(this.SHumaninput);
+            txt.Append(this.Humaninput);
             txt.Append("]");
 
             txt.AppendI(0, ">");
-            txt.NewLine();
+            txt.Newline();
 
 
             txt.Decrement();
@@ -60,14 +60,14 @@ namespace Xenon.Table
         {
             bool bSuccess;
 
-            if (this.BValidated)
+            if (this.IsValidated)
             {
                 bResult = this.bValue_Bool;
                 bSuccess = true;
             }
             else
             {
-                if (bool.TryParse(this.SHumaninput, out this.bValue_Bool))
+                if (bool.TryParse(this.Humaninput, out this.bValue_Bool))
                 {
                     bResult = this.bValue_Bool;
                     bSuccess = true;
@@ -93,7 +93,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, "XenonValue_BoolImpl", "TryParse", log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "XenonValue_BoolImpl", "TryParse", log_Reports);
 
             bool bResult;
 
@@ -139,7 +139,7 @@ namespace Xenon.Table
                     }
 
                 }
-                else if (!boolCellData.bValidated)
+                else if (!boolCellData.isValidated)
                 {
                     // エラー（変換に失敗した場合）
                     bValue_Out = false;//ゴミ値
@@ -192,7 +192,7 @@ namespace Xenon.Table
                 s.Append("　altValue引数には、bool型の値を指定してください。");
                 s.Append(Environment.NewLine);
                 s.Append("　　boolセル値=[");
-                s.Append(err_BoolCellData.SHumaninput);
+                s.Append(err_BoolCellData.Humaninput);
                 s.Append("]");
 
                 s.Append(Environment.NewLine);
@@ -200,7 +200,7 @@ namespace Xenon.Table
                 s.Append("　　問題箇所ヒント：");
                 err_BoolCellData.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -216,14 +216,14 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
                 s.Append("　　boolセル値=[");
-                s.Append(err_BoolCellData.SHumaninput);
+                s.Append(err_BoolCellData.Humaninput);
                 s.Append("]");
 
                 //
                 // ヒント
                 err_BoolCellData.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -236,14 +236,14 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("　bool型に変換できませんでした。[");
-                s.Append(err_BoolCellData.SHumaninput);
+                s.Append(err_BoolCellData.Humaninput);
                 s.Append("]");
 
                 //
                 // ヒント
                 err_BoolCellData.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -257,7 +257,7 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("　指定の引数dataに、BoolCellData型の値を指定してください。空っぽでした。");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -273,7 +273,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
                 s.Append("　別の型[" + data.GetType().Name + "]でした。");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -286,7 +286,7 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定の引数の値[");
-                s.Append(((XenonValue)data).SHumaninput);
+                s.Append(((XenonValue)data).Humaninput);
                 s.Append("]は、BoolCellData型ではありませんでした。");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -297,7 +297,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -318,7 +318,7 @@ namespace Xenon.Table
                 return ((XenonValue_BoolImpl)data).bSpaced;
             }
 
-            throw new System.ArgumentException("指定の引数の値[" + ((XenonValue)data).SHumaninput + "]は、bool型ではありませんでした。");
+            throw new System.ArgumentException("指定の引数の値[" + ((XenonValue)data).Humaninput + "]は、bool型ではありませんでした。");
         }
 
         //────────────────────────────────────────        
@@ -347,7 +347,7 @@ namespace Xenon.Table
                     return true;
                 }
 
-                if (this.BValidated && obj2.BValidated)
+                if (this.IsValidated && obj2.IsValidated)
                 {
                     // お互いがブール値なら
 
@@ -357,7 +357,7 @@ namespace Xenon.Table
                 {
                     // どちらか片方でも非ブール値なら
 
-                    return this.SHumaninput == obj2.SHumaninput;
+                    return this.Humaninput == obj2.Humaninput;
                 }
             }
 
@@ -372,7 +372,7 @@ namespace Xenon.Table
                 }
 
                 // このオブジェクトが非bool値なら偽。
-                if (!this.BValidated)
+                if (!this.IsValidated)
                 {
                     return false;
                 }
@@ -399,13 +399,13 @@ namespace Xenon.Table
 
         public bool GetBool()
         {
-            if (!bValidated)
+            if (!isValidated)
             {
-                bool bSuccessful = this.BValidated;
+                bool bSuccessful = this.IsValidated;
                 if (!bSuccessful)
                 {
                     // 変換に失敗した場合。
-                    throw new System.InvalidOperationException("bool型に変換できませんでした。[" + this.SHumaninput + "]");
+                    throw new System.InvalidOperationException("bool型に変換できませんでした。[" + this.Humaninput + "]");
                 }
             }
             return bValue_Bool;
@@ -414,7 +414,7 @@ namespace Xenon.Table
         public void SetBool(bool bValue)
         {
             this.bValue_Bool = bValue;
-            this.SHumaninput = bValue.ToString();
+            this.Humaninput = bValue.ToString();
         }
 
         //────────────────────────────────────────
@@ -425,7 +425,7 @@ namespace Xenon.Table
 
             if (data is XenonValue_BoolImpl)
             {
-                sResult = ((XenonValue_BoolImpl)data).SHumaninput;
+                sResult = ((XenonValue_BoolImpl)data).Humaninput;
                 goto gt_EndMethod;
             }
 
@@ -434,7 +434,7 @@ namespace Xenon.Table
             //
             Log_TextIndented t = new Log_TextIndentedImpl();
             t.Append("指定の引数の値[");
-            t.Append(((XenonValue)data).SHumaninput);
+            t.Append(((XenonValue)data).Humaninput);
             t.Append("]は、bool型ではありませんでした。");
             t.Append(Environment.NewLine);
 
@@ -453,27 +453,27 @@ namespace Xenon.Table
         /// <summary>
         /// 入力データそのままの形。
         /// </summary>
-        public override string SHumaninput
+        public override string Humaninput
         {
             get
             {
-                return this.sHumaninput;
+                return this.humaninput;
             }
             set
             {
                 if ("" == value.Trim())
                 {
                     bSpaced = true;
-                    bValidated = true;
+                    isValidated = true;
                 }
                 else
                 {
                     bSpaced = false;
 
-                    bValidated = bool.TryParse(value, out bValue_Bool);
+                    isValidated = bool.TryParse(value, out bValue_Bool);
                 }
 
-                this.sHumaninput = value;
+                this.humaninput = value;
             }
         }
 
@@ -481,7 +481,7 @@ namespace Xenon.Table
 
         public override int GetHashCode()
         {
-            return this.SHumaninput.GetHashCode();
+            return this.Humaninput.GetHashCode();
         }
 
         //────────────────────────────────────────

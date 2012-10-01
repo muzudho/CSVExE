@@ -123,7 +123,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "Create",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "Create",pg_Logging);
             //
             //
 
@@ -190,13 +190,13 @@ namespace Xenon.Layout
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("ucontrolがヌルでした。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -210,19 +210,19 @@ namespace Xenon.Layout
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("コントロールの型が指定されていません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("　『レイアウト設定』をもとに、コントロールを作成しているときに、");
-                s.NewLine();
+                s.Newline();
                 s.Append("　エラーが発生しました。");
-                s.NewLine();
+                s.Newline();
 
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -238,10 +238,10 @@ namespace Xenon.Layout
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　『レイアウト設定』をもとに、コントロールを作成しているときに、");
-                t.NewLine();
+                t.Newline();
                 t.Append("　エラーが発生しました。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 t.Append("　　指定の型=[");
                 t.Append(sType_Control);
@@ -250,7 +250,7 @@ namespace Xenon.Layout
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;

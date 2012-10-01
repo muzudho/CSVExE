@@ -21,7 +21,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数の型の名前。例：[I]
         /// </summary>
-        string SType
+        string Name_Type
         {
             get;
         }
@@ -29,7 +29,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数の番号。
         /// </summary>
-        int NNumber
+        int Number
         {
             get;
         }
@@ -37,7 +37,7 @@ namespace Xenon.Operating
         /// <summary>
         /// テキスト。
         /// </summary>
-        string SText
+        string Text
         {
             get;
         }

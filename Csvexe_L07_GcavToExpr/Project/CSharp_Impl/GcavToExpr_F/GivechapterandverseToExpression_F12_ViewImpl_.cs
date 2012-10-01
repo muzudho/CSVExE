@@ -40,11 +40,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(3)"+cur_Cf.SName);
+                pg_ParsingLog.Increment("(3)"+cur_Cf.Name);
             }
 
             //
@@ -78,7 +78,7 @@ namespace Xenon.GcavToExpr
                     {
                         Givechapterandverse_Node cf_Node = (Givechapterandverse_Node)cf_Child;
 
-                        string sName_Node = cf_Node.SName;
+                        string sName_Node = cf_Node.Name;
                         string sName_Fnc = "";
                         {
                             bool bRequired;
@@ -93,7 +93,7 @@ namespace Xenon.GcavToExpr
                             }
 
                             // todo; 子要素のnameも取りたい。
-                            cf_Node.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, bRequired, log_Reports);
+                            cf_Node.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, bRequired, log_Reports);
                         }
 
                         if (NamesNode.S_FNC == sName_Node && NamesFnc.S_LISTBOX_LABELS == sName_Fnc)
@@ -122,7 +122,7 @@ namespace Xenon.GcavToExpr
                                 t.Append("未対応の要素＝＜[");
                                 t.Append(sName_Node);
                                 t.Append("]　ｎａｍｅ＝”[" + sName_Fnc + "]”＞");
-                                r.SMessage = t.ToString();
+                                r.Message = t.ToString();
                                 log_Reports.EndCreateReport();
                             }
 
@@ -141,7 +141,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                parent_Ec.ListExpression_Child.Add(cur_Ec, log_Reports);
+                parent_Ec.List_Expression_Child.Add(cur_Ec, log_Reports);
             }
 
 
@@ -152,7 +152,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

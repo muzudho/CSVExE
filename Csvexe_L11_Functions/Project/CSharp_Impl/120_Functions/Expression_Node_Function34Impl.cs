@@ -32,17 +32,17 @@ namespace Xenon.Functions
         /// <summary>
         /// 変数の名前。未設定ならヌル？。
         /// </summary>
-        public static readonly string S_PM_NAME_VAR = PmNames.S_NAME_VAR.SName_Pm;
+        public static readonly string S_PM_NAME_VAR = PmNames.S_NAME_VAR.Name_Pm;
 
         /// <summary>
         /// 変数の値。未設定ならヌル。
         /// </summary>
-        public static readonly string S_PM_VALUE = PmNames.S_VALUE.SName_Pm;
+        public static readonly string S_PM_VALUE = PmNames.S_VALUE.Name_Pm;
 
         /// <summary>
         /// 空文字で無ければ、処理をスキップする。
         /// </summary>
-        public static readonly string S_PM_FLOWSKIP = PmNames.S_FLOWSKIP.SName_Pm;
+        public static readonly string S_PM_FLOWSKIP = PmNames.S_FLOWSKIP.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -63,19 +63,19 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function34Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function34Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_NAME_VAR, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_VALUE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function34Impl.S_PM_FLOWSKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function34Impl.S_PM_NAME_VAR, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function34Impl.S_PM_VALUE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function34Impl.S_PM_FLOWSKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -99,7 +99,7 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)// EventArgs e
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -113,7 +113,7 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 this.Perform2(
@@ -151,11 +151,11 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
 
             string sFlowSkip;
-            this.TrySelectAttr( out sFlowSkip, Expression_Node_Function34Impl.S_PM_FLOWSKIP, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute( out sFlowSkip, Expression_Node_Function34Impl.S_PM_FLOWSKIP, false, Request_SelectingImpl.Unconstraint, log_Reports);
             if ("" != sFlowSkip.Trim())
             {
                 // 処理をスキップします。
@@ -164,17 +164,17 @@ namespace Xenon.Functions
 
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName0 + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
             //
             //
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -184,11 +184,11 @@ namespace Xenon.Functions
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    log_Reports.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe += "／追加：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe += "／追加：[" + sFncName0 + "]アクションを実行。";
                 }
             }
             else
@@ -197,7 +197,7 @@ namespace Xenon.Functions
 
 
             Expression_Node_String ec_ArgVarName;
-            this.TrySelectAttr(out ec_ArgVarName, Expression_Node_Function34Impl.S_PM_NAME_VAR, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out ec_ArgVarName, Expression_Node_Function34Impl.S_PM_NAME_VAR, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (null == ec_ArgVarName)
             {
@@ -206,14 +206,14 @@ namespace Xenon.Functions
 
 
             Expression_Node_String ec_ArgValue;
-            this.TrySelectAttr(out ec_ArgValue, Expression_Node_Function34Impl.S_PM_VALUE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out ec_ArgValue, Expression_Node_Function34Impl.S_PM_VALUE, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (null == ec_ArgValue)
             {
                 goto gt_Error_NullArgValue;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -242,12 +242,12 @@ namespace Xenon.Functions
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("name引数が指定されていません。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -261,12 +261,12 @@ namespace Xenon.Functions
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("value引数が指定されていません。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

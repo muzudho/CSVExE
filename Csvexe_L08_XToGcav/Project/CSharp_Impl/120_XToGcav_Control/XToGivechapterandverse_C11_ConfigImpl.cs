@@ -44,13 +44,13 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToCf",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToCf",log_Reports);
             //
             //
 
             System.Xml.XmlDocument xDoc = null;
             Exception err_Excp = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -99,7 +99,7 @@ namespace Xenon.XToGcav
 
 
             XmlElement err_XElm = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -120,7 +120,7 @@ namespace Xenon.XToGcav
 
                     // スクリプトファイルのバージョンチェック。（コントロール設定ファイル）
                     ValuesAttr.Test_Codefileversion(
-                        xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.SName_Attr),
+                        xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                         log_Reports,
                         cf_ControlConfig,
                         NamesNode.S_CODEFILE_CONTROLS
@@ -183,31 +183,31 @@ namespace Xenon.XToGcav
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("コントロール設定ファイルのルート要素が、期待しないものでした。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
                 s.Append("期待したルート要素：<");
                 s.Append(NamesNode.S_CODEFILE_CONTROLS);
                 s.Append(">");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
                 s.Append("実際のルート要素：<");
                 s.Append(err_XElm.Name);
                 s.Append(">");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
 
 
                 s.Append("コントロール設定ファイル：");
                 s.Append(sFpatha_F);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -223,45 +223,45 @@ namespace Xenon.XToGcav
                 s.Append("指定のフォーム[");
                 s.Append(sName_Control);
                 s.Append("]の設定ファイルが見つかりません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("ファイル パスか、フォルダー パスを確認してください。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("フォームズ_フォルダー：");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　");
                 s.Append(ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("コントロール設定ファイル（入力ママ）：");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　");
                 s.Append(sFpathH_F);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
 
                 s.Append("コントロール設定ファイル（フォームズ_フォルダーと結合後）：");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　");
                 s.Append(sFpatha_F);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
 
-                s.NewLine();
+                s.Newline();
 
                 s.Append("コントロール設定ファイル(Fcnf)を読み込もうとしたとき。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -277,49 +277,49 @@ namespace Xenon.XToGcav
                 t.Append("レイアウト設定ファイルの[");
                 t.Append(sName_Control);
                 t.Append("]レコードを元に、");
-                t.NewLine();
+                t.Newline();
                 t.Append("コントロールの設定ファイルを読み込もうとしたとき。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 t.Append("ファイル パスか、フォルダー パスを確認してください。");
-                t.NewLine();
+                t.Newline();
                 t.Append("ファイルが見つかりませんでした。");
-                t.NewLine();
+                t.Newline();
 
                 t.Append("フォームズ_フォルダー：");
-                t.NewLine();
+                t.Newline();
                 t.Append("　　");
                 t.Append(ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 t.Append("コントロール設定ファイル（入力ママ）：");
-                t.NewLine();
+                t.Newline();
                 t.Append("　　");
                 t.Append(sFpathH_F);
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
 
                 t.Append("コントロール設定ファイル（フォームズ_フォルダーと結合後）：");
-                t.NewLine();
+                t.Newline();
                 t.Append("　　");
                 t.Append(sFpatha_F);
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
 
-                t.NewLine();
+                t.Newline();
 
                 t.Append("コントロール設定ファイル(Fcnf)を読み込もうとしたとき。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -332,18 +332,18 @@ namespace Xenon.XToGcav
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("エラー。XMLの書き方にミスがあるかも？");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("コントロール設定ファイル：");
                 s.Append(sFpatha_F);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -356,13 +356,13 @@ namespace Xenon.XToGcav
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
                 t.Append("想定外のエラー。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -375,13 +375,13 @@ namespace Xenon.XToGcav
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
                 t.Append("想定外のエラー。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -403,7 +403,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

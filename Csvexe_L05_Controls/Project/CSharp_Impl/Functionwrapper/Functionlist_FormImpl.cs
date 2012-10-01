@@ -35,7 +35,7 @@ namespace Xenon.Controls
         public Functionlist_FormImpl()
             : base( null/*parent_Expression*/, null/*cur_Gcav*/)
         {
-            throw new Exception(Info_Controls.SName_Library + ":" + this.GetType().Name + "#<init>:このコンストラクターは使わないでください。");
+            throw new Exception(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:このコンストラクターは使わないでください。");
         }
 
         //────────────────────────────────────────
@@ -86,7 +86,7 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Execute_OnDnD",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnDnD",log_Reports_ThisMethod);
 
             //
             //
@@ -104,7 +104,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-                log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでドラッグ＆ドロップされました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでドラッグ＆ドロップされました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, d_Logging_Dammy);
@@ -112,7 +112,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports_ThisMethod.SComment_EventCreationMe = "ドラッグ＆ドロップされました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "ドラッグ＆ドロップされました。";
             }
 
             //
@@ -120,9 +120,9 @@ namespace Xenon.Controls
             //
             if (log_Reports_ThisMethod.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -132,7 +132,7 @@ namespace Xenon.Controls
             //
 
             // 未作成時「作成」
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
 
@@ -140,7 +140,7 @@ namespace Xenon.Controls
 
             // 実行。
             //EnumEventhandler err_Eh;
-            if (log_Reports_ThisMethod.BSuccessful)
+            if (log_Reports_ThisMethod.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -176,7 +176,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_DnDを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports_ThisMethod.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -220,7 +220,7 @@ namespace Xenon.Controls
             //    );
 
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Perform_ImgDrop",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_ImgDrop",log_Reports);
 
             //
             //
@@ -236,7 +236,7 @@ namespace Xenon.Controls
                 cct = (Customcontrol)sender;
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-                log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
+                log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, log_Reports);
@@ -244,7 +244,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports.SComment_EventCreationMe = "画像がドロップされました。";
+                log_Reports.Comment_EventCreationMe = "画像がドロップされました。";
             }
 
             //
@@ -252,9 +252,9 @@ namespace Xenon.Controls
             //
             if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -264,13 +264,13 @@ namespace Xenon.Controls
             //
 
             // 未作成時「作成」
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -313,7 +313,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_ImgDropを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -354,7 +354,7 @@ namespace Xenon.Controls
             //);
 
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Perform_ImgDrop",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_ImgDrop",log_Reports);
 
             //
             //
@@ -371,7 +371,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
+                log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, log_Reports);
@@ -379,7 +379,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports.SComment_EventCreationMe = "画像がドロップされました。";
+                log_Reports.Comment_EventCreationMe = "画像がドロップされました。";
             }
 
             //
@@ -387,9 +387,9 @@ namespace Xenon.Controls
             //
             if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -397,13 +397,13 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -447,7 +447,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_ImgDropBを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -480,7 +480,7 @@ namespace Xenon.Controls
             //);
 
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Perform_LstBox",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_LstBox",log_Reports);
 
             //
             //
@@ -497,7 +497,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでリストボックス用アクションが実行されました。";
+                log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでリストボックス用アクションが実行されました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, log_Reports);
@@ -505,7 +505,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports.SComment_EventCreationMe = "リストボックス用アクションが実行されました。";
+                log_Reports.Comment_EventCreationMe = "リストボックス用アクションが実行されました。";
             }
 
             //
@@ -513,9 +513,9 @@ namespace Xenon.Controls
             //
             if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -532,14 +532,14 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
 
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -573,7 +573,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_LstBoxを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -599,7 +599,7 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Execute_OnMouse",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnMouse",log_Reports_ThisMethod);
             //
             //
 
@@ -615,7 +615,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-                log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでマウス_アクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでマウス_アクションが実行されました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, d_Logging_Dammy);
@@ -623,7 +623,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports_ThisMethod.SComment_EventCreationMe = "マウス_アクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "マウス_アクションが実行されました。";
             }
 
             //
@@ -631,9 +631,9 @@ namespace Xenon.Controls
             //
             if (log_Reports_ThisMethod.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -641,13 +641,13 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports_ThisMethod.BSuccessful)
+            if (log_Reports_ThisMethod.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -684,7 +684,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_Mouseを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports_ThisMethod.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -718,7 +718,7 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Execute_OnOEa",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnOEa",log_Reports_ThisMethod);
             //
             //
 
@@ -734,7 +734,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-                log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, d_Logging_Dammy);
@@ -742,7 +742,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports_ThisMethod.SComment_EventCreationMe = "OEaアクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "OEaアクションが実行されました。";
             }
 
             //
@@ -750,9 +750,9 @@ namespace Xenon.Controls
             //
             if (log_Reports_ThisMethod.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -771,14 +771,14 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 // まだアクションが作成されていなければ、作成。
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports_ThisMethod.BSuccessful)
+            if (log_Reports_ThisMethod.Successful)
             {
                 // 登録されているアクションを実行。
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
@@ -814,7 +814,7 @@ namespace Xenon.Controls
         //        t.Append("]形式の関数を実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports_ThisMethod.EndCreateReport();
 
         //        //throw new Exception(t.ToString());
@@ -846,7 +846,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Execute_OnEditorSelected",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnEditorSelected",log_Reports);
 
             //
             //
@@ -863,7 +863,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでプロジェクト選択アクションが実行されました。";
+                log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでプロジェクト選択アクションが実行されました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, log_Reports);
@@ -871,7 +871,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports.SComment_EventCreationMe = "プロジェクト選択アクションが実行されました。";
+                log_Reports.Comment_EventCreationMe = "プロジェクト選択アクションが実行されました。";
             }
 
             //
@@ -879,9 +879,9 @@ namespace Xenon.Controls
             //
             if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -889,13 +889,13 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -937,7 +937,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_PrjSelectedを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -968,7 +968,7 @@ namespace Xenon.Controls
 
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Execute_OnQueryContinueDragEventArgs",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnQueryContinueDragEventArgs",log_Reports_ThisMethod);
             //
             //
             Customcontrol cct = null;
@@ -983,7 +983,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-                log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでQueryContinueDragEventArgsアクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでQueryContinueDragEventArgsアクションが実行されました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, d_Logging_Dammy);
@@ -991,7 +991,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports_ThisMethod.SComment_EventCreationMe = "QueryContinueDragEventArgsアクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "QueryContinueDragEventArgsアクションが実行されました。";
             }
 
             //
@@ -999,9 +999,9 @@ namespace Xenon.Controls
             //
             if (log_Reports_ThisMethod.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -1010,13 +1010,13 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports_ThisMethod.BSuccessful)
+            if (log_Reports_ThisMethod.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -1053,7 +1053,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_QueryContinueDragEventArgsを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports_ThisMethod.EndCreateReport();
         //    }
         //    goto gt_EndMethod;
@@ -1081,7 +1081,7 @@ namespace Xenon.Controls
         )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Perform_WrRhn",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_WrRhn",log_Reports);
             //
             //
 
@@ -1097,7 +1097,7 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                log_Reports.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでWrRhnアクションが実行されました。";
+                log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでWrRhnアクションが実行されました。";
 
                 // ステータスバーに、コントロール名を表示。
                 //cct.ControlCommon.MoControlMediator.AddStatus_ActionFcName(sName_Usercontrol, log_Reports);
@@ -1105,7 +1105,7 @@ namespace Xenon.Controls
             else
             {
                 sName_Usercontrol = "";
-                log_Reports.SComment_EventCreationMe = "WrRhnアクションが実行されました。";
+                log_Reports.Comment_EventCreationMe = "WrRhnアクションが実行されました。";
             }
 
             //
@@ -1113,9 +1113,9 @@ namespace Xenon.Controls
             //
             if (log_Reports.CanStopwatch)
             {
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.SName
+                    this.givechapterandverseToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -1123,13 +1123,13 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.BTranslatedGivechapterandverseToExpression)
+            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
             {
                 this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
@@ -1171,7 +1171,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_WrRhnを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();
         //    }
         //    goto gt_EndMethod;

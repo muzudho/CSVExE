@@ -50,7 +50,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
             //
             //
 

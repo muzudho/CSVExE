@@ -65,7 +65,7 @@ namespace Xenon.Operating
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_Load = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Load",log_Reports_Load);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Load",log_Reports_Load);
             //
             //
 
@@ -110,7 +110,7 @@ namespace Xenon.Operating
                             {
                                 Log_RecordReport r = log_Reports_Load.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー111！", pg_Method);
-                                r.SMessage = sErrorMsg;
+                                r.Message = sErrorMsg;
                                 log_Reports_Load.EndCreateReport();
                             }
                             goto gt_EndMethod;
@@ -127,7 +127,7 @@ namespace Xenon.Operating
                             {
                                 Log_RecordReport r = log_Reports_Load.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー112！", pg_Method);
-                                r.SMessage = sErrorMsg;
+                                r.Message = sErrorMsg;
                                 log_Reports_Load.EndCreateReport();
                             }
                             goto gt_EndMethod;

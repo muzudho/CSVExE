@@ -41,7 +41,7 @@ namespace Xenon.MiddleImpl
         )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Write",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Write",log_Reports);
 
             XmlDocument xDoc = new XmlDocument();
 
@@ -59,7 +59,7 @@ namespace Xenon.MiddleImpl
                 // これは書出しなので、スクリプトファイルのバージョンチェックを省略。
                 //
 
-                //xRoot.SetAttribute(PmNames.S_NAME_EDITOR.SName_Attr, sName_Editor);
+                //xRoot.SetAttribute(PmNames.S_NAME_EDITOR.Name_Attribute, sName_Editor);
 
                 xDoc.AppendChild(xRoot);
 
@@ -80,24 +80,24 @@ namespace Xenon.MiddleImpl
 
                     //ｎａｍｅ－ｖａｒ属性
                     string sNamevar;
-                    cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
 
                     //ｆｏｌｄｅｒ属性
                     string sFolder;
-                    cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, true, log_Reports);
 
                     //ｖａｌｕｅ属性
                     string sValue;
-                    cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                     //ｄｅｓｃｒｉｐｔｉｏｎ属性
                     string sDescription;
-                    cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
 
-                    x_Fsetvar.SetAttribute(PmNames.S_NAME.SName_Attr, sNamevar);
-                    x_Fsetvar.SetAttribute(PmNames.S_FOLDER.SName_Attr, sFolder);
-                    x_Fsetvar.SetAttribute(PmNames.S_VALUE.SName_Attr, sValue);
-                    x_Fsetvar.SetAttribute(PmNames.S_DESCRIPTION.SName_Attr, sDescription);
+                    x_Fsetvar.SetAttribute(PmNames.S_NAME.Name_Attribute, sNamevar);
+                    x_Fsetvar.SetAttribute(PmNames.S_FOLDER.Name_Attribute, sFolder);
+                    x_Fsetvar.SetAttribute(PmNames.S_VALUE.Name_Attribute, sValue);
+                    x_Fsetvar.SetAttribute(PmNames.S_DESCRIPTION.Name_Attribute, sDescription);
                     xRoot.AppendChild(x_Fsetvar);
                 });
 
@@ -136,7 +136,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                r.SMessage = r.ToString();
+                r.Message = r.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

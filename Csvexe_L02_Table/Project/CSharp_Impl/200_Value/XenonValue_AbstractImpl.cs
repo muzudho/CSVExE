@@ -19,7 +19,7 @@ namespace Xenon.Table
             : base("ノード名未指定", new Givechapterandverse_NodeImpl(sConfigStack, null))
         {
             this.bSpaced = true;
-            this.sHumaninput = "";
+            this.humaninput = "";
         }
 
         //────────────────────────────────────────        
@@ -47,16 +47,16 @@ namespace Xenon.Table
         /// 入力データそのままの形。
         /// ・派生クラスでセット使用。
         /// </summary>
-        protected string sHumaninput;
+        protected string humaninput;
 
         /// <summary>
         /// 入力データそのままの形。
         /// </summary>
-        public virtual string SHumaninput
+        public virtual string Humaninput
         {
             get
             {
-                return sHumaninput;
+                return humaninput;
             }
             set
             {
@@ -69,8 +69,8 @@ namespace Xenon.Table
                     bSpaced = false;
                 }
 
-                bValidated = true;
-                this.sHumaninput = value;
+                isValidated = true;
+                this.humaninput = value;
             }
         }
 
@@ -82,18 +82,18 @@ namespace Xenon.Table
         /// 空白は真。
         /// ・派生クラスでセット使用。
         /// </summary>
-        protected bool bValidated;
+        protected bool isValidated;
 
         /// <summary>
         /// 文字列データを int型や bool型などに変換済みなら真、
         /// できていないなら偽。
         /// </summary>
         /// <returns></returns>
-        public bool BValidated
+        public bool IsValidated
         {
             get
             {
-                return bValidated;
+                return isValidated;
             }
         }
 

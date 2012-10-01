@@ -56,7 +56,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// タイマー表示。
         /// </summary>
-        string SMessage
+        string Message
         {
             set;
         }

@@ -23,7 +23,7 @@ namespace Xenon.Table
         /// 読み込んだテーブルに付けたい名前。
         /// (string of name,put to table)
         /// </summary>
-        string SName_PutToTable
+        string Name_PutToTable
         {
             get;
             set;
@@ -33,7 +33,7 @@ namespace Xenon.Table
         /// テーブル_ユニット名。使ってる？
         /// (table unit)
         /// </summary>
-        string STableunit
+        string Tableunit
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace Xenon.Table
         /// 「T:～;」といった文字列が入る。
         /// (フィールド名：TYPE_DATA)
         /// </summary>
-        string STypedata
+        string Typedata
         {
             get;
             set;
@@ -62,7 +62,7 @@ namespace Xenon.Table
         /// 「日別バックアップ」するなら真。
         /// (date backup)
         /// </summary>
-        bool BDatebackup
+        bool IsDatebackupActivated
         {
             get;
             set;
@@ -71,7 +71,7 @@ namespace Xenon.Table
         /// <summary>
         /// 用途。／「」指定なし。／「WriteOnly」データの読取を行わない。ログ出力先を登録しているだけなど。
         /// </summary>
-        string SUse
+        string Use
         {
             get;
             set;

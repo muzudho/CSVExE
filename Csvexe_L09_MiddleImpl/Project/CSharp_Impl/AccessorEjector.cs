@@ -54,7 +54,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Eject",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Eject",log_Reports);
             //
             //
 
@@ -108,8 +108,8 @@ namespace Xenon.MiddleImpl
                     {
                         List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
                         // 抜き取りフラグ。
-                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_FROM, true, Request_SelectingImpl.First_Exist, log_Reports);
-                        if (!log_Reports.BSuccessful)
+                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, true, Request_SelectingImpl.First_Exist, log_Reports);
+                        if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
                         }
@@ -118,7 +118,7 @@ namespace Xenon.MiddleImpl
 
                     {
                         List<Expression_Node_String> ecList = new List<Expression_Node_String>();
-                        ec_DataSource.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Node, ref bool bRemove, ref bool bBreak)
+                        ec_DataSource.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Node, ref bool bRemove, ref bool bBreak)
                         {
                             ecList.Add(e_Node);
                         });
@@ -149,8 +149,8 @@ namespace Xenon.MiddleImpl
                     {
                         List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
                         // 抜き取りフラグ。
-                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, true, Request_SelectingImpl.First_Exist, log_Reports);
-                        if (!log_Reports.BSuccessful)
+                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, true, Request_SelectingImpl.First_Exist, log_Reports);
+                        if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
                         }
@@ -159,7 +159,7 @@ namespace Xenon.MiddleImpl
 
                     {
                         List<Expression_Node_String> ecList = new List<Expression_Node_String>();
-                        ec_DataTarget.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Node, ref bool bRemove, ref bool bBreak)
+                        ec_DataTarget.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Node, ref bool bRemove, ref bool bBreak)
                         {
                             ecList.Add(e_Node);
                         });
@@ -215,7 +215,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Reset",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Reset",log_Reports);
             //
             //
 
@@ -258,8 +258,8 @@ namespace Xenon.MiddleImpl
                     Expression_Node_String ec_DataSource;
                     {
                         List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
-                        if (!log_Reports.BSuccessful)
+                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+                        if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
                         }
@@ -267,7 +267,7 @@ namespace Xenon.MiddleImpl
                     }
 
                     // データソースの子要素　Ｓｆ：ｃｅｌｌ；等を、復元します。
-                    ec_DataSource.ListExpression_Child.SetList(
+                    ec_DataSource.List_Expression_Child.SetList(
                         this.listArray_Expression_DatasourceQuery_Old[nIndex],
                         log_Reports
                     );
@@ -286,15 +286,15 @@ namespace Xenon.MiddleImpl
                     Expression_Node_String ec_DataTarget;
                     {
                         List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
-                        if (!log_Reports.BSuccessful)
+                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+                        if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
                         }
                         ec_DataTarget = ecList_DataTarget[0];
                     }
                     // データターゲットの子要素　Ｓｆ：ｃｅｌｌ；等を、復元します。
-                    ec_DataTarget.ListExpression_Child.SetList(
+                    ec_DataTarget.List_Expression_Child.SetList(
                         this.listArray_Expression_DatatargetQuery_Old[nIndex],
                         log_Reports
                     );
@@ -344,7 +344,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "ResetEnabled",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "ResetEnabled",log_Reports);
             //
             //
 

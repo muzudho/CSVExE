@@ -57,15 +57,15 @@ namespace Xenon.Controls
                 this.dictionary_Brush = new Dictionary<string, Brush>();
             }
 
-            if (this.dictionary_Brush.ContainsKey(xenonStyle.ForeXenonColor.SName_Color))
+            if (this.dictionary_Brush.ContainsKey(xenonStyle.ForeXenonColor.Name_Color))
             {
-                return this.dictionary_Brush[xenonStyle.ForeXenonColor.SName_Color];
+                return this.dictionary_Brush[xenonStyle.ForeXenonColor.Name_Color];
             }
 
             //
             // 指定の色のブラシを作成。
             Brush brush = new SolidBrush(xenonStyle.ForeXenonColor.Color);
-            this.dictionary_Brush[xenonStyle.ForeXenonColor.SName_Color] = brush;
+            this.dictionary_Brush[xenonStyle.ForeXenonColor.Name_Color] = brush;
             return brush;
         }
 

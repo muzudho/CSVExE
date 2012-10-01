@@ -105,7 +105,7 @@ namespace Xenon.Syntax
             if (null != this.log_Method_CreationMe)
             {
                 sb.Append("ロガー生成場所：");
-                sb.Append(this.Log_Method_CreationMe.SHead);
+                sb.Append(this.Log_Method_CreationMe.Fullname);
                 sb.Append(System.Environment.NewLine);
             }
             else
@@ -115,7 +115,7 @@ namespace Xenon.Syntax
             }
 
             sb.Append("ロガーの作成に関するコメント：");
-            sb.Append(this.SComment_EventCreationMe);
+            sb.Append(this.Comment_EventCreationMe);
             sb.Append(System.Environment.NewLine);
 
 
@@ -130,37 +130,37 @@ namespace Xenon.Syntax
 
                 if (log_RecordReport.EnumReport == EnumReport.Error)
                 {
-                    if ("" == sGroupTag || sGroupTag == log_RecordReport.SGroupTag)
+                    if ("" == sGroupTag || sGroupTag == log_RecordReport.Tag_Group)
                     {
                         sb.Append("(No.");
                         sb.Append(nErrorCount);
                         sb.Append(") ");
 
                         // タイトル
-                        sb.Append(log_RecordReport.STitle);
+                        sb.Append(log_RecordReport.Title);
 
-                        if ("" != log_RecordReport.SGroupTag)
+                        if ("" != log_RecordReport.Tag_Group)
                         {
                             // グループ・タグ
-                            sb.Append(log_RecordReport.SGroupTag);
+                            sb.Append(log_RecordReport.Tag_Group);
                         }
 
                         sb.Append(Environment.NewLine);
                         sb.Append(Environment.NewLine);
 
-                        if ("" != log_RecordReport.SConfigStack)
+                        if ("" != log_RecordReport.Logstack)
                         {
                             sb.Append("エラー発生元データの推測ヒント：");
-                            sb.Append(log_RecordReport.SConfigStack);
+                            sb.Append(log_RecordReport.Logstack);
                             sb.Append(Environment.NewLine);
                             sb.Append(Environment.NewLine);
                         }
 
-                        sb.Append(log_RecordReport.SMsg(this));
+                        sb.Append(log_RecordReport.GetMessage(this));
                         sb.Append(Environment.NewLine);
                         sb.Append(Environment.NewLine);
 
-                        if ("" != log_RecordReport.SConfigStack)
+                        if ("" != log_RecordReport.Logstack)
                         {
                             sb.Append("プログラム実行経路推測ヒント：");
                             sb.Append(this.Log_Callstack.ToString());
@@ -232,7 +232,7 @@ namespace Xenon.Syntax
         /// </summary>
         public void EndLogging(Log_Method log_Method)
         {
-            if (!this.BSuccessful)
+            if (!this.Successful)
             {
                 // エラー
                 goto gt_Error_NotSuccessful;
@@ -247,7 +247,7 @@ namespace Xenon.Syntax
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("▲エラー！（");
-                sb.Append(log_Method.SHead);
+                sb.Append(log_Method.Fullname);
                 sb.Append("）（※EntThread）");
 
                 MessageBox.Show(this.ToMessage(), sb.ToString());
@@ -355,7 +355,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// このロガーを new したイベントの説明。
         /// </summary>
-        public string SComment_EventCreationMe
+        public string Comment_EventCreationMe
         {
             get
             {
@@ -413,7 +413,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// プログラムを停止させるべき問題が発生していなければ真。（エラーメッセージが 0 件なら真）
         /// </summary>
-        public bool BSuccessful
+        public bool Successful
         {
             get
             {
@@ -478,7 +478,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// デバッグモード（実行時間計測）なら真。
         /// </summary>
-        public bool BDebugmode_Stopwatch
+        public bool Debugmode_Stopwatch
         {
             set
             {
@@ -491,7 +491,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 警告の件数を返します。
         /// </summary>
-        public int NCount
+        public int Count
         {
             get
             {

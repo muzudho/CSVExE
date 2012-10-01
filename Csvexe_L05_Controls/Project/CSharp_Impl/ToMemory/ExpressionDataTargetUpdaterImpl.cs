@@ -33,14 +33,14 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "ToM",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ToM",log_Reports);
 
             //
             //
 
             List<Expression_Node_String> listExpr_Data = ec_Control.SelectDirectchildByNodename( NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -80,17 +80,17 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "ToM_ParentFcells",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ToM_ParentFcells",log_Reports);
             //
             //
 
             // ＜ｄａｔａ＞の子要素のリスト。
-            parent_Expr_Fcells.ListExpression_Child.ForEach(delegate(Expression_Node_String child_Expr, ref bool bRemove, ref bool bBreak)
+            parent_Expr_Fcells.List_Expression_Child.ForEach(delegate(Expression_Node_String child_Expr, ref bool bRemove, ref bool bBreak)
             {
                 string sName_Fnc;
-                child_Expr.TrySelectAttr(out sName_Fnc, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                child_Expr.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (NamesFnc.S_CELL == sName_Fnc)
                     {
@@ -103,10 +103,10 @@ namespace Xenon.Controls
                             log_Reports
                             );
                     }
-                    //else if (NamesNode.S_ARG3 == e_Child.Cur_Givechapterandverse.SName_Node)
+                    //else if (NamesNode.S_ARG3 == e_Child.Cur_Givechapterandverse.Name_Node)
                     //{
                     //    // スルー
-                    //    d_InMethod.WarningWrite("[" + e_Child.Cur_Givechapterandverse.SName_Node + "]ノードを無視しました。");
+                    //    d_InMethod.WarningWrite("[" + e_Child.Cur_Givechapterandverse.Name_Node + "]ノードを無視しました。");
                     //}
                     else
                     {
@@ -118,18 +118,18 @@ namespace Xenon.Controls
                             Log_TextIndented t = new Log_TextIndentedImpl();
 
                             t.AppendI(0, "Ｓｆ：ｃｅｌｌ；　以外の要素が指定されていました。");
-                            t.NewLine();
+                            t.Newline();
                             t.AppendI(0, "「データターゲット」または「ａｒｇ３　ｔｏ」には、Ｓｆ：ｃｅｌｌ；　要素１つしか指定してはいけません。");
-                            t.NewLine();
-                            t.NewLine();
+                            t.Newline();
+                            t.Newline();
 
                             t.AppendI(0, "もしかして？　「『Ｓｆ：ｃｅｌｌ；』の親」　を渡すべきところに、「『ａｒｇ３　ｔｏ』の親」を渡していませんか？");
-                            t.NewLine();
+                            t.Newline();
 
                             // ヒント
                             t.AppendI(1, r.Message_Givechapterandverse(child_Expr.Cur_Givechapterandverse));
 
-                            r.SMessage = t.ToString();
+                            r.Message = t.ToString();
                             log_Reports.EndCreateReport();
                         }
                     }
@@ -153,13 +153,13 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "ToM_DataTargetFcell",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ToM_DataTargetFcell",log_Reports);
             //
             //
 
 
             string sName_Fnc;
-            ec_SfCell.TrySelectAttr(out sName_Fnc, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            ec_SfCell.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
             if (NamesFnc.S_CELL != sName_Fnc)
             {
                 // エラー。
@@ -174,7 +174,7 @@ namespace Xenon.Controls
             {
                 //
                 //「E■ｆ－ｃｅｌｌ」の子要素のリスト。
-                ec_SfCell.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
+                ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
                 {
                     // キー値 が１つ入っています。
                     ec_KeyExpected1 = e_Item;
@@ -187,12 +187,12 @@ namespace Xenon.Controls
             {
                 //「E■ｒｅｃ－ｃｏｎｄ」を調べる。
                 Expression_Node_String ec_Where;
-                bool bHit2 = ec_SfCell.TrySelectAttr(out ec_Where, PmNames.S_WHERE.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit2 = ec_SfCell.TrySelectAttribute(out ec_Where, PmNames.S_WHERE.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 if (bHit2)
                 {
-                    ec_Where.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
+                    ec_Where.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
                     {
-                        if (NamesNode.S_FNC == e_Item.Cur_Givechapterandverse.SName)
+                        if (NamesNode.S_FNC == e_Item.Cur_Givechapterandverse.Name)
                         {
                             //ystem.Console.WriteLine(Info_Forms.LibraryName + ":" + this.GetType().Name + "#ToM: 「E■ｆ－ｃｅｌｌ」の「E■＠ｗｈｅｒｅ」属性の下の「E■fnc」を解析。その子要素がｖａｌｕｅ相当であるはず。");
                             ec_KeyExpected1 = e_Item;
@@ -218,36 +218,36 @@ namespace Xenon.Controls
                     Log_TextIndented s = new Log_TextIndentedImpl();
 
                     s.Append("「E■ｆ－ｃｅｌｌ」系要素の子要素が、「E■ｒｅｃ－ｃｏｎｄ」を除いて[" + nKeyCount + "]個ありました。");
-                    s.NewLine();
+                    s.Newline();
 
                     s.Append("この子要素は　キー値になるもので、１個でなければいけません。");
-                    s.NewLine();
+                    s.Newline();
 
                     // 一覧
                     s.Append("──────────子要素名一覧");
-                    s.NewLine();
+                    s.Newline();
 
-                    ec_SfCell.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Str1, ref bool bRemove2, ref bool bBreak2)
+                    ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Str1, ref bool bRemove2, ref bool bBreak2)
                     {
-                        if ("" == e_Str1.Cur_Givechapterandverse.SName)
+                        if ("" == e_Str1.Cur_Givechapterandverse.Name)
                         {
                             s.Append("E■（要素名無し）");
-                            s.NewLine();
+                            s.Newline();
                         }
                         else
                         {
                             s.Append("E■");
-                            s.Append(e_Str1.Cur_Givechapterandverse.SName);
-                            s.NewLine();
+                            s.Append(e_Str1.Cur_Givechapterandverse.Name);
+                            s.Newline();
                         }
                     });
                     s.Append("──────────");
-                    s.NewLine();
+                    s.Newline();
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -262,37 +262,37 @@ namespace Xenon.Controls
 
                     //s.Append("「E■ｆ－ｃｅｌｌ」系要素の子要素に、「E■ｆ－ｔｅｘｔ」や「E■ｆ－ｃｅｌｌ」が無いのか、有っても値がありませんでした。");
                     s.Append("「E■ｆ－ｃｅｌｌ」の「keyValue」相当の値が指定されていませんでした。");
-                    s.NewLine();
+                    s.Newline();
 
                     // 一覧
                     s.Append("──────────子要素名一覧");
-                    s.NewLine();
-                    ec_SfCell.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Str1, ref bool bRemove2, ref bool bBreak2)
+                    s.Newline();
+                    ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Str1, ref bool bRemove2, ref bool bBreak2)
                     {
-                        if ("" == e_Str1.Cur_Givechapterandverse.SName)
+                        if ("" == e_Str1.Cur_Givechapterandverse.Name)
                         {
                             s.Append("E■（要素名無し）");
-                            s.NewLine();
+                            s.Newline();
                         }
                         else
                         {
                             s.Append("E■");
-                            s.Append(e_Str1.Cur_Givechapterandverse.SName);
-                            s.NewLine();
+                            s.Append(e_Str1.Cur_Givechapterandverse.Name);
+                            s.Newline();
                         }
                     });
                     s.Append("──────────");
-                    s.NewLine();
+                    s.Newline();
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 //
@@ -330,7 +330,7 @@ namespace Xenon.Controls
                     ec_SfCell.ToText_Snapshot(s);
                 }
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

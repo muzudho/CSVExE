@@ -52,7 +52,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 色の名前。
         /// </summary>
-        public string SName_Color
+        public string Name_Color
         {
             get
             {

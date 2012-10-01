@@ -22,7 +22,7 @@ namespace Xenon.Expr
 
         public TableUserformconfigImpl(string sName_Table, Givechapterandverse_Node cur_Gcav)
         {
-            this.sName_Table = sName_Table;
+            this.name_Table = sName_Table;
             this.cur_Givechapterandverse = cur_Gcav;
 
             this.list_RecordUserformconfig = new List<RecordUserformconfig>();
@@ -47,7 +47,7 @@ namespace Xenon.Expr
             txt.AppendI(0, "<OLcnf_ConfigImpl");
 
             txt.AppendI(1, "テーブル名=[");
-            txt.Append(this.sName_Table);
+            txt.Append(this.name_Table);
             txt.Append("]");
 
             txt.AppendI(0, ">");
@@ -75,17 +75,17 @@ namespace Xenon.Expr
 
         //────────────────────────────────────────
 
-        private string sName_Table;
+        private string name_Table;
 
-        public string SName_Table
+        public string Name_Table
         {
             get
             {
-                return this.sName_Table;
+                return this.name_Table;
             }
             set
             {
-                this.sName_Table = value;
+                this.name_Table = value;
             }
         }
 

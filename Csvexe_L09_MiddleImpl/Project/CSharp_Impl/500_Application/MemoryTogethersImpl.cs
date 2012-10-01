@@ -50,19 +50,19 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadFile",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile",log_Reports);
             //
             //
 
             // （Ｒ９）絶対ファイルパスの取得
             string sFpatha_rfr;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
                 sFpatha_rfr = ec_Fpath_Rfr.Execute_OnExpressionString(
                     Request_SelectingImpl.Unconstraint, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -74,7 +74,7 @@ namespace Xenon.MiddleImpl
             }
 
             // （Ｒ１０）ファイルから内容を読み込んでモデルに挿入
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -106,7 +106,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "RefreshDataRange",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "RefreshDataRange",log_Reports);
 
             //
             //
@@ -117,12 +117,12 @@ namespace Xenon.MiddleImpl
             foreach (Givechapterandverse_Node cf_Together in listCf_Together)
             {
                 string sFncName;
-                cf_Together.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                 // 一致するのは１件しかない前提。
                 if (sFncName == o_Name_Together.SValue)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 最新表示にするコントロールの名前のリスト。
                         List<Givechapterandverse_Node> cfList_RfrTarget = cf_Together.GetChildrenByNodename(NamesNode.S_TARGET, false, log_Reports);
@@ -133,7 +133,7 @@ namespace Xenon.MiddleImpl
                             List<Usercontrol> list_FcUc;
                             {
                                 string sName;
-                                cf_RfrTarget.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                                cf_RfrTarget.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                                 Expression_Node_StringImpl e_str = new Expression_Node_StringImpl(null, cf_RfrTarget);
                                 e_str.AppendTextNode(
@@ -149,7 +149,7 @@ namespace Xenon.MiddleImpl
                                     );
                             }
 
-                            if (log_Reports.BSuccessful)
+                            if (log_Reports.Successful)
                             {
                                 Usercontrol fcUc = list_FcUc[0];
 
@@ -186,7 +186,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "RefreshDataByTogether(1)",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "RefreshDataByTogether(1)",log_Reports);
             //
             //
 

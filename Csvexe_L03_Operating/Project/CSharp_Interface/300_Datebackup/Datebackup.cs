@@ -42,7 +42,7 @@ namespace Xenon.Operating
         /// 保管する日付バックアップ・フォルダー数。
         /// (kept backups)
         /// </summary>
-        int NKeptbackups
+        int Keptbackups
         {
             set;
             get;
@@ -52,7 +52,7 @@ namespace Xenon.Operating
         /// サブネーム。
         /// 例えば「20091203_yamada」の「yamada」に当たる文字列。アンダースコアは含まない。
         /// </summary>
-        string SName_Sub
+        string Name_Sub
         {
             set;
             get;

@@ -60,13 +60,13 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "P101_LoadAatoolxml", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "P101_LoadAatoolxml", log_Reports);
             //
             //
 
             moApplication.MemoryAatoolxml.Clear();
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // ツール設定ファイルへのパスは固定とします。
                 Expression_Node_Filepath ec_Fpath;
@@ -75,7 +75,7 @@ namespace Xenon.MiddleImpl
                     cf_Fpath.InitPath(
                         ValuesAttr.S_FPATHR_AATOOLXML,
                         log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -85,7 +85,7 @@ namespace Xenon.MiddleImpl
                 }
 
                 moApplication.MemoryAatoolxml.LoadFile(ec_Fpath, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -116,7 +116,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadFile",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile",log_Reports);
             //
             //
 
@@ -124,7 +124,7 @@ namespace Xenon.MiddleImpl
 
 
             string sFpatha_Aatoolxml = "";
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // 『ツール設定』をクリアー。
@@ -137,7 +137,7 @@ namespace Xenon.MiddleImpl
                     );//絶対ファイルパス
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XmlDocument xDoc = new XmlDocument();
 
@@ -153,17 +153,17 @@ namespace Xenon.MiddleImpl
 
                     // スクリプトファイルのバージョンチェック。（バリデーター登録ファイル）
                     ValuesAttr.Test_Codefileversion(
-                        xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.SName_Attr),
+                        xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                         log_Reports,
                         new Givechapterandverse_NodeImpl(sFpatha_Aatoolxml, null),
                         NamesNode.S_CODEFILE_TOOL
                         );
 
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // デフォルト・エディター名
-                        this.SDefaultEditor = xRoot.GetAttribute(PmNames.S_DEFAULT_EDITOR.SName_Attr);
+                        this.SDefaultEditor = xRoot.GetAttribute(PmNames.S_DEFAULT_EDITOR.Name_Attribute);
 
                         // エディター要素を列挙
                         System.Xml.XmlNodeList xNl_Editor = xRoot.GetElementsByTagName(NamesNode.S_EDITOR);
@@ -185,9 +185,9 @@ namespace Xenon.MiddleImpl
                                 // ツール設定ファイルに記載されている、エディター名
                                 try
                                 {
-                                    aatool_Editor.SName = xEditor.GetAttribute(PmNames.S_NAME.SName_Attr);
+                                    aatool_Editor.Name = xEditor.GetAttribute(PmNames.S_NAME.Name_Attribute);
 
-                                    this.Dictionary_Editor.Dictionary_Item.Add(aatool_Editor.SName, aatool_Editor);
+                                    this.Dictionary_Editor.Dictionary_Item.Add(aatool_Editor.Name, aatool_Editor);
                                 }
                                 catch (ArgumentException ex)
                                 {
@@ -211,16 +211,16 @@ namespace Xenon.MiddleImpl
                                         //＜ｆ－ｓｅｔ－ｖａｒ＞要素
                                         XmlElement xFsetvar = (XmlElement)xNode_Fsetvar;
 
-                                        string sNamevar = xFsetvar.GetAttribute(PmNames.S_NAME_VAR.SName_Attr);
-                                        string sFolder = xFsetvar.GetAttribute(PmNames.S_FOLDER.SName_Attr);
-                                        string sValue = xFsetvar.GetAttribute(PmNames.S_VALUE.SName_Attr);
-                                        string sDescription = xFsetvar.GetAttribute(PmNames.S_DESCRIPTION.SName_Attr);
+                                        string sNamevar = xFsetvar.GetAttribute(PmNames.S_NAME_VAR.Name_Attribute);
+                                        string sFolder = xFsetvar.GetAttribute(PmNames.S_FOLDER.Name_Attribute);
+                                        string sValue = xFsetvar.GetAttribute(PmNames.S_VALUE.Name_Attribute);
+                                        string sDescription = xFsetvar.GetAttribute(PmNames.S_DESCRIPTION.Name_Attribute);
 
 
-                                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.SName_Pm, sNamevar, log_Reports);
-                                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_FOLDER.SName_Pm, sFolder, log_Reports);
-                                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_VALUE.SName_Pm, sValue, log_Reports);
-                                        cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.SName_Pm, sDescription, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
 
                                         aatool_Editor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.Add(cf_Fsetvar, log_Reports);
                                     }
@@ -242,7 +242,7 @@ namespace Xenon.MiddleImpl
                 }
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.cur_Givechapterandverse = ec_Fpath_Aatoolxml.Cur_Givechapterandverse;
             }
@@ -263,7 +263,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                s.Append("もしかして？：　<" + NamesNode.S_EDITOR + ">要素の" + PmNames.S_NAME.SName_Attr + "属性が重複している？");
+                s.Append("もしかして？：　<" + NamesNode.S_EDITOR + ">要素の" + PmNames.S_NAME.Name_Attribute + "属性が重複している？");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
@@ -271,7 +271,7 @@ namespace Xenon.MiddleImpl
                 // 例外メッセージ
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -284,23 +284,23 @@ namespace Xenon.MiddleImpl
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("『ツール設定ファイル』が見つかりません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("ヒント");
-                s.NewLine();
+                s.Newline();
                 s.Append("・ファイルが存在しない？");
-                s.NewLine();
+                s.Newline();
                 s.Append("・『ツール設定ファイル』を、決まった場所「" + ValuesAttr.S_FPATHR_AATOOLXML + "」に置いていない？");
-                s.NewLine();
+                s.Newline();
                 s.Append("・ファイル名が間違っている？");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //ヒント
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -325,7 +325,7 @@ namespace Xenon.MiddleImpl
                 // 例外メッセージ
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -351,13 +351,13 @@ namespace Xenon.MiddleImpl
             string sName_Editor, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetEditorByName",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetEditorByName",log_Reports);
             //
             //
 
             MemoryAatoolxml_Editor result = null;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (this.dictionary_Editor.Dictionary_Item.ContainsKey(sName_Editor))
                 {
@@ -397,7 +397,7 @@ namespace Xenon.MiddleImpl
                 s.Append("]");
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -422,7 +422,7 @@ namespace Xenon.MiddleImpl
             bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetFirstEditor",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetFirstEditor",log_Reports);
             //
             //
 
@@ -457,7 +457,7 @@ namespace Xenon.MiddleImpl
                 sb.Append(Environment.NewLine);
                 sb.Append(Environment.NewLine);
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -486,7 +486,7 @@ namespace Xenon.MiddleImpl
             bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetDefaultEditor",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetDefaultEditor",log_Reports);
             //
             //
 
@@ -496,7 +496,7 @@ namespace Xenon.MiddleImpl
             if ("" != sDefaultProjectName)
             {
                 aatool_DefaultEditor = this.GetEditorByName(sDefaultProjectName, bRequired, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -505,7 +505,7 @@ namespace Xenon.MiddleImpl
             else
             {
                 aatool_DefaultEditor = this.GetFirstEditor(bRequired, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;

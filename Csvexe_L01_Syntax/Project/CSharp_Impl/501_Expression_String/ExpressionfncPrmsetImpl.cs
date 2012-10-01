@@ -106,7 +106,7 @@ namespace Xenon.Syntax
         /// イベントハンドラー引数。
         /// Perform_ImgDrop_Main で利用。
         /// </summary>
-        public string SMessage_Debug1
+        public string Message_Debug1
         {
             get
             {
@@ -126,7 +126,7 @@ namespace Xenon.Syntax
         /// イベントハンドラー引数。
         /// Perform_ImgDrop_Main で利用。
         /// </summary>
-        public string SMessage_DebugStatusResult
+        public string Message_DebugStatusResult
         {
             get
             {
@@ -146,7 +146,7 @@ namespace Xenon.Syntax
         /// イベントハンドラー引数。
         /// Perform_ImgDropB_Main で利用。
         /// </summary>
-        public string SFpatha_Image
+        public string Filepathabsolute_Image
         {
             get
             {
@@ -266,7 +266,7 @@ namespace Xenon.Syntax
         /// イベントハンドラー引数。
         /// Perform_PrjSelected_Main で利用。
         /// </summary>
-        public object St_SelectedProjectElm//St_ProjectElm
+        public object SelectedProjectElement_Givechapterandverse//St_ProjectElm
         {
             get
             {
@@ -287,7 +287,7 @@ namespace Xenon.Syntax
         /// 
         /// プロジェクトの読み込みに成功していれば真。
         /// </summary>
-        public bool BProjectValid
+        public bool ProjectValid
         {
             get
             {
@@ -347,7 +347,7 @@ namespace Xenon.Syntax
         /// イベントハンドラー引数。
         /// Perform_WrRhn_Main で利用。
         /// </summary>
-        public string SNode_EventOrigin
+        public string Node_EventOrigin
         {
             get
             {

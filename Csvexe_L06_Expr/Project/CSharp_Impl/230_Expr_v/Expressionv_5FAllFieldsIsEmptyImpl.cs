@@ -49,7 +49,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
             //
             //
 
@@ -57,16 +57,16 @@ namespace Xenon.Expr
             bool bAllFldsIsEmpty = true;
 
             Expression_Node_String ec_RecordSetLoadFrom;//ソース情報利用
-            bool bHit = this.DicExpression_Attr.TrySelect(out ec_RecordSetLoadFrom, NamesNode.S_RECORD_SET_LOAD_FROM, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_RecordSetLoadFrom, NamesNode.S_RECORD_SET_LOAD_FROM, true, Request_SelectingImpl.Unconstraint, log_Reports);
 
             //
             // 一時記憶に記憶されているレコードセットのコピー内容。
             RecordSet recordSet;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                 // #デバッグ中
-                System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#E_Execute: ★★ record-set-load-ｆｒｏｍ＝[" + sRecordSetLoadFrom + "]");
+                System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: ★★ record-set-load-ｆｒｏｍ＝[" + sRecordSetLoadFrom + "]");
 
                 recordSet = this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Get(ec_RecordSetLoadFrom, log_Reports);
             }
@@ -80,14 +80,14 @@ namespace Xenon.Expr
             Exception err_Excp;
             string err_SCsv;
             List<string> err_SList;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // 子＜f-●●＞要素を実行し、文字列連結。
                 // 「SK10,LV10,OP10,COND10,COND10x,COND10y,COND10z,PRI10,RATE10,PER10」といった文字列が取得できることを期待。
                 StringBuilder sb_Csv = new StringBuilder();
                 {
-                    List<Expression_Node_String> ecList_Child = this.ListExpression_Child.SelectList(
+                    List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(
                         Request_SelectingImpl.Unconstraint,
                         log_Reports
                         );
@@ -145,14 +145,14 @@ namespace Xenon.Expr
 
 
                     // #デバッグ中
-                    System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#E_Execute: oValue.SHumaninput＝[" + oValue.SHumaninput + "]");
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: oValue.Humaninput＝[" + oValue.Humaninput + "]");
 
 
                     if (oValue is XenonValue_IntImpl)
                     {
                         XenonValue_IntImpl oInt = (XenonValue_IntImpl)oValue;
 
-                        if ("" != oInt.SHumaninput)
+                        if ("" != oInt.Humaninput)
                         {
                             bAllFldsIsEmpty = false;
                         }
@@ -161,7 +161,7 @@ namespace Xenon.Expr
                     {
                         XenonValue_StringImpl oString = (XenonValue_StringImpl)oValue;
 
-                        if ("" != oString.SHumaninput)
+                        if ("" != oString.Humaninput)
                         {
                             bAllFldsIsEmpty = false;
                         }
@@ -170,7 +170,7 @@ namespace Xenon.Expr
                     {
                         XenonValue_BoolImpl oBool = (XenonValue_BoolImpl)oValue;
 
-                        if ("" != oBool.SHumaninput)
+                        if ("" != oBool.Humaninput)
                         {
                             bAllFldsIsEmpty = false;
                         }
@@ -213,7 +213,7 @@ namespace Xenon.Expr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -236,7 +236,7 @@ namespace Xenon.Expr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -294,7 +294,7 @@ namespace Xenon.Expr
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

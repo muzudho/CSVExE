@@ -31,7 +31,7 @@ namespace Xenon.Operating
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "MToO",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "MToO",log_Reports);
 
             //
             //
@@ -49,12 +49,12 @@ namespace Xenon.Operating
             foreach (DataRow dataRow in xenonTable_Stylesheet.DataTable.Rows)
             {
                 string sId;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
 
                     object obj;
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 
@@ -65,7 +65,7 @@ namespace Xenon.Operating
                             log_Reports,
                             "スタイルシートテーブル（NAME検索時）"
                             );
-                        if (!log_Reports.BSuccessful)
+                        if (!log_Reports.Successful)
                         {
                             // 既エラー。
                             goto gt_EndMethod;
@@ -77,7 +77,7 @@ namespace Xenon.Operating
                         obj = null;
                     }
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 
@@ -94,7 +94,7 @@ namespace Xenon.Operating
                 }
 
                 string sStyle;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
 
@@ -106,7 +106,7 @@ namespace Xenon.Operating
                             log_Reports,
                             "スタイルシートテーブル（STYLE検索時）"
                             );
-                        if (!log_Reports.BSuccessful)
+                        if (!log_Reports.Successful)
                         {
                             // 既エラー。
                             goto gt_EndMethod;
@@ -121,8 +121,8 @@ namespace Xenon.Operating
                 }
 
                 RecordXenonStyle item = new RecordXenonStyleImpl();
-                item.SId = sId;
-                item.SStyle = sStyle;
+                item.Id = sId;
+                item.Style = sStyle;
                 oStyleAttrList.Dictionary_RecordStyle.Add(sId, item);
 
                 nIndex++;
@@ -149,7 +149,7 @@ namespace Xenon.Operating
 
                     // ヒント
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }

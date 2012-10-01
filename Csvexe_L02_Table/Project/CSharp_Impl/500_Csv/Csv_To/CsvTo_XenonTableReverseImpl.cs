@@ -53,7 +53,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Read",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Read",log_Reports);
 
             //
             //
@@ -62,11 +62,11 @@ namespace Xenon.Table
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
 
-            XenonTable xenonTable = new XenonTableImpl(forTable_Request.SName_PutToTable,forTable_Request.Expression_Filepath);
+            XenonTable xenonTable = new XenonTableImpl(forTable_Request.Name_PutToTable,forTable_Request.Expression_Filepath);
             //table.SName = forTable_request.STableNameToPuts;
-            xenonTable.STableunit = forTable_Request.STableunit;
-            xenonTable.STypedata = forTable_Request.STypedata;
-            xenonTable.BDatebackup = forTable_Request.BDatebackup;
+            xenonTable.Tableunit = forTable_Request.Tableunit;
+            xenonTable.Typedata = forTable_Request.Typedata;
+            xenonTable.IsDatebackupActivated = forTable_Request.IsDatebackupActivated;
             xenonTable.XenonTableformat = forTable_Format;
 
 
@@ -182,8 +182,8 @@ namespace Xenon.Table
                             // TODO: 警告。（エラーではない）
 
                             Log_TextIndented t = new Log_TextIndentedImpl();
-                            t.Append("▲エラー45！(" + Info_Table.SName_Library + ")");
-                            t.NewLine();
+                            t.Append("▲エラー45！(" + Info_Table.Name_Library + ")");
+                            t.Newline();
 
                             t.Append("型の名前を記入してください。");
                             t.Append(Environment.NewLine);
@@ -196,7 +196,7 @@ namespace Xenon.Table
                             t.Append(Environment.NewLine);
                             t.Append("[");
 
-                            t.Append(fieldDefinition.SName_Humaninput);
+                            t.Append(fieldDefinition.Name_Humaninput);
 
                             t.Append("]フィールド　（[");
                             t.Append(nRowIndex);
@@ -211,11 +211,11 @@ namespace Xenon.Table
                             t.Append(Environment.NewLine);
                             t.Append(Environment.NewLine);
                             t.Append("テーブル名＝[");
-                            t.Append(forTable_Request.SName_PutToTable);
+                            t.Append(forTable_Request.Name_PutToTable);
                             t.Append("]");
                             t.Append(Environment.NewLine);
                             t.Append("ファイル・パス＝[");
-                            t.Append(forTable_Request.Expression_Filepath.SHumaninput);
+                            t.Append(forTable_Request.Expression_Filepath.Humaninput);
                             t.Append("]");
                             t.Append(Environment.NewLine);
                             t.Append(Environment.NewLine);
@@ -234,7 +234,7 @@ namespace Xenon.Table
                         //
                         nColumnIndex = 2;
                         {
-                            fieldDefinition.SComment = sToken;
+                            fieldDefinition.Comment = sToken;
                         }
 
                     }
@@ -305,7 +305,7 @@ namespace Xenon.Table
 
             // テーブル作成。テーブルのフィールド型定義と、データ本体をセットします。
             xenonTable.CreateTable(list_FldDef, log_Reports);
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 xenonTable.AddRecordList(rows, list_FldDef, log_Reports);
                 //essageBox.Show("CSV読取後のテーブル作成終わり", "TableCsvLibデバッグ");

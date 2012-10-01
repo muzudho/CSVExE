@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Xenon.Syntax
 {
-    public delegate void DLGT_SAllAttrs(string sKey, string sValue, ref bool bBreak);
+    public delegate void DLGT_StringAllAttributes(string sKey, string sValue, ref bool bBreak);
 
 
     public class DictionaryGivechapterandverse_StringImpl : DictionaryGivechapterandverse_String
@@ -30,7 +30,7 @@ namespace Xenon.Syntax
         public void Clear(Givechapterandverse_Node owner_Gcav, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Clear", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Clear", log_Reports);
 
             //
             //
@@ -65,7 +65,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Add",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Add",log_Reports);
 
             //
             //
@@ -97,19 +97,19 @@ namespace Xenon.Syntax
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("要素<");
-                s.Append(this.owner_Givechapterandverse.SName);
+                s.Append(this.owner_Givechapterandverse.Name);
                 s.Append(">に、同じ名前の属性が重複していました。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("入れようとした要素の名前=[");
                 s.Append(sKey);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(gcav_Value));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -133,7 +133,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Set",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Set",log_Reports);
 
             //
             //
@@ -167,11 +167,11 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "TryGetValue",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TryGetValue",log_Reports);
             //
 
 
-            bool bHit = this.dictionaryS.TryGetValue(pmName.SName_Pm, out sResult);
+            bool bHit = this.dictionaryS.TryGetValue(pmName.Name_Pm, out sResult);
             if (!bHit || "" == sResult)
             {
                 if (bRequired)
@@ -195,12 +195,12 @@ namespace Xenon.Syntax
 
 
                 s.Append("name=\"");
-                s.Append(pmName.SName_Attr);
+                s.Append(pmName.Name_Attribute);
                 s.Append("\" 属性か、または <arg name=\"");
-                s.Append(pmName.SName_Pm);
+                s.Append(pmName.Name_Pm);
                 s.Append("\" ～> 要素のどちらかが必要でしたが、違う方を書いたか、記述されていないか、空文字列でした。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 if (null != this.owner_Givechapterandverse)
                 {
@@ -210,12 +210,12 @@ namespace Xenon.Syntax
                 else
                 {
                     s.Append("どの要素かは不明。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -261,7 +261,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性＝””
         /// </summary>
-        public Dictionary<string, string> Dictionary_SAttribute
+        public Dictionary<string, string> Dictionary_StringAttribute
         {
             get
             {
@@ -273,10 +273,10 @@ namespace Xenon.Syntax
             }
         }
 
-        public void ForEach(DLGT_SAllAttrs dlgt1)
+        public void ForEach(DLGT_StringAllAttributes dlgt1)
         {
             bool bBreak = false;
-            foreach (KeyValuePair<string, string> kvp in this.Dictionary_SAttribute)
+            foreach (KeyValuePair<string, string> kvp in this.Dictionary_StringAttribute)
             {
                 dlgt1(kvp.Key, kvp.Value, ref bBreak);
 
@@ -289,7 +289,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public int NCount
+        public int Count
         {
             get
             {

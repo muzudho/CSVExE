@@ -46,7 +46,7 @@ namespace Xenon.Table
         /// <summary>
         /// キーフィールド名。field="" 属性。
         /// </summary>
-        string SField
+        string Name_Field
         {
             get;
             //set;
@@ -69,7 +69,7 @@ namespace Xenon.Table
         /// <summary>
         /// value="" 属性。
         /// </summary>
-        string SValue
+        string Value
         {
             get;
             set;

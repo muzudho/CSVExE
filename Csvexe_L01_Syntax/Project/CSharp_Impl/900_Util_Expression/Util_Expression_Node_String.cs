@@ -34,7 +34,7 @@ namespace Xenon.Syntax
             // エラー。
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, "Util_Expression_Node_String", "NoImpl_Expression_GetChildList", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Util_Expression_Node_String", "NoImpl_Expression_GetChildList", log_Reports);
             //
             //
             //
@@ -54,7 +54,7 @@ namespace Xenon.Syntax
                 // ヒント
                 sb.Append(r.Message_Givechapterandverse(parent_Gcav));
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -82,7 +82,7 @@ namespace Xenon.Syntax
             // エラー。
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, "Util_Expression_Node_String", "NoImpl_Expression_AddChild",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Util_Expression_Node_String", "NoImpl_Expression_AddChild",log_Reports);
 
             //
             //
@@ -103,7 +103,7 @@ namespace Xenon.Syntax
                 // ヒント
                 sb.Append(r.Message_Givechapterandverse(parent_Gcav));
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
 

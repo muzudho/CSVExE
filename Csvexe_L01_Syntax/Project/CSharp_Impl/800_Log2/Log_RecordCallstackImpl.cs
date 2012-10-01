@@ -18,12 +18,12 @@ namespace Xenon.Syntax
             StringBuilder sb = new StringBuilder();
 
             sb.Append("*＜");
-            sb.Append(this.Log_Method.SHead);
+            sb.Append(this.Log_Method.Fullname);
 
-            if ("" != this.SComment_Statement)
+            if ("" != this.Comment_Statement)
             {
                 sb.Append(" ");
-                sb.Append(this.SComment_Statement);
+                sb.Append(this.Comment_Statement);
             }
 
             sb.Append("＞");
@@ -57,7 +57,7 @@ namespace Xenon.Syntax
 
         private string sComment_Statement;
 
-        public string SComment_Statement
+        public string Comment_Statement
         {
             get
             {

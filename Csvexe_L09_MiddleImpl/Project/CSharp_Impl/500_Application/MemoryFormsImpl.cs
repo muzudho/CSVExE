@@ -79,10 +79,10 @@ namespace Xenon.MiddleImpl
             //
             //
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "ClearForms",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "ClearForms",log_Reports);
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Control mainwnd = this.Mainwnd_FormWrapping.Form;
 
@@ -95,7 +95,7 @@ namespace Xenon.MiddleImpl
                 //
                 moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         if (mainwnd != uct)
                         {
@@ -117,7 +117,7 @@ namespace Xenon.MiddleImpl
                 //
                 moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         if (mainwnd != uct)
                         {
@@ -139,7 +139,7 @@ namespace Xenon.MiddleImpl
                 //
                 moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         if (mainwnd != uct)
                         {
@@ -161,7 +161,7 @@ namespace Xenon.MiddleImpl
                 //
                 moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         if (mainwnd != uct)
                         {
@@ -208,20 +208,20 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadFile",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile",log_Reports);
             //
             //
 
             // 手入力の Fcnf ファイルパス
             Givechapterandverse_Filepath cf_Fpath_Control;
             fo_Record.TryGetFilepath_Givechapterandverse(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
-            string sFpathH_F = cf_Fpath_Control.GetSHumaninput();
+            string sFpathH_F = cf_Fpath_Control.GetHumaninput();
 
             string sName_Control;
             fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", log_Reports);
 
             // FILE フィールド（ファイルパス）が未指定なら、処理せず。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if ("" == sFpathH_F)
                 {
@@ -247,11 +247,11 @@ namespace Xenon.MiddleImpl
             // Fcnf ファイルパス
             Expression_Node_Filepath ec_Fpath_F;
             {
-                Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl(log_Method.SHead + ".LoadFcnfFile record[" + cf_Fpath_Control.GetSHumaninput() + "]", null);
+                Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl(log_Method.Fullname + ".LoadFcnfFile record[" + cf_Fpath_Control.GetHumaninput() + "]", null);
 
                 Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_3", parent_Cf);
                 cf_Fpath.InitPath(sFpathH_F, sFpatha_F, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -272,7 +272,7 @@ namespace Xenon.MiddleImpl
 
             //
             // X → S
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XToGivechapterandverse_C11_Config to = new XToGivechapterandverse_C11_ConfigImpl();
                 to.XToGivechapterandverse(
@@ -310,15 +310,15 @@ namespace Xenon.MiddleImpl
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("コンポーネント設定ファイルへのパスが指定されていないので、");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
                 s.Append("処理しません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -347,10 +347,10 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SetupFcnfs",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "SetupFcnfs",log_Reports);
             //
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -406,7 +406,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SetupFormAndLoadUsercontrolconfigs", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "SetupFormAndLoadUsercontrolconfigs", log_Reports);
             //
             //
 
@@ -421,7 +421,7 @@ namespace Xenon.MiddleImpl
             // （Ｆ１）テーブル毎にレイアウト設定
             foreach (XenonTable o_Table_Form in listO_Table_Form)
             {
-                string sTableName = o_Table_Form.SName;
+                string sTableName = o_Table_Form.Name;
 
 
                 TableUserformconfig fo_Config_ByTable;
@@ -432,12 +432,12 @@ namespace Xenon.MiddleImpl
                 else
                 {
                     fo_Config_ByTable = new TableUserformconfigImpl(
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         new Givechapterandverse_NodeImpl(
                             NamesNode.S_FORM_CONFIG,
                             o_Table_Form.Expression_Filepath_ConfigStack.Cur_Givechapterandverse//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
                         ));
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -460,7 +460,7 @@ namespace Xenon.MiddleImpl
             // （Ｆ２）テーブルユニット毎にレイアウト設定。
             foreach (XenonTable o_Table_Form in listO_Table_Form)
             {
-                string sTableUnit = o_Table_Form.STableunit;
+                string sTableUnit = o_Table_Form.Tableunit;
 
 
                 TableUserformconfig fo_Config_ByGroup;
@@ -471,11 +471,11 @@ namespace Xenon.MiddleImpl
                 else
                 {
                     fo_Config_ByGroup = new TableUserformconfigImpl(
-                        o_Table_Form.SName,
+                        o_Table_Form.Name,
                         new Givechapterandverse_NodeImpl(NamesNode.S_FORM_CONFIG,
                         o_Table_Form.Expression_Filepath_ConfigStack.Cur_Givechapterandverse//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
                         ));
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -514,7 +514,7 @@ namespace Xenon.MiddleImpl
 
                 //
                 // （４）コントロール１つ１つに、データソース、データターゲットを設定していきます。
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     //
                     // コントロールに、データソース、データターゲットを設定していきます。
@@ -555,11 +555,11 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "P1_XToMemory_Userformconfig", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "P1_XToMemory_Userformconfig", log_Reports);
             //
             //
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -599,13 +599,13 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "P2_CreateForm",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "P2_CreateForm",log_Reports);
             //
             //
 
             //
             // コントロールを動的に追加。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -640,13 +640,13 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "P3_ApplyStyleToFc",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "P3_ApplyStyleToFc",log_Reports);
             //
             //
 
             //
             // コントロールのスタイルを設定。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -683,7 +683,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "CreateForm",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "CreateForm",log_Reports);
             //
             //
 
@@ -762,7 +762,7 @@ namespace Xenon.MiddleImpl
 
                 //.WriteLine(this.GetType().Name + "#CreateForm: (10) この要素=[" + fcUc.ControlCommon.Name + "] curTree=[" + curTree + "]");
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (null != uct)
                     {
@@ -981,7 +981,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "XToEc_Usercontrolcnf",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "XToEc_Usercontrolcnf",log_Reports);
 
             //
             //
@@ -990,7 +990,7 @@ namespace Xenon.MiddleImpl
             // 手入力の (Fcnf) ファイルパス
             Givechapterandverse_Filepath cf_Fpath_Control;
             fo_Record.TryGetFilepath_Givechapterandverse(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
-            string sFpath_f = cf_Fpath_Control.GetSHumaninput();
+            string sFpath_f = cf_Fpath_Control.GetHumaninput();
 
             //
             // コントロール名。
@@ -1017,7 +1017,7 @@ namespace Xenon.MiddleImpl
             // X → S　（データソース、データターゲットの変換）
             // S → E
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Utility_XToGivechapterandverse_Usercontrolconfig to1 = new Utility_XToGivechapterandverse_Usercontrolconfig();
 
@@ -1052,7 +1052,7 @@ namespace Xenon.MiddleImpl
             //
             // X → A　（イベント_アクション_リストを構築します）
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // （１）コントロールの名前を指定。
@@ -1150,7 +1150,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "ItemsStartsWith",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "ItemsStartsWith",log_Reports);
             //
             //
 
@@ -1160,7 +1160,7 @@ namespace Xenon.MiddleImpl
             {
                 string sFcName = fcUc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                if (log_Reports.BSuccessful && sFcName.StartsWith(sStarts))
+                if (log_Reports.Successful && sFcName.StartsWith(sStarts))
                 {
                     dic.Add(sFcName, fcUc);
                 }
@@ -1190,7 +1190,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetUsercontrolsByName",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetUsercontrolsByName",log_Reports);
 
             //
             //
@@ -1200,7 +1200,7 @@ namespace Xenon.MiddleImpl
             string sFcNameCsv;
             string err_SFcName;
             List<Usercontrol> list_FcUc = new List<Usercontrol>();
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
  
                 if (null == ec_FcName)
@@ -1217,7 +1217,7 @@ namespace Xenon.MiddleImpl
 
                 foreach (string sFcName_humanInput in sList_FcName)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // コントロール名の前後のスペースは切り落とします。
                         string sFcName = sFcName_humanInput.Trim();
@@ -1282,16 +1282,16 @@ namespace Xenon.MiddleImpl
                 s.Append("1件以上のコントロールが該当することが条件でしたが、0件しか該当しませんでした。指定コントロール名=[");
                 s.Append(sFcNameCsv);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("もしかして？　：中身が空の変数を指定していませんか？");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1304,16 +1304,16 @@ namespace Xenon.MiddleImpl
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("コントロールの名前が指定されていません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("もしかして？　：<action>要素に引数を指定していますか？");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1336,7 +1336,7 @@ namespace Xenon.MiddleImpl
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1363,7 +1363,7 @@ namespace Xenon.MiddleImpl
                     t.Append(sKey);
                     t.Append(Environment.NewLine);
                 });
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1389,7 +1389,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "RemoveUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "RemoveUsercontrol",log_Reports);
             //
             //
 
@@ -1419,7 +1419,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "PutUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "PutUsercontrol",log_Reports);
             //
             //
 
@@ -1461,7 +1461,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "RefreshDataByTogether",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "RefreshDataByTogether",log_Reports);
             //
             //
 
@@ -1471,7 +1471,7 @@ namespace Xenon.MiddleImpl
                 goto gt_EndMethod;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 //
@@ -1512,7 +1512,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "RefreshUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "RefreshUsercontrol",log_Reports);
             //
             //
             Expression_Node_String err_EFcName;
@@ -1532,17 +1532,17 @@ namespace Xenon.MiddleImpl
 
                     string sName_Together;
                     {
-                        bool bHit = cf_TgTogether.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Together, false, log_Reports);
+                        bool bHit = cf_TgTogether.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Together, false, log_Reports);
                     }
 
                     string sIn_Together;
                     {
-                        bool bHit = cf_TgTogether.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn_Together, false, log_Reports);
+                        bool bHit = cf_TgTogether.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn_Together, false, log_Reports);
                     }
 
                     string sTarget_Together;
                     {
-                        bool bHit = cf_TgTogether.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_TARGET1, out sTarget_Together, false, log_Reports);
+                        bool bHit = cf_TgTogether.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_TARGET1, out sTarget_Together, false, log_Reports);
                     }
 
                     sb.Append("　Together-");
@@ -1565,7 +1565,7 @@ namespace Xenon.MiddleImpl
                     sb.Append(sTarget_Together);
                     sb.Append("]");
 
-                    log_Method.Log_Stopwatch.SMessage = sb.ToString();
+                    log_Method.Log_Stopwatch.Message = sb.ToString();
                 }
 
                 log_Method.Log_Stopwatch.Begin();
@@ -1574,10 +1574,10 @@ namespace Xenon.MiddleImpl
 
             string sName_TgTarget;
             bool bDirty = false;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // ｔａｒｇｅｔ.NNの文字列表現
-                cf_TgTarget.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_TgTarget, true, log_Reports);
+                cf_TgTarget.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_TgTarget, true, log_Reports);
 
                 //TODO:末尾に「*」（dirty再読込要求）が付いてたら外したい。
                 if (sName_TgTarget.EndsWith("*"))
@@ -1602,7 +1602,7 @@ namespace Xenon.MiddleImpl
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 List<Usercontrol> list_Usercontrol;
                 // コントロール名。
@@ -1675,7 +1675,7 @@ namespace Xenon.MiddleImpl
                 s.Append(err_EFcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1704,7 +1704,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cf_RfrConfig_Hint));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1725,7 +1725,7 @@ namespace Xenon.MiddleImpl
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_Dammy = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "DebugWrite",log_Reports_Dammy);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "DebugWrite",log_Reports_Dammy);
             //
             //
 
@@ -1801,7 +1801,7 @@ namespace Xenon.MiddleImpl
             //
             log_Reports_Dammy.EndCreateReport();
             log_Method.EndMethod(log_Reports_Dammy);
-            if (!log_Reports_Dammy.BSuccessful)
+            if (!log_Reports_Dammy.Successful)
             {
                 log_Method.WriteDebug_ToConsole(log_Reports_Dammy.ToMessage());
             }
@@ -1922,7 +1922,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "ContainsUsercontrolByName",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "ContainsUsercontrolByName",log_Reports);
             //
             //
 

@@ -34,7 +34,7 @@ namespace Xenon.MiddleImpl
         public void Clear(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Clear",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear",log_Reports);
             //
 
             if (log_Method.CanDebug(1))
@@ -75,7 +75,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "TryGetTable_Variables",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "TryGetTable_Variables",log_Reports);
 
             out_O_Table_Variables = null;
 
@@ -93,7 +93,7 @@ namespace Xenon.MiddleImpl
                 );
             log_Reports.Log_Callstack.Pop(log_Method, "①");
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (null == ec_Fpath_Variables)
                 {
@@ -105,7 +105,7 @@ namespace Xenon.MiddleImpl
             }
 
             //指定されていた場合。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // CSVソースファイル読取
@@ -114,7 +114,7 @@ namespace Xenon.MiddleImpl
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
                 XenonTableformat tblFormat_puts = new XenonTableformatImpl();
-                request_tblReads.SName_PutToTable = NamesVar.S_ST_VARIABLES2;
+                request_tblReads.Name_PutToTable = NamesVar.S_ST_VARIABLES2;
                 request_tblReads.Expression_Filepath = ec_Fpath_Variables;
 
                 out_O_Table_Variables = reader.Read(
@@ -141,7 +141,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadVariables",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadVariables",log_Reports);
             //
 
             if (log_Method.CanDebug(1))
@@ -163,7 +163,7 @@ namespace Xenon.MiddleImpl
                 goto gt_EndMethod;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 moApplication.MemoryVariables.Load(
@@ -194,7 +194,7 @@ namespace Xenon.MiddleImpl
         public void PutString(string sName_Variable, string sInitial, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "PutString",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "PutString",log_Reports);
 
             if (NamesVar.Test_Filepath(sName_Variable))
             {
@@ -234,11 +234,11 @@ namespace Xenon.MiddleImpl
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("プログラムエラー！　文字列変数登録関数を使って、ファイルパス変数を追加しようとしました。");
-                s.NewLine();
+                s.Newline();
                 s.Append("変数[" + sName_Variable + "]。");
-                s.NewLine();
+                s.Newline();
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -252,11 +252,11 @@ namespace Xenon.MiddleImpl
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("同じ名前の変数を２度登録しないでください。");
-                s.NewLine();
+                s.Newline();
                 s.Append("変数[" + sName_Variable + "]は既に登録されていますが、さらに登録されました。");
-                s.NewLine();
+                s.Newline();
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -282,7 +282,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Load",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Load",log_Reports);
             //
 
             if (log_Method.CanDebug(1))
@@ -310,10 +310,10 @@ namespace Xenon.MiddleImpl
 
             string err_SFolder;
             string err_SName;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.parent_Variablesconfig_Givechapterandverse = new Givechapterandverse_NodeImpl(NamesNode.S_VARIABLE_CONFIG, o_Table_Var.Expression_Filepath_ConfigStack.Cur_Givechapterandverse);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -336,7 +336,7 @@ namespace Xenon.MiddleImpl
                             if (XenonValue_StringImpl.TryParse(
                                 dataRow[sFldName],
                                 out sStringValue,
-                                o_Table_Var.SName,
+                                o_Table_Var.Name,
                                 sFldName,
                                 log_Method,
                                 log_Reports))
@@ -347,13 +347,13 @@ namespace Xenon.MiddleImpl
                                 sStringValue = "";
                             }
 
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // エラー
                                 goto gt_EndMethod;
                             }
 
-                            cf_VarRecord1.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME.SName_Pm, sStringValue, log_Reports);
+                            cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sStringValue, log_Reports);
                         }
                     }
 
@@ -365,7 +365,7 @@ namespace Xenon.MiddleImpl
                             if (XenonValue_StringImpl.TryParse(
                                 dataRow[sFldName],
                                 out sStringValue,
-                                o_Table_Var.SName,
+                                o_Table_Var.Name,
                                 sFldName,
                                 log_Method,
                                 log_Reports))
@@ -376,7 +376,7 @@ namespace Xenon.MiddleImpl
                                 sStringValue = "";
                             }
 
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // エラー
                                 goto gt_EndMethod;
@@ -386,7 +386,7 @@ namespace Xenon.MiddleImpl
                             //{
                             //    log_Method.WriteDebug_ToConsole("「変数登録ファイル」FOLDER列=[" + sStringValue + "]");
                             //}
-                            cf_VarRecord1.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_FOLDER.SName_Pm, sStringValue, log_Reports);
+                            cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sStringValue, log_Reports);
                         }
                         else
                         {
@@ -402,7 +402,7 @@ namespace Xenon.MiddleImpl
                             if (XenonValue_StringImpl.TryParse(
                                 dataRow[sFldName],
                                 out sStringValue,
-                                o_Table_Var.SName,
+                                o_Table_Var.Name,
                                 sFldName,
                                 log_Method,
                                 log_Reports))
@@ -413,31 +413,31 @@ namespace Xenon.MiddleImpl
                                 sStringValue = "";
                             }
 
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // エラー
                                 goto gt_EndMethod;
                             }
 
-                            cf_VarRecord1.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_VALUE.SName_Pm, sStringValue, log_Reports);
+                            cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sStringValue, log_Reports);
                         }
                     }
 
                     //
                     // 変数を登録。
                     //
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         //ＮＡＭＥ列
                         string sName;
-                        cf_VarRecord1.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                        cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                         //ＦＯＬＤＥＲ列　（オプション）
                         string sFolder;
-                        bool bExistsFolder = cf_VarRecord1.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
+                        bool bExistsFolder = cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
 
                         string sValue;
-                        cf_VarRecord1.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue,
+                        cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue,
                             false, //空文字列でも可。
                             log_Reports);
 
@@ -462,7 +462,7 @@ namespace Xenon.MiddleImpl
                                     true,
                                     log_Reports
                                     );
-                                cf_Fpath.SetSDirectory_Base(ec_Fopath_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                                cf_Fpath.SetDirectory_Base(ec_Fopath_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                             }
                             //else
                             //{
@@ -531,21 +531,21 @@ namespace Xenon.MiddleImpl
                 s.Append("[");
                 s.Append(err_SName);
                 s.Append("]変数に、");
-                s.Append(PmNames.S_FOLDER.SName_Attr);
+                s.Append(PmNames.S_FOLDER.Name_Attribute);
                 s.Append( "列値を指定しているのはエラーです。");
-                s.NewLine();
-                s.Append( PmNames.S_FOLDER.SName_Attr );
+                s.Newline();
+                s.Append( PmNames.S_FOLDER.Name_Attribute );
                 s.Append("列値は、ファイルパス変数にしか書いてはいけません。");
-                s.NewLine();
+                s.Newline();
                 s.Append("ファイルパス変数は、「");
                 s.Append(NamesVar.S_SP_);
                 s.Append("」、「");
                 s.Append(NamesVar.S_UP_);
                 s.Append("」で始まる名前の変数です。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
-                s.AppendI(1, PmNames.S_FOLDER.SName_Attr);
+                s.AppendI(1, PmNames.S_FOLDER.Name_Attribute);
                 if (null == err_SFolder)
                 {
                     s.Append("=ヌル。");
@@ -556,12 +556,12 @@ namespace Xenon.MiddleImpl
                     s.Append(err_SFolder);
                     s.Append("]");
                 }
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -579,7 +579,7 @@ namespace Xenon.MiddleImpl
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -599,7 +599,7 @@ namespace Xenon.MiddleImpl
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -630,7 +630,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "PutFilepath",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "PutFilepath",log_Reports);
             //
             //
 
@@ -672,7 +672,7 @@ namespace Xenon.MiddleImpl
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー922！", log_Method);
-                r.SMessage = "変数[" + sName_Variable + "]は既に定義されていますが、さらに定義されました。";
+                r.Message = "変数[" + sName_Variable + "]は既に定義されていますが、さらに定義されました。";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -697,7 +697,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SetVariable",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "SetVariable",log_Reports);
             //
             //
 
@@ -715,7 +715,7 @@ namespace Xenon.MiddleImpl
                     sFilePath,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -773,7 +773,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SetStringValue",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "SetStringValue",log_Reports);
             //
             //
 
@@ -855,7 +855,7 @@ namespace Xenon.MiddleImpl
                 }
                 t.Append(Environment.NewLine);
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -878,7 +878,7 @@ namespace Xenon.MiddleImpl
         public void SetFilepathValue(string sVariableName, Expression_Node_Filepath ec_Fpath, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SetFilepathValue",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "SetFilepathValue",log_Reports);
 
             if (bRequired && !this.dictionaryExpression_Item.ContainsKey(sVariableName))
             {
@@ -899,7 +899,7 @@ namespace Xenon.MiddleImpl
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー924！", log_Method);
-                r.SMessage = "変数[" + sVariableName + "]は存在しませんでした。";
+                r.Message = "変数[" + sVariableName + "]は存在しませんでした。";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -928,7 +928,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetStringByVariablename",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetStringByVariablename",log_Reports);
 
             //
             //
@@ -1000,7 +1000,7 @@ namespace Xenon.MiddleImpl
                     t.Append(Environment.NewLine);
                 }
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1029,7 +1029,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetExpressionfilepathByVariablename",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetExpressionfilepathByVariablename",log_Reports);
 
             //
             //
@@ -1061,9 +1061,9 @@ namespace Xenon.MiddleImpl
                     //{
                     //    string sFopath = this.ec_FpathBaseOrNull.Execute_OnExpressionString(
                     //        Request_SelectingImpl.Unconstraint, log_Reports);
-                    //    if (log_Reports.BSuccessful)
+                    //    if (log_Reports.Successful)
                     //    {
-                    //        ec_Fpath_Result.SetSDirectory_Base(sFopath, log_Reports);
+                    //        ec_Fpath_Result.SetDirectory_Base(sFopath, log_Reports);
                     //    }
                     //}
                 }
@@ -1113,7 +1113,7 @@ namespace Xenon.MiddleImpl
                 s.Append(r.Message_Givechapterandverse(ec_Name_Variable.Cur_Givechapterandverse));
                 //s.Append(r.Message_Givechapterandverse(ec_Name_Variable.Cur_Givechapterandverse.Parent_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1123,7 +1123,7 @@ namespace Xenon.MiddleImpl
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー909", log_Method);
-                r.SMessage = "変数[" + sName_Var + "]はファイルパス型を期待しましたが、ファイルパス型ではありませんでした。";
+                r.Message = "変数[" + sName_Var + "]はファイルパス型を期待しましたが、ファイルパス型ではありませんでした。";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1145,7 +1145,7 @@ namespace Xenon.MiddleImpl
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Dammy = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "WriteDebug_ToConsole",d_Logging_Dammy);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "WriteDebug_ToConsole",d_Logging_Dammy);
             //
             //
 
@@ -1166,7 +1166,7 @@ namespace Xenon.MiddleImpl
                         {
                             // ファイルパス型。
                             // bug: 絶対パスでない場合、空白になるので、SHumanInput で取得することになるはず。
-                            log_Method.WriteInfo_ToConsole(" [" + kvp.Key + "]=P型[" + kvp.Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, d_Logging_Dammy) + "]　／　SHumanInput=[" + ((Expression_Node_Filepath)kvp.Value).SHumaninput + "]");
+                            log_Method.WriteInfo_ToConsole(" [" + kvp.Key + "]=P型[" + kvp.Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, d_Logging_Dammy) + "]　／　SHumanInput=[" + ((Expression_Node_Filepath)kvp.Value).Humaninput + "]");
                         }
                         else
                         {
@@ -1181,7 +1181,7 @@ namespace Xenon.MiddleImpl
             //
             log_Method.EndMethod(d_Logging_Dammy);
             d_Logging_Dammy.EndLogging(log_Method);
-            if (!d_Logging_Dammy.BSuccessful)
+            if (!d_Logging_Dammy.Successful)
             {
                 log_Method.WriteDebug_ToConsole(d_Logging_Dammy.ToMessage());
             }
@@ -1197,7 +1197,7 @@ namespace Xenon.MiddleImpl
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Dammy = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "EachVariable",d_Logging_Dammy);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "EachVariable",d_Logging_Dammy);
 
             //
             //

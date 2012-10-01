@@ -13,7 +13,7 @@ namespace Xenon.XToGcav
         #region プロパティー
         //────────────────────────────────────────
 
-        static public String SName_Library
+        static public String Name_Library
         {
             get
             {

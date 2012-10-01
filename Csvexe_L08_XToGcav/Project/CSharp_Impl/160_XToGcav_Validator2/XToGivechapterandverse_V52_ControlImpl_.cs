@@ -26,7 +26,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_ChildNodes",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_ChildNodes",log_Reports);
             //
             //
 
@@ -99,7 +99,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -116,7 +116,7 @@ namespace Xenon.XToGcav
         protected override void LinkToParent(Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             Usercontrol uct = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 uct = Utility_XToGivechapterandverse_NodeImpl.GetUsercontrol(cur_Cf, memoryApplication, log_Reports);
             }

@@ -161,22 +161,22 @@ namespace Xenon.GridPanel
         /// <param name="e"></param>
         public void Paint(Graphics g, Point parentLocation)
         {
-            Font font = new Font("Arial", this.NSize_FontPt);
+            Font font = new Font("Arial", this.Size_FontPt);
 
-            if(this.BVisibled)
+            if(this.IsVisibled)
             {
                 StringFormat stringFormat = new StringFormat();
 
-                if (this.BHorizontal)
+                if (this.IsHorizontal)
                 {
                     //
                     // 水平に並ぶ目盛りなら
                     //
-                    int labelCurrent = this.NFirst_Label;
-                    int lastTick = this.NLocation_First + this.NLength_Total;
+                    int labelCurrent = this.Number_LabelFirst;
+                    int lastTick = this.Number_LocationFirst + this.Length_Total;
 
                     // 垂直線
-                    for (int tick = this.NLocation_First; tick < lastTick; tick += this.NInterval_Cell)
+                    for (int tick = this.Number_LocationFirst; tick < lastTick; tick += this.Interval_Cell)
                     {
                         string labelString = labelCurrent.ToString();
                         SizeF fontSize = g.MeasureString(labelString, font);
@@ -185,10 +185,10 @@ namespace Xenon.GridPanel
                         switch (this.Textalign)
                         {
                             case EnumTextalign.Center:
-                                offsetX = this.NWidth_Label / 2.0F - fontSize.Width / 2.0F;
+                                offsetX = this.Width_Label / 2.0F - fontSize.Width / 2.0F;
                                 break;
                             case EnumTextalign.Right:
-                                offsetX = this.NWidth_Label - fontSize.Width;
+                                offsetX = this.Width_Label - fontSize.Width;
                                 break;
                             default:
                             //case TextAlign.Left:
@@ -199,11 +199,11 @@ namespace Xenon.GridPanel
                         g.DrawString(
                             labelString,
                             font,
-                            BuilderBrush.Parse(this.SName_ForegroundBrush),
-                            (float)tick + offsetX + parentLocation.X + this.NOffsetPixel_FirstItem,
-                            this.NLocation_Fixed + parentLocation.Y
+                            BuilderBrush.Parse(this.Name_ForegroundBrush),
+                            (float)tick + offsetX + parentLocation.X + this.OffsetPixel_FirstItem,
+                            this.Number_LocationFixed + parentLocation.Y
                             );
-                        labelCurrent += this.NOffset_Label;
+                        labelCurrent += this.Offset_Label;
                     }
                 }
                 else
@@ -211,11 +211,11 @@ namespace Xenon.GridPanel
                     //
                     // 垂直に並ぶ目盛りなら
                     //
-                    int labelCurrent = this.NFirst_Label;
-                    int lastTick = this.NLocation_First + this.NLength_Total;
+                    int labelCurrent = this.Number_LabelFirst;
+                    int lastTick = this.Number_LocationFirst + this.Length_Total;
 
                     // 水平線
-                    for (int nTick = this.NLocation_First; nTick < lastTick; nTick += this.NInterval_Cell)
+                    for (int nTick = this.Number_LocationFirst; nTick < lastTick; nTick += this.Interval_Cell)
                     {
                         string sLabel = labelCurrent.ToString();
                         SizeF fontSize = g.MeasureString(sLabel, font);
@@ -224,10 +224,10 @@ namespace Xenon.GridPanel
                         switch (this.Textalign)
                         {
                             case EnumTextalign.Center:
-                                offsetX = this.NWidth_Label / 2.0F - fontSize.Width / 2.0F;
+                                offsetX = this.Width_Label / 2.0F - fontSize.Width / 2.0F;
                                 break;
                             case EnumTextalign.Right:
-                                offsetX = this.NWidth_Label - fontSize.Width;
+                                offsetX = this.Width_Label - fontSize.Width;
                                 break;
                             default:
                                 //case TextAlign.Left:
@@ -238,11 +238,11 @@ namespace Xenon.GridPanel
                         g.DrawString(
                             labelCurrent.ToString(),
                             font,
-                            BuilderBrush.Parse(this.SName_ForegroundBrush),
-                            this.NLocation_Fixed + offsetX + parentLocation.X,
-                            nTick + parentLocation.Y + this.NOffsetPixel_FirstItem
+                            BuilderBrush.Parse(this.Name_ForegroundBrush),
+                            this.Number_LocationFixed + offsetX + parentLocation.X,
+                            nTick + parentLocation.Y + this.OffsetPixel_FirstItem
                             );
-                        labelCurrent += this.NOffset_Label;
+                        labelCurrent += this.Offset_Label;
                     }
                 }
             }
@@ -265,7 +265,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 目盛りラベルの最初の数字。
         /// </summary>
-        public int NFirst_Label
+        public int Number_LabelFirst
         {
             set
             {
@@ -284,7 +284,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 目盛りラベルの１つ進むたびの増分。
         /// </summary>
-        public int NOffset_Label
+        public int Offset_Label
         {
             set
             {
@@ -306,7 +306,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 端っこの座標。（xまたはy）
         /// </summary>
-        public int NLocation_First
+        public int Number_LocationFirst
         {
             set
             {
@@ -325,7 +325,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 端っこの座標の反対軸。（xまたはy）
         /// </summary>
-        public int NLocation_Fixed
+        public int Number_LocationFixed
         {
             set
             {
@@ -344,7 +344,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 全体のピクセルの長さ。（widthまたはheight）
         /// </summary>
-        public int NLength_Total
+        public int Length_Total
         {
             set
             {
@@ -363,7 +363,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// セルの間隔。ピクセルでの長さ。（widthまたはheight）
         /// </summary>
-        public int NInterval_Cell
+        public int Interval_Cell
         {
             set
             {
@@ -383,7 +383,7 @@ namespace Xenon.GridPanel
         /// ラベルの文字列幅。ピクセルでの長さ。
         /// 垂直方向に並んだラベルでは cellInterval とは値が一致しないことがあることに対応した設定。
         /// </summary>
-        public int NWidth_Label
+        public int Width_Label
         {
             set
             {
@@ -402,7 +402,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 水平なら真、垂直なら偽。
         /// </summary>
-        public bool BHorizontal
+        public bool IsHorizontal
         {
             set
             {
@@ -424,7 +424,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 表示するなら真。
         /// </summary>
-        public bool BVisibled
+        public bool IsVisibled
         {
             set
             {
@@ -445,7 +445,7 @@ namespace Xenon.GridPanel
         /// 
         /// Brushクラスはシリアライズ化できなかったので止めた。
         /// </summary>
-        public string SName_ForegroundBrush
+        public string Name_ForegroundBrush
         {
             set
             {
@@ -464,7 +464,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// フォントのサイズ。単位はpoint(pt)。
         /// </summary>
-        public float NSize_FontPt
+        public float Size_FontPt
         {
             set
             {
@@ -502,7 +502,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 最初の項目を、ピクセル単位でずらして位置調整することができます。
         /// </summary>
-        public int NOffsetPixel_FirstItem
+        public int OffsetPixel_FirstItem
         {
             get
             {

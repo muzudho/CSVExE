@@ -123,7 +123,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 要素数。
         /// </summary>
-        int NCount
+        int Count
         {
             get;
         }
@@ -132,7 +132,7 @@ namespace Xenon.Syntax
         /// それぞれの要素。
         /// </summary>
         /// <param name="dlgt1"></param>
-        void ForEach(DLGT_E_Attrs dlgt1);
+        void ForEach(DLGT_Expression_Attributes dlgt1);
 
         //────────────────────────────────────────
         #endregion

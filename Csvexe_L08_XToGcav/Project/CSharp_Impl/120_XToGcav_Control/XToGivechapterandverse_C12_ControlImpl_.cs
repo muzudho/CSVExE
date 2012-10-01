@@ -51,7 +51,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToCf",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToCf",log_Reports);
             //
             //
 
@@ -59,7 +59,7 @@ namespace Xenon.XToGcav
             XmlElement err_11elm;
             Exception err_Excp;
             Givechapterandverse_Node cur_Cf;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 // コントロール名。
@@ -106,7 +106,7 @@ namespace Xenon.XToGcav
                 uct.ControlCommon.Givechapterandverse_Control = cur_Cf;
                 //
                 // コントロール名。
-                uct.ControlCommon.Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_NAME.SName_Pm, sName_Control, uct.ControlCommon.Givechapterandverse_Control, true, log_Reports);
+                uct.ControlCommon.Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_NAME.Name_Pm, sName_Control, uct.ControlCommon.Givechapterandverse_Control, true, log_Reports);
 
                 //
                 //
@@ -184,7 +184,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cf_ControlConfig));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -208,7 +208,7 @@ namespace Xenon.XToGcav
                 sb.Append(r.Message_Givechapterandverse(cur_Cf));
                 sb.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -231,7 +231,7 @@ namespace Xenon.XToGcav
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -262,7 +262,7 @@ namespace Xenon.XToGcav
             {
                 Log_Method log_Method = new Log_MethodImpl(0);
                 Log_Reports d_Logging_ThisMethod = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS_ElmMap get",d_Logging_ThisMethod);
+                log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS_ElmMap get",d_Logging_ThisMethod);
                 //
                 //
 

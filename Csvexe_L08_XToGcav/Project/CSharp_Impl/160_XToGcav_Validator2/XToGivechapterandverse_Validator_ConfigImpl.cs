@@ -35,7 +35,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -83,7 +83,7 @@ namespace Xenon.XToGcav
 
             XmlNode err_XTopNode = null;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // new した直後の内容に戻します。
                 memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig.Clear( NamesNode.S_CODEFILE_VALIDATORS, new Givechapterandverse_NodeImpl(sFpatha, null), log_Reports);
@@ -94,7 +94,7 @@ namespace Xenon.XToGcav
 
                 // スクリプトファイルのバージョンチェック。（バリデーター登録ファイル）
                 ValuesAttr.Test_Codefileversion(
-                    xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.SName_Attr),
+                    xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
                     new Givechapterandverse_NodeImpl(sFpatha, null),
                     NamesNode.S_CODEFILE_VALIDATORS
@@ -145,7 +145,7 @@ namespace Xenon.XToGcav
             else
             {
                 // new した直後の内容に戻します。
-                memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig.Clear(NamesNode.S_CODEFILE_VALIDATORS, new Givechapterandverse_NodeImpl("!ハードコーディング_"+log_Method.SHead, null), log_Reports);
+                memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig.Clear(NamesNode.S_CODEFILE_VALIDATORS, new Givechapterandverse_NodeImpl("!ハードコーディング_"+log_Method.Fullname, null), log_Reports);
             }
 
             goto gt_EndMethod;
@@ -170,7 +170,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -191,7 +191,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -217,7 +217,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -237,7 +237,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -256,7 +256,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

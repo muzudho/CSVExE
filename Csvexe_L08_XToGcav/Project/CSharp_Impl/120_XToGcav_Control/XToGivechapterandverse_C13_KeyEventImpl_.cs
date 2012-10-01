@@ -29,7 +29,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -57,13 +57,13 @@ namespace Xenon.XToGcav
             //
             // コントロールの、key-eventリストに、S_KeyEventを追加。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_KEY_ACTION, log_Reports);
 
                 //List<string> li = new List<string>();
-                //li.Add(PmNames.TYPE.SName_Pm);
-                //li.Add(PmNames.S_DESCRIPTION.SName_Attr);
+                //li.Add(PmNames.TYPE.Name_Pm);
+                //li.Add(PmNames.S_DESCRIPTION.Name_Attribute);
                 //xToS.List_AttrName = li;
 
                 //
@@ -103,7 +103,7 @@ namespace Xenon.XToGcav
                                 // ヒント
                                 t.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                                r.SMessage = t.ToString();
+                                r.Message = t.ToString();
                                 log_Reports.EndCreateReport();
                             }
                         }
@@ -123,7 +123,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf,log_Reports);
             }

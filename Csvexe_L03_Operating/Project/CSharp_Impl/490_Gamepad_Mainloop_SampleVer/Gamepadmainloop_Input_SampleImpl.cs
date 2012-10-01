@@ -142,7 +142,7 @@ namespace Xenon.Operating
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "ReadKeyConfig",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "ReadKeyConfig",log_Reports_ThisMethod);
 
             // テーブルを、上から下に読んでいく。
             // 列の並び順は NO	ID	Expl	PLAYER	BEFORE	AFTER

@@ -19,7 +19,7 @@ namespace Xenon.Operating
         /// <summary>
         /// テーブル上のID。
         /// </summary>
-        string SId
+        string Id
         {
             set;
             get;
@@ -28,7 +28,7 @@ namespace Xenon.Operating
         /// <summary>
         /// スタイル属性1件分の記述。
         /// </summary>
-        string SStyle
+        string Style
         {
             set;
             get;

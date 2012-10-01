@@ -63,18 +63,18 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Translate",log_Reports);
             //
             //
 
             string sName_Fnc;
-            if (action_Gcav.Dictionary_SAttribute_Givechapterandverse.ContainsKey(PmNames.S_NAME.SName_Pm))
+            if (action_Gcav.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_NAME.Name_Pm))
             {
-                action_Gcav.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
+                action_Gcav.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
             }
             else
             {
-                sName_Fnc = "＜エラー:" + log_Method.SHead + "＞";
+                sName_Fnc = "＜エラー:" + log_Method.Fullname + "＞";
             }
 
 
@@ -83,7 +83,7 @@ namespace Xenon.Functions
 
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (null != expr_Func)
                 {

@@ -45,7 +45,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// メソッドのどこか、という細かな場所情報。指定がないこともある。
         /// </summary>
-        string SComment_Statement
+        string Comment_Statement
         {
             get;
             set;

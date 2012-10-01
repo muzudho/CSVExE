@@ -28,11 +28,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(35)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(35)" + cur_Cf.Name);
             }
 
             //
@@ -65,20 +65,20 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_TYPE;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
-                        cur_Exprv.Dictionary_SAttribute.Add(pmName.SName_Pm, sValue);
+                        cur_Exprv.Dictionary_SAttribute.Add(pmName.Name_Pm, sValue);
                     }
                 }
 
                 {
                     PmName pmName = PmNames.S_DESCRIPTION;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
-                        cur_Exprv.Dictionary_SAttribute.Add(pmName.SName_Pm, sValue);
+                        cur_Exprv.Dictionary_SAttribute.Add(pmName.Name_Pm, sValue);
                     }
                 }
             }
@@ -89,7 +89,7 @@ namespace Xenon.GcavToExpr
             // #デバッグ中
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole(" 子＜f-●●＞数＝[" + cur_Cf.List_ChildGivechapterandverse.NCount + "]");
+                log_Method.WriteDebug_ToConsole(" 子＜f-●●＞数＝[" + cur_Cf.List_ChildGivechapterandverse.Count + "]");
             }
 
             //
@@ -106,7 +106,7 @@ namespace Xenon.GcavToExpr
                     Givechapterandverse_Node child_Givechapterandverse_Node = (Givechapterandverse_Node)child_Cf;
 
                     string sName_Fnc;
-                    child_Givechapterandverse_Node.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
+                    child_Givechapterandverse_Node.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
 
                     if (NamesFnc.S_VLD_ALL_FIELDS_IS_EMPTY == sName_Fnc)
                     {
@@ -139,8 +139,8 @@ namespace Xenon.GcavToExpr
                     {
                         //
                         // エラー。
-                        err_Child_SName_Node = child_Givechapterandverse_Node.SName;
-                        err_Parent_SName_Node = cur_Cf.SName;
+                        err_Child_SName_Node = child_Givechapterandverse_Node.Name;
+                        err_Parent_SName_Node = cur_Cf.Name;
                         err_Child_CfNode = child_Givechapterandverse_Node;
                         bBreak = true;
                     }
@@ -173,7 +173,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(err_Child_CfNode));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -185,7 +185,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

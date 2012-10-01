@@ -69,17 +69,17 @@ namespace Xenon.Syntax
         /// 例："Data\\Monster.csv"
         /// </summary>
         /// <param name="newHumanInputFilePath"></param>
-        public void SetSHumaninput(
+        public void SetHumaninput(
             string sFpath_Humaninput_New,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "SetSHumaninput",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetSHumaninput",log_Reports);
 
             if (this.Cur_Givechapterandverse is Givechapterandverse_Filepath)
             {
-                ((Givechapterandverse_Filepath)this.Cur_Givechapterandverse).SetSHumaninput(
+                ((Givechapterandverse_Filepath)this.Cur_Givechapterandverse).SetHumaninput(
                 sFpath_Humaninput_New,
                 log_Reports
                 );
@@ -96,7 +96,7 @@ namespace Xenon.Syntax
                     s.Append(Environment.NewLine);
                     s.Append("#SetSHumanInput:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name + "]");
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -124,7 +124,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Execute_OnEString",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnEString",log_Reports);
             //
             //
 
@@ -137,11 +137,11 @@ namespace Xenon.Syntax
 
                 bool bCheckPathTooLong = false;
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     sFpath = Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(
-                        this.SDirectory_Base,
-                        cf_Fpath.GetSHumaninput(),//this.SHumanInput相当
+                        this.Directory_Base,
+                        cf_Fpath.GetHumaninput(),//this.SHumanInput相当
                         ref bCheckPathTooLong, //ファイル名の長さチェックは、もう済んでいるものとして、行いません。
                         false,//ファイル名の長さが上限超過ならエラー
                         log_Reports,//out sErrorMsg,
@@ -166,7 +166,7 @@ namespace Xenon.Syntax
                     s.Append(Environment.NewLine);
                     s.Append("#GetSAbsoluteFilePath:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name + "]");
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -185,7 +185,7 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public override Expression_Node_Filepath Execute_OnExpressionString_AsFilePath(
+        public override Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
             Request_Selecting request,
             Log_Reports log_Reports
             )
@@ -200,13 +200,13 @@ namespace Xenon.Syntax
         /// そうでない場合は、System.Windows.Forms.StartupPath を入れてください。
         /// </summary>
         /// <param name="newDirectoryPath"></param>
-        public void SetSDirectory_Base(
+        public void SetDirectory_Base(
             string sFolderpath_New,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "SetSDirectory_Base",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetSDirectory_Base",log_Reports);
 
             // ダミー・フラグ。使いません。
             bool bDammyFlagCheckPathTooLong = false;
@@ -218,19 +218,19 @@ namespace Xenon.Syntax
                 // チェック。絶対パスにすることができればOK。
                 Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(
                     sFolderpath_New,
-                    cf_Fpath.GetSHumaninput(),
+                    cf_Fpath.GetHumaninput(),
                     ref bDammyFlagCheckPathTooLong,
                     false,//ファイル名の長さが上限超過ならエラー
                     log_Reports,//out sErrorMsg,
                     this.Cur_Givechapterandverse
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
                 }
 
-                cf_Fpath.SetSDirectory_Base(sFolderpath_New);
+                cf_Fpath.SetDirectory_Base(sFolderpath_New);
             }
             else
             {
@@ -244,7 +244,7 @@ namespace Xenon.Syntax
                     s.Append(Environment.NewLine);
                     s.Append("#GetSAbsoluteFilePath:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name + "]");
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -270,7 +270,7 @@ namespace Xenon.Syntax
         /// 相対パスが設定されていた場合、その相対元となるディレクトリーへのパスです。
         /// そうでない場合は、System.Windows.Forms.StartupPath を入れてください。
         /// </summary>
-        public string SDirectory_Base
+        public string Directory_Base
         {
             get
             {
@@ -278,12 +278,12 @@ namespace Xenon.Syntax
 
                 if (this.Cur_Givechapterandverse is Givechapterandverse_Filepath)
                 {
-                    sResult = ((Givechapterandverse_Filepath)this.Cur_Givechapterandverse).SDirectory_Base;
+                    sResult = ((Givechapterandverse_Filepath)this.Cur_Givechapterandverse).Directory_Base;
                 }
                 else
                 {
                     // エラー。
-                    sResult = "＜" + Info_Syntax.SName_Library + ":" + this.GetType().Name + "#SBaseDirectory:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name+ "]＞";
+                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#SBaseDirectory:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name+ "]＞";
                 }
 
                 return sResult;
@@ -300,7 +300,7 @@ namespace Xenon.Syntax
         /// 例："Data\\Monster.csv"
         /// </summary>
         /// <returns></returns>
-        public string SHumaninput
+        public string Humaninput
         {
             get
             {
@@ -308,12 +308,12 @@ namespace Xenon.Syntax
 
                 if (this.Cur_Givechapterandverse is Givechapterandverse_Filepath)
                 {
-                    sResult = ((Givechapterandverse_Filepath)this.Cur_Givechapterandverse).GetSHumaninput();
+                    sResult = ((Givechapterandverse_Filepath)this.Cur_Givechapterandverse).GetHumaninput();
                 }
                 else
                 {
                     // エラー。
-                    sResult = "＜" + Info_Syntax.SName_Library + ":" + this.GetType().Name + "#GetString:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name + "]＞";
+                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#GetString:型が違います。[" + this.Cur_Givechapterandverse.GetType().Name + "]＞";
                 }
 
                 return sResult;

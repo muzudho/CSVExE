@@ -51,7 +51,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Read",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Read",log_Reports);
 
 
 
@@ -59,7 +59,7 @@ namespace Xenon.Table
 
             string sFpatha_Csv = request_ReadsTable.Expression_Filepath.Execute_OnExpressionString(
                 Request_SelectingImpl.Unconstraint, log_Reports);
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 xenonTable_Result = null;
@@ -70,7 +70,7 @@ namespace Xenon.Table
 
             // CSVテキスト
             Exception err_Excp;
-            if (CsvTo_XenonTableImpl.S_WRITE_ONLY!=request_ReadsTable.SUse)
+            if (CsvTo_XenonTableImpl.S_WRITE_ONLY!=request_ReadsTable.Use)
             {
                 // 書き出し専用でなければ。
                 // ファイル読取を実行します。
@@ -115,7 +115,7 @@ namespace Xenon.Table
                 xenonTableFormat_puts,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -142,30 +142,30 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("ファイルの読取りに失敗しました。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("　ファイル=[");
                 s.Append(sFpatha_Csv);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("もしかして？");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("　・ファイルの有無、ファイル名、ファイル パスを確認してください。");
-                s.NewLine();
+                s.Newline();
                 s.Append("　・別アプリケーションで　ファイルを開いていれば、閉じてください。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //
                 // ヒント
                 request_ReadsTable.Expression_Filepath.Cur_Givechapterandverse.ToText_Path(s);
                 s.Append(err_Excp.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
 
                 log_Reports.EndCreateReport();
             }
@@ -179,39 +179,39 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定されたファイルはありませんでした。CSVファイルを読み込もうとしたとき。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.AppendI(1,"指定されたファイルパス=[");
                 s.Append(sFpatha_Csv);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
-                if ("" == request_ReadsTable.Expression_Filepath.SDirectory_Base)
+                if ("" == request_ReadsTable.Expression_Filepath.Directory_Base)
                 {
                     s.AppendI(1, "ベース・ディレクトリは指定されていません。");
-                    s.NewLine();
+                    s.Newline();
                     s.AppendI(2,"もし相対パスが指定されていた場合、実行した.exeファイルからの相対パスとします。");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
                 }
                 else
                 {
                     s.AppendI(1, "指定されたベース・ディレクトリ=[");
-                    s.Append(request_ReadsTable.Expression_Filepath.SDirectory_Base);
+                    s.Append(request_ReadsTable.Expression_Filepath.Directory_Base);
                     s.Append("]");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
                 }
                 
 
                 s.Append("　ヒント：ファイルの有無、ファイル名、ファイル パスを確認してください。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(request_ReadsTable.Expression_Filepath.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -223,8 +223,8 @@ namespace Xenon.Table
                 r.SetTitle("▲エラー104！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("▲エラー4030！(" + Info_Table.SName_Library + ")");
-                s.NewLine();
+                s.Append("▲エラー4030！(" + Info_Table.Name_Library + ")");
+                s.Newline();
                 s.Append("CSV読み取り中にエラーが発生しました。");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -246,7 +246,7 @@ namespace Xenon.Table
                 s.Append("エラーメッセージ：");
                 s.Append(err_Excp.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -259,14 +259,14 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("▲エラー131！");
-                s.NewLine();
+                s.Newline();
                 s.Append("[");
-                s.Append(request_ReadsTable.SName_PutToTable);
+                s.Append(request_ReadsTable.Name_PutToTable);
                 s.Append("]テーブルがありませんでした。");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -299,13 +299,13 @@ namespace Xenon.Table
 
             XenonTable o_Result;
 
-            if (xenonTableFormat_puts.BRowcolumnreverse)
+            if (xenonTableFormat_puts.IsRowcolumnreverse)
             {
                 //
                 // 縦、横がひっくりかえっているCSVテーブルを読み込みます。
                 //
 
-                if (xenonTableFormat_puts.BAllintfields)
+                if (xenonTableFormat_puts.IsAllintfieldsActivated)
                 {
                     //
                     // 型定義のレコードがなく、全てのフィールドがint型のCSVテーブルを読み込みます。
@@ -319,7 +319,7 @@ namespace Xenon.Table
                         xenonTableFormat_puts,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         o_Result = null;
@@ -338,7 +338,7 @@ namespace Xenon.Table
                         xenonTableFormat_puts,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         o_Result = null;
@@ -362,7 +362,7 @@ namespace Xenon.Table
                     xenonTableFormat_puts,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     o_Result = null;

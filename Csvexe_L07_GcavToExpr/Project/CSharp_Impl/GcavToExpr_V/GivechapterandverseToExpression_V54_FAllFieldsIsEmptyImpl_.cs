@@ -27,11 +27,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(37)" + cur_Gcav.SName);
+                pg_ParsingLog.Increment("(37)" + cur_Gcav.Name);
             }
 
             //
@@ -73,7 +73,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Exprv.ListExpression_Child.Add(
+            parent_Exprv.List_Expression_Child.Add(
                 cur_Exprv,
                 log_Reports
                 );
@@ -82,7 +82,7 @@ namespace Xenon.GcavToExpr
             // #デバッグ中
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole(" ★★ ＜ｆ－ａｌｌ－ｆｉｅｌｄｓ－ｉｓ－ｅｍｐｔｙ＞ 子要素数＝[" + cur_Exprv.ListExpression_Child.NCount + "] 属性数＝[" + cur_Exprv.DicExpression_Attr.NCount + "]");
+                log_Method.WriteDebug_ToConsole(" ★★ ＜ｆ－ａｌｌ－ｆｉｅｌｄｓ－ｉｓ－ｅｍｐｔｙ＞ 子要素数＝[" + cur_Exprv.List_Expression_Child.Count + "] 属性数＝[" + cur_Exprv.Dictionary_Expression_Attribute.Count + "]");
             }
 
             goto gt_EndMethod;
@@ -94,7 +94,7 @@ namespace Xenon.GcavToExpr
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Gcav.SName);
+                pg_ParsingLog.Decrement(cur_Gcav.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

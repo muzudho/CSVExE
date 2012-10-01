@@ -37,7 +37,7 @@ namespace Xenon.Syntax
             this.cur_Givechapterandverse = cur_Gcav;
 
             this.request_Selecting = Request_SelectingImpl.Unconstraint;
-            this.ecDic_Attr = new DicExpression_Node_StringImpl(this.Cur_Givechapterandverse);
+            this.dictionary_Expression_Attribute = new DicExpression_Node_StringImpl(this.Cur_Givechapterandverse);
         }
 
         //────────────────────────────────────────
@@ -53,7 +53,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "NewInstance",log_Reports);
 
             //
             //
@@ -88,17 +88,17 @@ namespace Xenon.Syntax
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ForSnapshot = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "ToText_Snapshot",log_Reports_ForSnapshot);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "ToText_Snapshot",log_Reports_ForSnapshot);
 
             log_Reports_ForSnapshot.BeginCreateReport(EnumReport.Dammy);
             s.Increment();
 
             s.AppendI(0,"葉「E■[");
-            s.Append(this.Cur_Givechapterandverse.SName);
+            s.Append(this.Cur_Givechapterandverse.Name);
             s.Append("]　");
             s.Append(this.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ForSnapshot));
             s.Append("」");
-            s.NewLine();
+            s.Newline();
 
 
             goto gt_EndMethod;
@@ -139,7 +139,7 @@ namespace Xenon.Syntax
             // エラー。
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Expression_AddChild",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Expression_AddChild",log_Reports);
 
             //
             //
@@ -157,7 +157,7 @@ namespace Xenon.Syntax
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -183,7 +183,7 @@ namespace Xenon.Syntax
             // エラー。
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Expression_GetChildList",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Expression_GetChildList",log_Reports);
 
             //
             //
@@ -199,7 +199,7 @@ namespace Xenon.Syntax
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
 
                 log_Reports.EndCreateReport();
             }
@@ -222,7 +222,7 @@ namespace Xenon.Syntax
         /// <param name="request"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
-        public bool TrySelectAttr(
+        public bool TrySelectAttribute(
             out Expression_Node_String ec_Result_Out,
             string sName,
             bool bRequired,
@@ -235,7 +235,7 @@ namespace Xenon.Syntax
             return false;
         }
 
-        public bool TrySelectAttr(
+        public bool TrySelectAttribute(
             out string sResult_Out,
             string sName,
             bool bRequired,
@@ -262,7 +262,7 @@ namespace Xenon.Syntax
             Log_Reports log_Reports
             )
         {
-            throw new Exception(Info_Syntax.SName_Library + ":" + this.GetType().Name + "#AppendTextElement:このクラスでは、このメソッドを使わないでください。");
+            throw new Exception(Info_Syntax.Name_Library + ":" + this.GetType().Name + "#AppendTextElement:このクラスでは、このメソッドを使わないでください。");
         }
 
         //────────────────────────────────────────
@@ -287,7 +287,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Execute_OnEString",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnEString",log_Reports);
             //
             //
 
@@ -308,7 +308,7 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public virtual Expression_Node_Filepath Execute_OnExpressionString_AsFilePath(
+        public virtual Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
             Request_Selecting request,
             Log_Reports log_Reports
             )
@@ -333,7 +333,7 @@ namespace Xenon.Syntax
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "GetDirectChildByNodeName",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "GetDirectChildByNodeName",log_Reports);
 
             List<Expression_Node_String> result = new List<Expression_Node_String>();
 
@@ -379,7 +379,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -440,7 +440,7 @@ namespace Xenon.Syntax
         /// 子＜●●＞要素リスト。
         /// 使わない。
         /// </summary>
-        public ListExpression_Node_String ListExpression_Child
+        public ListExpression_Node_String List_Expression_Child
         {
             get
             {
@@ -450,16 +450,16 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private DicExpression_Node_String ecDic_Attr;
+        private DicExpression_Node_String dictionary_Expression_Attribute;
 
         /// <summary>
         /// 属性="" マップ。
         /// </summary>
-        public DicExpression_Node_String DicExpression_Attr
+        public DicExpression_Node_String Dictionary_Expression_Attribute
         {
             get
             {
-                return ecDic_Attr;
+                return dictionary_Expression_Attribute;
             }
         }
 

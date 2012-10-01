@@ -47,7 +47,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_SAttr",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_SAttr",log_Reports);
             //
             //
 
@@ -68,7 +68,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_ChildNodes",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_ChildNodes",log_Reports);
             //
             //
 
@@ -83,7 +83,7 @@ namespace Xenon.XToGcav
                 {
                     XmlElement child_X = (XmlElement)child_XNode;
 
-                    string sName_Fnc = child_X.GetAttribute(PmNames.S_NAME.SName_Attr);
+                    string sName_Fnc = child_X.GetAttribute(PmNames.S_NAME.Name_Attribute);
 
                     if (NamesFnc.S_VLD_ALL_FIELDS_IS_EMPTY == sName_Fnc)
                     {
@@ -144,7 +144,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

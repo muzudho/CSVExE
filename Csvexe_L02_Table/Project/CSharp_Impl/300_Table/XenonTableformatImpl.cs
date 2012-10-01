@@ -24,7 +24,7 @@ namespace Xenon.Table
         /// 
         /// 通常（上から下へレコードが並んでいる）なら偽。
         /// </summary>
-        public bool BRowcolumnreverse
+        public bool IsRowcolumnreverse
         {
             get
             {
@@ -43,7 +43,7 @@ namespace Xenon.Table
         /// <summary>
         /// 型定義のレコード（intやboolやstringが書いてあるところ）がなく、全フィールドがint型のテーブルの場合、真。
         /// </summary>
-        public bool BAllintfields
+        public bool IsAllintfieldsActivated
         {
             get
             {
@@ -62,7 +62,7 @@ namespace Xenon.Table
         /// <summary>
         /// 行の末尾を「,」で終える場合、真。
         /// </summary>
-        public bool BCommaending
+        public bool IsCommaending
         {
             get
             {

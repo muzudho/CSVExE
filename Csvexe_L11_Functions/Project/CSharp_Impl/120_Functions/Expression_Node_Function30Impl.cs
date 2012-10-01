@@ -41,12 +41,12 @@ namespace Xenon.Functions
         /// 
         /// TODO:使ってる？？
         /// </summary>
-        public static string S_PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.SName_Pm;
+        public static string S_PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.Name_Pm;
 
         /// <summary>
         /// フォーム・グループ名。未設定ならヌル。
         /// </summary>
-        public static string S_PM_NAME_FORM = PmNames.S_NAME_FORM.SName_Pm;
+        public static string S_PM_NAME_FORM = PmNames.S_NAME_FORM.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -66,20 +66,20 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function30Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function30Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
             ((Expression_Node_Function30Impl)f0).In_Subroutine_Function30_1 = null;
             ((Expression_Node_Function30Impl)f0).In_Subroutine_Function30_2 = null;
-            f0.DicExpression_Attr.Set(Expression_Node_Function30Impl.S_PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function30Impl.S_PM_NAME_FORM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function30Impl.S_PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function30Impl.S_PM_NAME_FORM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -109,18 +109,18 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 this.Perform2(
                     this.ExpressionfncPrmset.Sender,
                     (EventMonitor)this.ExpressionfncPrmset.EventMonitor,
-                    this.ExpressionfncPrmset.SNode_EventOrigin,
+                    this.ExpressionfncPrmset.Node_EventOrigin,
                     log_Reports
                     );
 
@@ -129,7 +129,7 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                string sConfigStack_EventOrigin = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";//sender=" + sender.ToString() + "／e=" + e.GetType().Name + " //+"／"+s.ToString()
+                string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";//sender=" + sender.ToString() + "／e=" + e.GetType().Name + " //+"／"+s.ToString()
                 Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl(sConfigStack_EventOrigin, null);
 
 
@@ -164,7 +164,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             //
             //
@@ -180,11 +180,11 @@ namespace Xenon.Functions
 
 
             string sName_Fnc;
-            this.TrySelectAttr(out sName_Fnc, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sName_Fnc + "]実行";
+                log_Method.Log_Stopwatch.Message = "Nアクション[" + sName_Fnc + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
 
@@ -214,11 +214,11 @@ namespace Xenon.Functions
                             );
                     }
 
-                    log_Reports.SComment_EventCreationMe = "／追記：[" + sName_Control + "]コントロールが、[" + sName_Fnc + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe = "／追記：[" + sName_Control + "]コントロールが、[" + sName_Fnc + "]アクションを実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe = "／追記：[" + sName_Fnc + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe = "／追記：[" + sName_Fnc + "]アクションを実行。";
                 }
             }
 
@@ -230,14 +230,14 @@ namespace Xenon.Functions
             // ┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━
 
             Givechapterandverse_NodeImpl cf_ThisMethod = new Givechapterandverse_NodeImpl("!ハードコーディング_NAction30#Perform", null);
-            sConfigStack_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:ウィンドウオープン時＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:ウィンドウオープン時＞";
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
                 Expression_Node_String ec_ArgFormgroup;
-                this.TrySelectAttr(out ec_ArgFormgroup, Expression_Node_Function30Impl.S_PM_NAME_FORM, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.S_PM_NAME_FORM, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 if (null == ec_ArgFormgroup)
                 {
@@ -259,13 +259,13 @@ namespace Xenon.Functions
             List<XenonTable> oList_Table_Form;//（フォームのセットアップに使う）
             //
             // 「フォーム名（レイアウト_ターゲット名）」を指定。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
                 // テーブル名から、レイアウト・ファイルパスの取得。
                 Expression_Node_String ec_ArgFormgroup;
-                this.TrySelectAttr(out ec_ArgFormgroup, Expression_Node_Function30Impl.S_PM_NAME_FORM, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.S_PM_NAME_FORM, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 oList_Table_Form = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByFormgroup(ec_ArgFormgroup, true, log_Reports);
             }
@@ -283,7 +283,7 @@ namespace Xenon.Functions
             //
             //
             Expression_Node_Filepath ec_Fopath_Forms;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -311,7 +311,7 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -332,23 +332,23 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // タイプデータ値「ＳｃｒｉｐｔＴｏｇｅｔｈｅｒｓ」。
                 Expression_Leaf_StringImpl ec_NameVariable = new Expression_Leaf_StringImpl(this, cf_ThisMethod);
                 ec_NameVariable.SetString(ValuesTypeData.S_CODE_TOGETHERS, log_Reports);
 
                 List<MemoryCodefileinfo> listInfo=null;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     listInfo = this.Owner_MemoryApplication.MemoryCodefiles.GetCodefileinfoByTypedata(ec_NameVariable, true, log_Reports);
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     foreach (MemoryCodefileinfo scriptfile in listInfo)
                     {
-                        if (log_Reports.BSuccessful)
+                        if (log_Reports.Successful)
                         {
                             this.Owner_MemoryApplication.MemoryTogethers.LoadFile(scriptfile.Expression_Filepath, this.Owner_MemoryApplication, log_Reports);
                         }
@@ -395,23 +395,23 @@ namespace Xenon.Functions
             }
 
             // （Ｘ５）コントロールに、妥当性判定を設定します。
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // タイプデータ値。
                 Expression_Leaf_StringImpl ec_Name_Variable = new Expression_Leaf_StringImpl(this, cf_ThisMethod);
                 ec_Name_Variable.SetString(ValuesTypeData.S_CODE_VALIDATORS, log_Reports);
 
                 List<MemoryCodefileinfo> list_Info = null;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     list_Info = this.Owner_MemoryApplication.MemoryCodefiles.GetCodefileinfoByTypedata(ec_Name_Variable, true, log_Reports);
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     foreach (MemoryCodefileinfo moScriptfile in list_Info)
                     {
-                        if (log_Reports.BSuccessful)
+                        if (log_Reports.Successful)
                         {
                             this.Owner_MemoryApplication.MemoryValidators.LoadFile(
                                 moScriptfile.Expression_Filepath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports),
@@ -457,7 +457,7 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 UsercontrolPerformer ucontrolPerformer = new UsercontrolPerformerImpl();
                 ucontrolPerformer.Perform_AllUsercontrols(
@@ -492,14 +492,14 @@ namespace Xenon.Functions
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("formConfigTable引数が指定されていません。");
-                t.NewLine();
+                t.Newline();
                 t.Append("レイアウト設定ファイルを指すテーブル名を指定してください。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cf_ThisMethod));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

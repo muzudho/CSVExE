@@ -33,9 +33,9 @@ namespace Xenon.Operating
         /// </summary>
         public MemoryGloballistLineImpl(MemoryGloballistLine source)
         {
-            this.sType = source.SType;
-            this.nNumber = source.NNumber;
-            this.sText = source.SText;
+            this.sType = source.Name_Type;
+            this.nNumber = source.Number;
+            this.sText = source.Text;
         }
 
         //────────────────────────────────────────
@@ -71,7 +71,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数の型の名前。例：[I]
         /// </summary>
-        public string SType
+        public string Name_Type
         {
             set
             {
@@ -90,7 +90,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数の番号。
         /// </summary>
-        public int NNumber
+        public int Number
         {
             set
             {
@@ -109,7 +109,7 @@ namespace Xenon.Operating
         /// <summary>
         /// テキスト。
         /// </summary>
-        public string SText
+        public string Text
         {
             set
             {

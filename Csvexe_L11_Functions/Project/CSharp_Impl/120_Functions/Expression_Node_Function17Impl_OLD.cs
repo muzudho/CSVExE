@@ -41,14 +41,14 @@ namespace Xenon.Functions
         /// 
         /// 元は名無し。
         /// </summary>
-        public static readonly string S_PM_FILEPATH = PmNames.S_FILEPATH.SName_Pm;
+        public static readonly string S_PM_FILEPATH = PmNames.S_FILEPATH.Name_Pm;
 
         ///// <summary>
         ///// 「バリデーション設定ファイル」のファイルパスが入っている変数の名前。
         ///// 
         ///// 元は名無し。
         ///// </summary>
-        //public static readonly string S_PM_NAME_VAR_FILEPATH = PmNames.S_NAME_VAR_FILEPATH.SName_Pm;
+        //public static readonly string S_PM_NAME_VAR_FILEPATH = PmNames.S_NAME_VAR_FILEPATH.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -68,17 +68,17 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function17Impl_OLD(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function17Impl_OLD(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, null, log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, null, log_Reports);
 
 
             //
@@ -100,15 +100,15 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName;
-            this.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             // デバッグ
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName + "]実行";
+                log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
 
@@ -122,11 +122,11 @@ namespace Xenon.Functions
                     log_Reports
                     );
 
-                log_Reports.SComment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName + "]アクションを実行。";
+                log_Reports.Comment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName + "]アクションを実行。";
             }
             else
             {
-                log_Reports.SComment_EventCreationMe += "／追記：[" + sFncName + "]アクションを実行。";
+                log_Reports.Comment_EventCreationMe += "／追記：[" + sFncName + "]アクションを実行。";
             }
 
 
@@ -137,16 +137,16 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + log_Method.SHead + ":＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
 
 
                 Expression_Node_String e_ArgFilePath;
-                this.TrySelectAttr(out e_ArgFilePath, Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out e_ArgFilePath, Expression_Node_Function17Impl_OLD.S_PM_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 // ファイルパス
                 if (null == e_ArgFilePath)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
                         if (log_Method.CanDebug(1))
@@ -158,7 +158,7 @@ namespace Xenon.Functions
 
                         //// 変数名。
                         //Expression_Node_String e_Atom;
-                        //this.TrySelectAttr(out e_Atom, Ec_Sf17Impl_OLD.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        //this.TrySelectAttribute(out e_Atom, Ec_Sf17Impl_OLD.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                         //// ファイルパス。
                         //log_Reports.Log_Callstack.Push(log_Method, "④");
@@ -166,7 +166,7 @@ namespace Xenon.Functions
                         //log_Reports.Log_Callstack.Pop(log_Method, "④");
 
                         //e_ArgFilePath = efp;
-                        //this.DicExpression_Attr.Set(Ec_Sf17Impl_OLD.S_PM_FILEPATH, efp, log_Reports);
+                        //this.Dictionary_Expression_Attribute.Set(Ec_Sf17Impl_OLD.S_PM_FILEPATH, efp, log_Reports);
                     }
                     else
                     {
@@ -183,7 +183,7 @@ namespace Xenon.Functions
 
                 //絶対ファイルパス
                 string sFpatha_vcnf;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
                     if (log_Method.CanDebug(1))
@@ -192,7 +192,7 @@ namespace Xenon.Functions
                     }
 
                     sFpatha_vcnf = e_ArgFilePath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -209,7 +209,7 @@ namespace Xenon.Functions
                 }
 
                 // 『バリデーション設定ファイル』を読み込みます。
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
 

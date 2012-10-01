@@ -20,7 +20,7 @@ namespace Xenon.Functions
         {
             Log_Method log_Method = new Log_MethodImpl(1);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Functions.SName_Library, "Collection_Function", "static Collection_Function",log_Reports_ThisMethod);
+            log_Method.BeginMethod(Info_Functions.Name_Library, "Collection_Function", "static Collection_Function",log_Reports_ThisMethod);
             //
 
             dictionary_Interlibrary = new Dictionary<string, Expression_Node_Function>();
@@ -236,7 +236,7 @@ namespace Xenon.Functions
         public static void SetFunction(string sName_Fnc, Expression_Node_Function expr_Func, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(1);
-            log_Method.BeginMethod(Info_Functions.SName_Library, "Collection_Function", "SetFunction",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, "Collection_Function", "SetFunction",log_Reports);
             //
 
             dictionary_Interlibrary[sName_Fnc] = expr_Func;
@@ -267,7 +267,7 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, "Collection_Function", "NewFunction2", log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, "Collection_Function", "NewFunction2", log_Reports);
 
             Expression_Node_Function expr_Func;
             if (dictionary_Interlibrary.ContainsKey(sName_Fnc))
@@ -304,7 +304,7 @@ namespace Xenon.Functions
 
                 sb.Append("もしかして？");
                 sb.Append(Environment.NewLine);
-                sb.Append("　・プログラマー向け情報：[" + log_Method.SName_Method + "]関数に登録されていますか？");
+                sb.Append("　・プログラマー向け情報：[" + log_Method.Name_Method + "]関数に登録されていますか？");
                 sb.Append(Environment.NewLine);
 
                 sb.Append("　・または、そのイベントに追加できないアクションを記述しているのかもしれません。");
@@ -314,7 +314,7 @@ namespace Xenon.Functions
                 // ヒント
                 //todo: t.Append(r.Message_Givechapterandverse(e_Uic.Cur_Givechapterandverse));
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

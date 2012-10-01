@@ -42,12 +42,12 @@ namespace Xenon.Functions
         /// 
         /// 元は名無し。
         /// </summary>
-        public static readonly string S_PM_NAME_FIELD = PmNames.S_NAME_FIELD.SName_Pm;
+        public static readonly string S_PM_NAME_FIELD = PmNames.S_NAME_FIELD.Name_Pm;
 
         /// <summary>
         /// 値格納先変数名。
         /// </summary>
-        public static readonly string S_PM_NAME_VAR_DESTINATION = PmNames.S_NAME_VAR_DESTINATION.SName_Pm;
+        public static readonly string S_PM_NAME_VAR_DESTINATION = PmNames.S_NAME_VAR_DESTINATION.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -67,18 +67,18 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function25Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function25Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function25Impl.S_PM_NAME_FIELD, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function25Impl.S_PM_NAME_VAR_DESTINATION, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function25Impl.S_PM_NAME_FIELD, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function25Impl.S_PM_NAME_VAR_DESTINATION, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -107,14 +107,14 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sFncName0 + "]実行";
+                log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName0 + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
 
@@ -129,11 +129,11 @@ namespace Xenon.Functions
                         log_Reports
                         );
 
-                    log_Reports.SComment_EventCreationMe = "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe = "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe = "／追記：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe = "／追記：[" + sFncName0 + "]アクションを実行。";
                 }
 
 
@@ -168,7 +168,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
 
             //
@@ -214,16 +214,16 @@ namespace Xenon.Functions
             {
                 //指定されているフィールド名。
                 string sName_Field;
-                this.TrySelectAttr(out sName_Field, Expression_Node_Function25Impl.S_PM_NAME_FIELD, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sName_Field, Expression_Node_Function25Impl.S_PM_NAME_FIELD, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 //そのフィールドの値。
                 XenonValue_IntImpl cellData = (XenonValue_IntImpl)selectedDataRow[sName_Field];
-                string sValue_Field = cellData.SHumaninput.Trim();
+                string sValue_Field = cellData.Humaninput.Trim();
                 //.WriteLine(this.GetType().Name + "#Perform_OEa: ◆　fieldValue=[" + fieldValue + "]");
 
                 //変数名。
                 Expression_Node_String ec_Name_ArgDestinationVariable;
-                this.TrySelectAttr(out ec_Name_ArgDestinationVariable, Expression_Node_Function25Impl.S_PM_NAME_VAR_DESTINATION, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Name_ArgDestinationVariable, Expression_Node_Function25Impl.S_PM_NAME_VAR_DESTINATION, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 //指定した変数に、フィールド値を格納します。
                 this.Owner_MemoryApplication.MemoryVariables.SetStringValue(
@@ -261,7 +261,7 @@ namespace Xenon.Functions
                 sb.Append(Environment.NewLine);
                 sb.Append(Environment.NewLine);
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

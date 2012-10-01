@@ -54,7 +54,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -66,7 +66,7 @@ namespace Xenon.Expr
             {
                 // ＜ａｒｇ１　ｎａｍｅ＝”ｓｗｉｔｃｈＶａｌｕｅ”　＞
                 log_Reports.Log_Callstack.Push(log_Method, "①");
-                this.DicExpression_Attr.TrySelect(out sSwitchValue, PmNames.S_VALUE_SWITCH.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.Dictionary_Expression_Attribute.TrySelect(out sSwitchValue, PmNames.S_VALUE_SWITCH.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                 log_Reports.Log_Callstack.Pop(log_Method, "①");
             }
 
@@ -83,7 +83,7 @@ namespace Xenon.Expr
                 //sResult.Append("＜Ｓｆ：ｓｗｉｔｃｈ；の子要素全部＞");
                 StringBuilder sb = new StringBuilder();
 
-                List<Expression_Node_String> ecList = this.ListExpression_Child.SelectList(
+                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
                     );
@@ -110,7 +110,7 @@ namespace Xenon.Expr
                 string sExpected;
                 {
                     log_Reports.Log_Callstack.Push(log_Method, "②");
-                    ec_SfCase.TrySelectAttr(out sExpected, PmNames.S_VALUE_CASE.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    ec_SfCase.TrySelectAttribute(out sExpected, PmNames.S_VALUE_CASE.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "②");
                 }
 

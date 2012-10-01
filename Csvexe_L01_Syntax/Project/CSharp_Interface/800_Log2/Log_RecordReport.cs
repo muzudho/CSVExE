@@ -77,7 +77,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 警告メッセージのテンプレート。
         /// </summary>
-        string SMessage
+        string Message
         {
             set;
         }
@@ -85,12 +85,12 @@ namespace Xenon.Syntax
         /// <summary>
         /// 警告メッセージ
         /// </summary>
-        string SMsg(Log_Reports d_Logging_orNull);
+        string GetMessage(Log_Reports d_Logging_orNull);
 
         /// <summary>
         /// 警告タイトル
         /// </summary>
-        string STitle
+        string Title
         {
             //set;
             get;
@@ -99,7 +99,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 人間オペレーターが修正するべき箇所を特定する情報など。
         /// </summary>
-        string SConfigStack
+        string Logstack
         {
             set;
             get;
@@ -108,7 +108,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// グループ・タグ。情報を見たい人が、表示する情報を絞り込むために使われます。
         /// </summary>
-        string SGroupTag
+        string Tag_Group
         {
             set;
             get;

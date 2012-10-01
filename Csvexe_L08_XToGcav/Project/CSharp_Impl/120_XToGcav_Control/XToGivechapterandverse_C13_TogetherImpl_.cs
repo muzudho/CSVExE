@@ -31,10 +31,10 @@ namespace Xenon.XToGcav
 
             Givechapterandverse_Node cur_Cf;
 
-            if (NamesNode.S_CODEFILE_TOGETHERS == parent_Cf.SName)
+            if (NamesNode.S_CODEFILE_TOGETHERS == parent_Cf.Name)
             {
                 cur_Cf = new Givechapterandverse_NodeImpl(NamesNode.S_TOGETHER, parent_Cf);
-                cur_Cf.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_IN.SName_Pm, "", log_Reports);
+                cur_Cf.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_IN.Name_Pm, "", log_Reports);
             }
             else
             {
@@ -60,7 +60,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -85,7 +85,7 @@ namespace Xenon.XToGcav
             //
             //
             bool bGlobalRfr;
-            if (NamesNode.S_CODEFILE_TOGETHERS == parent_Cf.SName)
+            if (NamesNode.S_CODEFILE_TOGETHERS == parent_Cf.Name)
             {
                 bGlobalRfr = true;
 
@@ -115,37 +115,37 @@ namespace Xenon.XToGcav
             //
 
             //ｎａｍｅ（未設定可）
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_NAME.SName_Attr);
+                XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_NAME.Name_Attribute);
                 if (null != xNd)
                 {
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_NAME.SName_Pm, xNd.Value, cur_Cf, false, log_Reports);
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_NAME.Name_Pm, xNd.Value, cur_Cf, false, log_Reports);
                 }
             }
 
             //ｉｎ（未設定可。コントロール設定ファイルには無い）
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (bGlobalRfr)
                 {
-                    XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_IN.SName_Pm);
+                    XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_IN.Name_Pm);
                     if (null != xNd)
                     {
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_IN.SName_Pm, xNd.Value, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_IN.Name_Pm, xNd.Value, log_Reports);
                     }
                 }
             }
 
             //ｏｎ（コントロール設定ファイルでは必須、グローバル・トゥゲザー登録ファイルには無い）
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (!bGlobalRfr)
                 {
-                    XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_ON.SName_Attr);
+                    XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_ON.Name_Attribute);
                     if (null != xNd)
                     {
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_ON.SName_Pm, xNd.Value, cur_Cf, false, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_ON.Name_Pm, xNd.Value, cur_Cf, false, log_Reports);
                     }
                     else
                     {
@@ -156,14 +156,14 @@ namespace Xenon.XToGcav
             }
 
             // ｔａｒｇｅｔ（コントロール設定ファイルでは必須、グローバル・トゥゲザー登録ファイルには無い）
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (!bGlobalRfr)
                 {
-                    XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_TARGET1.SName_Attr);
+                    XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_TARGET1.Name_Attribute);
                     if (null != xNd)
                     {
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_TARGET1.SName_Pm, xNd.Value, cur_Cf, false, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_TARGET1.Name_Pm, xNd.Value, cur_Cf, false, log_Reports);
                     }
                     else
                     {
@@ -176,12 +176,12 @@ namespace Xenon.XToGcav
             }
 
             //ｄｅｓｃｒｉｐｔｉｏｎ（未設定可）
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_DESCRIPTION.SName_Attr);
+                XmlNode xNd = cur_X.Attributes.GetNamedItem(PmNames.S_DESCRIPTION.Name_Attribute);
                 if (null != xNd)
                 {
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_DESCRIPTION.SName_Pm, xNd.Value, cur_Cf, true, log_Reports);
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_DESCRIPTION.Name_Pm, xNd.Value, cur_Cf, true, log_Reports);
                 }
             }
 
@@ -195,11 +195,11 @@ namespace Xenon.XToGcav
             //
             //
             XmlElement err_Child_X;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (bGlobalRfr)
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         //
                         // ｔａｒｇｅｔ要素
@@ -217,10 +217,10 @@ namespace Xenon.XToGcav
                                     //
                                     // ｔａｒｇｅｔ要素
                                     //
-                                    string sName_Target = xChild.Attributes.GetNamedItem(PmNames.S_NAME.SName_Attr).Value;
+                                    string sName_Target = xChild.Attributes.GetNamedItem(PmNames.S_NAME.Name_Attribute).Value;
 
                                     Givechapterandverse_Node cfRfr_Target = new Givechapterandverse_NodeImpl(NamesNode.S_TARGET, cur_Cf);
-                                    cfRfr_Target.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME.SName_Pm, sName_Target, log_Reports);
+                                    cfRfr_Target.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sName_Target, log_Reports);
 
                                     cur_Cf.List_ChildGivechapterandverse.Add(cfRfr_Target, log_Reports);
                                 }
@@ -249,7 +249,7 @@ namespace Xenon.XToGcav
             if (bGlobalRfr)
             {
                 string sIn;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 重複チェック用。
                     List<string> sList_In = new List<string>();
@@ -265,12 +265,12 @@ namespace Xenon.XToGcav
                     //
                     //
                     //
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn,
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn,
                         false,//空文字列でも構わない。
                         log_Reports);
 
                     string sName_Rfr;
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Rfr, false, log_Reports);
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Rfr, false, log_Reports);
 
 
                     if ("" != sIn)
@@ -327,16 +327,16 @@ namespace Xenon.XToGcav
                 //
                 //
                 //
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     string sOn;
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn, false, log_Reports);
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn, false, log_Reports);
 
                     List<Givechapterandverse_Node> listCf_Together = parent_Cf.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
                     foreach (Givechapterandverse_Node cf_Together in listCf_Together)
                     {
                         string sOn2;
-                        cf_Together.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn2, false, log_Reports);
+                        cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn2, false, log_Reports);
 
                         if (sOn == sOn2)
                         {
@@ -363,18 +363,18 @@ namespace Xenon.XToGcav
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("同じin属性値を持つ<"+NamesNode.S_TOGETHER+">要素がありました。in属性値は重複してはいけません。");
-                t.NewLine();
+                t.Newline();
 
                 //t.Append("トゥゲザー登録ファイル（絶対パス）=[" + sFpatha + "]");
-                //t.NewLine();
+                //t.Newline();
 
                 t.Append("トゥゲザーのin属性=[" + err_SIn + "]");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -388,20 +388,20 @@ namespace Xenon.XToGcav
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("同名の<" + NamesNode.S_TOGETHER + ">要素がありました。名前は重複してはいけません。");
-                t.NewLine();
+                t.Newline();
 
                 //t.Append("トゥゲザー登録ファイル（絶対パス）=[" + sFpatha + "]");
-                //t.NewLine();
+                //t.Newline();
 
                 string sName_Tg;
-                cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Tg, false, log_Reports);
+                cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Tg, false, log_Reports);
                 t.Append("トゥゲザー名=[" + sName_Tg + "]");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -414,13 +414,13 @@ namespace Xenon.XToGcav
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
-                t.Append("同名の[" + PmNames.S_ON.SName_Attr + "]属性を持つ＜" + NamesNode.S_TOGETHER + "＞要素がありました。on属性は重複してはいけません。");
-                t.NewLine();
+                t.Append("同名の[" + PmNames.S_ON.Name_Attribute + "]属性を持つ＜" + NamesNode.S_TOGETHER + "＞要素がありました。on属性は重複してはいけません。");
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Cf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -434,15 +434,15 @@ namespace Xenon.XToGcav
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("<" + NamesNode.S_TOGETHER + ">要素に、in属性、name属性のどちらもありませんでした。どちらかが必要です。");
-                t.NewLine();
+                t.Newline();
 
                 //t.Append("トゥゲザー登録ファイル（絶対パス）=[" + sFpatha + "]");
-                //t.NewLine();
+                //t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -463,7 +463,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -476,16 +476,16 @@ namespace Xenon.XToGcav
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
-                s.Append("<" + NamesNode.S_TOGETHER + ">要素に[" + PmNames.S_TARGET1.SName_Attr + "]属性がありませんでした。");
-                s.NewLine();
+                s.Append("<" + NamesNode.S_TOGETHER + ">要素に[" + PmNames.S_TARGET1.Name_Attribute + "]属性がありませんでした。");
+                s.Newline();
 
                 s.Append("コントロール設定ファイルの中に書く<" + NamesNode.S_TOGETHER + ">要素では必要です。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(parent_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -498,16 +498,16 @@ namespace Xenon.XToGcav
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
-                s.Append("<" + NamesNode.S_TOGETHER + ">要素に[" + PmNames.S_ON.SName_Attr + "]属性がありませんでした。");
-                s.NewLine();
+                s.Append("<" + NamesNode.S_TOGETHER + ">要素に[" + PmNames.S_ON.Name_Attribute + "]属性がありませんでした。");
+                s.Newline();
 
                 s.Append("コントロール設定ファイルの中に書く<" + NamesNode.S_TOGETHER + ">要素では必要です。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(parent_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

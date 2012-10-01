@@ -72,40 +72,40 @@ namespace Xenon.GridPanel
 
             Grid gridArea1 = new GridImpl();
             this.GridView.Gridareas.Dictionary_Item.Add("グリッド領域1", gridArea1);
-            gridArea1.NLefttop_Table = new Point(32, 32);
-            gridArea1.NSize_Cell = new Size(16, 16);
-            gridArea1.NSize_Total = new Size(160, 160);
+            gridArea1.Lefttop_Table = new Point(32, 32);
+            gridArea1.Size_Cell = new Size(16, 16);
+            gridArea1.Size_Total = new Size(160, 160);
 
             // X軸の目盛り
             {
                 Ticklabel tickLabel = gridArea1.Ticklabel_X;
-                tickLabel.BHorizontal = true;
-                tickLabel.NLocation_First = 32;
-                tickLabel.NLocation_Fixed = 16;
-                tickLabel.NLength_Total = 160;
-                tickLabel.NInterval_Cell = 16;
-                tickLabel.NWidth_Label = 16;
-                tickLabel.NSize_FontPt = 8.0F;
-                tickLabel.NFirst_Label = 1;
-                tickLabel.NOffset_Label = 1;
+                tickLabel.IsHorizontal = true;
+                tickLabel.Number_LocationFirst = 32;
+                tickLabel.Number_LocationFixed = 16;
+                tickLabel.Length_Total = 160;
+                tickLabel.Interval_Cell = 16;
+                tickLabel.Width_Label = 16;
+                tickLabel.Size_FontPt = 8.0F;
+                tickLabel.Number_LabelFirst = 1;
+                tickLabel.Offset_Label = 1;
                 tickLabel.Textalign = EnumTextalign.Right;
-                tickLabel.BVisibled = true;
+                tickLabel.IsVisibled = true;
             }
 
             // Y軸の目盛り
             {
                 Ticklabel tickLabel = gridArea1.Ticklabel_Y;
-                tickLabel.BHorizontal = false;
-                tickLabel.NLocation_First = 32;
-                tickLabel.NLocation_Fixed = 16;
-                tickLabel.NLength_Total = 160;
-                tickLabel.NInterval_Cell = 16;
-                tickLabel.NWidth_Label = 10;
-                tickLabel.NSize_FontPt = 8.0F;
-                tickLabel.NFirst_Label = 1;
-                tickLabel.NOffset_Label = 1;
+                tickLabel.IsHorizontal = false;
+                tickLabel.Number_LocationFirst = 32;
+                tickLabel.Number_LocationFixed = 16;
+                tickLabel.Length_Total = 160;
+                tickLabel.Interval_Cell = 16;
+                tickLabel.Width_Label = 10;
+                tickLabel.Size_FontPt = 8.0F;
+                tickLabel.Number_LabelFirst = 1;
+                tickLabel.Offset_Label = 1;
                 tickLabel.Textalign = EnumTextalign.Right;
-                tickLabel.BVisibled = true;
+                tickLabel.IsVisibled = true;
             }
         }
 

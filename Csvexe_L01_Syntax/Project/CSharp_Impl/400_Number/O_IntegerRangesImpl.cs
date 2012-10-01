@@ -35,9 +35,9 @@ namespace Xenon.Syntax
         // 説明はインターフェース参照。
         public void ToNumbers(ref List<int> listN)
         {
-            for (int nI = 0; nI < this.ListO_Item.Count; nI++)
+            for (int nI = 0; nI < this.List_Item.Count; nI++)
             {
-                O_IntegerRange o_Range = this.ListO_Item[nI];
+                O_IntegerRange o_Range = this.List_Item[nI];
 
                 o_Range.ToNumbers(ref listN);
             }
@@ -50,13 +50,13 @@ namespace Xenon.Syntax
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int nI = 0; nI < this.ListO_Item.Count; nI++)
+            for (int nI = 0; nI < this.List_Item.Count; nI++)
             {
-                O_IntegerRange o_Range = this.ListO_Item[nI];
+                O_IntegerRange o_Range = this.List_Item[nI];
 
                 sb.Append(o_Range.ToCsv());
 
-                if (nI + 1 < this.ListO_Item.Count)
+                if (nI + 1 < this.List_Item.Count)
                 {
                     sb.Append(",");
                 }
@@ -75,13 +75,13 @@ namespace Xenon.Syntax
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int nI = 0; nI < this.ListO_Item.Count; nI++)
+            for (int nI = 0; nI < this.List_Item.Count; nI++)
             {
-                O_IntegerRange o_Range = this.ListO_Item[nI];
+                O_IntegerRange o_Range = this.List_Item[nI];
 
                 sb.Append(o_Range.ToString());
 
-                if (nI + 1 < this.ListO_Item.Count)
+                if (nI + 1 < this.List_Item.Count)
                 {
                     sb.Append("|");
                 }
@@ -103,7 +103,7 @@ namespace Xenon.Syntax
         {
             foreach (O_IntegerRange o_Range in this.listO_Item)
             {
-                if (o_Range.NFirst <= nValue && nValue <= o_Range.NLast)
+                if (o_Range.Number_First <= nValue && nValue <= o_Range.Number_Last)
                 {
                     return true;
                 }
@@ -123,7 +123,7 @@ namespace Xenon.Syntax
         private List<O_IntegerRange> listO_Item;
 
         // 説明はインターフェース参照。
-        public List<O_IntegerRange> ListO_Item
+        public List<O_IntegerRange> List_Item
         {
             get
             {

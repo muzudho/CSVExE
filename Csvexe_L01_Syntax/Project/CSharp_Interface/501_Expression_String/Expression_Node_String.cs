@@ -8,8 +8,8 @@ using System.Text;
 namespace Xenon.Syntax
 {
 
-    public delegate void DLGT_E_Children(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak);
-    public delegate void DLGT_E_Attrs(string sAttrName, Expression_Node_String ec_Attr, ref bool bBreak);
+    public delegate void DLGT_Expression_Children(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak);
+    public delegate void DLGT_Expression_Attributes(string sAttrName, Expression_Node_String ec_Attr, ref bool bBreak);
 
     /// <summary>
     /// ツリー構造の葉以外の節。
@@ -42,7 +42,7 @@ namespace Xenon.Syntax
         /// <param name="request"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
-        bool TrySelectAttr(
+        bool TrySelectAttribute(
             out Expression_Node_String out_Expression_Result,
             string sName,
             bool bRequired,
@@ -59,7 +59,7 @@ namespace Xenon.Syntax
         /// <param name="request"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
-        bool TrySelectAttr(
+        bool TrySelectAttribute(
             out string out_SResult,
             string sName,
             bool bRequired,
@@ -89,7 +89,7 @@ namespace Xenon.Syntax
             Log_Reports log_Reports
             );
 
-        Expression_Node_Filepath Execute_OnExpressionString_AsFilePath(
+        Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
             Request_Selecting request,
             Log_Reports log_Reports
             );
@@ -137,7 +137,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性="" マップ。
         /// </summary>
-        DicExpression_Node_String DicExpression_Attr
+        DicExpression_Node_String Dictionary_Expression_Attribute
         {
             get;
         }
@@ -167,7 +167,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 子要素リスト。
         /// </summary>
-        ListExpression_Node_String ListExpression_Child
+        ListExpression_Node_String List_Expression_Child
         {
             get;
         }

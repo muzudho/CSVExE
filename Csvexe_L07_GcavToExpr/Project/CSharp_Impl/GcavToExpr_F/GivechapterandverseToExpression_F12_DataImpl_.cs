@@ -42,11 +42,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "CfToEc",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "CfToEc",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(2)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(2)" + cur_Cf.Name);
             }
 
             //
@@ -73,21 +73,21 @@ namespace Xenon.GcavToExpr
             //
             //
             string err_SAttrName;
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.ForEach(delegate(string sPmName, string sValue, ref bool bBreak)
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.ForEach(delegate(string sPmName, string sValue, ref bool bBreak)
             {
                 if (
-                    PmNames.S_MEMORY.SName_Pm == sPmName ||
-                    PmNames.S_ACCESS.SName_Pm == sPmName ||
-                    PmNames.S_NAME_TABLE.SName_Pm == sPmName ||
-                    PmNames.S_NAME_VAR.SName_Pm == sPmName || //.Z_ITEM_VALUE_TO_VARIABLE
-                    PmNames.S_DESCRIPTION.SName_Pm == sPmName
+                    PmNames.S_MEMORY.Name_Pm == sPmName ||
+                    PmNames.S_ACCESS.Name_Pm == sPmName ||
+                    PmNames.S_NAME_TABLE.Name_Pm == sPmName ||
+                    PmNames.S_NAME_VAR.Name_Pm == sPmName || //.Z_ITEM_VALUE_TO_VARIABLE
+                    PmNames.S_DESCRIPTION.Name_Pm == sPmName
                     )
                 {
                     //ystem.Console.WriteLine(Info_SToE.LibraryName + ":" + this.GetType().Name + "#SToE:　＜データT　＞に属性追加　[" + sKey + "]←[" + sValue + "]");
 
                     // なんでも属性として追加。
                     Expression_Node_String ec_Value = new Expression_Leaf_StringImpl(sValue, cur_Ec, cur_Cf);
-                    cur_Ec.DicExpression_Attr.Set(sPmName, ec_Value, log_Reports);
+                    cur_Ec.Dictionary_Expression_Attribute.Set(sPmName, ec_Value, log_Reports);
                 }
                 else
                 {
@@ -110,21 +110,21 @@ namespace Xenon.GcavToExpr
                     Log_TextIndented s = new Log_TextIndentedImpl();
 
                     s.Append("＜[");
-                    s.Append(cur_Cf.SName);
+                    s.Append(cur_Cf.Name);
                     s.Append("]＞要素に、未定義の属性[");
                     s.Append(err_SAttrName);
                     s.Append("]が記述されていました。");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     //s.Append("親「S■[" + sParentNodeName + "]　ｎａｍｅ＝”[" + sFncName + "]”」");
-                    s.NewLine();
-                    s.NewLine();
+                    s.Newline();
+                    s.Newline();
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
                 goto gt_gt_EndMethod2;
@@ -159,7 +159,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Ec.ListExpression_Child.Add(cur_Ec, log_Reports);
+            parent_Ec.List_Expression_Child.Add(cur_Ec, log_Reports);
 
 
 
@@ -169,7 +169,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
 
             log_Method.EndMethod(log_Reports);

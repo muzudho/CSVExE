@@ -36,7 +36,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 型。
         /// </summary>
-        public string SType
+        public string Name_Type
         {
             set
             {

@@ -39,7 +39,7 @@ namespace Xenon.Middle
 
         /// <summary>
         /// </summary>
-        string SName
+        string Name
         {
             get;
             set;
@@ -69,7 +69,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 
         /// </summary>
-        bool BTranslatedGivechapterandverseToExpression
+        bool IsTranslated_GivechapterandverseToExpression
         {
             get;
             set;

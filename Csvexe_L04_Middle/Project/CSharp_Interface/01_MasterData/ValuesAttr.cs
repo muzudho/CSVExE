@@ -136,16 +136,16 @@ namespace Xenon.Middle
         /// <param name="sCodefileVersion"></param>
         /// <param name="pg_Loggin"></param>
         /// <param name="gcav_Codefile"></param>
-        /// <param name="info_SName_Node"></param>
+        /// <param name="info_Name_Node"></param>
         public static void Test_Codefileversion(
             string sCodefileVersion,
             Log_Reports pg_Loggin,
             Givechapterandverse_Node gcav_Codefile,
-            string info_SName_Node
+            string info_Name_Node
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Middle.SName_Library, "ValuesAttr", "Test_CodefileVersion",pg_Loggin);
+            pg_Method.BeginMethod(Info_Middle.Name_Library, "ValuesAttr", "Test_CodefileVersion",pg_Loggin);
 
 
             double nNow;
@@ -197,21 +197,21 @@ namespace Xenon.Middle
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定のスクリプトファイルは、メジャーバージョンが古くて読めないバージョンでした。");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　スクリプトファイルのバージョン=[");
                 s.Append(sCodefileVersion);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　このアプリケーションのバージョン=[");
                 s.Append(ValuesAttr.S_VERSION_CODEFILE);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //ヒント
                 s.Append(r.Message_Givechapterandverse(gcav_Codefile));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -224,21 +224,21 @@ namespace Xenon.Middle
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定のスクリプトファイルは、このアプリケーションより新しくて読めないバージョンでした。");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　スクリプトファイルのバージョン=[");
                 s.Append(sCodefileVersion);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　このアプリケーションのバージョン=[");
                 s.Append(ValuesAttr.S_VERSION_CODEFILE);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //ヒント
                 s.Append(r.Message_Givechapterandverse(gcav_Codefile));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -251,26 +251,26 @@ namespace Xenon.Middle
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定のスクリプトファイルの、バージョンを読み取れませんでした。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
                 s.Append("　　スクリプトファイルに書かれていたバージョン表記=[");
                 s.Append(sCodefileVersion);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　期待する書き方の例： <");
-                s.Append(info_SName_Node);
+                s.Append(info_Name_Node);
                 s.Append(" ");
-                s.Append(PmNames.S_CODEFILE_VERSION.SName_Attr);
+                s.Append(PmNames.S_CODEFILE_VERSION.Name_Attribute);
                 s.Append("=\"");
                 s.Append(ValuesAttr.S_VERSION_CODEFILE);
                 s.Append("\">");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //ヒント
                 s.Append(r.Message_Givechapterandverse(gcav_Codefile));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
             }
             goto gt_EndMethod;

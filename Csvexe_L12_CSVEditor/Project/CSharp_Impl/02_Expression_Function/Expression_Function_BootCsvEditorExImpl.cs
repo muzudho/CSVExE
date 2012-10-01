@@ -44,15 +44,15 @@ namespace Xenon.Csvexe
             object owner_MemoryApplication, Log_Reports pg_Logging)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_CSVEditorImpl.SName_Library, this, "NewInstance",pg_Logging);
+            pg_Method.BeginMethod(Info_CSVEditorImpl.Name_Library, this, "NewInstance",pg_Logging);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorExImpl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorExImpl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
 
             //「プロジェクト選択時」のイベントハンドラーを上書き要求。
             {

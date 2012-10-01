@@ -42,7 +42,7 @@ namespace Xenon.Expr
         public void Add(Expression_Node_String ec_Name, RecordSet recordSet, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Add",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Add",log_Reports);
             //
             //
 
@@ -95,7 +95,7 @@ namespace Xenon.Expr
                     t.Append(r.Message_Givechapterandverse(ec_Name.Cur_Givechapterandverse));
                     t.Append(r.Message_SException(ex));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -117,7 +117,7 @@ namespace Xenon.Expr
         public RecordSet Get(Expression_Node_String ec_Name, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Get",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Get",log_Reports);
             //
             //
 
@@ -156,7 +156,7 @@ namespace Xenon.Expr
                     t.Append(r.Message_Givechapterandverse(ec_Name.Cur_Givechapterandverse));
                     t.Append(r.Message_SException(ex));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -186,7 +186,7 @@ namespace Xenon.Expr
                     t.Append(r.Message_Givechapterandverse(ec_Name.Cur_Givechapterandverse));
                     t.Append(r.Message_SException(ex));
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -208,7 +208,7 @@ namespace Xenon.Expr
         public void Remove(Expression_Node_String ec_Storage, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Remove",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Remove",log_Reports);
             //
             //
 
@@ -220,7 +220,7 @@ namespace Xenon.Expr
                 this.dictionary_Recordset.Remove(sStorage);
 
                 // #デバッグ中
-                System.Console.WriteLine(Info_Expr.SName_Library + ":" + this.GetType().Name + "#Remove: 【レコードセット削除】sName＝[" + sStorage + "]");
+                System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Remove: 【レコードセット削除】sName＝[" + sStorage + "]");
 
             }
             catch (Exception ex)
@@ -257,7 +257,7 @@ namespace Xenon.Expr
                 t.Append(r.Message_Givechapterandverse(ec_Storage.Cur_Givechapterandverse));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

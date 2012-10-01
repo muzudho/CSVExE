@@ -126,7 +126,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// メソッドの場所表示。「ライブラリ＋クラス名＋メソッド名」
         /// </summary>
-        string SHead
+        string Fullname
         {
             get;
         }
@@ -134,7 +134,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// ライブラリ名。
         /// </summary>
-        string SName_Library
+        string Name_Library
         {
             get;
         }
@@ -142,7 +142,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// クラス名。
         /// </summary>
-        string SName_Class
+        string Name_Class
         {
             get;
         }
@@ -150,7 +150,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// staticメソッドなら真。
         /// </summary>
-        bool BStatic
+        bool Static
         {
             get;
         }
@@ -158,7 +158,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// メソッド名。
         /// </summary>
-        string SName_Method
+        string Name_Method
         {
             get;
         }

@@ -25,7 +25,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, "Util_XToGivechapterandverse_NodeImpl", "GetUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToGivechapterandverse_NodeImpl", "GetUsercontrol",log_Reports);
 
             Usercontrol fcUc = null;
             string sFcName;
@@ -39,9 +39,9 @@ namespace Xenon.XToGcav
                 Expression_Node_StringImpl ec_String = new Expression_Node_StringImpl(null, memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig);
                 {
                     PmName pmName = PmNames.S_NAME;
-                    if (cf_Cur.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cf_Cur.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
-                        cf_Cur.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sFcName, true, log_Reports);
+                        cf_Cur.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sFcName, true, log_Reports);
 
                         ec_String.AppendTextNode(
                             sFcName,
@@ -102,7 +102,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -132,7 +132,7 @@ namespace Xenon.XToGcav
             List<Givechapterandverse_Node> items, PmName pmName/*string sName_Attr*/, string sValue_Expected, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, "Util_XToGivechapterandverse_NodeImpl", "SelectItemsBySAttrAsCsv",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToGivechapterandverse_NodeImpl", "SelectItemsBySAttrAsCsv",log_Reports);
 
             List<Givechapterandverse_Node> cfList_Result = new List<Givechapterandverse_Node>();
 
@@ -140,10 +140,10 @@ namespace Xenon.XToGcav
             {
                 Givechapterandverse_Node cf_Item = items[nI];
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     string sValue_Attr;
-                    bool bHit = cf_Item.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue_Attr, false, log_Reports);
+                    bool bHit = cf_Item.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue_Attr, false, log_Reports);
                     if (bHit)
                     {
                         CsvTo_ListImpl to = new CsvTo_ListImpl();
@@ -231,7 +231,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -251,7 +251,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

@@ -55,7 +55,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "P5_Select",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "P5_Select",log_Reports);
             //
             //
 
@@ -75,7 +75,7 @@ namespace Xenon.Expr
                     goto gt_Error_NullTable;
                 }
             }
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 //
                 // エラーが出ていたら、さっさと抜ける。
@@ -110,7 +110,7 @@ namespace Xenon.Expr
                     {
                         // 要素数１個。
                         sList_KeyFldName = new List<string>();
-                        sList_KeyFldName.Add(recCond.SField);
+                        sList_KeyFldName.Add(recCond.Name_Field);
                     }
 
                     List<XenonFielddefinition> oList_keyFldDefinition;
@@ -120,7 +120,7 @@ namespace Xenon.Expr
                         false,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful || !bHit)
+                    if (!log_Reports.Successful || !bHit)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -141,7 +141,7 @@ namespace Xenon.Expr
                         true,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -163,7 +163,7 @@ namespace Xenon.Expr
 
                 foreach (XenonFielddefinition selectedFldDef in list_SelectedFldDefinition)
                 {
-                    string sSelectField = selectedFldDef.SName_Trimupper;
+                    string sSelectField = selectedFldDef.Name_Trimupper;
 
                     //
                     // （５）
@@ -201,7 +201,7 @@ namespace Xenon.Expr
 
                             bool bExpectedValueRequired;
                             {
-                                bool parseSuccessful = bool.TryParse(selectSt_ToSave.SRequired, out bExpectedValueRequired);
+                                bool parseSuccessful = bool.TryParse(selectSt_ToSave.Required, out bExpectedValueRequired);
                             }
 
 
@@ -241,7 +241,7 @@ namespace Xenon.Expr
 
 
                             dst_Rs_toSave.AddList(dst_Row, log_Reports);
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // 既エラー。
                                 goto gt_EndMethod;
@@ -285,7 +285,7 @@ namespace Xenon.Expr
 
                     //
                     // （８）
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         //// debug:
                         //if (false)
@@ -342,7 +342,7 @@ namespace Xenon.Expr
                             {
                                 // この行の、選択対象のフィールドの値。
 
-                                if (null != log_Reports && !log_Reports.BSuccessful)//無限ループ防止
+                                if (null != log_Reports && !log_Reports.Successful)//無限ループ防止
                                 {
                                     //
                                     // エラー発生時は無視。
@@ -472,7 +472,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -491,7 +491,7 @@ namespace Xenon.Expr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -507,7 +507,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 t.Append("　refTable.Name=[");
-                t.Append(o_Table.SName);
+                t.Append(o_Table.Name);
                 t.Append("]");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -515,7 +515,7 @@ namespace Xenon.Expr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -540,7 +540,7 @@ namespace Xenon.Expr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -566,7 +566,7 @@ namespace Xenon.Expr
                 t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
                 t.Append(r.Message_SException(err_Exception));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -595,7 +595,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "GetSelectedFldValue",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "GetSelectedFldValue",log_Reports);
             //
             //
 
@@ -605,7 +605,7 @@ namespace Xenon.Expr
             {
                 StringBuilder s = new StringBuilder();
                 s.Append("IntCellDataフィールド[");
-                s.Append(selectedFldDefinition.SName_Humaninput);
+                s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 
                 string sValue = XenonValue_IntImpl.ParseString(selectedOValue);
@@ -617,7 +617,7 @@ namespace Xenon.Expr
             {
                 StringBuilder s = new StringBuilder();
                 s.Append("StringCellDataフィールド[");
-                s.Append(selectedFldDefinition.SName_Humaninput);
+                s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 
                 string sValue = XenonValue_StringImpl.ParseString(selectedOValue);
@@ -629,7 +629,7 @@ namespace Xenon.Expr
             {
                 StringBuilder s = new StringBuilder();
                 s.Append("XenonValue_Boolフィールド[");
-                s.Append(selectedFldDefinition.SName_Humaninput);
+                s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 
                 string sValue = XenonValue_BoolImpl.ParseString(selectedOValue);
@@ -664,7 +664,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

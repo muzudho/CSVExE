@@ -16,7 +16,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 表示文字列。
         /// </summary>
-        string SDisplay
+        string TextDisplay
         {
             set;
             get;

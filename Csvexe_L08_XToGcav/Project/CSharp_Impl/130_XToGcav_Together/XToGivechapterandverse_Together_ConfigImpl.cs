@@ -49,7 +49,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -70,13 +70,13 @@ namespace Xenon.XToGcav
 
                 // スクリプトファイルのバージョンチェック。（関数登録ファイル）
                 ValuesAttr.Test_Codefileversion(
-                    xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.SName_Attr),
+                    xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
                     new Givechapterandverse_NodeImpl(sFpatha, null),
                     NamesNode.S_CODEFILE_TOGETHERS
                     );
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     XmlNodeList xTopNL = xRoot.ChildNodes;
 
@@ -138,7 +138,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(sTg_Cnf));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -163,7 +163,7 @@ namespace Xenon.XToGcav
                 t.Append(r.Message_Givechapterandverse(sTg_Cnf));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -188,7 +188,7 @@ namespace Xenon.XToGcav
                 t.Append(r.Message_Givechapterandverse(sTg_Cnf));
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

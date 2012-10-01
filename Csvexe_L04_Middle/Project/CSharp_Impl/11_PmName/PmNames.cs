@@ -398,7 +398,7 @@ namespace Xenon.Middle
 
         private static void RegisterAttributeDictionary_(Dictionary<string, PmName> d, PmName pmName)
         {
-            d.Add(pmName.SName_Attr, pmName);
+            d.Add(pmName.Name_Attribute, pmName);
         }
 
         //────────────────────────────────────────

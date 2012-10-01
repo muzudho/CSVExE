@@ -38,7 +38,7 @@ namespace Xenon.XToGcav
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
 
 
             //
@@ -76,7 +76,7 @@ namespace Xenon.XToGcav
 
                     to = this.Dictionary_XToGivechapterandverse_ElmP[sName_Node];
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         try
                         {
@@ -129,7 +129,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -151,7 +151,7 @@ namespace Xenon.XToGcav
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
                 s.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -186,7 +186,7 @@ namespace Xenon.XToGcav
                 //
                 Log_Method log_Method = new Log_MethodImpl(0);
                 Log_Reports d_Logging_ThisMethod = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS_ElmPMap set",d_Logging_ThisMethod);
+                log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS_ElmPMap set",d_Logging_ThisMethod);
 
 
                 if (null == dictionary_XToGivechapterandverse_ElmP)

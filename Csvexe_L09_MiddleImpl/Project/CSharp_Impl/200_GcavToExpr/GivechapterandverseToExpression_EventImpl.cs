@@ -40,14 +40,14 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "CfToEc",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "CfToEc",log_Reports);
             //
             //
 
             this.Givechapterandverse_Event.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node systemFunction_Gcav, ref bool bBreak)
             {
                 Expression_Node_Function expr_Func;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     expr_Func = moApplication.MemoryForms.GivechapterandverseToFunction.Translate(
                         systemFunction_Gcav,
@@ -60,15 +60,15 @@ namespace Xenon.MiddleImpl
                     expr_Func = null;
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     this.Owner_Functionlist.List_Item.Add(expr_Func);
                 }
             });
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                this.BTranslatedGivechapterandverseToExpression = true;
+                this.IsTranslated_GivechapterandverseToExpression = true;
             }
 
             //
@@ -118,7 +118,7 @@ namespace Xenon.MiddleImpl
             }
             set
             {
-                this.BTranslatedGivechapterandverseToExpression = false;
+                this.IsTranslated_GivechapterandverseToExpression = false;
 
                 givechapterandverse_Event = value;
             }
@@ -126,34 +126,34 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private bool bTranslatedGivechapterandverseToExpression;
+        private bool isTranslated_GivechapterandverseToExpression;
 
-        public bool BTranslatedGivechapterandverseToExpression
+        public bool IsTranslated_GivechapterandverseToExpression
         {
             get
             {
-                return bTranslatedGivechapterandverseToExpression;
+                return isTranslated_GivechapterandverseToExpression;
             }
             set
             {
-                bTranslatedGivechapterandverseToExpression = value;
+                isTranslated_GivechapterandverseToExpression = value;
             }
         }
 
         //────────────────────────────────────────
 
-        public string SName
+        public string Name
         {
             get
             {
                 Log_Method log_Method = new Log_MethodImpl(0);
                 Log_Reports d_Logging_Dammy = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SName",d_Logging_Dammy);
+                log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Name", d_Logging_Dammy);
                 //
                 //
 
                 string sResult;
-                this.Givechapterandverse_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sResult, false, d_Logging_Dammy);
+                this.Givechapterandverse_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sResult, false, d_Logging_Dammy);
 
                 //
                 //
@@ -166,11 +166,11 @@ namespace Xenon.MiddleImpl
             {
                 Log_Method log_Method = new Log_MethodImpl(0);
                 Log_Reports d_Logging_Dammy = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "SName",d_Logging_Dammy);
+                log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Name", d_Logging_Dammy);
                 //
                 //
 
-                this.Givechapterandverse_Event.Dictionary_SAttribute_Givechapterandverse.Add(PmNames.S_NAME.SName_Pm, value, this.Givechapterandverse_Event, true, d_Logging_Dammy);
+                this.Givechapterandverse_Event.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_NAME.Name_Pm, value, this.Givechapterandverse_Event, true, d_Logging_Dammy);
 
                 //
                 //

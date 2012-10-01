@@ -53,7 +53,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "ToCsvText",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ToCsvText",log_Reports);
 
             Log_TextIndented log_ReportsResult = new Log_TextIndentedImpl();
 
@@ -84,13 +84,13 @@ namespace Xenon.Table
             // フィールド定義部：名前
             foreach (XenonFielddefinition o_FldDef in oList_FldDef)
             {
-                if (this.ExceptedFields.TryExceptedField(o_FldDef.SName_Trimupper))
+                if (this.ExceptedFields.TryExceptedField(o_FldDef.Name_Trimupper))
                 {
                     // 出力しないフィールドの場合、無視します。
                 }
                 else
                 {
-                    log_ReportsResult.Append(ce.EscapeCell(o_FldDef.SName_Humaninput));
+                    log_ReportsResult.Append(ce.EscapeCell(o_FldDef.Name_Humaninput));
                     log_ReportsResult.Append(",");
                 }
             }
@@ -100,7 +100,7 @@ namespace Xenon.Table
             // フィールド定義部：型
             foreach (XenonFielddefinitionImpl o_FldDef in oList_FldDef)
             {
-                if (this.ExceptedFields.TryExceptedField(o_FldDef.SName_Trimupper))
+                if (this.ExceptedFields.TryExceptedField(o_FldDef.Name_Trimupper))
                 {
                     // 出力しないフィールドの場合、無視します。
                 }
@@ -137,13 +137,13 @@ namespace Xenon.Table
             // フィールド定義部：コメント
             foreach (XenonFielddefinitionImpl o_FldDef in oList_FldDef)
             {
-                if (this.ExceptedFields.TryExceptedField(o_FldDef.SName_Trimupper))
+                if (this.ExceptedFields.TryExceptedField(o_FldDef.Name_Trimupper))
                 {
                     // 出力しないフィールドの場合、無視します。
                 }
                 else
                 {
-                    log_ReportsResult.Append(ce.EscapeCell(o_FldDef.SComment));
+                    log_ReportsResult.Append(ce.EscapeCell(o_FldDef.Comment));
                     log_ReportsResult.Append(",");
                 }
             }
@@ -182,7 +182,7 @@ namespace Xenon.Table
                         goto gt_Error_OutOfIndex;
                     }
 
-                    if (this.ExceptedFields.TryExceptedField(fieldDefinition.SName_Trimupper))
+                    if (this.ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
@@ -236,13 +236,13 @@ namespace Xenon.Table
                 s.Append("（プログラム内部エラー）テーブルの列定義が０件です。 o_FldDefList.Count[");
                 s.Append(err_OList_FldDef.Count);
                 s.Append("] テーブル名＝[");
-                s.Append(xenonTable.SName);
+                s.Append(xenonTable.Name);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -260,12 +260,12 @@ namespace Xenon.Table
                 s.Append("] o_FldDefList.Count[");
                 s.Append(err_OList_FldDef.Count);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_SException(err_E));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -281,11 +281,11 @@ namespace Xenon.Table
                 s.Append("（プログラム内部エラー）未定義のフィールド型=[");
                 s.Append(err_FldDef.Type.ToString());
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -299,11 +299,11 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("（プログラム内部エラー）tableがヌルでした。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

@@ -25,7 +25,7 @@ namespace Xenon.Syntax
         {
             string sResult;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 sResult = Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(
                     "",
@@ -59,11 +59,11 @@ namespace Xenon.Syntax
         {
             string sResult;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 sResult = Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(
                     "",
-                    fpath_Gcav.GetSHumaninput(),
+                    fpath_Gcav.GetHumaninput(),
                     ref bFlagCheckPathTooLong,
                     bOkPathTooLong,
                     log_Reports,//out sErrorMsg,
@@ -112,7 +112,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, "Utility_Givechapterandverse_Filepath", "GetAbsoluteFilePathImpl", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Givechapterandverse_Filepath", "GetAbsoluteFilePathImpl", log_Reports);
             //
             //
 
@@ -158,7 +158,7 @@ namespace Xenon.Syntax
                 log_Reports
                 );
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 sResult_FilePath = "";//ファイルパスとしては使えない文字列。
@@ -276,7 +276,7 @@ namespace Xenon.Syntax
                 s.Append(err_Excp.Message);
                 cur_Gcav.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -294,7 +294,7 @@ namespace Xenon.Syntax
                 s.Append(err_Excp.Message);
                 cur_Gcav.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -308,15 +308,15 @@ namespace Xenon.Syntax
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(Environment.NewLine);
                 s.Append("ファイルパスが間違っているかもしれません。");
-                s.NewLine();
+                s.Newline();
                 s.AppendI(1,"入力パス=[" + sFpath_Src + "]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
                 cur_Gcav.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -330,13 +330,13 @@ namespace Xenon.Syntax
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(Environment.NewLine);
                 s.Append("エラー 入力パス=[" + sFpath_Src + "]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
                 cur_Gcav.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -368,7 +368,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, "Utility_Givechapterandverse_Filepath", "IsRooted_Path", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Givechapterandverse_Filepath", "IsRooted_Path", log_Reports);
             //
             //
             bool bPathRooted;
@@ -402,7 +402,7 @@ namespace Xenon.Syntax
                 sb.Append("エラー 入力パス=[" + sFilepath + "]：(" + err_Excp.GetType().Name + ") ");
                 sb.Append(err_Excp.Message);
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -449,7 +449,7 @@ namespace Xenon.Syntax
             // フラグ。
             bool bFlagCheckPathTooLong = false;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // チェック。絶対パスにすることができればOK。
                 Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(

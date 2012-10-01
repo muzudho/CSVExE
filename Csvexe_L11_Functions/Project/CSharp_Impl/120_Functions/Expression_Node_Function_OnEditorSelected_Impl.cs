@@ -59,15 +59,15 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_FunctionAbstract f0 = new Expression_Node_Function_OnEditorSelected_Impl(this.EnumEventhandler, this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_FunctionAbstract f0 = new Expression_Node_Function_OnEditorSelected_Impl(this.EnumEventhandler, this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
             ((Expression_Node_Function_OnEditorSelected_Impl)f0).in_Subroutine_Function30_1_OrNull = null;
             ((Expression_Node_Function_OnEditorSelected_Impl)f0).in_Subroutine_Function30_2_OrNull = null;
 
@@ -101,7 +101,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(1);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
 
             //
@@ -126,22 +126,22 @@ namespace Xenon.Functions
             //
             {
                 string sFncName0;
-                this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 if (this.ExpressionfncPrmset.Sender is Customcontrol)
                 {
                     Customcontrol ccFc = (Customcontrol)this.ExpressionfncPrmset.Sender;
                     string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-                    log_Reports.SComment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
                 {
-                    log_Reports.SComment_EventCreationMe += "／追加：[" + sFncName0 + "]アクションを実行。";
+                    log_Reports.Comment_EventCreationMe += "／追加：[" + sFncName0 + "]アクションを実行。";
                 }
             }
 
 
 
-            string sConfigStack_EventOrigin = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_PrjSelected:プロジェクト選択時＞";
+            string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_PrjSelected:プロジェクト選択時＞";
             Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl(sConfigStack_EventOrigin, null);
             //
             //
@@ -190,7 +190,7 @@ namespace Xenon.Functions
 
                 // 表示用の名称。
                 string sName_SelectingEditor;
-                if (this.ExpressionfncPrmset.St_SelectedProjectElm == null)
+                if (this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse == null)
                 {
                     //
                     // 切り替えるプロジェクトが判明していない場合は、空文字列。
@@ -202,7 +202,7 @@ namespace Xenon.Functions
                     //
                     // todo: エディター設定ファイルの方のエディター名を入れても意味ないのでは？
                     //
-                    sName_SelectingEditor = ((MemoryAatoolxml_Editor)this.ExpressionfncPrmset.St_SelectedProjectElm).SName;
+                    sName_SelectingEditor = ((MemoryAatoolxml_Editor)this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse).Name;
                 }
 
 
@@ -237,7 +237,7 @@ namespace Xenon.Functions
                     log_Method.WriteDebug_ToConsole("（７）「Aa_Editor.xml」読取。");
                 }
                 //
-                if (!this.ExpressionfncPrmset.BProjectValid || this.ExpressionfncPrmset.St_SelectedProjectElm == null)
+                if (!this.ExpressionfncPrmset.ProjectValid || this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse == null)
                 {
                     MemoryAatoolxml_Editor moAatoolxml_PrevEditorElm_OrNull = null;
 
@@ -250,7 +250,7 @@ namespace Xenon.Functions
                     //
                     //
                     //
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         if ("" == sName_SelectingEditor)
                         {
@@ -258,22 +258,22 @@ namespace Xenon.Functions
                             // デフォルト・エディター名が未指定の場合。
                             //
                             MemoryAatoolxml_Editor moAatoolxml_DefaultEditor = this.Owner_MemoryApplication.MemoryAatoolxml.GetDefaultEditor(true, log_Reports);
-                            if (!log_Reports.BSuccessful)
+                            if (!log_Reports.Successful)
                             {
                                 // 既エラー。
                                 goto gt_EndMethod;
                             }
 
                             // ↓これ要る？
-                            sName_SelectingEditor = moAatoolxml_DefaultEditor.SName;
+                            sName_SelectingEditor = moAatoolxml_DefaultEditor.Name;
                         }
                     }
 
 
-                    this.On_P07_SelectDefaultProject(ref sName_SelectingEditor, ref moAatoolxml_PrevEditorElm_OrNull, this.ExpressionfncPrmset.BProjectValid, log_Reports);
+                    this.On_P07_SelectDefaultProject(ref sName_SelectingEditor, ref moAatoolxml_PrevEditorElm_OrNull, this.ExpressionfncPrmset.ProjectValid, log_Reports);
 
 
-                    this.ExpressionfncPrmset.St_SelectedProjectElm = moAatoolxml_PrevEditorElm_OrNull;
+                    this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse = moAatoolxml_PrevEditorElm_OrNull;
 
                     //
                     //
@@ -282,8 +282,8 @@ namespace Xenon.Functions
                     //
                     //
                     //
-                    this.ExpressionfncPrmset.St_SelectedProjectElm = this.Owner_MemoryApplication.MemoryAatoolxml.GetEditorByName(sName_SelectingEditor, true, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse = this.Owner_MemoryApplication.MemoryAatoolxml.GetEditorByName(sName_SelectingEditor, true, log_Reports);
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -292,7 +292,7 @@ namespace Xenon.Functions
 
 
                 // ↓追加
-                if (null == this.ExpressionfncPrmset.St_SelectedProjectElm)
+                if (null == this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse)
                 {
                     if (log_Reports.CanCreateReport)
                     {
@@ -305,7 +305,7 @@ namespace Xenon.Functions
                         s.Append("エディター名＝[");
                         s.Append(sName_SelectingEditor);
                         s.Append("]");
-                        r.SMessage = s.ToString();
+                        r.Message = s.ToString();
                         log_Reports.EndCreateReport();
                     }
                 }
@@ -329,9 +329,9 @@ namespace Xenon.Functions
                 //
                 //
                 Expression_Node_Filepath ec_Fopath_Editor;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
-                    MemoryAatoolxml_Editor moAatoolxml_SelectedEditor = (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.St_SelectedProjectElm;
+                    MemoryAatoolxml_Editor moAatoolxml_SelectedEditor = (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse;
                     ec_Fopath_Editor = moAatoolxml_SelectedEditor.GetFilepathByFsetvarname(
                         NamesVar.S_SP_EDITOR,
                         this.Owner_MemoryApplication.MemoryVariables,
@@ -358,7 +358,7 @@ namespace Xenon.Functions
                 }
                 //
                 Expression_Node_Filepath ec_Fpath_AaEditorXml;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
 
                     //
@@ -397,13 +397,13 @@ namespace Xenon.Functions
                 }
                 //
                 MemoryAaeditorxml_Editor moAaeditorxml_Editor = null;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     this.On_P08_SpToVar_(
                         out moAaeditorxml_Editor,
                         ec_Fpath_AaEditorXml,
                         ec_Fopath_Editor,
-                        (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.St_SelectedProjectElm,
+                        (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse,
                         log_Reports
                         );
                 }
@@ -422,7 +422,7 @@ namespace Xenon.Functions
 
 
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     //
                     //
@@ -446,7 +446,7 @@ namespace Xenon.Functions
 
 
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     //
                     //
@@ -487,7 +487,7 @@ namespace Xenon.Functions
 
 
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     //
                     //
@@ -540,7 +540,7 @@ namespace Xenon.Functions
                 //
                 List<Expression_Node_Filepath> ecList_Fpath_BackupRequest;
                 {
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 
@@ -578,23 +578,23 @@ namespace Xenon.Functions
                     log_Method.WriteDebug_ToConsole("（１４ｂ）ユーザー定義関数設定ファイル読取【2012-03-30追加】");
                 }
                 //
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // タイプデータ値。
                     Expression_Leaf_StringImpl ec_NameVariable = new Expression_Leaf_StringImpl(this, new Givechapterandverse_NodeImpl("!ハードコーディング",null));
                     ec_NameVariable.SetString(ValuesTypeData.S_CODE_FUNCTIONS, log_Reports);
 
                     List<MemoryCodefileinfo> listInfo = null;
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         listInfo = this.Owner_MemoryApplication.MemoryCodefiles.GetCodefileinfoByTypedata(ec_NameVariable, true, log_Reports);
                     }
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         foreach (MemoryCodefileinfo scriptfile in listInfo)
                         {
-                            if (log_Reports.BSuccessful)
+                            if (log_Reports.Successful)
                             {
                                 this.Owner_MemoryApplication.MemoryFunctions.LoadFile(
                                     scriptfile.Expression_Filepath,
@@ -627,7 +627,7 @@ namespace Xenon.Functions
                     log_Method.WriteDebug_ToConsole("（１６）『スタイルシート設定ファイル』読取");
                 }
                 //
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
                         Expression_Node_Function19Impl.S_ACTION_NAME, this, this.Cur_Givechapterandverse,
@@ -636,7 +636,7 @@ namespace Xenon.Functions
                     Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, cf_ThisMethod);
                     ec_Str.AppendTextNode(NamesVar.S_ST_STYLESHEET, this.Cur_Givechapterandverse, log_Reports);
 
-                    expr_Func.DicExpression_Attr.Set(Expression_Node_Function19Impl.S_PM_NAME_TABLE_STYLE_SHEET, ec_Str, log_Reports);
+                    expr_Func.Dictionary_Expression_Attribute.Set(Expression_Node_Function19Impl.S_PM_NAME_TABLE_STYLE_SHEET, ec_Str, log_Reports);
 
 
                     expr_Func.Execute_OnWrRhn(
@@ -666,7 +666,7 @@ namespace Xenon.Functions
                     moAaeditorxml_Editor,
                     ec_Fpath_AaEditorXml,
                     ec_Fopath_Editor,
-                    (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.St_SelectedProjectElm,
+                    (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse,
                     eventMonitor_Dammy,
                     sConfigStack_EventOrigin,
                     log_Reports);
@@ -703,7 +703,7 @@ namespace Xenon.Functions
                     moAaeditorxml_Editor,
                     ec_Fpath_AaEditorXml,
                     ec_Fopath_Editor,
-                    (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.St_SelectedProjectElm,
+                    (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse,
                     eventMonitor_Dammy,
                     sConfigStack_EventOrigin,
                     log_Reports);
@@ -737,14 +737,14 @@ namespace Xenon.Functions
                                 ec_Fvar.AppendTextNode(NamesVar.S_SS_FORM_START, this.Cur_Givechapterandverse, log_Reports);
 
                                 ec_FormStart = new Expression_Node_StringImpl(this, this.Cur_Givechapterandverse);
-                                ec_FormStart.ListExpression_Child.Add(ec_Fvar, log_Reports);
+                                ec_FormStart.List_Expression_Child.Add(ec_Fvar, log_Reports);
                             }
-                            ((Expression_Node_Function30Impl)expr_Func).DicExpression_Attr.Set(Expression_Node_Function30Impl.S_PM_NAME_FORM, ec_FormStart, log_Reports);
+                            ((Expression_Node_Function30Impl)expr_Func).Dictionary_Expression_Attribute.Set(Expression_Node_Function30Impl.S_PM_NAME_FORM, ec_FormStart, log_Reports);
                         }
 
                         ((Expression_Node_Function30Impl)expr_Func).In_Subroutine_Function30_1 = this.In_Subroutine_Function30_1_OrNull;
                         ((Expression_Node_Function30Impl)expr_Func).In_Subroutine_Function30_2 = this.In_Subroutine_Function30_2_OrNull;
-                        ((Expression_Node_Function30Impl)expr_Func).DicExpression_Attr.Set(
+                        ((Expression_Node_Function30Impl)expr_Func).Dictionary_Expression_Attribute.Set(
                             Expression_Node_Function30Impl.S_PM_NAME_TOGETHER,
                             new Expression_Leaf_StringImpl(NamesStg.S_STG_BEGIN_APPLICATION, null, cf_ThisMethod), log_Reports);
                     }
@@ -773,8 +773,8 @@ namespace Xenon.Functions
                 //
                 this.On_P19_AtLast(
                     this.ExpressionfncPrmset.Sender,
-                    (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.St_SelectedProjectElm,
-                    this.ExpressionfncPrmset.BProjectValid,
+                    (MemoryAatoolxml_Editor)this.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse,
+                    this.ExpressionfncPrmset.ProjectValid,
                     sConfigStack_EventOrigin,
                     log_Reports);
 
@@ -800,7 +800,7 @@ namespace Xenon.Functions
                     {
                         Log_TextIndented s = new Log_TextIndentedImpl();
                         s.Append("[" + sKey + "]");
-                        s.NewLine();
+                        s.Newline();
                         fcUc.ControlCommon.Expression_Control.Cur_Givechapterandverse.ToText_Content(s);
                         log_Method.WriteInfo_ToConsole(s.ToString());
                     });
@@ -811,7 +811,7 @@ namespace Xenon.Functions
                     {
                         Log_TextIndented s = new Log_TextIndentedImpl();
                         s.Append("[" + sKey + "]");
-                        s.NewLine();
+                        s.Newline();
                         ec_CommonFunction.Cur_Givechapterandverse.ToText_Content(s);
                         log_Method.WriteInfo_ToConsole(s.ToString());
                     });
@@ -827,7 +827,7 @@ namespace Xenon.Functions
                     {
                         Log_TextIndented s = new Log_TextIndentedImpl();
                         s.Append("[" + sKey + "]");
-                        s.NewLine();
+                        s.Newline();
                         fcUc.ControlCommon.Expression_Control.ToText_Snapshot(s);
                         log_Method.WriteInfo_ToConsole(s.ToString());
                     });
@@ -838,7 +838,7 @@ namespace Xenon.Functions
                     {
                         Log_TextIndented s = new Log_TextIndentedImpl();
                         s.Append("[" + sKey + "]");
-                        s.NewLine();
+                        s.Newline();
                         ec_CommonFunction.ToText_Snapshot(s);
                         log_Method.WriteInfo_ToConsole(s.ToString());
                     });
@@ -893,7 +893,7 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Owner_MemoryApplication.ClearProject(
                     this.Owner_MemoryApplication.MemoryForms.Mainwnd_FormWrapping.Form.Controls,
@@ -933,7 +933,7 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "On_P08_SpToVar_",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "On_P08_SpToVar_",log_Reports);
 
 
             //
@@ -952,7 +952,7 @@ namespace Xenon.Functions
             MemoryAaeditorxml moAaeditorxml = new MemoryAaeditorxmlImpl();
             //moAaeditorxml.Clear1(log_Reports);
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 moAaeditorxml.Load_AutoSystemVariable(
                     ec_Fopath_Editor,
@@ -963,7 +963,7 @@ namespace Xenon.Functions
 
             //
             out_moAaeditorxml_Editor = new MemoryAaeditorxml_EditorImpl(ec_Fpath_AaEditorXml.Cur_Givechapterandverse);
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 out_moAaeditorxml_Editor.LoadFile_Aaxml(
                     ec_Fpath_AaEditorXml,
@@ -973,7 +973,7 @@ namespace Xenon.Functions
             }
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 moAaeditorxml.LoadFile(
                     ec_Fopath_Editor,
@@ -1006,7 +1006,7 @@ namespace Xenon.Functions
             string sConfigStack_EventOrigin,
             Log_Reports log_Reports)
         {
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
                         Expression_Node_Function44Impl.S_ACTION_NAME, this, this.Cur_Givechapterandverse,
@@ -1051,7 +1051,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "On_P17a_PreviousOpenWindow_Backup",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "On_P17a_PreviousOpenWindow_Backup",log_Reports);
 
 
             //
@@ -1061,11 +1061,11 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_SName_SubFolder = moAaeditorxml_Editor.Dictionary_Fsetvar_Givechapterandverse.GetFsetvar(
+                this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_Name_SubFolder = moAaeditorxml_Editor.Dictionary_Fsetvar_Givechapterandverse.GetFsetvar(
                     NamesVar.S_SS_BACKUP_NAME_MY_FOLDER, false, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -1080,11 +1080,11 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_BackupKeptbackups = moAaeditorxml_Editor.Dictionary_Fsetvar_Givechapterandverse.GetFsetvar(
                     NamesVar.S_SI_BACKUP_KEPT_BACKUPS, false, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -1097,7 +1097,7 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XenonNameImpl o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_BACKUP_FOLDER, new Givechapterandverse_NodeImpl("!ハードコーディング_ExAction00022#Perform_WrRhn", null));
 
@@ -1132,12 +1132,12 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Givechapterandverse_Node cf_Fsetvar = this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_BackupKeptbackups;
 
                 string sValue;
-                cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                 this.TestExists_String(
                     "DateBackupKeptbackups",
@@ -1155,12 +1155,12 @@ namespace Xenon.Functions
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                Givechapterandverse_Node cf_Fsetvar = this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_SName_SubFolder;
+                Givechapterandverse_Node cf_Fsetvar = this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_Name_SubFolder;
 
                 string sValue;
-                cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                 this.TestExists_String(
                     "DateBackupFolderOwnerName",
@@ -1171,34 +1171,34 @@ namespace Xenon.Functions
             }
 
             // 保管するバックアップ数（日毎）
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 int nBackups;
                 {
                     Givechapterandverse_Node cf_Fsetvar = this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_BackupKeptbackups;
 
                     string sValue;
-                    cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                     if (!int.TryParse(sValue, out nBackups))
                     {
                         // エラー。
-                        this.Owner_MemoryApplication.MemoryBackup.NBackupKeptbackups = 0;
+                        this.Owner_MemoryApplication.MemoryBackup.BackupKeptbackups = 0;
                     }
                     else
                     {
-                        this.Owner_MemoryApplication.MemoryBackup.NBackupKeptbackups = nBackups;
+                        this.Owner_MemoryApplication.MemoryBackup.BackupKeptbackups = nBackups;
                     }
                 }
 
                 // バックアップ・フォルダーのサブ名。例えば aaa なら、2009年12月3日のフォルダー名は 20091203_aaa になります。
                 {
-                    Givechapterandverse_Node cf_Fsetvar = this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_SName_SubFolder;
+                    Givechapterandverse_Node cf_Fsetvar = this.Owner_MemoryApplication.MemoryBackup.Givechapterandverse_Name_SubFolder;
 
                     string sValue;
-                    cf_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
-                    this.Owner_MemoryApplication.MemoryBackup.SName_SubFolder = sValue;
+                    this.Owner_MemoryApplication.MemoryBackup.Name_SubFolder = sValue;
                 }
             }
 
@@ -1253,7 +1253,7 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "TestExists_String",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "TestExists_String",log_Reports);
 
             if ("" == sValue)
             {
@@ -1278,7 +1278,7 @@ namespace Xenon.Functions
                 sB.Append(sArgName_Display);
                 sB.Append("』が未設定です。");
                 sB.Append(Environment.NewLine);
-                r.SMessage = sB.ToString();
+                r.Message = sB.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1299,7 +1299,7 @@ namespace Xenon.Functions
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "TestExists_EmptyFilePath",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "TestExists_EmptyFilePath",log_Reports);
             //
             //
 
@@ -1307,7 +1307,7 @@ namespace Xenon.Functions
             {
                 goto gt_Error_NullFpath;
             }
-            else if ("" == ec_Fpath.SHumaninput)
+            else if ("" == ec_Fpath.Humaninput)
             {
                 goto gt_Error_NoData;
             }
@@ -1330,7 +1330,7 @@ namespace Xenon.Functions
                 s.Append(sArgName);
                 s.Append("』設定が　ありませんでした。");
                 s.Append(Environment.NewLine);
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -1349,7 +1349,7 @@ namespace Xenon.Functions
 
                 s.Append(r.Message_Givechapterandverse(ec_Fpath.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

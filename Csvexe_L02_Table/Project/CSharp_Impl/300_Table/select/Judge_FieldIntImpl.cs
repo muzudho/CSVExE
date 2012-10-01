@@ -28,7 +28,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Judge",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Judge",log_Reports);
 
             //
             //
@@ -67,7 +67,7 @@ namespace Xenon.Table
                     log_Reports
                     );
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (!bParsedSuccessful)
                     {
@@ -76,7 +76,7 @@ namespace Xenon.Table
                         {
                             Log_RecordReport d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
                             d_Report.SetTitle("▲エラー698！", log_Method);
-                            d_Report.SMessage = "int型パース失敗。";
+                            d_Report.Message = "int型パース失敗。";
                             log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod;
@@ -87,7 +87,7 @@ namespace Xenon.Table
 
                 // （７）キー値をint型に変換します。
                 int nExpectedValue;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     bool bParseSuccessful2 = int.TryParse(sValue_Expected, out nExpectedValue);
                     if (!bParseSuccessful2)
@@ -108,7 +108,7 @@ namespace Xenon.Table
 
 
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // （８）該当行をレコードセットに追加。
                     if (nKeyValue == nExpectedValue)
@@ -157,12 +157,12 @@ namespace Xenon.Table
                 s.Append("検索キーに指定した[");
                 s.Append(sName_KeyField);
                 s.Append("]というフィールドは無いです。");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 parent_Query.ToText_Path(s);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -176,31 +176,31 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.AppendI(0, "<Select_KeyIntImplクラス>");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "これはint型値のプログラムです。他の型のプログラムを使ってください。");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "・ヒント：変数が見つからなかった場合もここに来ます。例えば、変数名「$aaa」を書こうとして、「aaa」と書いていませんか？");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "・ヒント：数値が大きすぎた場合もここに来ます。");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "sExpectedValue=[");
                 s.Append(sValue_Expected);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 //
                 // ヒント
                 parent_Query.ToText_Path(s);
 
                 s.AppendI(0, "</Select_KeyIntImplクラス>");
-                s.NewLine();
+                s.Newline();
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

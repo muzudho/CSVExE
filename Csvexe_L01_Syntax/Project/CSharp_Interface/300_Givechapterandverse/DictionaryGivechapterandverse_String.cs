@@ -97,7 +97,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性数。
         /// </summary>
-        int NCount
+        int Count
         {
             get;
         }
@@ -106,12 +106,12 @@ namespace Xenon.Syntax
         /// それぞれの属性。
         /// </summary>
         /// <param name="dlgt1"></param>
-        void ForEach(DLGT_SAllAttrs dlgt1);
+        void ForEach(DLGT_StringAllAttributes dlgt1);
 
         /// <summary>
         /// 属性＝””の連想配列。
         /// </summary>
-        Dictionary<string, string> Dictionary_SAttribute
+        Dictionary<string, string> Dictionary_StringAttribute
         {
             get;
             set;

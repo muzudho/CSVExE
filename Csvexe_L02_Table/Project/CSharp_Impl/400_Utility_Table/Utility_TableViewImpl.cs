@@ -72,7 +72,7 @@ namespace Xenon.Table
             {
                 // 列を追加します。見出しと幅も設定します。
                 Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append(fieldDefinition.SName_Humaninput);
+                t.Append(fieldDefinition.Name_Humaninput);
 
                 if (this.BVisibled_Fieldtype)
                 {
@@ -100,7 +100,7 @@ namespace Xenon.Table
                     {
                         XenonValue cellData = (XenonValue)columnObject;
 
-                        string sFieldValue = cellData.SHumaninput;
+                        string sFieldValue = cellData.Humaninput;
 
                         // レコードを作成します。
                         if (0 == nColumnIndex)
@@ -143,9 +143,9 @@ namespace Xenon.Table
         gt_Error_DBNull:
             {
                 Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー201！(" + Info_Table.SName_Library + ")");
-                t.NewLine();
-                t.Append("列が未設定（DBNull）。テーブル名=[" + xenonTable.SName + "]");
+                t.Append("▲エラー201！(" + Info_Table.Name_Library + ")");
+                t.Newline();
+                t.Append("列が未設定（DBNull）。テーブル名=[" + xenonTable.Name + "]");
                 sMessage_Error = t.ToString();
             }
             goto gt_EndMethod;
@@ -153,9 +153,9 @@ namespace Xenon.Table
         gt_Error_UnknownType:
             {
                 Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー202！(" + Info_Table.SName_Library + ")");
-                t.NewLine();
-                t.Append("未定義の型の列。テーブル名=[" + xenonTable.SName + "]");
+                t.Append("▲エラー202！(" + Info_Table.Name_Library + ")");
+                t.Newline();
+                t.Append("未定義の型の列。テーブル名=[" + xenonTable.Name + "]");
                 sMessage_Error = t.ToString();
             }
             goto gt_EndMethod;

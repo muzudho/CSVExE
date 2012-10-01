@@ -38,12 +38,12 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "EToM2",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "EToM2",log_Reports);
             //
             //
 
             string sName_Fnc;
-            ec_SfCell.TrySelectAttr(out sName_Fnc, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            ec_SfCell.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
             if (NamesFnc.S_CELL != sName_Fnc)
             {
                 // エラー。
@@ -52,11 +52,11 @@ namespace Xenon.Controls
 
 
             string sSelectedFldName;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                bool bHit = ec_SfCell.TrySelectAttr(
+                bool bHit = ec_SfCell.TrySelectAttribute(
                     out sSelectedFldName,
-                    PmNames.S_SELECT.SName_Pm,
+                    PmNames.S_SELECT.Name_Pm,
                     false,//true,
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
@@ -78,7 +78,7 @@ namespace Xenon.Controls
 
                 //    EUtil_NodeImpl.SelectItemsByAttrAsCsv(list_Arg1, PmNames.NAME.SAttrName, ValuesAttr.S_SELECT, false, Request_SelectingImpl.First_Exist, log_Reports);
 
-                //    if (log_Reports.BSuccessful)
+                //    if (log_Reports.Successful)
                 //    {
                 //        sSelectedFldName = list_Arg1[0].Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                 //    }
@@ -91,7 +91,7 @@ namespace Xenon.Controls
 
 
             Expression_Node_String ec_KeyFldName1 = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Expression_Node_String ec_Where = null;
 
@@ -100,27 +100,27 @@ namespace Xenon.Controls
                 //
 
                 // 再検索。
-                ec_SfCell.ListExpression_Child.ForEach(delegate(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak)
+                ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak)
                 {
                     string sValue;
-                    ec_Child.TrySelectAttr(out sValue, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    ec_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
 
-                    if (NamesNode.S_FNC == ec_Child.Cur_Givechapterandverse.SName &&
+                    if (NamesNode.S_FNC == ec_Child.Cur_Givechapterandverse.Name &&
                         NamesFnc.S_WHERE == sValue)
                     {
                         ec_Where = ec_Child;
 
                         if (pg_Method.CanDebug(2))
                         {
-                            pg_Method.WriteDebug_ToConsole("子「E■[" + ec_Child.Cur_Givechapterandverse.SName + "]」。子要素数=[" + ec_Where.ListExpression_Child.NCount + "]");
+                            pg_Method.WriteDebug_ToConsole("子「E■[" + ec_Child.Cur_Givechapterandverse.Name + "]」。子要素数=[" + ec_Where.List_Expression_Child.Count + "]");
                         }
 
-                        ec_Where.ListExpression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
+                        ec_Where.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
                         {
-                            if (NamesNode.S_FNC == e_Item.Cur_Givechapterandverse.SName)
+                            if (NamesNode.S_FNC == e_Item.Cur_Givechapterandverse.Name)
                             {
                                 Expression_Node_String ec_Field;
-                                bool bHit3 = e_Item.TrySelectAttr(out ec_Field, PmNames.S_FIELD.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                                bool bHit3 = e_Item.TrySelectAttribute(out ec_Field, PmNames.S_FIELD.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                                 if (bHit3)
                                 {
                                     //「E■ｆ－ｃｅｌｌ」／「E■＠ｗｈｅｒｅ」／「E■ｆｎｃ　ｆｉｅｌｄ＝”★”」。
@@ -139,7 +139,7 @@ namespace Xenon.Controls
                             else
                             {
                                 // #エラー
-                                System.Console.WriteLine(Info_Controls.SName_Library + ":" + this.GetType().Name + "#EToM: 「E■ｆｎｃ」がありませんでした。");
+                                System.Console.WriteLine(Info_Controls.Name_Library + ":" + this.GetType().Name + "#EToM: 「E■ｆｎｃ」がありませんでした。");
                             }
 
                         });
@@ -148,7 +148,7 @@ namespace Xenon.Controls
                     {
                         if (pg_Method.CanDebug(2))
                         {
-                            pg_Method.WriteDebug_ToConsole( "（無視）　 子「E■[" + ec_Child.Cur_Givechapterandverse.SName + "]」。");
+                            pg_Method.WriteDebug_ToConsole( "（無視）　 子「E■[" + ec_Child.Cur_Givechapterandverse.Name + "]」。");
                         }
                     }
                 });
@@ -156,7 +156,7 @@ namespace Xenon.Controls
                 if (null == ec_Where)
                 {
                     // #エラー
-                    System.Console.WriteLine(Info_Controls.SName_Library + ":" + this.GetType().Name + "#EToM: 「E■ｆ－ｃｅｌｌ」に、子「E■ｗｈｅｒｅ」が無かった？　そういう場合（無条件）もある。");
+                    System.Console.WriteLine(Info_Controls.Name_Library + ":" + this.GetType().Name + "#EToM: 「E■ｆ－ｃｅｌｌ」に、子「E■ｗｈｅｒｅ」が無かった？　そういう場合（無条件）もある。");
                 }
             }
             else
@@ -169,12 +169,12 @@ namespace Xenon.Controls
             // ｆｒｏｍ
             //
             Expression_Node_String ec_TableName1;//ソース情報利用
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // Sf:cell; に ｆｒｏｍ が指定されていない？
-                bool bHit = ec_SfCell.TrySelectAttr(
+                bool bHit = ec_SfCell.TrySelectAttribute(
                     out ec_TableName1,
-                    PmNames.S_FROM.SName_Pm,
+                    PmNames.S_FROM.Name_Pm,
                     true,
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
@@ -188,7 +188,7 @@ namespace Xenon.Controls
                 //    List<Expression_Node_String> list_Arg1 = e_SfCell.SelectDirectchildByNodename(NamesNode.S_ARG1, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 //    EUtil_NodeImpl.SelectItemsByAttrAsCsv(list_Arg1, PmNames.NAME.SAttrName, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
 
-                //    if (log_Reports.BSuccessful)
+                //    if (log_Reports.Successful)
                 //    {
                 //        e_TableName1 = list_Arg1[0];
                 //    }
@@ -204,10 +204,10 @@ namespace Xenon.Controls
             // required
             //
             bool bExpectedValueRequired = false;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sRequired1;
-                bool bHit = ec_SfCell.TrySelectAttr(out sRequired1, PmNames.S_REQUIRED.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = ec_SfCell.TrySelectAttribute(out sRequired1, PmNames.S_REQUIRED.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 if (bHit)
                 {
                     // 【旧仕様】
@@ -222,7 +222,7 @@ namespace Xenon.Controls
                     //
                     {
                         Expression_Node_String ec_Where;
-                        bool bHit1 = ec_SfCell.TrySelectAttr(out ec_Where, PmNames.S_WHERE.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        bool bHit1 = ec_SfCell.TrySelectAttribute(out ec_Where, PmNames.S_WHERE.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
                         if (bHit1)
                         {
                             throw new Exception("こーこは通らない？");
@@ -246,7 +246,7 @@ namespace Xenon.Controls
             // ──────────
 
             XenonTable o_Table;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 o_Table = moApplication.MemoryTables.GetXenonTableByName(ec_TableName1, true, log_Reports);
                 // エラー時には、エラーメッセージを出させます。
@@ -276,7 +276,7 @@ namespace Xenon.Controls
 
             // field=""。
             XenonFielddefinition o_KeyFldDef;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // 検索のキーとなるフィールドの定義を調べます。
@@ -309,7 +309,7 @@ namespace Xenon.Controls
                     true,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful || !bHit)
+                if (!log_Reports.Successful || !bHit)
                 {
                     goto gt_EndMethod;
                 }
@@ -327,7 +327,7 @@ namespace Xenon.Controls
 
 
             List<XenonFielddefinition> oList_SelectedFldDef;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 選択対象のフィールドの定義を調べます。
 
@@ -358,7 +358,7 @@ namespace Xenon.Controls
                     false,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful || !bHit)
+                if (!log_Reports.Successful || !bHit)
                 {
                     goto gt_EndMethod;
                 }
@@ -373,7 +373,7 @@ namespace Xenon.Controls
 
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (null == o_KeyFldDef)
                 {
@@ -385,7 +385,7 @@ namespace Xenon.Controls
 
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (oList_SelectedFldDef.Count < 1)
                 {
@@ -396,7 +396,7 @@ namespace Xenon.Controls
             }
 
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 List<DataRow> dst_Row = new List<DataRow>();
@@ -473,7 +473,7 @@ namespace Xenon.Controls
                     ec_SfCell.ToText_Snapshot(s);
                 }
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -502,7 +502,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -530,7 +530,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -558,7 +558,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -586,7 +586,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -614,7 +614,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -641,7 +641,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -658,7 +658,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
 
                 t.Append("「E■[");
-                t.Append(ec_KeyFldName1.Cur_Givechapterandverse.SName);
+                t.Append(ec_KeyFldName1.Cur_Givechapterandverse.Name);
                 t.Append("]」、キーフィールド名=[");
                 t.Append(ec_KeyFldName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                 t.Append("]");
@@ -668,7 +668,7 @@ namespace Xenon.Controls
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -692,7 +692,7 @@ namespace Xenon.Controls
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -708,11 +708,11 @@ namespace Xenon.Controls
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("【失敗】");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("［");
-                s.Append(o_Table.SName);
+                s.Append(o_Table.Name);
                 s.Append("］（テーブル）には、");
                 s.Append(Environment.NewLine);
 
@@ -751,7 +751,7 @@ namespace Xenon.Controls
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
 
                 //essageBox.Show(r.SMsg(log_Reports), Info_Forms.LibraryName + ":" + this.GetType().Name );
                 log_Reports.EndCreateReport();

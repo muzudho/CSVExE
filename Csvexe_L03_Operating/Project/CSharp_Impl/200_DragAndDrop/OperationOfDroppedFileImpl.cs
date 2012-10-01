@@ -163,7 +163,7 @@ namespace Xenon.Operating
                 parentLocation,
                 log_Reports);
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -240,7 +240,7 @@ namespace Xenon.Operating
             this.dlgt_Clear_OnDragEnterInit(
                 sender, e, parentLocation, log_Reports);
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 

@@ -35,7 +35,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドの名前。入力したままの文字列。
         /// </summary>
-        string SName_Humaninput
+        string Name_Humaninput
         {
             get;
             set;
@@ -44,7 +44,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドの名前。トリムして英字大文字に加工（アッパー）した文字列。読み取り専用。
         /// </summary>
-        string SName_Trimupper
+        string Name_Trimupper
         {
             get;
         }
@@ -61,7 +61,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドについてのコメント。
         /// </summary>
-        string SComment
+        string Comment
         {
             set;
             get;

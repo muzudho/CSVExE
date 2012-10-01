@@ -16,7 +16,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数の型
         /// </summary>
-        string SType
+        string Name_Type
         {
             set;
             get;
@@ -25,7 +25,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 変数番号の範囲
         /// </summary>
-        string SNumberRange
+        string Text_NumberRange
         {
             set;
             get;
@@ -34,7 +34,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 優先度
         /// </summary>
-        string SPriority
+        string Priority
         {
             set;
             get;

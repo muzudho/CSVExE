@@ -47,7 +47,7 @@ namespace Xenon.Expr
         public void Execute_SaveRecordset(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_SaveRecordset", log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_SaveRecordset", log_Reports);
             //
             //
 
@@ -84,12 +84,12 @@ namespace Xenon.Expr
 
                             // TODO: logic要素がある版も要るはず。
                             bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, this.Expression_Field.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), this.Cur_Givechapterandverse.Parent_Givechapterandverse, log_Reports);
-                            recCond1.SValue = this.Expression_LookupVal.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                            recCond1.Value = this.Expression_LookupVal.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                             selectSt_ToSave.List_Recordcondition.Add(recCond1);
                         }
-                        selectSt_ToSave.SRequired = this.Expression_Required.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                        selectSt_ToSave.Required = this.Expression_Required.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                         selectSt_ToSave.Expression_From = this.Expression_From;
-                        selectSt_ToSave.SStorage = this.Expression_Storage.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                        selectSt_ToSave.Storage = this.Expression_Storage.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                     }
                 }
 
@@ -117,7 +117,7 @@ namespace Xenon.Expr
 
                     bool bExpectedValueRequired;
                     {
-                        bool parseSuccessful = bool.TryParse(selectSt_ToSave.SRequired, out bExpectedValueRequired);
+                        bool parseSuccessful = bool.TryParse(selectSt_ToSave.Required, out bExpectedValueRequired);
                     }
 
 
@@ -157,7 +157,7 @@ namespace Xenon.Expr
 
 
                     dst_Rs_ToSave.AddList(dst_Row, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -213,7 +213,7 @@ namespace Xenon.Expr
 
                 //            XenonValue oValue = (XenonValue)record[column.ColumnName];
 
-                //            txt.Append("　★" + column.ColumnName + "＝[" + oValue.SHumaninput + "]");
+                //            txt.Append("　★" + column.ColumnName + "＝[" + oValue.Humaninput + "]");
                 //        }
                 //    }
 
@@ -237,7 +237,7 @@ namespace Xenon.Expr
                 //        foreach (string sKey in oRecord.Keys)
                 //        {
                 //            XenonValue oValue = oRecord[sKey];
-                //            txt.Append("　■" + sKey + "＝[" + oValue.SHumaninput + "]");
+                //            txt.Append("　■" + sKey + "＝[" + oValue.Humaninput + "]");
                 //        }
                 //    }
 
@@ -274,13 +274,13 @@ namespace Xenon.Expr
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　テーブル名が指定されていません。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse.Parent_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -294,12 +294,12 @@ namespace Xenon.Expr
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse.Parent_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -317,7 +317,7 @@ namespace Xenon.Expr
         public void RemoveRecordset(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "RemoveRecordset", log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "RemoveRecordset", log_Reports);
             //
             //
 

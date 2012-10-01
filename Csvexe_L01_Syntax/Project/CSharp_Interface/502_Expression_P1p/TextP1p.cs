@@ -40,7 +40,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <returns></returns>
         List<int> GetP1pNumbers(
-            DicExpression_Node_String dicExpression_Attr,
+            DicExpression_Node_String dic_Expr_Attr,
             Log_Reports log_Reports
             );
 
@@ -55,7 +55,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 「%1%:%2%」といった文字列（テキスト_テンプレートと呼ぶ）。
         /// </summary>
-        string SText
+        string Text
         {
             get;
             set;
@@ -66,9 +66,10 @@ namespace Xenon.Syntax
         /// [2]=赤
         /// といったディクショナリー。
         /// 
-        /// 数字は %1%や、p1pの名前の中の数字。[1]から始める。
+        /// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
+        /// Xn_L05_E:E_FtextTemplate#E_ExecuteでAddされます。
         /// </summary>
-        Dictionary<int, string> DicS_P1p
+        Dictionary<int, string> Dictionary_NumberAndValue_Parameter
         {
             get;
             set;

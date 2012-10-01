@@ -35,10 +35,10 @@ namespace Xenon.Expr
             Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav, List<string> listS_ArgName)
             : base(parent_Expression, cur_Gcav)
         {
-            this.dicExpression_Param = new DicExpression_Node_StringImpl(cur_Gcav);
+            this.dictionary_Expression_Parameter = new DicExpression_Node_StringImpl(cur_Gcav);
             this.expressionfncPrmset = new ExpressionfncPrmsetImpl();
 
-            this.listS_ArgName = listS_ArgName;// new List<string>();
+            this.list_NameArgument = listS_ArgName;// new List<string>();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Xenon.Expr
             object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports)
         {
-            Expression_Node_FunctionImpl expr_Func = new Expression_Node_FunctionImpl(parent_Expression, cur_Gcav, this.ListS_ArgName);
+            Expression_Node_FunctionImpl expr_Func = new Expression_Node_FunctionImpl(parent_Expression, cur_Gcav, this.List_NameArgument);
             expr_Func.Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             return expr_Func;
         }
@@ -80,7 +80,7 @@ namespace Xenon.Expr
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             Log_Reports log_Reports_Master = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnDnD",log_Reports_Master);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnDnD",log_Reports_Master);
             //
             //
 
@@ -94,7 +94,7 @@ namespace Xenon.Expr
 
             this.Expression_ExecuteMain(log_Reports_Master);
 
-            //if (!log_Reports_Master.BSuccessful)
+            //if (!log_Reports_Master.Successful)
             //{
             //    // 異常時
             //    Info_Functions.WriteErrorLog(
@@ -146,7 +146,7 @@ namespace Xenon.Expr
             //
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnImgDrop",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnImgDrop",log_Reports);
             //
             //
 
@@ -185,8 +185,8 @@ namespace Xenon.Expr
                 expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
                 expr_Func.ExpressionfncPrmset.DragEventArgs = prm_E;
                 expr_Func.ExpressionfncPrmset.ParentLocation = prm_ParentLocation;
-                expr_Func.ExpressionfncPrmset.SMessage_Debug1 = prm_DebugMessage1;
-                expr_Func.ExpressionfncPrmset.SMessage_DebugStatusResult = prm_DebugStatusResultMessage;
+                expr_Func.ExpressionfncPrmset.Message_Debug1 = prm_DebugMessage1;
+                expr_Func.ExpressionfncPrmset.Message_DebugStatusResult = prm_DebugStatusResultMessage;
             }
         }
 
@@ -209,7 +209,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnImgDropB",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnImgDropB",log_Reports);
             //
             //
 
@@ -248,7 +248,7 @@ namespace Xenon.Expr
                 expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
                 expr_Func.ExpressionfncPrmset.DragEventArgs = prm_E;
                 expr_Func.ExpressionfncPrmset.ParentLocation = prm_ParentLocation;
-                expr_Func.ExpressionfncPrmset.SFpatha_Image = prm_Fpatha_Image;
+                expr_Func.ExpressionfncPrmset.Filepathabsolute_Image = prm_Fpatha_Image;
                 expr_Func.ExpressionfncPrmset.DroppedBitmap = prm_DroppedBitmap;
             }
         }
@@ -267,7 +267,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnLstBox",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnLstBox",log_Reports);
             //
             //
 
@@ -316,7 +316,7 @@ namespace Xenon.Expr
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             Log_Reports log_Reports_Master = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnMouse",log_Reports_Master);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnMouse",log_Reports_Master);
             //
             //
 
@@ -331,7 +331,7 @@ namespace Xenon.Expr
 
             this.Expression_ExecuteMain(log_Reports_Master);
 
-            //if (!log_Reports_Master.BSuccessful)
+            //if (!log_Reports_Master.Successful)
             //{
             //    // 異常時
             //    Info_Functions.WriteErrorLog(
@@ -370,7 +370,7 @@ namespace Xenon.Expr
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_Master = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnOEa",log_Reports_Master);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnOEa",log_Reports_Master);
 
             // イベントハンドラー引数の設定
             this.Set_OnOEa(
@@ -381,7 +381,7 @@ namespace Xenon.Expr
 
             this.Expression_ExecuteMain(log_Reports_Master);
 
-            //if (!log_Reports_Master.BSuccessful)
+            //if (!log_Reports_Master.Successful)
             //{
             //    // 異常時
             //    Info_Functions.WriteErrorLog(
@@ -424,7 +424,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnPrjSelected",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnPrjSelected",log_Reports);
             //
             //
 
@@ -453,8 +453,8 @@ namespace Xenon.Expr
         {
             expr_Func.EnumEventhandler = EnumEventhandler.Tp_B_Wr_Rhn;
             expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-            expr_Func.ExpressionfncPrmset.St_SelectedProjectElm = prm_St_selectedProjectElm;
-            expr_Func.ExpressionfncPrmset.BProjectValid = prm_ProjectValid;
+            expr_Func.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse = prm_St_selectedProjectElm;
+            expr_Func.ExpressionfncPrmset.ProjectValid = prm_ProjectValid;
         }
 
         //────────────────────────────────────────
@@ -471,7 +471,7 @@ namespace Xenon.Expr
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             Log_Reports log_Reports_Master = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnQueryContinueDragEventArgs",log_Reports_Master);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnQueryContinueDragEventArgs",log_Reports_Master);
             //
             //
 
@@ -485,7 +485,7 @@ namespace Xenon.Expr
 
             this.Expression_ExecuteMain(log_Reports_Master);
 
-            //if (!log_Reports_Master.BSuccessful)
+            //if (!log_Reports_Master.Successful)
             //{
             //    // 異常時
             //    Info_Functions.WriteErrorLog(
@@ -526,7 +526,7 @@ namespace Xenon.Expr
         )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnWrRhn",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnWrRhn",log_Reports);
             //
             //
 
@@ -556,7 +556,7 @@ namespace Xenon.Expr
             expr_Func.EnumEventhandler = EnumEventhandler.O_Wr;
             expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
             expr_Func.ExpressionfncPrmset.EventMonitor = prm_EventMonitor;
-            expr_Func.ExpressionfncPrmset.SNode_EventOrigin = prm_SNode_EventOrigin;
+            expr_Func.ExpressionfncPrmset.Node_EventOrigin = prm_SNode_EventOrigin;
         }
 
         //────────────────────────────────────────
@@ -573,7 +573,7 @@ namespace Xenon.Expr
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             Log_Reports log_Reports_Master = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnKey",log_Reports_Master);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnKey",log_Reports_Master);
             //
             //
 
@@ -587,7 +587,7 @@ namespace Xenon.Expr
 
             this.Expression_ExecuteMain(log_Reports_Master);
 
-            //if (!log_Reports_Master.BSuccessful)
+            //if (!log_Reports_Master.Successful)
             //{
             //    // エラー
             //    Info_Functions.WriteErrorLog(
@@ -625,7 +625,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "E_Execute_NoUse",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "E_Execute_NoUse",log_Reports);
             //
             //
 
@@ -651,7 +651,7 @@ namespace Xenon.Expr
 
 
                 string sFncName0;
-                ec_CommonFunction.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                ec_CommonFunction.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 s.Append("　関数type=[");
                 s.Append(sFncName0);
@@ -663,7 +663,7 @@ namespace Xenon.Expr
                 // 問題箇所ヒント
                 s.Append(r.Message_Givechapterandverse(cf_Node));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -690,7 +690,7 @@ namespace Xenon.Expr
         //public virtual string Expression_ExecuteMain(Log_Reports log_Reports)
         //{
         //    Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-        //    log_Method.SetPath(Info_Functions.SName_Library, this, "Expression_ExecuteMain");
+        //    log_Method.SetPath(Info_Functions.Name_Library, this, "Expression_ExecuteMain");
         //    log_Method.BeginMethod(log_Reports);
         //    //
         //    //
@@ -762,38 +762,38 @@ namespace Xenon.Expr
         #region プロパティー
         //────────────────────────────────────────
 
-        private List<string> listS_ArgName;
+        private List<string> list_NameArgument;
 
-        public List<string> ListS_ArgName
+        public List<string> List_NameArgument
         {
             get
             {
-                return this.listS_ArgName;
+                return this.list_NameArgument;
             }
             set
             {
-                this.listS_ArgName = value;
+                this.list_NameArgument = value;
             }
         }
 
         ////────────────────────────────────────────
 
-        private DicExpression_Node_String dicExpression_Param;
+        private DicExpression_Node_String dictionary_Expression_Parameter;
 
         /// <summary>
         /// Expression_Node_Stringを関数として使うときの『ユーザー定義引数』のディクショナリー。
         /// TODO:使ってる？
         /// </summary>
-        public DicExpression_Node_String DicExpression_Param
+        public DicExpression_Node_String Dictionary_Expression_Parameter
         {
             get
             {
-                return this.dicExpression_Param;
+                return this.dictionary_Expression_Parameter;
             }
             set
             {
                 // 関数の引数を丸ごと渡す時に使う。
-                this.dicExpression_Param = value;
+                this.dictionary_Expression_Parameter = value;
             }
         }
 

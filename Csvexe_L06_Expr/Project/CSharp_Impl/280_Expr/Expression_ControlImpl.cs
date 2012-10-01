@@ -43,20 +43,20 @@ namespace Xenon.Expr
             txt.AppendI(0, "<");
             txt.Append(this.GetType().Name);
             txt.Append("クラス>");
-            txt.NewLine();
+            txt.Newline();
 
             //
             txt.AppendI(0, "＜ｄａｔａ＞（データソース）のExplainは省略。");//コールスタックがオーバーフローするので。
-            txt.NewLine();
+            txt.Newline();
 
             //
             txt.AppendI(0, "＜ｄａｔａ＞（データターゲット）のExplainは省略。");//コールスタックがオーバーフローするので。
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(0, "</");
             txt.Append(this.GetType().Name);
             txt.Append("クラス>");
-            txt.NewLine();
+            txt.Newline();
 
 
             txt.Decrement();
@@ -75,7 +75,7 @@ namespace Xenon.Expr
             txt.Append("・");
             txt.Append(this.GetType().Name);
             txt.Append("クラス");
-            txt.NewLine();
+            txt.Newline();
 
             if (null != this.parent_Usercontrol)
             {

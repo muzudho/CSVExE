@@ -45,7 +45,7 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate_Step1",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Translate_Step1",log_Reports);
 
             //
             // アクション型引数の引数
@@ -54,9 +54,9 @@ namespace Xenon.Functions
             action_Gcav.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Arg, ref bool bBreak)
             {
                 string sName_Attr;
-                s_Arg.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Attr, true, log_Reports);
+                s_Arg.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Attr, true, log_Reports);
 
-                if (cur_Expr_Func.ListS_ArgName.Contains(sName_Attr))
+                if (cur_Expr_Func.List_NameArgument.Contains(sName_Attr))
                 {
                     //
                     // 自解析
@@ -91,19 +91,19 @@ namespace Xenon.Functions
                     s.Append("未対応の引数名です。[");
                     s.Append(err_sName_Attr);
                     s.Append("]");
-                    s.NewLine();
+                    s.Newline();
 
                     s.Append("┌────────┐対応している引数名の一覧。");
-                    s.NewLine();
-                    foreach (string sLine in cur_Expr_Func.ListS_ArgName)
+                    s.Newline();
+                    foreach (string sLine in cur_Expr_Func.List_NameArgument)
                     {
                         s.Append(sLine);
-                        s.NewLine();
+                        s.Newline();
                     }
                     s.Append("└────────┘");
-                    s.NewLine();
+                    s.Newline();
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             //
@@ -146,11 +146,11 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Translate",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Translate",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment(action_Gcav.SName);
+                pg_ParsingLog.Increment(action_Gcav.Name);
             }
 
             //
@@ -201,7 +201,7 @@ namespace Xenon.Functions
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(action_Gcav.SName);
+                pg_ParsingLog.Decrement(action_Gcav.Name);
             }
 
             log_Method.EndMethod(log_Reports);

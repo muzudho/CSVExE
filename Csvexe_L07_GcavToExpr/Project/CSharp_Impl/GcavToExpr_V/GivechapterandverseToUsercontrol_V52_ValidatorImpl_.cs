@@ -26,11 +26,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToFc",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToFc",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(41)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(41)" + cur_Cf.Name);
             }
 
             //
@@ -47,10 +47,10 @@ namespace Xenon.GcavToExpr
 
             EnumValidation_Old enumResult = EnumValidation_Old.Thru;
 
-            if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE_RESULT.SName_Pm))
+            if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE_RESULT.Name_Pm))
             {
                 string sValue_Parameter;
-                cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE_RESULT, out sValue_Parameter, true, log_Reports);
+                cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE_RESULT, out sValue_Parameter, true, log_Reports);
                 switch (sValue_Parameter)
                 {
                     case "OK":
@@ -75,9 +75,9 @@ namespace Xenon.GcavToExpr
             string sName_ValidatorTrim;
             {
                 PmName pmName = PmNames.S_NAME;
-                if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                 {
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sName, true, log_Reports);
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sName, true, log_Reports);
                     sName_ValidatorTrim = sName.Trim();
                 }
                 else
@@ -108,7 +108,7 @@ namespace Xenon.GcavToExpr
                 case NamesFnc.S_VLD_MATCH:
                     {
                         string sValue_Parameter;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_EXPECTED, out sValue_Parameter, false, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_EXPECTED, out sValue_Parameter, false, log_Reports);
                         err_SParameterValue = sValue_Parameter;
 
                         // SToE:
@@ -128,7 +128,7 @@ namespace Xenon.GcavToExpr
                         if (bSuccessful)
                         {
                             string sBegin;
-                            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_BEGIN, out sBegin, false, log_Reports);
+                            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_BEGIN, out sBegin, false, log_Reports);
 
                             if (!int.TryParse(sBegin, out nBeginValue))
                             {
@@ -143,7 +143,7 @@ namespace Xenon.GcavToExpr
                         if (bSuccessful)
                         {
                             string sEnd;
-                            cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_END, out sEnd, false, log_Reports);
+                            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_END, out sEnd, false, log_Reports);
 
                             if (!int.TryParse(sEnd, out nEndValue))
                             {
@@ -202,7 +202,7 @@ namespace Xenon.GcavToExpr
                 t.Append("バリデーション設定ファイル読取時。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
-                t.Append("[" + PmNames.S_VALUE_RESULT.SName_Pm + "]引数に指定された[" + err_SParameterValue + "]というバリデーターは存在しません。");
+                t.Append("[" + PmNames.S_VALUE_RESULT.Name_Pm + "]引数に指定された[" + err_SParameterValue + "]というバリデーターは存在しません。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
@@ -223,13 +223,13 @@ namespace Xenon.GcavToExpr
                 t.Append("バリデーション設定ファイル読取時。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
-                t.Append("指定された[" + PmNames.S_BEGIN.SName_Pm + "]属性[" + err_SValue + "]は整数ではありません。：" + err_Excp.Message);
+                t.Append("指定された[" + PmNames.S_BEGIN.Name_Pm + "]属性[" + err_SValue + "]は整数ではありません。：" + err_Excp.Message);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -245,13 +245,13 @@ namespace Xenon.GcavToExpr
                 t.Append("バリデーション設定ファイル読取時。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
-                t.Append("指定された[" + PmNames.S_END.SName_Pm + "]属性[" + err_SValue + "]は整数ではありません。：" + err_Excp.Message);
+                t.Append("指定された[" + PmNames.S_END.Name_Pm + "]属性[" + err_SValue + "]は整数ではありません。：" + err_Excp.Message);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -273,7 +273,7 @@ namespace Xenon.GcavToExpr
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -284,7 +284,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

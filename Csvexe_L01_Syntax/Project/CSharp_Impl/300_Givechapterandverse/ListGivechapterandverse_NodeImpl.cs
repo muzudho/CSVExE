@@ -109,7 +109,7 @@ namespace Xenon.Syntax
         {
 
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "GetNodeByIndex",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "GetNodeByIndex",log_Reports);
             //
             //
             //
@@ -155,7 +155,7 @@ namespace Xenon.Syntax
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -214,7 +214,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 個数。
         /// </summary>
-        public int NCount
+        public int Count
         {
             get
             {

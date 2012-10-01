@@ -150,7 +150,7 @@ namespace Xenon.Table
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, "Util_Table", "CreateSubTableBySelect",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Util_Table", "CreateSubTableBySelect",log_Reports);
 
             //
             //
@@ -218,12 +218,12 @@ namespace Xenon.Table
                 t.Append(o_NewFldDefList.Count);
                 t.Append("]");
 
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -240,12 +240,12 @@ namespace Xenon.Table
                 t.Append(o_NewTable.List_Fielddefinition.Count);
                 t.Append("]");
 
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -280,7 +280,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, "Util_Table", "SelectFieldListList",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Util_Table", "SelectFieldListList",log_Reports);
 
             //
             //
@@ -304,7 +304,7 @@ namespace Xenon.Table
                 int nFIx = 0;
                 foreach (XenonFielddefinition o_FldDef in src_XenonTable.List_Fielddefinition)
                 {
-                    if (list_SName_NewField_Src.Contains(o_FldDef.SName_Humaninput))
+                    if (list_SName_NewField_Src.Contains(o_FldDef.Name_Humaninput))
                     {
                         // 選出されたフィールドだけでリストを作ります。
                         list_FielddefineNew_Out.Add(o_FldDef);
@@ -350,7 +350,7 @@ namespace Xenon.Table
                             int nB = listN_FieldIndex[nA];
                             XenonValue o_Value = (XenonValue)srcRow[nB];
 
-                            sList_NewField.Add(o_Value.SHumaninput);
+                            sList_NewField.Add(o_Value.Humaninput);
                         }
 
                         listList_SField_Out.Add(sList_NewField);
@@ -395,7 +395,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, "Util_Table", "ApplyReccond",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Util_Table", "ApplyReccond",log_Reports);
 
             //
             //
@@ -469,7 +469,7 @@ namespace Xenon.Table
                     else
                     {
                         // #TODO:エラー
-                        System.Console.WriteLine(Info_Table.SName_Library + ":Util_Table.ApplyＷｈｅｒｅ:　不明ロジック[" + parent_EnumLogic + "]");
+                        System.Console.WriteLine(Info_Table.Name_Library + ":Util_Table.ApplyＷｈｅｒｅ:　不明ロジック[" + parent_EnumLogic + "]");
                     }
 
 
@@ -481,14 +481,14 @@ namespace Xenon.Table
 
 
                     // このレコードについて判定。
-                    if (!xenonTable_Source.DataTable.Columns.Contains(childReccond.SField))
+                    if (!xenonTable_Source.DataTable.Columns.Contains(childReccond.Name_Field))
                     {
                         // エラー
-                        err_SField = childReccond.SField;
+                        err_SField = childReccond.Name_Field;
                         goto gt_Error_MissField;
                     }
 
-                    int nFieldIx = xenonTable_Source.DataTable.Columns.IndexOf(childReccond.SField);
+                    int nFieldIx = xenonTable_Source.DataTable.Columns.IndexOf(childReccond.Name_Field);
                     XenonFielddefinition o_FldDef = xenonTable_Source.List_Fielddefinition[nFieldIx];
                     XenonValue o_Value = (XenonValue)srcRow[nFieldIx];
 
@@ -511,12 +511,12 @@ namespace Xenon.Table
 
                         int nExpectedInt;
                         {
-                            bool bHit2 = int.TryParse(childReccond.SValue, out nExpectedInt);
+                            bool bHit2 = int.TryParse(childReccond.Value, out nExpectedInt);
                             if (!bHit2 && log_Reports.CanCreateReport)
                             {
                                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー502！", log_Method);
-                                r.SMessage = "int型に変換できませんでした。sValue=[" + childReccond.SValue + "]";
+                                r.Message = "int型に変換できませんでした。sValue=[" + childReccond.Value + "]";
                                 log_Reports.EndCreateReport();
                             }
                         }
@@ -776,7 +776,7 @@ namespace Xenon.Table
                         else
                         {
                             // #TODO:エラー
-                            System.Console.WriteLine(Info_Table.SName_Library + ":Util_Table.ApplyＷｈｅｒｅ:　不明ロジック[" + parent_EnumLogic + "] nFieldIx=[" + nFieldIx + "] フィールド名=[" + o_FldDef.SName_Humaninput + "]　[" + parent_EnumLogic + "][" + childReccond.SField + " " + childReccond.EnumOpe + " " + childReccond.SValue + "] objValueの型＝[" + o_Value.GetType().Name + "]");
+                            System.Console.WriteLine(Info_Table.Name_Library + ":Util_Table.ApplyＷｈｅｒｅ:　不明ロジック[" + parent_EnumLogic + "] nFieldIx=[" + nFieldIx + "] フィールド名=[" + o_FldDef.Name_Humaninput + "]　[" + parent_EnumLogic + "][" + childReccond.Name_Field + " " + childReccond.EnumOpe + " " + childReccond.Value + "] objValueの型＝[" + o_Value.GetType().Name + "]");
                         }
 
 
@@ -784,7 +784,7 @@ namespace Xenon.Table
                     else
                     {
                         // #TODO:エラー
-                        System.Console.WriteLine(Info_Table.SName_Library + ":Util_Table.ApplyＷｈｅｒｅ:　不明フィールド　nFieldIx=[" + nFieldIx + "] フィールド名=[" + o_FldDef.SName_Humaninput + "]　[" + parent_EnumLogic + "][" + childReccond.SField + " " + childReccond.EnumOpe + " " + childReccond.SValue + "] objValueの型＝[" + o_Value.GetType().Name + "]");
+                        System.Console.WriteLine(Info_Table.Name_Library + ":Util_Table.ApplyＷｈｅｒｅ:　不明フィールド　nFieldIx=[" + nFieldIx + "] フィールド名=[" + o_FldDef.Name_Humaninput + "]　[" + parent_EnumLogic + "][" + childReccond.Name_Field + " " + childReccond.EnumOpe + " " + childReccond.Value + "] objValueの型＝[" + o_Value.GetType().Name + "]");
 
                     }
 
@@ -814,7 +814,7 @@ namespace Xenon.Table
                 s.Append(err_SField);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

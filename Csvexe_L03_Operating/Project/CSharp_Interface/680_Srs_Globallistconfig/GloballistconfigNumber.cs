@@ -21,7 +21,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 番号の範囲指定。
         /// </summary>
-        string SRange
+        string Text_Range
         {
             set;
             get;

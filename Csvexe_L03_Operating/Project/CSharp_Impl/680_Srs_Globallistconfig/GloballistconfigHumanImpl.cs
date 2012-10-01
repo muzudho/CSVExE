@@ -34,7 +34,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 名前。
         /// </summary>
-        public string SName
+        public string Name
         {
             set
             {

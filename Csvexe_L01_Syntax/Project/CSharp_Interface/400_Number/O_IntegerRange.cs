@@ -54,7 +54,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 始値。
         /// </summary>
-        int NFirst
+        int Number_First
         {
             set;
             get;
@@ -63,7 +63,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 終値。
         /// </summary>
-        int NLast
+        int Number_Last
         {
             set;
             get;

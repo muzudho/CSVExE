@@ -31,12 +31,12 @@ namespace Xenon.Functions
         /// <summary>
         /// 実行したい＜fnc＞要素が記述されたもの。
         /// </summary>
-        public static readonly string S_PM_EXECUTE = PmNames.S_EXECUTE.SName_Pm;
+        public static readonly string S_PM_EXECUTE = PmNames.S_EXECUTE.Name_Pm;
 
         /// <summary>
         /// 空文字で無ければ、処理をスキップする。
         /// </summary>
-        public static readonly string S_PM_FLOWSKIP = PmNames.S_FLOWSKIP.SName_Pm;
+        public static readonly string S_PM_FLOWSKIP = PmNames.S_FLOWSKIP.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -56,18 +56,18 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function42Impl(this.EnumEventhandler,this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function42Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function42Impl.S_PM_EXECUTE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function42Impl.S_PM_FLOWSKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function42Impl.S_PM_EXECUTE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function42Impl.S_PM_FLOWSKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -90,14 +90,14 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "「E■[" + sFncName0 + "]アクション」実行(A)";
+                log_Method.Log_Stopwatch.Message = "「E■[" + sFncName0 + "]アクション」実行(A)";
                 log_Method.Log_Stopwatch.Begin();
             }
             //
@@ -105,7 +105,7 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
                 this.Perform2(log_Reports);
 
@@ -136,10 +136,10 @@ namespace Xenon.Functions
         private void Perform2(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             string sFlowSkip;
-            this.TrySelectAttr(out sFlowSkip, Expression_Node_Function42Impl.S_PM_FLOWSKIP, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFlowSkip, Expression_Node_Function42Impl.S_PM_FLOWSKIP, true, Request_SelectingImpl.Unconstraint, log_Reports);
             if ("" != sFlowSkip.Trim())
             {
                 // 処理をスキップします。
@@ -152,7 +152,7 @@ namespace Xenon.Functions
             //
 
             Expression_Node_String ec_ArgExecute;
-            this.TrySelectAttr(out ec_ArgExecute, Expression_Node_Function42Impl.S_PM_EXECUTE, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out ec_ArgExecute, Expression_Node_Function42Impl.S_PM_EXECUTE, true, Request_SelectingImpl.Unconstraint, log_Reports);
             // 実行するだけでよい。返り値は使わない。
             ec_ArgExecute.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 

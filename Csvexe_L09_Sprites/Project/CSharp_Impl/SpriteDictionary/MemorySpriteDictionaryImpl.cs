@@ -482,7 +482,7 @@ namespace Xenon.Sprites
                     //text.Append("実行経路ヒント：");
                     //text.Append(runningHintName);
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     pg_Logging.EndCreateReport();
                 }
             }
@@ -528,7 +528,7 @@ namespace Xenon.Sprites
                 //text.Append("実行経路ヒント：");
                 //text.Append(runningHintName);
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -663,7 +663,7 @@ namespace Xenon.Sprites
                 {
                     Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー803！", pg_Method);
-                    r.SMessage = "スプライト コレクションにヌルは追加できません。";
+                    r.Message = "スプライト コレクションにヌルは追加できません。";
 
                     pg_Logging.EndCreateReport();
                 }
@@ -702,7 +702,7 @@ namespace Xenon.Sprites
                     //text.Append("実行経路ヒント：");
                     //text.Append(runningHintName);
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     pg_Logging.EndCreateReport();
                 }
             }

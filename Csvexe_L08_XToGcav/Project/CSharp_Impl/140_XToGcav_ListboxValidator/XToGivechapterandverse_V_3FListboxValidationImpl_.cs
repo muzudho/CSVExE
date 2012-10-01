@@ -46,7 +46,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_SAttr",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_SAttr",log_Reports);
             //
             //
 
@@ -60,7 +60,7 @@ namespace Xenon.XToGcav
             //{
             //    sIvtvTrim = sIvtv.Trim();
             //}
-            cur_Cf.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.SName_Pm, "", log_Reports);// PmNames.Z_ITEM_VALUE_TO_VARIABLE sIvtv;
+            cur_Cf.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, "", log_Reports);// PmNames.Z_ITEM_VALUE_TO_VARIABLE sIvtv;
 
             goto gt_EndMethod;
         //
@@ -79,20 +79,20 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "Parse_ChildNodes",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Parse_ChildNodes",log_Reports);
             //
             //
 
             XmlElement err_XADisplay = null;
 
             Usercontrol uct = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Givechapterandverse_Node cf_Control= cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1,true,log_Reports);
                 uct = Utility_XToGivechapterandverse_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (uct is UsercontrolListbox)
                 {
@@ -112,7 +112,7 @@ namespace Xenon.XToGcav
                             XmlElement xChild = (XmlElement)x_childNode;
                             err_XADisplay = xChild;
 
-                            string child_SName_Fnc = xChild.GetAttribute(PmNames.S_NAME.SName_Attr);
+                            string child_SName_Fnc = xChild.GetAttribute(PmNames.S_NAME.Name_Attribute);
 
                             //
                             //
@@ -175,7 +175,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -193,7 +193,7 @@ namespace Xenon.XToGcav
             Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             Usercontrol uct = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 Givechapterandverse_Node cf_Control = cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
                 uct = Utility_XToGivechapterandverse_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);

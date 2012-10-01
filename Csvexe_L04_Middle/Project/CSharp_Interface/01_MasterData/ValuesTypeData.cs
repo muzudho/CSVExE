@@ -115,7 +115,7 @@ namespace Xenon.Middle
         /// (string message all items)
         /// </summary>
         /// <returns></returns>
-        public static string SMessage_Allitems()
+        public static string Message_Allitems()
         {
             StringBuilder sb = new StringBuilder();
 

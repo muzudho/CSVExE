@@ -155,7 +155,7 @@ namespace Xenon.Operating
                     );
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -257,7 +257,7 @@ namespace Xenon.Operating
                     );
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 

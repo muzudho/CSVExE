@@ -98,12 +98,12 @@ namespace Xenon.Toolwindow
             moAatoolxml_SelectedEditorElm.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
             {
                 string sNamevar1;
-                s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, pg_Logging);
+                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, pg_Logging);
 
                 if (sNamevar1 == NamesVar.S_SP_EDITOR)
                 {
                     string sValue;
-                    s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, pg_Logging);
+                    s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, pg_Logging);
 
                     sFpath_EditorXml = sValue + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
                 }
@@ -121,7 +121,7 @@ namespace Xenon.Toolwindow
                     sFpath_EditorXml,
                     pg_Logging
                     );
-                if (!pg_Logging.BSuccessful)
+                if (!pg_Logging.Successful)
                 {
                     // 既エラー。
                     sFpatha = "";
@@ -133,7 +133,7 @@ namespace Xenon.Toolwindow
 
             sFpatha = e_Fpath_prj.Execute_OnExpressionString(
                 Request_SelectingImpl.Unconstraint, pg_Logging);
-            if (!pg_Logging.BSuccessful)
+            if (!pg_Logging.Successful)
             {
                 // 既エラー。
                 sFpatha = "";
@@ -162,7 +162,7 @@ namespace Xenon.Toolwindow
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Load = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Toolwindow.SName_Library, this, "Form1_Load",d_Logging_Load);
+            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "Form1_Load",d_Logging_Load);
             //
             //
 
@@ -189,7 +189,7 @@ namespace Xenon.Toolwindow
             //
             //
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Toolwindow.SName_Library, this, "Form1_Load",pg_Logging);
+            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "Form1_Load",pg_Logging);
 
 
 
@@ -220,7 +220,7 @@ namespace Xenon.Toolwindow
                 cf_Fpath.InitPath(
                     ValuesAttr.S_FPATHR_AATOOLXML,
                     pg_Logging);
-                if (!pg_Logging.BSuccessful)
+                if (!pg_Logging.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -238,7 +238,7 @@ namespace Xenon.Toolwindow
             //
             //
             moAatoolxmlDialog.MemoryAatoolxml.LoadFile(ec_Fpath_toolcnf, pg_Logging);
-            if (!pg_Logging.BSuccessful)
+            if (!pg_Logging.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -252,7 +252,7 @@ namespace Xenon.Toolwindow
                     uctLst.Items.Add(sName_Project);
                 }
 
-                if ("" == moAatoolxmlDialog.SName_SelectedEditor)
+                if ("" == moAatoolxmlDialog.Name_SelectedEditor)
                 {
                     // 選択プロジェクト名が指定されていなければ。
 
@@ -275,7 +275,7 @@ namespace Xenon.Toolwindow
                 {
                     // 選択プロジェクト名が指定されていれば。
 
-                    int selectedIndex = uctLst.Items.IndexOf(moAatoolxmlDialog.SName_SelectedEditor);
+                    int selectedIndex = uctLst.Items.IndexOf(moAatoolxmlDialog.Name_SelectedEditor);
 
                     uctLst.ControlCommon.BAutomaticinputting = true;
                     uctLst.SelectedIndex = selectedIndex;
@@ -310,7 +310,7 @@ namespace Xenon.Toolwindow
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2( Expression_Node_Function45Impl.S_ACTION_NAME, 
                     parent_Expression_Null, parent_Gcav, this.Owner_MemoryApplication, pg_Logging);
-                expr_Func.DicExpression_Attr.Set(Expression_Node_Function28Impl.S_PM_MESSAGE, new Expression_Leaf_StringImpl("変数出力試し", null, parent_Gcav), pg_Logging);
+                expr_Func.Dictionary_Expression_Attribute.Set(Expression_Node_Function28Impl.S_PM_MESSAGE, new Expression_Leaf_StringImpl("変数出力試し", null, parent_Gcav), pg_Logging);
             }
 
             //  ■
@@ -319,7 +319,7 @@ namespace Xenon.Toolwindow
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2( Expression_Node_Function46Impl.S_ACTION_NAME,
                         parent_Expression_Null, parent_Gcav, this.Owner_MemoryApplication, pg_Logging);
-                expr_Func.DicExpression_Attr.Set(Expression_Node_Function28Impl.S_PM_MESSAGE, new Expression_Leaf_StringImpl("フォームCSV出力試し", null, parent_Gcav), pg_Logging);
+                expr_Func.Dictionary_Expression_Attribute.Set(Expression_Node_Function28Impl.S_PM_MESSAGE, new Expression_Leaf_StringImpl("フォームCSV出力試し", null, parent_Gcav), pg_Logging);
 
                 this.uctButton2.UsercontroleventhandlerClick += new EventHandler(expr_Func.Execute_OnOEa);
             }
@@ -349,7 +349,7 @@ namespace Xenon.Toolwindow
             //
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Click = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Toolwindow.SName_Library, this, "On_ChangingBtn_FoClick",d_Logging_Click);
+            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "On_ChangingBtn_FoClick",d_Logging_Click);
 
 
             //
@@ -397,7 +397,7 @@ namespace Xenon.Toolwindow
             }
             else
             {
-                if (d_Logging_Click.BSuccessful)
+                if (d_Logging_Click.Successful)
                 {
                     // 正常時
 
@@ -477,7 +477,7 @@ namespace Xenon.Toolwindow
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Click = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Toolwindow.SName_Library, this, "projectNameDdl_SelectedIndexChanged",d_Logging_Click);
+            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "projectNameDdl_SelectedIndexChanged",d_Logging_Click);
             //
             //
 
@@ -485,7 +485,7 @@ namespace Xenon.Toolwindow
             string sSelectedProjectName = (string)((UsercontrolListbox)this.UctlstNameProject).SelectedItem;
 
             // 選択プロジェクト名：セット
-            this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.SName_SelectedEditor = sSelectedProjectName;
+            this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.Name_SelectedEditor = sSelectedProjectName;
 
             // エディター設定ファイルへのパス
             this.PctxtFpathProjectcnf.Text = "";
@@ -502,23 +502,23 @@ namespace Xenon.Toolwindow
             {
                 moAatoolxml_SelectedEditor = this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.MemoryAatoolxml.Dictionary_Editor.GetEditorByName(
                     sSelectedProjectName,true,d_Logging_Click);
-                if (!d_Logging_Click.BSuccessful)
+                if (!d_Logging_Click.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
                 }
 
-                if (d_Logging_Click.BSuccessful)
+                if (d_Logging_Click.Successful)
                 {
                     // 正常時
 
                     moAatoolxml_SelectedEditor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
                     {
                         string sNamevar;
-                        s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, d_Logging_Click);
+                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, d_Logging_Click);
 
                         string sValue;
-                        s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, d_Logging_Click);
+                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, d_Logging_Click);
 
                         if (sNamevar == NamesVar.S_SP_EDITOR)
                         {
@@ -564,7 +564,7 @@ namespace Xenon.Toolwindow
 
 
 
-            //if (pg_Logging.BSuccessful)
+            //if (pg_Logging.Successful)
             //{
             //    // 正常時
 
@@ -634,7 +634,7 @@ namespace Xenon.Toolwindow
             //                //{
             //                //    // 自動入力でない場合。
 
-            //                //    if (pg_Logging.BSuccessful)
+            //                //    if (pg_Logging.Successful)
             //                //    {
             //                //        // 正常時
 
@@ -681,7 +681,7 @@ namespace Xenon.Toolwindow
                 t.Append("プロジェクト名[" + sSelectedProjectName + "]を選択しましたが、");
                 t.Append(Environment.NewLine);
                 t.Append("そのプロジェクト名は　登録されていないものでした。");
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 d_Logging_Click.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -767,11 +767,11 @@ namespace Xenon.Toolwindow
         {
             get
             {
-                return this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.SName_Application;
+                return this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.Name_Application;
             }
             set
             {
-                this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.SName_Application = value;
+                this.Owner_MemoryApplication.MemoryForms.MemoryAatoolxmlDialog.Name_Application = value;
             }
         }
 

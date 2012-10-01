@@ -29,7 +29,7 @@ namespace Xenon.GcavToExpr
             foreach (Givechapterandverse_Node cf_Data in cfList_Data)
             {
                 string sAccess;
-                cf_Data.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
+                cf_Data.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
 
                 List<string> sList_Access = new CsvTo_ListImpl().Read(sAccess);
 

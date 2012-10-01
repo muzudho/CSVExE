@@ -72,7 +72,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(10)",log_Reports);
             //
             //
 
@@ -107,7 +107,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "SelectItem",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SelectItem",log_Reports);
             //
             //
             string sErrorMsg;
@@ -124,18 +124,18 @@ namespace Xenon.Controls
             //    Log_TextIndented s = new Log_TextIndentedImpl();
 
             //    s.Append("リストボックスに データソース・テーブルが設定されていませんでした。");
-            //    s.NewLine();
+            //    s.Newline();
             //    s.Append("リストボックスに テーブルを関連付ける前に、リストボックスにアクセスしましたか？");
-            //    s.NewLine();
+            //    s.Newline();
             //    s.Append("またはそれ以外の理由。");
-            //    s.NewLine();
+            //    s.Newline();
 
             //    //
             //    // 実行経路ヒント
             //    //
             //    s.Append(r.Message_SCallStack(log_Reports));
 
-            //    r.SMessage = s.ToString();
+            //    r.Message = s.ToString();
 
             //    goto gt_EndMethod;
             //}
@@ -150,14 +150,14 @@ namespace Xenon.Controls
             //    s.Append("指定のキーフィールド[");
             //    s.Append(sKeyFldName);
             //    s.Append("]は存在しませんでした。");
-            //    s.NewLine();
+            //    s.Newline();
 
             //    //
             //    // 実行経路ヒント
             //    //
             //    s.Append(r.Message_SCallStack(log_Reports));
 
-            //    r.SMessage = s.ToString();
+            //    r.Message = s.ToString();
 
             //    goto gt_EndMethod;
             //}
@@ -197,7 +197,7 @@ namespace Xenon.Controls
                             if (log_Reports.CanCreateReport)
                             {
                                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                r.SMessage = sErrorMsg;
+                                r.Message = sErrorMsg;
                                 log_Reports.EndCreateReport();
                             }
                             goto gt_EndMethod;
@@ -219,7 +219,7 @@ namespace Xenon.Controls
                     o_ExpectedValue = Utility_XenonValue.NewInstance(
                         o_FldValue,
                         true,
-                        pg_Method.SHead,
+                        pg_Method.Fullname,
                         out sErrorMsg
                         );
                     if ("" != sErrorMsg)
@@ -227,16 +227,16 @@ namespace Xenon.Controls
                         if (log_Reports.CanCreateReport)
                         {
                             Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SMessage = sErrorMsg;
+                            r.Message = sErrorMsg;
                             log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod;
                     }
 
-                    o_ExpectedValue.SHumaninput = ec_ExpectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    o_ExpectedValue.Humaninput = ec_ExpectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (o_ExpectedValue.Equals(o_FldValue))
                     {
@@ -311,7 +311,7 @@ namespace Xenon.Controls
                 s.Append(r.Message_Givechapterandverse(ec_KeyFieldName.Cur_Givechapterandverse));
                 s.Append(r.Message_Givechapterandverse(ec_ExpectedValue.Cur_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -350,8 +350,8 @@ namespace Xenon.Controls
             )
         {
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -388,7 +388,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UsercontrolToMemory",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UsercontrolToMemory",log_Reports);
             //
             //
 
@@ -403,8 +403,8 @@ namespace Xenon.Controls
 
 
             List<Expression_Node_String> listExpr_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -430,7 +430,7 @@ namespace Xenon.Controls
 
                     t.Append("コントロール=[");
                     t.Append(this.Name);
-                    t.Append("]のUpdateDataをしようとしましたが、" + pg_Method.SHead + " は　未実装でした。");
+                    t.Append("]のUpdateDataをしようとしましたが、" + pg_Method.Fullname + " は　未実装でした。");
                     t.Append(Environment.NewLine);
                     t.Append("プログラミングのミスの可能性があります。");
                     t.Append(Environment.NewLine);
@@ -438,7 +438,7 @@ namespace Xenon.Controls
 
                     // ヒント
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -466,7 +466,7 @@ namespace Xenon.Controls
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -536,12 +536,12 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "ccListbox_DataSourceChanged",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ccListbox_DataSourceChanged",log_Reports_ThisMethod);
             //
             //
             string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-            log_Reports_ThisMethod.SComment_EventCreationMe  ="[" + sName_Usercontrol + "]コントロール（リストボックス）のデータソースが変更されました。";
+            log_Reports_ThisMethod.Comment_EventCreationMe  ="[" + sName_Usercontrol + "]コントロール（リストボックス）のデータソースが変更されました。";
 
             ////
             ////
@@ -550,7 +550,7 @@ namespace Xenon.Controls
             ////
             ////
             ////
-            //if (log_Reports.BSuccessful)
+            //if (log_Reports.Successful)
             //{
             //    // ローカル変数に落とす。
             //    Request_DefaultListItemImpl receipt_DefaultListItemImpl2 = this.Receipt_DefaultListItemImpl;

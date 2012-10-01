@@ -27,7 +27,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "SetupStyle",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "SetupStyle",pg_Logging);
             //
 
             //
@@ -58,7 +58,7 @@ namespace Xenon.Layout
                 // 名前から、コントロールの取得。
                 //
                 List<Usercontrol> fcUcList;
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     fcUcList = moApplication.MemoryForms.GetUsercontrolsByName(
                         e_fcName,
@@ -75,7 +75,7 @@ namespace Xenon.Layout
                 //
                 // スタイルの設定。
                 //
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     Usercontrol fcUc = fcUcList[0];
                     fcUc.SetupStyle(
@@ -94,7 +94,7 @@ namespace Xenon.Layout
                     //
                     // スタイルの設定。
                     //
-                    if (pg_Logging.BSuccessful)
+                    if (pg_Logging.Successful)
                     {
                         moApplication.MemoryForms.Mainwnd_FormWrapping.SetupStyle(
                             fo_Record,
@@ -137,7 +137,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "SuspendLayout",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "SuspendLayout",pg_Logging);
             //
             //
 
@@ -157,7 +157,7 @@ namespace Xenon.Layout
 
 
                 List<Usercontrol> list_FcUc;
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     list_FcUc = moApplication.MemoryForms.GetUsercontrolsByName(
                         e_fcName,
@@ -171,7 +171,7 @@ namespace Xenon.Layout
                 }
 
 
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     Usercontrol uct = list_FcUc[0];
 
@@ -202,7 +202,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "ResumeLayout",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "ResumeLayout",pg_Logging);
             //
             //
 
@@ -222,7 +222,7 @@ namespace Xenon.Layout
 
 
                 List<Usercontrol> list_FcUc;
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     list_FcUc = moApplication.MemoryForms.GetUsercontrolsByName(
                         ec_FcName,
@@ -236,7 +236,7 @@ namespace Xenon.Layout
                 }
 
 
-                if (pg_Logging.BSuccessful)
+                if (pg_Logging.Successful)
                 {
                     Usercontrol uct = list_FcUc[0];
 

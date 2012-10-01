@@ -128,7 +128,7 @@ namespace Xenon.Syntax
         private int nFirst;
 
         // 説明はインターフェース参照。
-        public int NFirst
+        public int Number_First
         {
             set
             {
@@ -145,7 +145,7 @@ namespace Xenon.Syntax
         private int nLast;
 
         // 説明はインターフェース参照。
-        public int NLast
+        public int Number_Last
         {
             set
             {

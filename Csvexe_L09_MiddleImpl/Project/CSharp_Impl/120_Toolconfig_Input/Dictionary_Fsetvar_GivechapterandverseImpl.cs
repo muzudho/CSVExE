@@ -52,7 +52,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetFsetvar",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetFsetvar",log_Reports);
 
             //
             //
@@ -61,13 +61,13 @@ namespace Xenon.MiddleImpl
 
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole("子＜ｆ－ｓｅｔ－ｖａｒ＞要素数=[" + this.List_ChildGivechapterandverse.NCount + "]");
+                log_Method.WriteDebug_ToConsole("子＜ｆ－ｓｅｔ－ｖａｒ＞要素数=[" + this.List_ChildGivechapterandverse.Count + "]");
             }
 
             this.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node cf_Child, ref bool bBreak)
             {
                 string sNamevar1;
-                cf_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, log_Reports);
+                cf_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, log_Reports);
 
                 if (sNamevar1 == sNameVar)
                 {
@@ -112,7 +112,7 @@ namespace Xenon.MiddleImpl
                 s.Append("]");
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

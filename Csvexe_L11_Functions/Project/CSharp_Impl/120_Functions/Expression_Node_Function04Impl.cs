@@ -35,17 +35,17 @@ namespace Xenon.Functions
         /// <summary>
         /// テーブル名。カンマ区切りで複数指定できる。
         /// </summary>
-        public static readonly string S_PM_NAME_TABLE = PmNames.S_NAME_TABLE.SName_Pm;
+        public static readonly string S_PM_NAME_TABLE = PmNames.S_NAME_TABLE.Name_Pm;
 
         /// <summary>
         /// 保存を行ったという警告ダイアログを出さない場合は「block」と指定。無指定では出る。
         /// </summary>
-        public static readonly string S_PM2_POPUP = PmNames.S_POPUP.SName_Pm;
+        public static readonly string S_PM2_POPUP = PmNames.S_POPUP.Name_Pm;
 
         /// <summary>
         /// 処理スキップ。何か文字が指定されている（空文字列でない）と、この処理は行われない。
         /// </summary>
-        public static readonly string S_PM2_FLOW_SKIP = PmNames.S_FLOWSKIP.SName_Pm;
+        public static readonly string S_PM2_FLOW_SKIP = PmNames.S_FLOWSKIP.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -68,19 +68,19 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function04Impl(this.EnumEventhandler, this.ListS_ArgName,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function04Impl(this.EnumEventhandler, this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function04Impl.S_PM_NAME_TABLE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function04Impl.S_PM2_POPUP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.DicExpression_Attr.Set(Expression_Node_Function04Impl.S_PM2_FLOW_SKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function04Impl.S_PM_NAME_TABLE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function04Impl.S_PM2_POPUP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function04Impl.S_PM2_FLOW_SKIP, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -104,14 +104,14 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain", log_Reports);
 
             string sFncName0;
-            this.TrySelectAttr(out sFncName0, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "「E■[" + sFncName0 + "]アクション」実行(A)";
+                log_Method.Log_Stopwatch.Message = "「E■[" + sFncName0 + "]アクション」実行(A)";
                 log_Method.Log_Stopwatch.Begin();
             }
 
@@ -122,11 +122,11 @@ namespace Xenon.Functions
 
                 string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                log_Reports.SComment_EventCreationMe = "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
+                log_Reports.Comment_EventCreationMe = "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
             }
             else
             {
-                log_Reports.SComment_EventCreationMe = "／追記：[" + sFncName0 + "]アクションを実行。";
+                log_Reports.Comment_EventCreationMe = "／追記：[" + sFncName0 + "]アクションを実行。";
             }
 
             //
@@ -136,7 +136,7 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
                 this.Perform2(log_Reports);
 
@@ -163,11 +163,11 @@ namespace Xenon.Functions
         private void Perform2(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
 
             string sFlowSkip;
-            this.TrySelectAttr(out sFlowSkip, Expression_Node_Function04Impl.S_PM2_FLOW_SKIP, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFlowSkip, Expression_Node_Function04Impl.S_PM2_FLOW_SKIP, false, Request_SelectingImpl.Unconstraint, log_Reports);
             if ("" != sFlowSkip.Trim())
             {
                 // 処理をスキップします。
@@ -185,7 +185,7 @@ namespace Xenon.Functions
             List<string> sList_TableName = new List<string>();
             {
                 string sTableNames;
-                this.TrySelectAttr(out sTableNames, Expression_Node_Function04Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sTableNames, Expression_Node_Function04Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                 CsvTo_DataTableImpl reader = new CsvTo_DataTableImpl();
                 DataTable tblNamesTable = reader.Read(
@@ -204,10 +204,10 @@ namespace Xenon.Functions
             foreach (string sTableName in sList_TableName)
             {
                 XenonTable o_Table;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     Expression_Node_String ec_ArgTableName;
-                    this.TrySelectAttr(out ec_ArgTableName, Expression_Node_Function04Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function04Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     Expression_Node_StringImpl ec_TableName = new Expression_Node_StringImpl(this, ec_ArgTableName.Cur_Givechapterandverse);
                     ec_TableName.AppendTextNode(
@@ -229,11 +229,11 @@ namespace Xenon.Functions
                 }
 
                 string sCsvText;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     ToCsv_TableCsvImpl textizer = new ToCsv_TableCsvImpl();
                     sCsvText = textizer.ToCsvText(o_Table, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -245,7 +245,7 @@ namespace Xenon.Functions
                 }
 
                 string sFpatha;//絶対ファイルパス
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
 
@@ -254,7 +254,7 @@ namespace Xenon.Functions
                     // TODO ファイルパスの妥当性判定も欲しい
                     sFpatha = o_Table.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -265,11 +265,11 @@ namespace Xenon.Functions
                     sFpatha = "";
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     bool bPopup;
                     string sPopup;
-                    this.TrySelectAttr(out sPopup, Expression_Node_Function04Impl.S_PM2_POPUP, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out sPopup, Expression_Node_Function04Impl.S_PM2_POPUP, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     if ("block" == sPopup.Trim())
                     {

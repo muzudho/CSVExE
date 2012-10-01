@@ -74,25 +74,25 @@ namespace Xenon.Syntax
         public void WriteDebug_ToConsole(string sMessage)
         {
             // #出力
-            System.Console.WriteLine(this.SHead + ":　" + sMessage);
+            System.Console.WriteLine(this.Fullname + ":　" + sMessage);
         }
 
         public void WriteError_ToConsole(string sMessage)
         {
             // #出力
-            System.Console.WriteLine(this.SHead + ":エラー　" + sMessage);
+            System.Console.WriteLine(this.Fullname + ":エラー　" + sMessage);
         }
 
         public void WriteWarning_ToConsole(string sMessage)
         {
             // #出力
-            System.Console.WriteLine(this.SHead + ":警告　" + sMessage);
+            System.Console.WriteLine(this.Fullname + ":警告　" + sMessage);
         }
 
         public void WriteInfo_ToConsole(string sMessage)
         {
             // #出力
-            System.Console.WriteLine(this.SHead + ":情報　" + sMessage);
+            System.Console.WriteLine(this.Fullname + ":情報　" + sMessage);
         }
 
         //────────────────────────────────────────
@@ -211,10 +211,10 @@ namespace Xenon.Syntax
             bool bEquals;
 
             if(
-                log_Method.SName_Library == this.SName_Library &&
-                log_Method.SName_Class == this.SName_Class &&
-                log_Method.BStatic == this.BStatic &&
-                log_Method.SName_Method == this.SName_Method
+                log_Method.Name_Library == this.Name_Library &&
+                log_Method.Name_Class == this.Name_Class &&
+                log_Method.Static == this.Static &&
+                log_Method.Name_Method == this.Name_Method
                 )
             {
                 bEquals = true;
@@ -283,16 +283,16 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        public string SHead
+        public string Fullname
         {
             get
             {
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append(this.SName_Library);
+                sb.Append(this.Name_Library);
                 sb.Append(":");
-                sb.Append(this.SName_Class);
-                if (this.BStatic)
+                sb.Append(this.Name_Class);
+                if (this.Static)
                 {
                     sb.Append(".");
                 }
@@ -300,7 +300,7 @@ namespace Xenon.Syntax
                 {
                     sb.Append("#");
                 }
-                sb.Append(this.SName_Method);
+                sb.Append(this.Name_Method);
 
                 return sb.ToString();
             }
@@ -334,7 +334,7 @@ namespace Xenon.Syntax
         
         private string sName_Library;
 
-        public string SName_Library
+        public string Name_Library
         {
             get
             {
@@ -346,7 +346,7 @@ namespace Xenon.Syntax
 
         private string sName_Class;
 
-        public string SName_Class
+        public string Name_Class
         {
             get
             {
@@ -358,7 +358,7 @@ namespace Xenon.Syntax
 
         private bool bStatic;
 
-        public bool BStatic
+        public bool Static
         {
             get
             {
@@ -370,7 +370,7 @@ namespace Xenon.Syntax
 
         private string sName_Method;
 
-        public string SName_Method
+        public string Name_Method
         {
             get
             {

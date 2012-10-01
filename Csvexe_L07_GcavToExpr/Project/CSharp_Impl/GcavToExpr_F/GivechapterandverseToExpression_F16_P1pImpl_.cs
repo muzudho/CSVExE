@@ -27,11 +27,11 @@ namespace Xenon.GcavToExpr
             // throw new Exception(Info_SToE.LibraryName + ":" + this.GetType().Name + "#SToE: このメソッドは廃止方針です。");
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(18)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(18)" + cur_Cf.Name);
             }
 
             //
@@ -51,7 +51,7 @@ namespace Xenon.GcavToExpr
             {
                 ec_Value = new Expression_Node_StringImpl(parent_Ec, cur_Cf);
                 ec_Value.AppendTextNode(
-                    cur_Cf.SName,
+                    cur_Cf.Name,
                     cur_Cf,
                     log_Reports
                     );
@@ -68,8 +68,8 @@ namespace Xenon.GcavToExpr
             //
             Expression_Node_StringImpl ec_Ap1p = new Expression_Node_StringImpl(parent_Ec, cur_Cf);
 
-            ec_Ap1p.DicExpression_Attr.Set(
-                PmNames.S_NAME.SName_Pm,
+            ec_Ap1p.Dictionary_Expression_Attribute.Set(
+                PmNames.S_NAME.Name_Pm,
                 ec_Value,
                 log_Reports
                 );
@@ -88,7 +88,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Ec.DicExpression_Attr.Set(
+            parent_Ec.Dictionary_Expression_Attribute.Set(
                 sb.ToString(),
                 ((Expression_Node_String)ec_Ap1p),
                 log_Reports
@@ -114,7 +114,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

@@ -23,8 +23,8 @@ namespace Xenon.Toolwindow
 
         public MemoryAatoolxmlDialogImpl()
         {
-            this.SName_SelectedEditor = "";
-            this.SName_Application = "";
+            this.Name_SelectedEditor = "";
+            this.Name_Application = "";
             this.memoryAatoolxml = new MemoryAatoolxmlImpl();
             this.dictionary_Editor = new Dictionary_Fsetvar_GivechapterandverseImpl();
         }
@@ -75,20 +75,20 @@ namespace Xenon.Toolwindow
 
         //────────────────────────────────────────
 
-        private string sName_SelectedEditor;
+        private string name_SelectedEditor;
 
         /// <summary>
         /// 選択しているプロジェクト名
         /// </summary>
-        public string SName_SelectedEditor
+        public string Name_SelectedEditor
         {
             get
             {
-                return sName_SelectedEditor;
+                return name_SelectedEditor;
             }
             set
             {
-                sName_SelectedEditor = value;
+                name_SelectedEditor = value;
             }
         }
 
@@ -97,20 +97,20 @@ namespace Xenon.Toolwindow
         /// <summary>
         /// このファイアログを開いているアプリケーションの名前
         /// </summary>
-        private string sName_Application;
+        private string name_Application;
 
         /// <summary>
         /// このファイアログを開いているアプリケーションの名前
         /// </summary>
-        public string SName_Application
+        public string Name_Application
         {
             get
             {
-                return sName_Application;
+                return name_Application;
             }
             set
             {
-                sName_Application = value;
+                name_Application = value;
             }
         }
 

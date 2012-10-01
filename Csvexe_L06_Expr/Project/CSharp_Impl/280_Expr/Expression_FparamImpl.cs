@@ -49,7 +49,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
             string sResult;
@@ -58,7 +58,7 @@ namespace Xenon.Expr
             // call属性（必須）
             string sCall;
             {
-                if (this.DicExpression_Attr.TrySelect(out sCall, PmNames.S_CALL.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports))
+                if (this.Dictionary_Expression_Attribute.TrySelect(out sCall, PmNames.S_CALL.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports))
                 {
                 }
                 else
@@ -79,7 +79,7 @@ namespace Xenon.Expr
             {
                 // 親「E■ｆｕｎｃｔｉｏｎ」取得。
                 string sParam;
-                if (ec_CommonFunction.DicExpression_Param.TrySelect(out sParam, sCall, true, Request_SelectingImpl.Unconstraint, log_Reports))
+                if (ec_CommonFunction.Dictionary_Expression_Parameter.TrySelect(out sParam, sCall, true, Request_SelectingImpl.Unconstraint, log_Reports))
                 {
                     //sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\"　値＝”" + e_Param.E_Execute(Request_SelectingImpl.Unconstraint,log_Reports) + "”＞";
                     sResult = sParam;
@@ -88,9 +88,9 @@ namespace Xenon.Expr
                 {
                     // エラー。
                     Log_TextIndented s1 = new Log_TextIndentedImpl();
-                    ec_CommonFunction.DicExpression_Param.ToText_Debug(s1, log_Reports);
+                    ec_CommonFunction.Dictionary_Expression_Parameter.ToText_Debug(s1, log_Reports);
 
-                    sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Givechapterandverse.SName + "” 引数不該当＞s1=" + s1.ToString();
+                    sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Givechapterandverse.Name + "” 引数不該当＞s1=" + s1.ToString();
                 }
 
             }
@@ -118,7 +118,7 @@ namespace Xenon.Expr
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

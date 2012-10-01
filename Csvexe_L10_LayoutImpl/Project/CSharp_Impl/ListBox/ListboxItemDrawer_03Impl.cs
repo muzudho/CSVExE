@@ -49,7 +49,7 @@ namespace Xenon.Layout
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_LayoutImpl.SName_Library, this, "P2_GetStyleAttrNames",pg_Logging);
+            pg_Method.BeginMethod(Info_LayoutImpl.Name_Library, this, "P2_GetStyleAttrNames",pg_Logging);
             //
             //
 
@@ -66,16 +66,16 @@ namespace Xenon.Layout
                 row.Row,
                 false,//該当なしも可
                 pg_Logging,
-                Info_LayoutImpl.SName_Library+":"+this.GetType().Name+"#P2_:リストボックスのEXPL-SS"
+                Info_LayoutImpl.Name_Library+":"+this.GetType().Name+"#P2_:リストボックスのEXPL-SS"
                 );
-            if (!pg_Logging.BSuccessful)
+            if (!pg_Logging.Successful)
             {
                 // 既エラー。
                 sResult = "";
                 goto gt_EndMethod;
             }
 
-            if (pg_Logging.BSuccessful)
+            if (pg_Logging.Successful)
             {
                 // 正常時
 

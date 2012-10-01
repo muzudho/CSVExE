@@ -28,7 +28,7 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -40,7 +40,7 @@ namespace Xenon.GcavToExpr
             //
             //
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 //

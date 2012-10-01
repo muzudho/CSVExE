@@ -54,7 +54,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 数値の範囲のリスト。
         /// </summary>
-        List<O_IntegerRange> ListO_Item
+        List<O_IntegerRange> List_Item
         {
             get;
         }

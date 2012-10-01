@@ -79,7 +79,7 @@ namespace Xenon.MiddleImpl
         public void AddFunction(string sName, Expression_Node_Function ec_CommonFunction, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "AddFunc", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "AddFunc", log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -110,7 +110,7 @@ namespace Xenon.MiddleImpl
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲設定エラー101！", log_Method);
-                r.SMessage = "ユーザー定義関数[" + sName + "]は既に定義されていますが、さらに定義されました。同じ名前のユーザー定義関数は１つしか定義してはいけません。";
+                r.Message = "ユーザー定義関数[" + sName + "]は既に定義されていますが、さらに定義されました。同じ名前のユーザー定義関数は１つしか定義してはいけません。";
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -158,7 +158,7 @@ namespace Xenon.MiddleImpl
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "DebugWrite", log_Reports_ThisMethod);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "DebugWrite", log_Reports_ThisMethod);
 
             //
             //
@@ -188,7 +188,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadFile_Fnc", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile_Fnc", log_Reports);
 
             //
             //
@@ -204,7 +204,7 @@ namespace Xenon.MiddleImpl
             string sFpatha = ec_Fpath_Fnc.Execute_OnExpressionString(
                 Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 goto gt_Error_Fpath;
             }
@@ -244,14 +244,14 @@ namespace Xenon.MiddleImpl
             }
 
             XmlElement xRoot = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // ルート要素を取得
                 xRoot = xDoc.DocumentElement;
 
                 // スクリプトファイルのバージョンチェック。（関数登録ファイル）
                 ValuesAttr.Test_Codefileversion(
-                    xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.SName_Attr),
+                    xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
                     new Givechapterandverse_NodeImpl(sFpatha, null),
                     NamesNode.S_CODEFILE_FUNCTIONS
@@ -259,7 +259,7 @@ namespace Xenon.MiddleImpl
             }
 
             string sErrorElementName = "";
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XmlNodeList xTopNL = xRoot.ChildNodes;
                 foreach (XmlNode xTopNode in xTopNL)
@@ -270,7 +270,7 @@ namespace Xenon.MiddleImpl
                         {
                             XmlElement x_Cur = (XmlElement)xTopNode;
 
-                            string sNameValue = x_Cur.GetAttribute(PmNames.S_NAME.SName_Attr);
+                            string sNameValue = x_Cur.GetAttribute(PmNames.S_NAME.Name_Attribute);
                             if (log_Method.CanDebug(1))
                             {
                                 log_Method.WriteDebug_ToConsole(" ユーザー定義関数の追加を開始：" + sNameValue);
@@ -335,12 +335,12 @@ namespace Xenon.MiddleImpl
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("ユーザー定義関数設定ファイルへのパスにエラーがありました。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -353,16 +353,16 @@ namespace Xenon.MiddleImpl
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("ユーザー定義関数設定ファイルがありません。");
-                s.NewLine();
+                s.Newline();
                 s.Append("file=[");
                 s.Append(sFpatha);
                 s.Append("]");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -380,7 +380,7 @@ namespace Xenon.MiddleImpl
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -398,7 +398,7 @@ namespace Xenon.MiddleImpl
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

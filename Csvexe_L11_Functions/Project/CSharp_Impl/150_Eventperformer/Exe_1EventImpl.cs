@@ -40,9 +40,9 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
 
-            Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl("＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:＞", null);
+            Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl("＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:＞", null);
             EventMonitorImpl eventMonitor = new EventMonitorImpl(cf_Event, cf_ThisMethod);
 
             if (log_Reports.CanStopwatch)
@@ -55,21 +55,21 @@ namespace Xenon.Functions
                     string sName_Control;
                     {
                         Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                        owner_Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
+                        owner_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
                     }
 
                     string sEventName;
                     {
-                        cf_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
+                        cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
                     }
 
                     int nActionCount;
                     {
-                        nActionCount = cf_Event.List_ChildGivechapterandverse.NCount;
+                        nActionCount = cf_Event.List_ChildGivechapterandverse.Count;
                     }
 
 
-                    sb.Append(Info_Functions.SName_Library);
+                    sb.Append(Info_Functions.Name_Library);
                     sb.Append(":");
                     sb.Append(this.GetType().Name);
                     sb.Append("#ToString: イベント計測 ");
@@ -86,7 +86,7 @@ namespace Xenon.Functions
                         sb.Append("]");
                     }
 
-                    log_Method.Log_Stopwatch.SMessage = sb.ToString();
+                    log_Method.Log_Stopwatch.Message = sb.ToString();
                     log_Method.Log_Stopwatch.Begin();
 
                 }

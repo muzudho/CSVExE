@@ -29,9 +29,9 @@ namespace Xenon.Table
             this.Expression_Where_RecordSetLoadFrom = new Expression_Node_StringImpl(parent_Expr, parent_Gcav);
             this.EnumWherelogic = EnumLogic.And;//ｗｈｅｒｅのlogic属性のデフォルト。
             this.list_Recordcondition = new List<Recordcondition>();
-            this.SRequired = "";
-            this.SStorage = "";
-            this.SDescription = "";
+            this.Required = "";
+            this.Storage = "";
+            this.Description = "";
         }
 
         //────────────────────────────────────────
@@ -174,7 +174,7 @@ namespace Xenon.Table
         /// </summary>
         private string sRequired;
 
-        public string SRequired
+        public string Required
         {
             get
             {
@@ -212,7 +212,7 @@ namespace Xenon.Table
         /// </summary>
         private string sStorage;
 
-        public string SStorage
+        public string Storage
         {
             get
             {
@@ -231,7 +231,7 @@ namespace Xenon.Table
         /// </summary>
         private string sDescription;
 
-        public string SDescription
+        public string Description
         {
             get
             {

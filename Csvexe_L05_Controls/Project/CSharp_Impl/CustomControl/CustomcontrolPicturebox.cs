@@ -67,7 +67,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(10)",log_Reports);
             //
             //
 
@@ -105,13 +105,13 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "RefreshData",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "RefreshData",log_Reports);
             //
             //
 
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -127,7 +127,7 @@ namespace Xenon.Controls
             else
             {
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
 
                     this.ControlCommon.BAutomaticinputting = true;
@@ -188,7 +188,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UsercontrolToMemory",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UsercontrolToMemory",log_Reports);
             //
             //
 
@@ -203,8 +203,8 @@ namespace Xenon.Controls
 
 
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -233,7 +233,7 @@ namespace Xenon.Controls
                     log_Reports
                     );
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 成功時
                     this.BackColor = System.Drawing.SystemColors.Window;
@@ -268,7 +268,7 @@ namespace Xenon.Controls
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -391,7 +391,7 @@ namespace Xenon.Controls
                     else
                     {
                         // #警告。 ファイルが存在しなければ。
-                        System.Console.WriteLine(Info_Controls.SName_Library + ":" + this.GetType().Name + "#FcText set: 指定された、存在しない画像ファイルパス=[" + this.sFcText + "]");
+                        System.Console.WriteLine(Info_Controls.Name_Library + ":" + this.GetType().Name + "#FcText set: 指定された、存在しない画像ファイルパス=[" + this.sFcText + "]");
                         this.Image = null;
                     }
 

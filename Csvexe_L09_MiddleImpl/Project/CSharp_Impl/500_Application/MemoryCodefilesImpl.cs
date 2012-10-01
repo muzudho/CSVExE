@@ -46,9 +46,9 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Add",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Add",log_Reports);
 
-            string sName_Trimed = moCodefileInfo.SName.Trim();
+            string sName_Trimed = moCodefileInfo.Name.Trim();
 
             if ("" == sName_Trimed)
             {
@@ -56,7 +56,7 @@ namespace Xenon.MiddleImpl
                 goto gt_Error_NoName;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (!this.Dictionary_Table.ContainsKey(sName_Trimed))
                 {
@@ -82,14 +82,14 @@ namespace Xenon.MiddleImpl
 
                 StringBuilder s = new StringBuilder();
                 s.Append("スクリプトファイル呼出名を指定してください。無名です。[");
-                s.Append(moCodefileInfo.SName);
+                s.Append(moCodefileInfo.Name);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -102,12 +102,12 @@ namespace Xenon.MiddleImpl
 
                 StringBuilder s = new StringBuilder();
                 s.Append("登録しようとしたスクリプトファイル呼出名は、既に登録されていました。[");
-                s.Append(moCodefileInfo.SName);
+                s.Append(moCodefileInfo.Name);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -134,7 +134,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetCodefileinfoByTypedata",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetCodefileinfoByTypedata",log_Reports);
             //
             //
 
@@ -150,7 +150,7 @@ namespace Xenon.MiddleImpl
                 string sExpectedTypedata = ec_Typedata.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                 foreach (MemoryCodefileinfo codefile in this.Dictionary_Table.Values)
                 {
-                    if (sExpectedTypedata == codefile.STypedata)
+                    if (sExpectedTypedata == codefile.Typedata)
                     {
                         result.Add(codefile);
                     }
@@ -189,7 +189,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_Typedata.Cur_Givechapterandverse.Parent_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

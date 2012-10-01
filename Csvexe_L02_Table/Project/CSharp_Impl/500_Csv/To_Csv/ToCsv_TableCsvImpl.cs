@@ -63,7 +63,7 @@ namespace Xenon.Table
         {
             string sResult;
 
-            if (xenonTable.XenonTableformat.BRowcolumnreverse)
+            if (xenonTable.XenonTableformat.IsRowcolumnreverse)
             {
                 //
                 // 行と列が逆になっているテーブル
@@ -73,7 +73,7 @@ namespace Xenon.Table
                 toCsv_RowColReversed.O_ExceptedFields = this.ExceptedFields;
 
                 sResult = toCsv_RowColReversed.ToCsvText(xenonTable, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー
                     goto gt_EndMethod;
@@ -85,7 +85,7 @@ namespace Xenon.Table
                 toCsv_Normal.ExceptedFields = this.ExceptedFields;
 
                 sResult = toCsv_Normal.ToCsvText(xenonTable, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー
                     goto gt_EndMethod;

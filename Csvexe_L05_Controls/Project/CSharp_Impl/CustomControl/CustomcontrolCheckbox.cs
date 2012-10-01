@@ -74,7 +74,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(10)",log_Reports);
             //
             //
 
@@ -112,14 +112,14 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "RefreshData",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "RefreshData",log_Reports);
             //
             //
 
 
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -134,7 +134,7 @@ namespace Xenon.Controls
             }
             else
             {
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
 
                     Request_SelectingBuilderImpl requestItems = new Request_SelectingBuilderImpl();
@@ -144,11 +144,11 @@ namespace Xenon.Controls
                     //    log_Reports
                     //    );
 
-                    if (0 < e_DataSource.ListExpression_Child.NCount)
+                    if (0 < e_DataSource.List_Expression_Child.Count)
                     {
-                        e_DataSource.ListExpression_Child.ForEach(delegate(Expression_Node_String eFirst, ref bool bRemove, ref bool bBreak)
+                        e_DataSource.List_Expression_Child.ForEach(delegate(Expression_Node_String eFirst, ref bool bRemove, ref bool bBreak)
                         {
-                            if (log_Reports.BSuccessful)
+                            if (log_Reports.Successful)
                             {
                                 //
                                 // 最初の１件。なければ空文字列。
@@ -211,12 +211,12 @@ namespace Xenon.Controls
                                                     s.Append("false,true値に変換できませんでした。[");
                                                     s.Append(sValue);
                                                     s.Append("]");
-                                                    s.NewLine();
+                                                    s.Newline();
 
                                                     // ヒント
                                                     s.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
 
-                                                    r.SMessage = s.ToString();
+                                                    r.Message = s.ToString();
                                                     log_Reports.EndCreateReport();
                                                 }
                                             }
@@ -277,12 +277,12 @@ namespace Xenon.Controls
                                                         t.Append("0,1値が欲しいところに、[");
                                                         t.Append(nCheckedInt);
                                                         t.Append("]が入っていました。");
-                                                        t.NewLine();
+                                                        t.Newline();
 
                                                         // ヒント
                                                         t.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
 
-                                                        r.SMessage = t.ToString();
+                                                        r.Message = t.ToString();
                                                         log_Reports.EndCreateReport();
                                                     }
                                                     //goto automatic_input_end;
@@ -305,12 +305,12 @@ namespace Xenon.Controls
                                                     Log_TextIndented t = new Log_TextIndentedImpl();
 
                                                     t.Append("0,1値に変換できませんでした。");
-                                                    t.NewLine();
+                                                    t.Newline();
 
                                                     // ヒント
                                                     t.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
 
-                                                    r.SMessage = t.ToString();
+                                                    r.Message = t.ToString();
                                                     log_Reports.EndCreateReport();
                                                 }
                                             }
@@ -343,12 +343,12 @@ namespace Xenon.Controls
                                                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                                                 t.Append("プログラミング_ミス。未定義のEnum値。");
-                                                t.NewLine();
+                                                t.Newline();
 
                                                 // ヒント
                                                 t.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
 
-                                                r.SMessage = t.ToString();
+                                                r.Message = t.ToString();
                                                 log_Reports.EndCreateReport();
                                             }
                                         }
@@ -397,7 +397,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UsercontrolToMemory(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UsercontrolToMemory(10)",log_Reports);
             //
             //
 
@@ -412,8 +412,8 @@ namespace Xenon.Controls
 
 
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -482,19 +482,19 @@ namespace Xenon.Controls
                             Log_TextIndented t = new Log_TextIndentedImpl();
 
                             t.Append("プログラミング_ミス。未定義のEnum値。");
-                            t.NewLine();
+                            t.Newline();
 
                             // ヒント
                             t.Append(r.Message_Givechapterandverse(ec_DataTarget.Cur_Givechapterandverse));
 
-                            r.SMessage = t.ToString();
+                            r.Message = t.ToString();
                             log_Reports.EndCreateReport();
                         }
                         break;
                 }
 
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 成功時
                     ccCheckBox.BackColor = System.Drawing.SystemColors.Window;
@@ -529,7 +529,7 @@ namespace Xenon.Controls
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -577,14 +577,14 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "this_CheckChanged",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "this_CheckChanged",log_Reports_ThisMethod);
             //
             //
 
             //bug:Expression_Name_Controlがnull→コンストラクタでダミーを入れた
             string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-            log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（チェックボックス）のチェックが変更されました。";
+            log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（チェックボックス）のチェックが変更されました。";
 
 
 

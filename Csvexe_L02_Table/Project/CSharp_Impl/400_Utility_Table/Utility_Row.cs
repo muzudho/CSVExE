@@ -74,7 +74,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, "Utility_Row", "GivechapterandverseTo_Field", log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Utility_Row", "GivechapterandverseTo_Field", log_Reports);
 
             //
             //
@@ -86,7 +86,7 @@ namespace Xenon.Table
             string sConfigStack;
             try
             {
-                sConfigStack = list_fielddefinition[nIndex_Column].SName_Humaninput;
+                sConfigStack = list_fielddefinition[nIndex_Column].Name_Humaninput;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -101,20 +101,20 @@ namespace Xenon.Table
             {
                 // 空白データも自動処理
                 XenonValue_IntImpl cellData = new XenonValue_IntImpl(sConfigStack);
-                cellData.SHumaninput = sValue;
+                cellData.Humaninput = sValue;
                 result = cellData;
             }
             else if (list_fielddefinition[nIndex_Column].Type == typeof(XenonValue_BoolImpl))
             {
                 // 空白データも自動処理
                 XenonValue_BoolImpl cellData = new XenonValue_BoolImpl(sConfigStack);
-                cellData.SHumaninput = sValue;
+                cellData.Humaninput = sValue;
                 result = cellData;
             }
             else
             {
                 XenonValue_StringImpl cellData = new XenonValue_StringImpl(sConfigStack);
-                cellData.SHumaninput = sValue;
+                cellData.Humaninput = sValue;
                 result = cellData;
             }
 
@@ -133,13 +133,13 @@ namespace Xenon.Table
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("列インデックス[" + nIndex_Column + "]（0スタート）が指定されましたが、");
-                t.NewLine();
+                t.Newline();
                 t.Append("列は[" + list_fielddefinition.Count + "]個しかありません。（列定義リストは、絞りこまれている場合もあります）");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -171,7 +171,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, "Utility_Row", "GetFieldvalue", log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Utility_Row", "GetFieldvalue", log_Reports);
 
             object objResult;
 
@@ -244,7 +244,7 @@ namespace Xenon.Table
                 //sB.Append("エラーメッセージ：");
                 //sB.Append(err_Excp.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -273,7 +273,7 @@ namespace Xenon.Table
                 s.Append("メッセージ：");
                 s.Append(err_Excp.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -285,8 +285,8 @@ namespace Xenon.Table
                 r.SetTitle("▲エラー602！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("▲エラー4101！(" + Info_Table.SName_Library + ")");
-                s.NewLine();
+                s.Append("▲エラー4101！(" + Info_Table.Name_Library + ")");
+                s.Newline();
                 s.Append("指定のフィールド[");
                 s.Append(sName_Field);
                 s.Append("]は、ヌルでした。");
@@ -300,7 +300,7 @@ namespace Xenon.Table
                 s.Append("]");
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

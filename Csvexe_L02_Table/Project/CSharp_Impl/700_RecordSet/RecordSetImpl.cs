@@ -39,7 +39,7 @@ namespace Xenon.Table
         public void Add(DataRow row, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Add",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Add",log_Reports);
 
             Dictionary<string, XenonValue> record = new Dictionary<string, XenonValue>();
 
@@ -47,7 +47,7 @@ namespace Xenon.Table
             for (int nFieldIndex = 0; nFieldIndex < nFieldCount; nFieldIndex++)
             {
                 // フィールド名
-                string sFieldName = xenonTable.List_Fielddefinition[nFieldIndex].SName_Trimupper;
+                string sFieldName = xenonTable.List_Fielddefinition[nFieldIndex].Name_Trimupper;
 
                 // 値
                 XenonValue oValue;
@@ -68,7 +68,7 @@ namespace Xenon.Table
 
                     String sConfigStack = xenonTable.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -131,7 +131,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -156,7 +156,7 @@ namespace Xenon.Table
             foreach (DataRow row in list_Row)
             {
                 this.Add(row, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;

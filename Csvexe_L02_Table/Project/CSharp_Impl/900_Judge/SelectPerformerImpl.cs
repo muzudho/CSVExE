@@ -33,7 +33,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Select",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Select",log_Reports);
 
             //
             //
@@ -84,7 +84,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Select",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Select",log_Reports);
 
             //
             //
@@ -151,7 +151,7 @@ namespace Xenon.Table
                     goto gt_Error_UndefinedClass;
                 }
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -193,7 +193,7 @@ namespace Xenon.Table
 
                 s.AppendI(0, "</NFuncCellUpdaterImplクラス>");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

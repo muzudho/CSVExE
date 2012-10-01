@@ -59,7 +59,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Table.SName_Library, "RecCondImpl", "TryBuild",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "RecCondImpl", "TryBuild",log_Reports);
 
             bool bSuccessful;
 
@@ -114,7 +114,7 @@ namespace Xenon.Table
 
                 s.Append(r.Message_Givechapterandverse(parent_Gcav));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
 
                 //throw new Exception(s.ToString());
@@ -135,7 +135,7 @@ namespace Xenon.Table
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ForString = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "ToString",log_Reports_ForString);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ToString",log_Reports_ForString);
 
             log_Reports_ForString.BeginCreateReport(EnumReport.Dammy);
             //
@@ -154,9 +154,9 @@ namespace Xenon.Table
             else
             {
                 sb.Append("条件 ");
-                sb.Append(this.SField);
+                sb.Append(this.Name_Field);
                 sb.Append(Utility_Table.OpeSymbolToString(this.EnumOpe));
-                sb.Append(this.SValue);
+                sb.Append(this.Value);
                 sb.Append(" 子数");
                 sb.Append(this.List_Child.Count);
             }
@@ -221,7 +221,7 @@ namespace Xenon.Table
         /// <summary>
         /// キーフィールド名。 field="" 属性。
         /// </summary>
-        public string SField
+        public string Name_Field
         {
             get
             {
@@ -260,7 +260,7 @@ namespace Xenon.Table
         /// value="" 属性。
         /// （旧 ｌｏｏｋｕｐ－ｖａｌｕｅ="" 属性）
         /// </summary>
-        public string SValue
+        public string Value
         {
             get
             {

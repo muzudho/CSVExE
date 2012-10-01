@@ -24,7 +24,7 @@ namespace Xenon.Operating
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_Load = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "XToO",log_Reports_Load);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "XToO",log_Reports_Load);
             //
             //
 
@@ -33,7 +33,7 @@ namespace Xenon.Operating
             CsvTo_XenonTableImpl csvTo = new CsvTo_XenonTableImpl();
             Request_ReadsTable oRequest_TableReads = new Request_ReadsTableImpl();
             {
-                Givechapterandverse_NodeImpl cf_ConfigStack = new Givechapterandverse_NodeImpl(Info_Operating.SName_Library + ":" + this.GetType().Name + "#<init>:",null);
+                Givechapterandverse_NodeImpl cf_ConfigStack = new Givechapterandverse_NodeImpl(Info_Operating.Name_Library + ":" + this.GetType().Name + "#<init>:",null);
                 Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_1", cf_ConfigStack);
 
                 cf_Fpath.InitPath(
@@ -43,7 +43,7 @@ namespace Xenon.Operating
                 Expression_Node_Filepath ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
                 oRequest_TableReads.Expression_Filepath = ec_Fpath;
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // エラー
                     goto gt_EndMethod;
@@ -58,7 +58,7 @@ namespace Xenon.Operating
                 log_Reports
                 );
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラー
                 goto gt_EndMethod;
@@ -85,7 +85,7 @@ namespace Xenon.Operating
                     {
                     }
 
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -111,7 +111,7 @@ namespace Xenon.Operating
                     {
                     }
 
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;
@@ -183,7 +183,7 @@ namespace Xenon.Operating
                     {
                     }
 
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // エラー
                         goto gt_EndMethod;

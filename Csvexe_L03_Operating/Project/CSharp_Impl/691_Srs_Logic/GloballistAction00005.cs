@@ -49,10 +49,10 @@ namespace Xenon.Operating
                 // 各変数の型について
                 foreach (GloballistconfigTypesection typeSection in moGlcnf.TypesectionList.List_Item)
                 {
-                    if (human.Dictionary_Variable.ContainsKey(typeSection.SType))
+                    if (human.Dictionary_Variable.ContainsKey(typeSection.Name_Type))
                     {
                         // この型について
-                        GloballistconfigVariable variable = human.Dictionary_Variable[typeSection.SType];
+                        GloballistconfigVariable variable = human.Dictionary_Variable[typeSection.Name_Type];
 
                         // その変数番号要素をリストにします。
 
@@ -60,9 +60,9 @@ namespace Xenon.Operating
                         foreach (GloballistconfigNumber numberObj in variable.Dictionary_Number.Values)
                         {
                             ResultOfGloballistconfigElementSearchImpl resultItem = new ResultOfGloballistconfigElementSearchImpl();
-                            resultItem.SType = variable.SType;
-                            resultItem.SNumberRange = numberObj.SRange;
-                            resultItem.SPriority = numberObj.Priority.SHumaninput;
+                            resultItem.Name_Type = variable.Name_Type;
+                            resultItem.Text_NumberRange = numberObj.Text_Range;
+                            resultItem.Priority = numberObj.Priority.Humaninput;
 
                             resultList.Add(resultItem);
                         }

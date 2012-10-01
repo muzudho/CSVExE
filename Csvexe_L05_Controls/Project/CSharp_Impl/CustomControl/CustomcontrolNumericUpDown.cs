@@ -68,7 +68,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(10)",log_Reports);
             //
             //
 
@@ -106,14 +106,14 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "RefreshData",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "RefreshData",log_Reports);
             //
             //
 
 
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -128,7 +128,7 @@ namespace Xenon.Controls
             }
             else
             {
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     Request_SelectingBuilderImpl requestItems = new Request_SelectingBuilderImpl();
                     requestItems.EnumHitcount = EnumHitcount.First_Exist_Or_Zero;
@@ -137,9 +137,9 @@ namespace Xenon.Controls
                     //    log_Reports
                     //);
 
-                    if (0 < ec_DataSource.ListExpression_Child.NCount)
+                    if (0 < ec_DataSource.List_Expression_Child.Count)
                     {
-                        ec_DataSource.ListExpression_Child.ForEach(delegate(Expression_Node_String e_str, ref bool bRemove, ref bool bBreak)
+                        ec_DataSource.List_Expression_Child.ForEach(delegate(Expression_Node_String e_str, ref bool bRemove, ref bool bBreak)
                         {
                             this.ControlCommon.BAutomaticinputting = true;
 
@@ -238,7 +238,7 @@ namespace Xenon.Controls
         {
 
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UsercontrolToMemory",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UsercontrolToMemory",log_Reports);
             //
             //
 
@@ -253,8 +253,8 @@ namespace Xenon.Controls
 
 
             List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.SName_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
-            if (!log_Reports.BSuccessful)
+            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
@@ -288,7 +288,7 @@ namespace Xenon.Controls
                     log_Reports
                     );
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 成功時
                     ccNumericUpDown.BackColor = System.Drawing.SystemColors.Window;
@@ -323,7 +323,7 @@ namespace Xenon.Controls
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -354,13 +354,13 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "this_TextChanged",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "this_TextChanged",log_Reports_ThisMethod);
             //
             //
 
             string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-            log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（数値上下ボックス）のテキストが変更されました。";
+            log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（数値上下ボックス）のテキストが変更されました。";
 
             CustomcontrolNumericUpDown ccNumericUpDown = (CustomcontrolNumericUpDown)sender;
 
@@ -375,7 +375,7 @@ namespace Xenon.Controls
 
                 MessageBox.Show(
                     "ユーザーによって直接入力されました。this.ControlCommon.Name=[" + sName_Usercontrol + "]",
-                    "▲デバッグ（" + Info_Controls.SName_Library + "）" + this.GetType().Name + "#this_TextChanged:");
+                    "▲デバッグ（" + Info_Controls.Name_Library + "）" + this.GetType().Name + "#this_TextChanged:");
 
                 this.UsercontrolToMemory(
                     log_Reports_ThisMethod

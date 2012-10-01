@@ -33,7 +33,7 @@ namespace Xenon.MiddleImpl
             Log_Method log_Method = new Log_MethodImpl(0);
             // メタ。
             Log_Reports log_Reports_Meta = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "WriteErrorLog",log_Reports_Meta);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "WriteErrorLog",log_Reports_Meta);
 
             //
             //
@@ -52,7 +52,7 @@ namespace Xenon.MiddleImpl
             // 書き出し先ファイルへのパス
             //
             Expression_Node_Filepath ec_Fpath;
-            if (log_Reports_Meta.BSuccessful)
+            if (log_Reports_Meta.Successful)
             {
                 XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_LOGS, new Givechapterandverse_NodeImpl("!ハードコーディング_MoOpyopyoImpl#WriteLog", null));
 
@@ -93,12 +93,12 @@ namespace Xenon.MiddleImpl
 
                 string sFpatha;
 
-                if (log_Reports_Meta.BSuccessful)
+                if (log_Reports_Meta.Successful)
                 {
                     // フォルダーへの絶対パス
                     string sFopatha_Logs = ec_Fpath.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint, log_Reports_Meta);
-                    if (!log_Reports_Meta.BSuccessful)
+                    if (!log_Reports_Meta.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -114,7 +114,7 @@ namespace Xenon.MiddleImpl
                             "error-log.txt",
                             log_Reports_Meta
                             );
-                        if (!log_Reports_Meta.BSuccessful)
+                        if (!log_Reports_Meta.Successful)
                         {
                             // 既エラー。
                             goto gt_EndMethod;
@@ -132,7 +132,7 @@ namespace Xenon.MiddleImpl
                 }
 
 
-                if (log_Reports_Meta.BSuccessful)
+                if (log_Reports_Meta.Successful)
                 {
 
                     try
@@ -158,7 +158,7 @@ namespace Xenon.MiddleImpl
 
                         MessageBox.Show(
                             sb.ToString(),
-                            "▲エラーが発生しました！ " + Info_MiddleImpl.SName_Library + ":" + this.GetType().Name + "#WriteErrorLog");
+                            "▲エラーが発生しました！ " + Info_MiddleImpl.Name_Library + ":" + this.GetType().Name + "#WriteErrorLog");
                     }
                     catch (Exception)
                     {
@@ -183,7 +183,7 @@ namespace Xenon.MiddleImpl
                 StringBuilder s = new StringBuilder();
 
                 s.Append("▲312！エラーが発生しましたが、エラーログを出力できませんでした。（");
-                s.Append(Info_MiddleImpl.SName_Library);
+                s.Append(Info_MiddleImpl.Name_Library);
                 s.Append("）　ファイルパス＝[");
                 s.Append(err_SFpatha);
                 s.Append("]");
@@ -196,28 +196,28 @@ namespace Xenon.MiddleImpl
             {
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("エラーが発生しましたが、エラーログを出力できませんでした。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("もしかして？");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("　・設定ファイルの「エラーログの書出し先」を読み込む前に、エラーが出てしまった？");
-                s.NewLine();
+                s.Newline();
                 s.Append("　・「ログファイル書き出し先」は指定されていますか？");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("実行箇所ヒント：");
-                s.NewLine();
+                s.Newline();
                 s.Append("　・");
                 s.Append(sRunningHintName);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 MessageBox.Show(
                     s.ToString(), //sOutput,
-                    "▲エラー！【Er:101;】（" + log_Method.SHead + "）");
+                    "▲エラー！【Er:101;】（" + log_Method.Fullname + "）");
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

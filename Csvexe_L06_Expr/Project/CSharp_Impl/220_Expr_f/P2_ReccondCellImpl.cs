@@ -54,7 +54,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "GetFirstAwhrReccond",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "GetFirstAwhrReccond",log_Reports);
             //
             //
 
@@ -73,7 +73,7 @@ namespace Xenon.Expr
                 {
                     // 要素数１個
                     sList_KeyFldName = new List<string>();
-                    sList_KeyFldName.Add(recCond_First.SField);
+                    sList_KeyFldName.Add(recCond_First.Name_Field);
                 }
 
 
@@ -88,7 +88,7 @@ namespace Xenon.Expr
                         true,// 必須指定。
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful || !bHit)
+                    if (!log_Reports.Successful || !bHit)
                     {
                         // エラー
                         sKeyFieldName = "";
@@ -102,8 +102,8 @@ namespace Xenon.Expr
 
 
 
-                sKeyFieldName = recCond_First.SField;
-                sExpectedValue = recCond_First.SValue;
+                sKeyFieldName = recCond_First.Name_Field;
+                sExpectedValue = recCond_First.Value;
             }
             else
             {

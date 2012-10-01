@@ -19,7 +19,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 名前。
         /// </summary>
-        string SName
+        string Name
         {
             set;
             get;

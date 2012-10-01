@@ -39,7 +39,7 @@ namespace Xenon.Syntax
         public void Clear( string sName, Givechapterandverse_Node parent_Gcav_OrNull, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Clear", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Clear", log_Reports);
 
             //
             //
@@ -58,7 +58,7 @@ namespace Xenon.Syntax
             //
             //
             //
-            this.SName = sName;
+            this.Name = sName;
 
 
             //
@@ -68,7 +68,7 @@ namespace Xenon.Syntax
             //
             //
             //
-            this.Dictionary_SAttribute_Givechapterandverse.Clear( this, log_Reports);
+            this.Dictionary_Attribute_Givechapterandverse.Clear( this, log_Reports);
 
 
             //
@@ -123,7 +123,7 @@ namespace Xenon.Syntax
             }
 
             // 自分のノード名を追加。
-            s.Append(this.SName);
+            s.Append(this.Name);
 
             s.Decrement();
         }
@@ -134,7 +134,7 @@ namespace Xenon.Syntax
 
             // ノード名
             s.AppendI(0, "<[");
-            s.Append(this.SName);
+            s.Append(this.Name);
             s.Append("]　");
 
             // クラス
@@ -143,22 +143,22 @@ namespace Xenon.Syntax
             s.Append("]クラス");
 
             s.Append(">");
-            s.NewLine();
+            s.Newline();
 
 
             //
             // string 属性
             //
             s.AppendI(1, "string属性");
-            s.NewLine();
-            this.Dictionary_SAttribute_Givechapterandverse.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
+            s.Newline();
+            this.Dictionary_Attribute_Givechapterandverse.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
             {
                 s.AppendI(1, "[");
                 s.Append(sKey);
                 s.Append("]=[");
                 s.Append(sValue);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
             });
 
 
@@ -171,7 +171,7 @@ namespace Xenon.Syntax
             s.AppendI(0, "</");
             s.Append(this.GetType().Name);
             s.Append("クラス>");
-            s.NewLine();
+            s.Newline();
 
 
             s.Decrement();
@@ -189,19 +189,19 @@ namespace Xenon.Syntax
         public virtual Givechapterandverse_Node GetParentByNodename(string sName, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "GetParentByNodename",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "GetParentByNodename",log_Reports);
             //
             //
             Givechapterandverse_Node result;
 
             Givechapterandverse_Node err_Parent_Gcav;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (null != this.Parent_Givechapterandverse)
                 {
                     // 親要素があるとき
 
-                    if (sName == this.Parent_Givechapterandverse.SName)
+                    if (sName == this.Parent_Givechapterandverse.Name)
                     {
                         // ノード名が一致
                         result = this.Parent_Givechapterandverse;
@@ -243,29 +243,29 @@ namespace Xenon.Syntax
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append("親要素の取得に失敗しました。");
-                    s.NewLine();
+                    s.Newline();
 
 
                     s.Append("指定ノード名[");
                     s.Append(sName);
                     s.Append("]");
-                    s.NewLine();
+                    s.Newline();
 
                     s.Append("親要素はヌルです。");
-                    s.NewLine();
+                    s.Newline();
 
                     if (null != err_Parent_Gcav)
                     {
                         s.Append("親要素ノード名[");
-                        s.Append(err_Parent_Gcav.SName);
+                        s.Append(err_Parent_Gcav.Name);
                         s.Append("]");
-                        s.NewLine();
+                        s.Newline();
                     }
 
                     // ヒント
                     s.Append(r.Message_Givechapterandverse(this));
 
-                    r.SMessage = s.ToString();
+                    r.Message = s.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -291,16 +291,16 @@ namespace Xenon.Syntax
         public List<Givechapterandverse_Node> GetChildrenByNodename(string sName, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "GetChildrenByNodename", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "GetChildrenByNodename", log_Reports);
             //
             //
             List<Givechapterandverse_Node> result = new List<Givechapterandverse_Node>();
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node child_Gcav, ref bool bBreak)
                 {
-                    if (sName == child_Gcav.SName)
+                    if (sName == child_Gcav.Name)
                     {
                         // ノード名が一致
                         result.Add(child_Gcav);
@@ -339,18 +339,18 @@ namespace Xenon.Syntax
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("該当した子要素がありませんでした。");
-                s.NewLine();
+                s.Newline();
 
 
                 s.Append("指定ノード名[");
                 s.Append(sName);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(this));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -395,7 +395,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// ノード（要素、属性）の名前。fncや arg など。
         /// </summary>
-        public string SName
+        public string Name
         {
             get
             {
@@ -426,7 +426,7 @@ namespace Xenon.Syntax
 
         private DictionaryGivechapterandverse_String dictionaryGivechapterandverse_SAttr;
 
-        public DictionaryGivechapterandverse_String Dictionary_SAttribute_Givechapterandverse
+        public DictionaryGivechapterandverse_String Dictionary_Attribute_Givechapterandverse
         {
             get
             {

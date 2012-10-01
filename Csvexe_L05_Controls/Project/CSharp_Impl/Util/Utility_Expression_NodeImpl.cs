@@ -58,7 +58,7 @@ namespace Xenon.Controls
             bool bRemove, Request_Selecting request, Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, "Util_E_NodeImpl", "SelectItemsByAttrAsCsv",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, "Util_E_NodeImpl", "SelectItemsByAttrAsCsv",log_Reports);
             //
             //
             //Util_E_NodeImpl dammy_This = new Util_E_NodeImpl();
@@ -108,7 +108,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, "Util_E_NodeImpl", "SelectItemsByAttrAsCsv_Full_",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, "Util_E_NodeImpl", "SelectItemsByAttrAsCsv_Full_",log_Reports);
             //
             //
             //Util_E_NodeImpl dammy_This = new Util_E_NodeImpl();
@@ -119,10 +119,10 @@ namespace Xenon.Controls
             {
                 Expression_Node_String ec_Item = ecList_Item[nI];
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     Expression_Node_String ec_AttrValue;
-                    bool bHit = ec_Item.DicExpression_Attr.TrySelect(out ec_AttrValue, sPmName, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = ec_Item.Dictionary_Expression_Attribute.TrySelect(out ec_AttrValue, sPmName, false, Request_SelectingImpl.Unconstraint, log_Reports);
                     if (bHit)
                     {
                         string sAttrValue = ec_AttrValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
@@ -221,70 +221,70 @@ namespace Xenon.Controls
                 s.Append("必ず、１件以上ヒットする指定でしたが、[");
                 s.Append(ecList_Result.Count);
                 s.Append("]件ヒットしました。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.AppendI(1, "ヒット件数=[");
                 s.Append(ecList_Result.Count);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "items.Count=[");
                 s.Append(ecList_Item.Count);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "sPmName=[");
                 s.Append(sPmName);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "無条件一致か？=[");
                 s.Append(bUnconditional);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "sExpectedValue=[");
                 s.Append(sExpectedValue);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "bRemove=[");
                 s.Append(bRemove);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
 
                 s.AppendI(1, "request_Items.EnumHitcount=[");
                 s.Append(request.EnumHitcount);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 
 
                 s.Append("┌────────┐処理後に残った内容　要素数＝[");
                 s.Append(ecList_Item.Count);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
                 foreach (Expression_Node_String e_Item2 in ecList_Item)
                 {
                     string sAttrNameValue;
-                    bool bHit = e_Item2.DicExpression_Attr.TrySelect(out sAttrNameValue, sPmName, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = e_Item2.Dictionary_Expression_Attribute.TrySelect(out sAttrNameValue, sPmName, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                     s.AppendI(1, "・「E■[");
-                    s.Append(e_Item2.Cur_Givechapterandverse.SName);
+                    s.Append(e_Item2.Cur_Givechapterandverse.Name);
                     s.Append("]　ｎａｍｅ＝”[");
                     s.Append(sAttrNameValue);
                     s.Append("]　値＝”[");
                     s.Append(e_Item2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                     s.Append("]”」");
-                    s.NewLine();
+                    s.Newline();
 
                     e_Item2.ToText_Snapshot(s);
 
                 }
                 s.Append("└────────┘");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 if(1<ecList_Item.Count)
@@ -293,14 +293,14 @@ namespace Xenon.Controls
                     if (null != parent_Expr)
                     {
                         s.Append("┌────────┐先頭要素の親");
-                        s.NewLine();
+                        s.Newline();
                         parent_Expr.ToText_Snapshot(s);
                         s.Append("└────────┘");
-                        s.NewLine();
+                        s.Newline();
                     }
                 }
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -315,32 +315,32 @@ namespace Xenon.Controls
                 s.Append("必ず、１件のみ取得する指定でしたが、[");
                 s.Append(ecList_Result.Count);
                 s.Append("]件取得しました。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.AppendI(1, "sPmName=[");
                 s.Append(sPmName);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "無条件一致か？=[");
                 s.Append(bUnconditional);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "sExpectedValue=[");
                 s.Append(sExpectedValue);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 s.AppendI(1, "bRemove=[");
                 s.Append(bRemove);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

@@ -52,7 +52,7 @@ namespace Xenon.Syntax
 
 
             txt.Append("<" + this.GetType().Name + "クラス>");
-            txt.NewLine();
+            txt.Newline();
 
             foreach (Expression_Node_String ec_Item in this.listExpression_Item)
             {
@@ -60,7 +60,7 @@ namespace Xenon.Syntax
             }
 
             txt.Append("</" + this.GetType().Name + "クラス>");
-            txt.NewLine();
+            txt.Newline();
 
 
             txt.Decrement();
@@ -80,7 +80,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Add",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Add",log_Reports);
 
 
             if (ec_Child is Expression_Node_StringImpl)
@@ -134,16 +134,16 @@ namespace Xenon.Syntax
         public void ToText_Debug(Log_TextIndented s, Log_Reports log_Reports)
         {
             s.Append(this.GetType().Name + "#DebugWrite:E_String項目数＝[" + this.listExpression_Item.Count + "]");
-            s.NewLine();
+            s.Newline();
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここから");
-            s.NewLine();
+            s.Newline();
             foreach (Expression_Node_String e_Str in this.listExpression_Item)
             {
                 s.Append("E_String=[" + e_Str.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
-                s.NewLine();
+                s.Newline();
             }
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここまで");
-            s.NewLine();
+            s.Newline();
         }
 
         //────────────────────────────────────────
@@ -176,7 +176,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public void ForEach(DLGT_E_Children dlgt1)
+        public void ForEach(DLGT_Expression_Children dlgt1)
         {
             bool bBreak = false;
             bool bRemove = false;
@@ -202,7 +202,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public int NCount
+        public int Count
         {
             get
             {

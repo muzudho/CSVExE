@@ -28,7 +28,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Judge",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Judge",log_Reports);
 
             //
             //
@@ -70,7 +70,7 @@ namespace Xenon.Table
                     sName_KeyField,
                     log_Method,
                     log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー
                     bJudge = false;
@@ -85,7 +85,7 @@ namespace Xenon.Table
                     {
                         Log_RecordReport d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
                         d_Report.SetTitle("▲エラー697！", log_Method);
-                        d_Report.SMessage = "string型パース失敗。";
+                        d_Report.Message = "string型パース失敗。";
                         log_Reports.EndCreateReport();
                     }
                     goto gt_EndMethod;
@@ -130,7 +130,7 @@ namespace Xenon.Table
 
                 StringBuilder s = new StringBuilder();
                 s.Append("無い列名が指定されました。 sKeyFieldName=[" + sName_KeyField + "]");
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

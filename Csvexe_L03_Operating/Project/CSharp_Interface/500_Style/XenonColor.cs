@@ -29,7 +29,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 前景色の名前。
         /// </summary>
-        string SName_Color
+        string Name_Color
         {
             get;
             set;

@@ -36,7 +36,7 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "GivechapterandverseToFunction",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "GivechapterandverseToFunction",log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -46,7 +46,7 @@ namespace Xenon.Functions
 
 
             Expression_Node_Function expr_Func;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 expr_Func = owner_MemoryApplication.MemoryForms.GivechapterandverseToFunction.Translate(
                     action_Gcav,
@@ -84,7 +84,7 @@ namespace Xenon.Functions
         )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "PerformUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "PerformUsercontrol",log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -94,16 +94,16 @@ namespace Xenon.Functions
             //
             //
             //
-            string sConfigStack_EventOrigin = "＜" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform:＞";
+            string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:＞";
 
             string sFncName;
-            expr_Func.TrySelectAttr(out sFncName, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            expr_Func.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             //
             // アクションの実行
             //
             //ystem.Console.WriteLine(this.GetType().Name + "#PerformAllFcs: 【開始】E_Action実行します。");
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (null != expr_Func)
                 {
@@ -168,7 +168,7 @@ namespace Xenon.Functions
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー202！", log_Method);
 
-                string sActionName = "（エラー処理未実装 " + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Perform）";
+                string sActionName = "（エラー処理未実装 " + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform）";
 
                 StringBuilder t = new StringBuilder();
                 t.Append("指定のアクション[" + sActionName + "]を実行しようとしましたが、");
@@ -179,7 +179,7 @@ namespace Xenon.Functions
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
-                t.Append("　" + Info_Functions.SName_Library + ":" + this.GetType().Name + "#Performに、プログラムを実装してください。");
+                t.Append("　" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Performに、プログラムを実装してください。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
@@ -190,7 +190,7 @@ namespace Xenon.Functions
                 // ヒント
                 //todo: t.Append(r.Message_Givechapterandverse(e_Uic.Cur_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

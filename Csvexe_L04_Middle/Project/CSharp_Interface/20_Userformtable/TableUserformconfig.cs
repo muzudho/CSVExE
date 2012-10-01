@@ -18,7 +18,7 @@ namespace Xenon.Middle
         #region プロパティー
         //────────────────────────────────────────
 
-        string SName_Table
+        string Name_Table
         {
             get;
             set;

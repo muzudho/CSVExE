@@ -33,11 +33,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(33)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(33)" + cur_Cf.Name);
             }
 
             //
@@ -63,7 +63,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.ParseAttr_InGivechapterandverseToExpression(
                     cur_Cf,
@@ -84,10 +84,10 @@ namespace Xenon.GcavToExpr
             //
             {
                 // 非必須　ｖａｌｕｅ＝””　ｖａｌｕｅ属性がなくても正常です。子要素を見に行きます。
-                if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE.SName_Pm))
+                if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE.Name_Pm))
                 {
                     string sValue;
-                    cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
                     cur_Ec.AppendTextNode(
                         sValue,
                         cur_Cf,
@@ -123,7 +123,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                parent_Ec.ListExpression_Child.Add(
+                parent_Ec.List_Expression_Child.Add(
                     cur_Ec,
                     log_Reports
                     );
@@ -136,7 +136,7 @@ namespace Xenon.GcavToExpr
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

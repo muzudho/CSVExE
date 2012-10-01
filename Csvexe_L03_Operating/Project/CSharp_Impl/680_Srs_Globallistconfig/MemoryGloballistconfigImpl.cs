@@ -42,7 +42,7 @@ namespace Xenon.Operating
         /// 担当者名を全て返します。
         /// </summary>
         /// <returns></returns>
-        public List<string> GetSHumans()
+        public List<string> GetNameHumans()
         {
             List<string> humanNames = new List<string>();
 
@@ -68,7 +68,7 @@ namespace Xenon.Operating
             string typeName, string sNumber, string humanNames, Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "SearchHuman", log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "SearchHuman", log_Reports);
 
             //
             //
@@ -88,7 +88,7 @@ namespace Xenon.Operating
                 {
                     Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー1008！", pg_Method);
-                    r.SMessage = "入力数値[" + sNumber + "]を、int型整数に変換できませんでした。";
+                    r.Message = "入力数値[" + sNumber + "]を、int型整数に変換できませんでした。";
                     log_Reports.EndCreateReport();
                 }
 
@@ -109,7 +109,7 @@ namespace Xenon.Operating
             foreach (GloballistconfigHuman human in this.humanDictionary.Values)
             {
                 // 指定された担当者名か否か。
-                if (humanNameList.Contains(human.SName))
+                if (humanNameList.Contains(human.Name))
                 {
                     // 指定された担当者名なら
 
@@ -119,7 +119,7 @@ namespace Xenon.Operating
                     {
                         // 指定の変数の型と一致するかどうか。
 
-                        if (variable.SType == typeName)
+                        if (variable.Name_Type == typeName)
                         {
                             // 指定の変数の型と一致した場合
 
@@ -131,7 +131,7 @@ namespace Xenon.Operating
                                 O_IntegerRanges o_Ranges2;
                                 StringBuilder sInfoMsg = new StringBuilder();
                                 string sErrorMsg;
-                                if (sToO.CfToO(numberObj.SRange, out o_Ranges2, ref sInfoMsg, out sErrorMsg))
+                                if (sToO.CfToO(numberObj.Text_Range, out o_Ranges2, ref sInfoMsg, out sErrorMsg))
                                 {
                                     // 正常時
 
@@ -155,13 +155,13 @@ namespace Xenon.Operating
                                                 null,
                                                 log_Reports
                                                 );
-                                            if (!log_Reports.BSuccessful)
+                                            if (!log_Reports.Successful)
                                             {
                                                 // エラー
                                                 goto gt_EndMethod;
                                             }
 
-                                            if (log_Reports.BSuccessful)
+                                            if (log_Reports.Successful)
                                             {
                                                 // 正常時
 
@@ -170,7 +170,7 @@ namespace Xenon.Operating
                                                     // 優先順位が高ければ
 
                                                     highPriority = numberRef;
-                                                    highHumanName = human.SName;
+                                                    highHumanName = human.Name;
                                                 }
                                             }
                                         }
@@ -187,7 +187,7 @@ namespace Xenon.Operating
                                     if (log_Reports.CanCreateReport)
                                     {
                                         Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Warning);
-                                        r.SMessage = sInfoMsg.ToString();
+                                        r.Message = sInfoMsg.ToString();
                                         sInfoMsg.Length = 0;
                                         log_Reports.EndCreateReport();
                                     }
@@ -199,7 +199,7 @@ namespace Xenon.Operating
                                     if (log_Reports.CanCreateReport)
                                     {
                                         Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                        r.SMessage = sErrorMsg;
+                                        r.Message = sErrorMsg;
                                         log_Reports.EndCreateReport();
                                     }
                                     goto gt_EndMethod;

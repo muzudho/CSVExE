@@ -34,7 +34,7 @@ namespace Xenon.Middle
         /// <summary>
         /// バックアップ・フォルダーのサブ名。例えば aaa なら、2009年12月3日のフォルダー名は 20091203_aaa になります。
         /// </summary>
-        string SName_SubFolder
+        string Name_SubFolder
         {
             set;
             get;
@@ -43,7 +43,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 取り置きするバックアップ・フォルダーの数。1日1回バックアップを取っているのなら、10 に設定すれば、10日分のバックアップが取り置きされることになります。
         /// </summary>
-        int NBackupKeptbackups
+        int BackupKeptbackups
         {
             set;
             get;
@@ -52,7 +52,7 @@ namespace Xenon.Middle
         /// <summary>
         /// バックアップ・フォルダーのサブ名。例えば aaa なら、2009年12月3日のフォルダー名は 20091203_aaa になります。
         /// </summary>
-        Givechapterandverse_Node Givechapterandverse_SName_SubFolder
+        Givechapterandverse_Node Givechapterandverse_Name_SubFolder
         {
             set;
             get;

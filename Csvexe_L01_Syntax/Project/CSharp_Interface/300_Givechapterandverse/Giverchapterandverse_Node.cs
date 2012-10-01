@@ -81,7 +81,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 関数なら「Sf:Cell;」といった関数名。
         /// </summary>
-        string SName
+        string Name
         {
             get;
         }
@@ -97,7 +97,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性＝””。
         /// </summary>
-        DictionaryGivechapterandverse_String Dictionary_SAttribute_Givechapterandverse
+        DictionaryGivechapterandverse_String Dictionary_Attribute_Givechapterandverse
         {
             get;
         }

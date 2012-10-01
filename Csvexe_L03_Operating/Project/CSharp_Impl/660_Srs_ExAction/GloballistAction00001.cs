@@ -20,13 +20,13 @@ namespace Xenon.Operating
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Perform",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Perform",log_Reports);
 
             MemoryGloballist moGl = new MemoryGloballistImpl();
 
             string sFpatha = expr_Fpath_GloballistText.Execute_OnExpressionString(
                 Request_SelectingImpl.Unconstraint, log_Reports);//絶対ファイルパス
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -39,13 +39,13 @@ namespace Xenon.Operating
                 {
                     Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー080011！", pg_Method);
-                    r.SMessage = "グローバルリスト ファイルへのパスを指定してください。";
+                    r.Message = "グローバルリスト ファイルへのパスを指定してください。";
                     log_Reports.EndCreateReport();
                 }
             }
 
             string sText1;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -81,7 +81,7 @@ namespace Xenon.Operating
                         t.Append("]：");
                         t.Append(ex.Message);
 
-                        r.SMessage = t.ToString();
+                        r.Message = t.ToString();
 
                         log_Reports.EndCreateReport();
                     }
@@ -93,7 +93,7 @@ namespace Xenon.Operating
                 sText1 = null;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -107,7 +107,7 @@ namespace Xenon.Operating
                     string parent_SNode = sFpatha;
                     MemoryGloballistLine modelOfGlLine = this.Sub_ParseLine(sLine, log_Reports, parent_SNode);
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                         // 正常時
 
@@ -136,7 +136,7 @@ namespace Xenon.Operating
         public MemoryGloballistLine Sub_ParseLine(string sLine, Log_Reports log_Reports, string parent_SNode)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Sub_ParseLine",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Sub_ParseLine",log_Reports);
 
             MemoryGloballistLineImpl moGlLine = new MemoryGloballistLineImpl();
 
@@ -169,21 +169,21 @@ namespace Xenon.Operating
                     t.Append("推定問題箇所=[");
                     t.Append(parent_SNode);
                     t.Append("]");
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
 
             string sToken1;
             int nCommaIndex;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
                 // 第二引数は length
                 sToken1 = sLine.Substring(0, nColonIndex);
                 int nSecondIndex = nColonIndex + 1;
-                moGlLine.SText = sLine.Substring(nSecondIndex, sLine.Length - nSecondIndex);
+                moGlLine.Text = sLine.Substring(nSecondIndex, sLine.Length - nSecondIndex);
 
                 // 「[I],1」といった書式の「,」の位置。
                 nCommaIndex = sToken1.IndexOf(',');
@@ -194,7 +194,7 @@ namespace Xenon.Operating
                     {
                         Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー872！", pg_Method);
-                        r.SMessage = "行内容[" + sLine + "]の[" + sToken1 + "]部分に、「,」が含まれていませんでした。";
+                        r.Message = "行内容[" + sLine + "]の[" + sToken1 + "]部分に、「,」が含まれていませんでした。";
                         log_Reports.EndCreateReport();
                     }
                 }
@@ -207,11 +207,11 @@ namespace Xenon.Operating
                 nCommaIndex = -1;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
-                moGlLine.SType = sToken1.Substring(0, nCommaIndex);
+                moGlLine.Name_Type = sToken1.Substring(0, nCommaIndex);
 
                 int nSecondIndex = nCommaIndex + 1;
                 string sNumber = sToken1.Substring(nSecondIndex, sToken1.Length - nSecondIndex);
@@ -224,13 +224,13 @@ namespace Xenon.Operating
                     {
                         Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー878！", pg_Method);
-                        r.SMessage = "変数番号[" + sNumber + "]を、int型の数値に変換できませんでした。";
+                        r.Message = "変数番号[" + sNumber + "]を、int型の数値に変換できませんでした。";
                         log_Reports.EndCreateReport();
                     }
                 }
                 else
                 {
-                    moGlLine.NNumber = nGlLine;
+                    moGlLine.Number = nGlLine;
                 }
             }
 

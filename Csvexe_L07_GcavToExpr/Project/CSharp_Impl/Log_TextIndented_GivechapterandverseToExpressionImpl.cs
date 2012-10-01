@@ -26,7 +26,7 @@ namespace Xenon.GcavToExpr
                 this.AppendI(0, "＜");
                 this.Append(sNodeNameComment);
                 this.Append("＞");
-                this.NewLine();
+                this.Newline();
             }
         }
 
@@ -47,7 +47,7 @@ namespace Xenon.GcavToExpr
                 }
 
                 this.Append("”＞");
-                this.NewLine();
+                this.Newline();
             }
         }
 
@@ -58,7 +58,7 @@ namespace Xenon.GcavToExpr
                 this.AppendI(0, "＜／");
                 this.Append(sNodeNameComment);
                 this.Append("＞");
-                this.NewLine();
+                this.Newline();
                 base.Decrement();
             }
         }

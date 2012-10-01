@@ -29,11 +29,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(36)" + cur_Cf.SName);
+                pg_ParsingLog.Increment("(36)" + cur_Cf.Name);
             }
 
             //
@@ -62,10 +62,10 @@ namespace Xenon.GcavToExpr
             {
                 {
                     PmName pmName = PmNames.S_FIELD_KEY;
-                    if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
                         string sValue;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(parent_Exprv, cur_Cf);
                         ec_Str.AppendTextNode(
@@ -79,10 +79,10 @@ namespace Xenon.GcavToExpr
 
                 {
                     PmName pmName = PmNames.S_VALUE_KEY;
-                    if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
                         string sValue;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(parent_Exprv, cur_Cf);
                         ec_Str.AppendTextNode(
@@ -96,10 +96,10 @@ namespace Xenon.GcavToExpr
 
                 {
                     PmName pmName = PmNames.S_REQUIRED;
-                    if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
                         string sValue;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(parent_Exprv, cur_Cf);
                         ec_Str.AppendTextNode(
@@ -113,10 +113,10 @@ namespace Xenon.GcavToExpr
 
                 {
                     PmName pmName = PmNames.S_FROM;
-                    if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
                         string sValue;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(parent_Exprv, cur_Cf);
                         ec_Str.AppendTextNode(
@@ -130,10 +130,10 @@ namespace Xenon.GcavToExpr
 
                 {
                     PmName pmName = PmNames.S_STORAGE;
-                    if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
                         string sValue;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(parent_Exprv, cur_Cf);
                         ec_Str.AppendTextNode(
@@ -147,10 +147,10 @@ namespace Xenon.GcavToExpr
 
                 {
                     PmName pmName = PmNames.S_DESCRIPTION;
-                    if (cur_Cf.Dictionary_SAttribute_Givechapterandverse.ContainsKey(pmName.SName_Pm))
+                    if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
                     {
                         string sValue;
-                        cur_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, true, log_Reports);
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(parent_Exprv, cur_Cf);
                         ec_Str.AppendTextNode(
@@ -202,7 +202,7 @@ namespace Xenon.GcavToExpr
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

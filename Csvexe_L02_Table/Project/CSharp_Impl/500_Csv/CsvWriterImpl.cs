@@ -46,7 +46,7 @@ namespace Xenon.Table
                 // 異常時は必ずポップアップが出る。
                 MessageBox.Show(
                     ex.Message,
-                    "▲エラー201！(" + Info_Table.SName_Library + ") " + this.GetType().Name + "#Write"
+                    "▲エラー201！(" + Info_Table.Name_Library + ") " + this.GetType().Name + "#Write"
                     );
             }
 

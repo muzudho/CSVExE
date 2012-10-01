@@ -154,7 +154,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(30)", log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(30)", log_Reports);
             //
             //
 
@@ -192,14 +192,14 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "CreateFunctionlist",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "CreateFunctionlist",log_Reports);
             //
             //
             Functionlist fc_Result = null;
 
             //.WriteLine(this.GetType().Name + "#CreateEventActionList: ＜構築＞【開始】　イベントに対応ついたアクションリストを追加します。　（ボタン）");
 
-            switch (sToE_Event.SName)
+            switch (sToE_Event.Name)
             {
                 case NamesSe.S_LOAD:
                     {
@@ -264,7 +264,7 @@ namespace Xenon.Controls
                 t.Append("指定されたイベントの名前");
                 t.Append(Environment.NewLine);
                 t.Append("oEvent.Name=[");
-                t.Append(sToE_Event.SName);
+                t.Append(sToE_Event.Name);
                 t.Append("]には対応できません。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -272,7 +272,7 @@ namespace Xenon.Controls
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(sToE_Event.Givechapterandverse_Event));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -298,7 +298,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "SetupStyle",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SetupStyle",log_Reports);
             //
 
 
@@ -389,7 +389,7 @@ namespace Xenon.Controls
             // エラー。
 
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "AppendChild",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "AppendChild",log_Reports);
             //
             //
 
@@ -414,7 +414,7 @@ namespace Xenon.Controls
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
 
@@ -437,7 +437,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "AddValidator",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "AddValidator",log_Reports);
             //
             //
 
@@ -475,7 +475,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "RefreshData",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "RefreshData",log_Reports);
             //
             //
 
@@ -501,7 +501,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "UpdateData",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "UpdateData",log_Reports);
             //
             //
 
@@ -765,7 +765,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "JudgeValidity",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "JudgeValidity",log_Reports);
             //
             //
 
@@ -961,12 +961,12 @@ namespace Xenon.Controls
         {
             add
             {
-                //this.ccButton.NCount_EventHandler_Click++;
+                //this.ccButton.Count_EventHandler_Click++;
                 this.customcontrolButton1.Click += value;
             }
             remove
             {
-                //this.ccButton.NCount_EventHandler_Click--;
+                //this.ccButton.Count_EventHandler_Click--;
                 this.customcontrolButton1.Click -= value;
             }
         }
@@ -1121,14 +1121,14 @@ namespace Xenon.Controls
             {
                 Log_Method pg_Method = new Log_MethodImpl(0);
                 Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-                pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Expression_Name_Control set",log_Reports_ThisMethod);
+                pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Expression_Name_Control set",log_Reports_ThisMethod);
                 //
                 //
 
                 if (null == value)
                 {
                     // Visual Studio のビジュアルエディターで置いた時は、FcNameを設定できずにnullが設定されます。
-                    Givechapterandverse_Node s_Node = new Givechapterandverse_NodeImpl(Info_Controls.SName_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
+                    Givechapterandverse_Node s_Node = new Givechapterandverse_NodeImpl(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
                     customcontrolButton1.ControlCommon.Expression_Name_Control = new Expression_Node_StringImpl(null, s_Node);
                     customcontrolButton1.Name = this.Name;
                 }

@@ -21,8 +21,8 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public MemoryCodefileinfoImpl()
         {
-            this.sName = "";
-            this.sTypedata = "";
+            this.name = "";
+            this.typedata = "";
             this.expression_Filepath = new Expression_Node_FilepathImpl(new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_7", null));//todo:
         }
 
@@ -34,39 +34,39 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sName;
+        private string name;
 
         /// <summary>
         /// スクリプトファイル呼出名。
         /// </summary>
-        public string SName
+        public string Name
         {
             get
             {
-                return this.sName;
+                return this.name;
             }
             set
             {
-                this.sName = value;
+                this.name = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sTypedata;
+        private string typedata;
 
         /// <summary>
         /// タイプデータ。
         /// </summary>
-        public string STypedata
+        public string Typedata
         {
             get
             {
-                return this.sTypedata;
+                return this.typedata;
             }
             set
             {
-                this.sTypedata = value;
+                this.typedata = value;
             }
         }
 

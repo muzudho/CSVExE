@@ -60,7 +60,7 @@ namespace Xenon.Controls
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Execute_OnOEa",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnOEa",log_Reports_ThisMethod);
             //
             //
 
@@ -74,21 +74,21 @@ namespace Xenon.Controls
 
                 sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
 
-                log_Reports_ThisMethod.SComment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
             }
             else
             {
                 sName_Usercontrol = "";
-                log_Reports_ThisMethod.SComment_EventCreationMe = "OEaアクションが実行されました。";
+                log_Reports_ThisMethod.Comment_EventCreationMe = "OEaアクションが実行されました。";
             }
 
 
             if (log_Reports_ThisMethod.CanStopwatch)
             {
                 string sEventName;
-                this.givechapterandverse_Event.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports_ThisMethod);
+                this.givechapterandverse_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports_ThisMethod);
 
-                pg_Method.Log_Stopwatch.SMessage = Utility_Format.Format(
+                pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
                     sEventName
                     );
@@ -143,7 +143,7 @@ namespace Xenon.Controls
                         log_Reports_ThisMethod
                         );
 
-                    if (log_Reports_ThisMethod.BSuccessful)
+                    if (log_Reports_ThisMethod.Successful)
                     {
                         //ystem.Console.WriteLine(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: 何回呼び出される？(B)");
                         expr_Func.Execute_OnOEa(sender, e);
@@ -173,7 +173,7 @@ namespace Xenon.Controls
         //        t.Append("]形式のアクションリストが、Perform_OEaを実行しようとしました。");
         //        t.Append(Environment.NewLine);
         //        t.Append("これはプログラムの間違いです。");
-        //        r.SMessage = t.ToString();
+        //        r.Message = t.ToString();
         //        log_Reports_ThisMethod.EndCreateReport();
         //    }
         //    goto gt_EndMethod;

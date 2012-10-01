@@ -41,7 +41,7 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        List<string> ListS_ArgName
+        List<string> List_NameArgument
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// Expression_Stringを関数として使うときの『ユーザー定義引数』のディクショナリー。
         /// </summary>
-        DicExpression_Node_String DicExpression_Param
+        DicExpression_Node_String Dictionary_Expression_Parameter
         {
             get;
             set;// 関数の引数を丸ごと渡す時に使う。

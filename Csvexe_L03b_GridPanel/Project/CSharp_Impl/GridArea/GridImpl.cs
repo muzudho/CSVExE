@@ -46,34 +46,34 @@ namespace Xenon.GridPanel
         // 説明はインターフェース参照。
         public void Paint(Graphics g, Point parentLocation)
         {
-            int x2 = this.NLefttop_Table.X + this.NSize_Total.Width;
-            int y2 = this.NLefttop_Table.Y + this.NSize_Total.Height;
+            int x2 = this.Lefttop_Table.X + this.Size_Total.Width;
+            int y2 = this.Lefttop_Table.Y + this.Size_Total.Height;
 
             // 水平線
-            if(this.BVisibled_Horizontalline)
+            if(this.IsVisibled_Horizontalline)
             {
-                for (int y = this.NLefttop_Table.Y; y <= y2; y += this.NSize_Cell.Height)
+                for (int y = this.Lefttop_Table.Y; y <= y2; y += this.Size_Cell.Height)
                 {
                     g.DrawLine(
-                        BuilderPen.Parse(this.SName_ForegroundPen),
-                        this.NLefttop_Table.X + parentLocation.X,
+                        BuilderPen.Parse(this.Name_ForegroundPen),
+                        this.Lefttop_Table.X + parentLocation.X,
                         y + parentLocation.Y,
-                        this.NLefttop_Table.X + this.NSize_Total.Width + parentLocation.X,
+                        this.Lefttop_Table.X + this.Size_Total.Width + parentLocation.X,
                         y + parentLocation.Y);
                 }
             }
 
             // 垂直線
-            if(this.BVisibled_Verticalline)
+            if(this.IsVisibled_Verticalline)
             {
-                for (int x = this.NLefttop_Table.X; x <= x2; x += this.NSize_Cell.Width)
+                for (int x = this.Lefttop_Table.X; x <= x2; x += this.Size_Cell.Width)
                 {
                     g.DrawLine(
                         BuilderPen.Parse(this.sName_ForegroundPen),
                         x + parentLocation.X,
-                        this.NLefttop_Table.Y + parentLocation.Y,
+                        this.Lefttop_Table.Y + parentLocation.Y,
                         x + parentLocation.X,
-                        this.NLefttop_Table.Y + this.NSize_Total.Height + parentLocation.Y
+                        this.Lefttop_Table.Y + this.Size_Total.Height + parentLocation.Y
                         );
                 }
             }
@@ -92,10 +92,10 @@ namespace Xenon.GridPanel
             //int ox;
             //int oy;
 
-            int x1 = this.NLefttop_Table.X;
-            int y1 = this.NLefttop_Table.Y;
-            int x2 = this.NLefttop_Table.X + this.NSize_Total.Width;
-            int y2 = this.NLefttop_Table.Y + this.NSize_Total.Height;
+            int x1 = this.Lefttop_Table.X;
+            int y1 = this.Lefttop_Table.Y;
+            int x2 = this.Lefttop_Table.X + this.Size_Total.Width;
+            int y2 = this.Lefttop_Table.Y + this.Size_Total.Height;
 
             bool bResult;
 
@@ -118,8 +118,8 @@ namespace Xenon.GridPanel
         public Point NearCrosspoint(Point location)
         {
             // グリッド領域内での位置に変換。
-            int nXInArea = (location.X - this.NLefttop_Table.X);
-            int nYInArea = (location.Y - this.NLefttop_Table.Y);
+            int nXInArea = (location.X - this.Lefttop_Table.X);
+            int nYInArea = (location.Y - this.Lefttop_Table.Y);
             //onsole.WriteLine(Info_GridPanel.LibraryName + ":" + this.GetType().Name + "#OnMouseMoved: xInArea=[" + nXInArea + "]　　yInArea=[" + nYInArea + "]");
 
             //
@@ -129,20 +129,20 @@ namespace Xenon.GridPanel
             //
             // 今いるセルの、左上の十字交差点を求める。
             //
-            int column = (int)Math.Ceiling((double)nXInArea / (double)this.NSize_Cell.Width);
-            int row = (int)Math.Ceiling((double)nYInArea / (double)this.NSize_Cell.Height);
+            int column = (int)Math.Ceiling((double)nXInArea / (double)this.Size_Cell.Width);
+            int row = (int)Math.Ceiling((double)nYInArea / (double)this.Size_Cell.Height);
 
             //
             // 端数を求める。
             //
-            int hasuuX = nXInArea % this.NSize_Cell.Width;
-            int hasuuY = nYInArea % this.NSize_Cell.Height;
+            int hasuuX = nXInArea % this.Size_Cell.Width;
+            int hasuuY = nYInArea % this.Size_Cell.Height;
 
             //
             // セルの中心を求める。
             //
-            int halfX = (int)((double)this.NSize_Cell.Width / 2.0d);
-            int halfY = (int)((double)this.NSize_Cell.Height / 2.0d);
+            int halfX = (int)((double)this.Size_Cell.Width / 2.0d);
+            int halfY = (int)((double)this.Size_Cell.Height / 2.0d);
 
             //
             // 端数がセルの半分より進んでいれば、１足す。
@@ -177,12 +177,12 @@ namespace Xenon.GridPanel
             //}
 
             // とりあえず、どこかの角位置。
-            int nearCrossX = column * this.NSize_Cell.Width; // todo:オフセット値があるかも。
-            int nearCrossY = row * this.NSize_Cell.Height;
+            int nearCrossX = column * this.Size_Cell.Width; // todo:オフセット値があるかも。
+            int nearCrossY = row * this.Size_Cell.Height;
 
             // 絶対値にして返します。
-            int nearCrossAbsX = nearCrossX + this.NLefttop_Table.X;
-            int nearCrossAbsY = nearCrossY + this.NLefttop_Table.Y;
+            int nearCrossAbsX = nearCrossX + this.Lefttop_Table.X;
+            int nearCrossAbsY = nearCrossY + this.Lefttop_Table.Y;
 
             return new Point(nearCrossAbsX, nearCrossAbsY);
         }
@@ -200,7 +200,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// このグリッドエリアの名前。
         /// </summary>
-        public string SName
+        public string Name
         {
             set
             {
@@ -219,7 +219,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 左上隅(Left Top)の絶対座標。
         /// </summary>
-        public Point NLefttop_Table
+        public Point Lefttop_Table
         {
             set
             {
@@ -238,7 +238,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 1セルの横幅・縦幅ピクセル。
         /// </summary>
-        public Size NSize_Cell
+        public Size Size_Cell
         {
             set
             {
@@ -257,7 +257,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 全体の横幅・縦幅ピクセル。
         /// </summary>
-        public Size NSize_Total
+        public Size Size_Total
         {
             set
             {
@@ -278,7 +278,7 @@ namespace Xenon.GridPanel
         /// 
         /// Penクラスはシリアライズ化できなかったので止めた。
         /// </summary>
-        public string SName_ForegroundPen
+        public string Name_ForegroundPen
         {
             set
             {
@@ -335,7 +335,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 水平線の可視
         /// </summary>
-        public bool BVisibled_Horizontalline
+        public bool IsVisibled_Horizontalline
         {
             set
             {
@@ -354,7 +354,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 垂直線の可視
         /// </summary>
-        public bool BVisibled_Verticalline
+        public bool IsVisibled_Verticalline
         {
             set
             {

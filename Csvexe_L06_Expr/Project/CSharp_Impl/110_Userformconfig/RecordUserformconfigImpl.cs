@@ -68,7 +68,7 @@ namespace Xenon.Expr
         public void TryGetInt(out int out_NValue, string sName, bool bRequired, int nAlt, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "TryGetInt",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetInt",log_Reports);
             //
 
             if (!this.Dictionary_Field.ContainsKey(sName))
@@ -124,7 +124,7 @@ namespace Xenon.Expr
                 s.Append(sName);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -146,7 +146,7 @@ namespace Xenon.Expr
                 s.Append(fo_Field.EnumTypedb);
                 s.Append("]");
                 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -161,7 +161,7 @@ namespace Xenon.Expr
         public void TryGetString(out string out_SValue, string sName, bool bRequired, string sAlt, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "TryGetString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetString",log_Reports);
             //
 
             if (!this.Dictionary_Field.ContainsKey(sName))
@@ -217,7 +217,7 @@ namespace Xenon.Expr
                 s.Append(sName);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -239,7 +239,7 @@ namespace Xenon.Expr
                 s.Append(fo_Field.EnumTypedb);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -254,7 +254,7 @@ namespace Xenon.Expr
         public void TryGetBool(out bool out_BValue, string sName, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "TryGetBool",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetBool",log_Reports);
             //
 
             if (!this.Dictionary_Field.ContainsKey(sName))
@@ -292,7 +292,7 @@ namespace Xenon.Expr
                 s.Append(sName);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -314,7 +314,7 @@ namespace Xenon.Expr
                 s.Append(fo_Field.EnumTypedb);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -329,7 +329,7 @@ namespace Xenon.Expr
         public void TryGetFilepath_Givechapterandverse(out Givechapterandverse_Filepath out_Value, string sName, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "TryGetFilepath_Givechapterandverse", log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetFilepath_Givechapterandverse", log_Reports);
             //
 
             if (!this.Dictionary_Field.ContainsKey(sName))
@@ -338,12 +338,12 @@ namespace Xenon.Expr
 
                 if (bRequired)
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.SHead,null);//ヌル・オブジェクト。
+                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname,null);//ヌル・オブジェクト。
                     goto gt_Error_NotFound;
                 }
                 else
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.SHead, null);//ヌル・オブジェクト。
+                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
                     goto gt_EndMethod;
                 }
             }
@@ -356,12 +356,12 @@ namespace Xenon.Expr
 
                 if (bRequired)
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.SHead, null);//ヌル・オブジェクト。
+                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
                     goto gt_Error_Type;
                 }
                 else
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.SHead, null);//ヌル・オブジェクト。
+                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
                     goto gt_EndMethod;
                 }
             }
@@ -385,7 +385,7 @@ namespace Xenon.Expr
                 s.Append(sName);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -407,7 +407,7 @@ namespace Xenon.Expr
                 s.Append(fo_Field.EnumTypedb);
                 s.Append("]");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -431,110 +431,110 @@ namespace Xenon.Expr
 
 
             txt.Append("<" + this.GetType().Name + "クラス");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "no=[");
             txt.Append(this.NNo);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "tree=[");
             txt.Append(this.nTree);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "] type=[");
             txt.Append(this.sType);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "text=[");
             txt.Append(this.sText);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "enabled=[");
             txt.Append(this.bEnabled);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "visible=[");
             txt.Append(this.bVisible);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "readOnly=[");
             txt.Append(this.bReadonly);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "wordWrap=[");
             txt.Append(this.bWordwrap);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "newLine=[");
             txt.Append(this.sNewline);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "scrollBars=[");
             txt.Append(this.sScrollbars);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "fontSizePt=[");
             txt.Append(this.sFontsizePt);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "itemHeightPx=[");
             txt.Append(this.nItemheightPx);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "itemDisplayFormat=[");
             txt.Append(this.sItemDisplayFormat);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "picZoom=[");
             txt.Append(this.nPiczoom);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "absXLt=[");
             txt.Append(this.nLeft_Abstract);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "absYLt=[");
             txt.Append(this.nTop_Absolute);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "width=[");
             txt.Append(this.nWidth);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "height=[");
             txt.Append(this.nHeight);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "tabIndex=[");
             txt.Append(this.nTabindex);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.AppendI(1, "backColor=[");
             txt.Append(this.sBackcolor);
             txt.Append("]");
-            txt.NewLine();
+            txt.Newline();
 
             txt.Append("/>");
-            txt.NewLine();
+            txt.Newline();
 
 
             txt.Decrement();

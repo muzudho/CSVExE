@@ -52,14 +52,14 @@ namespace Xenon.Syntax
             {
                 Log_Method log_Method = new Log_MethodImpl(0);
                 Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_Syntax.SName_Library, this, "End", log_Reports_ThisMethod);
+                log_Method.BeginMethod(Info_Syntax.Name_Library, this, "End", log_Reports_ThisMethod);
 
                 this.NMilliSeconds_End = stopwatch.ElapsedMilliseconds;
 
 
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append(Info_Syntax.SName_Library);
+                sb.Append(Info_Syntax.Name_Library);
                 sb.Append(":");
                 sb.Append(this.GetType().Name);
                 sb.Append("#End: 計測 ");
@@ -86,7 +86,7 @@ namespace Xenon.Syntax
                 // メソッド名
                 //
                 sb.Append("Stopwatch ");
-                sb.Append(this.Owner_Log_Method.SHead);
+                sb.Append(this.Owner_Log_Method.Fullname);
                 sb.Append(":");
 
                 sb.Append(this.sMessage);
@@ -101,7 +101,7 @@ namespace Xenon.Syntax
                 // メソッド名
                 //
                 sb.Append("Stopwatch ");
-                sb.Append(this.Owner_Log_Method.SHead);
+                sb.Append(this.Owner_Log_Method.Fullname);
                 sb.Append(":");
 
                 sb.Append(this.sMessage);
@@ -171,7 +171,7 @@ namespace Xenon.Syntax
 
         private string sMessage;
 
-        public string SMessage
+        public string Message
         {
             get
             {

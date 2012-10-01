@@ -64,7 +64,7 @@ namespace Xenon.Syntax
 
                     // 解析が失敗していなければ。
                     O_IntegerRange o_Range = new O_IntegerRangeImpl(nSingle);
-                    o_Ranges_Out.ListO_Item.Add(o_Range);
+                    o_Ranges_Out.List_Item.Add(o_Range);
                 }
                 else if (2 == sFirstLast.Length)
                 {
@@ -96,7 +96,7 @@ namespace Xenon.Syntax
 
                     // 解析が失敗していなければ。
                     O_IntegerRange o_Range = new O_IntegerRangeImpl(nFirst,nLast);
-                    o_Ranges_Out.ListO_Item.Add(o_Range);
+                    o_Ranges_Out.List_Item.Add(o_Range);
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace Xenon.Syntax
                 bParsedSuccessful = false;
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("[Error:1084]["+Info_Syntax.SName_Library+":"+this.GetType().Name+"#Parse]");
+                sb.Append("[Error:1084]["+Info_Syntax.Name_Library+":"+this.GetType().Name+"#Parse]");
                 sb.Append("整数範囲の記述[");
                 sb.Append(err_sRange);
                 sb.Append("]の始値[" + err_sFirst + "]は、解析できませんでした。");
@@ -135,7 +135,7 @@ namespace Xenon.Syntax
                 bParsedSuccessful = false;
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("[Error:1085][" + Info_Syntax.SName_Library + ":" + this.GetType().Name + "#Parse]");
+                s.Append("[Error:1085][" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#Parse]");
                 s.Append("整数範囲の記述[");
                 s.Append(err_sRange);
                 s.Append("]の終値[" + err_sLast + "]は、解析できませんでした。");
@@ -153,7 +153,7 @@ namespace Xenon.Syntax
                 bParsedSuccessful = false;
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("[Error:1086][" + Info_Syntax.SName_Library + ":" + this.GetType().Name + "#Parse]");
+                s.Append("[Error:1086][" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#Parse]");
                 s.Append("整数範囲の記述[");
                 s.Append(err_sRange);
                 s.Append("]は、解析できませんでした。");
@@ -174,7 +174,7 @@ namespace Xenon.Syntax
                 bParsedSuccessful = false;
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("[Error:1087][" + Info_Syntax.SName_Library + ":" + this.GetType().Name + "#Parse]");
+                sb.Append("[Error:1087][" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#Parse]");
                 sb.Append("整数範囲の記述[");
                 sb.Append(err_sRange);
                 sb.Append("]は、解析できませんでした。");

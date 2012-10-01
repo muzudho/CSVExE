@@ -41,7 +41,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
             //
             //
             StringBuilder sb_Result = new StringBuilder();
@@ -51,7 +51,7 @@ namespace Xenon.Expr
             //
             // 子要素全部。
 
-            List<Expression_Node_String> ecList_Child = this.ListExpression_Child.SelectList(//Nv_Elem
+            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(//Nv_Elem
                 Request_SelectingImpl.Unconstraint,
                 log_Reports
                 );

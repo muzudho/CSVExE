@@ -59,12 +59,12 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "CreateFunctionlist",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "CreateFunctionlist",log_Reports);
             //
             //
             Functionlist fw_Result = null;
 
-            switch (sToE_Event.SName)
+            switch (sToE_Event.Name)
             {
                 case NamesSe.S_LOAD:
                     {
@@ -107,7 +107,7 @@ namespace Xenon.Controls
                 t.Append("指定されたイベントの名前");
                 t.Append(Environment.NewLine);
                 t.Append("oEvent.Name=[");
-                t.Append(sToE_Event.SName);
+                t.Append(sToE_Event.Name);
                 t.Append("]には対応できません。");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -115,7 +115,7 @@ namespace Xenon.Controls
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(sToE_Event.Givechapterandverse_Event));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -141,7 +141,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "SetupStyle",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SetupStyle",log_Reports);
             //
 
 
@@ -249,7 +249,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Destruct(10)",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Destruct(10)",log_Reports);
             //
             //
 
@@ -283,7 +283,7 @@ namespace Xenon.Controls
             Log_Reports log_Reports
             )
         {
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // ユーザーコントロールに、
@@ -575,14 +575,14 @@ namespace Xenon.Controls
             {
                 Log_Method pg_Method = new Log_MethodImpl(0);
                 Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-                pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Expression_Name_Control set",log_Reports_ThisMethod);
+                pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Expression_Name_Control set",log_Reports_ThisMethod);
                 //
                 //
 
                 if (null == value)
                 {
                     // Visual Studio のビジュアルエディターで置いた時は、FcNameを設定できずにnullが設定されます。
-                    Givechapterandverse_Node cf_Node = new Givechapterandverse_NodeImpl(Info_Controls.SName_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
+                    Givechapterandverse_Node cf_Node = new Givechapterandverse_NodeImpl(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
                     customcontrolPanel1.ControlCommon.Expression_Name_Control = new Expression_Node_StringImpl(null, cf_Node);
                     customcontrolPanel1.Name = this.Name;
                 }

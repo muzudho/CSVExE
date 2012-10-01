@@ -38,7 +38,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "GetControlNameList",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "GetControlNameList",log_Reports);
             //
             //
 
@@ -46,7 +46,7 @@ namespace Xenon.XToGcav
 
             List<string> sList = new List<string>();
             Exception err_Excp = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -74,7 +74,7 @@ namespace Xenon.XToGcav
 
 
             XmlElement xError = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -204,7 +204,7 @@ namespace Xenon.XToGcav
                 t.Append(r.Message_SException(err_Excp));
 
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -226,7 +226,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -248,7 +248,7 @@ namespace Xenon.XToGcav
 
                 // ヒント
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -267,7 +267,7 @@ namespace Xenon.XToGcav
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -296,7 +296,7 @@ namespace Xenon.XToGcav
             // forms フォルダー
             //
             string sFopatha_Forms = ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 sFpatha_Fcnf = "";
@@ -307,7 +307,7 @@ namespace Xenon.XToGcav
             //
             // Fcnf 絶対ファイルパス
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -316,10 +316,10 @@ namespace Xenon.XToGcav
                 Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L08_1", parent_Cf);
                 cf_Fpath.InitPath(
                     sFopatha_Forms,
-                    ec_Fpath_Fcnf.SHumaninput,
+                    ec_Fpath_Fcnf.Humaninput,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     sFpatha_Fcnf = "";
@@ -328,7 +328,7 @@ namespace Xenon.XToGcav
 
                 Expression_Node_Filepath ec_Fpatha_Fcnf = new Expression_Node_FilepathImpl(cf_Fpath);
                 sFpatha_Fcnf = ec_Fpatha_Fcnf.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     sFpatha_Fcnf = "";

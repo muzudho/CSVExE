@@ -49,7 +49,7 @@ namespace Xenon.MiddleImpl
         public void Clear(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Clear",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear",log_Reports);
             //
 
             if (log_Method.CanDebug(1))
@@ -89,7 +89,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "Load_AutoSystemVariable",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Load_AutoSystemVariable",log_Reports);
             //
             //
 
@@ -99,7 +99,7 @@ namespace Xenon.MiddleImpl
             //
             // Engine フォルダー
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 string sNamevar = NamesVar.S_SP_ENGINE;
@@ -117,7 +117,7 @@ namespace Xenon.MiddleImpl
             //
             // Forms フォルダー
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sNamevar = NamesVar.S_SP_FORMS;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_FORMS;
@@ -134,7 +134,7 @@ namespace Xenon.MiddleImpl
             //
             // Logs フォルダー
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sNamevar = NamesVar.S_SP_LOGS;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOGS;
@@ -151,7 +151,7 @@ namespace Xenon.MiddleImpl
             //
             // Aa_Files.csv ファイル
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sNamevar = NamesVar.S_SP_FILES;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_FILES_CSV;
@@ -187,7 +187,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "LoadFile1",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile1",log_Reports);
             //
             //
 
@@ -202,7 +202,7 @@ namespace Xenon.MiddleImpl
 
 
             Givechapterandverse_Node cf_Auto = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // 「エディター・フォルダー」から、「Engine」「Forms」「Logs」のフォルダーパスを類推します。
@@ -219,7 +219,7 @@ namespace Xenon.MiddleImpl
 
 
             string sFpatha_AaEditorXml = "";
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 //
                 // @Editor.xml へのファイルパス。
@@ -233,7 +233,7 @@ namespace Xenon.MiddleImpl
             // 変数の読取りを開始します。
             //
             Exception err_Exception;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 XmlDocument xDoc = new XmlDocument();
 
@@ -249,7 +249,7 @@ namespace Xenon.MiddleImpl
 
                     // スクリプトファイルのバージョンチェック。（エディター設定ファイル）
                     ValuesAttr.Test_Codefileversion(
-                        xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.SName_Attr),
+                        xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                         log_Reports,
                         new Givechapterandverse_NodeImpl(sFpatha_AaEditorXml, null),
                         NamesNode.S_CODEFILE_EDITOR
@@ -269,15 +269,15 @@ namespace Xenon.MiddleImpl
                             XmlElement x_Fsetvar = (XmlElement)xNode_Fsetvar;
                             Givechapterandverse_NodeImpl s_Fsetvar = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR, null);//todo:親ノード
 
-                            string sNamevar = x_Fsetvar.GetAttribute(PmNames.S_NAME_VAR.SName_Attr);
-                            string sFolder = x_Fsetvar.GetAttribute(PmNames.S_FOLDER.SName_Attr);
-                            string sValue = x_Fsetvar.GetAttribute(PmNames.S_VALUE.SName_Attr);
-                            string sDescription = x_Fsetvar.GetAttribute(PmNames.S_DESCRIPTION.SName_Attr);
+                            string sNamevar = x_Fsetvar.GetAttribute(PmNames.S_NAME_VAR.Name_Attribute);
+                            string sFolder = x_Fsetvar.GetAttribute(PmNames.S_FOLDER.Name_Attribute);
+                            string sValue = x_Fsetvar.GetAttribute(PmNames.S_VALUE.Name_Attribute);
+                            string sDescription = x_Fsetvar.GetAttribute(PmNames.S_DESCRIPTION.Name_Attribute);
 
-                            s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.SName_Pm, sNamevar, log_Reports);
-                            s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_FOLDER.SName_Pm, sFolder, log_Reports);
-                            s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_VALUE.SName_Pm, sValue, log_Reports);
-                            s_Fsetvar.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.SName_Pm, sDescription, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
 
                             this.MemoryAaeditorxml_Editor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.Add(s_Fsetvar, log_Reports);
                         }
@@ -306,7 +306,7 @@ namespace Xenon.MiddleImpl
             //
             // @Editor.xml へのファイルパス。
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 「エディター・フォルダー」パス　→　「@Editor.xml ファイルパス」へ変換。
                 string sFpath_EditorXml = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
@@ -342,7 +342,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 s.Append(err_Exception.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -368,7 +368,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 s.Append(err_Exception.Message);
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

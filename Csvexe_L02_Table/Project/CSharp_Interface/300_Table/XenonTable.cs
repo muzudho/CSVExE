@@ -195,7 +195,7 @@ namespace Xenon.Table
         /// <summary>
         /// テーブルの名前。
         /// </summary>
-        string SName
+        string Name
         {
             get;
             set;
@@ -205,7 +205,7 @@ namespace Xenon.Table
         /// このテーブルの「テーブル_ユニット名」。なければ空文字列。使ってる？
         /// (table unit)
         /// </summary>
-        string STableunit
+        string Tableunit
         {
             get;
             set;
@@ -216,7 +216,7 @@ namespace Xenon.Table
         /// 「T:～;」といった文字列が入る。
         /// (フィールド名：TYPE_DATA)
         /// </summary>
-        string STypedata
+        string Typedata
         {
             get;
             set;
@@ -226,7 +226,7 @@ namespace Xenon.Table
         /// 「日別バックアップ」を行うなら真。
         /// (date backup)
         /// </summary>
-        bool BDatebackup
+        bool IsDatebackupActivated
         {
             get;
             set;

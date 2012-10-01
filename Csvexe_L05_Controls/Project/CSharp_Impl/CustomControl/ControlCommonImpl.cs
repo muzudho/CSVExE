@@ -28,11 +28,11 @@ namespace Xenon.Controls
         {
             Log_Method log_Method = new Log_MethodImpl();
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Controls.SName_Library, this, "ControlCommonImpl", log_Reports_ThisMethod);
+            log_Method.BeginMethod(Info_Controls.Name_Library, this, "ControlCommonImpl", log_Reports_ThisMethod);
 
             // コントロールを作った時に、必ずnameプロパティを設定してください。
             // ただし、直接 Visual Studio のビジュアルエディターで配置した場合は設定できません。
-            Givechapterandverse_Node cur_Cf = new Givechapterandverse_NodeImpl(log_Method.SHead+"<init>", null);
+            Givechapterandverse_Node cur_Cf = new Givechapterandverse_NodeImpl(log_Method.Fullname+"<init>", null);
 
             this.givechapterandverse_Control = new Givechapterandverse_NodeImpl(NamesNode.S_CONTROL1, cur_Cf);//ダミーのデフォルト・オブジェクト？
             this.expression_Name_Control = new Expression_Node_StringImpl(null, cur_Cf);

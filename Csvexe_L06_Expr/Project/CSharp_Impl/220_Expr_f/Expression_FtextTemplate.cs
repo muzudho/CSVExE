@@ -73,7 +73,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
             //
             //
 
@@ -104,7 +104,7 @@ namespace Xenon.Expr
                 ////
                 //// （１）キー_フィールド名
                 //{
-                //    recCond1.SField = "ID";
+                //    recCond1.Name_Field = "ID";
                 //}
 
                 //
@@ -115,16 +115,16 @@ namespace Xenon.Expr
                     //
 
                     string sLookupId;
-                    bool bHit = this.DicExpression_Attr.TrySelect(out sLookupId, PmNames.S_LOOKUP_ID.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out sLookupId, PmNames.S_LOOKUP_ID.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                     if (bHit)
                     {
-                        recCond1.SValue = sLookupId;
+                        recCond1.Value = sLookupId;
                     }
 
                     string sLookupValue;
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
-                        sLookupValue = recCond1.SValue;
+                        sLookupValue = recCond1.Value;
                     }
                     else
                     {
@@ -146,14 +146,14 @@ namespace Xenon.Expr
                 // （３）検索ヒットの必須の有無
                 {
                     // 必須指定。
-                    selectSt.SRequired = Expression_SftextTemplate.S_TRUE;
+                    selectSt.Required = Expression_SftextTemplate.S_TRUE;
                 }
 
                 //
                 // （４）テーブル名
                 {
                     Expression_Node_String ec_Result;//ソース情報利用
-                    bool bHit = this.DicExpression_Attr.TrySelect(out ec_Result, PmNames.S_TABLE.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_Result, PmNames.S_TABLE.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                     selectSt.Expression_From = ec_Result;
                 }
 
@@ -202,7 +202,7 @@ namespace Xenon.Expr
 
                     bool bExpectedValueRequired;
                     {
-                        bool parseSuccessful = bool.TryParse(selectSt.SRequired, out bExpectedValueRequired);
+                        bool parseSuccessful = bool.TryParse(selectSt.Required, out bExpectedValueRequired);
                     }
 
 
@@ -242,7 +242,7 @@ namespace Xenon.Expr
 
 
                     dst_Rs.AddList(dst_Row, log_Reports);
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -250,7 +250,7 @@ namespace Xenon.Expr
                 }
 
 
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     //
                     // エラーが出ていたら、さっさと抜ける。
@@ -279,7 +279,7 @@ namespace Xenon.Expr
                     string sString = sList_Fld[0];
 
                     //e_string.SetValidation(...);
-                    p1pText.SText = sString;
+                    p1pText.Text = sString;
                 }
                 else
                 {
@@ -287,7 +287,7 @@ namespace Xenon.Expr
 
                     Log_TextIndented txt = new Log_TextIndentedImpl();
                     txt.Append(this.GetType().Name);
-                    txt.Append("#GetString:(" + Info_Expr.SName_Library + ") エラー。該当なし。");
+                    txt.Append("#GetString:(" + Info_Expr.Name_Library + ") エラー。該当なし。");
 
                     txt.Append(" 選択フィールド=[");
 
@@ -303,18 +303,18 @@ namespace Xenon.Expr
                     // キーフィールド
                     txt.Append(" [");
 
-                    txt.Append(recCond1.SField);
+                    txt.Append(recCond1.Name_Field);
 
                     txt.Append("]が");
 
                     // 探す値。
                     txt.Append("[");
-                    txt.Append(recCond1.SValue);
+                    txt.Append(recCond1.Value);
                     txt.Append("]のとき");
 
 
 
-                    p1pText.SText = txt.ToString();
+                    p1pText.Text = txt.ToString();
                 }
 
             }
@@ -322,7 +322,7 @@ namespace Xenon.Expr
 
 
             List<int> nList_P1p = p1pText.GetP1pNumbers(
-                this.DicExpression_Attr,
+                this.Dictionary_Expression_Attribute,
                 log_Reports
                 );
 
@@ -330,7 +330,7 @@ namespace Xenon.Expr
             {
                 string p1pValue;
                 {
-                    bool bHit = this.DicExpression_Attr.TrySelect(
+                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(
                         out p1pValue,
                         "p" + n_P1p+"p",
                         true,
@@ -338,7 +338,7 @@ namespace Xenon.Expr
                         log_Reports
                         );
 
-                    if (log_Reports.BSuccessful)
+                    if (log_Reports.Successful)
                     {
                     }
                     else
@@ -346,7 +346,7 @@ namespace Xenon.Expr
                         p1pValue = null;
                     }
 
-                    p1pText.DicS_P1p.Add(n_P1p, p1pValue);
+                    p1pText.Dictionary_NumberAndValue_Parameter.Add(n_P1p, p1pValue);
                 }
             }
 
@@ -387,13 +387,13 @@ namespace Xenon.Expr
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("・もしかして？　無い変数名を指定したのかも知れません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(parent_Givechapterandverse_Node_Query));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -407,13 +407,13 @@ namespace Xenon.Expr
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　テーブル名が指定されていません。");
-                t.NewLine();
-                t.NewLine();
+                t.Newline();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Givechapterandverse_Node_Query));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -427,12 +427,12 @@ namespace Xenon.Expr
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-                t.NewLine();
+                t.Newline();
 
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(parent_Givechapterandverse_Node_Query));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

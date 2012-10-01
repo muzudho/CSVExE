@@ -57,7 +57,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "P1_GetItemLabel",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "P1_GetItemLabel",log_Reports);
             //
             //
 
@@ -80,7 +80,7 @@ namespace Xenon.MiddleImpl
 
             if (null == this.Expression_ItemLabel)
             {
-                sDisplayText = "(" + Info_MiddleImpl.SName_Library + "#P1_GetItemString:リストボックスに＜ａ－ｉｔｅｍ－ｌａｂｅｌ＞が指定されていません)";
+                sDisplayText = "(" + Info_MiddleImpl.Name_Library + "#P1_GetItemString:リストボックスに＜ａ－ｉｔｅｍ－ｌａｂｅｌ＞が指定されていません)";
                 goto gt_EndMethod;
             }
 
@@ -99,14 +99,14 @@ namespace Xenon.MiddleImpl
                 -1,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // エラー
                 sDisplayText = "（エラー発生中）";
                 goto gt_EndMethod;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 string sKey = nKey.ToString(); // ※仮。
 
@@ -126,7 +126,7 @@ namespace Xenon.MiddleImpl
                     // 変数名取得。
 
                     StringBuilder sbHint = new StringBuilder();
-                    sbHint.Append(Info_MiddleImpl.SName_Library);
+                    sbHint.Append(Info_MiddleImpl.Name_Library);
                     sbHint.Append(":");
                     sbHint.Append(this.GetType().Name);
                     Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl(sbHint.ToString(), null);
@@ -158,7 +158,7 @@ namespace Xenon.MiddleImpl
                 goto gt_EndMethod;
             }
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 sDisplayText = "(エラー発生中)";
                 goto gt_EndMethod;
@@ -185,7 +185,7 @@ namespace Xenon.MiddleImpl
                 t.Append(cctLst.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
                 t.Append("]");
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

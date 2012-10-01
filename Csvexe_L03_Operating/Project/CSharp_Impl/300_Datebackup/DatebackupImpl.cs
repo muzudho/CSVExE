@@ -100,7 +100,7 @@ namespace Xenon.Operating
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Perform",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Perform",log_Reports);
 
             //
             //
@@ -126,7 +126,7 @@ namespace Xenon.Operating
                 Request_SelectingImpl.Unconstraint,
                 log_Reports
                 );
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
                 goto gt_EndMethod;
@@ -136,7 +136,7 @@ namespace Xenon.Operating
 
 
             // 日付フォルダー名(FOlder Name)
-            string sDateFon = DatebackupImpl.CreateDateFolderName(this.SName_Sub);
+            string sDateFon = DatebackupImpl.CreateDateFolderName(this.Name_Sub);
 
 
             Givechapterandverse_Node s_ParentNode = new Givechapterandverse_NodeImpl("!ハードコーディング_DataBackup#Perform", null);
@@ -152,7 +152,7 @@ namespace Xenon.Operating
                     cf_dir.InitPath(sFpatha_BkHome, sDateFon,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -161,7 +161,7 @@ namespace Xenon.Operating
                     ec_Dir = new Expression_Node_FilepathImpl(cf_dir);
                 }
 
-                if (!log_Reports.BSuccessful)// 異常時はスキップ
+                if (!log_Reports.Successful)// 異常時はスキップ
                 {
                     goto gt_EndMethod;
                 }
@@ -170,7 +170,7 @@ namespace Xenon.Operating
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -186,7 +186,7 @@ namespace Xenon.Operating
                     s_dir.InitPath(sFpatha_BkHome, "temp" + sDateFon,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -195,7 +195,7 @@ namespace Xenon.Operating
                     ec_Dir = new Expression_Node_FilepathImpl(s_dir);
                 }
 
-                if (!log_Reports.BSuccessful)// 異常時はスキップ
+                if (!log_Reports.Successful)// 異常時はスキップ
                 {
                     goto gt_EndMethod;
                 }
@@ -204,7 +204,7 @@ namespace Xenon.Operating
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
                 );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -212,7 +212,7 @@ namespace Xenon.Operating
             }
             //.WriteLine(this.GetType().Name + "#Perform: absDateDirTemp=[" + absDateDirTemp + "]");
 
-            if (!log_Reports.BSuccessful)// 異常時はスキップ
+            if (!log_Reports.Successful)// 異常時はスキップ
             {
                 goto gt_EndMethod;
             }
@@ -262,10 +262,10 @@ namespace Xenon.Operating
                     Givechapterandverse_Filepath cf_fpath_Destination = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_5", s_ParentNode);
                     cf_fpath_Destination.InitPath(
                         sFopatha_dateTemp,
-                        ec_Fpath_WrittenPlace.SHumaninput,
+                        ec_Fpath_WrittenPlace.Humaninput,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -274,7 +274,7 @@ namespace Xenon.Operating
                     ec_Fpath_Dst = new Expression_Node_FilepathImpl(cf_fpath_Destination);
                 }
 
-                if (!log_Reports.BSuccessful)// 異常時はスキップ
+                if (!log_Reports.Successful)// 異常時はスキップ
                 {
                     goto gt_EndMethod;
                 }
@@ -283,7 +283,7 @@ namespace Xenon.Operating
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
                 );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -291,7 +291,7 @@ namespace Xenon.Operating
 
                 // 人間オペレーターが記述しているファイルパス。
                 // 「相対パス」か「絶対パス」のどちらか。
-                string sFpath_HumanInput = ec_Fpath_Dst.SHumaninput;
+                string sFpath_HumanInput = ec_Fpath_Dst.Humaninput;
 
 
                 //
@@ -306,14 +306,14 @@ namespace Xenon.Operating
                 bool bPathRooted = Utility_Givechapterandverse_Filepath.IsRooted_Path(sFpath_HumanInput,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
                 }
 
 
-                if (!log_Reports.BSuccessful)// 異常時はスキップ
+                if (!log_Reports.Successful)// 異常時はスキップ
                 {
                     goto gt_EndMethod;
                 }
@@ -345,13 +345,13 @@ namespace Xenon.Operating
                         log_Reports,
                         s_ParentNode
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
                     }
 
-                    if (!log_Reports.BSuccessful)// 異常時はスキップ
+                    if (!log_Reports.Successful)// 異常時はスキップ
                     {
                         goto gt_EndMethod;
                     }
@@ -373,11 +373,11 @@ namespace Xenon.Operating
 
                     // (2010-02-24 ※修正)
                     // 保存先ファイルパスをセット。
-                    ec_Fpath_Dst.SetSHumaninput(
+                    ec_Fpath_Dst.SetHumaninput(
                         sNewRelHPath3,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -385,7 +385,7 @@ namespace Xenon.Operating
                 }
                 // 絶対パスへの対応終了
 
-                if (!log_Reports.BSuccessful)// 異常時はスキップ
+                if (!log_Reports.Successful)// 異常時はスキップ
                 {
                     goto gt_EndMethod;
                 }
@@ -395,7 +395,7 @@ namespace Xenon.Operating
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
                     );
-                if (!log_Reports.BSuccessful)
+                if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
@@ -441,7 +441,7 @@ namespace Xenon.Operating
                 }
             }
 
-            if (!log_Reports.BSuccessful)
+            if (!log_Reports.Successful)
             {
                 // 異常時はスキップ
                 goto gt_EndMethod;
@@ -488,7 +488,7 @@ namespace Xenon.Operating
 
                 // ヒント
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -504,7 +504,7 @@ namespace Xenon.Operating
                 //
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -536,7 +536,7 @@ namespace Xenon.Operating
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -552,7 +552,7 @@ namespace Xenon.Operating
                 //
                 // ヒント
                 t.Append(r.Message_SException(err_Excp));
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -641,7 +641,7 @@ namespace Xenon.Operating
             int nCount = 0;
             foreach (string sName_DateFolder in sList_Name_MyDateFolder)
             {
-                if (nCount < this.NKeptbackups)
+                if (nCount < this.Keptbackups)
                 {
                     // (指定)件の間は無視。
                 }
@@ -674,7 +674,7 @@ namespace Xenon.Operating
                         sName_DeleteeFolder,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -684,14 +684,14 @@ namespace Xenon.Operating
                 }
 
                 string sFopath_Deletee;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
                     sFopath_Deletee = ec_Fpath.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
                         log_Reports
                         );
-                    if (!log_Reports.BSuccessful)
+                    if (!log_Reports.Successful)
                     {
                         // 既エラー。
                         goto gt_EndMethod;
@@ -702,7 +702,7 @@ namespace Xenon.Operating
                     sFopath_Deletee = "";
                 }
 
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // 正常時
 
@@ -962,7 +962,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 保管する日付バックアップ・フォルダー数。
         /// </summary>
-        public int NKeptbackups
+        public int Keptbackups
         {
             set
             {
@@ -982,7 +982,7 @@ namespace Xenon.Operating
         /// サブネーム。
         /// 例えば「20091203_yamada」の「yamada」に当たる文字列。アンダースコアは含まない。
         /// </summary>
-        public string SName_Sub
+        public string Name_Sub
         {
             set
             {

@@ -80,17 +80,17 @@ namespace Xenon.Functions
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "NewInstance",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function47Impl(this.EnumEventhandler, this.ListS_ArgName, this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function47Impl(this.EnumEventhandler, this.List_NameArgument, this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Givechapterandverse = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.DicExpression_Attr.Set(PmNames.S_NAME.SName_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
 
-            f0.DicExpression_Attr.Set(Expression_Node_Function47Impl.S_PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function47Impl.S_PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -113,14 +113,14 @@ namespace Xenon.Functions
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Expression_ExecuteMain", log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain", log_Reports);
 
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.SNode_EventOrigin += "＜" + log_Method.SHead + "＞";
+                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + log_Method.Fullname + "＞";
 
 
                 this.Perform2(
@@ -160,14 +160,14 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.SName_Library, this, "Perform2", log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2", log_Reports);
 
             string sName_Fnc;
-            this.TrySelectAttr(out sName_Fnc, PmNames.S_NAME.SName_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
-                log_Method.Log_Stopwatch.SMessage = "Nアクション[" + sName_Fnc + "]実行";
+                log_Method.Log_Stopwatch.Message = "Nアクション[" + sName_Fnc + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
 
@@ -175,17 +175,17 @@ namespace Xenon.Functions
             //ScriptVariableフォルダー
             string sFolder_Scriptvariable;
             {
-                this.TrySelectAttr(out sFolder_Scriptvariable, Expression_Node_Function47Impl.S_PM_FOLDER_SOURCE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFolder_Scriptvariable, Expression_Node_Function47Impl.S_PM_FOLDER_SOURCE, false, Request_SelectingImpl.Unconstraint, log_Reports);
             }
             //書出し先ファイル
             Expression_Node_String expr_Variablefile_Export;
             {
-                this.TrySelectAttr(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, Request_SelectingImpl.Unconstraint, log_Reports);
             }
             //Expression_Node_Filepath file_Export;
             //{
             //    Expression_Node_String expr_Variablefile_Export;
-            //    this.TrySelectAttr(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            //    this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, Request_SelectingImpl.Unconstraint, log_Reports);
             //    {
             //        file_Export = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(expr_Variablefile_Export, true, log_Reports);
 
@@ -198,13 +198,13 @@ namespace Xenon.Functions
             //フィルター指定
             string sFilter;
             {
-                this.TrySelectAttr(out sFilter, Expression_Node_Function47Impl.S_PM_FILTER, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFilter, Expression_Node_Function47Impl.S_PM_FILTER, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 sFilter = sFilter.Trim();
             }
             //ポップアップ指定
             string sPopup;
             {
-                this.TrySelectAttr(out sPopup, Expression_Node_Function47Impl.S_PM_POPUP, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sPopup, Expression_Node_Function47Impl.S_PM_POPUP, false, Request_SelectingImpl.Unconstraint, log_Reports);
                 sPopup = sPopup.Trim();
             }
 
@@ -271,27 +271,27 @@ namespace Xenon.Functions
                         Log_TextIndented s = new Log_TextIndentedImpl();
 
                         s.Append("ファイルに書き込みました。");
-                        s.NewLine();
+                        s.Newline();
                         s.Append("[");
                         s.Append(sFile_Export2);
                         s.Append("]");
-                        s.NewLine();
-                        s.NewLine();
+                        s.Newline();
+                        s.Newline();
 
                         s.Append("検索した場所：");
-                        s.NewLine();
+                        s.Newline();
                         s.Append("[");
                         s.Append(sFolder_Scriptvariable);
                         s.Append("]");
-                        s.NewLine();
-                        s.NewLine();
+                        s.Newline();
+                        s.Newline();
 
                         s.Append("検索オプション（Pm:filter;）：");
-                        s.NewLine();
+                        s.Newline();
                         s.Append("[");
                         s.Append(sFilter);
                         s.Append("]");
-                        s.NewLine();
+                        s.Newline();
 
                         MessageBox.Show(s.ToString(), "▲実行結果！（L02）");
                     }
@@ -301,7 +301,7 @@ namespace Xenon.Functions
                     // 異常時は必ずポップアップが出る。
                     MessageBox.Show(
                         ex.Message,
-                        "▲エラー201！(" + log_Method.SHead + ")#Write"
+                        "▲エラー201！(" + log_Method.Fullname + ")#Write"
                         );
                 }
             }

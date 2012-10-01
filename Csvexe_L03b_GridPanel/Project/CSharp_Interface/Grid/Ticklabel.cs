@@ -52,7 +52,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 表示するなら真。
         /// </summary>
-        bool BVisibled
+        bool IsVisibled
         {
             get;
             set;
@@ -61,7 +61,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 端っこの座標。（xまたはy）
         /// </summary>
-        int NLocation_First
+        int Number_LocationFirst
         {
             get;
             set;
@@ -70,7 +70,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 端っこの座標の反対軸。（xまたはy）
         /// </summary>
-        int NLocation_Fixed
+        int Number_LocationFixed
         {
             get;
             set;
@@ -79,7 +79,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 全体のピクセルの長さ。（widthまたはheight）
         /// </summary>
-        int NLength_Total
+        int Length_Total
         {
             get;
             set;
@@ -88,7 +88,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// セルの間隔。ピクセルでの長さ。（widthまたはheight）
         /// </summary>
-        int NInterval_Cell
+        int Interval_Cell
         {
             get;
             set;
@@ -98,7 +98,7 @@ namespace Xenon.GridPanel
         /// ラベルの文字列幅。ピクセルでの長さ。
         /// 垂直方向に並んだラベルでは cellInterval とは値が一致しないことがあることに対応した設定。
         /// </summary>
-        int NWidth_Label
+        int Width_Label
         {
             get;
             set;
@@ -107,7 +107,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 水平なら真、垂直なら偽。
         /// </summary>
-        bool BHorizontal
+        bool IsHorizontal
         {
             get;
             set;
@@ -116,7 +116,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// フォントのサイズ。単位はpoint(pt)。
         /// </summary>
-        float NSize_FontPt
+        float Size_FontPt
         {
             get;
             set;
@@ -127,7 +127,7 @@ namespace Xenon.GridPanel
         /// 
         /// Brushクラスはシリアライズ化できなかったので止めた。
         /// </summary>
-        string SName_ForegroundBrush
+        string Name_ForegroundBrush
         {
             get;
             set;
@@ -136,7 +136,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 目盛りラベルの最初の数字。
         /// </summary>
-        int NFirst_Label
+        int Number_LabelFirst
         {
             get;
             set;
@@ -145,7 +145,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 目盛りラベルの１つ進むたびの増分。
         /// </summary>
-        int NOffset_Label
+        int Offset_Label
         {
             get;
             set;
@@ -164,7 +164,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 最初の項目を、ピクセル単位でずらして位置調整することができます。
         /// </summary>
-        int NOffsetPixel_FirstItem
+        int OffsetPixel_FirstItem
         {
             get;
             set;

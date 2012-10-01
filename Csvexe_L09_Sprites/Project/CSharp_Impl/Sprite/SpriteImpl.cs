@@ -298,7 +298,7 @@ namespace Xenon.Sprites
             {
                 Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー451！", pg_Method);
-                r.SMessage = "予期しないエラー：" + err_Excp.Message;
+                r.Message = "予期しないエラー：" + err_Excp.Message;
                 pg_Logging.EndCreateReport();
             }
             goto gt_EndMethod;

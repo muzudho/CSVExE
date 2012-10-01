@@ -50,7 +50,7 @@ namespace Xenon.Syntax
         /// 初期化用。
         /// </summary>
         /// <param name="sDirectory_Base"></param>
-        void SetSDirectory_Base(string sDirectory_Base);
+        void SetDirectory_Base(string sDirectory_Base);
 
         /// <summary>
         /// 設定ファイルに記述されているままのファイル・パス表記。
@@ -60,7 +60,7 @@ namespace Xenon.Syntax
         /// 例："Data\\Monster.csv"
         /// </summary>
         /// <returns></returns>
-        string GetSHumaninput();
+        string GetHumaninput();
 
         /// <summary>
         /// 設定ファイルに記述されているままのファイル・パス表記。
@@ -70,7 +70,7 @@ namespace Xenon.Syntax
         /// 例："Data\\Monster.csv"
         /// </summary>
         /// <param name="newHumanInputFilePath"></param>
-        void SetSHumaninput(
+        void SetHumaninput(
             string sFpath_Newhumaninput,
             Log_Reports log_Reports
             );
@@ -87,7 +87,7 @@ namespace Xenon.Syntax
         /// 相対パスが設定されていた場合、その相対元となるディレクトリーへのパスです。
         /// そうでない場合は、System.Windows.Forms.StartupPath を入れてください。
         /// </summary>
-        string SDirectory_Base
+        string Directory_Base
         {
             get;
         }

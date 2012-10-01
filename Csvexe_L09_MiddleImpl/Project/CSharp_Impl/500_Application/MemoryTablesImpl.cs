@@ -60,7 +60,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetXenonTableByName",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetXenonTableByName",log_Reports);
 
             //
             //
@@ -109,7 +109,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(ec_TableName.Cur_Givechapterandverse.Parent_Givechapterandverse));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -135,7 +135,7 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "GetXenonTableByFormgroup",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetXenonTableByFormgroup",log_Reports);
             //
             //
 
@@ -151,8 +151,8 @@ namespace Xenon.MiddleImpl
                 string sTableUnit = ecTableUnit.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                 foreach (XenonTable oTable in this.dictionary_XenonTable.Values)
                 {
-                    if (null!=oTable.STableunit &&
-                        sTableUnit == oTable.STableunit)
+                    if (null!=oTable.Tableunit &&
+                        sTableUnit == oTable.Tableunit)
                     {
                         oList_ResltTable.Add(oTable);
                     }
@@ -191,7 +191,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(ecTableUnit.Cur_Givechapterandverse.Parent_Givechapterandverse));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -216,9 +216,9 @@ namespace Xenon.MiddleImpl
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.SName_Library, this, "AddXenonTable", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "AddXenonTable", log_Reports);
 
-            string sTableName_Trimed = o_Table.SName.Trim();
+            string sTableName_Trimed = o_Table.Name.Trim();
 
             if(""==sTableName_Trimed)
             {
@@ -226,7 +226,7 @@ namespace Xenon.MiddleImpl
                 goto gt_Error_NoName;
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 if (!this.Dictionary_XenonTable.ContainsKey(sTableName_Trimed))
                 {
@@ -252,7 +252,7 @@ namespace Xenon.MiddleImpl
 
                 StringBuilder t = new StringBuilder();
                 t.Append("テーブル名を指定してください。無名です。[");
-                t.Append(o_Table.SName);
+                t.Append(o_Table.Name);
                 t.Append("]");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -263,7 +263,7 @@ namespace Xenon.MiddleImpl
 
                 // ヒント
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -276,7 +276,7 @@ namespace Xenon.MiddleImpl
 
                 StringBuilder t = new StringBuilder();
                 t.Append("登録しようとしたテーブルの名前は、既に登録されていました。[");
-                t.Append(o_Table.SName);
+                t.Append(o_Table.Name);
                 t.Append("]");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -288,7 +288,7 @@ namespace Xenon.MiddleImpl
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(o_Table));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

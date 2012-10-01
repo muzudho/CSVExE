@@ -31,7 +31,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 改行を追加します。
         /// </summary>
-        void NewLine();
+        void Newline();
 
         /// <summary>
         /// インデントレベル指定付き。

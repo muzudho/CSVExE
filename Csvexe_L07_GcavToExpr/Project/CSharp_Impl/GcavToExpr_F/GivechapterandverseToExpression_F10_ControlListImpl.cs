@@ -53,7 +53,7 @@ namespace Xenon.GcavToExpr
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE_DsrcDtrg",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE_DsrcDtrg",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -66,7 +66,7 @@ namespace Xenon.GcavToExpr
             //
 
             string sName_Usercontrol;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // 正常時
 
@@ -120,7 +120,7 @@ namespace Xenon.GcavToExpr
 
                     //
                     // コントロール名。
-                    fcUc.ControlCommon.Givechapterandverse_Control.Dictionary_SAttribute_Givechapterandverse.Set(PmNames.S_NAME.SName_Pm, sFcName, log_Reports);
+                    fcUc.ControlCommon.Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sFcName, log_Reports);
 
 
                     GivechapterandverseToExpression_F11_ControlImpl_ to0 = new GivechapterandverseToExpression_F11_ControlImpl_();
@@ -156,7 +156,7 @@ namespace Xenon.GcavToExpr
                 // ヒント
                 t.Append(r.Message_Givechapterandverse(cf_FcConfig));
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
 

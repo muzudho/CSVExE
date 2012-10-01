@@ -47,7 +47,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 改行を追加します。
         /// </summary>
-        public void NewLine()
+        public void Newline()
         {
             this.Append(Environment.NewLine);
         }

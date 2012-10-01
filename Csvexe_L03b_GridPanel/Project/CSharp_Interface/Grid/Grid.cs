@@ -50,7 +50,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// このグリッドエリアの名前。
         /// </summary>
-        string SName
+        string Name
         {
             get;
             set;
@@ -60,7 +60,7 @@ namespace Xenon.GridPanel
         /// コントロールの中での、左上隅(Left Top)の座標。
         /// （Table LT）
         /// </summary>
-        Point NLefttop_Table
+        Point Lefttop_Table
         {
             get;
             set;
@@ -69,7 +69,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 1セルの横幅・縦幅ピクセル。
         /// </summary>
-        Size NSize_Cell
+        Size Size_Cell
         {
             get;
             set;
@@ -78,7 +78,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 全体の横幅・縦幅ピクセル。
         /// </summary>
-        Size NSize_Total
+        Size Size_Total
         {
             get;
             set;
@@ -87,7 +87,7 @@ namespace Xenon.GridPanel
         /// <summary>
         /// 描画色のペンの名前。C#のPensで定義されているペン変数と同名。既定値は "Black"。
         /// </summary>
-        string SName_ForegroundPen
+        string Name_ForegroundPen
         {
             get;
             set;
@@ -115,7 +115,7 @@ namespace Xenon.GridPanel
         /// 水平線の可視
         /// (horizontal line)
         /// </summary>
-        bool BVisibled_Horizontalline
+        bool IsVisibled_Horizontalline
         {
             set;
             get;
@@ -125,7 +125,7 @@ namespace Xenon.GridPanel
         /// 垂直線の可視
         /// (vertical line)
         /// </summary>
-        bool BVisibled_Verticalline
+        bool IsVisibled_Verticalline
         {
             set;
             get;

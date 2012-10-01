@@ -47,7 +47,7 @@ namespace Xenon.Syntax
             // ダミー・フラグ。使いません。
             bool bDammyFlagCheckPathTooLong = false;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // チェック。絶対パスにすることができればOK。
                 Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(
@@ -60,14 +60,14 @@ namespace Xenon.Syntax
                     );
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                this.SetSDirectory_Base(sFopath_New);
+                this.SetDirectory_Base(sFopath_New);
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
-                this.SetSHumaninput(
+                this.SetHumaninput(
                     sFpath_Newhumaninput,
                     log_Reports
                     );
@@ -115,7 +115,7 @@ namespace Xenon.Syntax
             s.AppendI(0, "<");
             s.Append(this.GetType().Name);
             s.Append("クラス>");
-            s.NewLine();
+            s.Newline();
 
             //
             // 子要素なし。
@@ -125,25 +125,25 @@ namespace Xenon.Syntax
             // メンバ変数
             //
             s.Append("ノード名=[");
-            s.Append(this.SName);
+            s.Append(this.Name);
             s.Append("]");
-            s.NewLine();
+            s.Newline();
 
             s.Append("sBaseDirectory=[");
             s.Append(this.sDirectory_Base);
             s.Append("]");
-            s.NewLine();
+            s.Newline();
 
             s.Append("sHumanInput=[");
             s.Append(this.sHumaninput);
             s.Append("]");
-            s.NewLine();
+            s.Newline();
 
 
             s.AppendI(0, "</");
             s.Append(this.GetType().Name);
             s.Append("クラス>");
-            s.NewLine();
+            s.Newline();
 
 
             s.Decrement();
@@ -170,12 +170,12 @@ namespace Xenon.Syntax
         /// 例："Data\\Monster.csv"
         /// </summary>
         /// <returns></returns>
-        public string GetSHumaninput()
+        public string GetHumaninput()
         {
             return sHumaninput;
         }
 
-        public void SetSHumaninput(
+        public void SetHumaninput(
             string sFpath_Newhumaninput,
             Log_Reports log_Reports
             )
@@ -183,7 +183,7 @@ namespace Xenon.Syntax
             // ダミー・フラグ。使いません。
             bool bDammyFlagCheckPathTooLong = false;
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 // チェック。絶対パスにすることができればOK。
                 Utility_Givechapterandverse_Filepath.GetAbsolutefilepathimpl(
@@ -196,7 +196,7 @@ namespace Xenon.Syntax
                 );
             }
 
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.sHumaninput = sFpath_Newhumaninput;
             }
@@ -216,7 +216,7 @@ namespace Xenon.Syntax
         /// 相対パスが設定されていた場合、その相対元となるディレクトリーへのパスです。
         /// そうでない場合は、System.Windows.Forms.StartupPath を入れてください。
         /// </summary>
-        public string SDirectory_Base
+        public string Directory_Base
         {
             get
             {
@@ -228,7 +228,7 @@ namespace Xenon.Syntax
         /// 初期化用。
         /// </summary>
         /// <param name="baseDirectory"></param>
-        public void SetSDirectory_Base(string sDirectory_Base)
+        public void SetDirectory_Base(string sDirectory_Base)
         {
             this.sDirectory_Base = sDirectory_Base;
         }

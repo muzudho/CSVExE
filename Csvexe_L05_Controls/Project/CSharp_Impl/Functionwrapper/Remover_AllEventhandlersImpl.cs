@@ -44,7 +44,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Remover_AllEventhandlersImpl",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Remover_AllEventhandlersImpl",log_Reports);
             //
             //
 
@@ -96,7 +96,7 @@ namespace Xenon.Controls
                 sb.Append("指定のコントローラーがヌルでした。");
                 sb.Append(Environment.NewLine);
 
-                r.SMessage = sb.ToString();
+                r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -110,33 +110,33 @@ namespace Xenon.Controls
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("例外の型：");
                 s.Append(err_Excp.GetType().Name);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 s.Append("例外メッセージ：");
                 s.Append(err_Excp.Message);
-                s.NewLine();
+                s.Newline();
 
                 // ヒント
                 if (null == err_Type_Control)
                 {
                     s.Append("err_Type_Control がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == this.eventHandlerList_Control)
                 {
                     s.Append("this.eventHandlerList_SrcControl がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == err_Type_EventHandlerListType_Control)
                 {
                     s.Append("err_Type_EventHandlerListType_Control がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -159,12 +159,12 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "BulidList",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "BulidList",log_Reports);
             //
             //
 
             Exception err_Excp;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 try
@@ -226,7 +226,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
                 t.Append("例外メッセージ：");
                 t.Append(err_Excp.Message);
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -256,7 +256,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "BuildListWalk",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "BuildListWalk",log_Reports);
             //
             //
 
@@ -264,7 +264,7 @@ namespace Xenon.Controls
             Delegate err_Dele = null;
             object err_Key = null;
             object err_Next = null;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 //.Console.WriteLine(this.GetType().NFcName + "#BuildListWalk: 【実行】");
@@ -328,51 +328,51 @@ namespace Xenon.Controls
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("例外の型：");
                 s.Append(err_Excp.GetType().Name);
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
                 s.Append("例外メッセージ：");
                 s.Append(err_Excp.Message);
-                s.NewLine();
+                s.Newline();
 
 
                 // ヒント
                 if (null == fi_Handler)
                 {
                     s.Append("delegateFI がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == err_Dele)
                 {
                     s.Append("err_Dele がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == fi_Key)
                 {
                     s.Append("keyFI がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == err_Key)
                 {
                     s.Append("err_Key がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == fi_Next)
                 {
                     s.Append("nextFI がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
                 if (null == err_Next)
                 {
                     s.Append("err_Next がヌルでした。");
-                    s.NewLine();
+                    s.Newline();
                 }
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -391,10 +391,10 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Resume",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Resume",log_Reports);
 
             Exception err_Excp;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 try
@@ -441,7 +441,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
                 t.Append("例外メッセージ：");
                 t.Append(err_Excp.Message);
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -463,12 +463,12 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "Suppress",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Suppress",log_Reports);
             //
             //
 
             Exception err_Excp;
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
 
                 try
@@ -516,7 +516,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
                 t.Append("例外メッセージ：");
                 t.Append(err_Excp.Message);
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

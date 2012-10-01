@@ -58,7 +58,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Controls.SName_Library, this, "SetupStyle",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SetupStyle",log_Reports);
             //
 
 

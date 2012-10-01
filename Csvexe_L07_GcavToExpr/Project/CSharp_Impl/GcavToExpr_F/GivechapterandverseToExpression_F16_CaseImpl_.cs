@@ -43,11 +43,11 @@ namespace Xenon.GcavToExpr
             //throw new Exception(Info_SToE.LibraryName + ":" + this.GetType().Name + "#SToE: このメソッドは廃止方針です。");
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(8)"+cur_Cf.SName);
+                pg_ParsingLog.Increment("(8)"+cur_Cf.Name);
             }
 
             //
@@ -56,7 +56,7 @@ namespace Xenon.GcavToExpr
             //
 
             string parent_SName_Fnc;
-            parent_Expr.TrySelectAttr(out parent_SName_Fnc, PmNames.S_NAME.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            parent_Expr.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
 
 
             if (NamesFnc.S_SWITCH != parent_SName_Fnc)
@@ -111,28 +111,28 @@ namespace Xenon.GcavToExpr
                 {
                     if (
                         // ＜ａｒｇ　＞
-                        NamesNode.S_ARG == child_Cf_Arg1.SName
+                        NamesNode.S_ARG == child_Cf_Arg1.Name
                         )
                     {
                         string sName_Child_Fnc;
-                        child_Cf_Arg1.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Child_Fnc, true, log_Reports);
+                        child_Cf_Arg1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Child_Fnc, true, log_Reports);
 
                         if (log_Method.CanDebug(1))
                         {
-                            log_Method.WriteDebug_ToConsole( "　・" + child_Cf_Arg1.SName + "　ｎａｍｅ＝”[" + sName_Child_Fnc + "]”");
+                            log_Method.WriteDebug_ToConsole( "　・" + child_Cf_Arg1.Name + "　ｎａｍｅ＝”[" + sName_Child_Fnc + "]”");
                         }
 
                         if (
-                            //s_ChildArg1.Dictionary_SAttribute_Givechapterandverse.ContainsKey(PmNames.NAME.SAttrName) &&
+                            //s_ChildArg1.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.NAME.SAttrName) &&
                             // ｎａｍｅ＝”ｃａｓｅＶａｌｕｅ”
-                            PmNames.S_VALUE_CASE.SName_Pm == sName_Child_Fnc
+                            PmNames.S_VALUE_CASE.Name_Pm == sName_Child_Fnc
                             )
                         {
 
                             //
                             // ｃａｓｅＶａｌｕｅは、直接 value=""属性で指定されたものだけが有効です。子要素は指定できません。
                             //
-                            if (child_Cf_Arg1.Dictionary_SAttribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE.SName_Pm))
+                            if (child_Cf_Arg1.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE.Name_Pm))
                             {
                                 log_Reports.Log_Callstack.Push(log_Method, "SToE②s_Cur→e_Cur");
                                 this.ParseChild_InGivechapterandverseToExpression(
@@ -166,7 +166,7 @@ namespace Xenon.GcavToExpr
                     {
                         if (log_Method.CanDebug(1))
                         {
-                            log_Method.WriteDebug_ToConsole("　・" + child_Cf_Arg1.SName);
+                            log_Method.WriteDebug_ToConsole("　・" + child_Cf_Arg1.Name);
                         }
                     }
 
@@ -182,14 +182,14 @@ namespace Xenon.GcavToExpr
                         Log_TextIndented s = new Log_TextIndentedImpl();
 
                         s.Append("[");
-                        s.Append(PmNames.S_VALUE_CASE.SName_Pm);
+                        s.Append(PmNames.S_VALUE_CASE.Name_Pm);
                         s.Append("]属性は、直接 value=””属性で指定されたものだけが有効です。子要素は指定できません。");
-                        s.NewLine();
+                        s.Newline();
 
                         // ヒント
                         s.Append(r.Message_Givechapterandverse(err_Child_Cf));
 
-                        r.SMessage = s.ToString();
+                        r.Message = s.ToString();
                         log_Reports.EndCreateReport();
                     }
                     goto gt_End2;
@@ -213,25 +213,25 @@ namespace Xenon.GcavToExpr
 
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole( "　┌────┐ 子要素数＝[" + cur_Cf.List_ChildGivechapterandverse.NCount + "]");
+                log_Method.WriteDebug_ToConsole( "　┌────┐ 子要素数＝[" + cur_Cf.List_ChildGivechapterandverse.Count + "]");
                 cur_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Child, ref bool bBreak)
                 {
-                    if (NamesNode.S_ARG == s_Child.SName)
+                    if (NamesNode.S_ARG == s_Child.Name)
                     {
                         string sName;
-                        s_Child.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
-                        log_Method.WriteDebug_ToConsole( "　・" + s_Child.SName + "　ｎａｍｅ＝”[" + sName + "]”");
+                        s_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                        log_Method.WriteDebug_ToConsole( "　・" + s_Child.Name + "　ｎａｍｅ＝”[" + sName + "]”");
                     }
                     else
                     {
-                        log_Method.WriteDebug_ToConsole( "　・" + s_Child.SName);
+                        log_Method.WriteDebug_ToConsole( "　・" + s_Child.Name);
                     }
                 });
                 log_Method.WriteDebug_ToConsole( "　└────┘");
 
 
-                log_Method.WriteDebug_ToConsole("　┌────┐ string属性数＝[" + cur_Cf.Dictionary_SAttribute_Givechapterandverse.NCount + "]");
-                cur_Cf.Dictionary_SAttribute_Givechapterandverse.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
+                log_Method.WriteDebug_ToConsole("　┌────┐ string属性数＝[" + cur_Cf.Dictionary_Attribute_Givechapterandverse.Count + "]");
+                cur_Cf.Dictionary_Attribute_Givechapterandverse.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
                 {
                     log_Method.WriteDebug_ToConsole( "　s属　[" + sKey + "]＝[" + sValue + "]");
                 });
@@ -253,20 +253,20 @@ namespace Xenon.GcavToExpr
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("Ｓｆ：ｃａｓｅ；要素はＳｆ：ｓｗｉｔｃｈ；要素の子であるべきですが、＜");
-                s.Append(parent_Expr.Cur_Givechapterandverse.SName);
+                s.Append(parent_Expr.Cur_Givechapterandverse.Name);
                 s.Append(":");
                 s.Append(parent_SName_Fnc);
                 s.Append("＞要素の子として検出されました。");
-                s.NewLine();
+                s.Newline();
 
                 s.Append("　プログラムにミスがあるかもしれません。");
-                s.NewLine();
-                s.NewLine();
+                s.Newline();
+                s.Newline();
 
                 // ヒント
                 s.Append(r.Message_Givechapterandverse(cur_Cf));
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
@@ -277,7 +277,7 @@ namespace Xenon.GcavToExpr
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Cf.SName);
+                pg_ParsingLog.Decrement(cur_Cf.Name);
             }
             log_Method.EndMethod(log_Reports);
         }

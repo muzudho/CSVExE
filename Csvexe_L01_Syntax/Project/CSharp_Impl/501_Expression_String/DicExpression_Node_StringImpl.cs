@@ -42,7 +42,7 @@ namespace Xenon.Syntax
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ForSnapshot = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "ToText_Snapshot", log_Reports_ForSnapshot);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "ToText_Snapshot", log_Reports_ForSnapshot);
 
             log_Reports_ForSnapshot.BeginCreateReport(EnumReport.Dammy);
             //
@@ -51,14 +51,14 @@ namespace Xenon.Syntax
             if (this.dicExpression_Item.Count < 1)
             {
                 s.AppendI(0, "属性なし");
-                s.NewLine();
+                s.Newline();
             }
             else
             {
                 s.AppendI(0, "┌────────┐属性数＝[");
                 s.Append(this.dicExpression_Item.Count);
                 s.Append("]");
-                s.NewLine();
+                s.Newline();
 
 
                 foreach (Expression_Node_String ec_Item in this.dicExpression_Item.Values)
@@ -67,7 +67,7 @@ namespace Xenon.Syntax
                 }
 
                 s.AppendI(0, "└────────┘");
-                s.NewLine();
+                s.Newline();
             }
 
             goto gt_EndMethod;
@@ -122,7 +122,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "Set", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Set", log_Reports);
 
 
             if (!this.dicExpression_Item.ContainsKey(sName))
@@ -160,16 +160,16 @@ namespace Xenon.Syntax
         public void ToText_Debug(Log_TextIndented s, Log_Reports log_Reports)
         {
             s.Append(this.GetType().Name + "#DebugWrite:項目数＝[" + this.dicExpression_Item.Count + "]");
-            s.NewLine();
+            s.Newline();
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここから");
-            s.NewLine();
+            s.Newline();
             foreach (KeyValuePair<string, Expression_Node_String> kvp in this.dicExpression_Item)
             {
                 s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
-                s.NewLine();
+                s.Newline();
             }
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここまで");
-            s.NewLine();
+            s.Newline();
         }
 
         //────────────────────────────────────────
@@ -208,7 +208,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.SName_Library, this, "TrySelect", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TrySelect", log_Reports);
 
             //
             //
@@ -237,28 +237,28 @@ namespace Xenon.Syntax
                         s.Append("指定された名前[");
                         s.Append(sName);
                         s.Append("]は、“EDic(連想配列)”の中にありませんでした。");
-                        s.NewLine();
+                        s.Newline();
 
                         s.Append("┌────────┐キー一覧（個数＝[");
                         s.Append(this.dicExpression_Item.Count);
                         s.Append("]）");
-                        s.NewLine();
+                        s.Newline();
                         foreach (string sKey in this.dicExpression_Item.Keys)
                         {
                             s.Append("[");
                             s.Append(sKey);
                             s.Append("]");
-                            s.NewLine();
+                            s.Newline();
                         }
                         s.Append("└────────┘");
-                        s.NewLine();
+                        s.Newline();
 
                         // ヒント
 
                         if (null != this.Owner_Gcav)
                         {
                             s.Append("◆オーナー情報1");
-                            s.NewLine();
+                            s.Newline();
                             this.Owner_Gcav.ToText_Content(s);
                         }
 
@@ -268,7 +268,7 @@ namespace Xenon.Syntax
                             {
                                 // 最初の１個。
                                 s.Append("◆最初の要素の親の情報。");
-                                s.NewLine();
+                                s.Newline();
                                 Expression_Node_String e_Parent = e_Item.Parent_Expression;
                                 e_Parent.ToText_Snapshot(s);
                                 break;
@@ -277,14 +277,14 @@ namespace Xenon.Syntax
 
                         //
                         // オーナーの情報。
-                        s.NewLine();
-                        s.NewLine();
+                        s.Newline();
+                        s.Newline();
                         s.Append("◆オーナー情報2。");
-                        s.NewLine();
+                        s.Newline();
                         this.owner_Gcav.ToText_Path(s);
 
 
-                        r.SMessage = s.ToString();
+                        r.Message = s.ToString();
                         log_Reports.EndCreateReport();
                     }
 
@@ -346,7 +346,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public int NCount
+        public int Count
         {
             get
             {
@@ -375,7 +375,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public void ForEach(DLGT_E_Attrs dlgt1)
+        public void ForEach(DLGT_Expression_Attributes dlgt1)
         {
             bool bBreak = false;
             foreach (KeyValuePair<string, Expression_Node_String> kvp in this.dicExpression_Item)

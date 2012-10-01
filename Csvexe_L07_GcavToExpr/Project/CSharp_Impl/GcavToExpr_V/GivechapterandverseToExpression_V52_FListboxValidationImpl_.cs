@@ -27,11 +27,11 @@ namespace Xenon.GcavToExpr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.SName_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
-                pg_ParsingLog.Increment("(34)" + cur_Gcav.SName);
+                pg_ParsingLog.Increment("(34)" + cur_Gcav.Name);
             }
 
             //
@@ -83,7 +83,7 @@ namespace Xenon.GcavToExpr
             foreach (Givechapterandverse_Node child_Cf in cfList_Fnc)
             {
                 string sName_Fnc;
-                child_Cf.Dictionary_SAttribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
+                child_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
 
                 if (NamesFnc.S_VLD_SELECT_RECORD == sName_Fnc)
                 {
@@ -128,7 +128,7 @@ namespace Xenon.GcavToExpr
 
             if (Log_ReportsImpl.BDebugmode_Static)
             {
-                pg_ParsingLog.Decrement(cur_Gcav.SName);
+                pg_ParsingLog.Decrement(cur_Gcav.Name);
             }
             log_Method.EndMethod(log_Reports);
 

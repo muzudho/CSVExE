@@ -48,7 +48,7 @@ namespace Xenon.Syntax
         {
             Log_RecordCallstack log_RecordCallstack = new Log_CallstackRecordImpl();
             log_RecordCallstack.Log_Method = log_Method;
-            log_RecordCallstack.SComment_Statement = sStatementComment;
+            log_RecordCallstack.Comment_Statement = sStatementComment;
             this.stack.Push(log_RecordCallstack);
         }
 
@@ -83,21 +83,21 @@ namespace Xenon.Syntax
             {
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("最後にPushしたものに一致しないものをPopしました。");
-                s.NewLine();
+                s.Newline();
                 s.Append("今回Popした問題場所　：　今回Popしたもの");
-                s.NewLine();
-                s.Append("定義SLibraryName  [" + log_Method.SName_Library + "]　：　[" + err_Log_RecordCallstack.Log_Method.SName_Library + "]");
-                s.NewLine();
-                s.Append("呼出SClassName    [" + log_Method.SName_Class + "]　：　[" + err_Log_RecordCallstack.Log_Method.SName_Class + "]");
-                s.NewLine();
-                s.Append("BStatic       [" + log_Method.BStatic + "]　：　[" + err_Log_RecordCallstack.Log_Method.BStatic + "]");
-                s.NewLine();
-                s.Append("SMethodName   [" + log_Method.SName_Method + "]　：　[" + err_Log_RecordCallstack.Log_Method.SName_Method + "]");
-                s.NewLine();
+                s.Newline();
+                s.Append("定義SLibraryName  [" + log_Method.Name_Library + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Library + "]");
+                s.Newline();
+                s.Append("呼出SClassName    [" + log_Method.Name_Class + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Class + "]");
+                s.Newline();
+                s.Append("BStatic       [" + log_Method.Static + "]　：　[" + err_Log_RecordCallstack.Log_Method.Static + "]");
+                s.Newline();
+                s.Append("SMethodName   [" + log_Method.Name_Method + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Method + "]");
+                s.Newline();
                 s.Append("もしかして？");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　・EndMethod()が飛ばされた？　関数の途中でreturnやExceptionで抜けた場合や、EndMethodの記述漏れ？");
-                s.NewLine();
+                s.Newline();
 
                 //throw new Exception(s.ToString());
             }
@@ -106,17 +106,17 @@ namespace Xenon.Syntax
             {
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("PushしたものがないのにPopしました。");
-                s.NewLine();
+                s.Newline();
                 s.Append("今回Popした問題場所");
-                s.NewLine();
-                s.Append("定義SLibraryName  [" + log_Method.SName_Library + "]");
-                s.NewLine();
-                s.Append("呼出SClassName    [" + log_Method.SName_Class + "]");
-                s.NewLine();
-                s.Append("BStatic       [" + log_Method.BStatic + "]");
-                s.NewLine();
-                s.Append("SMethodName   [" + log_Method.SName_Method + "]");
-                s.NewLine();
+                s.Newline();
+                s.Append("定義SLibraryName  [" + log_Method.Name_Library + "]");
+                s.Newline();
+                s.Append("呼出SClassName    [" + log_Method.Name_Class + "]");
+                s.Newline();
+                s.Append("BStatic       [" + log_Method.Static + "]");
+                s.Newline();
+                s.Append("SMethodName   [" + log_Method.Name_Method + "]");
+                s.Newline();
 
                 throw new Exception(s.ToString());
             }
@@ -138,7 +138,7 @@ namespace Xenon.Syntax
 
                 if (
                     !log_RecordCallstack.Log_Method.Equals(log__Method) ||
-                    log_RecordCallstack.SComment_Statement != sStatementComment
+                    log_RecordCallstack.Comment_Statement != sStatementComment
                     )
                 {
                     // エラー
@@ -160,21 +160,21 @@ namespace Xenon.Syntax
             {
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("最後にPushしたものに一致しないものをPopしました。");
-                s.NewLine();
+                s.Newline();
                 s.Append("今回Popした問題場所　：　今回Popしたもの");
-                s.NewLine();
-                s.Append("定義SLibraryName  [" + log__Method.SName_Library + "]　：　[" + err_Log_RecordCallstack.Log_Method.SName_Library + "]");
-                s.NewLine();
-                s.Append("呼出SClassName    [" + log__Method.SName_Class + "]　：　[" + err_Log_RecordCallstack.Log_Method.SName_Class + "]");
-                s.NewLine();
-                s.Append("BStatic       [" + log__Method.BStatic + "]　：　[" + err_Log_RecordCallstack.Log_Method.BStatic + "]");
-                s.NewLine();
-                s.Append("SMethodName   [" + log__Method.SName_Method + "]　：　[" + err_Log_RecordCallstack.Log_Method.SName_Method + "]");
-                s.NewLine();
+                s.Newline();
+                s.Append("定義SLibraryName  [" + log__Method.Name_Library + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Library + "]");
+                s.Newline();
+                s.Append("呼出SClassName    [" + log__Method.Name_Class + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Class + "]");
+                s.Newline();
+                s.Append("BStatic       [" + log__Method.Static + "]　：　[" + err_Log_RecordCallstack.Log_Method.Static + "]");
+                s.Newline();
+                s.Append("SMethodName   [" + log__Method.Name_Method + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Method + "]");
+                s.Newline();
                 s.Append("もしかして？");
-                s.NewLine();
+                s.Newline();
                 s.Append("　　・関数の途中でreturnやExceptionで抜け、EndMethod()が飛ばされた？");
-                s.NewLine();
+                s.Newline();
 
                 throw new Exception(s.ToString());
             }
@@ -183,17 +183,17 @@ namespace Xenon.Syntax
             {
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("PushしたものがないのにPopしました。");
-                s.NewLine();
+                s.Newline();
                 s.Append("今回Popした問題場所");
-                s.NewLine();
-                s.Append("定義SLibraryName  [" + log__Method.SName_Library + "]");
-                s.NewLine();
-                s.Append("呼出SClassName    [" + log__Method.SName_Class + "]");
-                s.NewLine();
-                s.Append("BStatic       [" + log__Method.BStatic + "]");
-                s.NewLine();
-                s.Append("SMethodName   [" + log__Method.SName_Method + "]");
-                s.NewLine();
+                s.Newline();
+                s.Append("定義SLibraryName  [" + log__Method.Name_Library + "]");
+                s.Newline();
+                s.Append("呼出SClassName    [" + log__Method.Name_Class + "]");
+                s.Newline();
+                s.Append("BStatic       [" + log__Method.Static + "]");
+                s.Newline();
+                s.Append("SMethodName   [" + log__Method.Name_Method + "]");
+                s.Newline();
 
                 throw new Exception(s.ToString());
             }

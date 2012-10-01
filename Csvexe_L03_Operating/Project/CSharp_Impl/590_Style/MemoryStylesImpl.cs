@@ -43,7 +43,7 @@ namespace Xenon.Operating
         public void Clear(XenonTable xenonTable_Stylesheet, Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Operating.SName_Library, this, "Clear",log_Reports);
+            pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Clear",log_Reports);
 
             //
             //

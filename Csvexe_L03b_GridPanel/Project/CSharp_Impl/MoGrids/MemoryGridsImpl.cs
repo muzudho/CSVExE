@@ -51,7 +51,7 @@ namespace Xenon.GridPanel
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
-            pg_Method.BeginMethod(Info_GridPanel.SName_Library, this, "Add",log_Reports);
+            pg_Method.BeginMethod(Info_GridPanel.Name_Library, this, "Add",log_Reports);
 
             Exception err_Excp;
             try
@@ -93,7 +93,7 @@ namespace Xenon.GridPanel
                 t.Append("実行経路ヒント：");
                 t.Append(sLogStack);
 
-                r.SMessage = t.ToString();
+                r.Message = t.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

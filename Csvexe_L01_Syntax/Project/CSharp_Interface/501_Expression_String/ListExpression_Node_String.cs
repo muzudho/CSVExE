@@ -92,12 +92,12 @@ namespace Xenon.Syntax
         /// それぞれの要素。
         /// </summary>
         /// <param name="dlgt1"></param>
-        void ForEach(DLGT_E_Children dlgt1);
+        void ForEach(DLGT_Expression_Children dlgt1);
 
         /// <summary>
         /// 要素の個数。
         /// </summary>
-        int NCount
+        int Count
         {
             get;
         }

@@ -45,7 +45,7 @@ namespace Xenon.Syntax
         /// そうでない場合は、System.Windows.Forms.StartupPath を入れてください。
         /// </summary>
         /// <param name="newDirectoryPath"></param>
-        void SetSDirectory_Base(
+        void SetDirectory_Base(
             string sFopath_New,
             Log_Reports log_Reports
             );
@@ -58,7 +58,7 @@ namespace Xenon.Syntax
         /// 例："Data\\Monster.csv"
         /// </summary>
         /// <param name="sFpath_NewHumaninput"></param>
-        void SetSHumaninput(
+        void SetHumaninput(
             string sFpath_NewHumaninput,
             Log_Reports log_Reports
             );
@@ -77,7 +77,7 @@ namespace Xenon.Syntax
         /// 
         /// ※「set」は外してある。プログラム中でセットしている場所を検索しやすいように別メソッドにしてある。
         /// </summary>
-        string SDirectory_Base
+        string Directory_Base
         {
             get;
         }
@@ -92,7 +92,7 @@ namespace Xenon.Syntax
         /// ※「set」は外してある。プログラム中でセットしている場所を検索しやすいように別メソッドにしてある。
         /// </summary>
         /// <returns></returns>
-        string SHumaninput
+        string Humaninput
         {
             get;
         }

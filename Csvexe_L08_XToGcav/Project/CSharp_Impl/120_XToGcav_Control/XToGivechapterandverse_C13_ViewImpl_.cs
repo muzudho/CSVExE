@@ -37,7 +37,7 @@ namespace Xenon.XToGcav
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.SName_Library, this, "XToS",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS",log_Reports);
             //
             //
 
@@ -61,7 +61,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Parse_SAttribute(cur_X, cur_Sf, memoryApplication, log_Reports);
             }
@@ -75,7 +75,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 this.Parse_ChildNodes(cur_X, cur_Sf, memoryApplication, log_Reports);
             }
@@ -89,7 +89,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            if (log_Reports.BSuccessful)
+            if (log_Reports.Successful)
             {
                 parent_Cf.List_ChildGivechapterandverse.Add(cur_Sf, log_Reports);
             }

@@ -29,7 +29,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.SName_Library, this, "Judge",log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Judge",log_Reports);
 
             //
             //
@@ -61,7 +61,7 @@ namespace Xenon.Table
                     null,
                     log_Reports
                     );
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (!bParsedSuccessful)
                     {
@@ -71,7 +71,7 @@ namespace Xenon.Table
                         {
                             Log_RecordReport d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
                             d_Report.SetTitle("▲エラー699！", log_Method);
-                            d_Report.SMessage = "bool型パース失敗。";
+                            d_Report.Message = "bool型パース失敗。";
                             log_Reports.EndCreateReport();
                         }
                         goto gt_EndMethod;
@@ -80,7 +80,7 @@ namespace Xenon.Table
 
 
                 bool bExpectedValue;
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     // （８）キー値をbool型に変換します。
                     bool bParseSuccessful2 = bool.TryParse(sValue_Expected, out bExpectedValue);
@@ -104,7 +104,7 @@ namespace Xenon.Table
 
 
                 // （８）該当行をレコードセットに追加。
-                if (log_Reports.BSuccessful)
+                if (log_Reports.Successful)
                 {
                     if (bKeyValue == bExpectedValue)
                     {
@@ -163,7 +163,7 @@ namespace Xenon.Table
 
                 s.AppendI(0, "</Select_KeyBoolImplクラス>");
 
-                r.SMessage = s.ToString();
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

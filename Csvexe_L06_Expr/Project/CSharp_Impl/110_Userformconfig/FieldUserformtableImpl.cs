@@ -25,7 +25,7 @@ namespace Xenon.Expr
         /// </summary>
         public FieldUserformtableImpl()
         {
-            this.sName = "";
+            this.name = "";
             this.enumTypedb = EnumTypedb.Another;
         }
 
@@ -36,7 +36,7 @@ namespace Xenon.Expr
         /// </summary>
         public FieldUserformtableImpl(string sName, EnumTypedb enum_Typedb, object data)
         {
-            this.sName = sName;
+            this.name = sName;
             this.enumTypedb = enum_Typedb;
             this.data = data;
         }
@@ -49,17 +49,17 @@ namespace Xenon.Expr
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sName;
+        private string name;
 
-        public string SName
+        public string Name
         {
             get
             {
-                return this.sName;
+                return this.name;
             }
             set
             {
-                this.sName = value;
+                this.name = value;
             }
         }
 

@@ -46,7 +46,7 @@ namespace Xenon.Expr
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.SName_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
             //
             //
 
@@ -55,7 +55,7 @@ namespace Xenon.Expr
             string sFormValue;
             {
                 StringBuilder sb = new StringBuilder();
-                List<Expression_Node_String> ecList_Child = this.ListExpression_Child.SelectList(//Nv_Elem
+                List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(//Nv_Elem
                     Request_SelectingImpl.Unconstraint,
                     log_Reports
                     );
@@ -78,12 +78,12 @@ namespace Xenon.Expr
 
             string sResult;
 
-            if (log_Reports.BSuccessful)//無限ループ防止
+            if (log_Reports.Successful)//無限ループ防止
             {
 
                 string sType;
                 {
-                    bool bHit = this.DicExpression_Attr.TrySelect(out sType, PmNames.S_TYPE.SName_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out sType, PmNames.S_TYPE.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
                 }
 
                 if ("chk" == sType.Trim())
@@ -188,12 +188,12 @@ namespace Xenon.Expr
                     Log_TextIndented t = new Log_TextIndentedImpl();
 
                     t.Append("　チェックボックスの値が、true/false ではありませんでした。");
-                    t.NewLine();
+                    t.Newline();
 
                     t.Append("　sFormValue＝[");
                     t.Append(sFormValue);
                     t.Append("]");
-                    t.NewLine();
+                    t.Newline();
 
                     //
                     // ヒント
@@ -201,10 +201,10 @@ namespace Xenon.Expr
 
                     t.Append(r.Message_SSeparator());
                     t.Append("　　ヒント：");
-                    t.NewLine();
+                    t.Newline();
                     t.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }
@@ -222,22 +222,22 @@ namespace Xenon.Expr
                     Log_TextIndented t = new Log_TextIndentedImpl();
 
                     t.Append("　チェックボックスの値が、(真)0以外の数字/(偽)0 ではありませんでした。");
-                    t.NewLine();
+                    t.Newline();
 
                     t.Append("　sFormValue＝[");
                     t.Append(sFormValue);
                     t.Append("]");
-                    t.NewLine();
+                    t.Newline();
 
                     // ヒント：this
                     t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
 
                     t.Append(r.Message_SSeparator());
                     t.Append("　　ヒント：");
-                    t.NewLine();
+                    t.Newline();
                     t.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
 
-                    r.SMessage = t.ToString();
+                    r.Message = t.ToString();
                     log_Reports.EndCreateReport();
                 }
             }

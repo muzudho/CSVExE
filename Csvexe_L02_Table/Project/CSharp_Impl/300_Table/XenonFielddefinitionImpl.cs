@@ -40,7 +40,7 @@ namespace Xenon.Table
         /// <param name="type">string,int,boolに対応。</param>
         public XenonFielddefinitionImpl(string sName_Humaninput, Type type)
         {
-            this.SName_Humaninput = sName_Humaninput;
+            this.Name_Humaninput = sName_Humaninput;
             this.Type = type;
         }
 
@@ -59,7 +59,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドの名前。入力したままの文字列。
         /// </summary>
-        public string SName_Humaninput
+        public string Name_Humaninput
         {
             set
             {
@@ -75,7 +75,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドの名前。トリムして英字大文字に加工した文字列。読み取り専用。
         /// </summary>
-        public string SName_Trimupper
+        public string Name_Trimupper
         {
             get
             {
@@ -136,7 +136,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドについてのコメント。
         /// </summary>
-        public string SComment
+        public string Comment
         {
             set
             {

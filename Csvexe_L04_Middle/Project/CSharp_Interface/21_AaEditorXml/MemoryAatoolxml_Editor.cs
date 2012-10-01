@@ -26,7 +26,7 @@ namespace Xenon.Middle
         /// 
         /// ツール設定ファイルでは name属性、エディター設定ファイルでは name-editor属性。
         /// </summary>
-        string SName
+        string Name
         {
             get;
             set;
