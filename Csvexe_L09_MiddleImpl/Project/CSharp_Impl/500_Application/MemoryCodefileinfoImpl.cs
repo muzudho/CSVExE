@@ -23,7 +23,7 @@ namespace Xenon.MiddleImpl
         {
             this.name = "";
             this.typedata = "";
-            this.expression_Filepath = new Expression_Node_FilepathImpl(new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_7", null));//todo:
+            this.expression_Filepath = new Expression_Node_FilepathImpl(new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_7", null));//todo:
         }
 
         //────────────────────────────────────────

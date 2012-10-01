@@ -17,8 +17,8 @@ namespace Xenon.Expr
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expressionv_4ADisplayImpl(Expression_Node_String parent_Expression_Node, Givechapterandverse_Node parent_Givechapterandverse_Node, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)
+        public Expressionv_4ADisplayImpl(Expression_Node_String parent_Expression_Node, Configurationtree_Node parent_Configurationtree_Node, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)
         {
             this.dictionary_SAttribute = new Dictionary<string, string>();
         }

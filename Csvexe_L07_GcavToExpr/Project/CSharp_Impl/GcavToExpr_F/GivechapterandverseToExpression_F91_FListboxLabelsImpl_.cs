@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.GcavToExpr
 {
-    class GivechapterandverseToExpression_F91_FListboxLabelsImpl_ : GivechapterandverseToExpression_F14n16_AbstractImpl_
+    class ConfigurationtreeToExpression_F91_FListboxLabelsImpl_ : ConfigurationtreeToExpression_F14n16_AbstractImpl_
     {
 
 
@@ -17,16 +17,16 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public override void Translate(
-            Givechapterandverse_Node cur_Cf,//「S■ｆｎｃ　ｎａｍｅ＝”Ｓｆ：ｆ－ｌｉｓｔ－ｂｏｘ－ｌａｂｅｌｓ；”」
+            Configurationtree_Node cur_Cf,//「S■ｆｎｃ　ｎａｍｅ＝”Ｓｆ：ｆ－ｌｉｓｔ－ｂｏｘ－ｌａｂｅｌｓ；”」
             Expression_Node_String parent_Expr,//「E■ｖｉｅｗ」
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
 
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE", log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE", log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -49,7 +49,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            this.ParseAttr_InGivechapterandverseToExpression(
+            this.ParseAttr_InConfigurationtreeToExpression(
                 cur_Cf,
                 cur_Expr,
                 true,
@@ -65,10 +65,10 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            cur_Cf.List_ChildGivechapterandverse.ForEach(delegate( Givechapterandverse_Node child_Cf, ref bool bBreak2)
+            cur_Cf.List_Child.ForEach(delegate( Configurationtree_Node child_Cf, ref bool bBreak2)
             {
                 string sName_Fnc;
-                child_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
+                child_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
 
                 if (log_Method.CanDebug(1))
                 {
@@ -88,7 +88,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 属性
                     //
-                    this.ParseAttr_InGivechapterandverseToExpression(
+                    this.ParseAttr_InConfigurationtreeToExpression(
                         child_Cf,
                         child_Expr,
                         true,
@@ -99,7 +99,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 子
                     //
-                    this.ParseChild_InGivechapterandverseToExpression(
+                    this.ParseChild_InConfigurationtreeToExpression(
                         child_Cf,
                         child_Expr,
                         memoryApplication,
@@ -122,7 +122,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 属性
                     //
-                    this.ParseAttr_InGivechapterandverseToExpression(
+                    this.ParseAttr_InConfigurationtreeToExpression(
                         child_Cf,
                         child_Expr,
                         true,
@@ -133,7 +133,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 子
                     //
-                    this.ParseChild_InGivechapterandverseToExpression(
+                    this.ParseChild_InConfigurationtreeToExpression(
                         child_Cf,
                         child_Expr,
                         memoryApplication,
@@ -156,7 +156,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 属性
                     //
-                    this.ParseAttr_InGivechapterandverseToExpression(
+                    this.ParseAttr_InConfigurationtreeToExpression(
                         child_Cf,
                         child_Expr,
                         true,
@@ -167,7 +167,7 @@ namespace Xenon.GcavToExpr
                     //
                     // 子
                     //
-                    this.ParseChild_InGivechapterandverseToExpression(
+                    this.ParseChild_InConfigurationtreeToExpression(
                         child_Cf,
                         child_Expr,
                         memoryApplication,

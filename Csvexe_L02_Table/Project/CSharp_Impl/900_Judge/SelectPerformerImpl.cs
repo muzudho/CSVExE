@@ -28,7 +28,7 @@ namespace Xenon.Table
             out List<DataRow> out_List_DstRow,
             bool bRequired_ExpectedValue,
             DataTable dataTable,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             )
         {
@@ -79,7 +79,7 @@ namespace Xenon.Table
             bool bRequired_ExpectedValue,
             XenonFielddefinition xenonFileddef_Key,
             DataTable dataTable,
-            Givechapterandverse_Node parent_Query,
+            Configurationtree_Node parent_Query,
             Log_Reports log_Reports
             )
         {
@@ -189,7 +189,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.AppendI(1, r.Message_Givechapterandverse(parent_Query));
+                s.AppendI(1, r.Message_Configurationtree(parent_Query));
 
                 s.AppendI(0, "</NFuncCellUpdaterImplクラス>");
 

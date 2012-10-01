@@ -24,28 +24,28 @@ namespace Xenon.Functions
 
         public static string Format_StopwatchComment(
             Expression_Node_FunctionAbstract ec_Sa,
-            Givechapterandverse_Node cf_ThisAction,
+            Configurationtree_Node cf_ThisAction,
             Log_Reports log_Reports
             )
         {
 
             string sControl = "";
             {
-                Givechapterandverse_Node cf_Event = cf_ThisAction.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
+                Configurationtree_Node cf_Event = cf_ThisAction.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
                 if (log_Reports.Successful)
                 {
-                    Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                    owner_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sControl, false, log_Reports);
+                    Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                    owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sControl, false, log_Reports);
                 }
             }
 
             string sEventName = "";
             {
-                Givechapterandverse_Node cf_Event = cf_ThisAction.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
+                Configurationtree_Node cf_Event = cf_ThisAction.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
 
                 if (log_Reports.Successful)
                 {
-                    cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
+                    cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
                 }
             }
 

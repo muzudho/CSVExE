@@ -10,7 +10,7 @@ using Xenon.Middle;
 
 namespace Xenon.MiddleImpl
 {
-    public class GivechapterandverseToExpression_EventImpl : GivechapterandverseToExpression_Event
+    public class ConfigurationtreeToExpression_EventImpl : ConfigurationtreeToExpression_Event
     {
 
 
@@ -21,7 +21,7 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public GivechapterandverseToExpression_EventImpl()
+        public ConfigurationtreeToExpression_EventImpl()
         {
         }
 
@@ -44,12 +44,12 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            this.Givechapterandverse_Event.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node systemFunction_Gcav, ref bool bBreak)
+            this.Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Gcav, ref bool bBreak)
             {
                 Expression_Node_Function expr_Func;
                 if (log_Reports.Successful)
                 {
-                    expr_Func = moApplication.MemoryForms.GivechapterandverseToFunction.Translate(
+                    expr_Func = moApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
                         systemFunction_Gcav,
                         true,
                         log_Reports
@@ -68,7 +68,7 @@ namespace Xenon.MiddleImpl
 
             if (log_Reports.Successful)
             {
-                this.IsTranslated_GivechapterandverseToExpression = true;
+                this.IsTranslated_ConfigurationtreeToExpression = true;
             }
 
             //
@@ -105,12 +105,12 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// このアクションの一覧が記述されている、対応するイベント。
         /// </summary>
-        private Givechapterandverse_Node givechapterandverse_Event;
+        private Configurationtree_Node givechapterandverse_Event;
 
         /// <summary>
         /// このアクションの一覧が記述されている、対応するイベント。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_Event
+        public Configurationtree_Node Configurationtree_Event
         {
             get
             {
@@ -118,7 +118,7 @@ namespace Xenon.MiddleImpl
             }
             set
             {
-                this.IsTranslated_GivechapterandverseToExpression = false;
+                this.IsTranslated_ConfigurationtreeToExpression = false;
 
                 givechapterandverse_Event = value;
             }
@@ -126,17 +126,17 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private bool isTranslated_GivechapterandverseToExpression;
+        private bool isTranslated_ConfigurationtreeToExpression;
 
-        public bool IsTranslated_GivechapterandverseToExpression
+        public bool IsTranslated_ConfigurationtreeToExpression
         {
             get
             {
-                return isTranslated_GivechapterandverseToExpression;
+                return isTranslated_ConfigurationtreeToExpression;
             }
             set
             {
-                isTranslated_GivechapterandverseToExpression = value;
+                isTranslated_ConfigurationtreeToExpression = value;
             }
         }
 
@@ -153,7 +153,7 @@ namespace Xenon.MiddleImpl
                 //
 
                 string sResult;
-                this.Givechapterandverse_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sResult, false, d_Logging_Dammy);
+                this.Configurationtree_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sResult, false, d_Logging_Dammy);
 
                 //
                 //
@@ -170,7 +170,7 @@ namespace Xenon.MiddleImpl
                 //
                 //
 
-                this.Givechapterandverse_Event.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_NAME.Name_Pm, value, this.Givechapterandverse_Event, true, d_Logging_Dammy);
+                this.Configurationtree_Event.Dictionary_Attribute.Add(PmNames.S_NAME.Name_Pm, value, this.Configurationtree_Event, true, d_Logging_Dammy);
 
                 //
                 //

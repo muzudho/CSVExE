@@ -15,7 +15,7 @@ namespace Xenon.XToGcav
     /// ＜ａｒｇ＞
     /// ※＜ｆｎｃ＞専用の子要素。
     /// </summary>
-    class XToGivechapterandverse_C15b_ArgImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_C15b_ArgImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -23,9 +23,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public override void XToGivechapterandverse(
+        public override void XToConfigurationtree(
             XmlElement cur_X,//＜ａｒｇ１＞
-            Givechapterandverse_Node parent_Cf,//＜ｆｎｃ＞
+            Configurationtree_Node parent_Cf,//＜ｆｎｃ＞
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -43,7 +43,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            Givechapterandverse_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
+            Configurationtree_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
 
 
 
@@ -55,7 +55,7 @@ namespace Xenon.XToGcav
             //
             //
             //string sFncName;
-            //s_Parent.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.NAME.Name_Attr, out sFncName, false, log_Reports);
+            //s_Parent.Dictionary_Attribute.TryGetValue(PmNames.NAME.Name_Attr, out sFncName, false, log_Reports);
             if (NamesNode.S_VALIDATOR == parent_Cf.Name)
             {
                 //
@@ -70,7 +70,7 @@ namespace Xenon.XToGcav
                     {
                         string sName = xNode.Value;
 
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sName, log_Reports);
+                        cur_Cf.Dictionary_Attribute.Set(PmNames.S_NAME.Name_Pm, sName, log_Reports);
                     }
                 }
 
@@ -82,7 +82,7 @@ namespace Xenon.XToGcav
                     if (null != xNode)
                     {
                         sValue = xNode.Value;
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_VALUE.Name_Pm, sValue, cur_Cf, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute.Add(PmNames.S_VALUE.Name_Pm, sValue, cur_Cf, true, log_Reports);
                     }
                     else
                     {
@@ -92,11 +92,11 @@ namespace Xenon.XToGcav
 
                 {
                     string sName;
-                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
+                    cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
 
                     //O_Name o_Name = new O_NameImpl(sName, s_Cur);
 
-                    parent_Cf.Dictionary_Attribute_Givechapterandverse.Add( sName, sValue, parent_Cf, false, log_Reports);
+                    parent_Cf.Dictionary_Attribute.Add( sName, sValue, parent_Cf, false, log_Reports);
                 }
 
             }
@@ -139,9 +139,9 @@ namespace Xenon.XToGcav
                 NamesNode.S_DATA == parent_Cf.Name
                 )
             {
-                bool bHit = parent_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out parent_SName_Fnc, false, log_Reports);
+                bool bHit = parent_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out parent_SName_Fnc, false, log_Reports);
 
-                bool bHit3 = parent_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out parent_SAmemory, true, log_Reports);
+                bool bHit3 = parent_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_MEMORY, out parent_SAmemory, true, log_Reports);
 
                 if (
                     ValuesAttr.S_RECORDS == parent_SAmemory ||
@@ -157,11 +157,11 @@ namespace Xenon.XToGcav
                     // 属性としては追加する。
                     //
                     string sName_Fnc;
-                    bool bHit2 = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
+                    bool bHit2 = cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
                     if (bHit2)
                     {
                         string sValue_Arg;
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue_Arg, false, log_Reports);
+                        cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue_Arg, false, log_Reports);
 
                         // 「S■ｄａｔａ－ｓｏｕｒｃｅ」の（＜ａｒｇ５　ｎａｍｅ属性＞としてｔａｒｇｅｔ値を追加。
 
@@ -170,7 +170,7 @@ namespace Xenon.XToGcav
                         {
                             log_Method.WriteDebug_ToConsole( "＜データ　ｔａｒｇｅｔ=[" + parent_SAmemory + "]＞に属性追加 [" + sName_Fnc + "]←[" + sValue_Arg + "]");
                         }
-                        parent_Cf.Dictionary_Attribute_Givechapterandverse.Add(sName_Fnc, sValue_Arg, parent_Cf, true, log_Reports);
+                        parent_Cf.Dictionary_Attribute.Add(sName_Fnc, sValue_Arg, parent_Cf, true, log_Reports);
                     }
                 }
                 else
@@ -183,7 +183,7 @@ namespace Xenon.XToGcav
             else
             {
                 // 親が＜ｄａｔａ＞以外。
-                bool bHit = parent_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out parent_SName_Fnc, true, log_Reports);//name属性が無い親もある？？
+                bool bHit = parent_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out parent_SName_Fnc, true, log_Reports);//name属性が無い親もある？？
 
                 if (!log_Reports.Successful)
                 {
@@ -222,27 +222,27 @@ namespace Xenon.XToGcav
                     // 属性としては追加する。
                     //
                     string sArgAname;
-                    bool bHit2 = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sArgAname, true, log_Reports);
+                    bool bHit2 = cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sArgAname, true, log_Reports);
                     if (!log_Reports.Successful)
                     {
                         goto gt_EndMethod;
                     }
 
                     string sValue;
-                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, false, log_Reports);
+                    cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, false, log_Reports);
 
 
                     // 「S■ｆｎｃ」のｌｏｇｉｃ属性として追加。
 
                     // 属性連結
-                    parent_Cf.Dictionary_Attribute_Givechapterandverse.Add(sArgAname, sValue, parent_Cf, true, log_Reports);
+                    parent_Cf.Dictionary_Attribute.Add(sArgAname, sValue, parent_Cf, true, log_Reports);
                 }
                 else
                 {
                     // 属性にせず、子まま連結。
 
                     // 子連結
-                    parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+                    parent_Cf.List_Child.Add(cur_Cf, log_Reports);
                 }
             }
             
@@ -269,7 +269,7 @@ namespace Xenon.XToGcav
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Cf));
+                t.Append(r.Message_Configurationtree(parent_Cf));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -294,7 +294,7 @@ namespace Xenon.XToGcav
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(parent_Cf));
+                s.Append(r.Message_Configurationtree(parent_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -312,7 +312,7 @@ namespace Xenon.XToGcav
 
         protected override void Parse_SAttribute(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -335,11 +335,11 @@ namespace Xenon.XToGcav
                     PmName pmName = PmNames.FromSAttribute(xAttr.Name);
                     if (null != pmName)
                     {
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(pmName.Name_Pm, xAttr.Value, cur_Cf, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute.Add(pmName.Name_Pm, xAttr.Value, cur_Cf, true, log_Reports);
                     }
                     else
                     {
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(xAttr.Name, xAttr.Value, cur_Cf, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute.Add(xAttr.Name, xAttr.Value, cur_Cf, true, log_Reports);
                     }
 
                 }
@@ -380,7 +380,7 @@ namespace Xenon.XToGcav
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

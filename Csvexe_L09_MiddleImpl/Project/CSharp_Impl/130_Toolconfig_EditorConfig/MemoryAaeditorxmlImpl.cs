@@ -28,7 +28,7 @@ namespace Xenon.MiddleImpl
         /// <param name="tcProject"></param>
         public MemoryAaeditorxmlImpl(MemoryAaeditorxml_Editor aaeditor_Editor)
         {
-            this.cur_Givechapterandverse = new Givechapterandverse_NodeImpl( "<init>", null);
+            this.cur_Configurationtree = new Configurationtree_NodeImpl( "<init>", null);
             this.memoryAaeditorxml_Editor = aaeditor_Editor;
         }
 
@@ -37,7 +37,7 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public MemoryAaeditorxmlImpl()
         {
-            this.cur_Givechapterandverse = new Givechapterandverse_NodeImpl( "<init>", null);
+            this.cur_Configurationtree = new Configurationtree_NodeImpl( "<init>", null);
             this.memoryAaeditorxml_Editor = new MemoryAaeditorxml_EditorImpl(null);
         }
 
@@ -57,7 +57,7 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole("「エディター設定ファイル・モデル」をクリアーします。");
             }
 
-            this.cur_Givechapterandverse = new Givechapterandverse_NodeImpl("<clear>", null);
+            this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
             this.memoryAaeditorxml_Editor.Clear();
 
 
@@ -104,7 +104,7 @@ namespace Xenon.MiddleImpl
 
                 string sNamevar = NamesVar.S_SP_ENGINE;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE;
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Givechapterandverse);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 moApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -121,7 +121,7 @@ namespace Xenon.MiddleImpl
             {
                 string sNamevar = NamesVar.S_SP_FORMS;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_FORMS;
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Givechapterandverse);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 moApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -138,7 +138,7 @@ namespace Xenon.MiddleImpl
             {
                 string sNamevar = NamesVar.S_SP_LOGS;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOGS;
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Givechapterandverse);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 moApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -155,7 +155,7 @@ namespace Xenon.MiddleImpl
             {
                 string sNamevar = NamesVar.S_SP_FILES;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_FILES_CSV;
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Givechapterandverse);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 moApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -201,7 +201,7 @@ namespace Xenon.MiddleImpl
             string sFopath_Editor = ec_Fopath_Editor.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
 
-            Givechapterandverse_Node cf_Auto = null;
+            Configurationtree_Node cf_Auto = null;
             if (log_Reports.Successful)
             {
                 //
@@ -209,7 +209,7 @@ namespace Xenon.MiddleImpl
                 // これは「エディター設定ファイル」で上書き可能です。日本語フォルダー名に置き換えることもできます。
                 //
 
-                cf_Auto = new Givechapterandverse_NodeImpl("!ハードコーディング自動補完", null);//todo:親ノード
+                cf_Auto = new Configurationtree_NodeImpl("!ハードコーディング自動補完", null);//todo:親ノード
             }
 
 
@@ -251,7 +251,7 @@ namespace Xenon.MiddleImpl
                     ValuesAttr.Test_Codefileversion(
                         xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                         log_Reports,
-                        new Givechapterandverse_NodeImpl(sFpatha_AaEditorXml, null),
+                        new Configurationtree_NodeImpl(sFpatha_AaEditorXml, null),
                         NamesNode.S_CODEFILE_EDITOR
                         );
 
@@ -267,19 +267,19 @@ namespace Xenon.MiddleImpl
                         {
                             // ＜ｆ－ｓｅｔ－ｖａｒ＞要素
                             XmlElement x_Fsetvar = (XmlElement)xNode_Fsetvar;
-                            Givechapterandverse_NodeImpl s_Fsetvar = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR, null);//todo:親ノード
+                            Configurationtree_NodeImpl s_Fsetvar = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, null);//todo:親ノード
 
                             string sNamevar = x_Fsetvar.GetAttribute(PmNames.S_NAME_VAR.Name_Attribute);
                             string sFolder = x_Fsetvar.GetAttribute(PmNames.S_FOLDER.Name_Attribute);
                             string sValue = x_Fsetvar.GetAttribute(PmNames.S_VALUE.Name_Attribute);
                             string sDescription = x_Fsetvar.GetAttribute(PmNames.S_DESCRIPTION.Name_Attribute);
 
-                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
-                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
-                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
-                            s_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
+                            s_Fsetvar.Dictionary_Attribute.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
 
-                            this.MemoryAaeditorxml_Editor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.Add(s_Fsetvar, log_Reports);
+                            this.MemoryAaeditorxml_Editor.Dictionary_Fsetvar_Configurationtree.List_Child.Add(s_Fsetvar, log_Reports);
                         }
                     }
 
@@ -311,7 +311,7 @@ namespace Xenon.MiddleImpl
                 // 「エディター・フォルダー」パス　→　「@Editor.xml ファイルパス」へ変換。
                 string sFpath_EditorXml = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
 
-                this.cur_Givechapterandverse = new Givechapterandverse_NodeImpl("(L09Mid読取)",ec_Fopath_Editor.Cur_Givechapterandverse);
+                this.cur_Configurationtree = new Configurationtree_NodeImpl("(L09Mid読取)",ec_Fopath_Editor.Cur_Configurationtree);
             }
 
             goto gt_EndMethod;
@@ -389,22 +389,22 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node cur_Givechapterandverse;
+        private Configurationtree_Node cur_Configurationtree;
 
         /// <summary>
         /// 利用者に、修正箇所を伝える情報。
         /// 
         /// 基本的に、LoadFileを使ったときに引数に入れられるファイルパスが入る。
         /// </summary>
-        public Givechapterandverse_Node Cur_Givechapterandverse
+        public Configurationtree_Node Cur_Configurationtree
         {
             get
             {
-                return cur_Givechapterandverse;
+                return cur_Configurationtree;
             }
             set
             {
-                cur_Givechapterandverse = value;
+                cur_Configurationtree = value;
             }
         }
 

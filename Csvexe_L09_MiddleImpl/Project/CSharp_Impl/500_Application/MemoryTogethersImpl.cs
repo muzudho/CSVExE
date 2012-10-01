@@ -27,7 +27,7 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public void Clear()
         {
-            this.givechapterandverse_Togetherconfig = new Givechapterandverse_NodeImpl(NamesNode.S_CODEFILE_TOGETHERS, new Givechapterandverse_NodeImpl(this.GetType().Name + "#<init>", null));
+            this.givechapterandverse_Togetherconfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_TOGETHERS, new Configurationtree_NodeImpl(this.GetType().Name + "#<init>", null));
         }
 
         //────────────────────────────────────────
@@ -78,8 +78,8 @@ namespace Xenon.MiddleImpl
             {
                 // 正常時
 
-                XToGivechapterandverse_Together to = new XToGivechapterandverse_Together_ConfigImpl();
-                this.Givechapterandverse_Togetherconfig = to.XToGivechapterandverse(sFpatha_rfr, owner_MemoryApplication, log_Reports);
+                XToConfigurationtree_Together to = new XToConfigurationtree_Together_ConfigImpl();
+                this.Configurationtree_Togetherconfig = to.XToConfigurationtree(sFpatha_rfr, owner_MemoryApplication, log_Reports);
             }
 
             //
@@ -113,11 +113,11 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            List<Givechapterandverse_Node> listCf_Together = this.Givechapterandverse_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
-            foreach (Givechapterandverse_Node cf_Together in listCf_Together)
+            List<Configurationtree_Node> listCf_Together = this.Configurationtree_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
+            foreach (Configurationtree_Node cf_Together in listCf_Together)
             {
                 string sFncName;
-                cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                cf_Together.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                 // 一致するのは１件しかない前提。
                 if (sFncName == o_Name_Together.SValue)
@@ -125,15 +125,15 @@ namespace Xenon.MiddleImpl
                     if (log_Reports.Successful)
                     {
                         // 最新表示にするコントロールの名前のリスト。
-                        List<Givechapterandverse_Node> cfList_RfrTarget = cf_Together.GetChildrenByNodename(NamesNode.S_TARGET, false, log_Reports);
+                        List<Configurationtree_Node> cfList_RfrTarget = cf_Together.GetChildrenByNodename(NamesNode.S_TARGET, false, log_Reports);
 
 
-                        foreach (Givechapterandverse_Node cf_RfrTarget in cfList_RfrTarget)
+                        foreach (Configurationtree_Node cf_RfrTarget in cfList_RfrTarget)
                         {
                             List<Usercontrol> list_FcUc;
                             {
                                 string sName;
-                                cf_RfrTarget.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                                cf_RfrTarget.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                                 Expression_Node_StringImpl e_str = new Expression_Node_StringImpl(null, cf_RfrTarget);
                                 e_str.AppendTextNode(
@@ -180,7 +180,7 @@ namespace Xenon.MiddleImpl
         /// <param select="cf_Together">トゥゲザー要素の名前です。</param>
         /// <param select="log_Reports"></param>
         public void RefreshDataByTogether(
-            Givechapterandverse_Node cf_Together,
+            Configurationtree_Node cf_Together,
             MemoryApplication moApplication,
             Log_Reports log_Reports
             )
@@ -192,7 +192,7 @@ namespace Xenon.MiddleImpl
 
             moApplication.MemoryForms.RefreshDataByTogether(
                 cf_Together,
-                this.Givechapterandverse_Togetherconfig,
+                this.Configurationtree_Togetherconfig,
                 moApplication,
                 log_Reports
                 );
@@ -212,12 +212,12 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node givechapterandverse_Togetherconfig;
+        private Configurationtree_Node givechapterandverse_Togetherconfig;
 
         /// <summary>
         /// 「リローディング設定ファイル」。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_Togetherconfig
+        public Configurationtree_Node Configurationtree_Togetherconfig
         {
             set
             {

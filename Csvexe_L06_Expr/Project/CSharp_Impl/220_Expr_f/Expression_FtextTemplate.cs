@@ -45,15 +45,15 @@ namespace Xenon.Expr
         /// <param name="s_ParentNode"></param>
         /// <param name="moOpyopyo"></param>
         private Expression_SftextTemplate(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node parent_Givechapterandverse, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression, parent_Givechapterandverse, owner_MemoryApplication)
+            Expression_Node_String parent_Expression, Configurationtree_Node parent_Configurationtree, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression, parent_Configurationtree, owner_MemoryApplication)
         {
         }
 
         public static Expression_Node_String Create(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node parent_Givechapterandverse, MemoryApplication owner_MemoryApplication)
+            Expression_Node_String parent_Expression, Configurationtree_Node parent_Configurationtree, MemoryApplication owner_MemoryApplication)
         {
-            return new Expression_SftextTemplate(parent_Expression, parent_Givechapterandverse, owner_MemoryApplication);
+            return new Expression_SftextTemplate(parent_Expression, parent_Configurationtree, owner_MemoryApplication);
         }
 
         //────────────────────────────────────────
@@ -77,7 +77,7 @@ namespace Xenon.Expr
             //
             //
 
-            Givechapterandverse_Node parent_Givechapterandverse_Node_Query = this.Cur_Givechapterandverse;
+            Configurationtree_Node parent_Configurationtree_Node_Query = this.Cur_Configurationtree;
 
             StringBuilder sb_Result = new StringBuilder();
 
@@ -91,14 +91,14 @@ namespace Xenon.Expr
 
             //
             // 指定のテーブルの ID列を指定して、TEXT列の内容を取得。
-            TextP1pImpl p1pText = new TextP1pImpl();
+            Builder_TexttemplateP1pImpl p1pText = new Builder_TexttemplateP1pImpl();
             {
                 // ＜ｆ－ｔｅｘｔ－ｔｅｍｐｌａｔｅ＞要素。
-                Selectstatement selectSt = new SelectstatementImpl(this, this.Cur_Givechapterandverse);
+                Selectstatement selectSt = new SelectstatementImpl(this, this.Cur_Configurationtree);
 
                 // TODO: logic属性がある版も要るはず。
                 Recordcondition recCond1;
-                bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, Expression_SftextTemplate.S_FIELD_ID, parent_Givechapterandverse_Node_Query, log_Reports);
+                bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, Expression_SftextTemplate.S_FIELD_ID, parent_Configurationtree_Node_Query, log_Reports);
                 selectSt.List_Recordcondition.Add(recCond1);
 
                 ////
@@ -235,7 +235,7 @@ namespace Xenon.Expr
                         bExpectedValueRequired,
                         o_KeyFldDef,
                         o_Table.DataTable,
-                        parent_Givechapterandverse_Node_Query,
+                        parent_Configurationtree_Node_Query,
                         log_Reports
                         );
 
@@ -265,7 +265,7 @@ namespace Xenon.Expr
                     dst_Rs,
                     selectSt,
                     null,//nｗｈｅｒｅ_recordSetSaveTo,
-                    this.Cur_Givechapterandverse,
+                    this.Cur_Configurationtree,
                     log_Reports
                     );
 
@@ -321,7 +321,7 @@ namespace Xenon.Expr
 
 
 
-            List<int> nList_P1p = p1pText.GetP1pNumbers(
+            List<int> nList_P1p = p1pText.ExistsP1pNumbers(
                 this.Dictionary_Expression_Attribute,
                 log_Reports
                 );
@@ -391,7 +391,7 @@ namespace Xenon.Expr
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(parent_Givechapterandverse_Node_Query));
+                s.Append(r.Message_Configurationtree(parent_Configurationtree_Node_Query));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -411,7 +411,7 @@ namespace Xenon.Expr
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Givechapterandverse_Node_Query));
+                t.Append(r.Message_Configurationtree(parent_Configurationtree_Node_Query));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -430,7 +430,7 @@ namespace Xenon.Expr
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Givechapterandverse_Node_Query));
+                t.Append(r.Message_Configurationtree(parent_Configurationtree_Node_Query));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

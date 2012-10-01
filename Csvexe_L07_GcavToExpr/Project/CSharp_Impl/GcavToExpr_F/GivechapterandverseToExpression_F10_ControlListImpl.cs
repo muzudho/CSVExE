@@ -15,7 +15,7 @@ namespace Xenon.GcavToExpr
     /// S → E
     /// 
     /// </summary>
-    public class GivechapterandverseToExpression_F10_ControlListImpl : GivechapterandverseToExpression_AbstractImpl, GivechapterandverseToExpression_F10_ControlList
+    public class ConfigurationtreeToExpression_F10_ControlListImpl : ConfigurationtreeToExpression_AbstractImpl, ConfigurationtreeToExpression_F10_ControlList
     {
 
 
@@ -37,9 +37,9 @@ namespace Xenon.GcavToExpr
         /// <param oNodeName="log_Reports"></param>
         public void Translate(
             List<string> sList_Name_Control,
-            Givechapterandverse_Node cf_FcConfig,
+            Configurationtree_Node cf_FcConfig,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
@@ -53,7 +53,7 @@ namespace Xenon.GcavToExpr
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE_DsrcDtrg",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE_DsrcDtrg",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -102,14 +102,14 @@ namespace Xenon.GcavToExpr
 
 
 
-                    Givechapterandverse_Node cf_Control = fcUc.ControlCommon.Givechapterandverse_Control;
+                    Configurationtree_Node cf_Control = fcUc.ControlCommon.Configurationtree_Control;
 
                     if (null == cf_Control)
                     {
                         //
                         // O_コントロール要素を新規作成。
-                        cf_Control = new Givechapterandverse_NodeImpl(NamesNode.S_CONTROL1, cf_FcConfig);
-                        fcUc.ControlCommon.Givechapterandverse_Control = cf_Control;
+                        cf_Control = new Configurationtree_NodeImpl(NamesNode.S_CONTROL1, cf_FcConfig);
+                        fcUc.ControlCommon.Configurationtree_Control = cf_Control;
                     }
                     else
                     {
@@ -120,10 +120,10 @@ namespace Xenon.GcavToExpr
 
                     //
                     // コントロール名。
-                    fcUc.ControlCommon.Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sFcName, log_Reports);
+                    fcUc.ControlCommon.Configurationtree_Control.Dictionary_Attribute.Set(PmNames.S_NAME.Name_Pm, sFcName, log_Reports);
 
 
-                    GivechapterandverseToExpression_F11_ControlImpl_ to0 = new GivechapterandverseToExpression_F11_ControlImpl_();
+                    ConfigurationtreeToExpression_F11_ControlImpl_ to0 = new ConfigurationtreeToExpression_F11_ControlImpl_();
                     to0.Translate(
                         cf_Control,
                         fcUc.ControlCommon.Expression_Control,
@@ -154,7 +154,7 @@ namespace Xenon.GcavToExpr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cf_FcConfig));
+                t.Append(r.Message_Configurationtree(cf_FcConfig));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    public interface XToGivechapterandverse_C11_Config
+    public interface XToConfigurationtree_C11_Config
     {
 
 
@@ -29,11 +29,11 @@ namespace Xenon.XToGcav
         /// <param name="oFormsFolderPath"></param>
         /// <param name="owner_MemoryApplication"></param>
         /// <param name="log_Reports"></param>
-        void XToGivechapterandverse(
+        void XToConfigurationtree(
             string sName_Control,
             string sFpathH_F,
             string sFpatha_F,
-            Givechapterandverse_Node cf_FcConfig,
+            Configurationtree_Node cf_FcConfig,
             Expression_Node_Filepath ec_Fopath_Forms,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports

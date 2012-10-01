@@ -15,7 +15,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// （Sf）＜control＞
     /// </summary>
-    class XToGivechapterandverse_C12_ControlImpl_ : XToGivechapterandverse_C12_Control_
+    class XToConfigurationtree_C12_ControlImpl_ : XToConfigurationtree_C12_Control_
     {
 
 
@@ -23,7 +23,7 @@ namespace Xenon.XToGcav
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public XToGivechapterandverse_C12_ControlImpl_()
+        public XToConfigurationtree_C12_ControlImpl_()
         {
         }
 
@@ -42,9 +42,9 @@ namespace Xenon.XToGcav
         /// </summary>
         /// <param select="xEvent"></param>
         /// <param select="fcUc"></param>
-        public void XToGivechapterandverse(
+        public void XToConfigurationtree(
             string sName_Control,
-            Givechapterandverse_Node cf_ControlConfig,
+            Configurationtree_Node cf_ControlConfig,
             XmlElement xControl,//＜ｃｏｎｔｒｏｌ＞要素。子要素の読取りに利用。
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
@@ -58,7 +58,7 @@ namespace Xenon.XToGcav
             Expression_Node_String ec_Name_Control;
             XmlElement err_11elm;
             Exception err_Excp;
-            Givechapterandverse_Node cur_Cf;
+            Configurationtree_Node cur_Cf;
             if (log_Reports.Successful)
             {
 
@@ -88,9 +88,9 @@ namespace Xenon.XToGcav
                     uct = list_Usercontrol[0];
                 }
 
-                //if (null == uct.ControlCommon.Givechapterandverse_Control)
+                //if (null == uct.ControlCommon.Configurationtree_Control)
                 //{
-                //    uct.ControlCommon.Givechapterandverse_Control = new Givechapterandverse_NodeImpl(NamesNode.S_CONTROL+"(ヌル時の代替)", cf_ControlConfig);
+                //    uct.ControlCommon.Configurationtree_Control = new Configurationtree_NodeImpl(NamesNode.S_CONTROL+"(ヌル時の代替)", cf_ControlConfig);
                 //}
 
 
@@ -101,12 +101,12 @@ namespace Xenon.XToGcav
                 //
                 //
                 //
-                cur_Cf = new Givechapterandverse_NodeImpl(NamesNode.S_CONTROL1, cf_ControlConfig);
+                cur_Cf = new Configurationtree_NodeImpl(NamesNode.S_CONTROL1, cf_ControlConfig);
                 //上書きします。
-                uct.ControlCommon.Givechapterandverse_Control = cur_Cf;
+                uct.ControlCommon.Configurationtree_Control = cur_Cf;
                 //
                 // コントロール名。
-                uct.ControlCommon.Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_NAME.Name_Pm, sName_Control, uct.ControlCommon.Givechapterandverse_Control, true, log_Reports);
+                uct.ControlCommon.Configurationtree_Control.Dictionary_Attribute.Add(PmNames.S_NAME.Name_Pm, sName_Control, uct.ControlCommon.Configurationtree_Control, true, log_Reports);
 
                 //
                 //
@@ -127,8 +127,8 @@ namespace Xenon.XToGcav
 
                             try
                             {
-                                XToGivechapterandverse_C15_Elm to = this.Dictionary_XToGivechapterandverse_Elm[child_XElm.Name];
-                                to.XToGivechapterandverse(
+                                XToConfigurationtree_C15_Elm to = this.Dictionary_XToConfigurationtree_Elm[child_XElm.Name];
+                                to.XToConfigurationtree(
                                     child_XElm,
                                     cur_Cf,
                                     owner_MemoryApplication,
@@ -182,7 +182,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cf_ControlConfig));
+                t.Append(r.Message_Configurationtree(cf_ControlConfig));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -205,7 +205,7 @@ namespace Xenon.XToGcav
                 sb.Append(Environment.NewLine);
 
                 // ヒント
-                sb.Append(r.Message_Givechapterandverse(cur_Cf));
+                sb.Append(r.Message_Configurationtree(cur_Cf));
                 sb.Append(r.Message_SException(err_Excp));
 
                 r.Message = sb.ToString();
@@ -228,7 +228,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cur_Cf));
+                t.Append(r.Message_Configurationtree(cur_Cf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();
@@ -251,12 +251,12 @@ namespace Xenon.XToGcav
         #region プロパティー
         //────────────────────────────────────────
 
-        private static Dictionary<string, XToGivechapterandverse_C15_Elm> dictionary_XToGivechapterandverse_Elm;
+        private static Dictionary<string, XToConfigurationtree_C15_Elm> dictionary_XToConfigurationtree_Elm;
 
         /// <summary>
         /// 名前付きパーサー一覧。
         /// </summary>
-        private Dictionary<string, XToGivechapterandverse_C15_Elm> Dictionary_XToGivechapterandverse_Elm
+        private Dictionary<string, XToConfigurationtree_C15_Elm> Dictionary_XToConfigurationtree_Elm
         {
             get
             {
@@ -266,9 +266,9 @@ namespace Xenon.XToGcav
                 //
                 //
 
-                if (null == dictionary_XToGivechapterandverse_Elm)
+                if (null == dictionary_XToConfigurationtree_Elm)
                 {
-                    dictionary_XToGivechapterandverse_Elm = new Dictionary<string, XToGivechapterandverse_C15_Elm>();
+                    dictionary_XToConfigurationtree_Elm = new Dictionary<string, XToConfigurationtree_C15_Elm>();
 
                     //
                     // TODO: 間違った入れ子関係も　読み取りしてしまうので、そこらへんのチェックも入れたい。
@@ -278,8 +278,8 @@ namespace Xenon.XToGcav
                     // 子要素＜ｄａｔａ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_DATA, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_Elm.Add(NamesNode.S_DATA, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_DATA, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_Elm.Add(NamesNode.S_DATA, to);
                     }
 
 
@@ -287,32 +287,32 @@ namespace Xenon.XToGcav
                     // 子要素＜event＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_EVENT, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_Elm.Add(NamesNode.S_EVENT, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_EVENT, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_Elm.Add(NamesNode.S_EVENT, to);
                     }
 
                     //
                     // 子要素＜key-event＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_KEY_EVENT, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_Elm.Add(NamesNode.S_KEY_EVENT, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_KEY_EVENT, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_Elm.Add(NamesNode.S_KEY_EVENT, to);
                     }
 
                     //
                     // 子要素＜ｖｉｅｗ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_VIEW, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_Elm.Add(NamesNode.S_VIEW, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_VIEW, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_Elm.Add(NamesNode.S_VIEW, to);
                     }
 
                     //
                     // 子要素＜ｔｏｇｅｔｈｅｒ＞ 2012-01-18 追加
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_TOGETHER, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_Elm.Add(NamesNode.S_TOGETHER, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_TOGETHER, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_Elm.Add(NamesNode.S_TOGETHER, to);
                     }
 
                 }
@@ -322,7 +322,7 @@ namespace Xenon.XToGcav
                 log_Method.EndMethod(d_Logging_ThisMethod);
                 d_Logging_ThisMethod.EndLogging(log_Method);
 
-                return dictionary_XToGivechapterandverse_Elm;
+                return dictionary_XToConfigurationtree_Elm;
             }
         }
 

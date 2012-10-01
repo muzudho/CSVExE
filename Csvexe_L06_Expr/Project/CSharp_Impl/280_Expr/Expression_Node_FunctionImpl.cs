@@ -32,11 +32,11 @@ namespace Xenon.Expr
         /// <param name="parent_Expression">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         /// <param name="cur_Gcav">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         public Expression_Node_FunctionImpl(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav, List<string> listS_ArgName)
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav, List<string> listS_ArgName)
             : base(parent_Expression, cur_Gcav)
         {
-            this.dictionary_Expression_Parameter = new DicExpression_Node_StringImpl(cur_Gcav);
-            this.expressionfncPrmset = new ExpressionfncPrmsetImpl();
+            this.dictionary_Expression_Parameter = new Dictionary_Expression_Node_StringImpl(cur_Gcav);
+            this.functionparameterset = new FunctionparametersetImpl();
 
             this.list_NameArgument = listS_ArgName;// new List<string>();
         }
@@ -51,7 +51,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         public virtual Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports)
         {
@@ -117,8 +117,8 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Gfea;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.GiveFeedbackEventArgs = prm_E;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.GiveFeedbackEventArgs = prm_E;
             }
         }
 
@@ -182,11 +182,11 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Dea_P_S_S_Wr;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.DragEventArgs = prm_E;
-                expr_Func.ExpressionfncPrmset.ParentLocation = prm_ParentLocation;
-                expr_Func.ExpressionfncPrmset.Message_Debug1 = prm_DebugMessage1;
-                expr_Func.ExpressionfncPrmset.Message_DebugStatusResult = prm_DebugStatusResultMessage;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.DragEventArgs = prm_E;
+                expr_Func.Functionparameterset.ParentLocation = prm_ParentLocation;
+                expr_Func.Functionparameterset.Message_Debug1 = prm_DebugMessage1;
+                expr_Func.Functionparameterset.Message_DebugStatusResult = prm_DebugStatusResultMessage;
             }
         }
 
@@ -245,11 +245,11 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Dea_P_S_B_Wr;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.DragEventArgs = prm_E;
-                expr_Func.ExpressionfncPrmset.ParentLocation = prm_ParentLocation;
-                expr_Func.ExpressionfncPrmset.Filepathabsolute_Image = prm_Fpatha_Image;
-                expr_Func.ExpressionfncPrmset.DroppedBitmap = prm_DroppedBitmap;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.DragEventArgs = prm_E;
+                expr_Func.Functionparameterset.ParentLocation = prm_ParentLocation;
+                expr_Func.Functionparameterset.Filepathabsolute_Image = prm_Fpatha_Image;
+                expr_Func.Functionparameterset.DroppedBitmap = prm_DroppedBitmap;
             }
         }
 
@@ -295,8 +295,8 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Wr;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.ItemValue = prm_ItemValue;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.ItemValue = prm_ItemValue;
             }
 
             return "";
@@ -351,8 +351,8 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Mea;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.MouseEventArgs = prm_E;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.MouseEventArgs = prm_E;
             }
         }
 
@@ -402,8 +402,8 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Ea;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.EventArgs = prm_E;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.EventArgs = prm_E;
             }
         }
 
@@ -452,9 +452,9 @@ namespace Xenon.Expr
             )
         {
             expr_Func.EnumEventhandler = EnumEventhandler.Tp_B_Wr_Rhn;
-            expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-            expr_Func.ExpressionfncPrmset.SelectedProjectElement_Givechapterandverse = prm_St_selectedProjectElm;
-            expr_Func.ExpressionfncPrmset.ProjectValid = prm_ProjectValid;
+            expr_Func.Functionparameterset.Sender = prm_Sender;
+            expr_Func.Functionparameterset.SelectedProjectElement_Configurationtree = prm_St_selectedProjectElm;
+            expr_Func.Functionparameterset.IsProjectValid = prm_ProjectValid;
         }
 
         //────────────────────────────────────────
@@ -505,8 +505,8 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Qcdea;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.QueryContinueDragEventArgs = prm_E;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.QueryContinueDragEventArgs = prm_E;
             }
         }
 
@@ -554,9 +554,9 @@ namespace Xenon.Expr
         )
         {
             expr_Func.EnumEventhandler = EnumEventhandler.O_Wr;
-            expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-            expr_Func.ExpressionfncPrmset.EventMonitor = prm_EventMonitor;
-            expr_Func.ExpressionfncPrmset.Node_EventOrigin = prm_SNode_EventOrigin;
+            expr_Func.Functionparameterset.Sender = prm_Sender;
+            expr_Func.Functionparameterset.EventMonitor = prm_EventMonitor;
+            expr_Func.Functionparameterset.Node_EventOrigin = prm_SNode_EventOrigin;
         }
 
         //────────────────────────────────────────
@@ -607,8 +607,8 @@ namespace Xenon.Expr
             if (null != expr_Func)//暫定
             {
                 expr_Func.EnumEventhandler = EnumEventhandler.O_Kea;
-                expr_Func.ExpressionfncPrmset.Sender = prm_Sender;
-                expr_Func.ExpressionfncPrmset.KeyEventArgs = prm_E;
+                expr_Func.Functionparameterset.Sender = prm_Sender;
+                expr_Func.Functionparameterset.KeyEventArgs = prm_E;
             }
         }
 
@@ -620,7 +620,7 @@ namespace Xenon.Expr
             string sClassName,
             string sMethodName,
             EnumEventhandler enumEH,
-            Givechapterandverse_Node cf_Node,
+            Configurationtree_Node cf_Node,
             Log_Reports log_Reports
             )
         {
@@ -661,7 +661,7 @@ namespace Xenon.Expr
 
                 //
                 // 問題箇所ヒント
-                s.Append(r.Message_Givechapterandverse(cf_Node));
+                s.Append(r.Message_Configurationtree(cf_Node));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -778,13 +778,13 @@ namespace Xenon.Expr
 
         ////────────────────────────────────────────
 
-        private DicExpression_Node_String dictionary_Expression_Parameter;
+        private Dictionary_Expression_Node_String dictionary_Expression_Parameter;
 
         /// <summary>
         /// Expression_Node_Stringを関数として使うときの『ユーザー定義引数』のディクショナリー。
         /// TODO:使ってる？
         /// </summary>
-        public DicExpression_Node_String Dictionary_Expression_Parameter
+        public Dictionary_Expression_Node_String Dictionary_Expression_Parameter
         {
             get
             {
@@ -818,13 +818,13 @@ namespace Xenon.Expr
 
         //────────────────────────────────────────
 
-        private ExpressionfncPrmset expressionfncPrmset;
+        private Functionparameterset functionparameterset;
 
-        public ExpressionfncPrmset ExpressionfncPrmset
+        public Functionparameterset Functionparameterset
         {
             get
             {
-                return this.expressionfncPrmset;
+                return this.functionparameterset;
             }
         }
 

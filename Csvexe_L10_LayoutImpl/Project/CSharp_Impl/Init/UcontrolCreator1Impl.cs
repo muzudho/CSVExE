@@ -133,10 +133,10 @@ namespace Xenon.Layout
 
             //
             // コントロール名　レコード→Ec
-            Expression_Node_StringImpl ec_Name_Control = new Expression_Node_StringImpl(null,fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse);
+            Expression_Node_StringImpl ec_Name_Control = new Expression_Node_StringImpl(null,fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
             ec_Name_Control.AppendTextNode(
                 sName_Control,
-                fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse,
+                fo_Record.Parent_TableUserformconfig.Cur_Configurationtree,
                 pg_Logging
                 );
 
@@ -163,7 +163,7 @@ namespace Xenon.Layout
                 // ヌル オブジェクトを設定。
                 ucontrol.ControlCommon.Expression_Control = new Expression_ControlImpl(
                     null,
-                    new Givechapterandverse_NodeImpl(NamesNode.S_HARDCODING_CONTROL, null),
+                    new Configurationtree_NodeImpl(NamesNode.S_HARDCODING_CONTROL, null),
                     ucontrol,
                     owner_MemoryApplication
                     );
@@ -194,7 +194,7 @@ namespace Xenon.Layout
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
@@ -220,7 +220,7 @@ namespace Xenon.Layout
 
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
@@ -248,7 +248,7 @@ namespace Xenon.Layout
                 t.Append("]は未定義のコントロールの型です。");
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 pg_Logging.EndCreateReport();

@@ -32,16 +32,16 @@ namespace Xenon.Expr
 
             this.parent_TableUserformconfig = parent_TableUserformconfig;
 
-            this.nNo = -1;
-            this.sName = "";
+            this.no = -1;
+            this.name = "";
 
-            this.nTabindex = -1;
-            this.BEnabled = true;//活性化
-            this.nTree = 1;
-            this.sItemDisplayFormat = "";
+            this.tabindex = -1;
+            this.IsEnabled = true;//活性化
+            this.tree = 1;
+            this.itemDisplayFormat = "";
 
-            this.SCheckboxValuetype = "";
-            this.sNewline = "";
+            this.CheckboxValuetype = "";
+            this.newline = "";
         }
 
         //────────────────────────────────────────
@@ -326,10 +326,10 @@ namespace Xenon.Expr
             log_Method.EndMethod(log_Reports);
         }
 
-        public void TryGetFilepath_Givechapterandverse(out Givechapterandverse_Filepath out_Value, string sName, bool bRequired, Log_Reports log_Reports)
+        public void TryGetFilepath_Configurationtree(out Configurationtree_NodeFilepath out_Value, string sName, bool bRequired, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetFilepath_Givechapterandverse", log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetFilepath_Configurationtree", log_Reports);
             //
 
             if (!this.Dictionary_Field.ContainsKey(sName))
@@ -338,12 +338,12 @@ namespace Xenon.Expr
 
                 if (bRequired)
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname,null);//ヌル・オブジェクト。
+                    out_Value = new Configurationtree_NodeFilepathImpl(log_Method.Fullname,null);//ヌル・オブジェクト。
                     goto gt_Error_NotFound;
                 }
                 else
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
+                    out_Value = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
                     goto gt_EndMethod;
                 }
             }
@@ -356,16 +356,16 @@ namespace Xenon.Expr
 
                 if (bRequired)
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
+                    out_Value = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
                     goto gt_Error_Type;
                 }
                 else
                 {
-                    out_Value = new Givechapterandverse_FilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
+                    out_Value = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);//ヌル・オブジェクト。
                     goto gt_EndMethod;
                 }
             }
-            out_Value = (Givechapterandverse_Filepath)fo_Field.Data;
+            out_Value = (Configurationtree_NodeFilepath)fo_Field.Data;
 
             goto gt_EndMethod;
         //
@@ -434,102 +434,102 @@ namespace Xenon.Expr
             txt.Newline();
 
             txt.AppendI(1, "no=[");
-            txt.Append(this.NNo);
+            txt.Append(this.No);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "tree=[");
-            txt.Append(this.nTree);
+            txt.Append(this.tree);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "] type=[");
-            txt.Append(this.sType);
+            txt.Append(this.name_Type);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "text=[");
-            txt.Append(this.sText);
+            txt.Append(this.text);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "enabled=[");
-            txt.Append(this.bEnabled);
+            txt.Append(this.isEnabled);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "visible=[");
-            txt.Append(this.bVisible);
+            txt.Append(this.isVisibled);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "readOnly=[");
-            txt.Append(this.bReadonly);
+            txt.Append(this.isReadonly);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "wordWrap=[");
-            txt.Append(this.bWordwrap);
+            txt.Append(this.isWordwrapped);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "newLine=[");
-            txt.Append(this.sNewline);
+            txt.Append(this.newline);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "scrollBars=[");
-            txt.Append(this.sScrollbars);
+            txt.Append(this.scrollbars);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "fontSizePt=[");
-            txt.Append(this.sFontsizePt);
+            txt.Append(this.fontsizePt);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "itemHeightPx=[");
-            txt.Append(this.nItemheightPx);
+            txt.Append(this.itemheightPx);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "itemDisplayFormat=[");
-            txt.Append(this.sItemDisplayFormat);
+            txt.Append(this.itemDisplayFormat);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "picZoom=[");
-            txt.Append(this.nPiczoom);
+            txt.Append(this.piczoom);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "absXLt=[");
-            txt.Append(this.nLeft_Abstract);
+            txt.Append(this.left_Abstract);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "absYLt=[");
-            txt.Append(this.nTop_Absolute);
+            txt.Append(this.top_Absolute);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "width=[");
-            txt.Append(this.nWidth);
+            txt.Append(this.width);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "height=[");
-            txt.Append(this.nHeight);
+            txt.Append(this.height);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "tabIndex=[");
-            txt.Append(this.nTabindex);
+            txt.Append(this.tabindex);
             txt.Append("]");
             txt.Newline();
 
             txt.AppendI(1, "backColor=[");
-            txt.Append(this.sBackcolor);
+            txt.Append(this.backcolor);
             txt.Append("]");
             txt.Newline();
 
@@ -575,258 +575,258 @@ namespace Xenon.Expr
 
         //────────────────────────────────────────
 
-        private int nNo;
+        private int no;
 
         /// <summary>
         /// NO フィールド値。
         /// </summary>
-        public int NNo
+        public int No
         {
             get
             {
-                return nNo;
+                return no;
             }
             set
             {
-                nNo = value;
+                no = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nTree;
+        private int tree;
 
         /// <summary>
         /// 相対座標のネスト階層。
         /// 最上位を 1 とし、その子は 2 となる。
         /// 2 の子は 3 となる。
         /// </summary>
-        public int NTree
+        public int Tree
         {
             get
             {
-                return nTree;
+                return tree;
             }
             set
             {
-                nTree = value;
+                tree = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sName;
+        private string name;
 
         /// <summary>
         /// コントロールの名前。
         /// </summary>
-        public string SName
+        public string Name
         {
             get
             {
-                return sName;
+                return name;
             }
             set
             {
-                sName = value;
+                name = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sType;
+        private string name_Type;
 
         /// <summary>
         /// コントロールの種類。
         /// </summary>
-        public string SType
+        public string Name_Type
         {
             get
             {
-                return sType;
+                return name_Type;
             }
             set
             {
-                sType = value;
+                name_Type = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sText;
+        private string text;
 
         /// <summary>
         /// 初期値。
         /// </summary>
-        public string SText
+        public string Text
         {
             get
             {
-                return sText;
+                return text;
             }
             set
             {
-                sText = value;
+                text = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Filepath file_Givechapterandverse;
+        private Configurationtree_NodeFilepath file_Configurationtree;
 
         /// <summary>
         /// コンポーネント設定ファイルへのパス。
         /// </summary>
-        public Givechapterandverse_Filepath File_Givechapterandverse
+        public Configurationtree_NodeFilepath File_Configurationtree
         {
             get
             {
-                return file_Givechapterandverse;
+                return file_Configurationtree;
             }
             set
             {
-                file_Givechapterandverse = value;
+                file_Configurationtree = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bEnabled;
+        private bool isEnabled;
 
         /// <summary>
         /// ENABLED     入力できるか否か。
         /// </summary>
-        public bool BEnabled
+        public bool IsEnabled
         {
             get
             {
-                return bEnabled;
+                return isEnabled;
             }
             set
             {
-                bEnabled = value;
+                isEnabled = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bVisible;
+        private bool isVisibled;
 
         /// <summary>
         /// VISIBLE     可視か否か。
         /// </summary>
-        public bool BVisible
+        public bool IsVisibled
         {
             get
             {
-                return bVisible;
+                return isVisibled;
             }
             set
             {
-                bVisible = value;
+                isVisibled = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bReadonly;
+        private bool isReadonly;
 
         /// <summary>
         /// テキストボックス等を読み取り専用にするなら真。
         /// </summary>
-        public bool BReadonly
+        public bool IsReadonly
         {
             get
             {
-                return bReadonly;
+                return isReadonly;
             }
             set
             {
-                bReadonly = value;
+                isReadonly = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bWordwrap;
+        private bool isWordwrapped;
 
         /// <summary>
         /// テキストエリアで行を自動的に折り返すなら真。
         /// (word wrap)
         /// </summary>
-        public bool BWordwrap
+        public bool IsWordwrapped
         {
             get
             {
-                return bWordwrap;
+                return isWordwrapped;
             }
             set
             {
-                bWordwrap = value;
+                isWordwrapped = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sNewline;
+        private string newline;
 
         /// <summary>
         /// テキストエリアで改行を表す文字列。
         /// </summary>
-        public string SNewline
+        public string Newline
         {
             get
             {
-                return sNewline;
+                return newline;
             }
             set
             {
-                sNewline = value;
+                newline = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sScrollbars;
+        private string scrollbars;
 
         /// <summary>
         /// テキストエリア等で利用。None,Horizontal,Vertical,Bothの４つ。使わないなら空欄。
         /// </summary>
-        public string SScrollbars
+        public string Scrollbars
         {
             get
             {
-                return sScrollbars;
+                return scrollbars;
             }
             set
             {
-                sScrollbars = value;
+                scrollbars = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sCheckboxValuetype;
+        private string checkboxValuetype;
 
         /// <summary>
         /// チェックボックスの値の型。(空欄：false,true。ZERO_ONE：0,1）
         /// (CHK_VALUE_TYPE)
         /// </summary>
-        public string SCheckboxValuetype
+        public string CheckboxValuetype
         {
             get
             {
-                return sCheckboxValuetype;
+                return checkboxValuetype;
             }
             set
             {
-                sCheckboxValuetype = value;
+                checkboxValuetype = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sFontsizePt;
+        private string fontsizePt;
 
         /// <summary>
         /// フォント・サイズのpt指定。未指定の場合、nullが入っています。
@@ -834,21 +834,21 @@ namespace Xenon.Expr
         /// SRSの仕様に浮動小数点型はないので、文字列で対応します。
         /// 例："6.75"
         /// </summary>
-        public string SFontsizePt
+        public string FontsizePt
         {
             get
             {
-                return sFontsizePt;
+                return fontsizePt;
             }
             set
             {
-                sFontsizePt = value;
+                fontsizePt = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nItemheightPx;
+        private int itemheightPx;
 
         /// <summary>
         /// リストボックスの項目の縦幅。（ピクセル）
@@ -856,191 +856,191 @@ namespace Xenon.Expr
         /// 例：フォントサイズが12ptのとき、リストボックスの項目の縦幅は16pxがちょうどよい。
         /// (ITEM_HEIGHT_PX)
         /// </summary>
-        public int NItemheightPx
+        public int ItemheightPx
         {
             get
             {
-                return nItemheightPx;
+                return itemheightPx;
             }
             set
             {
-                nItemheightPx = value;
+                itemheightPx = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sItemDisplayFormat;
+        private string itemDisplayFormat;
 
         /// <summary>
         /// リストボックスの各項目の表示書式。
         /// 
         /// 例：「%1%:%2%|ID|NAME」など。
         /// </summary>
-        public string SItemDisplayFormat
+        public string ItemDisplayFormat
         {
             get
             {
-                return sItemDisplayFormat;
+                return itemDisplayFormat;
             }
             set
             {
-                sItemDisplayFormat = value;
+                itemDisplayFormat = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sListValueField;
+        private string listValueField;
 
         /// <summary>
         /// リストボックスの値が入っている、レコードのフィールド名。
         /// </summary>
-        public string SListValueField
+        public string ListValueField
         {
             get
             {
-                return sListValueField;
+                return listValueField;
             }
             set
             {
-                sListValueField = value;
+                listValueField = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nPiczoom;
+        private int piczoom;
 
         /// <summary>
         /// 画像の倍角サイズ。2000なら2倍。
         /// (PIC_ZOOM)
         /// </summary>
-        public int NPiczoom
+        public int Piczoom
         {
             get
             {
-                return nPiczoom;
+                return piczoom;
             }
             set
             {
-                nPiczoom = value;
+                piczoom = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nLeft_Abstract;
+        private int left_Abstract;
 
         /// <summary>
         /// 左上角(Left Top)の絶対座標X。
         /// 旧名：NAbsXLt
         /// </summary>
-        public int NLeft_Absolute
+        public int Left_Absolute
         {
             get
             {
-                return nLeft_Abstract;
+                return left_Abstract;
             }
             set
             {
-                nLeft_Abstract = value;
+                left_Abstract = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nTop_Absolute;
+        private int top_Absolute;
 
         /// <summary>
         /// 左上角(Left Top)の絶対座標Y。
         /// 旧名：NAbsYLt
         /// </summary>
-        public int NTop_Absolute
+        public int Top_Absolute
         {
             get
             {
-                return nTop_Absolute;
+                return top_Absolute;
             }
             set
             {
-                nTop_Absolute = value;
+                top_Absolute = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nWidth;
+        private int width;
 
         /// <summary>
         /// 横幅ピクセル。
         /// </summary>
-        public int NWidth
+        public int Width
         {
             get
             {
-                return nWidth;
+                return width;
             }
             set
             {
-                nWidth = value;
+                width = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nHeight;
+        private int height;
 
         /// <summary>
         /// 縦幅ピクセル。
         /// </summary>
-        public int NHeight
+        public int Height
         {
             get
             {
-                return nHeight;
+                return height;
             }
             set
             {
-                nHeight = value;
+                height = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private int nTabindex;
+        private int tabindex;
 
         /// <summary>
         /// タブ・インデックス。未指定の場合 -1 が入っています。
         /// </summary>
-        public int NTabindex
+        public int Tabindex
         {
             get
             {
-                return nTabindex;
+                return tabindex;
             }
             set
             {
-                nTabindex = value;
+                tabindex = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sBackcolor;
+        private string backcolor;
 
         /// <summary>
         /// 背景色名
         /// </summary>
-        public string SBackcolor
+        public string Backcolor
         {
             get
             {
-                return sBackcolor;
+                return backcolor;
             }
             set
             {
-                sBackcolor = value;
+                backcolor = value;
             }
         }
 

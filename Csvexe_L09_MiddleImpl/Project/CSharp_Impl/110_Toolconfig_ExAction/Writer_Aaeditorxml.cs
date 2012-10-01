@@ -36,7 +36,7 @@ namespace Xenon.MiddleImpl
         public void Write(
             string sFpatha_Pcnf,
             string sName_Editor,
-            Dictionary_Fsetvar_Givechapterandverse stDic_Fsetvar,
+            Dictionary_Fsetvar_Configurationtree stDic_Fsetvar,
             Log_Reports log_Reports
         )
         {
@@ -74,25 +74,25 @@ namespace Xenon.MiddleImpl
                 }
 
                 // ＜ｆ－ｓｅｔ－ｖａｒ＞要素：
-                stDic_Fsetvar.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node cf_Fsetvar, ref bool bBreak)
+                stDic_Fsetvar.List_Child.ForEach(delegate(Configurationtree_Node cf_Fsetvar, ref bool bBreak)
                 {
                     XmlElement x_Fsetvar = xDoc.CreateElement(NamesNode.S_F_SET_VAR);
 
                     //ｎａｍｅ－ｖａｒ属性
                     string sNamevar;
-                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
 
                     //ｆｏｌｄｅｒ属性
                     string sFolder;
-                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_FOLDER, out sFolder, true, log_Reports);
 
                     //ｖａｌｕｅ属性
                     string sValue;
-                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                     //ｄｅｓｃｒｉｐｔｉｏｎ属性
                     string sDescription;
-                    cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
+                    cf_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
 
                     x_Fsetvar.SetAttribute(PmNames.S_NAME.Name_Attribute, sNamevar);
                     x_Fsetvar.SetAttribute(PmNames.S_FOLDER.Name_Attribute, sFolder);

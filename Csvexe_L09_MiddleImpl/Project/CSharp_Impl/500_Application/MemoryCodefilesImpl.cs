@@ -187,7 +187,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(ec_Typedata.Cur_Givechapterandverse.Parent_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(ec_Typedata.Cur_Configurationtree.Parent));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

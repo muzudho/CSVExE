@@ -34,7 +34,7 @@ namespace Xenon.Functions
         /// <param name="sNodeName"></param>
         /// <param name="parent_Ec"></param>
         /// <param name="cur_Gcav"></param>
-        public Expression_Node_FunctionAbstract(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_FunctionAbstract(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             : base(null/*parent_Expression*/, null/*cur_Gcav*/, listS_ArgName)
         {
             this.EnumEventhandler = enumEventhandler;
@@ -43,7 +43,7 @@ namespace Xenon.Functions
 
         public abstract override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports);
 
         //────────────────────────────────────────
@@ -84,9 +84,9 @@ namespace Xenon.Functions
         /// <summary>
         /// 最新仕様での関数変換一覧。
         /// </summary>
-        private GivechapterandverseToFunction_Item functiontranslatoritem;
+        private ConfigurationtreeToFunction_Item functiontranslatoritem;
 
-        public GivechapterandverseToFunction_Item Functiontranslatoritem
+        public ConfigurationtreeToFunction_Item Functiontranslatoritem
         {
             get
             {

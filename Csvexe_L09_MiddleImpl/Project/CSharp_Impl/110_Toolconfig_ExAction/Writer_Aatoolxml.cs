@@ -84,25 +84,25 @@ namespace Xenon.MiddleImpl
                     XmlElement xEditor = xDoc.CreateElement(NamesNode.S_EDITOR);
 
                     // input要素：
-                    aatool_Editor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
+                    aatool_Editor.Dictionary_Fsetvar_Configurationtree.List_Child.ForEach(delegate(Configurationtree_Node s_Fsetvar, ref bool bBreak)
                     {
                         XmlElement x_Input = xDoc.CreateElement(NamesNode.S_F_SET_VAR);
 
                         //ｎａｍｅ－ｖａｒ属性
                         string sNamevar;
-                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
+                        s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
 
                         //ｆｏｌｄｅｒ属性
                         string sFolder;
-                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, true, log_Reports);
+                        s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_FOLDER, out sFolder, true, log_Reports);
 
                         //ｖａｌｕｅ属性
                         string sValue;
-                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                        s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                         //ｄｅｓｃｒｉｐｔｉｏｎ属性
                         string sDescription;
-                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
+                        s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
 
                         x_Input.SetAttribute(PmNames.S_NAME.Name_Attribute, sNamevar);
                         x_Input.SetAttribute(PmNames.S_FOLDER.Name_Attribute, sFolder);

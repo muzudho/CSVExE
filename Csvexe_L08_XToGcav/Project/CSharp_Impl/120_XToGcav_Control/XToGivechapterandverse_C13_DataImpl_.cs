@@ -16,7 +16,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// ＜ｄａｔａ＞　→　「S■ｄａｔａ」
     /// </summary>
-    class XToGivechapterandverse_C13_DataImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_C13_DataImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -30,9 +30,9 @@ namespace Xenon.XToGcav
         /// <param select="x_cur"></param>
         /// <param select="s_Parent"></param>
         /// <param select="log_Reports"></param>
-        public override void XToGivechapterandverse(
+        public override void XToConfigurationtree(
             XmlElement cur_X,//＜ｄａｔａ＞
-            Givechapterandverse_Node parent_Cf,//「Cf■ｃｏｎｔｒｏｌ」
+            Configurationtree_Node parent_Cf,//「Cf■ｃｏｎｔｒｏｌ」
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -51,7 +51,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            Givechapterandverse_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
+            Configurationtree_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
 
 
 
@@ -90,8 +90,8 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                XToGivechapterandverse_C14_HubImpl to = new XToGivechapterandverse_C14_HubImpl();
-                to.XToGivechapterandverse(
+                XToConfigurationtree_C14_HubImpl to = new XToConfigurationtree_C14_HubImpl();
+                to.XToConfigurationtree(
                     cur_X,
                     cur_Cf,
                     memoryApplication,
@@ -132,16 +132,16 @@ namespace Xenon.XToGcav
         /// <param name="x_Cur"></param>
         /// <param name="s_Cur"></param>
         /// <param name="log_Reports"></param>
-        protected override void Test_Attributes(XmlElement cur_X, Givechapterandverse_Node cur_Cf, Log_Reports log_Reports)
+        protected override void Test_Attributes(XmlElement cur_X, Configurationtree_Node cur_Cf, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Test_Attributes",log_Reports);
 
             string sMemory;
-            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out sMemory, false, log_Reports);
+            cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_MEMORY, out sMemory, false, log_Reports);
 
             string sAccess_Src;
-            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess_Src, false, log_Reports);
+            cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_ACCESS, out sAccess_Src, false, log_Reports);
 
             //
             // ａｃｃｅｓｓ
@@ -245,7 +245,7 @@ namespace Xenon.XToGcav
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -267,7 +267,7 @@ namespace Xenon.XToGcav
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -289,7 +289,7 @@ namespace Xenon.XToGcav
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -308,10 +308,10 @@ namespace Xenon.XToGcav
         /// <summary>
         /// 親要素に、この要素を追加。
         /// </summary>
-        protected override void LinkToParent(Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+        protected override void LinkToParent(Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             string sAccess;
-            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
+            cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
 
             bool bHit = false;
 
@@ -338,7 +338,7 @@ namespace Xenon.XToGcav
 
             if (bHit)
             {
-                parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+                parent_Cf.List_Child.Add(cur_Cf, log_Reports);
             }
         }
 

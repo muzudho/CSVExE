@@ -198,7 +198,7 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole(" ユーザー定義関数設定ファイルの読み取り。");
             }
 
-            Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, ec_Fpath_Fnc.Cur_Givechapterandverse);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
+            Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, ec_Fpath_Fnc.Cur_Configurationtree);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
             Expression_Node_String ec_FuncConfig = new Expression_Node_StringImpl(null, parent_Cf);
 
             string sFpatha = ec_Fpath_Fnc.Execute_OnExpressionString(
@@ -253,7 +253,7 @@ namespace Xenon.MiddleImpl
                 ValuesAttr.Test_Codefileversion(
                     xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
-                    new Givechapterandverse_NodeImpl(sFpatha, null),
+                    new Configurationtree_NodeImpl(sFpatha, null),
                     NamesNode.S_CODEFILE_FUNCTIONS
                     );
             }
@@ -277,16 +277,16 @@ namespace Xenon.MiddleImpl
                             }
 
                             // XToCf
-                            XToGivechapterandverse_C15_Elm xToCf = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_COMMON_FUNCTION, log_Reports);
-                            xToCf.XToGivechapterandverse(
+                            XToConfigurationtree_C15_Elm xToCf = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_COMMON_FUNCTION, log_Reports);
+                            xToCf.XToConfigurationtree(
                                 x_Cur,
                                 parent_Cf,
                                 moApplication,
                                 log_Reports
                                 );
 
-                            Givechapterandverse_Node s_Cur = null;
-                            parent_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Child, ref bool bBreak)
+                            Configurationtree_Node s_Cur = null;
+                            parent_Cf.List_Child.ForEach(delegate(Configurationtree_Node s_Child, ref bool bBreak)
                             {
                                 s_Cur = s_Child;
                                 bBreak = true;
@@ -295,9 +295,9 @@ namespace Xenon.MiddleImpl
                             // SToE
                             Expression_Node_FunctionImpl ec_CommonFunction = new Expression_Node_FunctionImpl(ec_FuncConfig, s_Cur, new List<string>());
 
-                            Log_TextIndented_GivechapterandverseToExpressionImpl pg_ParsingLog = new Log_TextIndented_GivechapterandverseToExpressionImpl();
+                            Log_TextIndented_ConfigurationtreeToExpressionImpl pg_ParsingLog = new Log_TextIndented_ConfigurationtreeToExpressionImpl();
                             pg_ParsingLog.BEnabled = false;
-                            GivechapterandverseToExpression_AbstractImpl.ParseChild_InAnotherLibrary(
+                            ConfigurationtreeToExpression_AbstractImpl.ParseChild_InAnotherLibrary(
                                 s_Cur,
                                 ec_CommonFunction,
                                 moApplication,

@@ -200,7 +200,7 @@ namespace Xenon.Controls
         /// <param nFcName="nActionSuper"></param>
         /// <param nFcName="log_Reports"></param>
         public Functionlist CreateFunctionlist(
-            GivechapterandverseToExpression_Event sToE_Event,
+            ConfigurationtreeToExpression_Event sToE_Event,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
@@ -280,7 +280,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(sToE_Event.Givechapterandverse_Event));
+                t.Append(r.Message_Configurationtree(sToE_Event.Configurationtree_Event));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -784,7 +784,7 @@ namespace Xenon.Controls
                 if (null == value)
                 {
                     // Visual Studio のビジュアルエディターで置いた時は、FcNameを設定できずにnullが設定されます。
-                    Givechapterandverse_Node cf_Node = new Givechapterandverse_NodeImpl(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
+                    Configurationtree_Node cf_Node = new Configurationtree_NodeImpl(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:" + this.Name, null);
                     customcontrolTabControl1.ControlCommon.Expression_Name_Control = new Expression_Node_StringImpl(null, cf_Node);
                     customcontrolTabControl1.Name = this.Name;
                 }

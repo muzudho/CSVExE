@@ -11,7 +11,7 @@ using Xenon.Expr;
 namespace Xenon.GcavToExpr
 {
 
-    class GivechapterandverseToExpression_V54_FAllTrueImpl_ : GivechapterandverseToExpression_AbstractImpl
+    class ConfigurationtreeToExpression_V54_FAllTrueImpl_ : ConfigurationtreeToExpression_AbstractImpl
     {
 
 
@@ -20,15 +20,15 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public void Translate(
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             Expressionv_4ADisplayImpl exprv_ADisplay,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -71,16 +71,16 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            List<Givechapterandverse_Node> cfList_Fnc = cur_Gcav.GetChildrenByNodename(NamesNode.S_FNC, false, log_Reports);
-            foreach (Givechapterandverse_Node cf_Child in cfList_Fnc)
+            List<Configurationtree_Node> cfList_Fnc = cur_Gcav.GetChildrenByNodename(NamesNode.S_FNC, false, log_Reports);
+            foreach (Configurationtree_Node cf_Child in cfList_Fnc)
             {
                 string child_SName_Fnc;
-                cf_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out child_SName_Fnc, true, log_Reports);
+                cf_Child.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out child_SName_Fnc, true, log_Reports);
 
                 if (NamesFnc.S_VLD_EMPTY_FIELD == child_SName_Fnc)
                 {
                     // ＜ａ－ｅｍｐｔｙ－ｆｉｅｌｄ＞要素
-                    GivechapterandverseToExpression_V55_AEmptyFieldImpl_ to = new GivechapterandverseToExpression_V55_AEmptyFieldImpl_();
+                    ConfigurationtreeToExpression_V55_AEmptyFieldImpl_ to = new ConfigurationtreeToExpression_V55_AEmptyFieldImpl_();
                     to.Translate(
                         cf_Child,
                         cur_Exprv,

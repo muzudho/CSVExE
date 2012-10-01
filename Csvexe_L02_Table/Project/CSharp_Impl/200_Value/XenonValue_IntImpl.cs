@@ -247,7 +247,7 @@ namespace Xenon.Table
                 s.Append("　　問題箇所ヒント：");
                 s.Append(Environment.NewLine);
                 s.Append("　　　");
-                err_IntCellData.ToText_Path(s);
+                err_IntCellData.ToText_Locationbreadcrumbs(s);
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
@@ -276,7 +276,7 @@ namespace Xenon.Table
                 s.Append("　　問題箇所ヒント：");
                 s.Append(Environment.NewLine);
                 s.Append("　　　");
-                err_IntCellData.ToText_Path(s);
+                err_IntCellData.ToText_Locationbreadcrumbs(s);
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
@@ -301,7 +301,7 @@ namespace Xenon.Table
                 s.Append("　　問題箇所ヒント：");
                 s.Append(Environment.NewLine);
                 s.Append("　　　");
-                err_IntCellData.ToText_Path(s);
+                err_IntCellData.ToText_Locationbreadcrumbs(s);
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 

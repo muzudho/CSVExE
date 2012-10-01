@@ -13,7 +13,7 @@ namespace Xenon.GcavToExpr
     /// <summary>
     /// 
     /// </summary>
-    interface GivechapterandverseToExpression_F11_Control_ : GivechapterandverseToExpression
+    interface ConfigurationtreeToExpression_F11_Control_ : ConfigurationtreeToExpression
     {
 
 
@@ -22,10 +22,10 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         void Translate(
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             Expression_Node_String cur_Expr,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             );
 

@@ -29,14 +29,14 @@ namespace Xenon.Functions
         /// <param name="s_Action"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public Expression_Node_Function GivechapterandverseToFunction(
-            Givechapterandverse_Node action_Gcav,
+        public Expression_Node_Function ConfigurationtreeToFunction(
+            Configurationtree_Node action_Gcav,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "GivechapterandverseToFunction",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "ConfigurationtreeToFunction",log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -48,7 +48,7 @@ namespace Xenon.Functions
             Expression_Node_Function expr_Func;
             if (log_Reports.Successful)
             {
-                expr_Func = owner_MemoryApplication.MemoryForms.GivechapterandverseToFunction.Translate(
+                expr_Func = owner_MemoryApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
                     action_Gcav,
                     true,
                     log_Reports
@@ -188,7 +188,7 @@ namespace Xenon.Functions
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                //todo: t.Append(r.Message_Givechapterandverse(e_Uic.Cur_Givechapterandverse));
+                //todo: t.Append(r.Message_Configurationtree(e_Uic.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

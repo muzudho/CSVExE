@@ -14,7 +14,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// ＜validator＞要素。
     /// </summary>
-    class XToGivechapterandverse_V_3ValidatorImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_V_3ValidatorImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -24,7 +24,7 @@ namespace Xenon.XToGcav
 
         protected override void Parse_ChildNodes(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -49,8 +49,8 @@ namespace Xenon.XToGcav
                     {
                         //
                         // ＜ａｒｇ＞要素
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(xChild.Name, log_Reports);
-                        to.XToGivechapterandverse(xChild, cur_Cf, memoryApplication, log_Reports);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(xChild.Name, log_Reports);
+                        to.XToConfigurationtree(xChild, cur_Cf, memoryApplication, log_Reports);
                     }
                     else
                     {
@@ -96,9 +96,9 @@ namespace Xenon.XToGcav
         //────────────────────────────────────────
 
         protected override void LinkToParent(
-            Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+            Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
-            parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf,log_Reports);
+            parent_Cf.List_Child.Add(cur_Cf,log_Reports);
         }
 
         //────────────────────────────────────────

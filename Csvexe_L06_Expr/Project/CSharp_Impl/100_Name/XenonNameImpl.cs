@@ -23,10 +23,10 @@ namespace Xenon.Expr
         /// <summary>
         /// 
         /// </summary>
-        public XenonNameImpl(Givechapterandverse_Node owner_Givechapterandverse)
+        public XenonNameImpl(Configurationtree_Node owner_Configurationtree)
         {
             this.sValue = "";
-            this.cur_Givechapterandverse = owner_Givechapterandverse;
+            this.cur_Configurationtree = owner_Configurationtree;
         }
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace Xenon.Expr
         /// </summary>
         /// <param select="nValue"></param>
         /// <param select="s_OwnerNode"></param>
-        public XenonNameImpl(string sValue, Givechapterandverse_Node owner_Givechapterandverse)
+        public XenonNameImpl(string sValue, Configurationtree_Node owner_Configurationtree)
         {
             this.sValue = sValue;
-            this.cur_Givechapterandverse = owner_Givechapterandverse;
+            this.cur_Configurationtree = owner_Configurationtree;
         }
 
         //────────────────────────────────────────
@@ -63,16 +63,16 @@ namespace Xenon.Expr
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node cur_Givechapterandverse;
+        private Configurationtree_Node cur_Configurationtree;
 
         /// <summary>
         /// 
         /// </summary>
-        public Givechapterandverse_Node Cur_Givechapterandverse
+        public Configurationtree_Node Cur_Configurationtree
         {
             get
             {
-                return cur_Givechapterandverse;
+                return cur_Configurationtree;
             }
         }
 

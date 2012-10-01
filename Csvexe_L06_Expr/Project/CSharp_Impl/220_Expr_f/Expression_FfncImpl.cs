@@ -29,8 +29,8 @@ namespace Xenon.Expr
         /// <param oVariableName="s_ParentNode"></param>
         /// <param oVariableName="moOpyopyo"></param>
         public Expression_FfncImpl(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node parent_Givechapterandverse, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression, parent_Givechapterandverse, owner_MemoryApplication)
+            Expression_Node_String parent_Expression, Configurationtree_Node parent_Configurationtree, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression, parent_Configurationtree, owner_MemoryApplication)
         {
         }
 
@@ -92,7 +92,7 @@ namespace Xenon.Expr
             else
             {
                 // ＜ａｒｇ＞一覧
-                DicExpression_Node_String ecDic_Argument = new DicExpression_Node_StringImpl(ec_CommonFunction.Cur_Givechapterandverse);
+                Dictionary_Expression_Node_String ecDic_Argument = new Dictionary_Expression_Node_StringImpl(ec_CommonFunction.Cur_Configurationtree);
                 this.Dictionary_Expression_Attribute.ForEach(delegate(string sAttrName, Expression_Node_String e_Attr, ref bool bBreak)
                 {
                     if (log_Reports.Successful)
@@ -133,7 +133,7 @@ namespace Xenon.Expr
         //private RecordSet E_Execute_P1_Reccond_CellType(
         //    bool bExists_Awhr,//ｗｈｅｒｅ
         //    Selectstatement selectSt,
-        //    Givechapterandverse_Node s_ParentNode_Query,
+        //    Configurationtree_Node s_ParentNode_Query,
         //    Log_Reports log_Reports
         //    )
         //{
@@ -185,7 +185,7 @@ namespace Xenon.Expr
         //        P1_RecordSetLoader sel1 = new P1_RecordSetLoader(this.Owner_MemoryApplication);
         //        dst_Rs = sel1.P1_Load(
         //            selectSt.Expression_Where_RecordSetLoadFrom,
-        //            this.Cur_Givechapterandverse,
+        //            this.Cur_Configurationtree,
         //            log_Reports
         //            );
         //    }
@@ -288,7 +288,7 @@ namespace Xenon.Expr
         //        t.Newline();
 
         //        // ヒント
-        //        t.Append(r.Message_Givechapterandverse(s_ParentNode_Query));
+        //        t.Append(r.Message_Configurationtree(s_ParentNode_Query));
 
         //        r.Message = t.ToString();
         //        log_Reports.EndCreateReport();

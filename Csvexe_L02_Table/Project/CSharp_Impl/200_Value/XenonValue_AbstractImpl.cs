@@ -7,7 +7,7 @@ using Xenon.Syntax;
 
 namespace Xenon.Table
 {
-    abstract public class XenonValue_AbstractImpl : Givechapterandverse_NodeImpl, XenonValue
+    abstract public class XenonValue_AbstractImpl : Configurationtree_NodeImpl, XenonValue
     {
 
 
@@ -16,7 +16,7 @@ namespace Xenon.Table
         //────────────────────────────────────────        
 
         public XenonValue_AbstractImpl(string sConfigStack)
-            : base("ノード名未指定", new Givechapterandverse_NodeImpl(sConfigStack, null))
+            : base("ノード名未指定", new Configurationtree_NodeImpl(sConfigStack, null))
         {
             this.bSpaced = true;
             this.humaninput = "";

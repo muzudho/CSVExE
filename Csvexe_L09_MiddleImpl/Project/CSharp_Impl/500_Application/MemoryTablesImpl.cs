@@ -107,7 +107,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(ec_TableName.Cur_Givechapterandverse.Parent_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(ec_TableName.Cur_Configurationtree.Parent));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -189,7 +189,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(ecTableUnit.Cur_Givechapterandverse.Parent_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(ecTableUnit.Cur_Configurationtree.Parent));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -286,7 +286,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(o_Table));
+                t.Append(r.Message_Configurationtree(o_Table));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

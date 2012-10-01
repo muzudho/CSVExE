@@ -9,7 +9,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    public class XToGivechapterandverse_C_Parser15Impl : XToGivechapterandverse_C15_Elm
+    public class XToConfigurationtree_C_Parser15Impl : XToConfigurationtree_C15_Elm
     {
 
 
@@ -17,10 +17,10 @@ namespace Xenon.XToGcav
         #region 生成と破棄
         //────────────────────────────────────────
 
-        protected virtual Givechapterandverse_Node CreateMyself(
-            XmlElement cur_X, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+        protected virtual Configurationtree_Node CreateMyself(
+            XmlElement cur_X, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
-            Givechapterandverse_Node cf_Cur = new Givechapterandverse_NodeImpl(cur_X.Name, parent_Cf);
+            Configurationtree_Node cf_Cur = new Configurationtree_NodeImpl(cur_X.Name, parent_Cf);
             return cf_Cur;
         }
 
@@ -32,9 +32,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public virtual void XToGivechapterandverse(
+        public virtual void XToConfigurationtree(
             XmlElement cur_X,
-            Givechapterandverse_Node parent_Cf,
+            Configurationtree_Node parent_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -53,7 +53,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            Givechapterandverse_Node cur_Cf;
+            Configurationtree_Node cur_Cf;
             if (log_Reports.Successful)
             {
                 cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
@@ -155,7 +155,7 @@ namespace Xenon.XToGcav
         /// <param name="log_Reports"></param>
         protected virtual void Parse_SAttribute(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -187,7 +187,7 @@ namespace Xenon.XToGcav
                     PmName pmName = PmNames.FromSAttribute(xAttr.Name);
                     if (null != pmName)
                     {
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.Add(pmName.Name_Pm, xAttr.Value, cur_Cf, true, log_Reports);
+                        cur_Cf.Dictionary_Attribute.Add(pmName.Name_Pm, xAttr.Value, cur_Cf, true, log_Reports);
                     }
                     else
                     {
@@ -202,7 +202,7 @@ namespace Xenon.XToGcav
                         //}
 
                         //throw new Exception("廃止方針のAdd([" + x_Attr.Name + "], [" + x_Attr.Value + "])");
-                        //s_Cur.Dictionary_Attribute_Givechapterandverse.Add(x_Attr.Name, x_Attr.Value, s_Cur, true, log_Reports);
+                        //s_Cur.Dictionary_Attribute.Add(x_Attr.Name, x_Attr.Value, s_Cur, true, log_Reports);
                     }
                 }
                 else
@@ -237,7 +237,7 @@ namespace Xenon.XToGcav
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -259,7 +259,7 @@ namespace Xenon.XToGcav
         /// <param name="x_Cur"></param>
         /// <param name="s_Cur"></param>
         /// <param name="log_Reports"></param>
-        protected virtual void Test_Attributes(XmlElement cur_X, Givechapterandverse_Node cur_Cf, Log_Reports log_Reports)
+        protected virtual void Test_Attributes(XmlElement cur_X, Configurationtree_Node cur_Cf, Log_Reports log_Reports)
         {
             //
             //
@@ -279,7 +279,7 @@ namespace Xenon.XToGcav
             {
                 foreach (string sName_Attr in this.List_SName_RequiredPm)
                 {
-                    if (!cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(sName_Attr))
+                    if (!cur_Cf.Dictionary_Attribute.ContainsKey(sName_Attr))
                     {
                         // エラー。
                         err_SName_Attr = sName_Attr;
@@ -305,7 +305,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cur_Cf));
+                t.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -323,18 +323,18 @@ namespace Xenon.XToGcav
 
         protected virtual void Parse_ChildNodes(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
         {
-            XToGivechapterandverse_C14_Hub to = new XToGivechapterandverse_C14_HubImpl();
-            to.XToGivechapterandverse(cur_X, cur_Cf, memoryApplication, log_Reports);
+            XToConfigurationtree_C14_Hub to = new XToConfigurationtree_C14_HubImpl();
+            to.XToConfigurationtree(cur_X, cur_Cf, memoryApplication, log_Reports);
         }
 
         //────────────────────────────────────────
 
-        protected virtual void Test_ChildNodes(XmlElement cur_X, Givechapterandverse_Node cur_Cf, Log_Reports log_Reports)
+        protected virtual void Test_ChildNodes(XmlElement cur_X, Configurationtree_Node cur_Cf, Log_Reports log_Reports)
         {
         }
 
@@ -344,9 +344,9 @@ namespace Xenon.XToGcav
         /// 親要素に、この要素を追加。
         /// </summary>
         protected virtual void LinkToParent(
-            Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+            Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
-            parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+            parent_Cf.List_Child.Add(cur_Cf, log_Reports);
         }
 
         //────────────────────────────────────────

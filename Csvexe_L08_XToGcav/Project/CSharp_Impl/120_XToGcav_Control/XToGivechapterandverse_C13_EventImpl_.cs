@@ -15,7 +15,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// (Sf) ＜ｅｖｅｎｔ＞
     /// </summary>
-    class XToGivechapterandverse_C13_EventImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_C13_EventImpl_ : XToConfigurationtree_C_Parser15Impl
 	{
 
 
@@ -23,9 +23,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public override void XToGivechapterandverse(
+        public override void XToConfigurationtree(
             XmlElement cur_X,//＜event＞
-            Givechapterandverse_Node parent_Cf,//＜ｃｏｎｔｒｏｌ＞
+            Configurationtree_Node parent_Cf,//＜ｃｏｎｔｒｏｌ＞
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -43,7 +43,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            Givechapterandverse_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
+            Configurationtree_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
 
 
             //
@@ -83,8 +83,8 @@ namespace Xenon.XToGcav
 
                         try
                         {
-                            XToGivechapterandverse_C15_Elm to = this.Dic_XToGivechapterandverse[xChild.Name];
-                            to.XToGivechapterandverse(
+                            XToConfigurationtree_C15_Elm to = this.Dic_XToConfigurationtree[xChild.Name];
+                            to.XToConfigurationtree(
                                 xAction,
                                 cur_Cf,
                                 memoryApplication,
@@ -120,7 +120,7 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+                parent_Cf.List_Child.Add(cur_Cf, log_Reports);
             }
 
             goto gt_EndMethod;
@@ -140,7 +140,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cur_Cf));
+                t.Append(r.Message_Configurationtree(cur_Cf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();
@@ -160,7 +160,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cur_Cf));
+                t.Append(r.Message_Configurationtree(cur_Cf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();
@@ -183,12 +183,12 @@ namespace Xenon.XToGcav
         #region プロパティー
         //────────────────────────────────────────
 
-        private static Dictionary<string, XToGivechapterandverse_C15_Elm> dic_XToGivechapterandverse;
+        private static Dictionary<string, XToConfigurationtree_C15_Elm> dic_XToConfigurationtree;
 
         /// <summary>
         /// 名前付きパーサー一覧。
         /// </summary>
-        private Dictionary<string, XToGivechapterandverse_C15_Elm> Dic_XToGivechapterandverse
+        private Dictionary<string, XToConfigurationtree_C15_Elm> Dic_XToConfigurationtree
         {
             get
             {
@@ -198,9 +198,9 @@ namespace Xenon.XToGcav
                 //
                 //
 
-                if (null == dic_XToGivechapterandverse)
+                if (null == dic_XToConfigurationtree)
                 {
-                    dic_XToGivechapterandverse = new Dictionary<string, XToGivechapterandverse_C15_Elm>();
+                    dic_XToConfigurationtree = new Dictionary<string, XToConfigurationtree_C15_Elm>();
 
                     //
                     // TODO: 間違った入れ子関係も　読み取りしてしまうので、そこらへんのチェックも入れたい。
@@ -209,8 +209,8 @@ namespace Xenon.XToGcav
                     //
                     // 子要素＜fnc＞
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_FNC, d_Logging_ThisMethod);
-                        dic_XToGivechapterandverse.Add(NamesNode.S_FNC, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_FNC, d_Logging_ThisMethod);
+                        dic_XToConfigurationtree.Add(NamesNode.S_FNC, to);
                     }
 
                 }
@@ -220,7 +220,7 @@ namespace Xenon.XToGcav
                 log_Method.EndMethod(d_Logging_ThisMethod);
                 d_Logging_ThisMethod.EndLogging(log_Method);
 
-                return dic_XToGivechapterandverse;
+                return dic_XToConfigurationtree;
             }
         }
 

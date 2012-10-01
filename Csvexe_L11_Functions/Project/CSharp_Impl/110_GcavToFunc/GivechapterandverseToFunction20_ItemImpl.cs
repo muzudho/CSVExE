@@ -11,7 +11,7 @@ namespace Xenon.Functions
 {
 
 
-    public class GivechapterandverseToFunction20_ItemImpl : GivechapterandverseToFunction00_ItemImpl
+    public class ConfigurationtreeToFunction20_ItemImpl : ConfigurationtreeToFunction00_ItemImpl
     {
 
 
@@ -22,7 +22,7 @@ namespace Xenon.Functions
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public GivechapterandverseToFunction20_ItemImpl()
+        public ConfigurationtreeToFunction20_ItemImpl()
         {
         }
 
@@ -35,11 +35,11 @@ namespace Xenon.Functions
         //────────────────────────────────────────
 
         public override void Translate_Step2(
-            GivechapterandverseToFunction_Item parentProcesser,
-            Givechapterandverse_Node action_Gcav,
+            ConfigurationtreeToFunction_Item parentProcesser,
+            Configurationtree_Node action_Gcav,
             Expression_Node_Function parent_Expr_Func,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
@@ -50,13 +50,13 @@ namespace Xenon.Functions
             {
                 // 引数 listboxFcName が指定されていない場合は、その記述が書かれているコントロールの名前を入れる。
 
-                Givechapterandverse_Node cf_Event = action_Gcav.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
+                Configurationtree_Node cf_Event = action_Gcav.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
                 if (log_Reports.Successful)
                 {
-                    Givechapterandverse_Node parent_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                    Configurationtree_Node parent_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
 
                     string sName_Usercontrol;
-                    parent_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
+                    parent_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
                     ec_ArgListboxName.AppendTextNode(sName_Usercontrol, action_Gcav, log_Reports);
                 }
             }

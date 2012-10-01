@@ -22,15 +22,15 @@ namespace Xenon.Expr
         /// </summary>
         /// <param name="s_ParentNode"></param>
         /// <param name="moOpyopyo"></param>
-        public Expressionv_5FAllTrueImpl(Expression_Node_String parent_Expression_Node, Givechapterandverse_Node parent_Givechapterandverse_Node, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)//"f-all-true",
+        public Expressionv_5FAllTrueImpl(Expression_Node_String parent_Expression_Node, Configurationtree_Node parent_Configurationtree_Node, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)//"f-all-true",
         {
             this.list_Expressionv_AEmptyField = new List<Expressionv_Elem99>();
         }
 
-        public static Expression_Node_String Create(Expression_Node_String parent_Expression_Node, Givechapterandverse_Node parent_Givechapterandverse_Node, MemoryApplication owner_MemoryApplication)
+        public static Expression_Node_String Create(Expression_Node_String parent_Expression_Node, Configurationtree_Node parent_Configurationtree_Node, MemoryApplication owner_MemoryApplication)
         {
-            return new Expressionv_5FAllTrueImpl(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication);
+            return new Expressionv_5FAllTrueImpl(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication);
         }
 
         //────────────────────────────────────────

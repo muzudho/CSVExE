@@ -37,7 +37,7 @@ namespace Xenon.Middle
         /// </summary>
         void P101_LoadAatoolxml(
             MemoryApplication memoryApplication,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             );
 
@@ -95,7 +95,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 利用者に、修正箇所を伝える情報。
         /// </summary>
-        Givechapterandverse_Node Cur_Givechapterandverse
+        Configurationtree_Node Cur_Configurationtree
         {
             get;
             set;

@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.GcavToExpr
 {
-    public abstract class GivechapterandverseToExpression_AbstractImpl : GivechapterandverseToExpression
+    public abstract class ConfigurationtreeToExpression_AbstractImpl : ConfigurationtreeToExpression
     {
 
 
@@ -17,18 +17,18 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public static void ParseChild_InAnotherLibrary(
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             Expression_Node_String parent_Expr,//nAcase,nFelemの両方の場合がある。
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, "SToE_AbstractImpl", "ParseChild_InAnotherLibrary",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, "SToE_AbstractImpl", "ParseChild_InAnotherLibrary",log_Reports);
 
-            GivechapterandverseToExpression_F14n16 dammy = new GivechapterandverseToExpression_F14_FncImpl_();//メソッドが使いたいだけなので、何でもいい。
-            dammy.ParseChild_InGivechapterandverseToExpression(
+            ConfigurationtreeToExpression_F14n16 dammy = new ConfigurationtreeToExpression_F14_FncImpl_();//メソッドが使いたいだけなので、何でもいい。
+            dammy.ParseChild_InConfigurationtreeToExpression(
                 cur_Cf,
                 parent_Expr,
                 memoryApplication,
@@ -50,16 +50,16 @@ namespace Xenon.GcavToExpr
 
         //────────────────────────────────────────
 
-        public void ParseChild_InGivechapterandverseToExpression(
-            Givechapterandverse_Node cur_Gcav,//S_NodeList s_curNodeList,
+        public void ParseChild_InConfigurationtreeToExpression(
+            Configurationtree_Node cur_Gcav,//S_NodeList s_curNodeList,
             Expression_Node_String parent_Expr,//nAcase,nFelemの両方の場合がある。
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "ParseChild_InSToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "ParseChild_InSToE",log_Reports);
             //
             //
 
@@ -72,7 +72,7 @@ namespace Xenon.GcavToExpr
             //
             // 親ノード名、親ファンク名
             //
-            string parent_SName_Node = parent_Expr.Cur_Givechapterandverse.Name;
+            string parent_SName_Node = parent_Expr.Cur_Configurationtree.Name;
             string parent_SName_Fnc = "";
             {
                 bool bRequired;
@@ -95,7 +95,7 @@ namespace Xenon.GcavToExpr
 
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole( "開始┌──┐　s_Curノード名=[" + cur_Gcav.Name + "]　子要素数=[" + cur_Gcav.List_ChildGivechapterandverse.Count + "]");
+                log_Method.WriteDebug_ToConsole( "開始┌──┐　s_Curノード名=[" + cur_Gcav.Name + "]　子要素数=[" + cur_Gcav.List_Child.Count + "]");
             }
 
 
@@ -107,8 +107,8 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            Givechapterandverse_Node err_Givechapterandverse_Node2 = null;
-            cur_Gcav.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Child, ref bool bBreak)
+            Configurationtree_Node err_Configurationtree_Node2 = null;
+            cur_Gcav.List_Child.ForEach(delegate(Configurationtree_Node s_Child, ref bool bBreak)
             {
 
                 if (!log_Reports.Successful)
@@ -134,13 +134,13 @@ namespace Xenon.GcavToExpr
                     }
 
                     log_Reports.Log_Callstack.Push(log_Method, "②");
-                    s_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, bRequired, log_Reports);
+                    s_Child.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_MyFnc, bRequired, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "②");
                 }
 
 
 
-                if (this.Dictionary_GivechapterandverseToExpression.ContainsKey(sName_MyNode))
+                if (this.Dictionary_ConfigurationtreeToExpression.ContainsKey(sName_MyNode))
                 {
                     if (log_Method.CanDebug(1))
                     {
@@ -148,7 +148,7 @@ namespace Xenon.GcavToExpr
                     }
 
 
-                    this.Dictionary_GivechapterandverseToExpression[sName_MyNode].Translate(
+                    this.Dictionary_ConfigurationtreeToExpression[sName_MyNode].Translate(
                         s_Child,
                         parent_Expr,
                         memoryApplication,
@@ -162,12 +162,12 @@ namespace Xenon.GcavToExpr
                     //
                     // それ以外、エラー。
                     //
-                    err_Givechapterandverse_Node2 = s_Child;
+                    err_Configurationtree_Node2 = s_Child;
                     bBreak = true;
                 }
             });
             //
-            if (null != err_Givechapterandverse_Node2)
+            if (null != err_Configurationtree_Node2)
             {
                 goto gt_Error_UndefinedElement;
             }
@@ -189,7 +189,7 @@ namespace Xenon.GcavToExpr
                 // nFAelem はヌルなので、確認できない。
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Expr.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(parent_Expr.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -205,20 +205,20 @@ namespace Xenon.GcavToExpr
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("　(Fcnf) 子 ＜f-●●＞要素を書くところに、未定義の要素＜");
-                s.Append(err_Givechapterandverse_Node2.Name);
+                s.Append(err_Configurationtree_Node2.Name);
                 s.Append("＞が書かれていました。これには未対応です。");
                 s.Newline();
                 s.Append("クラス=[");
-                s.Append(err_Givechapterandverse_Node2.GetType().Name);
+                s.Append(err_Configurationtree_Node2.GetType().Name);
                 s.Append("]");
                 s.Newline();
                 s.Newline();
 
                 s.Append("┌────┐書けるキー（個数＝[");
-                s.Append(this.Dictionary_GivechapterandverseToExpression.Count);
+                s.Append(this.Dictionary_ConfigurationtreeToExpression.Count);
                 s.Append("]）");
                 s.Newline();
-                foreach (string sKey in this.Dictionary_GivechapterandverseToExpression.Keys)
+                foreach (string sKey in this.Dictionary_ConfigurationtreeToExpression.Keys)
                 {
                     s.Append(sKey);
                     s.Newline();
@@ -229,7 +229,7 @@ namespace Xenon.GcavToExpr
                 if (null != parent_Expr)
                 {
                     s.Append("親要素は[");
-                    s.Append(parent_Expr.Cur_Givechapterandverse.Name);
+                    s.Append(parent_Expr.Cur_Configurationtree.Name);
                     s.Append("]");
                     s.Newline();
                 }
@@ -239,7 +239,7 @@ namespace Xenon.GcavToExpr
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(err_Givechapterandverse_Node2));
+                s.Append(r.Message_Configurationtree(err_Configurationtree_Node2));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -267,46 +267,46 @@ namespace Xenon.GcavToExpr
         #region プロパティー
         //────────────────────────────────────────
 
-        private static Dictionary<string, GivechapterandverseToExpression_F14n16> dictionary_GivechapterandverseToExpression;
-        private Dictionary<string, GivechapterandverseToExpression_F14n16> Dictionary_GivechapterandverseToExpression
+        private static Dictionary<string, ConfigurationtreeToExpression_F14n16> dictionary_ConfigurationtreeToExpression;
+        private Dictionary<string, ConfigurationtreeToExpression_F14n16> Dictionary_ConfigurationtreeToExpression
         {
             get
             {
-                if (null == dictionary_GivechapterandverseToExpression)
+                if (null == dictionary_ConfigurationtreeToExpression)
                 {
-                    GivechapterandverseToExpression_AbstractImpl.dictionary_GivechapterandverseToExpression = new Dictionary<string, GivechapterandverseToExpression_F14n16>();
+                    ConfigurationtreeToExpression_AbstractImpl.dictionary_ConfigurationtreeToExpression = new Dictionary<string, ConfigurationtreeToExpression_F14n16>();
 
                     //
                     // 子要素
                     // 「S■ｆ－ｓｔｒ」
-                    dictionary_GivechapterandverseToExpression.Add(NamesNode.S_F_STR, new GivechapterandverseToExpression_F14_FstrImpl_());
+                    dictionary_ConfigurationtreeToExpression.Add(NamesNode.S_F_STR, new ConfigurationtreeToExpression_F14_FstrImpl_());
 
                     //
                     // 子要素
                     // 「S■ｆ－ｖａｒ」
-                    dictionary_GivechapterandverseToExpression.Add(NamesNode.S_F_VAR, new GivechapterandverseToExpression_F14_FvariableImpl_());
+                    dictionary_ConfigurationtreeToExpression.Add(NamesNode.S_F_VAR, new ConfigurationtreeToExpression_F14_FvariableImpl_());
 
                     //
                     // 子要素
                     // 「S■ｆ－ｐａｒａｍ」
-                    dictionary_GivechapterandverseToExpression.Add(NamesNode.S_F_PARAM, new GivechapterandverseToExpression_F14_FparamImpl_());
+                    dictionary_ConfigurationtreeToExpression.Add(NamesNode.S_F_PARAM, new ConfigurationtreeToExpression_F14_FparamImpl_());
 
 
                     //
                     // 「S■ｆｎｃ」要素を追加。
-                    dictionary_GivechapterandverseToExpression.Add(NamesNode.S_FNC, new GivechapterandverseToExpression_F14_FncImpl_());
+                    dictionary_ConfigurationtreeToExpression.Add(NamesNode.S_FNC, new ConfigurationtreeToExpression_F14_FncImpl_());
 
 
 
                     // 「S■ａｒｇ」要素を追加。（2012-06-02）
-                    dictionary_GivechapterandverseToExpression.Add(NamesNode.S_ARG, new GivechapterandverseToExpression_F14_FArgImpl());
+                    dictionary_ConfigurationtreeToExpression.Add(NamesNode.S_ARG, new ConfigurationtreeToExpression_F14_FArgImpl());
 
                     // 「S■ｄｅｆ－ｐａｒａｍ」要素を追加。（2012-07-20）
-                    dictionary_GivechapterandverseToExpression.Add(NamesNode.S_DEF_PARAM, new GivechapterandverseToExpression_F14_DefParamImpl_());
+                    dictionary_ConfigurationtreeToExpression.Add(NamesNode.S_DEF_PARAM, new ConfigurationtreeToExpression_F14_DefParamImpl_());
 
                 }
 
-                return GivechapterandverseToExpression_AbstractImpl.dictionary_GivechapterandverseToExpression;
+                return ConfigurationtreeToExpression_AbstractImpl.dictionary_ConfigurationtreeToExpression;
             }
         }
 

@@ -15,7 +15,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// (Sf) ＜ｖｉｅｗ＞
     /// </summary>
-    class XToGivechapterandverse_C13_ViewImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_C13_ViewImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -29,9 +29,9 @@ namespace Xenon.XToGcav
         /// <param name="x_View"></param>
         /// <param name="s_Parent"></param>
         /// <param name="log_Reports"></param>
-        public override void XToGivechapterandverse(
+        public override void XToConfigurationtree(
             XmlElement cur_X,
-            Givechapterandverse_Node parent_Cf,//＜ｃｏｎｔｒｏｌ＞
+            Configurationtree_Node parent_Cf,//＜ｃｏｎｔｒｏｌ＞
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -50,7 +50,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            Givechapterandverse_Node cur_Sf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
+            Configurationtree_Node cur_Sf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
 
 
 
@@ -91,7 +91,7 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                parent_Cf.List_ChildGivechapterandverse.Add(cur_Sf, log_Reports);
+                parent_Cf.List_Child.Add(cur_Sf, log_Reports);
             }
 
 
@@ -113,13 +113,13 @@ namespace Xenon.XToGcav
 
         protected override void Parse_ChildNodes(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
         {
-            XToGivechapterandverse_C14_Hub to = new XToGivechapterandverse_C14_HubImpl();
-            to.XToGivechapterandverse(
+            XToConfigurationtree_C14_Hub to = new XToConfigurationtree_C14_HubImpl();
+            to.XToConfigurationtree(
                 cur_X,
                 cur_Cf,
                 memoryApplication,

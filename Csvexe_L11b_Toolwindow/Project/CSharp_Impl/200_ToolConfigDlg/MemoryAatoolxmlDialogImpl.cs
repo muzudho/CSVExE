@@ -26,7 +26,7 @@ namespace Xenon.Toolwindow
             this.Name_SelectedEditor = "";
             this.Name_Application = "";
             this.memoryAatoolxml = new MemoryAatoolxmlImpl();
-            this.dictionary_Editor = new Dictionary_Fsetvar_GivechapterandverseImpl();
+            this.dictionary_Editor = new Dictionary_Fsetvar_ConfigurationtreeImpl();
         }
 
         //────────────────────────────────────────
@@ -56,12 +56,12 @@ namespace Xenon.Toolwindow
 
         //────────────────────────────────────────
 
-        private Dictionary_Fsetvar_Givechapterandverse dictionary_Editor;
+        private Dictionary_Fsetvar_Configurationtree dictionary_Editor;
 
         /// <summary>
         /// エディター設定ファイル モデル
         /// </summary>
-        public Dictionary_Fsetvar_Givechapterandverse Dictionary_Editor
+        public Dictionary_Fsetvar_Configurationtree Dictionary_Editor
         {
             get
             {

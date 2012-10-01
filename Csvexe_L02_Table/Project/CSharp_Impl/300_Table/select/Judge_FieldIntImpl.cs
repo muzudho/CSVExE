@@ -23,7 +23,7 @@ namespace Xenon.Table
             string sValue_Expected,
             bool bRequired_ExpectedValue,
             DataRow row,
-            Givechapterandverse_Node parent_Query,
+            Configurationtree_Node parent_Query,
             Log_Reports log_Reports
             )
         {
@@ -160,7 +160,7 @@ namespace Xenon.Table
                 s.Newline();
 
                 // ヒント
-                parent_Query.ToText_Path(s);
+                parent_Query.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -195,7 +195,7 @@ namespace Xenon.Table
 
                 //
                 // ヒント
-                parent_Query.ToText_Path(s);
+                parent_Query.ToText_Locationbreadcrumbs(s);
 
                 s.AppendI(0, "</Select_KeyIntImplクラス>");
                 s.Newline();

@@ -27,7 +27,7 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public MemoryAatoolxmlImpl()
         {
-            this.cur_Givechapterandverse = new Givechapterandverse_NodeImpl( "<init>", null);
+            this.cur_Configurationtree = new Configurationtree_NodeImpl( "<init>", null);
             this.sDefaultEditor = "";
             this.dictionary_Editor = new Dictionary_AatoolxmlEditorImpl(this);
         }
@@ -37,7 +37,7 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public void Clear()
         {
-            this.cur_Givechapterandverse = new Givechapterandverse_NodeImpl("<clear>", null);
+            this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
             this.SDefaultEditor = "";
             this.Dictionary_Editor.Dictionary_Item.Clear();
         }
@@ -55,7 +55,7 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public void P101_LoadAatoolxml(
             MemoryApplication moApplication,
-            Givechapterandverse_Node cf_CallerMethod,
+            Configurationtree_Node cf_CallerMethod,
             Log_Reports log_Reports
             )
         {
@@ -71,7 +71,7 @@ namespace Xenon.MiddleImpl
                 // ツール設定ファイルへのパスは固定とします。
                 Expression_Node_Filepath ec_Fpath;
                 {
-                    Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_5", cf_CallerMethod);
+                    Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_5", cf_CallerMethod);
                     cf_Fpath.InitPath(
                         ValuesAttr.S_FPATHR_AATOOLXML,
                         log_Reports);
@@ -155,7 +155,7 @@ namespace Xenon.MiddleImpl
                     ValuesAttr.Test_Codefileversion(
                         xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                         log_Reports,
-                        new Givechapterandverse_NodeImpl(sFpatha_Aatoolxml, null),
+                        new Configurationtree_NodeImpl(sFpatha_Aatoolxml, null),
                         NamesNode.S_CODEFILE_TOOL
                         );
 
@@ -175,7 +175,7 @@ namespace Xenon.MiddleImpl
                                 //
                                 // エディター要素
                                 //
-                                MemoryAatoolxml_Editor aatool_Editor = new MemoryAatoolxml_EditorImpl(this.cur_Givechapterandverse);
+                                MemoryAatoolxml_Editor aatool_Editor = new MemoryAatoolxml_EditorImpl(this.cur_Configurationtree);
 
                                 //
                                 // エディター要素
@@ -206,7 +206,7 @@ namespace Xenon.MiddleImpl
                                     if (XmlNodeType.Element == xNode_Fsetvar.NodeType)
                                     {
                                         //＜ｆ－ｓｅｔ－ｖａｒ＞要素
-                                        Givechapterandverse_Node cf_Fsetvar = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR, ec_Fpath_Aatoolxml.Cur_Givechapterandverse);
+                                        Configurationtree_Node cf_Fsetvar = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, ec_Fpath_Aatoolxml.Cur_Configurationtree);
 
                                         //＜ｆ－ｓｅｔ－ｖａｒ＞要素
                                         XmlElement xFsetvar = (XmlElement)xNode_Fsetvar;
@@ -217,12 +217,12 @@ namespace Xenon.MiddleImpl
                                         string sDescription = xFsetvar.GetAttribute(PmNames.S_DESCRIPTION.Name_Attribute);
 
 
-                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
-                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
-                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
-                                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
+                                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
 
-                                        aatool_Editor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.Add(cf_Fsetvar, log_Reports);
+                                        aatool_Editor.Dictionary_Fsetvar_Configurationtree.List_Child.Add(cf_Fsetvar, log_Reports);
                                     }
                                 }
                             }
@@ -244,7 +244,7 @@ namespace Xenon.MiddleImpl
 
             if (log_Reports.Successful)
             {
-                this.cur_Givechapterandverse = ec_Fpath_Aatoolxml.Cur_Givechapterandverse;
+                this.cur_Configurationtree = ec_Fpath_Aatoolxml.Cur_Configurationtree;
             }
 
             goto gt_EndMethod;
@@ -568,22 +568,22 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node cur_Givechapterandverse;
+        private Configurationtree_Node cur_Configurationtree;
 
         /// <summary>
         /// 利用者に、修正箇所を伝える情報。
         /// 
         /// 基本的に、LoadFileを使ったときに引数に入れられるファイルパスが入る。
         /// </summary>
-        public Givechapterandverse_Node Cur_Givechapterandverse
+        public Configurationtree_Node Cur_Configurationtree
         {
             get
             {
-                return cur_Givechapterandverse;
+                return cur_Configurationtree;
             }
             set
             {
-                cur_Givechapterandverse = value;
+                cur_Configurationtree = value;
             }
         }
 

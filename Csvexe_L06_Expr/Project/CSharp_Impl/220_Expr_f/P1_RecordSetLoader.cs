@@ -40,7 +40,7 @@ namespace Xenon.Expr
         /// <returns>該当がなければヌル。</returns>
         public RecordSet P1_Load(
             Expression_Node_String ec_RecordSetLoadFrom,//Ｗｈｅｒｅ
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             )
         {

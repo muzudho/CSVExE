@@ -52,13 +52,13 @@ namespace Xenon.Functions
         #region 生成と破棄
         // ──────────────────────────────
 
-        public Expression_Node_Function22Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function22Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -67,7 +67,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function22Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -122,9 +122,9 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
@@ -142,7 +142,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
 
@@ -249,7 +249,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
+                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
 
             goto gt_EndMethod;
@@ -269,7 +269,7 @@ namespace Xenon.Functions
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -324,7 +324,7 @@ namespace Xenon.Functions
                 Expression_Node_Filepath ec_Fpath_Aafilescsv;
                 log_Reports.Log_Callstack.Push(log_Method, "⑦");
                 ec_Fpath_Aafilescsv = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
-                    new Expression_Leaf_StringImpl(NamesVar.S_SP_FILES, null, new Givechapterandverse_NodeImpl(log_Method.Fullname, null)),
+                    new Expression_Leaf_StringImpl(NamesVar.S_SP_FILES, null, new Configurationtree_NodeImpl(log_Method.Fullname, null)),
                     true,log_Reports);
                 log_Reports.Log_Callstack.Pop(log_Method, "⑦");
 
@@ -614,9 +614,9 @@ namespace Xenon.Functions
 
                 // ヒント
                 {
-                    Givechapterandverse_Node cf = new Givechapterandverse_NodeImpl("データ部"+err_NRow+"行",o_Table_Aafiles.Parent_Givechapterandverse);
-                    //s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
-                    s.Append(r.Message_Givechapterandverse(cf));//o_Table_Aafiles.Parent_Givechapterandverse
+                    Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部"+err_NRow+"行",o_Table_Aafiles.Parent);
+                    //s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
+                    s.Append(r.Message_Configurationtree(cf));//o_Table_Aafiles.Parent
                 }
 
                 r.Message = s.ToString();
@@ -979,7 +979,7 @@ namespace Xenon.Functions
                     {
                         // FOLDER列に、変数名が指定されているとき。
 
-                        Expression_Node_String ec_Namevar_Folder = new Expression_Leaf_StringImpl(sNamevarFolder.Trim(), null, new Givechapterandverse_NodeImpl(o_IndexTable.Name, null));//todo:
+                        Expression_Node_String ec_Namevar_Folder = new Expression_Leaf_StringImpl(sNamevarFolder.Trim(), null, new Configurationtree_NodeImpl(o_IndexTable.Name, null));//todo:
 
                         log_Reports.Log_Callstack.Push(log_Method, "③");
                         Expression_Node_Filepath ec_Fopath = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
@@ -1021,7 +1021,7 @@ namespace Xenon.Functions
                 //
                 // ファイルパス
                 //
-                Givechapterandverse_Filepath cf_Fpath1;
+                Configurationtree_NodeFilepath cf_Fpath1;
                 {
                     StringBuilder s = new StringBuilder();
                     s.Append("L11_1[");
@@ -1031,8 +1031,8 @@ namespace Xenon.Functions
                     s.Append("指定=");
                     s.Append(sFpath);
                     s.Append("]");
-                    cf_Fpath1 = new Givechapterandverse_FilepathImpl(s.ToString(), null);
-                    //cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L11_1", new Givechapterandverse_NodeImpl(s.ToString(), null));
+                    cf_Fpath1 = new Configurationtree_NodeFilepathImpl(s.ToString(), null);
+                    //cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L11_1", new Configurationtree_NodeImpl(s.ToString(), null));
                 }
 
                 cf_Fpath1.InitPath(sFpath, log_Reports);
@@ -1062,7 +1062,7 @@ namespace Xenon.Functions
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -1393,9 +1393,9 @@ namespace Xenon.Functions
                         //
 
                         Log_TextIndented txt = new Log_TextIndentedImpl();
-                        oTable.ToText_Path(txt);
+                        oTable.ToText_Locationbreadcrumbs(txt);
 
-                        Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L11_2", oTable);//  txt.ToString() + "のDataBackup");
+                        Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L11_2", oTable);//  txt.ToString() + "のDataBackup");
                         cf_Fpath.InitPath(
                             oTable.Expression_Filepath_ConfigStack.Humaninput,
                             log_Reports

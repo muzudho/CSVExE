@@ -33,7 +33,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 親要素。
         /// </summary>
-        Givechapterandverse_Node Cur_Givechapterandverse
+        Configurationtree_Node Cur_Configurationtree
         {
             get;
         }

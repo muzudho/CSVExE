@@ -28,7 +28,7 @@ namespace Xenon.Syntax
         /// <returns></returns>
         Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             object/*MoApplication*/ moApplication,
             Log_Reports log_Reports
             );
@@ -52,7 +52,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// Expression_Stringを関数として使うときの『ユーザー定義引数』のディクショナリー。
         /// </summary>
-        DicExpression_Node_String Dictionary_Expression_Parameter
+        Dictionary_Expression_Node_String Dictionary_Expression_Parameter
         {
             get;
             set;// 関数の引数を丸ごと渡す時に使う。
@@ -67,7 +67,7 @@ namespace Xenon.Syntax
             set;
         }
 
-        ExpressionfncPrmset ExpressionfncPrmset
+        Functionparameterset Functionparameterset
         {
             get;
         }

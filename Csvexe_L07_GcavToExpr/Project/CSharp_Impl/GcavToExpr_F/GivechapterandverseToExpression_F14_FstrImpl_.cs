@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.GcavToExpr
 {
-    class GivechapterandverseToExpression_F14_FstrImpl_ : GivechapterandverseToExpression_F14n16_AbstractImpl_
+    class ConfigurationtreeToExpression_F14_FstrImpl_ : ConfigurationtreeToExpression_F14n16_AbstractImpl_
     {
 
 
@@ -24,15 +24,15 @@ namespace Xenon.GcavToExpr
         /// <param name="moOpyopyo"></param>
         /// <param name="log_Reports"></param>
         public override void Translate(
-            Givechapterandverse_Node cur_Cf,//＜ｆ－ｓｔｒ＞
+            Configurationtree_Node cur_Cf,//＜ｆ－ｓｔｒ＞
             Expression_Node_String parent_Ec,//親＜●●＞。
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -69,7 +69,7 @@ namespace Xenon.GcavToExpr
             //
             if (log_Reports.Successful)
             {
-                this.ParseAttr_InGivechapterandverseToExpression(
+                this.ParseAttr_InConfigurationtreeToExpression(
                     cur_Cf,
                     ec_Cur,
                     false,//name属性は無い。
@@ -87,7 +87,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Cf,
                     ec_Cur,
                     memoryApplication,
@@ -125,7 +125,7 @@ namespace Xenon.GcavToExpr
                 // nFAelem はヌルなので、確認できない。
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.GcavToExpr
 {
-    public interface GivechapterandverseToExpression_F10_ControlList : GivechapterandverseToExpression
+    public interface ConfigurationtreeToExpression_F10_ControlList : ConfigurationtreeToExpression
     {
 
 
@@ -18,9 +18,9 @@ namespace Xenon.GcavToExpr
 
         void Translate(
             List<string> sList_Name_Control,
-            Givechapterandverse_Node cf_FcConfig,
+            Configurationtree_Node cf_FcConfig,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             );
 

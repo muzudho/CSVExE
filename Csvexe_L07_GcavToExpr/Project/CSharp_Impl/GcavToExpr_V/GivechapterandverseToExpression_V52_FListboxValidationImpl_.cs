@@ -10,7 +10,7 @@ using Xenon.Expr;
 
 namespace Xenon.GcavToExpr
 {
-    class GivechapterandverseToExpression_V52_FListboxValidationImpl_ : GivechapterandverseToExpression_AbstractImpl
+    class ConfigurationtreeToExpression_V52_FListboxValidationImpl_ : ConfigurationtreeToExpression_AbstractImpl
     {
 
 
@@ -19,15 +19,15 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public void Translate(
-            Givechapterandverse_Node cur_Gcav,//Sv_3FListboxValidation
+            Configurationtree_Node cur_Gcav,//Sv_3FListboxValidation
             UsercontrolListbox uctLst,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -38,9 +38,9 @@ namespace Xenon.GcavToExpr
             //
 
             // バリデーター設定要素
-            Givechapterandverse_Node cf_ValidatorConfig;
+            Configurationtree_Node cf_ValidatorConfig;
             {
-                List<Givechapterandverse_Node> cfList_ValidatorConfig = uctLst.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_CODEFILE_VALIDATORS, false, log_Reports);
+                List<Configurationtree_Node> cfList_ValidatorConfig = uctLst.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_CODEFILE_VALIDATORS, false, log_Reports);
 
                 if (1 < cfList_ValidatorConfig.Count)
                 {
@@ -74,20 +74,20 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            List<Givechapterandverse_Node> cfList_Fnc = cur_Gcav.GetChildrenByNodename(NamesNode.S_FNC, false, log_Reports);
+            List<Configurationtree_Node> cfList_Fnc = cur_Gcav.GetChildrenByNodename(NamesNode.S_FNC, false, log_Reports);
 
             // #デバッグ中
             //d_InMethod.WriteDebug_ToConsole(1, " ＜ａ－ｄｉｓｐｌａｙ＞数＝[" + sv_Cur.Sv_ADisplayList.Count + "]");
             //d_InMethod.WriteDebug_ToConsole(1, " ＜ｆｎｃ　ｎａｍｅ＝”ａ－ｒｅｃｏｒｄ－ｓｅｔ－ｓａｖｅ－ｔｏ”＞数＝[" + sv_Cur.Sv_ASelectRecordList.Count + "]");
 
-            foreach (Givechapterandverse_Node child_Cf in cfList_Fnc)
+            foreach (Configurationtree_Node child_Cf in cfList_Fnc)
             {
                 string sName_Fnc;
-                child_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
+                child_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
 
                 if (NamesFnc.S_VLD_SELECT_RECORD == sName_Fnc)
                 {
-                    GivechapterandverseToExpression_V53_ASelectRecordImpl_ to = new GivechapterandverseToExpression_V53_ASelectRecordImpl_();
+                    ConfigurationtreeToExpression_V53_ASelectRecordImpl_ to = new ConfigurationtreeToExpression_V53_ASelectRecordImpl_();
                     to.Translate(
                         child_Cf,
                         cur_Exprv,
@@ -99,7 +99,7 @@ namespace Xenon.GcavToExpr
                 else if (NamesFnc.S_VLD_DISPLAY == sName_Fnc)
                 {
                     // ＜ａ－ｄｉｓｐｌａｙ＞要素
-                    GivechapterandverseToExpression_V53_ADisplayImpl_ to = new GivechapterandverseToExpression_V53_ADisplayImpl_();
+                    ConfigurationtreeToExpression_V53_ADisplayImpl_ to = new ConfigurationtreeToExpression_V53_ADisplayImpl_();
                     to.Translate(
                         child_Cf,
                         cur_Exprv,

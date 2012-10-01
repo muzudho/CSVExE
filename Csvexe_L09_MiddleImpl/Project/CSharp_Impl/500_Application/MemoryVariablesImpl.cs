@@ -50,7 +50,7 @@ namespace Xenon.MiddleImpl
 
             this.DictionaryExpression_Item.Clear();
 
-            this.parent_Variablesconfig_Givechapterandverse = null;
+            this.parent_Variablesconfig_Configurationtree = null;
 
 
             goto gt_EndMethod;
@@ -80,14 +80,14 @@ namespace Xenon.MiddleImpl
             out_O_Table_Variables = null;
 
             //『Sp:Variables;』で指定されているテーブル
-            XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_VARIABLES, new Givechapterandverse_NodeImpl("!ハードコーディング_MoNorenImpl#LoadVariables", null));
+            XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_VARIABLES, new Configurationtree_NodeImpl("!ハードコーディング_MoNorenImpl#LoadVariables", null));
 
             //
             // 「変数設定ファイル」のファイルパス。
             //
             log_Reports.Log_Callstack.Push(log_Method, "①");
             Expression_Node_Filepath ec_Fpath_Variables = moApplication.MemoryVariables.GetExpressionfilepathByVariablename(
-                new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Givechapterandverse),
+                new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Configurationtree),
                 false,//必須ではありません。未該当であればヌルを返します。
                 log_Reports
                 );
@@ -207,7 +207,7 @@ namespace Xenon.MiddleImpl
                 goto gt_Error_ContainsKey;
             }
 
-            Expression_Leaf_StringImpl ec_Str = new Expression_Leaf_StringImpl(null, new Givechapterandverse_NodeImpl("＜変数PutStringから＞", null));
+            Expression_Leaf_StringImpl ec_Str = new Expression_Leaf_StringImpl(null, new Configurationtree_NodeImpl("＜変数PutStringから＞", null));
             ec_Str.SetString(sInitial, log_Reports);
 
             try
@@ -302,7 +302,7 @@ namespace Xenon.MiddleImpl
 
 
 
-            if (null != this.parent_Variablesconfig_Givechapterandverse)
+            if (null != this.parent_Variablesconfig_Configurationtree)
             {
                 goto gt_Error_DoubleLoad;
             }
@@ -312,7 +312,7 @@ namespace Xenon.MiddleImpl
             string err_SName;
             if (log_Reports.Successful)
             {
-                this.parent_Variablesconfig_Givechapterandverse = new Givechapterandverse_NodeImpl(NamesNode.S_VARIABLE_CONFIG, o_Table_Var.Expression_Filepath_ConfigStack.Cur_Givechapterandverse);
+                this.parent_Variablesconfig_Configurationtree = new Configurationtree_NodeImpl(NamesNode.S_VARIABLE_CONFIG, o_Table_Var.Expression_Filepath_ConfigStack.Cur_Configurationtree);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。
@@ -324,7 +324,7 @@ namespace Xenon.MiddleImpl
                     string sStringValue;// = "";
 
                     // ソース情報として使うだけ。
-                    Givechapterandverse_Node cf_VarRecord1 = new Givechapterandverse_NodeImpl(NamesNode.S_VARIABLE_RECORD, parent_Variablesconfig_Givechapterandverse);
+                    Configurationtree_Node cf_VarRecord1 = new Configurationtree_NodeImpl(NamesNode.S_VARIABLE_RECORD, parent_Variablesconfig_Configurationtree);
 
                     // 注意: dataRow[]の連想配列は大文字・小文字を区別しないのが欠点。
 
@@ -353,7 +353,7 @@ namespace Xenon.MiddleImpl
                                 goto gt_EndMethod;
                             }
 
-                            cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sStringValue, log_Reports);
+                            cf_VarRecord1.Dictionary_Attribute.Set(PmNames.S_NAME.Name_Pm, sStringValue, log_Reports);
                         }
                     }
 
@@ -386,7 +386,7 @@ namespace Xenon.MiddleImpl
                             //{
                             //    log_Method.WriteDebug_ToConsole("「変数登録ファイル」FOLDER列=[" + sStringValue + "]");
                             //}
-                            cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sStringValue, log_Reports);
+                            cf_VarRecord1.Dictionary_Attribute.Set(PmNames.S_FOLDER.Name_Pm, sStringValue, log_Reports);
                         }
                         else
                         {
@@ -419,7 +419,7 @@ namespace Xenon.MiddleImpl
                                 goto gt_EndMethod;
                             }
 
-                            cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sStringValue, log_Reports);
+                            cf_VarRecord1.Dictionary_Attribute.Set(PmNames.S_VALUE.Name_Pm, sStringValue, log_Reports);
                         }
                     }
 
@@ -430,21 +430,21 @@ namespace Xenon.MiddleImpl
                     {
                         //ＮＡＭＥ列
                         string sName;
-                        cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                        cf_VarRecord1.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                         //ＦＯＬＤＥＲ列　（オプション）
                         string sFolder;
-                        bool bExistsFolder = cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
+                        bool bExistsFolder = cf_VarRecord1.Dictionary_Attribute.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
 
                         string sValue;
-                        cf_VarRecord1.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue,
+                        cf_VarRecord1.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue,
                             false, //空文字列でも可。
                             log_Reports);
 
                         if (NamesVar.Test_Filepath(sName))
                         {
                             //ファイルパス変数の場合。
-                            Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("変数[" + sName + "]", this.parent_Variablesconfig_Givechapterandverse);
+                            Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("変数[" + sName + "]", this.parent_Variablesconfig_Configurationtree);
                             cf_Fpath.InitPath(
                                 sValue,
                                 log_Reports
@@ -456,7 +456,7 @@ namespace Xenon.MiddleImpl
                                 //    log_Method.WriteDebug_ToConsole("「変数登録ファイル」FOLDER列指定あり=[" + sFolder + "]");
                                 //}
 
-                                Expression_Node_String ec_Namevar_Folder = new Expression_Leaf_StringImpl(sFolder, null, this.parent_Variablesconfig_Givechapterandverse);
+                                Expression_Node_String ec_Namevar_Folder = new Expression_Leaf_StringImpl(sFolder, null, this.parent_Variablesconfig_Configurationtree);
                                 Expression_Node_Filepath ec_Fopath_Folder = this.GetExpressionfilepathByVariablename(
                                     ec_Namevar_Folder,
                                     true,
@@ -708,9 +708,9 @@ namespace Xenon.MiddleImpl
             {
                 string sFilePath = ec_Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#SetVariable", null);
+                Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#SetVariable", null);
 
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_4", parent_Givechapterandverse_Node);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_4", parent_Configurationtree_Node);
                 cf_Fpath.InitPath(
                     sFilePath,
                     log_Reports
@@ -783,7 +783,7 @@ namespace Xenon.MiddleImpl
             }
             else
             {
-                Expression_Leaf_StringImpl ec_Str = new Expression_Leaf_StringImpl(null, new Givechapterandverse_NodeImpl("＜SetStringValueから＞", null));
+                Expression_Leaf_StringImpl ec_Str = new Expression_Leaf_StringImpl(null, new Configurationtree_NodeImpl("＜SetStringValueから＞", null));
                 ec_Str.SetString(sValue, log_Reports);
                 this.dictionaryExpression_Item[o_Name_Variable.SValue] = ec_Str;
 
@@ -823,9 +823,9 @@ namespace Xenon.MiddleImpl
                 t.Append("　「変数設定ファイル」のファイルパス：");
                 t.Append(Environment.NewLine);
                 t.Append("　　");
-                if (null != this.parent_Variablesconfig_Givechapterandverse)
+                if (null != this.parent_Variablesconfig_Configurationtree)
                 {
-                    this.parent_Variablesconfig_Givechapterandverse.ToText_Path(t);
+                    this.parent_Variablesconfig_Configurationtree.ToText_Locationbreadcrumbs(t);
                 }
                 else
                 {
@@ -838,7 +838,7 @@ namespace Xenon.MiddleImpl
                 t.Append("　問題箇所ヒント：");
                 t.Append(Environment.NewLine);
                 t.Append("　　");
-                o_Name_Variable.Cur_Givechapterandverse.ToText_Path(t);
+                o_Name_Variable.Cur_Configurationtree.ToText_Locationbreadcrumbs(t);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
@@ -978,12 +978,12 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 t.Append("　問題箇所ヒント：");
-                ec_VariableName.Cur_Givechapterandverse.Parent_Givechapterandverse.ToText_Path(t);
+                ec_VariableName.Cur_Configurationtree.Parent.ToText_Locationbreadcrumbs(t);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
                 t.Append("　実行経路ヒント：");
-                ec_VariableName.Cur_Givechapterandverse.Parent_Givechapterandverse.ToText_Path(t);
+                ec_VariableName.Cur_Configurationtree.Parent.ToText_Locationbreadcrumbs(t);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
@@ -1110,8 +1110,8 @@ namespace Xenon.MiddleImpl
 
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(ec_Name_Variable.Cur_Givechapterandverse));
-                //s.Append(r.Message_Givechapterandverse(ec_Name_Variable.Cur_Givechapterandverse.Parent_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(ec_Name_Variable.Cur_Configurationtree));
+                //s.Append(r.Message_Configurationtree(ec_Name_Variable.Cur_Configurationtree.Parent));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -1245,7 +1245,7 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// まだ読み込んでいないときは、ヌル。
         /// </summary>
-        private Givechapterandverse_Node parent_Variablesconfig_Givechapterandverse;
+        private Configurationtree_Node parent_Variablesconfig_Configurationtree;
 
         //────────────────────────────────────────
         #endregion

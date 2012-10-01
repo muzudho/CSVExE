@@ -10,7 +10,7 @@ using Xenon.Expr;
 namespace Xenon.GcavToExpr
 {
     
-    class GivechapterandverseToUsercontrol_V52_ValidatorImpl_ : GivechapterandverseToExpression_AbstractImpl
+    class ConfigurationtreeToUsercontrol_V52_ValidatorImpl_ : ConfigurationtreeToExpression_AbstractImpl
     {
 
 
@@ -18,15 +18,15 @@ namespace Xenon.GcavToExpr
         #region アクション
         //────────────────────────────────────────
 
-        public void GivechapterandverseToUsercontrol(
-            Givechapterandverse_Node cur_Cf,//Sv_3Validator ＜validator＞
+        public void ConfigurationtreeToUsercontrol(
+            Configurationtree_Node cur_Cf,//Sv_3Validator ＜validator＞
             Usercontrol ucontrol,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToFc",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToFc",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -47,10 +47,10 @@ namespace Xenon.GcavToExpr
 
             EnumValidation_Old enumResult = EnumValidation_Old.Thru;
 
-            if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE_RESULT.Name_Pm))
+            if (cur_Cf.Dictionary_Attribute.ContainsKey(PmNames.S_VALUE_RESULT.Name_Pm))
             {
                 string sValue_Parameter;
-                cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE_RESULT, out sValue_Parameter, true, log_Reports);
+                cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE_RESULT, out sValue_Parameter, true, log_Reports);
                 switch (sValue_Parameter)
                 {
                     case "OK":
@@ -75,9 +75,9 @@ namespace Xenon.GcavToExpr
             string sName_ValidatorTrim;
             {
                 PmName pmName = PmNames.S_NAME;
-                if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
+                if (cur_Cf.Dictionary_Attribute.ContainsKey(pmName.Name_Pm))
                 {
-                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sName, true, log_Reports);
+                    cur_Cf.Dictionary_Attribute.TryGetValue(pmName, out sName, true, log_Reports);
                     sName_ValidatorTrim = sName.Trim();
                 }
                 else
@@ -108,7 +108,7 @@ namespace Xenon.GcavToExpr
                 case NamesFnc.S_VLD_MATCH:
                     {
                         string sValue_Parameter;
-                        cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_EXPECTED, out sValue_Parameter, false, log_Reports);
+                        cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_EXPECTED, out sValue_Parameter, false, log_Reports);
                         err_SParameterValue = sValue_Parameter;
 
                         // SToE:
@@ -128,7 +128,7 @@ namespace Xenon.GcavToExpr
                         if (bSuccessful)
                         {
                             string sBegin;
-                            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_BEGIN, out sBegin, false, log_Reports);
+                            cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_BEGIN, out sBegin, false, log_Reports);
 
                             if (!int.TryParse(sBegin, out nBeginValue))
                             {
@@ -143,7 +143,7 @@ namespace Xenon.GcavToExpr
                         if (bSuccessful)
                         {
                             string sEnd;
-                            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_END, out sEnd, false, log_Reports);
+                            cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_END, out sEnd, false, log_Reports);
 
                             if (!int.TryParse(sEnd, out nEndValue))
                             {

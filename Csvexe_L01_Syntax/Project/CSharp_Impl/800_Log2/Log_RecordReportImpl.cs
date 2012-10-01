@@ -30,7 +30,7 @@ namespace Xenon.Syntax
         {
             this.Parent_Log_Reports = parent_Log_Logging;
             this.sTitle = "";
-            this.p1pText = new TextP1pImpl();
+            this.p1pText = new Builder_TexttemplateP1pImpl();
             this.sConfigStack = "";
             this.sGroupTag = "";
 
@@ -65,8 +65,8 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public string Message_Givechapterandverse(
-            Givechapterandverse_Node parent_Gcav
+        public string Message_Configurationtree(
+            Configurationtree_Node parent_Gcav
             )
         {
             Log_TextIndented s = new Log_TextIndentedImpl();
@@ -80,7 +80,7 @@ namespace Xenon.Syntax
                 s.Append("　　問題箇所ヒント：");
                 s.Newline();
                 s.Newline();
-                parent_Gcav.ToText_Path(s);
+                parent_Gcav.ToText_Locationbreadcrumbs(s);
                 s.Newline();
                 s.Newline();
 
@@ -247,7 +247,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private TextP1p p1pText;
+        private Builder_TexttemplateP1p p1pText;
 
         /// <summary>
         /// 本文。
@@ -263,10 +263,10 @@ namespace Xenon.Syntax
 
         public string GetMessage(Log_Reports log_Reports)
         {
-            Expression_Node_String ec_Str = this.p1pText.Compile(log_Reports);
+            Expression_Node_String expr_Str = this.p1pText.Compile(log_Reports);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append(ec_Str.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+            sb.Append(expr_Str.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
             sb.Append(System.Environment.NewLine);
 
             // コールスタックを付けます。

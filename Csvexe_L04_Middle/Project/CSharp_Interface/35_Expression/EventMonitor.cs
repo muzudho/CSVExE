@@ -32,7 +32,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 問題箇所となる＜ｅｖｅｎｔ＞要素。
         /// </summary>
-        Givechapterandverse_Node Givechapterandverse_Event
+        Configurationtree_Node Configurationtree_Event
         {
             get;
         }

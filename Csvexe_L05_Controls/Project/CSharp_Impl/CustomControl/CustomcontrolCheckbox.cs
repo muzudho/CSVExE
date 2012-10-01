@@ -214,7 +214,7 @@ namespace Xenon.Controls
                                                     s.Newline();
 
                                                     // ヒント
-                                                    s.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
+                                                    s.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
 
                                                     r.Message = s.ToString();
                                                     log_Reports.EndCreateReport();
@@ -280,7 +280,7 @@ namespace Xenon.Controls
                                                         t.Newline();
 
                                                         // ヒント
-                                                        t.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
+                                                        t.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
 
                                                         r.Message = t.ToString();
                                                         log_Reports.EndCreateReport();
@@ -308,7 +308,7 @@ namespace Xenon.Controls
                                                     t.Newline();
 
                                                     // ヒント
-                                                    t.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
+                                                    t.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
 
                                                     r.Message = t.ToString();
                                                     log_Reports.EndCreateReport();
@@ -346,7 +346,7 @@ namespace Xenon.Controls
                                                 t.Newline();
 
                                                 // ヒント
-                                                t.Append(r.Message_Givechapterandverse(eFirst.Cur_Givechapterandverse));
+                                                t.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
 
                                                 r.Message = t.ToString();
                                                 log_Reports.EndCreateReport();
@@ -485,7 +485,7 @@ namespace Xenon.Controls
                             t.Newline();
 
                             // ヒント
-                            t.Append(r.Message_Givechapterandverse(ec_DataTarget.Cur_Givechapterandverse));
+                            t.Append(r.Message_Configurationtree(ec_DataTarget.Cur_Configurationtree));
 
                             r.Message = t.ToString();
                             log_Reports.EndCreateReport();

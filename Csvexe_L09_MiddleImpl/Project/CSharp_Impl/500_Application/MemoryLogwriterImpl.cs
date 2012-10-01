@@ -54,10 +54,10 @@ namespace Xenon.MiddleImpl
             Expression_Node_Filepath ec_Fpath;
             if (log_Reports_Meta.Successful)
             {
-                XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_LOGS, new Givechapterandverse_NodeImpl("!ハードコーディング_MoOpyopyoImpl#WriteLog", null));
+                XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_LOGS, new Configurationtree_NodeImpl("!ハードコーディング_MoOpyopyoImpl#WriteLog", null));
 
                 // 変数名。
-                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, o_Name_Variable.Cur_Givechapterandverse);
+                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, o_Name_Variable.Cur_Configurationtree);
                 ec_Atom.SetString(
                     o_Name_Variable.SValue,
                     log_Reports_Meta
@@ -106,9 +106,9 @@ namespace Xenon.MiddleImpl
 
                     Expression_Node_Filepath ec_Fpath2;
                     {
-                        Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl("!ハードコーディング_MoOpyopyoImpl#WriteLog", null);
+                        Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl("!ハードコーディング_MoOpyopyoImpl#WriteLog", null);
 
-                        Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_6", parent_Cf);
+                        Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_6", parent_Cf);
                         cf_Fpath.InitPath(
                             sFopatha_Logs,
                             "error-log.txt",

@@ -22,7 +22,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_Leaf_StringImpl(Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav)
+        public Expression_Leaf_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
             : this("", parent_Expression, cur_Gcav)
         {
         }
@@ -30,14 +30,14 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_Leaf_StringImpl(string sHumanInput, Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav)
+        public Expression_Leaf_StringImpl(string sHumanInput, Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
         {
             this.sHumanInput = sHumanInput;
             this.parent_Expression = parent_Expression;
-            this.cur_Givechapterandverse = cur_Gcav;
+            this.cur_Configurationtree = cur_Gcav;
 
             this.request_Selecting = Request_SelectingImpl.Unconstraint;
-            this.dictionary_Expression_Attribute = new DicExpression_Node_StringImpl(this.Cur_Givechapterandverse);
+            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
         }
 
         //────────────────────────────────────────
@@ -48,7 +48,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Leaf_String NewInstance(
-            Givechapterandverse_Node parent_Expression,
+            Configurationtree_Node parent_Expression,
             Log_Reports log_Reports
             )
         {
@@ -94,7 +94,7 @@ namespace Xenon.Syntax
             s.Increment();
 
             s.AppendI(0,"葉「E■[");
-            s.Append(this.Cur_Givechapterandverse.Name);
+            s.Append(this.Cur_Configurationtree.Name);
             s.Append("]　");
             s.Append(this.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ForSnapshot));
             s.Append("」");
@@ -155,7 +155,7 @@ namespace Xenon.Syntax
                 t.Append("このメソッド " + this.GetType().Name + "#AddChildN は使わないでください。");
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -197,7 +197,7 @@ namespace Xenon.Syntax
                 t.Append("このメソッド " + this.GetType().Name + "#GetChildNList は使わないんでください。");
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = t.ToString();
 
@@ -258,7 +258,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumaninput,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             )
         {
@@ -398,20 +398,20 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node cur_Givechapterandverse;
+        private Configurationtree_Node cur_Configurationtree;
 
         /// <summary>
         /// 設定場所のヒント。
         /// </summary>
-        public Givechapterandverse_Node Cur_Givechapterandverse
+        public Configurationtree_Node Cur_Configurationtree
         {
             get
             {
-                return this.cur_Givechapterandverse;
+                return this.cur_Configurationtree;
             }
             set
             {
-                this.cur_Givechapterandverse = value;
+                this.cur_Configurationtree = value;
             }
         }
 
@@ -440,7 +440,7 @@ namespace Xenon.Syntax
         /// 子＜●●＞要素リスト。
         /// 使わない。
         /// </summary>
-        public ListExpression_Node_String List_Expression_Child
+        public List_Expression_Node_String List_Expression_Child
         {
             get
             {
@@ -450,12 +450,12 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private DicExpression_Node_String dictionary_Expression_Attribute;
+        private Dictionary_Expression_Node_String dictionary_Expression_Attribute;
 
         /// <summary>
         /// 属性="" マップ。
         /// </summary>
-        public DicExpression_Node_String Dictionary_Expression_Attribute
+        public Dictionary_Expression_Node_String Dictionary_Expression_Attribute
         {
             get
             {

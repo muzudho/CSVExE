@@ -30,10 +30,10 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public void Clear()
         {
-            this.xToGivechapterandverse_V = new XToGivechapterandverse_Validator_ConfigImpl();
-            this.givechapterandverseToExpression_V = new GivechapterandverseToExpression_V51_ConfigImpl();
+            this.xToConfigurationtree_V = new XToConfigurationtree_Validator_ConfigImpl();
+            this.givechapterandverseToExpression_V = new ConfigurationtreeToExpression_V51_ConfigImpl();
 
-            this.givechapterandverse_Validatorsconfig = new Givechapterandverse_NodeImpl(NamesNode.S_CODEFILE_VALIDATORS, new Givechapterandverse_NodeImpl(this.GetType().Name + "#<init>", null));
+            this.givechapterandverse_Validatorsconfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_VALIDATORS, new Configurationtree_NodeImpl(this.GetType().Name + "#<init>", null));
         }
 
         //────────────────────────────────────────
@@ -60,13 +60,13 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            this.xToGivechapterandverse_V.XToGivechapterandverse(
+            this.xToConfigurationtree_V.XToConfigurationtree(
                 sFpatha,
                 owner_MemoryApplication,
                 log_Reports
                 );
 
-            Log_TextIndented_GivechapterandverseToExpressionImpl pg_ParsingLog = new Log_TextIndented_GivechapterandverseToExpressionImpl();
+            Log_TextIndented_ConfigurationtreeToExpressionImpl pg_ParsingLog = new Log_TextIndented_ConfigurationtreeToExpressionImpl();
             pg_ParsingLog.BEnabled = false;
             this.givechapterandverseToExpression_V.Translate(
                 owner_MemoryApplication,
@@ -94,21 +94,21 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// validation設定ファイルの X → S。
         /// </summary>
-        private XToGivechapterandverse_V51_Config xToGivechapterandverse_V;
+        private XToConfigurationtree_V51_Config xToConfigurationtree_V;
 
         /// <summary>
         /// validation設定ファイルの S → E。
         /// </summary>
-        private GivechapterandverseToExpression_V51_Config givechapterandverseToExpression_V;
+        private ConfigurationtreeToExpression_V51_Config givechapterandverseToExpression_V;
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node givechapterandverse_Validatorsconfig;
+        private Configurationtree_Node givechapterandverse_Validatorsconfig;
 
         /// <summary>
         /// 「バリデーション設定ファイル」。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_Validatorsconfig
+        public Configurationtree_Node Configurationtree_Validatorsconfig
         {
             set
             {

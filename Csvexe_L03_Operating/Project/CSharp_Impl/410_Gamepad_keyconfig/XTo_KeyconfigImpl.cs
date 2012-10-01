@@ -33,8 +33,8 @@ namespace Xenon.Operating
             CsvTo_XenonTableImpl csvTo = new CsvTo_XenonTableImpl();
             Request_ReadsTable oRequest_TableReads = new Request_ReadsTableImpl();
             {
-                Givechapterandverse_NodeImpl cf_ConfigStack = new Givechapterandverse_NodeImpl(Info_Operating.Name_Library + ":" + this.GetType().Name + "#<init>:",null);
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_1", cf_ConfigStack);
+                Configurationtree_NodeImpl cf_ConfigStack = new Configurationtree_NodeImpl(Info_Operating.Name_Library + ":" + this.GetType().Name + "#<init>:",null);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L03_1", cf_ConfigStack);
 
                 cf_Fpath.InitPath(
                     "Editor-config/GAME_PAD/Key-config.csv",

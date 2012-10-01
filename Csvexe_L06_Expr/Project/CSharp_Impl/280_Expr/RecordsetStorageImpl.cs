@@ -92,7 +92,7 @@ namespace Xenon.Expr
                     // oSourceが無限ループ？？
 
                     // ヒント
-                    t.Append(r.Message_Givechapterandverse(ec_Name.Cur_Givechapterandverse));
+                    t.Append(r.Message_Configurationtree(ec_Name.Cur_Configurationtree));
                     t.Append(r.Message_SException(ex));
 
                     r.Message = t.ToString();
@@ -153,7 +153,7 @@ namespace Xenon.Expr
                     // oSourceが無限ループ？？
 
                     // ヒント
-                    t.Append(r.Message_Givechapterandverse(ec_Name.Cur_Givechapterandverse));
+                    t.Append(r.Message_Configurationtree(ec_Name.Cur_Configurationtree));
                     t.Append(r.Message_SException(ex));
 
                     r.Message = t.ToString();
@@ -183,7 +183,7 @@ namespace Xenon.Expr
 
                     //
                     // ヒント
-                    t.Append(r.Message_Givechapterandverse(ec_Name.Cur_Givechapterandverse));
+                    t.Append(r.Message_Configurationtree(ec_Name.Cur_Configurationtree));
                     t.Append(r.Message_SException(ex));
 
                     r.Message = t.ToString();
@@ -254,7 +254,7 @@ namespace Xenon.Expr
                 // oSourceが無限ループ？？
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(ec_Storage.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(ec_Storage.Cur_Configurationtree));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();

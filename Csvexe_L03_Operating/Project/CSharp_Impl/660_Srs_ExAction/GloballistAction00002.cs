@@ -26,9 +26,9 @@ namespace Xenon.Operating
             // グローバルリスト・コンフィグ設定ファイルの内容。
             MemoryGloballistconfig moGlcnf = new MemoryGloballistconfigImpl();
 
-            Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl("グローバルリスト設定",null);
+            Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl("グローバルリスト設定",null);
 
-            Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_2", parent_Givechapterandverse_Node);
+            Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L03_2", parent_Configurationtree_Node);
             cf_Fpath.InitPath(sFpath_Glcnf, log_Reports);
             if (!log_Reports.Successful)
             {

@@ -24,7 +24,7 @@ namespace Xenon.Expr
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expressionv_Elem99Impl(Expression_Node_String parent_Expression_Node, Givechapterandverse_Node cf_MyNode, MemoryApplication owner_MemoryApplication)
+        public Expressionv_Elem99Impl(Expression_Node_String parent_Expression_Node, Configurationtree_Node cf_MyNode, MemoryApplication owner_MemoryApplication)
             : base(parent_Expression_Node, cf_MyNode, owner_MemoryApplication)
         {
         }

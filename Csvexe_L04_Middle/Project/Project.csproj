@@ -73,7 +73,7 @@
     <Compile Include="CSharp_Interface\01_MasterData\NamesC.cs" />
     <Compile Include="CSharp_Interface\01_MasterData\NamesVar.cs" />
     <Compile Include="CSharp_Interface\20_Userformtable\FieldUserformtable.cs" />
-    <Compile Include="CSharp_Interface\21_AaEditorXml\Dictionary_Fsetvar_Givechapterandverse.cs" />
+    <Compile Include="CSharp_Interface\21_AaEditorXml\Dictionary_Fsetvar_Configurationtree.cs" />
     <Compile Include="CSharp_Interface\21_AaEditorXml\MemorySetvarContainer.cs" />
     <Compile Include="CSharp_Interface\21_AaEditorXml\MemoryAaeditorxml_Editor.cs" />
     <Compile Include="CSharp_Interface\22_AaToolXml\MemoryAaeditorxml.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="CSharp_Interface\22_AaToolXml\Dictionary_AatoolxmlEditor.cs" />
     <Compile Include="CSharp_Interface\22_AaToolXml\MemoryAatoolxml.cs" />
     <Compile Include="CSharp_Info\Info_Middle.cs" />
-    <Compile Include="CSharp_Interface\16_GcavToExpr\Log_TextIndented_GivechapterandverseToExpression.cs" />
+    <Compile Include="CSharp_Interface\16_GcavToExpr\Log_TextIndented_ConfigurationtreeToExpression.cs" />
     <Compile Include="CSharp_Interface\01_MasterData\ValuesAttr.cs" />
     <Compile Include="CSharp_Interface\01_MasterData\NamesFnc.cs" />
     <Compile Include="CSharp_Interface\01_MasterData\NamesNode.cs" />
@@ -95,7 +95,7 @@
     <Compile Include="CSharp_Interface\32_Expressionv\Expressionv_4ASelectRecord.cs" />
     <Compile Include="CSharp_Interface\38_ToMemory\ToM_Performer.cs" />
     <Compile Include="CSharp_Interface\40_Expression\Builder_ExpressionValue.cs" />
-    <Compile Include="CSharp_Interface\16_GcavToExpr\GivechapterandverseToExpression_Event.cs" />
+    <Compile Include="CSharp_Interface\16_GcavToExpr\ConfigurationtreeToExpression_Event.cs" />
     <Compile Include="CSharp_Interface\82_Form\UsercontrolCreator2.cs" />
     <Compile Include="CSharp_Interface\82_Form\UsercontrolCreator1.cs" />
     <Compile Include="CSharp_Interface\82_Form\UsercontrolStyleSetter.cs" />

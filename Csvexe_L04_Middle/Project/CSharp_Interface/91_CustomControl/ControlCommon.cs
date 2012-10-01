@@ -68,7 +68,7 @@ namespace Xenon.Middle
         /// <summary>
         /// コントロールの設定記述。未設定ならヌル。
         /// </summary>
-        Givechapterandverse_Node Givechapterandverse_Control
+        Configurationtree_Node Configurationtree_Control
         {
             get;
             set;

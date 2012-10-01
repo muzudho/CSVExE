@@ -47,13 +47,13 @@ namespace Xenon.Functions
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_Node_Function20Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function20Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -62,7 +62,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function20Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -107,9 +107,9 @@ namespace Xenon.Functions
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
                 string sName_Usercontrol;
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol ccFc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
                     sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
@@ -125,7 +125,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
 
@@ -190,9 +190,9 @@ namespace Xenon.Functions
 
 
 
-                        Givechapterandverse_Node owner_Givechapterandverse_Control;
+                        Configurationtree_Node owner_Configurationtree_Control;
                         {
-                            owner_Givechapterandverse_Control = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                            owner_Configurationtree_Control = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
                         }
 
                         //
@@ -200,11 +200,11 @@ namespace Xenon.Functions
                         // ＜ｄａｔａ　ｔａｒｇｅｔ＝”ｌｉｓｔ－ｂｏｘ”＞
                         // 　　　　＜ａｒｇ５　ｎａｍｅ＝”ｔａｂｌｅＮａｍｅ”　ｖａｌｕｅ＝”☆”＞
                         //
-                        List<Givechapterandverse_Node> cfList_Data = owner_Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_DATA, false, log_Reports);
-                        foreach (Givechapterandverse_Node cf_Data in cfList_Data)
+                        List<Configurationtree_Node> cfList_Data = owner_Configurationtree_Control.GetChildrenByNodename(NamesNode.S_DATA, false, log_Reports);
+                        foreach (Configurationtree_Node cf_Data in cfList_Data)
                         {
                             string sAccess;
-                            cf_Data.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
+                            cf_Data.Dictionary_Attribute.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
 
                             List<string> sList_Access = new CsvTo_ListImpl().Read(sAccess);
 
@@ -213,7 +213,7 @@ namespace Xenon.Functions
                                 // ＜ｄａｔａ　ａｃｃｅｓｓ＝”ｆｒｏｍ”＞
 
                                 string sDataMemory;
-                                cf_Data.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_MEMORY, out sDataMemory, true, log_Reports);
+                                cf_Data.Dictionary_Attribute.TryGetValue(PmNames.S_MEMORY, out sDataMemory, true, log_Reports);
 
                                 if (!log_Reports.Successful)
                                 {
@@ -223,7 +223,7 @@ namespace Xenon.Functions
                                 if (ValuesAttr.S_RECORDS == sDataMemory)
                                 {
 
-                                    cf_Data.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_TABLE, out sTableName, true, log_Reports);
+                                    cf_Data.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_TABLE, out sTableName, true, log_Reports);
                                     if (!log_Reports.Successful)
                                     {
                                         goto gt_EndMethod;
@@ -270,7 +270,7 @@ namespace Xenon.Functions
                             }
 
                             sTableName = "";//string sTableName = "";
-                            ec_TableName = new Expression_Leaf_StringImpl(sTableName, this, owner_Givechapterandverse_Control);// owner_Cf_Fc.S_DataSource
+                            ec_TableName = new Expression_Leaf_StringImpl(sTableName, this, owner_Configurationtree_Control);// owner_Cf_Fc.S_DataSource
                         }
                     }
 
@@ -291,7 +291,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
+                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
 
             goto gt_EndMethod;

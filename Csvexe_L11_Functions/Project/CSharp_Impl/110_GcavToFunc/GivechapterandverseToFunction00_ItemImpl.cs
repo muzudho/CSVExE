@@ -12,7 +12,7 @@ namespace Xenon.Functions
 {
 
 
-    public class GivechapterandverseToFunction00_ItemImpl : GivechapterandverseToFunction_Item
+    public class ConfigurationtreeToFunction00_ItemImpl : ConfigurationtreeToFunction_Item
     {
 
 
@@ -23,7 +23,7 @@ namespace Xenon.Functions
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public GivechapterandverseToFunction00_ItemImpl()
+        public ConfigurationtreeToFunction00_ItemImpl()
         {
         }
 
@@ -36,11 +36,11 @@ namespace Xenon.Functions
         //────────────────────────────────────────
 
         public virtual void Translate_Step1(
-            GivechapterandverseToFunction_Item parentProcesser,
-            Givechapterandverse_Node action_Gcav,
+            ConfigurationtreeToFunction_Item parentProcesser,
+            Configurationtree_Node action_Gcav,
             Expression_Node_Function cur_Expr_Func,
             MemoryApplication owner_MemoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
@@ -51,17 +51,17 @@ namespace Xenon.Functions
             // アクション型引数の引数
             //
             string err_sName_Attr;
-            action_Gcav.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Arg, ref bool bBreak)
+            action_Gcav.List_Child.ForEach(delegate(Configurationtree_Node s_Arg, ref bool bBreak)
             {
                 string sName_Attr;
-                s_Arg.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Attr, true, log_Reports);
+                s_Arg.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Attr, true, log_Reports);
 
                 if (cur_Expr_Func.List_NameArgument.Contains(sName_Attr))
                 {
                     //
                     // 自解析
                     //
-                    GivechapterandverseToExpression_F14n16 to = new GivechapterandverseToExpression_F14_FArgImpl();
+                    ConfigurationtreeToExpression_F14n16 to = new ConfigurationtreeToExpression_F14_FArgImpl();
                     to.Translate(
                         s_Arg,
                         cur_Expr_Func,
@@ -121,11 +121,11 @@ namespace Xenon.Functions
         //────────────────────────────────────────
 
         public virtual void Translate_Step2(
-            GivechapterandverseToFunction_Item parentProcesser,
-            Givechapterandverse_Node action_Gcav,
+            ConfigurationtreeToFunction_Item parentProcesser,
+            Configurationtree_Node action_Gcav,
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
@@ -139,8 +139,8 @@ namespace Xenon.Functions
         /// <returns></returns>
         public virtual Expression_Node_Function Translate(
             string sName_Action,
-            Givechapterandverse_Node action_Gcav,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Configurationtree_Node action_Gcav,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )

@@ -15,7 +15,7 @@ namespace Xenon.GcavToExpr
     /// 
     /// ※未実装
     /// </summary>
-    class GivechapterandverseToExpression_F14_DefParamImpl_ : GivechapterandverseToExpression_F14n16_AbstractImpl_
+    class ConfigurationtreeToExpression_F14_DefParamImpl_ : ConfigurationtreeToExpression_F14n16_AbstractImpl_
     {
 
 
@@ -31,10 +31,10 @@ namespace Xenon.GcavToExpr
         /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
         public override void Translate(
-            Givechapterandverse_Node cur_Cf,//＜ｄｅｆ－ｐａｒａｍ＞
+            Configurationtree_Node cur_Cf,//＜ｄｅｆ－ｐａｒａｍ＞
             Expression_Node_String parent_Ec,//親＜●●＞要素。汎用。
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {

@@ -22,19 +22,19 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="parent_Expression"></param>
         /// <param name="cur_Gcav">生成時に指定できないものもある。</param>
-        public Expression_Node_StringImpl(Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav)
+        public Expression_Node_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
         {
             this.parent_Expression = parent_Expression;
-            this.cur_Givechapterandverse = cur_Gcav;
+            this.cur_Configurationtree = cur_Gcav;
 
             request_Selecting = Request_SelectingImpl.Unconstraint;
-            this.ecList_Child = new ListExpression_Node_StringImpl(this);
-            this.dictionary_Expression_Attribute = new DicExpression_Node_StringImpl(this.Cur_Givechapterandverse);
+            this.ecList_Child = new List_Expression_Node_StringImpl(this);
+            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
         }
 
         /// <summary>
         /// コンストラクター。
-        /// node_Givechapterandverse を後で InitializeBeforeuse を使って指定する必要がある。
+        /// node_Configurationtree を後で InitializeBeforeuse を使って指定する必要がある。
         /// </summary>
         /// <param name="parent_Expression"></param>
         public Expression_Node_StringImpl(Expression_Node_String parent_Expression) : this(parent_Expression, null)
@@ -47,9 +47,9 @@ namespace Xenon.Syntax
         /// コンストラクターで指定していれば、必要ない。
         /// </summary>
         /// <param name="cur_Cf"></param>
-        public void InitializeBeforeuse(Givechapterandverse_Node cur_Cf)
+        public void InitializeBeforeuse(Configurationtree_Node cur_Cf)
         {
-            this.cur_Givechapterandverse = cur_Cf;
+            this.cur_Configurationtree = cur_Cf;
         }
 
         //────────────────────────────────────────
@@ -75,7 +75,7 @@ namespace Xenon.Syntax
 
             // ノード名
             s.AppendI(0,"「E■[");
-            s.Append(this.Cur_Givechapterandverse.Name);
+            s.Append(this.Cur_Configurationtree.Name);
             s.Append("]　");
 
             // クラス名
@@ -182,7 +182,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumanInput,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             )
         {
@@ -402,7 +402,7 @@ namespace Xenon.Syntax
             // ファイルパス。
             string sFpath = ec_Caller.Expression_ExecuteMain(log_Reports);
             {
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L01_1", ec_Caller.Cur_Givechapterandverse);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L01_1", ec_Caller.Cur_Configurationtree);
                 cf_Fpath.InitPath(sFpath, log_Reports);
                 if (!log_Reports.Successful)
                 {
@@ -450,7 +450,7 @@ namespace Xenon.Syntax
             {
                 result = null;
             }
-            else if (ec_Me.Parent_Expression.Cur_Givechapterandverse.Name == sName_Node)
+            else if (ec_Me.Parent_Expression.Cur_Configurationtree.Name == sName_Node)
             {
                 result = ec_Me.Parent_Expression;
             }
@@ -485,7 +485,7 @@ namespace Xenon.Syntax
             {
                 if (log_Reports.Successful)
                 {
-                    if (ec_Child.Cur_Givechapterandverse.Name == sExpectedNodeName)
+                    if (ec_Child.Cur_Configurationtree.Name == sExpectedNodeName)
                     {
                         result.Add(ec_Child);
 
@@ -621,7 +621,7 @@ namespace Xenon.Syntax
 
                 if (log_Reports.Successful)
                 {
-                    if (ec_Item.Cur_Givechapterandverse.Name == sName_ExpectedNode)
+                    if (ec_Item.Cur_Configurationtree.Name == sName_ExpectedNode)
                     {
                         result.Add(ec_Item);
 
@@ -741,20 +741,20 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node cur_Givechapterandverse;
+        private Configurationtree_Node cur_Configurationtree;
 
         /// <summary>
         /// 設定場所のヒント。
         /// </summary>
-        public Givechapterandverse_Node Cur_Givechapterandverse
+        public Configurationtree_Node Cur_Configurationtree
         {
             get
             {
-                return this.cur_Givechapterandverse;
+                return this.cur_Configurationtree;
             }
             set
             {
-                this.cur_Givechapterandverse = value;
+                this.cur_Configurationtree = value;
             }
         }
 
@@ -807,12 +807,12 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private ListExpression_Node_String ecList_Child;
+        private List_Expression_Node_String ecList_Child;
 
         /// <summary>
         /// 子＜●●＞要素リスト。
         /// </summary>
-        public ListExpression_Node_String List_Expression_Child
+        public List_Expression_Node_String List_Expression_Child
         {
             get
             {
@@ -822,12 +822,12 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private DicExpression_Node_String dictionary_Expression_Attribute;
+        private Dictionary_Expression_Node_String dictionary_Expression_Attribute;
 
         /// <summary>
         /// 属性="" マップ。
         /// </summary>
-        public DicExpression_Node_String Dictionary_Expression_Attribute
+        public Dictionary_Expression_Node_String Dictionary_Expression_Attribute
         {
             get
             {

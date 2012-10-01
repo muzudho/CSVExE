@@ -43,13 +43,13 @@ namespace Xenon.Functions
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_Node_Function36Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function36Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -58,7 +58,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function36Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -92,9 +92,9 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
@@ -112,7 +112,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 this.Perform2(
@@ -129,13 +129,13 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
+                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
@@ -202,23 +202,23 @@ namespace Xenon.Functions
                     // コントロールの名前を取得。
                     //
 
-                    Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                    Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
 
                     if (null != cf_Event)
                     {
-                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
 
-                        if (null != owner_Givechapterandverse_Control)
+                        if (null != owner_Configurationtree_Control)
                         {
                             string sName;
-                            bool bHit = owner_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
+                            bool bHit = owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
 
                             if (bHit)
                             {
-                                Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Givechapterandverse);
+                                Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
                                 ec_Str.AppendTextNode(
                                     sName,
-                                    this.Cur_Givechapterandverse,
+                                    this.Cur_Configurationtree,
                                     log_Reports
                                     );
 
@@ -253,10 +253,10 @@ namespace Xenon.Functions
                     foreach (string sFcName2 in sList_FcName_Prm)
                     {
                         // コントロール名。
-                        Expression_Node_StringImpl ec_FcName4 = new Expression_Node_StringImpl(this, this.Cur_Givechapterandverse);
+                        Expression_Node_StringImpl ec_FcName4 = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
                         ec_FcName4.AppendTextNode(
                             sFcName2,
-                            this.Cur_Givechapterandverse,
+                            this.Cur_Configurationtree,
                             log_Reports
                             );
 

@@ -23,7 +23,7 @@ namespace Xenon.Table
             string sValue_Expected,
             bool bRequired_ExpectedValue,//使ってない。
             DataRow row,
-            Givechapterandverse_Node parent_Query,
+            Configurationtree_Node parent_Query,
             Log_Reports log_Reports
             )
         {

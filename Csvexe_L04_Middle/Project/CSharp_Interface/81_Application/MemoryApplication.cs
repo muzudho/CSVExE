@@ -28,7 +28,7 @@ namespace Xenon.Middle
         /// <param name="collection_EventHandler"></param>
         void InitializeBeforeUse(
             Mainwnd_FormWrapping mainwnd_FormWrapping,
-            GivechapterandverseToFunction givechapterandverseToFunction,
+            ConfigurationtreeToFunction conftreeToFunction,
             Form_Toolwindow form_Toolwindow,
             MemoryAatoolxmlDialog moAatoolxmlDialog,
             UsercontrolStyleSetter ucontrolStyleSetter,

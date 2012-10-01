@@ -10,7 +10,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    class XToGivechapterandverse_V_5FAllFieldsIsEmptyImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_V_5FAllFieldsIsEmptyImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -18,11 +18,11 @@ namespace Xenon.XToGcav
         #region 生成と破棄
         //────────────────────────────────────────
 
-        protected override Givechapterandverse_Node CreateMyself(
-            XmlElement cur_X, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+        protected override Configurationtree_Node CreateMyself(
+            XmlElement cur_X, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
-            Givechapterandverse_Node cur_Cf;
-            cur_Cf = new Givechapterandverse_NodeImpl(NamesNode.S_FNC, parent_Cf);
+            Configurationtree_Node cur_Cf;
+            cur_Cf = new Configurationtree_NodeImpl(NamesNode.S_FNC, parent_Cf);
 
             return cur_Cf;
         }
@@ -37,7 +37,7 @@ namespace Xenon.XToGcav
 
         protected override void Parse_SAttribute(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -57,7 +57,7 @@ namespace Xenon.XToGcav
         //────────────────────────────────────────
 
         protected override void LinkToParent(
-            Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+            Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
         }
 

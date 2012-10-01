@@ -10,7 +10,7 @@ using Xenon.Expr;
 namespace Xenon.GcavToExpr
 {
     
-    class GivechapterandverseToExpression_V55_AEmptyFieldImpl_ : GivechapterandverseToExpression_AbstractImpl
+    class ConfigurationtreeToExpression_V55_AEmptyFieldImpl_ : ConfigurationtreeToExpression_AbstractImpl
     {
 
 
@@ -19,15 +19,15 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public void Translate(
-            Givechapterandverse_Node cur_Cf,//＜ａ－ｅｍｐｔｙ－ｆｉｅｌｄ＞
+            Configurationtree_Node cur_Cf,//＜ａ－ｅｍｐｔｙ－ｆｉｅｌｄ＞
             Expression_Node_String parent_Expr,//Expressionv_5FAllTrueImpl
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -61,7 +61,7 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_TYPE;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
                         Expression_Leaf_String ec_Leaf = new Expression_Leaf_StringImpl(sValue, parent_Expr, cur_Cf);
@@ -77,7 +77,7 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_DESCRIPTION;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
                         Expression_Leaf_String ec_Leaf = new Expression_Leaf_StringImpl(sValue, parent_Expr, cur_Cf);
@@ -113,7 +113,7 @@ namespace Xenon.GcavToExpr
             //
             {
                 // ＜ｆ－ｃｅｌｌ＞要素のリスト
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Cf,
                     ecv_AEmptyFld,
                     memoryApplication,

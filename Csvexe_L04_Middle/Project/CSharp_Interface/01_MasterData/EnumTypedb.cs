@@ -24,7 +24,7 @@ namespace Xenon.Middle
         String,
 
         /// <summary>
-        /// 型指定は string。インスタンスは Givechapterandverse_Filepath。
+        /// 型指定は string。インスタンスは Configurationtree_NodeFilepath。
         /// </summary>
         GcavFilepath,
 

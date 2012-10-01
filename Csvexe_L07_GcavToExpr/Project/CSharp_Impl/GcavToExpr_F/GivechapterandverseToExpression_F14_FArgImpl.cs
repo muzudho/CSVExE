@@ -11,7 +11,7 @@ namespace Xenon.GcavToExpr
     /// <summary>
     /// 「S■ａｒｇ」→「E■ａｒｇ」
     /// </summary>
-    public class GivechapterandverseToExpression_F14_FArgImpl : GivechapterandverseToExpression_F14n16_AbstractImpl_
+    public class ConfigurationtreeToExpression_F14_FArgImpl : ConfigurationtreeToExpression_F14n16_AbstractImpl_
     {
 
 
@@ -27,16 +27,16 @@ namespace Xenon.GcavToExpr
         /// <param name="moOpyopyo"></param>
         /// <param name="log_Reports"></param>
         public override void Translate(
-            Givechapterandverse_Node cur_Cf,//「S■ａｒｇ１」
+            Configurationtree_Node cur_Cf,//「S■ａｒｇ１」
             Expression_Node_String parent_Ec,//親「E■ｆｎｃ」
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             //
             // デバッグオープンの前に。
@@ -44,7 +44,7 @@ namespace Xenon.GcavToExpr
             // 「S■ａｒｇ１　ｎａｍｅ＝”★”」属性
             //
             string sName_MyFnc;
-            cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_MyFnc, false, log_Reports);
+            cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_MyFnc, false, log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -58,7 +58,7 @@ namespace Xenon.GcavToExpr
 
             if (log_Method.CanDebug(2))
             {
-                log_Method.WriteDebug_ToConsole( "「S■ａｒｇ１・３」要素　解析開始┌────────────────┐　自ａｒｇ１・３は、e_Parent=[" + parent_Ec.Cur_Givechapterandverse.Name + "]の”" + sName_MyFnc + "”属性になる。");
+                log_Method.WriteDebug_ToConsole( "「S■ａｒｇ１・３」要素　解析開始┌────────────────┐　自ａｒｇ１・３は、e_Parent=[" + parent_Ec.Cur_Configurationtree.Name + "]の”" + sName_MyFnc + "”属性になる。");
             }
 
 
@@ -75,9 +75,9 @@ namespace Xenon.GcavToExpr
 
                 //if (0 < d_InMethod.NDebugLevel)
                 //{
-                //    if (NamesNode.S_FNC != e_Parent.Cur_Givechapterandverse.Name)
+                //    if (NamesNode.S_FNC != e_Parent.Cur_Configurationtree.Name)
                 //    {
-                //        d_InMethod.WriteDebug_ToConsole(1, "ｆｎｃ以外の親要素「E■[" + e_Parent.Cur_Givechapterandverse.Name + "]」");
+                //        d_InMethod.WriteDebug_ToConsole(1, "ｆｎｃ以外の親要素「E■[" + e_Parent.Cur_Configurationtree.Name + "]」");
                 //    }
                 //}
             }
@@ -102,7 +102,7 @@ namespace Xenon.GcavToExpr
             if (log_Reports.Successful)
             {
                 // 元からあった。
-                this.ParseAttr_InGivechapterandverseToExpression(
+                this.ParseAttr_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     true,//ｎａｍｅ属性は必須。
@@ -121,7 +121,7 @@ namespace Xenon.GcavToExpr
             //
             if (log_Reports.Successful)
             {
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     memoryApplication,

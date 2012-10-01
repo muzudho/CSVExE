@@ -88,7 +88,7 @@ namespace Xenon.Table
         // ──────────────────────────────
 
         public void Perform(
-            ref TextP1pImpl ref_FormatString,
+            ref Builder_TexttemplateP1pImpl ref_FormatString,
             DataRowView dataRowView,
             XenonTable xenonTable,
             Log_Reports log_Reports

@@ -30,10 +30,10 @@ namespace Xenon.Expr
         /// <param name="moOpyopyo"></param>
         public Expression_FvarImpl(
             Expression_Node_String parent_Expression_Node,
-            Givechapterandverse_Node parent_Givechapterandverse_Node,
+            Configurationtree_Node parent_Configurationtree_Node,
             MemoryApplication owner_MemoryApplication
             )
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)
         {
         }
 
@@ -88,7 +88,7 @@ namespace Xenon.Expr
 
             {
                 // 変数名。
-                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(this, this.Cur_Givechapterandverse.Parent_Givechapterandverse);
+                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(this, this.Cur_Configurationtree.Parent);
                 ec_Atom.SetString(
                     sVarName,
                     log_Reports
@@ -138,7 +138,7 @@ namespace Xenon.Expr
             string sVariableName = this.Get00VariableName(log_Reports).Trim();
             {
                 // 変数名。
-                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(this, this.Cur_Givechapterandverse.Parent_Givechapterandverse);
+                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(this, this.Cur_Configurationtree.Parent);
                 ec_Atom.SetString(
                     sVariableName,
                     log_Reports

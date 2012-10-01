@@ -29,9 +29,9 @@ namespace Xenon.MiddleImpl
             this.name_SubFolder = "";
             this.backupKeptbackups = 0;
 
-            Givechapterandverse_Node s_ParentNode_Null = null;
-            this.givechapterandverse_Name_SubFolder = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
-            this.givechapterandverse_BackupKeptbackups = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
+            Configurationtree_Node s_ParentNode_Null = null;
+            this.givechapterandverse_Name_SubFolder = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
+            this.givechapterandverse_BackupKeptbackups = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
         }
 
         //────────────────────────────────────────
@@ -80,12 +80,12 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node givechapterandverse_Name_SubFolder;
+        private Configurationtree_Node givechapterandverse_Name_SubFolder;
 
         /// <summary>
         /// バックアップ・フォルダーのサブ名。例えば aaa なら、2009年12月3日のフォルダー名は 20091203_aaa になります。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_Name_SubFolder
+        public Configurationtree_Node Configurationtree_Name_SubFolder
         {
             set
             {
@@ -99,12 +99,12 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node givechapterandverse_BackupKeptbackups;
+        private Configurationtree_Node givechapterandverse_BackupKeptbackups;
 
         /// <summary>
         /// 取り置きするバックアップ・フォルダーの数。1日1回バックアップを取っているのなら、10 に設定すれば、10日分のバックアップが取り置きされることになります。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_BackupKeptbackups
+        public Configurationtree_Node Configurationtree_BackupKeptbackups
         {
             set
             {

@@ -129,7 +129,7 @@ namespace Xenon.Controls
                     t.Append(Environment.NewLine);
 
                     // ヒント
-                    t.Append(r.Message_Givechapterandverse(ec_Fcell.Cur_Givechapterandverse));
+                    t.Append(r.Message_Configurationtree(ec_Fcell.Cur_Configurationtree));
 
                     r.Message = t.ToString();
                     log_Reports.EndCreateReport();

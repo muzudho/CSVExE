@@ -16,7 +16,7 @@ namespace Xenon.Table
     /// テーブルです。
     /// 他のテーブル・クラスと名称の被りを防ぐために前置詞が付いています。
     /// </summary>
-    public interface XenonTable : Givechapterandverse_Node
+    public interface XenonTable : Configurationtree_Node
     {
 
 

@@ -308,8 +308,8 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(ec_KeyFieldName.Cur_Givechapterandverse));
-                s.Append(r.Message_Givechapterandverse(ec_ExpectedValue.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(ec_KeyFieldName.Cur_Configurationtree));
+                s.Append(r.Message_Configurationtree(ec_ExpectedValue.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

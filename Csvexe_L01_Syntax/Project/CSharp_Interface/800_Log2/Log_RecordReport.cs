@@ -32,8 +32,8 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型部分を簡単に作成します。
         /// </summary>
         /// <returns></returns>
-        string Message_Givechapterandverse(
-            Givechapterandverse_Node cur_Gcav
+        string Message_Configurationtree(
+            Configurationtree_Node cur_Gcav
             );
 
         /// <summary>

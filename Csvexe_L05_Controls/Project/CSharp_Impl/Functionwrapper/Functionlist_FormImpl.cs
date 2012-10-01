@@ -46,12 +46,12 @@ namespace Xenon.Controls
         /// <param nFcName="nActionPerformEnum"></param>
         /// <param nFcName="oWrittenPlace"></param>
         public Functionlist_FormImpl(
-            GivechapterandverseToExpression_Event sToE_Event,
+            ConfigurationtreeToExpression_Event sToE_Event,
             MemoryApplication owner_MemoryApplication
             )
             : base(null/*parent_Expression*/, null/*cur_Gcav*/)
         {
-            this.givechapterandverseToExpression_Event = sToE_Event;
+            this.ConfigurationtreeToExpression_Event = sToE_Event;
 
             this.list_Item = new List<Expression_Node_Function>();
             this.sType = "!ハードコーディング_" + this.GetType().Name + "#<init>";
@@ -122,7 +122,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -132,9 +132,9 @@ namespace Xenon.Controls
             //
 
             // 未作成時「作成」
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
 
             }
 
@@ -254,7 +254,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -264,9 +264,9 @@ namespace Xenon.Controls
             //
 
             // 未作成時「作成」
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
@@ -389,7 +389,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -397,9 +397,9 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
@@ -515,7 +515,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -532,9 +532,9 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
 
             }
 
@@ -633,7 +633,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -641,9 +641,9 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
             }
 
             //EnumEventhandler err_Eh;
@@ -752,7 +752,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -771,10 +771,10 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
                 // まだアクションが作成されていなければ、作成。
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
             }
 
             //EnumEventhandler err_Eh;
@@ -881,7 +881,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -889,9 +889,9 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
@@ -1001,7 +1001,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -1010,9 +1010,9 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports_ThisMethod);
             }
 
             //EnumEventhandler err_Eh;
@@ -1115,7 +1115,7 @@ namespace Xenon.Controls
             {
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
-                    this.givechapterandverseToExpression_Event.Name
+                    this.ConfigurationtreeToExpression_Event.Name
                     );
                 pg_Method.Log_Stopwatch.Begin();
             }
@@ -1123,9 +1123,9 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            if (!this.givechapterandverseToExpression_Event.IsTranslated_GivechapterandverseToExpression)
+            if (!this.ConfigurationtreeToExpression_Event.IsTranslated_ConfigurationtreeToExpression)
             {
-                this.givechapterandverseToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
+                this.ConfigurationtreeToExpression_Event.Translate(cct.ControlCommon.Owner_MemoryApplication, log_Reports);
             }
 
             //EnumEventhandler err_Eh;
@@ -1208,12 +1208,12 @@ namespace Xenon.Controls
         #region プロパティー
         //────────────────────────────────────────
 
-        private DicExpression_Node_String dictionary_Expression_Parameter;
+        private Dictionary_Expression_Node_String dictionary_Expression_Parameter;
 
         /// <summary>
         /// Expression_Node_Stringを関数として使うときの『ユーザー定義引数』のディクショナリー。
         /// </summary>
-        public DicExpression_Node_String Dictionary_Expression_Parameter
+        public Dictionary_Expression_Node_String Dictionary_Expression_Parameter
         {
             get
             {
@@ -1246,7 +1246,7 @@ namespace Xenon.Controls
         /// <summary>
         /// このアクションの一覧が記述されている、対応するイベント。
         /// </summary>
-        private GivechapterandverseToExpression_Event givechapterandverseToExpression_Event;
+        private ConfigurationtreeToExpression_Event ConfigurationtreeToExpression_Event;
 
         //────────────────────────────────────────
 

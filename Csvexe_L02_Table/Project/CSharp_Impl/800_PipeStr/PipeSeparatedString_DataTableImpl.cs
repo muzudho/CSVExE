@@ -90,12 +90,12 @@ namespace Xenon.Table
 
 
 
-            TextP1pImpl formatString = new TextP1pImpl();
+            Builder_TexttemplateP1pImpl formatString = new Builder_TexttemplateP1pImpl();
             formatString.Text = recordFields[0].ToString();//例："%1%:%2%"
             //.Console.WriteLine(this.GetType().Name + "#CreateText: recordFields[0].ToString()=[" + recordFields[0].ToString() + "]");
 
             FieldToParameters fieldToParameters = new FieldToParameters();
-            Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl("!ハードコーディング_RecordFormatStringImpl#CreateText",null);
+            Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl("!ハードコーディング_RecordFormatStringImpl#CreateText",null);
             // フィールド名のリストが続く。
             for (int nIndex = 1; nIndex < recordFields.Length; nIndex++)
             {

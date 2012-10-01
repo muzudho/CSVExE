@@ -140,7 +140,7 @@ namespace Xenon.Middle
         public static void Test_Codefileversion(
             string sCodefileVersion,
             Log_Reports pg_Loggin,
-            Givechapterandverse_Node gcav_Codefile,
+            Configurationtree_Node gcav_Codefile,
             string info_Name_Node
             )
         {
@@ -209,7 +209,7 @@ namespace Xenon.Middle
                 s.Newline();
 
                 //ヒント
-                s.Append(r.Message_Givechapterandverse(gcav_Codefile));
+                s.Append(r.Message_Configurationtree(gcav_Codefile));
 
                 r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
@@ -236,7 +236,7 @@ namespace Xenon.Middle
                 s.Newline();
 
                 //ヒント
-                s.Append(r.Message_Givechapterandverse(gcav_Codefile));
+                s.Append(r.Message_Configurationtree(gcav_Codefile));
 
                 r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
@@ -268,7 +268,7 @@ namespace Xenon.Middle
                 s.Newline();
 
                 //ヒント
-                s.Append(r.Message_Givechapterandverse(gcav_Codefile));
+                s.Append(r.Message_Configurationtree(gcav_Codefile));
 
                 r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();

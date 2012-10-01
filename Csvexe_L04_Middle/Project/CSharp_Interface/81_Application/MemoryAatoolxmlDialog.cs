@@ -40,7 +40,7 @@ namespace Xenon.Middle
         /// <summary>
         /// エディター設定ファイルのリスト。
         /// </summary>
-        Dictionary_Fsetvar_Givechapterandverse Dictionary_Editor
+        Dictionary_Fsetvar_Configurationtree Dictionary_Editor
         {
             get;
             set;

@@ -20,10 +20,10 @@ namespace Xenon.Expr
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public TableUserformconfigImpl(string sName_Table, Givechapterandverse_Node cur_Gcav)
+        public TableUserformconfigImpl(string sName_Table, Configurationtree_Node cur_Gcav)
         {
             this.name_Table = sName_Table;
-            this.cur_Givechapterandverse = cur_Gcav;
+            this.cur_Configurationtree = cur_Gcav;
 
             this.list_RecordUserformconfig = new List<RecordUserformconfig>();
         }
@@ -63,13 +63,13 @@ namespace Xenon.Expr
         #region プロパティー
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node cur_Givechapterandverse;
+        private Configurationtree_Node cur_Configurationtree;
 
-        public Givechapterandverse_Node Cur_Givechapterandverse
+        public Configurationtree_Node Cur_Configurationtree
         {
             get
             {
-                return this.cur_Givechapterandverse;
+                return this.cur_Configurationtree;
             }
         }
 

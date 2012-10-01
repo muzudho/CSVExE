@@ -21,7 +21,7 @@ namespace Xenon.Middle
 
         Expression_Node_String build(
             string sValue,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );

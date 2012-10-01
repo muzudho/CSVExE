@@ -14,7 +14,7 @@ namespace Xenon.XToGcav
 
     /// <summary>
     /// </summary>
-    public class XToGivechapterandverse_C11_ConfigImpl : XToGivechapterandverse_C11_Config
+    public class XToConfigurationtree_C11_ConfigImpl : XToConfigurationtree_C11_Config
     {
 
 
@@ -33,11 +33,11 @@ namespace Xenon.XToGcav
         /// <param name="oFormsFolderPath"></param>
         /// <param name="owner_MemoryApplication"></param>
         /// <param name="log_Reports"></param>
-        public void XToGivechapterandverse(
+        public void XToConfigurationtree(
             string sName_Control,
             string sFpathH_F,
             string sFpatha_F,
-            Givechapterandverse_Node cf_ControlConfig,
+            Configurationtree_Node cf_ControlConfig,
             Expression_Node_Filepath ec_Fopath_Forms,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
@@ -103,7 +103,7 @@ namespace Xenon.XToGcav
             {
                 // 正常時
 
-                XToGivechapterandverse_C12_ControlImpl_ to = new XToGivechapterandverse_C12_ControlImpl_();
+                XToConfigurationtree_C12_ControlImpl_ to = new XToConfigurationtree_C12_ControlImpl_();
 
                 try
                 {
@@ -139,7 +139,7 @@ namespace Xenon.XToGcav
 
                             if (NamesNode.S_CONTROL1 == xTop.Name)
                             {
-                                to.XToGivechapterandverse(
+                                to.XToConfigurationtree(
                                     sName_Control,
                                     cf_ControlConfig,
                                     xTop,

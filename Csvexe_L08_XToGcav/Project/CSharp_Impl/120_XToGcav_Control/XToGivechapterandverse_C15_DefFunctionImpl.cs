@@ -16,7 +16,7 @@ namespace Xenon.XToGcav
     /// 
     /// ステートレス設計で。
     /// </summary>
-    public class XToGivechapterandverse_C15_DefFunctionImpl : XToGivechapterandverse_C_Parser15Impl
+    public class XToConfigurationtree_C15_DefFunctionImpl : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -24,9 +24,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public override void XToGivechapterandverse(
+        public override void XToConfigurationtree(
             XmlElement cur_X,
-            Givechapterandverse_Node parent_Cf,
+            Configurationtree_Node parent_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -46,7 +46,7 @@ namespace Xenon.XToGcav
             //
             //
             log_Method.WriteWarning_ToConsole("①自 [" + log_Reports.Successful + "]");
-            Givechapterandverse_Node cur_Cf;
+            Configurationtree_Node cur_Cf;
             if (log_Reports.Successful)
             {
                 cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
@@ -145,13 +145,13 @@ namespace Xenon.XToGcav
         //────────────────────────────────────────
 
         protected override void LinkToParent(
-            Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+            Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "LinkToParent", log_Reports);
             log_Method.WriteWarning_ToConsole("親要素に、連結。");
 
-            parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+            parent_Cf.List_Child.Add(cur_Cf, log_Reports);
             log_Method.EndMethod(log_Reports);
         }
 

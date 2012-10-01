@@ -29,8 +29,8 @@ namespace Xenon.Table
             this.sUse = "";
 
             {
-                Givechapterandverse_Node s_ParentNode = new Givechapterandverse_NodeImpl("!ハードコーディング_Request_TableReadsImpl#<init>", null);
-                Givechapterandverse_Filepath s_fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L02_1", s_ParentNode);
+                Configurationtree_Node s_ParentNode = new Configurationtree_NodeImpl("!ハードコーディング_Request_TableReadsImpl#<init>", null);
+                Configurationtree_NodeFilepath s_fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L02_1", s_ParentNode);
                 this.expression_Filepath = new Expression_Node_FilepathImpl(s_fpath);
             }
         }

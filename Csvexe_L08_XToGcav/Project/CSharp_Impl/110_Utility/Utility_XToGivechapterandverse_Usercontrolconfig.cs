@@ -16,7 +16,7 @@ namespace Xenon.XToGcav
     /// 
     /// X→S。
     /// </summary>
-    public class Utility_XToGivechapterandverse_Usercontrolconfig
+    public class Utility_XToConfigurationtree_Usercontrolconfig
     {
 
 
@@ -32,7 +32,7 @@ namespace Xenon.XToGcav
             string sName_Control,
             string sHiFpath_ControlFile,
             string sFpatha_Fcnf,
-            Givechapterandverse_Node cf_FcConfig,
+            Configurationtree_Node cf_FcConfig,
             Expression_Node_Filepath ec_Fopath_Forms,
             Log_Reports log_Reports
             )
@@ -311,9 +311,9 @@ namespace Xenon.XToGcav
             {
                 // 正常時
 
-                Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl("formsフォルダーパス＋コンポーネント設定ファイルパス", null);
+                Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl("formsフォルダーパス＋コンポーネント設定ファイルパス", null);
 
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L08_1", parent_Cf);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L08_1", parent_Cf);
                 cf_Fpath.InitPath(
                     sFopatha_Forms,
                     ec_Fpath_Fcnf.Humaninput,

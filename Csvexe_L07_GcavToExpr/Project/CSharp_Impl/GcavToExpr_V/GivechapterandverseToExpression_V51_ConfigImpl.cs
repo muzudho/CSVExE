@@ -10,7 +10,7 @@ using Xenon.Middle;
 namespace Xenon.GcavToExpr
 {
 
-    public class GivechapterandverseToExpression_V51_ConfigImpl : GivechapterandverseToExpression_AbstractImpl, GivechapterandverseToExpression_V51_Config
+    public class ConfigurationtreeToExpression_V51_ConfigImpl : ConfigurationtreeToExpression_AbstractImpl, ConfigurationtreeToExpression_V51_Config
     {
 
 
@@ -23,12 +23,12 @@ namespace Xenon.GcavToExpr
         /// </summary>
         public void Translate(
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -53,22 +53,22 @@ namespace Xenon.GcavToExpr
                         // リストボックスなら。
                         UsercontrolListbox uctLst = (UsercontrolListbox)uct;
 
-                        List<Givechapterandverse_Node> cfList_ValidatorConfig = uctLst.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_CODEFILE_VALIDATORS, false, log_Reports);
+                        List<Configurationtree_Node> cfList_ValidatorConfig = uctLst.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_CODEFILE_VALIDATORS, false, log_Reports);
                         if (1 < cfList_ValidatorConfig.Count)
                         {
                             throw new Exception("バリデーター設定要素が２つ以上ありました。");
                         }
                         else if (0 < cfList_ValidatorConfig.Count)
                         {
-                            Givechapterandverse_Node cf_ValidatorConfig = cfList_ValidatorConfig[0];
+                            Configurationtree_Node cf_ValidatorConfig = cfList_ValidatorConfig[0];
 
                             // (Sv)コントロールのSv
                             {
-                                GivechapterandverseToExpression_V52_FListboxValidationImpl_ to = new GivechapterandverseToExpression_V52_FListboxValidationImpl_();
+                                ConfigurationtreeToExpression_V52_FListboxValidationImpl_ to = new ConfigurationtreeToExpression_V52_FListboxValidationImpl_();
 
-                                List<Givechapterandverse_Node> cfList_Validation = cf_ValidatorConfig.GetChildrenByNodename(NamesNode.S_F_LISTBOX_VALIDATION, false, log_Reports);
+                                List<Configurationtree_Node> cfList_Validation = cf_ValidatorConfig.GetChildrenByNodename(NamesNode.S_F_LISTBOX_VALIDATION, false, log_Reports);
 
-                                foreach (Givechapterandverse_Node child_Cf in cfList_Validation)
+                                foreach (Configurationtree_Node child_Cf in cfList_Validation)
                                 {
 
                                     //
@@ -85,12 +85,12 @@ namespace Xenon.GcavToExpr
                             }
 
                             {
-                                GivechapterandverseToUsercontrol_V52_ValidatorImpl_ to = new GivechapterandverseToUsercontrol_V52_ValidatorImpl_();
+                                ConfigurationtreeToUsercontrol_V52_ValidatorImpl_ to = new ConfigurationtreeToUsercontrol_V52_ValidatorImpl_();
 
-                                List<Givechapterandverse_Node> cfList_Validator = cf_ValidatorConfig.GetChildrenByNodename(NamesNode.S_VALIDATOR, false, log_Reports);
-                                foreach (Givechapterandverse_Node cf in cfList_Validator)
+                                List<Configurationtree_Node> cfList_Validator = cf_ValidatorConfig.GetChildrenByNodename(NamesNode.S_VALIDATOR, false, log_Reports);
+                                foreach (Configurationtree_Node cf in cfList_Validator)
                                 {
-                                    to.GivechapterandverseToUsercontrol(
+                                    to.ConfigurationtreeToUsercontrol(
                                         cf,
                                         uct,
                                         pg_ParsingLog,

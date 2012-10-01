@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    public class XToGivechapterandverse_Collection
+    public class XToConfigurationtree_Collection
     {
 
 
@@ -16,15 +16,15 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public static XToGivechapterandverse_C15_Elm GetTranslatorByFncName(string sName_Fnc, Log_Reports log_Reports)
+        public static XToConfigurationtree_C15_Elm GetTranslatorByFncName(string sName_Fnc, Log_Reports log_Reports)
         {
-            if (null == XToGivechapterandverse_Collection.dictionary_FncVer)
+            if (null == XToConfigurationtree_Collection.dictionary_FncVer)
             {
-                Dictionary<string, XToGivechapterandverse_C15_Elm> d = new Dictionary<string, XToGivechapterandverse_C15_Elm>();
+                Dictionary<string, XToConfigurationtree_C15_Elm> d = new Dictionary<string, XToConfigurationtree_C15_Elm>();
 
                 {
                     //ａ－ｄｉｓｐｌａｙ
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_V_4ADisplayImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_V_4ADisplayImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_TYPE.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -33,7 +33,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     //ｓｅｌｅｃｔ－ｒｅｃｏｒｄ
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_V_4ASelectRecordImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_V_4ASelectRecordImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_FIELD_KEY.Name_Attribute);
                     a.Add(PmNames.S_VALUE_KEY.Name_Attribute);
@@ -46,17 +46,17 @@ namespace Xenon.XToGcav
                 }
                 {
                     //ａｌｌ－ｆｉｅｌｄｓ－ｉｓ－ｅｍｐｔｙ
-                    XToGivechapterandverse_V_5FAllFieldsIsEmptyImpl_ xToS = new XToGivechapterandverse_V_5FAllFieldsIsEmptyImpl_();
+                    XToConfigurationtree_V_5FAllFieldsIsEmptyImpl_ xToS = new XToConfigurationtree_V_5FAllFieldsIsEmptyImpl_();
                     d.Add(NamesFnc.S_VLD_ALL_FIELDS_IS_EMPTY, xToS);
                 }
                 {
                     //ｆ－ａｌｌ－ｔｒｕｅ
-                    XToGivechapterandverse_V_5FAllTrueImpl_ xToS = new XToGivechapterandverse_V_5FAllTrueImpl_();
+                    XToConfigurationtree_V_5FAllTrueImpl_ xToS = new XToConfigurationtree_V_5FAllTrueImpl_();
                     d.Add(NamesFnc.S_ALL_TRUE, xToS);
                 }
                 {
                     //ａ－ｅｍｔｐｙ－ｆｉｅｌｄ
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_V_6AEmptyFieldImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_V_6AEmptyFieldImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_TYPE.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -64,25 +64,25 @@ namespace Xenon.XToGcav
                     d.Add(NamesFnc.S_VLD_EMPTY_FIELD, xToS);
                 }
 
-                XToGivechapterandverse_Collection.dictionary_FncVer = d;
+                XToConfigurationtree_Collection.dictionary_FncVer = d;
             }
 
-            XToGivechapterandverse_C15_Elm result;
-            XToGivechapterandverse_Collection.dictionary_FncVer.TryGetValue(sName_Fnc, out result);
+            XToConfigurationtree_C15_Elm result;
+            XToConfigurationtree_Collection.dictionary_FncVer.TryGetValue(sName_Fnc, out result);
             return result;
         }
 
         //────────────────────────────────────────
 
-        public static XToGivechapterandverse_C15_Elm GetTranslatorByNodeName(string sName_Node, Log_Reports log_Reports)
+        public static XToConfigurationtree_C15_Elm GetTranslatorByNodeName(string sName_Node, Log_Reports log_Reports)
         {
-            if (null == XToGivechapterandverse_Collection.dictionary_NodeVer)
+            if (null == XToConfigurationtree_Collection.dictionary_NodeVer)
             {
-                Dictionary<string, XToGivechapterandverse_C15_Elm> d = new Dictionary<string, XToGivechapterandverse_C15_Elm>();
+                Dictionary<string, XToConfigurationtree_C15_Elm> d = new Dictionary<string, XToConfigurationtree_C15_Elm>();
 
                 {
                     // ＜ｄａｔａ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C13_DataImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C13_DataImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_MEMORY.Name_Attribute);
                     a.Add(PmNames.S_ACCESS.Name_Attribute);
@@ -96,7 +96,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｅｖｅｎｔ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C13_EventImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C13_EventImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -105,7 +105,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｋｅｙ－ｅｖｅｎｔ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C13_KeyEventImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C13_KeyEventImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_MOTION.Name_Attribute);
                     a.Add(PmNames.S_KEY.Name_Attribute);
@@ -118,12 +118,12 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｔｏｇｅｔｈｅｒ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C13_TogetherImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C13_TogetherImpl_();
                     d.Add(NamesNode.S_TOGETHER, xToS);
                 }
                 {
                     // ＜ｖｉｅｗ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C13_ViewImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C13_ViewImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_TARGET1.Name_Attribute);
                     xToS.List_SName_Attribute = a;
@@ -131,7 +131,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｃｏｍｍｏｎ－ｆｕｎｃｔｉｏｎ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C15_DefFunctionImpl();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C15_DefFunctionImpl();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -140,7 +140,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｆｎｃ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C15_FncImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C15_FncImpl_();
 
                     // 追加【2012-07-27】
                     List<string> a = new List<string>();
@@ -153,7 +153,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｆ－ｐａｒａｍ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C_Parser15Impl();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C_Parser15Impl();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_CALL.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -162,7 +162,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｆ－ｓｔｒ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C_Parser15Impl();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C_Parser15Impl();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_VALUE.Name_Attribute);
@@ -172,7 +172,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｆ－ｖａｒ＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C_Parser15Impl();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C_Parser15Impl();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_VALUE.Name_Attribute);
@@ -182,7 +182,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ａｒｇ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C15b_ArgImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C15b_ArgImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_VALUE.Name_Attribute);
@@ -192,7 +192,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｄｅｆ－ｐａｒａｍ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C_Parser15Impl();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C_Parser15Impl();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -201,7 +201,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｋｅｙ－ａｃｔｉｏｎ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_C_Parser15Impl();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_C_Parser15Impl();
                     List<PmNameItem> p1 = new List<PmNameItem>();
                     p1.Add(new PmNameItemImpl(PmNames.S_TYPE, true));
                     xToS.List_PmName = p1;
@@ -209,12 +209,12 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｆ－ｌｉｓｔｂｏｘ－ｖａｌｉｒａｔｉｏｎ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_V_3FListboxValidationImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_V_3FListboxValidationImpl_();
                     d.Add(NamesNode.S_F_LISTBOX_VALIDATION, xToS);
                 }
                 {
                     // ＜ｖａｌｉｄａｔｏｒ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_V_3ValidatorImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_V_3ValidatorImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     a.Add(PmNames.S_DESCRIPTION.Name_Attribute);
@@ -223,7 +223,7 @@ namespace Xenon.XToGcav
                 }
                 {
                     // ＜ｃｏｎｔｒｏｌ　＞
-                    XToGivechapterandverse_C15_Elm xToS = new XToGivechapterandverse_V52_ControlImpl_();
+                    XToConfigurationtree_C15_Elm xToS = new XToConfigurationtree_V52_ControlImpl_();
                     List<string> a = new List<string>();
                     a.Add(PmNames.S_NAME.Name_Attribute);
                     xToS.List_SName_Attribute = a;
@@ -231,11 +231,11 @@ namespace Xenon.XToGcav
                 }
 
 
-                XToGivechapterandverse_Collection.dictionary_NodeVer = d;
+                XToConfigurationtree_Collection.dictionary_NodeVer = d;
             }
 
-            XToGivechapterandverse_C15_Elm result;
-            XToGivechapterandverse_Collection.dictionary_NodeVer.TryGetValue(sName_Node, out result);
+            XToConfigurationtree_C15_Elm result;
+            XToConfigurationtree_Collection.dictionary_NodeVer.TryGetValue(sName_Node, out result);
             return result;
         }
 
@@ -250,12 +250,12 @@ namespace Xenon.XToGcav
         /// <summary>
         /// ノード名
         /// </summary>
-        private static Dictionary<string, XToGivechapterandverse_C15_Elm> dictionary_NodeVer;
+        private static Dictionary<string, XToConfigurationtree_C15_Elm> dictionary_NodeVer;
 
         /// <summary>
         /// 関数名
         /// </summary>
-        private static Dictionary<string, XToGivechapterandverse_C15_Elm> dictionary_FncVer;
+        private static Dictionary<string, XToConfigurationtree_C15_Elm> dictionary_FncVer;
 
         //────────────────────────────────────────
         #endregion

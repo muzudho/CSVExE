@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Xenon.Syntax;//O_IntegerRanges
+using Xenon.Syntax;//IntegerRanges
 using Xenon.Table;//XenonValue_IntImpl
 
 namespace Xenon.Operating
@@ -125,13 +125,13 @@ namespace Xenon.Operating
 
 
                             // 番号別優先順位設定について
-                            CfToO_IntegerRanges sToO = new CfToO_IntegerRanges();
+                            ConfigurationTo_IntegerRanges sToO = new ConfigurationTo_IntegerRanges();
                             foreach (GloballistconfigNumber numberObj in variable.Dictionary_Number.Values)
                             {
-                                O_IntegerRanges o_Ranges2;
+                                IntegerRanges o_Ranges2;
                                 StringBuilder sInfoMsg = new StringBuilder();
                                 string sErrorMsg;
-                                if (sToO.CfToO(numberObj.Text_Range, out o_Ranges2, ref sInfoMsg, out sErrorMsg))
+                                if (sToO.ConfigurationTo(numberObj.Text_Range, out o_Ranges2, ref sInfoMsg, out sErrorMsg))
                                 {
                                     // 正常時
 

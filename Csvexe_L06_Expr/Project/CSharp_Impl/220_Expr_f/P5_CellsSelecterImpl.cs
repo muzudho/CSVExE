@@ -50,7 +50,7 @@ namespace Xenon.Expr
             RecordSet dst_Rs_toSave,
             Selectstatement selectSt_ToSave,
             Expressionv_4ASelectRecord ecv_selRec_OrNull,//ｗｈｅｒｅ
-            Givechapterandverse_Node parent_Cf_Query,//this
+            Configurationtree_Node parent_Cf_Query,//this
             Log_Reports log_Reports
             )
         {
@@ -489,7 +489,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
+                t.Append(r.Message_Configurationtree(parent_Cf_Query));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -513,7 +513,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
+                t.Append(r.Message_Configurationtree(parent_Cf_Query));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -538,7 +538,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
+                t.Append(r.Message_Configurationtree(parent_Cf_Query));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -563,7 +563,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(parent_Cf_Query));
+                t.Append(r.Message_Configurationtree(parent_Cf_Query));
                 t.Append(r.Message_SException(err_Exception));
 
                 r.Message = t.ToString();
@@ -590,7 +590,7 @@ namespace Xenon.Expr
         private Expression_Node_String GetSelectedFieldValue(
             XenonFielddefinition selectedFldDefinition,
             XenonValue selectedOValue,
-            Givechapterandverse_Node parent_Cf_Select,
+            Configurationtree_Node parent_Cf_Select,
             Log_Reports log_Reports
             )
         {

@@ -23,9 +23,9 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="s_ParentNode"></param>
-        private RecordconditionImpl(Givechapterandverse_Node parent_Gcav)
+        private RecordconditionImpl(Configurationtree_Node parent_Gcav)
         {
-            this.parent_Givechapterandverse = parent_Gcav;
+            this.parent = parent_Gcav;
 
             this.list_Child = new List<Recordcondition>();
             this.enumLogic = EnumLogic.None;
@@ -54,7 +54,7 @@ namespace Xenon.Table
             out Recordcondition out_RecCond,
             EnumLogic enumLogic,
             string sField,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             )
         {
@@ -112,7 +112,7 @@ namespace Xenon.Table
                 s.Append("]");
                 s.Append(Environment.NewLine);
 
-                s.Append(r.Message_Givechapterandverse(parent_Gcav));
+                s.Append(r.Message_Configurationtree(parent_Gcav));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -293,16 +293,16 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node parent_Givechapterandverse;
+        private Configurationtree_Node parent;
 
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        public Givechapterandverse_Node Parent_Givechapterandverse
+        public Configurationtree_Node Parent
         {
             get
             {
-                return this.parent_Givechapterandverse;
+                return this.parent;
             }
         }
 

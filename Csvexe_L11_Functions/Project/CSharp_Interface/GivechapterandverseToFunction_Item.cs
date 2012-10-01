@@ -9,7 +9,7 @@ using Xenon.Middle;
 
 namespace Xenon.Functions
 {
-    public interface GivechapterandverseToFunction_Item
+    public interface ConfigurationtreeToFunction_Item
     {
 
 
@@ -26,8 +26,8 @@ namespace Xenon.Functions
         /// <returns></returns>
         Expression_Node_Function Translate(
             string sName_Action,
-            Givechapterandverse_Node cur_Cf_Action,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Configurationtree_Node cur_Cf_Action,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
         );
@@ -35,20 +35,20 @@ namespace Xenon.Functions
         //────────────────────────────────────────
 
         void Translate_Step1(
-            GivechapterandverseToFunction_Item parentProcesser,
-            Givechapterandverse_Node action_Gcav,
+            ConfigurationtreeToFunction_Item parentProcesser,
+            Configurationtree_Node action_Gcav,
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             );
 
         void Translate_Step2(
-            GivechapterandverseToFunction_Item parentProcesser,
-            Givechapterandverse_Node action_Gcav,
+            ConfigurationtreeToFunction_Item parentProcesser,
+            Configurationtree_Node action_Gcav,
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             );
 

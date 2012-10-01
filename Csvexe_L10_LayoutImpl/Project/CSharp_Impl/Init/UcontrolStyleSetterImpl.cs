@@ -46,10 +46,10 @@ namespace Xenon.Layout
 
                 //
                 // S → E。 コントロール名
-                Expression_Node_StringImpl e_fcName = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse);
+                Expression_Node_StringImpl e_fcName = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
                 e_fcName.AppendTextNode(
                     sName_Control,
-                    fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse,
+                    fo_Record.Parent_TableUserformconfig.Cur_Configurationtree,
                     pg_Logging
                     );
 
@@ -148,10 +148,10 @@ namespace Xenon.Layout
 
                 //
                 // S → E。 コントロール名
-                Expression_Node_StringImpl e_fcName = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse);
+                Expression_Node_StringImpl e_fcName = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
                 e_fcName.AppendTextNode(
                     sName_Control,
-                    fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse,
+                    fo_Record.Parent_TableUserformconfig.Cur_Configurationtree,
                     pg_Logging
                     );
 
@@ -213,10 +213,10 @@ namespace Xenon.Layout
 
                 //
                 // S → E。 コントロール名
-                Expression_Node_StringImpl ec_FcName = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse);
+                Expression_Node_StringImpl ec_FcName = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
                 ec_FcName.AppendTextNode(
                     sName_Control,
-                    fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse,
+                    fo_Record.Parent_TableUserformconfig.Cur_Configurationtree,
                     pg_Logging
                     );
 

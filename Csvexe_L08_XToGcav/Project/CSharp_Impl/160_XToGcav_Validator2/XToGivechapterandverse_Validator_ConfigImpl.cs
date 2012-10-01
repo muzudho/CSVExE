@@ -14,7 +14,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// varidation設定ファイル X → S。
     /// </summary>
-    public class XToGivechapterandverse_Validator_ConfigImpl : XToGivechapterandverse_V51_Config
+    public class XToConfigurationtree_Validator_ConfigImpl : XToConfigurationtree_V51_Config
     {
 
 
@@ -28,7 +28,7 @@ namespace Xenon.XToGcav
         /// <param name="sFpatha">絶対ファイルパス</param>
         /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
-        public void XToGivechapterandverse(
+        public void XToConfigurationtree(
             string sFpatha,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
@@ -86,7 +86,7 @@ namespace Xenon.XToGcav
             if (log_Reports.Successful)
             {
                 // new した直後の内容に戻します。
-                memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig.Clear( NamesNode.S_CODEFILE_VALIDATORS, new Givechapterandverse_NodeImpl(sFpatha, null), log_Reports);
+                memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig.Clear( NamesNode.S_CODEFILE_VALIDATORS, new Configurationtree_NodeImpl(sFpatha, null), log_Reports);
 
 
                 // ルート要素を取得
@@ -96,7 +96,7 @@ namespace Xenon.XToGcav
                 ValuesAttr.Test_Codefileversion(
                     xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
-                    new Givechapterandverse_NodeImpl(sFpatha, null),
+                    new Configurationtree_NodeImpl(sFpatha, null),
                     NamesNode.S_CODEFILE_VALIDATORS
                     );
 
@@ -123,10 +123,10 @@ namespace Xenon.XToGcav
                             //
                             //
 
-                            XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(xTopNode.Name, log_Reports);
-                            to.XToGivechapterandverse(
+                            XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(xTopNode.Name, log_Reports);
+                            to.XToConfigurationtree(
                                 xTop,
-                                memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig,
+                                memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig,
                                 memoryApplication,
                                 log_Reports
                                 );
@@ -145,7 +145,7 @@ namespace Xenon.XToGcav
             else
             {
                 // new した直後の内容に戻します。
-                memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig.Clear(NamesNode.S_CODEFILE_VALIDATORS, new Givechapterandverse_NodeImpl("!ハードコーディング_"+log_Method.Fullname, null), log_Reports);
+                memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig.Clear(NamesNode.S_CODEFILE_VALIDATORS, new Configurationtree_NodeImpl("!ハードコーディング_"+log_Method.Fullname, null), log_Reports);
             }
 
             goto gt_EndMethod;

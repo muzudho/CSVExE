@@ -42,13 +42,13 @@ namespace Xenon.Functions
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_Node_Function27Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function27Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -57,7 +57,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function27Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -92,12 +92,12 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol ccFc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
@@ -118,13 +118,13 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
+                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol ccFc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
@@ -172,7 +172,7 @@ namespace Xenon.Functions
             {
                 log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
-                    this.Cur_Givechapterandverse,
+                    this.Cur_Configurationtree,
                     log_Reports
                     );
 
@@ -180,7 +180,7 @@ namespace Xenon.Functions
             }
 
 
-            Givechapterandverse_Node cf_TgTogether;
+            Configurationtree_Node cf_TgTogether;
             if (log_Reports.Successful)
             {
                 string sArg_Name_Together;
@@ -247,15 +247,15 @@ namespace Xenon.Functions
                 //
                 // 妥当性を判定したいコントロール名を一覧しているトゥゲザーの名前。
                 //
-                List<Givechapterandverse_Node> cfList_RfrTarget = cf_TgTogether.GetChildrenByNodename(NamesNode.S_TARGET,false,log_Reports);
+                List<Configurationtree_Node> cfList_RfrTarget = cf_TgTogether.GetChildrenByNodename(NamesNode.S_TARGET,false,log_Reports);
 
 
                 //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　トゥゲザー名=[" + .Value + "] 対象Fc数=[" + oTargetList.Count + "]");
 
-                foreach (Givechapterandverse_Node cf_RfrTarget in cfList_RfrTarget)
+                foreach (Configurationtree_Node cf_RfrTarget in cfList_RfrTarget)
                 {
                     string sName;
-                    cf_RfrTarget.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
+                    cf_RfrTarget.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, true, log_Reports);
 
                     Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, cf_RfrTarget);
                     ec_Str.AppendTextNode(
@@ -311,7 +311,7 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="log_Reports"></param>
         private void Perform_ByName(
-            out Givechapterandverse_Node cf_TgTogether,
+            out Configurationtree_Node cf_TgTogether,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
@@ -323,7 +323,7 @@ namespace Xenon.Functions
             {
                 log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
-                    this.Cur_Givechapterandverse,
+                    this.Cur_Configurationtree,
                     log_Reports
                 );
 
@@ -345,11 +345,11 @@ namespace Xenon.Functions
 
                 string sExpectedFncName = ec_Arg_Name_Together.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
 
-                List<Givechapterandverse_Node> listCf_Together = this.Owner_MemoryApplication.MemoryTogethers.Givechapterandverse_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
-                foreach (Givechapterandverse_Node cf_Together in listCf_Together)
+                List<Configurationtree_Node> listCf_Together = this.Owner_MemoryApplication.MemoryTogethers.Configurationtree_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
+                foreach (Configurationtree_Node cf_Together in listCf_Together)
                 {
                     string sFncName;
-                    cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                    cf_Together.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                     if(sExpectedFncName == sFncName)
                     {
@@ -382,7 +382,7 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="log_Reports"></param>
         private void Perform_ByNoName(
-            out Givechapterandverse_Node cf_TgTogether,
+            out Configurationtree_Node cf_TgTogether,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
@@ -392,7 +392,7 @@ namespace Xenon.Functions
             {
                 log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
-                    this.Cur_Givechapterandverse,
+                    this.Cur_Configurationtree,
                     log_Reports
                 );
 
@@ -404,21 +404,21 @@ namespace Xenon.Functions
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
-            if (null != this.Cur_Givechapterandverse)
+            if (null != this.Cur_Configurationtree)
             {
-                Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
 
                 if (null != cf_Event)
                 {
-                    Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                    if (null != owner_Givechapterandverse_Control)
+                    Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                    if (null != owner_Configurationtree_Control)
                     {
                         //
                         //　（１）「コントロール設定ファイル（Fcnf）」の＜ｒｅｆｒｅｓｈｅｒ＞を読みにいく。
                         //
                         this.Perform_ByNoName_1Fcnf(
                             out cf_TgTogether,
-                            owner_Givechapterandverse_Control,
+                            owner_Configurationtree_Control,
                             cf_Event,
                             log_Reports);
 
@@ -430,7 +430,7 @@ namespace Xenon.Functions
                             //
                             this.Perform_ByNoName_2Frfr(
                                 out cf_TgTogether,
-                                owner_Givechapterandverse_Control,
+                                owner_Configurationtree_Control,
                                 cf_Event,
                                 log_Reports
                                 );
@@ -504,7 +504,7 @@ namespace Xenon.Functions
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -533,7 +533,7 @@ namespace Xenon.Functions
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -562,7 +562,7 @@ namespace Xenon.Functions
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -586,9 +586,9 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="log_Reports"></param>
         private void Perform_ByNoName_1Fcnf(
-            out Givechapterandverse_Node cf_TgTogether,
-            Givechapterandverse_Node cf_Fc,
-            Givechapterandverse_Node cf_Event,
+            out Configurationtree_Node cf_TgTogether,
+            Configurationtree_Node cf_Fc,
+            Configurationtree_Node cf_Event,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
@@ -604,7 +604,7 @@ namespace Xenon.Functions
             string sIn;
             {
                 string sFcName3;
-                cf_Fc.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
+                cf_Fc.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     cf_TgTogether = null;
@@ -615,7 +615,7 @@ namespace Xenon.Functions
                 // 末尾に「*」は無い。
 
                 string sEventName;
-                cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+                cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     cf_TgTogether = null;
@@ -634,20 +634,20 @@ namespace Xenon.Functions
 
 
             cf_TgTogether = null;
-            List<Givechapterandverse_Node> listCf_Together = cf_Fc.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
-            foreach (Givechapterandverse_Node cf_Together in listCf_Together)
+            List<Configurationtree_Node> listCf_Together = cf_Fc.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
+            foreach (Configurationtree_Node cf_Together in listCf_Together)
             {
                 string sOn2;
-                cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ON, out sOn2, false, log_Reports);
+                cf_Together.Dictionary_Attribute.TryGetValue(PmNames.S_ON, out sOn2, false, log_Reports);
 
                 if (sEventNameTrim==sOn2)
                 {
-                    cf_TgTogether = new Givechapterandverse_NodeImpl(
+                    cf_TgTogether = new Configurationtree_NodeImpl(
                         NamesNode.S_TOGETHER,
-                        this.Owner_MemoryApplication.MemoryTogethers.Givechapterandverse_Togetherconfig
+                        this.Owner_MemoryApplication.MemoryTogethers.Configurationtree_Togetherconfig
                         );
 
-                    cf_TgTogether.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_IN.Name_Pm, sIn, log_Reports);
+                    cf_TgTogether.Dictionary_Attribute.Set(PmNames.S_IN.Name_Pm, sIn, log_Reports);
 
 
                     //
@@ -656,10 +656,10 @@ namespace Xenon.Functions
 
 
                     // ＜ｒｅｆｒｅｓｈｅｒ＞が、ｔａｒｇｅｔ属性を持っていれば、それを子要素とする。
-                    List<Givechapterandverse_Node> cfList = this.ConvertTarget2(cf_Together, log_Reports);
-                    foreach (Givechapterandverse_Node cf_Node in cfList)
+                    List<Configurationtree_Node> cfList = this.ConvertTarget2(cf_Together, log_Reports);
+                    foreach (Configurationtree_Node cf_Node in cfList)
                     {
-                        cf_TgTogether.List_ChildGivechapterandverse.Add(cf_Node, log_Reports);
+                        cf_TgTogether.List_Child.Add(cf_Node, log_Reports);
                     }
 
                     // 1件のみ処理。
@@ -676,18 +676,18 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private List<Givechapterandverse_Node> ConvertTarget2(Givechapterandverse_Node cf_Together, Log_Reports log_Reports)
+        private List<Configurationtree_Node> ConvertTarget2(Configurationtree_Node cf_Together, Log_Reports log_Reports)
         {
-            List<Givechapterandverse_Node> cfList_Result = new List<Givechapterandverse_Node>();
+            List<Configurationtree_Node> cfList_Result = new List<Configurationtree_Node>();
 
             string sTargetList;
-            cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_TARGET1, out sTargetList, false, log_Reports);
+            cf_Together.Dictionary_Attribute.TryGetValue(PmNames.S_TARGET1, out sTargetList, false, log_Reports);
             List<string> sList_Target = new CsvTo_ListImpl().Read(sTargetList);
 
             foreach (string sTarget in sList_Target)
             {
-                Givechapterandverse_NodeImpl cf_RfrTarget = new Givechapterandverse_NodeImpl(NamesNode.S_TARGET, cf_Together);
-                cf_RfrTarget.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME.Name_Pm, sTarget, log_Reports);
+                Configurationtree_NodeImpl cf_RfrTarget = new Configurationtree_NodeImpl(NamesNode.S_TARGET, cf_Together);
+                cf_RfrTarget.Dictionary_Attribute.Set(PmNames.S_NAME.Name_Pm, sTarget, log_Reports);
                 cfList_Result.Add(cf_RfrTarget);
             }
 
@@ -702,9 +702,9 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="log_Reports"></param>
         private void Perform_ByNoName_2Frfr(
-            out Givechapterandverse_Node cf_TgTogether,
-            Givechapterandverse_Node s_Fc,
-            Givechapterandverse_Node cf_Event,
+            out Configurationtree_Node cf_TgTogether,
+            Configurationtree_Node s_Fc,
+            Configurationtree_Node cf_Event,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
@@ -717,18 +717,18 @@ namespace Xenon.Functions
             //
             //
             string sFcName3;
-            s_Fc.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
+            s_Fc.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sFcName3, true, log_Reports);
 
             string sEventName;
-            cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+            cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
 
             StringBuilder sIn = new StringBuilder();
             sIn.Append(sFcName3);
             sIn.Append("/");
             sIn.Append(sEventName);
 
-            Givechapterandverse_Node sTg_TogetherIn = new Givechapterandverse_NodeImpl(NamesNode.S_TOGETHER_IN, this.Cur_Givechapterandverse);
-            sTg_TogetherIn.Dictionary_Attribute_Givechapterandverse.Add(PmNames.S_VALUE.Name_Pm, sIn.ToString(), this.Cur_Givechapterandverse, false, log_Reports);
+            Configurationtree_Node sTg_TogetherIn = new Configurationtree_NodeImpl(NamesNode.S_TOGETHER_IN, this.Cur_Configurationtree);
+            sTg_TogetherIn.Dictionary_Attribute.Add(PmNames.S_VALUE.Name_Pm, sIn.ToString(), this.Cur_Configurationtree, false, log_Reports);
 
 
             //
@@ -749,15 +749,15 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 string sExpectedValue;
-                sTg_TogetherIn.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sExpectedValue, false, log_Reports);
+                sTg_TogetherIn.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sExpectedValue, false, log_Reports);
 
                 if ("" != sExpectedValue)
                 {
-                    List<Givechapterandverse_Node> listCf_Together = this.Owner_MemoryApplication.MemoryTogethers.Givechapterandverse_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
-                    foreach (Givechapterandverse_Node cf_Together in listCf_Together)
+                    List<Configurationtree_Node> listCf_Together = this.Owner_MemoryApplication.MemoryTogethers.Configurationtree_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
+                    foreach (Configurationtree_Node cf_Together in listCf_Together)
                     {
                         string sIn2;
-                        cf_Together.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn2, false, log_Reports);
+                        cf_Together.Dictionary_Attribute.TryGetValue(PmNames.S_IN, out sIn2, false, log_Reports);
 
                         if (sExpectedValue == sIn2)
                         {

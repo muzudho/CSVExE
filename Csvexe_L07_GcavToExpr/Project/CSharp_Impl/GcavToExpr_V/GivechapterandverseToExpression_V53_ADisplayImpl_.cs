@@ -10,7 +10,7 @@ using Xenon.Expr;
 
 namespace Xenon.GcavToExpr
 {
-    class GivechapterandverseToExpression_V53_ADisplayImpl_ : GivechapterandverseToExpression_AbstractImpl
+    class ConfigurationtreeToExpression_V53_ADisplayImpl_ : ConfigurationtreeToExpression_AbstractImpl
     {
 
 
@@ -19,16 +19,16 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public void Translate(
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             Expressionv_3FListboxValidationImpl parent_Exprv,
             UsercontrolListbox uctLst,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -40,7 +40,7 @@ namespace Xenon.GcavToExpr
 
             string err_Child_SName_Node = "";
             string err_Parent_SName_Node = "";
-            Givechapterandverse_Node err_Child_CfNode = null;
+            Configurationtree_Node err_Child_CfNode = null;
 
 
 
@@ -65,7 +65,7 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_TYPE;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
                         cur_Exprv.Dictionary_SAttribute.Add(pmName.Name_Pm, sValue);
@@ -75,7 +75,7 @@ namespace Xenon.GcavToExpr
                 {
                     PmName pmName = PmNames.S_DESCRIPTION;
                     string sValue;
-                    bool bHit = cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue, false, log_Reports);
+                    bool bHit = cur_Cf.Dictionary_Attribute.TryGetValue(pmName, out sValue, false, log_Reports);
                     if (bHit)
                     {
                         cur_Exprv.Dictionary_SAttribute.Add(pmName.Name_Pm, sValue);
@@ -89,7 +89,7 @@ namespace Xenon.GcavToExpr
             // #デバッグ中
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole(" 子＜f-●●＞数＝[" + cur_Cf.List_ChildGivechapterandverse.Count + "]");
+                log_Method.WriteDebug_ToConsole(" 子＜f-●●＞数＝[" + cur_Cf.List_Child.Count + "]");
             }
 
             //
@@ -99,22 +99,22 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            cur_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node child_Cf, ref bool bBreak)
+            cur_Cf.List_Child.ForEach(delegate(Configurationtree_Node child_Cf, ref bool bBreak)
             {
-                if (child_Cf is Givechapterandverse_Node)
+                if (child_Cf is Configurationtree_Node)
                 {
-                    Givechapterandverse_Node child_Givechapterandverse_Node = (Givechapterandverse_Node)child_Cf;
+                    Configurationtree_Node child_Configurationtree_Node = (Configurationtree_Node)child_Cf;
 
                     string sName_Fnc;
-                    child_Givechapterandverse_Node.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
+                    child_Configurationtree_Node.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, false, log_Reports);
 
                     if (NamesFnc.S_VLD_ALL_FIELDS_IS_EMPTY == sName_Fnc)
                     {
                         //
                         // ＜ｆ－ａｌｌ－ｆｉｅｌｄｓ－ｉｓ－ｅｍｐｔｙ＞要素
-                        GivechapterandverseToExpression_V54_FAllFieldsIsEmptyImpl_ to = new GivechapterandverseToExpression_V54_FAllFieldsIsEmptyImpl_();
+                        ConfigurationtreeToExpression_V54_FAllFieldsIsEmptyImpl_ to = new ConfigurationtreeToExpression_V54_FAllFieldsIsEmptyImpl_();
                         to.Translate(
-                            child_Givechapterandverse_Node,
+                            child_Configurationtree_Node,
                             cur_Exprv,
                             memoryApplication,
                             pg_ParsingLog,
@@ -125,9 +125,9 @@ namespace Xenon.GcavToExpr
                     {
                         //
                         // ＜ｆ－ａｌｌ－ｔｒｕｅ＞要素
-                        GivechapterandverseToExpression_V54_FAllTrueImpl_ to = new GivechapterandverseToExpression_V54_FAllTrueImpl_();
+                        ConfigurationtreeToExpression_V54_FAllTrueImpl_ to = new ConfigurationtreeToExpression_V54_FAllTrueImpl_();
                         to.Translate(
-                            child_Givechapterandverse_Node,
+                            child_Configurationtree_Node,
                             cur_Exprv,
                             memoryApplication,
                             pg_ParsingLog,
@@ -139,9 +139,9 @@ namespace Xenon.GcavToExpr
                     {
                         //
                         // エラー。
-                        err_Child_SName_Node = child_Givechapterandverse_Node.Name;
+                        err_Child_SName_Node = child_Configurationtree_Node.Name;
                         err_Parent_SName_Node = cur_Cf.Name;
-                        err_Child_CfNode = child_Givechapterandverse_Node;
+                        err_Child_CfNode = child_Configurationtree_Node;
                         bBreak = true;
                     }
                 }
@@ -171,7 +171,7 @@ namespace Xenon.GcavToExpr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(err_Child_CfNode));
+                t.Append(r.Message_Configurationtree(err_Child_CfNode));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

@@ -10,7 +10,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    class XToGivechapterandverse_V52_ControlImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_V52_ControlImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -20,7 +20,7 @@ namespace Xenon.XToGcav
 
         protected override void Parse_ChildNodes(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -49,8 +49,8 @@ namespace Xenon.XToGcav
                     {
                         //
                         // ＜validator＞要素。
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_VALIDATOR, log_Reports);
-                        to.XToGivechapterandverse(
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_VALIDATOR, log_Reports);
+                        to.XToConfigurationtree(
                             xChild,
                             cur_Cf,
                             memoryApplication,
@@ -62,8 +62,8 @@ namespace Xenon.XToGcav
                     {
                         //
                         // ＜ｆ－ｌｉｓｔｂｏｘ－ｖａｌｉｄａｔｉｏｎ＞要素。
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_F_LISTBOX_VALIDATION, log_Reports);
-                        to.XToGivechapterandverse(
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_F_LISTBOX_VALIDATION, log_Reports);
+                        to.XToConfigurationtree(
                             xChild,
                             cur_Cf,
                             memoryApplication,
@@ -113,15 +113,15 @@ namespace Xenon.XToGcav
 
         //────────────────────────────────────────
 
-        protected override void LinkToParent(Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+        protected override void LinkToParent(Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             Usercontrol uct = null;
             if (log_Reports.Successful)
             {
-                uct = Utility_XToGivechapterandverse_NodeImpl.GetUsercontrol(cur_Cf, memoryApplication, log_Reports);
+                uct = Utility_XToConfigurationtree_NodeImpl.GetUsercontrol(cur_Cf, memoryApplication, log_Reports);
             }
 
-            uct.ControlCommon.Givechapterandverse_Control.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+            uct.ControlCommon.Configurationtree_Control.List_Child.Add(cur_Cf, log_Reports);
         }
 
         //────────────────────────────────────────

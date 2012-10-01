@@ -66,7 +66,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 内容をデバッグ出力。
         /// </summary>
-        void WriteDebug_ToConsole(Dictionary_Fsetvar_Givechapterandverse dic_Fsetvar, Log_Reports log_Reports);
+        void WriteDebug_ToConsole(Dictionary_Fsetvar_Configurationtree dic_Fsetvar, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion
@@ -79,7 +79,7 @@ namespace Xenon.Middle
         /// <summary>
         /// ＜ｆ－ｓｅｔ－ｖａｒ＞要素の名前つきリスト
         /// </summary>
-        Dictionary_Fsetvar_Givechapterandverse Dictionary_Fsetvar_Givechapterandverse
+        Dictionary_Fsetvar_Configurationtree Dictionary_Fsetvar_Configurationtree
         {
             get;
             set;
@@ -88,7 +88,7 @@ namespace Xenon.Middle
         /// <summary>
         /// メンテナンス要素。
         /// </summary>
-        Givechapterandverse_Node Parent_Givechapterandverse
+        Configurationtree_Node Parent
         {
             get;
         }

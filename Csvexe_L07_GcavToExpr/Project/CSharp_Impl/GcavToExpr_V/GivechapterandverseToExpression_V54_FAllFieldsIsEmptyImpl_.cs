@@ -10,7 +10,7 @@ using Xenon.Expr;
 namespace Xenon.GcavToExpr
 {
 
-    class GivechapterandverseToExpression_V54_FAllFieldsIsEmptyImpl_ : GivechapterandverseToExpression_AbstractImpl
+    class ConfigurationtreeToExpression_V54_FAllFieldsIsEmptyImpl_ : ConfigurationtreeToExpression_AbstractImpl
     {
 
 
@@ -19,15 +19,15 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public void Translate(
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             Expressionv_4ADisplayImpl parent_Exprv,
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -56,7 +56,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Gcav,
                     cur_Exprv,
                     memoryApplication,

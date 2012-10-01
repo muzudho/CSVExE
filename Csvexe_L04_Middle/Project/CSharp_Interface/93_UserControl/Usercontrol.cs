@@ -81,7 +81,7 @@ namespace Xenon.Middle
         /// <param name="log_Reports"></param>
         /// <returns>該当なければヌル。</returns>
         Functionlist CreateFunctionlist(
-            GivechapterandverseToExpression_Event gcavToExpr,
+            ConfigurationtreeToExpression_Event gcavToExpr,
             MemoryApplication owner_MoApplication,
             Log_Reports log_Reports
             );

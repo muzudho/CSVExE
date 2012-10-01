@@ -316,7 +316,7 @@ namespace Xenon.Layout
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(o_Table_Form));
+                s.Append(r.Message_Configurationtree(o_Table_Form));
 
                 r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
@@ -374,7 +374,7 @@ namespace Xenon.Layout
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(o_Table_Form));
+                t.Append(r.Message_Configurationtree(o_Table_Form));
 
                 r.Message = t.ToString();
                 pg_Logging.EndCreateReport();
@@ -691,7 +691,7 @@ namespace Xenon.Layout
 
                     if (bBool)
                     {
-                        Givechapterandverse_Filepath cf_Fpath_Control = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L10_1", o_Table_Form);
+                        Configurationtree_NodeFilepath cf_Fpath_Control = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L10_1", o_Table_Form);
                         cf_Fpath_Control.InitPath(sValue, pg_Logging);
                         if (pg_Logging.Successful)
                         {
@@ -701,7 +701,7 @@ namespace Xenon.Layout
                     }
                     else
                     {
-                        Givechapterandverse_Filepath cf_Fpath_Control = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L10_2", o_Table_Form);
+                        Configurationtree_NodeFilepath cf_Fpath_Control = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L10_2", o_Table_Form);
                         cf_Fpath_Control.InitPath("", pg_Logging);
                         if (pg_Logging.Successful)
                         {

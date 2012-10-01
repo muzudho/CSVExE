@@ -9,7 +9,7 @@ using Xenon.Middle;
 
 namespace Xenon.GcavToExpr
 {
-    class GivechapterandverseToExpression_F11_ControlImpl_ : GivechapterandverseToExpression_AbstractImpl, GivechapterandverseToExpression_F11_Control_
+    class ConfigurationtreeToExpression_F11_ControlImpl_ : ConfigurationtreeToExpression_AbstractImpl, ConfigurationtreeToExpression_F11_Control_
     {
 
 
@@ -18,18 +18,18 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
 
         public void Translate(
-            Givechapterandverse_Node cur_Cf,//コントロール
+            Configurationtree_Node cur_Cf,//コントロール
             Expression_Node_String ec_Cur,//「E■ｆｏｒｍ－ｃｏｍｐｏｎｅｎｔ」
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
-            List<Givechapterandverse_Node> cfList_Data = cur_Cf.GetChildrenByNodename(NamesNode.S_DATA, false, log_Reports);
-            foreach (Givechapterandverse_Node cf_Data in cfList_Data)
+            List<Configurationtree_Node> cfList_Data = cur_Cf.GetChildrenByNodename(NamesNode.S_DATA, false, log_Reports);
+            foreach (Configurationtree_Node cf_Data in cfList_Data)
             {
                 string sAccess;
-                cf_Data.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
+                cf_Data.Dictionary_Attribute.TryGetValue(PmNames.S_ACCESS, out sAccess, false, log_Reports);
 
                 List<string> sList_Access = new CsvTo_ListImpl().Read(sAccess);
 
@@ -37,7 +37,7 @@ namespace Xenon.GcavToExpr
                 {
                     // ＜ｄａｔａ＞要素（ａｃｃｅｓｓ="ｆｒｏｍ"）を S→E。
 
-                    GivechapterandverseToExpression_F12_ to = new GivechapterandverseToExpression_F12_DataImpl_();
+                    ConfigurationtreeToExpression_F12_ to = new ConfigurationtreeToExpression_F12_DataImpl_();
                     to.Translate(
                         cf_Data,
                         ec_Cur,
@@ -53,7 +53,7 @@ namespace Xenon.GcavToExpr
                 {
                     // ＜ｄａｔａ＞(ａｃｃｅｓｓ="ｔｏ")要素要素を S→E。
 
-                    GivechapterandverseToExpression_F12_ to = new GivechapterandverseToExpression_F12_DataImpl_();
+                    ConfigurationtreeToExpression_F12_ to = new ConfigurationtreeToExpression_F12_DataImpl_();
                     to.Translate(
                         cf_Data,
                         ec_Cur,
@@ -68,7 +68,7 @@ namespace Xenon.GcavToExpr
 
             //
             // ＜view＞要素を S→E。
-            List<Givechapterandverse_Node> sList_View = cur_Cf.GetChildrenByNodename(NamesNode.S_VIEW, false, log_Reports);
+            List<Configurationtree_Node> sList_View = cur_Cf.GetChildrenByNodename(NamesNode.S_VIEW, false, log_Reports);
             if(1<sList_View.Count)
             {
                 // ＜view＞要素は１個だけあるという前提。
@@ -76,9 +76,9 @@ namespace Xenon.GcavToExpr
             }
             else if (0 < sList_View.Count)
             {
-                Givechapterandverse_Node cf_View = sList_View[0];
+                Configurationtree_Node cf_View = sList_View[0];
 
-                GivechapterandverseToExpression_F12_ViewImpl_ to = new GivechapterandverseToExpression_F12_ViewImpl_();
+                ConfigurationtreeToExpression_F12_ViewImpl_ to = new ConfigurationtreeToExpression_F12_ViewImpl_();
                 to.Translate(
                     cf_View,
                     ec_Cur,//.E_View,

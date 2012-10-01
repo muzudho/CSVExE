@@ -46,7 +46,7 @@ namespace Xenon.MiddleImpl
         /// <param oVariableName="nActionCollection"></param>
         public void InitializeBeforeUse(
             Mainwnd_FormWrapping mainwnd_FormWrapping,
-            GivechapterandverseToFunction gcavToFunc,
+            ConfigurationtreeToFunction gcavToFunc,
             Form_Toolwindow form_Toolwindow,
             MemoryAatoolxmlDialog moAatoolxmlDialog,
             UsercontrolStyleSetter ucontrolStyleSetter,
@@ -138,7 +138,7 @@ namespace Xenon.MiddleImpl
             //
             // クリアー：　リローディング設定ファイルを空っぽにします。
             //
-            this.MemoryTogethers.Clear();//.Cf_RfrCnf.List_ChildGivechapterandverse.Clear(log_Reports);
+            this.MemoryTogethers.Clear();//.Cf_RfrCnf.List_Child.Clear(log_Reports);
 
             //
             // クリアー：　スクリプトファイル一覧を空っぽにします。

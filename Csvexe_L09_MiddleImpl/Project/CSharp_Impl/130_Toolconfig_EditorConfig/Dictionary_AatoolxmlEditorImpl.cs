@@ -118,7 +118,7 @@ namespace Xenon.MiddleImpl
             {
                 //ystem.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 project名=[" + st_Project.Name + "]");
 
-                aatool_Editor.WriteDebug_ToConsole(aatool_Editor.Dictionary_Fsetvar_Givechapterandverse, log_Reports);
+                aatool_Editor.WriteDebug_ToConsole(aatool_Editor.Dictionary_Fsetvar_Configurationtree, log_Reports);
             }
 
 

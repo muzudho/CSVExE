@@ -10,7 +10,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    public interface XToGivechapterandverse_C15_Elm
+    public interface XToConfigurationtree_C15_Elm
     {
 
 
@@ -18,9 +18,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        void XToGivechapterandverse(
+        void XToConfigurationtree(
             XmlElement cur_X,
-            Givechapterandverse_Node parent_Cf,
+            Configurationtree_Node parent_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );

@@ -9,7 +9,7 @@ using Xenon.Expr;
 
 namespace Xenon.GcavToExpr
 {
-    class GivechapterandverseToExpression_F14_FvariableImpl_ : GivechapterandverseToExpression_F14n16_AbstractImpl_
+    class ConfigurationtreeToExpression_F14_FvariableImpl_ : ConfigurationtreeToExpression_F14n16_AbstractImpl_
     {
 
 
@@ -25,15 +25,15 @@ namespace Xenon.GcavToExpr
         /// <param name="moOpyopyo"></param>
         /// <param name="log_Reports"></param>
         public override void Translate(
-            Givechapterandverse_Node cur_Cf,//「S■ｆ－ｖａｒ」
+            Configurationtree_Node cur_Cf,//「S■ｆ－ｖａｒ」
             Expression_Node_String parent_Ec,//親＜●●＞
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -65,7 +65,7 @@ namespace Xenon.GcavToExpr
             //
             if (log_Reports.Successful)
             {
-                this.ParseAttr_InGivechapterandverseToExpression(
+                this.ParseAttr_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     false,//ｎａｍｅ属性は無い。
@@ -84,10 +84,10 @@ namespace Xenon.GcavToExpr
             //
             {
                 // 非必須　ｖａｌｕｅ＝””　ｖａｌｕｅ属性がなくても正常です。子要素を見に行きます。
-                if (cur_Cf.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_VALUE.Name_Pm))
+                if (cur_Cf.Dictionary_Attribute.ContainsKey(PmNames.S_VALUE.Name_Pm))
                 {
                     string sValue;
-                    cur_Cf.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
                     cur_Ec.AppendTextNode(
                         sValue,
                         cur_Cf,
@@ -105,7 +105,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     memoryApplication,

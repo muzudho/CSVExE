@@ -29,7 +29,7 @@ namespace Xenon.MiddleImpl
 
         public void InitializeBeforeUse(
             Mainwnd_FormWrapping mainwnd_FormWrapping,
-            GivechapterandverseToFunction gcavToFunc,
+            ConfigurationtreeToFunction gcavToFunc,
             Form_Toolwindow form_Toolwindow,
             MemoryAatoolxmlDialog moAatoolxmlDialog,
             UsercontrolStyleSetter ucontrolStyleSetter,
@@ -213,8 +213,8 @@ namespace Xenon.MiddleImpl
             //
 
             // 手入力の Fcnf ファイルパス
-            Givechapterandverse_Filepath cf_Fpath_Control;
-            fo_Record.TryGetFilepath_Givechapterandverse(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
+            Configurationtree_NodeFilepath cf_Fpath_Control;
+            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
             string sFpathH_F = cf_Fpath_Control.GetHumaninput();
 
             string sName_Control;
@@ -232,7 +232,7 @@ namespace Xenon.MiddleImpl
             // (F) 絶対ファイルパス
             string sFpatha_F;
             {
-                Utility_XToGivechapterandverse_Usercontrolconfig to = new Utility_XToGivechapterandverse_Usercontrolconfig();
+                Utility_XToConfigurationtree_Usercontrolconfig to = new Utility_XToConfigurationtree_Usercontrolconfig();
 
                 Expression_Node_FilepathImpl ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
@@ -247,9 +247,9 @@ namespace Xenon.MiddleImpl
             // Fcnf ファイルパス
             Expression_Node_Filepath ec_Fpath_F;
             {
-                Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl(log_Method.Fullname + ".LoadFcnfFile record[" + cf_Fpath_Control.GetHumaninput() + "]", null);
+                Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl(log_Method.Fullname + ".LoadFcnfFile record[" + cf_Fpath_Control.GetHumaninput() + "]", null);
 
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09Mid_3", parent_Cf);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_3", parent_Cf);
                 cf_Fpath.InitPath(sFpathH_F, sFpatha_F, log_Reports);
                 if (!log_Reports.Successful)
                 {
@@ -267,15 +267,15 @@ namespace Xenon.MiddleImpl
             }
 
 
-            Givechapterandverse_Node cf_ControlConfig = new Givechapterandverse_NodeImpl(NamesNode.S_CODEFILE_CONTROLS, ec_Fpath_F.Cur_Givechapterandverse);
+            Configurationtree_Node cf_ControlConfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_CONTROLS, ec_Fpath_F.Cur_Configurationtree);
 
 
             //
             // X → S
             if (log_Reports.Successful)
             {
-                XToGivechapterandverse_C11_Config to = new XToGivechapterandverse_C11_ConfigImpl();
-                to.XToGivechapterandverse(
+                XToConfigurationtree_C11_Config to = new XToConfigurationtree_C11_ConfigImpl();
+                to.XToConfigurationtree(
                     sName_Control,
                     sFpathH_F,
                     sFpatha_F,
@@ -362,8 +362,8 @@ namespace Xenon.MiddleImpl
 
                 foreach (RecordUserformconfig fo_Record in fo_Config.List_RecordUserformconfig)
                 {
-                    Givechapterandverse_Filepath cf_Fpath_Control;
-                    fo_Record.TryGetFilepath_Givechapterandverse(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
+                    Configurationtree_NodeFilepath cf_Fpath_Control;
+                    fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
 
                     Expression_Node_Filepath e_Fpath_Usercontrol = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
@@ -433,9 +433,9 @@ namespace Xenon.MiddleImpl
                 {
                     fo_Config_ByTable = new TableUserformconfigImpl(
                         o_Table_Form.Name,
-                        new Givechapterandverse_NodeImpl(
+                        new Configurationtree_NodeImpl(
                             NamesNode.S_FORM_CONFIG,
-                            o_Table_Form.Expression_Filepath_ConfigStack.Cur_Givechapterandverse//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
+                            o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
                         ));
                     if (!log_Reports.Successful)
                     {
@@ -472,8 +472,8 @@ namespace Xenon.MiddleImpl
                 {
                     fo_Config_ByGroup = new TableUserformconfigImpl(
                         o_Table_Form.Name,
-                        new Givechapterandverse_NodeImpl(NamesNode.S_FORM_CONFIG,
-                        o_Table_Form.Expression_Filepath_ConfigStack.Cur_Givechapterandverse//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
+                        new Configurationtree_NodeImpl(NamesNode.S_FORM_CONFIG,
+                        o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
                         ));
                     if (!log_Reports.Successful)
                     {
@@ -770,10 +770,10 @@ namespace Xenon.MiddleImpl
                         fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", log_Reports);
 
 
-                        Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse);
+                        Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
                         ec_Str.AppendTextNode(
                             sName_Control,
-                            fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse,
+                            fo_Record.Parent_TableUserformconfig.Cur_Configurationtree,
                             log_Reports
                             );
 
@@ -973,7 +973,7 @@ namespace Xenon.MiddleImpl
         /// X→S、S→E、X→A。
         /// </summary>
         public void XToEc_Usercontrolconfig(
-            Givechapterandverse_Node cf_FcConfig,
+            Configurationtree_Node cf_FcConfig,
             RecordUserformconfig fo_Record,
             Expression_Node_Filepath ec_Fopath_Forms,
             MemoryApplication moApplication,
@@ -988,8 +988,8 @@ namespace Xenon.MiddleImpl
 
             //
             // 手入力の (Fcnf) ファイルパス
-            Givechapterandverse_Filepath cf_Fpath_Control;
-            fo_Record.TryGetFilepath_Givechapterandverse(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
+            Configurationtree_NodeFilepath cf_Fpath_Control;
+            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
             string sFpath_f = cf_Fpath_Control.GetHumaninput();
 
             //
@@ -1001,7 +1001,7 @@ namespace Xenon.MiddleImpl
             // (Fcnf) 絶対ファイルパス
             string sFpatha_f;
             {
-                Utility_XToGivechapterandverse_Usercontrolconfig to = new Utility_XToGivechapterandverse_Usercontrolconfig();
+                Utility_XToConfigurationtree_Usercontrolconfig to = new Utility_XToConfigurationtree_Usercontrolconfig();
 
                 Expression_Node_FilepathImpl e_Fpath = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
@@ -1019,7 +1019,7 @@ namespace Xenon.MiddleImpl
             //
             if (log_Reports.Successful)
             {
-                Utility_XToGivechapterandverse_Usercontrolconfig to1 = new Utility_XToGivechapterandverse_Usercontrolconfig();
+                Utility_XToConfigurationtree_Usercontrolconfig to1 = new Utility_XToConfigurationtree_Usercontrolconfig();
 
                 List<string> sList_ControlName = to1.GetList_NameControl(
                     sName_Control,
@@ -1031,9 +1031,9 @@ namespace Xenon.MiddleImpl
                     );
 
 
-                Log_TextIndented_GivechapterandverseToExpressionImpl pg_ParsingLog = new Log_TextIndented_GivechapterandverseToExpressionImpl();
+                Log_TextIndented_ConfigurationtreeToExpressionImpl pg_ParsingLog = new Log_TextIndented_ConfigurationtreeToExpressionImpl();
                 pg_ParsingLog.BEnabled = false;
-                GivechapterandverseToExpression_F10_ControlList to2 = new GivechapterandverseToExpression_F10_ControlListImpl();
+                ConfigurationtreeToExpression_F10_ControlList to2 = new ConfigurationtreeToExpression_F10_ControlListImpl();
                 to2.Translate(
                     sList_ControlName,
                     cf_FcConfig,
@@ -1059,10 +1059,10 @@ namespace Xenon.MiddleImpl
                 //
                 List<Usercontrol> list_Usercontrol;
                 {
-                    Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse);
+                    Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
                     ec_Str.AppendTextNode(
                         sName_Control,
-                        fo_Record.Parent_TableUserformconfig.Cur_Givechapterandverse,
+                        fo_Record.Parent_TableUserformconfig.Cur_Configurationtree,
                         log_Reports
                         );
 
@@ -1077,19 +1077,19 @@ namespace Xenon.MiddleImpl
                 {
                     Usercontrol uct = list_Usercontrol[0];
 
-                    if (null != uct.ControlCommon.Givechapterandverse_Control)
+                    if (null != uct.ControlCommon.Configurationtree_Control)
                     {
                         //
                         // 「コントロール設定ファイル」のあったコントロールの
                         // 場合に限る。
                         //
 
-                        List<Givechapterandverse_Node> cfList_Event = uct.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
+                        List<Configurationtree_Node> cfList_Event = uct.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
 
-                        foreach (Givechapterandverse_Node cf_Event in cfList_Event)
+                        foreach (Configurationtree_Node cf_Event in cfList_Event)
                         {
-                            GivechapterandverseToExpression_Event sToE_Event = new GivechapterandverseToExpression_EventImpl();
-                            sToE_Event.Givechapterandverse_Event = cf_Event;
+                            ConfigurationtreeToExpression_Event sToE_Event = new ConfigurationtreeToExpression_EventImpl();
+                            sToE_Event.Configurationtree_Event = cf_Event;
                             Functionlist felist = uct.CreateFunctionlist(
                                 sToE_Event,
                                 moApplication,
@@ -1184,7 +1184,7 @@ namespace Xenon.MiddleImpl
         /// <param select="bRequired">該当しなかった場合に処理失敗扱いとするなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
         public List<Usercontrol> GetUsercontrolsByName(
-            Expression_Node_String ec_FcName,//Parent_Givechapterandverse_Nodeとしても使う。
+            Expression_Node_String ec_FcName,//Parent_Nodeとしても使う。
             bool bRequired,
             Log_Reports log_Reports
             )
@@ -1355,7 +1355,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(ec_FcName.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(ec_FcName.Cur_Configurationtree));
 
                 t.Append("一覧：");
                 this.ForEach_Children(delegate(string sKey, Usercontrol fcUc, ref bool bRemove, ref bool bBreak)
@@ -1454,8 +1454,8 @@ namespace Xenon.MiddleImpl
         /// <param select="cfTg_Config_Hint">トゥゲザー登録ファイルです。ヒント用。</param>
         /// <param select="log_Reports"></param>
         public void RefreshDataByTogether(
-            Givechapterandverse_Node cfTg_Together,
-            Givechapterandverse_Node cfTg_Config_Hint,
+            Configurationtree_Node cfTg_Together,
+            Configurationtree_Node cfTg_Config_Hint,
             MemoryApplication moApplication,
             Log_Reports log_Reports
             )
@@ -1480,10 +1480,10 @@ namespace Xenon.MiddleImpl
                 //
                 //
                 //
-                List<Givechapterandverse_Node> cfList_RfrTarget = cfTg_Together.GetChildrenByNodename(NamesNode.S_TARGET, false, log_Reports);
+                List<Configurationtree_Node> cfList_RfrTarget = cfTg_Together.GetChildrenByNodename(NamesNode.S_TARGET, false, log_Reports);
 
 
-                foreach (Givechapterandverse_Node cf_RfrTarget in cfList_RfrTarget)
+                foreach (Configurationtree_Node cf_RfrTarget in cfList_RfrTarget)
                 {
                     this.RefreshUsercontrol(
                         cf_RfrTarget,
@@ -1505,9 +1505,9 @@ namespace Xenon.MiddleImpl
         //────────────────────────────────────────
 
         private void RefreshUsercontrol(
-            Givechapterandverse_Node cf_TgTarget,
-            Givechapterandverse_Node cf_TgTogether,
-            Givechapterandverse_Node cf_RfrConfig_Hint,
+            Configurationtree_Node cf_TgTarget,
+            Configurationtree_Node cf_TgTogether,
+            Configurationtree_Node cf_RfrConfig_Hint,
             Log_Reports log_Reports
             )
         {
@@ -1532,17 +1532,17 @@ namespace Xenon.MiddleImpl
 
                     string sName_Together;
                     {
-                        bool bHit = cf_TgTogether.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Together, false, log_Reports);
+                        bool bHit = cf_TgTogether.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Together, false, log_Reports);
                     }
 
                     string sIn_Together;
                     {
-                        bool bHit = cf_TgTogether.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_IN, out sIn_Together, false, log_Reports);
+                        bool bHit = cf_TgTogether.Dictionary_Attribute.TryGetValue(PmNames.S_IN, out sIn_Together, false, log_Reports);
                     }
 
                     string sTarget_Together;
                     {
-                        bool bHit = cf_TgTogether.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_TARGET1, out sTarget_Together, false, log_Reports);
+                        bool bHit = cf_TgTogether.Dictionary_Attribute.TryGetValue(PmNames.S_TARGET1, out sTarget_Together, false, log_Reports);
                     }
 
                     sb.Append("　Together-");
@@ -1577,7 +1577,7 @@ namespace Xenon.MiddleImpl
             if (log_Reports.Successful)
             {
                 // ｔａｒｇｅｔ.NNの文字列表現
-                cf_TgTarget.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_TgTarget, true, log_Reports);
+                cf_TgTarget.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_TgTarget, true, log_Reports);
 
                 //TODO:末尾に「*」（dirty再読込要求）が付いてたら外したい。
                 if (sName_TgTarget.EndsWith("*"))
@@ -1702,7 +1702,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cf_RfrConfig_Hint));
+                t.Append(r.Message_Configurationtree(cf_RfrConfig_Hint));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -1745,10 +1745,10 @@ namespace Xenon.MiddleImpl
                 }
 
                 log_Method.WriteInfo_ToConsole("(" + nCount + ")" + fcUc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_Dammy));
-            // fcUc.ControlCommon.Givechapterandverse_Control は、ヌルのことがある。
+            // fcUc.ControlCommon.Configurationtree_Control は、ヌルのことがある。
 
 
-                //foreach (S_Event s_event in fcUc.ControlCommon.Givechapterandverse_Control.S_EventDictionary.Values)
+                //foreach (S_Event s_event in fcUc.ControlCommon.Configurationtree_Control.S_EventDictionary.Values)
             //{
 
                 //    // デバッグ出力
@@ -1769,7 +1769,7 @@ namespace Xenon.MiddleImpl
 
                 //            if (s_param.S_ArgEnum == S_ArgEnum.PARAM_ACTION)
             //            {
-            //                S_Action s_parentAction = (S_Action)s_param.Parent_Givechapterandverse;
+            //                S_Action s_parentAction = (S_Action)s_param.Parent;
 
                 //                // デバッグ出力
             //                //ystem.Console.WriteLine(this.GetType().Name + "#DebugWrite: 　　　param-action要素=[" + s_param.SNodeName + "] 子引数数=[" + s_parentAction.S_Args.Items.Count + "]");
@@ -2066,12 +2066,12 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private GivechapterandverseToFunction givechapterandverseToFunction;
+        private ConfigurationtreeToFunction givechapterandverseToFunction;
 
         /// <summary>
         /// NActionを作るオブジェクト。使う前に設定してください。
         /// </summary>
-        public GivechapterandverseToFunction GivechapterandverseToFunction
+        public ConfigurationtreeToFunction ConfigurationtreeToFunction
         {
             get
             {

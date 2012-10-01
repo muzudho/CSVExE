@@ -12,7 +12,7 @@ namespace Xenon.Table
     /// セル値。型付き。
     /// (Value)
     /// </summary>
-    public interface XenonValue : Givechapterandverse_Node
+    public interface XenonValue : Configurationtree_Node
     {
 
 

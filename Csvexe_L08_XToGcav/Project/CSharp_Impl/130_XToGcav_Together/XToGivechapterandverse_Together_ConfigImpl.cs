@@ -17,7 +17,7 @@ namespace Xenon.XToGcav
     /// 
     /// ※コントロールの内容を最新表示するモデルです。
     /// </summary>
-    public class XToGivechapterandverse_Together_ConfigImpl : XToGivechapterandverse_Together
+    public class XToConfigurationtree_Together_ConfigImpl : XToConfigurationtree_Together
     {
 
 
@@ -25,7 +25,7 @@ namespace Xenon.XToGcav
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public XToGivechapterandverse_Together_ConfigImpl()
+        public XToConfigurationtree_Together_ConfigImpl()
         {
         }
 
@@ -42,7 +42,7 @@ namespace Xenon.XToGcav
         /// 
         /// 呼び出し元で、memoryApplicationに Stg をセットする。
         /// </summary>
-        public Givechapterandverse_Node XToGivechapterandverse(
+        public Configurationtree_Node XToConfigurationtree(
             string sFpatha,//絶対ファイルパス
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
@@ -54,7 +54,7 @@ namespace Xenon.XToGcav
             //
 
             // リローディング設定。
-            Givechapterandverse_Node sTg_Cnf = new Givechapterandverse_NodeImpl(NamesNode.S_CODEFILE_TOGETHERS, new Givechapterandverse_NodeImpl(sFpatha, null));
+            Configurationtree_Node sTg_Cnf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_TOGETHERS, new Configurationtree_NodeImpl(sFpatha, null));
 
             System.Xml.XmlDocument xDoc = new System.Xml.XmlDocument();
 
@@ -72,7 +72,7 @@ namespace Xenon.XToGcav
                 ValuesAttr.Test_Codefileversion(
                     xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
-                    new Givechapterandverse_NodeImpl(sFpatha, null),
+                    new Configurationtree_NodeImpl(sFpatha, null),
                     NamesNode.S_CODEFILE_TOGETHERS
                     );
 
@@ -88,8 +88,8 @@ namespace Xenon.XToGcav
 
                             if (NamesNode.S_TOGETHER == xTop.Name)
                             {
-                                XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_TOGETHER, log_Reports);
-                                to.XToGivechapterandverse(
+                                XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_TOGETHER, log_Reports);
+                                to.XToConfigurationtree(
                                     xTop,
                                     sTg_Cnf,
                                     memoryApplication,
@@ -136,7 +136,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(sTg_Cnf));
+                t.Append(r.Message_Configurationtree(sTg_Cnf));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -160,7 +160,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(sTg_Cnf));
+                t.Append(r.Message_Configurationtree(sTg_Cnf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();
@@ -185,7 +185,7 @@ namespace Xenon.XToGcav
                 t.Append("ex.GetType().Name=[" + err_Excp.GetType().Name + "]");
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(sTg_Cnf));
+                t.Append(r.Message_Configurationtree(sTg_Cnf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();

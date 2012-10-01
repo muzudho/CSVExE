@@ -137,7 +137,7 @@ namespace Xenon.Table
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        Givechapterandverse_Node Parent_Givechapterandverse
+        Configurationtree_Node Parent
         {
             get;
         }

@@ -15,7 +15,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// ＜ｆｎｃ＞の子要素を解析。
     /// </summary>
-    public class XToGivechapterandverse_C14_HubImpl : XToGivechapterandverse_C14_Hub
+    public class XToConfigurationtree_C14_HubImpl : XToConfigurationtree_C14_Hub
     {
 
 
@@ -23,9 +23,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public void XToGivechapterandverse(
+        public void XToConfigurationtree(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -63,9 +63,9 @@ namespace Xenon.XToGcav
                     string sName_Node = xChild.Name;
 
 
-                    XToGivechapterandverse_C15_Elm to;
+                    XToConfigurationtree_C15_Elm to;
 
-                    bool bHit = this.Dictionary_XToGivechapterandverse_ElmP.ContainsKey(sName_Node);
+                    bool bHit = this.Dictionary_XToConfigurationtree_ElmP.ContainsKey(sName_Node);
                     if (!bHit)
                     {
                         // 未該当＝エラー
@@ -74,13 +74,13 @@ namespace Xenon.XToGcav
                         goto gt_Error_UndefinedElement;
                     }
 
-                    to = this.Dictionary_XToGivechapterandverse_ElmP[sName_Node];
+                    to = this.Dictionary_XToConfigurationtree_ElmP[sName_Node];
 
                     if (log_Reports.Successful)
                     {
                         try
                         {
-                            to.XToGivechapterandverse(xChild, cur_Cf, memoryApplication, log_Reports);
+                            to.XToConfigurationtree(xChild, cur_Cf, memoryApplication, log_Reports);
                         }
                         catch (Exception ex)
                         {
@@ -117,7 +117,7 @@ namespace Xenon.XToGcav
                 s.Append(err_SName_CurNode);
                 s.Append("＞要素が対応できる子要素は次のとおり。");
                 s.Append(Environment.NewLine);
-                foreach (string key in this.Dictionary_XToGivechapterandverse_ElmP.Keys)
+                foreach (string key in this.Dictionary_XToConfigurationtree_ElmP.Keys)
                 {
                     s.Append("　＜");
                     s.Append(key);
@@ -127,7 +127,7 @@ namespace Xenon.XToGcav
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -148,7 +148,7 @@ namespace Xenon.XToGcav
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(cur_Cf));
+                s.Append(r.Message_Configurationtree(cur_Cf));
                 s.Append(r.Message_SException(err_Excp));
 
                 r.Message = s.ToString();
@@ -171,9 +171,9 @@ namespace Xenon.XToGcav
         #region プロパティー
         //────────────────────────────────────────
 
-        private static Dictionary<string, XToGivechapterandverse_C15_Elm> dictionary_XToGivechapterandverse_ElmP;
+        private static Dictionary<string, XToConfigurationtree_C15_Elm> dictionary_XToConfigurationtree_ElmP;
 
-        private Dictionary<string, XToGivechapterandverse_C15_Elm> Dictionary_XToGivechapterandverse_ElmP
+        private Dictionary<string, XToConfigurationtree_C15_Elm> Dictionary_XToConfigurationtree_ElmP
         {
             get
             {
@@ -189,9 +189,9 @@ namespace Xenon.XToGcav
                 log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "XToS_ElmPMap set",d_Logging_ThisMethod);
 
 
-                if (null == dictionary_XToGivechapterandverse_ElmP)
+                if (null == dictionary_XToConfigurationtree_ElmP)
                 {
-                    dictionary_XToGivechapterandverse_ElmP = new Dictionary<string, XToGivechapterandverse_C15_Elm>();
+                    dictionary_XToConfigurationtree_ElmP = new Dictionary<string, XToConfigurationtree_C15_Elm>();
 
                     //
                     // TODO: 間違った入れ子関係も　読み取りしてしまうので、そこらへんのチェックも入れたい。
@@ -209,48 +209,48 @@ namespace Xenon.XToGcav
                     //＜ｆ－ｓｔｒ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_F_STR, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_ElmP.Add(NamesNode.S_F_STR, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_F_STR, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_ElmP.Add(NamesNode.S_F_STR, to);
                     }
 
                     //
                     //＜ｆ－ｖａｒ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_F_VAR, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_ElmP.Add(NamesNode.S_F_VAR, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_F_VAR, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_ElmP.Add(NamesNode.S_F_VAR, to);
                     }
 
                     //
                     //＜ｆ－ｐａｒａｍ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_F_PARAM, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_ElmP.Add(NamesNode.S_F_PARAM, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_F_PARAM, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_ElmP.Add(NamesNode.S_F_PARAM, to);
                     }
 
                     //
                     //＜ｆｎｃ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_FNC, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_ElmP.Add(NamesNode.S_FNC, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_FNC, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_ElmP.Add(NamesNode.S_FNC, to);
                     }
 
                     //
                     //＜ｄｅｆ－ｐａｒａｍ＞
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_DEF_PARAM, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_ElmP.Add(NamesNode.S_DEF_PARAM, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_DEF_PARAM, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_ElmP.Add(NamesNode.S_DEF_PARAM, to);
                     }
 
                     //
                     //＜ａｒｇ＞　※＜ｆｎｃ＞＜ａｃｔｉｏｎ＞専用の子要素。
                     //
                     {
-                        XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_ARG, d_Logging_ThisMethod);
-                        dictionary_XToGivechapterandverse_ElmP.Add(NamesNode.S_ARG, to);
+                        XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_ARG, d_Logging_ThisMethod);
+                        dictionary_XToConfigurationtree_ElmP.Add(NamesNode.S_ARG, to);
                     }
                 }
 
@@ -259,7 +259,7 @@ namespace Xenon.XToGcav
                 log_Method.EndMethod(d_Logging_ThisMethod);
                 d_Logging_ThisMethod.EndLogging(log_Method);
 
-                return dictionary_XToGivechapterandverse_ElmP;
+                return dictionary_XToConfigurationtree_ElmP;
             }
         }
 

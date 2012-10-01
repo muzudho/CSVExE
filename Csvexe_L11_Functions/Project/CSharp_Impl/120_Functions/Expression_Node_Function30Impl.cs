@@ -56,13 +56,13 @@ namespace Xenon.Functions
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_Node_Function30Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function30Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -71,7 +71,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function30Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -114,13 +114,13 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 this.Perform2(
-                    this.ExpressionfncPrmset.Sender,
-                    (EventMonitor)this.ExpressionfncPrmset.EventMonitor,
-                    this.ExpressionfncPrmset.Node_EventOrigin,
+                    this.Functionparameterset.Sender,
+                    (EventMonitor)this.Functionparameterset.EventMonitor,
+                    this.Functionparameterset.Node_EventOrigin,
                     log_Reports
                     );
 
@@ -130,12 +130,12 @@ namespace Xenon.Functions
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
                 string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";//sender=" + sender.ToString() + "／e=" + e.GetType().Name + " //+"／"+s.ToString()
-                Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl(sConfigStack_EventOrigin, null);
+                Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_EventOrigin, null);
 
 
-                Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
                 this.Perform2(
-                    this.ExpressionfncPrmset.Sender,
+                    this.Functionparameterset.Sender,
                     new EventMonitorImpl(cf_Event, cf_ThisMethod),
                     sConfigStack_EventOrigin,
                     log_Reports
@@ -229,7 +229,7 @@ namespace Xenon.Functions
             // ┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━
             // ┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━
 
-            Givechapterandverse_NodeImpl cf_ThisMethod = new Givechapterandverse_NodeImpl("!ハードコーディング_NAction30#Perform", null);
+            Configurationtree_NodeImpl cf_ThisMethod = new Configurationtree_NodeImpl("!ハードコーディング_NAction30#Perform", null);
             sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:ウィンドウオープン時＞";
 
             if (log_Reports.Successful)
@@ -287,10 +287,10 @@ namespace Xenon.Functions
             {
                 // 正常時
 
-                XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_FORMS, this.Cur_Givechapterandverse);
+                XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_FORMS, this.Cur_Configurationtree);
 
                 // 変数名。
-                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(this, o_Name_Variable.Cur_Givechapterandverse);
+                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(this, o_Name_Variable.Cur_Configurationtree);
                 ec_Atom.SetString(o_Name_Variable.SValue, log_Reports);
 
                 // ファイルパス。
@@ -373,7 +373,7 @@ namespace Xenon.Functions
                 this.In_Subroutine_Function30_2.Perform(
                     oList_Table_Form,
                     ec_Fopath_Forms,
-                    this.Cur_Givechapterandverse,
+                    this.Cur_Configurationtree,
                     this.Owner_MemoryApplication.MemoryForms.Mainwnd_FormWrapping.Form,
                     sender,
                     eventMonitor,
@@ -497,7 +497,7 @@ namespace Xenon.Functions
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(cf_ThisMethod));
+                t.Append(r.Message_Configurationtree(cf_ThisMethod));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Xenon.GcavToExpr
 {
-    class Info_GivechapterandverseToExpression
+    class Info_ConfigurationtreeToExpression
     {
 
 

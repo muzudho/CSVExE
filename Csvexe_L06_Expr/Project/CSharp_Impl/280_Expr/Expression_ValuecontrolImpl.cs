@@ -31,9 +31,9 @@ namespace Xenon.Expr
             Expression_Node_String ec_FcName,
             MemoryApplication owner_MemoryApplication,
             Expression_Node_String parent_Expression_Node,
-            Givechapterandverse_Node parent_Givechapterandverse_Node
+            Configurationtree_Node parent_Configurationtree_Node
             )
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)
         {
             this.expression_UsercontrolName = ec_FcName;
         }
@@ -120,7 +120,7 @@ namespace Xenon.Expr
 
             sb.Append(this.GetType().Name);
             sb.Append(" ");
-            sb.Append(this.Cur_Givechapterandverse.Parent_Givechapterandverse);
+            sb.Append(this.Cur_Configurationtree.Parent);
             sb.Append(" [");
             sb.Append(this.Dictionary_Expression_Attribute.ToString());
             sb.Append("] 変数名");

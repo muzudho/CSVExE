@@ -95,15 +95,15 @@ namespace Xenon.Toolwindow
         {
             string sFpath_EditorXml = "";
 
-            moAatoolxml_SelectedEditorElm.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
+            moAatoolxml_SelectedEditorElm.Dictionary_Fsetvar_Configurationtree.List_Child.ForEach(delegate(Configurationtree_Node s_Fsetvar, ref bool bBreak)
             {
                 string sNamevar1;
-                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, pg_Logging);
+                s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, pg_Logging);
 
                 if (sNamevar1 == NamesVar.S_SP_EDITOR)
                 {
                     string sValue;
-                    s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, pg_Logging);
+                    s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, pg_Logging);
 
                     sFpath_EditorXml = sValue + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
                 }
@@ -114,9 +114,9 @@ namespace Xenon.Toolwindow
             string sFpatha;
             Expression_Node_Filepath e_Fpath_prj;
             {
-                Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#GetProjectAbsFilePath", null);
+                Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#GetProjectAbsFilePath", null);
 
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09TcDlg_2", parent_Givechapterandverse_Node);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09TcDlg_2", parent_Configurationtree_Node);
                 cf_Fpath.InitPath(
                     sFpath_EditorXml,
                     pg_Logging
@@ -210,13 +210,13 @@ namespace Xenon.Toolwindow
             moAatoolxmlDialog.MemoryAatoolxml = new MemoryAatoolxmlImpl();
 
 
-            Givechapterandverse_Node parent_Gcav = new Givechapterandverse_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#Form1_Load", null);
+            Configurationtree_Node parent_Gcav = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#Form1_Load", null);
 
 
             // ツール設定ファイルへのパスは固定とします。
             Expression_Node_Filepath ec_Fpath_toolcnf;
             {
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09TcDlg_3", parent_Gcav);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09TcDlg_3", parent_Gcav);
                 cf_Fpath.InitPath(
                     ValuesAttr.S_FPATHR_AATOOLXML,
                     pg_Logging);
@@ -512,13 +512,13 @@ namespace Xenon.Toolwindow
                 {
                     // 正常時
 
-                    moAatoolxml_SelectedEditor.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
+                    moAatoolxml_SelectedEditor.Dictionary_Fsetvar_Configurationtree.List_Child.ForEach(delegate(Configurationtree_Node s_Fsetvar, ref bool bBreak)
                     {
                         string sNamevar;
-                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, d_Logging_Click);
+                        s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, d_Logging_Click);
 
                         string sValue;
-                        s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, d_Logging_Click);
+                        s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, d_Logging_Click);
 
                         if (sNamevar == NamesVar.S_SP_EDITOR)
                         {

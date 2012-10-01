@@ -22,8 +22,8 @@ namespace Xenon.Syntax
         /// </summary>
         public Log_TextIndentedImpl()
         {
-            this.nCount_IndentBase = 0;
-            this.sb_Value = new StringBuilder();
+            this.count_IndentBase = 0;
+            this.value_StringBuilder = new StringBuilder();
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Xenon.Syntax
         /// <param name="indentCountBase"></param>
         public Log_TextIndentedImpl(int nCount_IndentBase)
         {
-            this.nCount_IndentBase = nCount_IndentBase;
-            this.sb_Value = new StringBuilder();
+            this.count_IndentBase = nCount_IndentBase;
+            this.value_StringBuilder = new StringBuilder();
         }
 
         //────────────────────────────────────────
@@ -54,7 +54,7 @@ namespace Xenon.Syntax
 
         protected void AppendIndent(int nCount_Indent)
         {
-            for (int nIndex = 0; nIndex < nCount_IndentBase + nCount_Indent; nIndex++)
+            for (int nIndex = 0; nIndex < count_IndentBase + nCount_Indent; nIndex++)
             {
                 this.Append("    ");//空白
             }
@@ -97,7 +97,7 @@ namespace Xenon.Syntax
 
         public void Append(string sValue)
         {
-            this.sb_Value.Append(sValue);
+            this.value_StringBuilder.Append(sValue);
         }
 
         public void Append(int nValue)
@@ -117,17 +117,17 @@ namespace Xenon.Syntax
 
         public override string ToString()
         {
-            return this.sb_Value.ToString();
+            return this.value_StringBuilder.ToString();
         }
 
         public void Increment()
         {
-            this.nCount_IndentBase++;
+            this.count_IndentBase++;
         }
 
         public void Decrement()
         {
-            this.nCount_IndentBase--;
+            this.count_IndentBase--;
         }
 
         //────────────────────────────────────────
@@ -141,14 +141,14 @@ namespace Xenon.Syntax
         /// <summary>
         /// 文字列。
         /// </summary>
-        private StringBuilder sb_Value;
+        private StringBuilder value_StringBuilder;
 
         //────────────────────────────────────────
 
         /// <summary>
         /// 底上げインデント数。
         /// </summary>
-        private int nCount_IndentBase;
+        private int count_IndentBase;
 
         //────────────────────────────────────────
         #endregion

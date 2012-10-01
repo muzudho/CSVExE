@@ -198,7 +198,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
                 s.Append("　　問題箇所ヒント：");
-                err_BoolCellData.ToText_Path(s);
+                err_BoolCellData.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -221,7 +221,7 @@ namespace Xenon.Table
 
                 //
                 // ヒント
-                err_BoolCellData.ToText_Path(s);
+                err_BoolCellData.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -241,7 +241,7 @@ namespace Xenon.Table
 
                 //
                 // ヒント
-                err_BoolCellData.ToText_Path(s);
+                err_BoolCellData.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

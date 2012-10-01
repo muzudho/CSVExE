@@ -28,7 +28,7 @@ namespace Xenon.Middle
             get;
         }
 
-        Givechapterandverse_Node Cur_Givechapterandverse
+        Configurationtree_Node Cur_Configurationtree
         {
             get;
         }

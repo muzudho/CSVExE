@@ -67,7 +67,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 利用者に、修正箇所を伝える情報。
         /// </summary>
-        Givechapterandverse_Node Cur_Givechapterandverse
+        Configurationtree_Node Cur_Configurationtree
         {
             get;
             set;

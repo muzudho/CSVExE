@@ -52,19 +52,19 @@ namespace Xenon.Functions
         //────────────────────────────────────────
 
         public Expression_Node_Function43Impl(
-            EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem
+            EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem
             )
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function43Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -95,9 +95,9 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
-                this.Perform2(this.ExpressionfncPrmset.Sender, log_Reports);
+                this.Perform2(this.Functionparameterset.Sender, log_Reports);
 
 
                 //
@@ -110,11 +110,11 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
+                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                this.Perform2(this.ExpressionfncPrmset.Sender, log_Reports);
+                this.Perform2(this.Functionparameterset.Sender, log_Reports);
 
             }
 
@@ -162,7 +162,7 @@ namespace Xenon.Functions
                         CustomcontrolCheckbox ccChk = ((UsercontrolCheckbox)uct).CustomcontrolCheckbox1;
                         string sBool = ccChk.Checked.ToString();//TRUE or FALSE
 
-                        XenonName o_VariableName = new XenonNameImpl(sVariableName, this.Cur_Givechapterandverse);
+                        XenonName o_VariableName = new XenonNameImpl(sVariableName, this.Cur_Configurationtree);
 
                         // 変数を上書き。
                         this.Owner_MemoryApplication.MemoryVariables.SetStringValue(

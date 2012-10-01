@@ -24,10 +24,10 @@ namespace Xenon.MiddleImpl
         /// コンストラクター。
         /// </summary>
         /// <param name="parent_Cf">親ソース。</param>
-        public MemoryAaeditorxml_EditorImpl(Givechapterandverse_Node parent_Cf)
+        public MemoryAaeditorxml_EditorImpl(Configurationtree_Node parent_Cf)
             : base(parent_Cf)
         {
-            this.sName_Editor = "";
+            this.name_Editor = "";
         }
 
         //────────────────────────────────────────
@@ -37,10 +37,10 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public override void Clear()
         {
-            this.parent_Givechapterandverse = null;
+            this.parent_Configurationtree = null;
 
-            this.sName_Editor = "";
-            this.dictionary_Fsetvar_Givechapterandverse = new Dictionary_Fsetvar_GivechapterandverseImpl();
+            this.name_Editor = "";
+            this.dictionary_Fsetvar_Configurationtree = new Dictionary_Fsetvar_ConfigurationtreeImpl();
         }
 
         //────────────────────────────────────────
@@ -51,20 +51,20 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sName_Editor;
+        private string name_Editor;
 
         /// <summary>
         /// エディター名
         /// </summary>
-        public string SName_Editor
+        public string Name_Editor
         {
             get
             {
-                return sName_Editor;
+                return name_Editor;
             }
             set
             {
-                sName_Editor = value;
+                name_Editor = value;
             }
         }
 

@@ -10,7 +10,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    public class Utility_XToGivechapterandverse_NodeImpl
+    public class Utility_XToConfigurationtree_NodeImpl
     {
 
 
@@ -19,13 +19,13 @@ namespace Xenon.XToGcav
         //────────────────────────────────────────
 
         public static Usercontrol GetUsercontrol(
-            Givechapterandverse_Node cf_Cur,
+            Configurationtree_Node cf_Cur,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToGivechapterandverse_NodeImpl", "GetUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToConfigurationtree_NodeImpl", "GetUsercontrol",log_Reports);
 
             Usercontrol fcUc = null;
             string sFcName;
@@ -36,16 +36,16 @@ namespace Xenon.XToGcav
             List<Usercontrol> list_Usercontrol;
             {
                 // コントロール名。
-                Expression_Node_StringImpl ec_String = new Expression_Node_StringImpl(null, memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig);
+                Expression_Node_StringImpl ec_String = new Expression_Node_StringImpl(null, memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig);
                 {
                     PmName pmName = PmNames.S_NAME;
-                    if (cf_Cur.Dictionary_Attribute_Givechapterandverse.ContainsKey(pmName.Name_Pm))
+                    if (cf_Cur.Dictionary_Attribute.ContainsKey(pmName.Name_Pm))
                     {
-                        cf_Cur.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sFcName, true, log_Reports);
+                        cf_Cur.Dictionary_Attribute.TryGetValue(pmName, out sFcName, true, log_Reports);
 
                         ec_String.AppendTextNode(
                             sFcName,
-                            memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig,
+                            memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig,
                             log_Reports
                             );
                     }
@@ -100,7 +100,7 @@ namespace Xenon.XToGcav
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(memoryApplication.MemoryValidators.Givechapterandverse_Validatorsconfig));
+                t.Append(r.Message_Configurationtree(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -128,22 +128,22 @@ namespace Xenon.XToGcav
         /// <param name="request_Items"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public static List<Givechapterandverse_Node> SelectItemsBySAttrAsCsv(
-            List<Givechapterandverse_Node> items, PmName pmName/*string sName_Attr*/, string sValue_Expected, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
+        public static List<Configurationtree_Node> SelectItemsBySAttrAsCsv(
+            List<Configurationtree_Node> items, PmName pmName/*string sName_Attr*/, string sValue_Expected, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToGivechapterandverse_NodeImpl", "SelectItemsBySAttrAsCsv",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToConfigurationtree_NodeImpl", "SelectItemsBySAttrAsCsv",log_Reports);
 
-            List<Givechapterandverse_Node> cfList_Result = new List<Givechapterandverse_Node>();
+            List<Configurationtree_Node> cfList_Result = new List<Configurationtree_Node>();
 
             for (int nI = 0; nI < items.Count; nI++ )
             {
-                Givechapterandverse_Node cf_Item = items[nI];
+                Configurationtree_Node cf_Item = items[nI];
 
                 if (log_Reports.Successful)
                 {
                     string sValue_Attr;
-                    bool bHit = cf_Item.Dictionary_Attribute_Givechapterandverse.TryGetValue(pmName, out sValue_Attr, false, log_Reports);
+                    bool bHit = cf_Item.Dictionary_Attribute.TryGetValue(pmName, out sValue_Attr, false, log_Reports);
                     if (bHit)
                     {
                         CsvTo_ListImpl to = new CsvTo_ListImpl();

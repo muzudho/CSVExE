@@ -20,7 +20,7 @@ namespace Xenon.Expr
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_ControlImpl(Expression_Node_String parent_Expr, Givechapterandverse_Node cur_Cf, Usercontrol parent_Usercontrol, MemoryApplication owner_MemoryApplication)
+        public Expression_ControlImpl(Expression_Node_String parent_Expr, Configurationtree_Node cur_Cf, Usercontrol parent_Usercontrol, MemoryApplication owner_MemoryApplication)
             : base(parent_Expr, cur_Cf, owner_MemoryApplication)
         {
             this.parent_Usercontrol = parent_Usercontrol;

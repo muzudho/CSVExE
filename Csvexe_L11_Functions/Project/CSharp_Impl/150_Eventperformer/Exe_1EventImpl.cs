@@ -26,7 +26,7 @@ namespace Xenon.Functions
         /// UsercontrolPerformerImpl#Perform_FcImpl で使用。
         /// UsercontrolPerformerImpl#Perform で使用。
         /// 
-        /// cf_Eventは、ucFc.ControlCommon.Givechapterandverse_Control.SDic_Event から取っている。
+        /// cf_Eventは、ucFc.ControlCommon.Configurationtree_Control.SDic_Event から取っている。
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="cf_Event"></param>
@@ -34,7 +34,7 @@ namespace Xenon.Functions
         /// <param name="log_Reports"></param>
         public void Perform(
             object sender,
-            Givechapterandverse_Node cf_Event,
+            Configurationtree_Node cf_Event,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
@@ -42,7 +42,7 @@ namespace Xenon.Functions
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
 
-            Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl("＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:＞", null);
+            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl("＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:＞", null);
             EventMonitorImpl eventMonitor = new EventMonitorImpl(cf_Event, cf_ThisMethod);
 
             if (log_Reports.CanStopwatch)
@@ -54,18 +54,18 @@ namespace Xenon.Functions
 
                     string sName_Control;
                     {
-                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                        owner_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
+                        Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
                     }
 
                     string sEventName;
                     {
-                        cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
+                        cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
                     }
 
                     int nActionCount;
                     {
-                        nActionCount = cf_Event.List_ChildGivechapterandverse.Count;
+                        nActionCount = cf_Event.List_Child.Count;
                     }
 
 
@@ -116,14 +116,14 @@ namespace Xenon.Functions
             }
 
 
-            cf_Event.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Action, ref bool bBreak)
+            cf_Event.List_Child.ForEach(delegate(Configurationtree_Node s_Action, ref bool bBreak)
             {
                 eventMonitor.BNowactionworking = true;
 
                 Exe_2FunctionImpl actionPerformer = new Exe_2FunctionImpl();
 
                 // イベントハンドラーの作成
-                Expression_Node_Function expr_Func = actionPerformer.GivechapterandverseToFunction(
+                Expression_Node_Function expr_Func = actionPerformer.ConfigurationtreeToFunction(
                     s_Action,
                     owner_MemoryApplication,
                     log_Reports

@@ -21,7 +21,7 @@ namespace Xenon.GcavToExpr
     /// 
     /// S→E 変換。
     /// </summary>
-    class GivechapterandverseToExpression_F12_DataImpl_ : GivechapterandverseToExpression_AbstractImpl, GivechapterandverseToExpression_F12_
+    class ConfigurationtreeToExpression_F12_DataImpl_ : ConfigurationtreeToExpression_AbstractImpl, ConfigurationtreeToExpression_F12_
     {
 
 
@@ -34,15 +34,15 @@ namespace Xenon.GcavToExpr
         /// <param select="xDataSource"></param>
         /// <param select="fcUc"></param>
         public void Translate(
-            Givechapterandverse_Node cur_Cf,//＜ｄａｔａ＞要素
+            Configurationtree_Node cur_Cf,//＜ｄａｔａ＞要素
             Expression_Node_String parent_Ec,//「S■ｆｏｒｍ－ｃｏｍｐｏｎｅｎｔ」
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "CfToEc",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "CfToEc",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -73,7 +73,7 @@ namespace Xenon.GcavToExpr
             //
             //
             string err_SAttrName;
-            cur_Cf.Dictionary_Attribute_Givechapterandverse.ForEach(delegate(string sPmName, string sValue, ref bool bBreak)
+            cur_Cf.Dictionary_Attribute.ForEach(delegate(string sPmName, string sValue, ref bool bBreak)
             {
                 if (
                     PmNames.S_MEMORY.Name_Pm == sPmName ||
@@ -122,7 +122,7 @@ namespace Xenon.GcavToExpr
                     s.Newline();
 
                     // ヒント
-                    s.Append(r.Message_Givechapterandverse(cur_Cf));
+                    s.Append(r.Message_Configurationtree(cur_Cf));
 
                     r.Message = s.ToString();
                     log_Reports.EndCreateReport();
@@ -142,7 +142,7 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     memoryApplication,

@@ -10,7 +10,7 @@ namespace Xenon.GcavToExpr
 {
 
 
-    public class Log_TextIndented_GivechapterandverseToExpressionImpl : Log_TextIndentedImpl, Log_TextIndented_GivechapterandverseToExpression
+    public class Log_TextIndented_ConfigurationtreeToExpressionImpl : Log_TextIndentedImpl, Log_TextIndented_ConfigurationtreeToExpression
     {
 
 

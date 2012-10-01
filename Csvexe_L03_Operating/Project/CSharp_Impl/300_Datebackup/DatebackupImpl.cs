@@ -139,7 +139,7 @@ namespace Xenon.Operating
             string sDateFon = DatebackupImpl.CreateDateFolderName(this.Name_Sub);
 
 
-            Givechapterandverse_Node s_ParentNode = new Givechapterandverse_NodeImpl("!ハードコーディング_DataBackup#Perform", null);
+            Configurationtree_Node s_ParentNode = new Configurationtree_NodeImpl("!ハードコーディング_DataBackup#Perform", null);
             // バックアップ・フォルダー下の日付ファイル名
 
 
@@ -148,7 +148,7 @@ namespace Xenon.Operating
             {
                 Expression_Node_Filepath ec_Dir;
                 {
-                    Givechapterandverse_Filepath cf_dir = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_3", s_ParentNode);
+                    Configurationtree_NodeFilepath cf_dir = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L03_3", s_ParentNode);
                     cf_dir.InitPath(sFpatha_BkHome, sDateFon,
                         log_Reports
                         );
@@ -182,7 +182,7 @@ namespace Xenon.Operating
             {
                 Expression_Node_Filepath ec_Dir;
                 {
-                    Givechapterandverse_Filepath s_dir = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_4", s_ParentNode);
+                    Configurationtree_NodeFilepath s_dir = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L03_4", s_ParentNode);
                     s_dir.InitPath(sFpatha_BkHome, "temp" + sDateFon,
                         log_Reports
                         );
@@ -259,7 +259,7 @@ namespace Xenon.Operating
                 // 保存先
                 Expression_Node_Filepath ec_Fpath_Dst;
                 {
-                    Givechapterandverse_Filepath cf_fpath_Destination = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_5", s_ParentNode);
+                    Configurationtree_NodeFilepath cf_fpath_Destination = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L03_5", s_ParentNode);
                     cf_fpath_Destination.InitPath(
                         sFopatha_dateTemp,
                         ec_Fpath_WrittenPlace.Humaninput,
@@ -303,7 +303,7 @@ namespace Xenon.Operating
                 //
 
                 // 「絶対パス」か、「相対パス」かを判断します。
-                bool bPathRooted = Utility_Givechapterandverse_Filepath.IsRooted_Path(sFpath_HumanInput,
+                bool bPathRooted = Utility_Configurationtree_Filepath.IsRooted_Path(sFpath_HumanInput,
                     log_Reports
                     );
                 if (!log_Reports.Successful)
@@ -340,7 +340,7 @@ namespace Xenon.Operating
 
                     // 設定のし直し。
                     // 出力ファイルの絶対パスが長すぎると真。
-                    bool bPathTooLong = Utility_Givechapterandverse_Filepath.IsPathTooLong(
+                    bool bPathTooLong = Utility_Configurationtree_Filepath.IsPathTooLong(
                         sNewRelHPath3,
                         log_Reports,
                         s_ParentNode
@@ -667,8 +667,8 @@ namespace Xenon.Operating
 
                 Expression_Node_Filepath ec_Fpath;
                 {
-                    Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl("!ハードコーディング_DataBackup#DeleteOldBackup", null);
-                    Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L03_6", parent_Givechapterandverse_Node);
+                    Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl("!ハードコーディング_DataBackup#DeleteOldBackup", null);
+                    Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L03_6", parent_Configurationtree_Node);
                     cf_Fpath.InitPath(
                         sFilepathabsolute_Backuphome,
                         sName_DeleteeFolder,

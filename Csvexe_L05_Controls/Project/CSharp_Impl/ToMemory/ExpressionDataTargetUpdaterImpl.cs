@@ -103,10 +103,10 @@ namespace Xenon.Controls
                             log_Reports
                             );
                     }
-                    //else if (NamesNode.S_ARG3 == e_Child.Cur_Givechapterandverse.Name_Node)
+                    //else if (NamesNode.S_ARG3 == e_Child.Cur_Configurationtree.Name_Node)
                     //{
                     //    // スルー
-                    //    d_InMethod.WarningWrite("[" + e_Child.Cur_Givechapterandverse.Name_Node + "]ノードを無視しました。");
+                    //    d_InMethod.WarningWrite("[" + e_Child.Cur_Configurationtree.Name_Node + "]ノードを無視しました。");
                     //}
                     else
                     {
@@ -127,7 +127,7 @@ namespace Xenon.Controls
                             t.Newline();
 
                             // ヒント
-                            t.AppendI(1, r.Message_Givechapterandverse(child_Expr.Cur_Givechapterandverse));
+                            t.AppendI(1, r.Message_Configurationtree(child_Expr.Cur_Configurationtree));
 
                             r.Message = t.ToString();
                             log_Reports.EndCreateReport();
@@ -192,7 +192,7 @@ namespace Xenon.Controls
                 {
                     ec_Where.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
                     {
-                        if (NamesNode.S_FNC == e_Item.Cur_Givechapterandverse.Name)
+                        if (NamesNode.S_FNC == e_Item.Cur_Configurationtree.Name)
                         {
                             //ystem.Console.WriteLine(Info_Forms.LibraryName + ":" + this.GetType().Name + "#ToM: 「E■ｆ－ｃｅｌｌ」の「E■＠ｗｈｅｒｅ」属性の下の「E■fnc」を解析。その子要素がｖａｌｕｅ相当であるはず。");
                             ec_KeyExpected1 = e_Item;
@@ -229,7 +229,7 @@ namespace Xenon.Controls
 
                     ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Str1, ref bool bRemove2, ref bool bBreak2)
                     {
-                        if ("" == e_Str1.Cur_Givechapterandverse.Name)
+                        if ("" == e_Str1.Cur_Configurationtree.Name)
                         {
                             s.Append("E■（要素名無し）");
                             s.Newline();
@@ -237,7 +237,7 @@ namespace Xenon.Controls
                         else
                         {
                             s.Append("E■");
-                            s.Append(e_Str1.Cur_Givechapterandverse.Name);
+                            s.Append(e_Str1.Cur_Configurationtree.Name);
                             s.Newline();
                         }
                     });
@@ -245,7 +245,7 @@ namespace Xenon.Controls
                     s.Newline();
 
                     // ヒント
-                    s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
+                    s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
 
                     r.Message = s.ToString();
                     log_Reports.EndCreateReport();
@@ -269,7 +269,7 @@ namespace Xenon.Controls
                     s.Newline();
                     ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Str1, ref bool bRemove2, ref bool bBreak2)
                     {
-                        if ("" == e_Str1.Cur_Givechapterandverse.Name)
+                        if ("" == e_Str1.Cur_Configurationtree.Name)
                         {
                             s.Append("E■（要素名無し）");
                             s.Newline();
@@ -277,7 +277,7 @@ namespace Xenon.Controls
                         else
                         {
                             s.Append("E■");
-                            s.Append(e_Str1.Cur_Givechapterandverse.Name);
+                            s.Append(e_Str1.Cur_Configurationtree.Name);
                             s.Newline();
                         }
                     });
@@ -285,7 +285,7 @@ namespace Xenon.Controls
                     s.Newline();
 
                     // ヒント
-                    s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
+                    s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
 
                     r.Message = s.ToString();
                     log_Reports.EndCreateReport();
@@ -324,7 +324,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(ec_SfCell.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
                 if (null != ec_SfCell)
                 {
                     ec_SfCell.ToText_Snapshot(s);

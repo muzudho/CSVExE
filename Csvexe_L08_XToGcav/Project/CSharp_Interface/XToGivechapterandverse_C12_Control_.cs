@@ -9,7 +9,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    interface XToGivechapterandverse_C12_Control_
+    interface XToConfigurationtree_C12_Control_
     {
 
 
@@ -24,9 +24,9 @@ namespace Xenon.XToGcav
         /// </summary>
         /// <param select="xEvent"></param>
         /// <param select="fcUc"></param>
-        void XToGivechapterandverse(
+        void XToConfigurationtree(
             string sName_Control,
-            Givechapterandverse_Node cf_FcConfig,
+            Configurationtree_Node cf_FcConfig,
             XmlElement xControl,//＜ｃｏｎｔｒｏｌ＞要素。子要素の読取りに利用。
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports

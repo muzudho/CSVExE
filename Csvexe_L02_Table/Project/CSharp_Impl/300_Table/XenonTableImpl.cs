@@ -14,7 +14,7 @@ namespace Xenon.Table
     /// 
     /// 他のテーブル・クラスと名称の被りを防ぐために前置詞が付いています。
     /// </summary>
-    public class XenonTableImpl : Givechapterandverse_NodeImpl, XenonTable
+    public class XenonTableImpl : Configurationtree_NodeImpl, XenonTable
     {
 
 
@@ -27,7 +27,7 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="e_Fpath_ConfigStack"></param>
         public XenonTableImpl(string sName, Expression_Node_Filepath ec_Fpath_ConfigStack)
-            : base("ノード名未指定", ec_Fpath_ConfigStack.Cur_Givechapterandverse)
+            : base("ノード名未指定", ec_Fpath_ConfigStack.Cur_Configurationtree)
         {
             this.expression_Filepath_ConfigStack = ec_Fpath_ConfigStack;
 
@@ -119,7 +119,7 @@ namespace Xenon.Table
             s.AppendI(0, "<OTableImplクラス>");
             s.Append(Environment.NewLine);
 
-            this.Expression_Filepath_ConfigStack.Cur_Givechapterandverse.ToText_Content(s);
+            this.Expression_Filepath_ConfigStack.Cur_Configurationtree.ToText_Content(s);
 
             s.AppendI(0, "</OTableImplクラス>");
             s.Append(Environment.NewLine);
@@ -367,7 +367,7 @@ namespace Xenon.Table
                             goto gt_Error_ColumnIndexOver;
                         }
                         // 値を格納。
-                        XenonValue o_Value = Utility_Row.GivechapterandverseTo_Field(//TODO:
+                        XenonValue o_Value = Utility_Row.ConfigurationTo_Field(//TODO:
                             nCIx,
                             sList_Column[nCIx],
                             oList_fldDef,

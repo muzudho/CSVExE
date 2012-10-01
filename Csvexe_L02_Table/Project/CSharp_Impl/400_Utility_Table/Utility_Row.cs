@@ -66,7 +66,7 @@ namespace Xenon.Table
         /// <param name="oTable"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public static XenonValue GivechapterandverseTo_Field(
+        public static XenonValue ConfigurationTo_Field(
             int nIndex_Column,
             string sValue,
             List<XenonFielddefinition>list_fielddefinition,
@@ -74,7 +74,7 @@ namespace Xenon.Table
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Table.Name_Library, "Utility_Row", "GivechapterandverseTo_Field", log_Reports);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Utility_Row", "ConfigurationTo_Field", log_Reports);
 
             //
             //

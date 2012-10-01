@@ -12,7 +12,7 @@ namespace Xenon.GcavToExpr
     /// <summary>
     /// 引数呼出し箇所。
     /// </summary>
-    class GivechapterandverseToExpression_F14_FparamImpl_ : GivechapterandverseToExpression_F14n16_AbstractImpl_
+    class ConfigurationtreeToExpression_F14_FparamImpl_ : ConfigurationtreeToExpression_F14n16_AbstractImpl_
     {
 
 
@@ -28,15 +28,15 @@ namespace Xenon.GcavToExpr
         /// <param name="moOpyopyo"></param>
         /// <param name="log_Reports"></param>
         public override void Translate(
-            Givechapterandverse_Node cur_Cf,//＜ｆ－ｐａｒａｍ＞
+            Configurationtree_Node cur_Cf,//＜ｆ－ｐａｒａｍ＞
             Expression_Node_String parent_Ec,//親＜●●＞要素。汎用。
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -69,7 +69,7 @@ namespace Xenon.GcavToExpr
             if (log_Reports.Successful)
             {
                 // 非必須　ｃａｌｌ＝””　ｃａｌｌ属性がなくても正常です。子要素を見に行きます。
-                this.ParseAttr_InGivechapterandverseToExpression(
+                this.ParseAttr_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     false,//ｎａｍｅ属性は無い。
@@ -88,7 +88,7 @@ namespace Xenon.GcavToExpr
             //
             {
                 // 子＜●●＞ TODO:子call属性要素。
-                this.ParseChild_InGivechapterandverseToExpression(
+                this.ParseChild_InConfigurationtreeToExpression(
                     cur_Cf,
                     cur_Ec,
                     memoryApplication,

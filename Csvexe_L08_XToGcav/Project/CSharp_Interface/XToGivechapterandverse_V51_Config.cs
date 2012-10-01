@@ -8,7 +8,7 @@ using Xenon.Middle;
 
 namespace Xenon.XToGcav
 {
-    public interface XToGivechapterandverse_V51_Config
+    public interface XToConfigurationtree_V51_Config
     {
 
 
@@ -22,7 +22,7 @@ namespace Xenon.XToGcav
         /// <param name="sFpatha">絶対ファイルパス</param>
         /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
-        void XToGivechapterandverse(
+        void XToConfigurationtree(
             string sFpatha,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports

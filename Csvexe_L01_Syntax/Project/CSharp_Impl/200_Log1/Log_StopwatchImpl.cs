@@ -23,7 +23,7 @@ namespace Xenon.Syntax
         public Log_StopwatchImpl(Log_Method owner_Log_Method)
         {
             this.owner_Log_Method = owner_Log_Method;
-            this.sMessage = "";
+            this.message = "";
         }
 
         //────────────────────────────────────────
@@ -43,7 +43,7 @@ namespace Xenon.Syntax
             }
 
             this.stopwatch.Start();
-            this.NMilliSeconds_Start = this.stopwatch.ElapsedMilliseconds;
+            this.MilliSeconds_Start = this.stopwatch.ElapsedMilliseconds;
         }
 
         public void End()
@@ -54,7 +54,7 @@ namespace Xenon.Syntax
                 Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
                 log_Method.BeginMethod(Info_Syntax.Name_Library, this, "End", log_Reports_ThisMethod);
 
-                this.NMilliSeconds_End = stopwatch.ElapsedMilliseconds;
+                this.MilliSeconds_End = stopwatch.ElapsedMilliseconds;
 
 
                 StringBuilder sb = new StringBuilder();
@@ -76,7 +76,7 @@ namespace Xenon.Syntax
 
         public override string ToString()
         {
-            long nMilliSeconds = this.NMilliSeconds_End - this.NMilliSeconds_Start;
+            long nMilliSeconds = this.MilliSeconds_End - this.MilliSeconds_Start;
 
             StringBuilder sb = new StringBuilder();
 
@@ -89,7 +89,7 @@ namespace Xenon.Syntax
                 sb.Append(this.Owner_Log_Method.Fullname);
                 sb.Append(":");
 
-                sb.Append(this.sMessage);
+                sb.Append(this.message);
 
                 sb.Append(" 処理時間=[");
                 sb.Append(nMilliSeconds);
@@ -104,7 +104,7 @@ namespace Xenon.Syntax
                 sb.Append(this.Owner_Log_Method.Fullname);
                 sb.Append(":");
 
-                sb.Append(this.sMessage);
+                sb.Append(this.message);
 
                 sb.Append(" 未起動。");
             }
@@ -169,49 +169,49 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private string sMessage;
+        private string message;
 
         public string Message
         {
             get
             {
-                return sMessage;
+                return message;
             }
             set
             {
-                sMessage = value;
+                message = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private long nMilliSeconds_Start;
+        private long milliSeconds_Start;
 
-        public long NMilliSeconds_Start
+        public long MilliSeconds_Start
         {
             get
             {
-                return nMilliSeconds_Start;
+                return milliSeconds_Start;
             }
             set
             {
-                nMilliSeconds_Start = value;
+                milliSeconds_Start = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private long nMilliSeconds_End;
+        private long milliSeconds_End;
 
-        public long NMilliSeconds_End
+        public long MilliSeconds_End
         {
             get
             {
-                return nMilliSeconds_End;
+                return milliSeconds_End;
             }
             set
             {
-                nMilliSeconds_End = value;
+                milliSeconds_End = value;
             }
         }
 

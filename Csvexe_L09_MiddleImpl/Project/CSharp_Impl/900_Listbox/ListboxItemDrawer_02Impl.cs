@@ -129,10 +129,10 @@ namespace Xenon.MiddleImpl
                     sbHint.Append(Info_MiddleImpl.Name_Library);
                     sbHint.Append(":");
                     sbHint.Append(this.GetType().Name);
-                    Givechapterandverse_Node parent_Givechapterandverse_Node = new Givechapterandverse_NodeImpl(sbHint.ToString(), null);
+                    Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl(sbHint.ToString(), null);
 
                     string sVariableName = this.Expression_ValueVariableName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-                    XenonNameImpl o_Name_Variable = new XenonNameImpl(sVariableName, parent_Givechapterandverse_Node);
+                    XenonNameImpl o_Name_Variable = new XenonNameImpl(sVariableName, parent_Configurationtree_Node);
 
                     //ystem.Console.WriteLine(this.GetType().Name + "#P1_GetItemLabel: sVariableName=[" + sVariableName + "]　sValue=[" + sValue + "]");
 

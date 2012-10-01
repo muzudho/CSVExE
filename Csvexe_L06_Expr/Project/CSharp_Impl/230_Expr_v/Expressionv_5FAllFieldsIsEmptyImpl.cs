@@ -24,8 +24,8 @@ namespace Xenon.Expr
         /// </summary>
         /// <param name="s_ParentNode"></param>
         /// <param name="moOpyopyo"></param>
-        public Expressionv_5FAllFieldsIsEmptyImpl(Expression_Node_String parent_Expression_Node, Givechapterandverse_Node parent_Givechapterandverse_Node, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)
+        public Expressionv_5FAllFieldsIsEmptyImpl(Expression_Node_String parent_Expression_Node, Configurationtree_Node parent_Configurationtree_Node, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)
         {
         }
 
@@ -211,7 +211,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -234,7 +234,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -291,7 +291,7 @@ namespace Xenon.Expr
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();

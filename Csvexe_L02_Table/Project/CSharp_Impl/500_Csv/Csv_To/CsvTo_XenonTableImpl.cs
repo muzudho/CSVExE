@@ -162,7 +162,7 @@ namespace Xenon.Table
 
                 //
                 // ヒント
-                request_ReadsTable.Expression_Filepath.Cur_Givechapterandverse.ToText_Path(s);
+                request_ReadsTable.Expression_Filepath.Cur_Configurationtree.ToText_Locationbreadcrumbs(s);
                 s.Append(err_Excp.Message);
 
                 r.Message = s.ToString();
@@ -209,7 +209,7 @@ namespace Xenon.Table
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Givechapterandverse(request_ReadsTable.Expression_Filepath.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(request_ReadsTable.Expression_Filepath.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -236,7 +236,7 @@ namespace Xenon.Table
 
                 //
                 // ヒント
-                request_ReadsTable.Expression_Filepath.Cur_Givechapterandverse.ToText_Path(s);
+                request_ReadsTable.Expression_Filepath.Cur_Configurationtree.ToText_Locationbreadcrumbs(s);
 
 
                 s.Append("エラーの種類：");

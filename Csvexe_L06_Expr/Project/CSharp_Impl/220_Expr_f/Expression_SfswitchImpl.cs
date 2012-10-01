@@ -23,8 +23,8 @@ namespace Xenon.Expr
         //────────────────────────────────────────
 
         private Expression_SfswitchImpl(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node parent_Givechapterandverse)
-            : base(parent_Expression, parent_Givechapterandverse)
+            Expression_Node_String parent_Expression, Configurationtree_Node parent_Configurationtree)
+            : base(parent_Expression, parent_Configurationtree)
         {
             this.list_Expression_Sfcase = new List<Expression_SfcaseImpl>();
         }
@@ -32,9 +32,9 @@ namespace Xenon.Expr
         //────────────────────────────────────────
 
         public static Expression_Node_String Create(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node parent_Givechapterandverse)
+            Expression_Node_String parent_Expression, Configurationtree_Node parent_Configurationtree)
         {
-            return new Expression_SfswitchImpl(parent_Expression, parent_Givechapterandverse);
+            return new Expression_SfswitchImpl(parent_Expression, parent_Configurationtree);
         }
 
         //────────────────────────────────────────

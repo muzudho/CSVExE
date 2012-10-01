@@ -16,7 +16,7 @@ namespace Xenon.GcavToExpr
     /// <summary>
     /// S→E 変換。＜ｖｉｅｗ＞要素
     /// </summary>
-    class GivechapterandverseToExpression_F12_ViewImpl_ : GivechapterandverseToExpression_AbstractImpl, GivechapterandverseToExpression_F12_
+    class ConfigurationtreeToExpression_F12_ViewImpl_ : ConfigurationtreeToExpression_AbstractImpl, ConfigurationtreeToExpression_F12_
     {
 
 
@@ -32,15 +32,15 @@ namespace Xenon.GcavToExpr
         /// <param name="moOpyopyo"></param>
         /// <param name="log_Reports"></param>
         public void Translate(
-            Givechapterandverse_Node cur_Cf,//＜ｖｉｅｗ＞
+            Configurationtree_Node cur_Cf,//＜ｖｉｅｗ＞
             Expression_Node_String parent_Ec,//「E■ｆｏｒｍ－ｃｏｍｐｏｎｅｎｔ」
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_GivechapterandverseToExpression.Name_Library, this, "SToE",log_Reports);
+            log_Method.BeginMethod(Info_ConfigurationtreeToExpression.Name_Library, this, "SToE",log_Reports);
 
             if (log_Method.CanDebug(1))
             {
@@ -72,11 +72,11 @@ namespace Xenon.GcavToExpr
             {
                 //＜●●＞要素を全検索。＜ｆ－ｌｉｓｔ－ｂｏｘ－ｌａｂｅｌｓ＞があることが期待されます。
 
-                cur_Cf.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node cf_Child, ref bool bBreak)
+                cur_Cf.List_Child.ForEach(delegate(Configurationtree_Node cf_Child, ref bool bBreak)
                 {
-                    if (cf_Child is Givechapterandverse_Node)
+                    if (cf_Child is Configurationtree_Node)
                     {
-                        Givechapterandverse_Node cf_Node = (Givechapterandverse_Node)cf_Child;
+                        Configurationtree_Node cf_Node = (Configurationtree_Node)cf_Child;
 
                         string sName_Node = cf_Node.Name;
                         string sName_Fnc = "";
@@ -93,14 +93,14 @@ namespace Xenon.GcavToExpr
                             }
 
                             // todo; 子要素のnameも取りたい。
-                            cf_Node.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, bRequired, log_Reports);
+                            cf_Node.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, bRequired, log_Reports);
                         }
 
                         if (NamesNode.S_FNC == sName_Node && NamesFnc.S_LISTBOX_LABELS == sName_Fnc)
                         {
                             //　「S■ｆｎｃ　ｎａｍｅ＝”Ｓｆ：ｆ－ｌｉｓｔｂｏｘ－ｌａｂｅｌｓ；”」
 
-                            GivechapterandverseToExpression_F91_FListboxLabelsImpl_ to = new GivechapterandverseToExpression_F91_FListboxLabelsImpl_();
+                            ConfigurationtreeToExpression_F91_FListboxLabelsImpl_ to = new ConfigurationtreeToExpression_F91_FListboxLabelsImpl_();
                             to.Translate(
                                 cf_Child,
                                 cur_Ec,

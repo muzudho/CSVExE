@@ -28,10 +28,10 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="nActionPerformEnum"></param>
         /// <param nFcName="oWrittenPlace"></param>
-        public Functionlist_FormLstImpl(GivechapterandverseToExpression_Event sToE_Event, MemoryApplication owner_MemoryApplication)
+        public Functionlist_FormLstImpl(ConfigurationtreeToExpression_Event sToE_Event, MemoryApplication owner_MemoryApplication)
             : base(sToE_Event, owner_MemoryApplication)
         {
-            this.givechapterandverse_Event = sToE_Event.Givechapterandverse_Event;
+            this.Configurationtree_Event = sToE_Event.Configurationtree_Event;
             this.sType = "!ハードコーディング_" + this.GetType().Name + "#<init>";
         }
 
@@ -85,7 +85,7 @@ namespace Xenon.Controls
             if (log_Reports_ThisMethod.CanStopwatch)
             {
                 string sEventName;
-                this.givechapterandverse_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports_ThisMethod);
+                this.Configurationtree_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports_ThisMethod);
 
                 pg_Method.Log_Stopwatch.Message = Utility_Format.Format(
                     sName_Usercontrol,
@@ -133,9 +133,9 @@ namespace Xenon.Controls
                 // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
                 //
 
-                givechapterandverse_Event.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node systemFunction_Gcav, ref bool bBreak)
+                Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Gcav, ref bool bBreak)
                 {
-                    Expression_Node_Function expr_Func = cct.ControlCommon.Owner_MemoryApplication.MemoryForms.GivechapterandverseToFunction.Translate(
+                    Expression_Node_Function expr_Func = cct.ControlCommon.Owner_MemoryApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
                         systemFunction_Gcav,
                         true,
                         log_Reports_ThisMethod
@@ -205,7 +205,7 @@ namespace Xenon.Controls
         /// <summary>
         /// このアクションの一覧が記述されている、対応するイベント。
         /// </summary>
-        private Givechapterandverse_Node givechapterandverse_Event;
+        private Configurationtree_Node Configurationtree_Event;
         
         //────────────────────────────────────────
         #endregion

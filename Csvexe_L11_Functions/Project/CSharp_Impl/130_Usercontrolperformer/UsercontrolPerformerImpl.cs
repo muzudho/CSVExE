@@ -196,7 +196,7 @@ namespace Xenon.Functions
             //
             string sConfigStack = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_AllFcs:" + o_Name_Event.SValue + "＞";
             sConfigStack_EventOrigin += sConfigStack;
-            Givechapterandverse_Node cf_ThisMethod = new Givechapterandverse_NodeImpl(sConfigStack, null);
+            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack, null);
 
 
             foreach (string sName_Usercontrol in sFcNameList)
@@ -270,7 +270,7 @@ namespace Xenon.Functions
             sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_FcImpl:" + o_Name_Event.SValue + "＞";
 
 
-            if (null == ucFc.ControlCommon.Givechapterandverse_Control)
+            if (null == ucFc.ControlCommon.Configurationtree_Control)
             {
                 //
                 // 「コントロール設定ファイル」が無いコントロールの場合は、無視します。
@@ -287,12 +287,12 @@ namespace Xenon.Functions
             //}
 
 
-            List<Givechapterandverse_Node> cfList_Event = ucFc.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
-            foreach (Givechapterandverse_Node cf_Event in cfList_Event)
+            List<Configurationtree_Node> cfList_Event = ucFc.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
+            foreach (Configurationtree_Node cf_Event in cfList_Event)
             {
 
                 string sEventName;
-                cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
+                cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, true, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     goto gt_EndMethod;
@@ -367,12 +367,12 @@ namespace Xenon.Functions
 
                     //.WriteLine(this.GetType().Name + "#Perform_PrjSelected: ■■コントロール=[" + fcNameStr2 + "] イベント数=[" + fcUc.ControlCommon.OFcnfControl.OEvents.Count + "]");
 
-                    Givechapterandverse_Node cf_HitEvent = null;
-                    List<Givechapterandverse_Node> cfList_Event = ucFc.ControlCommon.Givechapterandverse_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
-                    foreach (Givechapterandverse_Node cf_Event in cfList_Event)
+                    Configurationtree_Node cf_HitEvent = null;
+                    List<Configurationtree_Node> cfList_Event = ucFc.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
+                    foreach (Configurationtree_Node cf_Event in cfList_Event)
                     {
                         string sFncName;
-                        cf_Event.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                        cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
 
                         if (sFncName == sEventName)
                         {

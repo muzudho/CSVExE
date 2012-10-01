@@ -19,7 +19,7 @@ namespace Xenon.Functions
     /// 
     /// コントローラーの中で使っている。
     /// </summary>
-    public class GivechapterandverseToFunction_ListImpl : GivechapterandverseToFunction
+    public class ConfigurationtreeToFunction_ListImpl : ConfigurationtreeToFunction
     {
 
 
@@ -31,9 +31,9 @@ namespace Xenon.Functions
         /// コンストラクター。
         /// </summary>
         /// <param name="form"></param>
-        public GivechapterandverseToFunction_ListImpl(
+        public ConfigurationtreeToFunction_ListImpl(
             Expression_Node_String parent_Expression,
-            Givechapterandverse_Node cur_Gcav,
+            Configurationtree_Node cur_Gcav,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
@@ -57,7 +57,7 @@ namespace Xenon.Functions
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Node_Function Translate(
-            Givechapterandverse_Node action_Gcav,
+            Configurationtree_Node action_Gcav,
             bool bRequired,
             Log_Reports log_Reports
             )
@@ -68,9 +68,9 @@ namespace Xenon.Functions
             //
 
             string sName_Fnc;
-            if (action_Gcav.Dictionary_Attribute_Givechapterandverse.ContainsKey(PmNames.S_NAME.Name_Pm))
+            if (action_Gcav.Dictionary_Attribute.ContainsKey(PmNames.S_NAME.Name_Pm))
             {
-                action_Gcav.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
+                action_Gcav.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
             }
             else
             {
@@ -87,7 +87,7 @@ namespace Xenon.Functions
             {
                 if (null != expr_Func)
                 {
-                    Log_TextIndented_GivechapterandverseToExpressionImpl pg_ParsingLog = new Log_TextIndented_GivechapterandverseToExpressionImpl();
+                    Log_TextIndented_ConfigurationtreeToExpressionImpl pg_ParsingLog = new Log_TextIndented_ConfigurationtreeToExpressionImpl();
                     pg_ParsingLog.BEnabled = false;
                     expr_Func = ((Expression_Node_FunctionAbstract)expr_Func).Functiontranslatoritem.Translate(
                         sName_Fnc,

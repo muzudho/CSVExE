@@ -26,9 +26,9 @@ namespace Xenon.Functions
             dictionary_Interlibrary = new Dictionary<string, Expression_Node_Function>();
 
 
-            GivechapterandverseToFunction_Item transUnknown = new GivechapterandverseToFunction00_ItemImpl();//暫定
-            GivechapterandverseToFunction_Item trans00 = new GivechapterandverseToFunction00_ItemImpl();
-            GivechapterandverseToFunction_Item trans20 = new GivechapterandverseToFunction20_ItemImpl();
+            ConfigurationtreeToFunction_Item transUnknown = new ConfigurationtreeToFunction00_ItemImpl();//暫定
+            ConfigurationtreeToFunction_Item trans00 = new ConfigurationtreeToFunction00_ItemImpl();
+            ConfigurationtreeToFunction_Item trans20 = new ConfigurationtreeToFunction20_ItemImpl();
 
             //関数名未設定のインスタンスを、ディクショナリーに追加します。#NewInstance 実行時に関数名を付けます。
             {
@@ -262,7 +262,7 @@ namespace Xenon.Functions
         /// <returns></returns>
         public static Expression_Node_Function NewFunction2(
             string sName_Fnc,
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             //EnumEventhandler enumEventhandler,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
@@ -312,7 +312,7 @@ namespace Xenon.Functions
                 sb.Append(Environment.NewLine);
 
                 // ヒント
-                //todo: t.Append(r.Message_Givechapterandverse(e_Uic.Cur_Givechapterandverse));
+                //todo: t.Append(r.Message_Configurationtree(e_Uic.Cur_Configurationtree));
 
                 r.Message = sb.ToString();
                 log_Reports.EndCreateReport();

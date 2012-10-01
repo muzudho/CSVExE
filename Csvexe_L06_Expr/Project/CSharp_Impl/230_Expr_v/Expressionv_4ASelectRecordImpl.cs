@@ -22,15 +22,15 @@ namespace Xenon.Expr
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expressionv_4ASelectRecordImpl(Expression_Node_String parent_Expression_Node, Givechapterandverse_Node parent_Givechapterandverse_Node, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)//
+        public Expressionv_4ASelectRecordImpl(Expression_Node_String parent_Expression_Node, Configurationtree_Node parent_Configurationtree_Node, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)//
         {
-            this.expression_Field = new Expression_Node_StringImpl(parent_Expression_Node, parent_Givechapterandverse_Node);
-            this.expression_LookupVal = new Expression_Node_StringImpl(parent_Expression_Node, parent_Givechapterandverse_Node);
-            this.expression_Required = new Expression_Node_StringImpl(parent_Expression_Node, parent_Givechapterandverse_Node);
-            this.expression_From = new Expression_Node_StringImpl(parent_Expression_Node, parent_Givechapterandverse_Node);
-            this.expression_Storage = new Expression_Node_StringImpl(parent_Expression_Node, parent_Givechapterandverse_Node);
-            this.expression_Description = new Expression_Node_StringImpl(parent_Expression_Node, parent_Givechapterandverse_Node);
+            this.expression_Field = new Expression_Node_StringImpl(parent_Expression_Node, parent_Configurationtree_Node);
+            this.expression_LookupVal = new Expression_Node_StringImpl(parent_Expression_Node, parent_Configurationtree_Node);
+            this.expression_Required = new Expression_Node_StringImpl(parent_Expression_Node, parent_Configurationtree_Node);
+            this.expression_From = new Expression_Node_StringImpl(parent_Expression_Node, parent_Configurationtree_Node);
+            this.expression_Storage = new Expression_Node_StringImpl(parent_Expression_Node, parent_Configurationtree_Node);
+            this.expression_Description = new Expression_Node_StringImpl(parent_Expression_Node, parent_Configurationtree_Node);
         }
 
         //────────────────────────────────────────
@@ -78,12 +78,12 @@ namespace Xenon.Expr
                     // 要求の作成。
                     {
                         // ＜ｓｔａｒｔｕｐ－ｓｐｅｃｉａｌ－ｒｕｌｅ＞の中で使う子要素。
-                        selectSt_ToSave = new SelectstatementImpl(this, this.Cur_Givechapterandverse);
+                        selectSt_ToSave = new SelectstatementImpl(this, this.Cur_Configurationtree);
                         {
                             Recordcondition recCond1;// = new RecordconditionImpl(s_ParentNode);
 
                             // TODO: logic要素がある版も要るはず。
-                            bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, this.Expression_Field.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), this.Cur_Givechapterandverse.Parent_Givechapterandverse, log_Reports);
+                            bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, this.Expression_Field.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), this.Cur_Configurationtree.Parent, log_Reports);
                             recCond1.Value = this.Expression_LookupVal.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                             selectSt_ToSave.List_Recordcondition.Add(recCond1);
                         }
@@ -96,7 +96,7 @@ namespace Xenon.Expr
                 //
                 // レコードの検索。
                 {
-                    Givechapterandverse_Node parent_Cf_Query = this.Cur_Givechapterandverse.Parent_Givechapterandverse;
+                    Configurationtree_Node parent_Cf_Query = this.Cur_Configurationtree.Parent;
 
                     // テーブル名。
                     if ("" == selectSt_ToSave.Expression_From.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
@@ -168,7 +168,7 @@ namespace Xenon.Expr
                     //sel2.P2_Select(
                     //    ref dst_Rs_ToSave,
                     //    selectSt_ToSave,
-                    //    this.Parent_Givechapterandverse,
+                    //    this.Parent,
                     //    log_Reports
                     //    );
                 }
@@ -278,7 +278,7 @@ namespace Xenon.Expr
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse.Parent_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree.Parent));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -297,7 +297,7 @@ namespace Xenon.Expr
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Givechapterandverse(this.Cur_Givechapterandverse.Parent_Givechapterandverse));
+                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree.Parent));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

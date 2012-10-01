@@ -47,7 +47,7 @@ namespace Xenon.Middle
         /// <param name="together_Gcav">トゥゲザー要素の名前です。</param>
         /// <param name="log_Reports"></param>
         void RefreshDataByTogether(
-            Givechapterandverse_Node together_Gcav,
+            Configurationtree_Node together_Gcav,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
@@ -76,7 +76,7 @@ namespace Xenon.Middle
         /// <summary>
         /// トゥゲザー設定ファイル。
         /// </summary>
-        Givechapterandverse_Node Givechapterandverse_Togetherconfig
+        Configurationtree_Node Configurationtree_Togetherconfig
         {
             set;
             get;

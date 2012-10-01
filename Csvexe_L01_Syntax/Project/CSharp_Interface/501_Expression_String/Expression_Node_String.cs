@@ -8,8 +8,8 @@ using System.Text;
 namespace Xenon.Syntax
 {
 
-    public delegate void DLGT_Expression_Children(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak);
-    public delegate void DLGT_Expression_Attributes(string sAttrName, Expression_Node_String ec_Attr, ref bool bBreak);
+    public delegate void DELEGATE_Expression_Nodes(Expression_Node_String expr_Node, ref bool bRemove, ref bool bBreak);
+    public delegate void DELEGATE_Expression_Attributes(string sAttrName, Expression_Node_String ec_Attr, ref bool bBreak);
 
     /// <summary>
     /// ツリー構造の葉以外の節。
@@ -122,7 +122,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         void AppendTextNode(
             string sHumaninput,
-            Givechapterandverse_Node parent_Gcav,
+            Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             );
 
@@ -137,7 +137,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 属性="" マップ。
         /// </summary>
-        DicExpression_Node_String Dictionary_Expression_Attribute
+        Dictionary_Expression_Node_String Dictionary_Expression_Attribute
         {
             get;
         }
@@ -158,7 +158,7 @@ namespace Xenon.Syntax
         /// 
         /// コンストラクターだけではなく、タイミングを遅らせて、後付けで設定されることもあります。
         /// </summary>
-        Givechapterandverse_Node Cur_Givechapterandverse
+        Configurationtree_Node Cur_Configurationtree
         {
             get;
             set;
@@ -167,7 +167,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 子要素リスト。
         /// </summary>
-        ListExpression_Node_String List_Expression_Child
+        List_Expression_Node_String List_Expression_Child
         {
             get;
         }

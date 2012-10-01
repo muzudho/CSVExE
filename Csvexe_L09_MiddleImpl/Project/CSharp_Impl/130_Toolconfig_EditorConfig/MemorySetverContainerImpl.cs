@@ -25,10 +25,10 @@ namespace Xenon.MiddleImpl
         /// コンストラクター。
         /// </summary>
         /// <param name="parent_Cf">親設定。</param>
-        public MemorySetverContainerImpl(Givechapterandverse_Node parent_Cf)
+        public MemorySetverContainerImpl(Configurationtree_Node parent_Cf)
         {
-            this.parent_Givechapterandverse = parent_Cf;
-            this.dictionary_Fsetvar_Givechapterandverse = new Dictionary_Fsetvar_GivechapterandverseImpl();
+            this.parent_Configurationtree = parent_Cf;
+            this.dictionary_Fsetvar_Configurationtree = new Dictionary_Fsetvar_ConfigurationtreeImpl();
         }
 
         //────────────────────────────────────────
@@ -106,16 +106,16 @@ namespace Xenon.MiddleImpl
                         //ｄｅｓｃｒｉｐｔｉｏｎ属性
                         string sDescription = xFsetvar.GetAttribute(PmNames.S_DESCRIPTION.Name_Attribute);
 
-                        Givechapterandverse_Node cf_Fsetvar = new Givechapterandverse_NodeImpl(NamesNode.S_F_SET_VAR,
+                        Configurationtree_Node cf_Fsetvar = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR,
                             null//todo:親ノード
                             );
-                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
-                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
-                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
-                        cf_Fsetvar.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_NAME_VAR.Name_Pm, sNamevar, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_FOLDER.Name_Pm, sFolder, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_VALUE.Name_Pm, sValue, log_Reports);
+                        cf_Fsetvar.Dictionary_Attribute.Set(PmNames.S_DESCRIPTION.Name_Pm, sDescription, log_Reports);
 
 
-                        this.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.Add(cf_Fsetvar, log_Reports);
+                        this.Dictionary_Fsetvar_Configurationtree.List_Child.Add(cf_Fsetvar, log_Reports);
 
                         //変数への追加
                         {
@@ -124,7 +124,7 @@ namespace Xenon.MiddleImpl
                                 )
                             {
                                 // ファイルパスの場合
-                                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("name-var=[" + sNamevar + "]", ec_Fpath_Aaxml.Cur_Givechapterandverse);
+                                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("name-var=[" + sNamevar + "]", ec_Fpath_Aaxml.Cur_Configurationtree);
                                 cf_Fpath.InitPath(
                                     sValue,
                                     log_Reports
@@ -205,7 +205,7 @@ namespace Xenon.MiddleImpl
                 s.Append("エディター設定ファイルが見つかりません。：" + err_Excp.Message);
 
                 //ヒント
-                s.Append(r.Message_Givechapterandverse(ec_Fpath_Aaxml.Cur_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(ec_Fpath_Aaxml.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -244,22 +244,22 @@ namespace Xenon.MiddleImpl
             Expression_Node_Filepath ec_Fpath = null;
 
             //各＜ｆ－ｓｅｔ－ｖａｒ＞
-            this.Dictionary_Fsetvar_Givechapterandverse.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
+            this.Dictionary_Fsetvar_Configurationtree.List_Child.ForEach(delegate(Configurationtree_Node s_Fsetvar, ref bool bBreak)
             {
                 //ｎａｍｅ－ｖａｒ属性
                 string sNamevar_Cur;
-                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar_Cur, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar_Cur, true, log_Reports);
 
                 if (sNamevar_Cur == sNamevar_Expected)
                 {
                     string sFolder;
-                    s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
+                    s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_FOLDER, out sFolder, false, log_Reports);
 
                     string sValue;
-                    s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                    s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                     {
-                        Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("『エディター設定ファイル』の[" + sNamevar_Expected + "]要素_L09Mid_2[" + sValue + "]", this.Parent_Givechapterandverse);
+                        Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("『エディター設定ファイル』の[" + sNamevar_Expected + "]要素_L09Mid_2[" + sValue + "]", this.Parent);
                         cf_Fpath.InitPath(
                             sValue,
                             log_Reports
@@ -343,7 +343,7 @@ namespace Xenon.MiddleImpl
                 s.Newline();
 
                 s.Append("　・設定ファイル情報:");
-                s.Append(r.Message_Givechapterandverse(this.Parent_Givechapterandverse));
+                s.Append(r.Message_Configurationtree(this.Parent));
                 s.Newline();
                 s.Newline();
 
@@ -365,20 +365,20 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// 内容をデバッグ出力。
         /// </summary>
-        public void WriteDebug_ToConsole(Dictionary_Fsetvar_Givechapterandverse stDic_Project, Log_Reports log_Reports)
+        public void WriteDebug_ToConsole(Dictionary_Fsetvar_Configurationtree stDic_Project, Log_Reports log_Reports)
         {
-            System.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 input要素の個数？=[" + stDic_Project.List_ChildGivechapterandverse.Count + "]");
+            System.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 input要素の個数？=[" + stDic_Project.List_Child.Count + "]");
 
-            stDic_Project.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node s_Fsetvar, ref bool bBreak)
+            stDic_Project.List_Child.ForEach(delegate(Configurationtree_Node s_Fsetvar, ref bool bBreak)
             {
                 string sNamevar;
-                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar, true, log_Reports);
 
                 string sValue;
-                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                 string sDescription;
-                s_Fsetvar.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
+                s_Fsetvar.Dictionary_Attribute.TryGetValue(PmNames.S_DESCRIPTION, out sDescription, true, log_Reports);
 
                 System.Console.WriteLine(this.GetType().Name + "#DebugWrite: 【デバッグ出力】 名=[" + sNamevar + "] value=[" + sValue + "] 説明=[" + sDescription + "]");
             });
@@ -393,26 +393,26 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        protected Dictionary_Fsetvar_Givechapterandverse dictionary_Fsetvar_Givechapterandverse;
+        protected Dictionary_Fsetvar_Configurationtree dictionary_Fsetvar_Configurationtree;
 
         /// <summary>
         /// input要素の名前つきリスト
         /// </summary>
-        public Dictionary_Fsetvar_Givechapterandverse Dictionary_Fsetvar_Givechapterandverse
+        public Dictionary_Fsetvar_Configurationtree Dictionary_Fsetvar_Configurationtree
         {
             get
             {
-                return dictionary_Fsetvar_Givechapterandverse;
+                return dictionary_Fsetvar_Configurationtree;
             }
             set
             {
-                dictionary_Fsetvar_Givechapterandverse = value;
+                dictionary_Fsetvar_Configurationtree = value;
             }
         }
 
         //────────────────────────────────────────
 
-        protected Givechapterandverse_Node parent_Givechapterandverse;
+        protected Configurationtree_Node parent_Configurationtree;
 
         /// <summary>
         /// 親要素。
@@ -423,11 +423,11 @@ namespace Xenon.MiddleImpl
         /// Clearしたらヌルになる。
         /// 親要素がない場合もヌルになる。
         /// </summary>
-        public Givechapterandverse_Node Parent_Givechapterandverse
+        public Configurationtree_Node Parent
         {
             get
             {
-                return parent_Givechapterandverse;
+                return parent_Configurationtree;
             }
         }
 

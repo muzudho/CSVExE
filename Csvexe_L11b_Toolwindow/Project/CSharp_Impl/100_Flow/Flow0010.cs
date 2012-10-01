@@ -31,7 +31,7 @@ namespace Xenon.Toolwindow
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "GetFileAbsPath",pg_Logging);
+            pg_Method.BeginMethod(Info_Toolwindow.Name_Library, this, "GetFilepathabsolute", pg_Logging);
 
             string sFpatha_xml;
 
@@ -40,9 +40,9 @@ namespace Xenon.Toolwindow
                 // 正常時
 
                 // ツールの設定のファイルパス
-                Givechapterandverse_Node parent_Cf = new Givechapterandverse_NodeImpl("!ハードコーディング_Flow0010#GetFileAbsPath", null);
+                Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl("!ハードコーディング_Flow0010#GetFileAbsPath", null);
 
-                Givechapterandverse_Filepath cf_Fpath = new Givechapterandverse_FilepathImpl("ファイルパス出典未指定L09TcDlg_1", parent_Cf);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09TcDlg_1", parent_Cf);
                 cf_Fpath.InitPath(
                     sFpath,
                     pg_Logging

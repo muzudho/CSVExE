@@ -20,9 +20,9 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public SelectstatementImpl(Expression_Node_String parent_Expr, Givechapterandverse_Node parent_Gcav)
+        public SelectstatementImpl(Expression_Node_String parent_Expr, Configurationtree_Node parent_Gcav)
         {
-            this.parent_Givechapterandverse = parent_Gcav;
+            this.parent = parent_Gcav;
             this.List_SName_SelectField = new List<string>();
             this.Expression_From = new Expression_Node_StringImpl(parent_Expr, parent_Gcav);
             this.Expression_Into = new Expression_Node_StringImpl(parent_Expr, parent_Gcav);
@@ -245,16 +245,16 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node parent_Givechapterandverse;
+        private Configurationtree_Node parent;
 
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        public Givechapterandverse_Node Parent_Givechapterandverse
+        public Configurationtree_Node Parent
         {
             get
             {
-                return this.parent_Givechapterandverse;
+                return this.parent;
             }
         }
 

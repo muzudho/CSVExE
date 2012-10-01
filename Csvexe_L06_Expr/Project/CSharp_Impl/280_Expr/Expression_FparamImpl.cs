@@ -29,10 +29,10 @@ namespace Xenon.Expr
         /// <param name="moOpyopyo"></param>
         public Expression_FparamImpl(
             Expression_Node_String parent_Expression_Node,
-            Givechapterandverse_Node parent_Givechapterandverse_Node,
+            Configurationtree_Node parent_Configurationtree_Node,
             MemoryApplication owner_MemoryApplication
             )
-            : base(parent_Expression_Node, parent_Givechapterandverse_Node, owner_MemoryApplication)
+            : base(parent_Expression_Node, parent_Configurationtree_Node, owner_MemoryApplication)
         {
         }
 
@@ -90,7 +90,7 @@ namespace Xenon.Expr
                     Log_TextIndented s1 = new Log_TextIndentedImpl();
                     ec_CommonFunction.Dictionary_Expression_Parameter.ToText_Debug(s1, log_Reports);
 
-                    sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Givechapterandverse.Name + "” 引数不該当＞s1=" + s1.ToString();
+                    sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Configurationtree.Name + "” 引数不該当＞s1=" + s1.ToString();
                 }
 
             }

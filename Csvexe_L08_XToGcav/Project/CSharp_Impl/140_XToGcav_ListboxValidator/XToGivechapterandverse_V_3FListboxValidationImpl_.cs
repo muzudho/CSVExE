@@ -13,7 +13,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// 
     /// </summary>
-    class XToGivechapterandverse_V_3FListboxValidationImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_V_3FListboxValidationImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -21,11 +21,11 @@ namespace Xenon.XToGcav
         #region 生成と破棄
         //────────────────────────────────────────
 
-        protected override Givechapterandverse_Node CreateMyself(
-            XmlElement cur_X, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+        protected override Configurationtree_Node CreateMyself(
+            XmlElement cur_X, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
-            Givechapterandverse_Node cur_Cf;
-            cur_Cf = new Givechapterandverse_NodeImpl(NamesNode.S_F_LISTBOX_VALIDATION, parent_Cf);
+            Configurationtree_Node cur_Cf;
+            cur_Cf = new Configurationtree_NodeImpl(NamesNode.S_F_LISTBOX_VALIDATION, parent_Cf);
 
             return cur_Cf;
         }
@@ -40,7 +40,7 @@ namespace Xenon.XToGcav
 
         protected override void Parse_SAttribute(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -60,7 +60,7 @@ namespace Xenon.XToGcav
             //{
             //    sIvtvTrim = sIvtv.Trim();
             //}
-            cur_Cf.Dictionary_Attribute_Givechapterandverse.Set(PmNames.S_NAME_VAR.Name_Pm, "", log_Reports);// PmNames.Z_ITEM_VALUE_TO_VARIABLE sIvtv;
+            cur_Cf.Dictionary_Attribute.Set(PmNames.S_NAME_VAR.Name_Pm, "", log_Reports);// PmNames.Z_ITEM_VALUE_TO_VARIABLE sIvtv;
 
             goto gt_EndMethod;
         //
@@ -73,7 +73,7 @@ namespace Xenon.XToGcav
 
         protected override void Parse_ChildNodes(
             XmlElement cur_X,
-            Givechapterandverse_Node cur_Cf,
+            Configurationtree_Node cur_Cf,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -88,8 +88,8 @@ namespace Xenon.XToGcav
             Usercontrol uct = null;
             if (log_Reports.Successful)
             {
-                Givechapterandverse_Node cf_Control= cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1,true,log_Reports);
-                uct = Utility_XToGivechapterandverse_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
+                Configurationtree_Node cf_Control= cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1,true,log_Reports);
+                uct = Utility_XToConfigurationtree_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
             }
 
             if (log_Reports.Successful)
@@ -119,8 +119,8 @@ namespace Xenon.XToGcav
                             if (NamesFnc.S_VLD_DISPLAY == child_SName_Fnc)//【変更 2012-07-19】
                             {
 
-                                XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByFncName(child_SName_Fnc, log_Reports);
-                                to.XToGivechapterandverse(
+                                XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByFncName(child_SName_Fnc, log_Reports);
+                                to.XToConfigurationtree(
                                     xChild,
                                     cur_Cf,
                                     memoryApplication,
@@ -132,8 +132,8 @@ namespace Xenon.XToGcav
                             {
                                 // Sf:Vld-SelectRecord;
 
-                                XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByFncName(child_SName_Fnc, log_Reports);
-                                to.XToGivechapterandverse(
+                                XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByFncName(child_SName_Fnc, log_Reports);
+                                to.XToConfigurationtree(
                                     xChild,
                                     cur_Cf,
                                     memoryApplication,
@@ -190,16 +190,16 @@ namespace Xenon.XToGcav
         //────────────────────────────────────────
 
         protected override void LinkToParent(
-            Givechapterandverse_Node cur_Cf, Givechapterandverse_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
+            Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
             Usercontrol uct = null;
             if (log_Reports.Successful)
             {
-                Givechapterandverse_Node cf_Control = cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                uct = Utility_XToGivechapterandverse_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
+                Configurationtree_Node cf_Control = cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                uct = Utility_XToConfigurationtree_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
             }
 
-            uct.ControlCommon.Givechapterandverse_Control.List_ChildGivechapterandverse.Add(cur_Cf, log_Reports);
+            uct.ControlCommon.Configurationtree_Control.List_Child.Add(cur_Cf, log_Reports);
         }
 
         //────────────────────────────────────────

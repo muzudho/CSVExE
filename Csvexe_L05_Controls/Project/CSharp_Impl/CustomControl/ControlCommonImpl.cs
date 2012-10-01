@@ -32,9 +32,9 @@ namespace Xenon.Controls
 
             // コントロールを作った時に、必ずnameプロパティを設定してください。
             // ただし、直接 Visual Studio のビジュアルエディターで配置した場合は設定できません。
-            Givechapterandverse_Node cur_Cf = new Givechapterandverse_NodeImpl(log_Method.Fullname+"<init>", null);
+            Configurationtree_Node cur_Cf = new Configurationtree_NodeImpl(log_Method.Fullname+"<init>", null);
 
-            this.givechapterandverse_Control = new Givechapterandverse_NodeImpl(NamesNode.S_CONTROL1, cur_Cf);//ダミーのデフォルト・オブジェクト？
+            this.configurationtree_Control = new Configurationtree_NodeImpl(NamesNode.S_CONTROL1, cur_Cf);//ダミーのデフォルト・オブジェクト？
             this.expression_Name_Control = new Expression_Node_StringImpl(null, cur_Cf);
 
             log_Method.EndMethod(log_Reports_ThisMethod);
@@ -49,22 +49,22 @@ namespace Xenon.Controls
         #region プロパティー
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node givechapterandverse_Control;
+        private Configurationtree_Node configurationtree_Control;
 
         /// <summary>
         /// コントロール設定ファイルの &lt;control&gt;要素。
         /// 
         /// 未設定ならヌル。実装は、生成時にセットしてください。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_Control
+        public Configurationtree_Node Configurationtree_Control
         {
             get
             {
-                return givechapterandverse_Control;
+                return configurationtree_Control;
             }
             set
             {
-                givechapterandverse_Control = value;
+                configurationtree_Control = value;
             }
         }
 

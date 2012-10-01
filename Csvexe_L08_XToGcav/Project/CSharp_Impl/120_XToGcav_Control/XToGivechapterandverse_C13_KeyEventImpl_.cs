@@ -13,7 +13,7 @@ namespace Xenon.XToGcav
     /// <summary>
     /// (Sf) ＜ｋｅｙ－ｅｖｅｎｔ＞
     /// </summary>
-    class XToGivechapterandverse_C13_KeyEventImpl_ : XToGivechapterandverse_C_Parser15Impl
+    class XToConfigurationtree_C13_KeyEventImpl_ : XToConfigurationtree_C_Parser15Impl
     {
 
 
@@ -21,9 +21,9 @@ namespace Xenon.XToGcav
         #region アクション
         //────────────────────────────────────────
 
-        public override void XToGivechapterandverse(
+        public override void XToConfigurationtree(
             XmlElement cur_X,//＜key-event＞
-            Givechapterandverse_Node parent_Cf,//＜control＞
+            Configurationtree_Node parent_Cf,//＜control＞
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -41,7 +41,7 @@ namespace Xenon.XToGcav
             //
             //
             //
-            Givechapterandverse_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
+            Configurationtree_Node cur_Cf = this.CreateMyself(cur_X, parent_Cf, memoryApplication, log_Reports);
 
 
             //
@@ -59,7 +59,7 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                XToGivechapterandverse_C15_Elm to = XToGivechapterandverse_Collection.GetTranslatorByNodeName(NamesNode.S_KEY_ACTION, log_Reports);
+                XToConfigurationtree_C15_Elm to = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_KEY_ACTION, log_Reports);
 
                 //List<string> li = new List<string>();
                 //li.Add(PmNames.TYPE.Name_Pm);
@@ -80,7 +80,7 @@ namespace Xenon.XToGcav
                         {
                             XmlElement xFnc = (XmlElement)xChild;
 
-                            to.XToGivechapterandverse(
+                            to.XToConfigurationtree(
                                 xFnc,
                                 cur_Cf,
                                 memoryApplication,
@@ -101,7 +101,7 @@ namespace Xenon.XToGcav
                                 t.Append(Environment.NewLine);
 
                                 // ヒント
-                                t.Append(r.Message_Givechapterandverse(cur_Cf));
+                                t.Append(r.Message_Configurationtree(cur_Cf));
 
                                 r.Message = t.ToString();
                                 log_Reports.EndCreateReport();
@@ -125,7 +125,7 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                parent_Cf.List_ChildGivechapterandverse.Add(cur_Cf,log_Reports);
+                parent_Cf.List_Child.Add(cur_Cf,log_Reports);
             }
 
 

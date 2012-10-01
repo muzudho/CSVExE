@@ -39,18 +39,18 @@ namespace Xenon.Functions
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_Node_Function35Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, GivechapterandverseToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function35Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Givechapterandverse_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function35Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Givechapterandverse = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
@@ -87,9 +87,9 @@ namespace Xenon.Functions
             if (this.EnumEventhandler == EnumEventhandler.O_Wr)
             {
 
-                if (this.ExpressionfncPrmset.Sender is Customcontrol)
+                if (this.Functionparameterset.Sender is Customcontrol)
                 {
-                    Customcontrol fcCc = (Customcontrol)this.ExpressionfncPrmset.Sender;
+                    Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
                         Request_SelectingImpl.Unconstraint,
@@ -107,7 +107,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.ExpressionfncPrmset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
 
                 //
@@ -122,22 +122,22 @@ namespace Xenon.Functions
                 {
                     // 正常時
 
-                    Givechapterandverse_Node cf_Event = this.Cur_Givechapterandverse.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                    Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
 
                     if (null != cf_Event)
                     {
-                        Givechapterandverse_Node owner_Givechapterandverse_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
 
-                        if (null != owner_Givechapterandverse_Control)
+                        if (null != owner_Configurationtree_Control)
                         {
                             string sName_Usercontrol;
-                            owner_Givechapterandverse_Control.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
+                            owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
 
 
-                            Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Givechapterandverse);
+                            Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
                             ec_Str.AppendTextNode(
                                 sName_Usercontrol,
-                                this.Cur_Givechapterandverse,
+                                this.Cur_Configurationtree,
                                 log_Reports
                                 );
 
@@ -217,7 +217,7 @@ namespace Xenon.Functions
                         ec_Child.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
 
                         if (
-                            NamesNode.S_FNC == ec_Child.Cur_Givechapterandverse.Name &&
+                            NamesNode.S_FNC == ec_Child.Cur_Configurationtree.Name &&
                             NamesFnc.S_LISTBOX_LABELS == sFncName
                             )
                         {
@@ -401,7 +401,7 @@ namespace Xenon.Functions
                             //
                             err_Ec_DataTarget.ToText_Snapshot(s);
 
-                            err_Ec_DataTarget.Cur_Givechapterandverse.ToText_Content(s);
+                            err_Ec_DataTarget.Cur_Configurationtree.ToText_Content(s);
 
                             r.Message = s.ToString();
                             log_Reports.EndCreateReport();
@@ -425,7 +425,7 @@ namespace Xenon.Functions
                             s.Newline();
 
                             s.Append("「E■[");
-                            s.Append(ec_Child.Cur_Givechapterandverse.Name);
+                            s.Append(ec_Child.Cur_Configurationtree.Name);
                             s.Append("]　");
                             s.Append("ｎａｍｅ＝”[");
                             s.Append(sFncName);
@@ -521,7 +521,7 @@ namespace Xenon.Functions
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
             // 必ずフラグをオフにします。
-            ((EventMonitor)this.ExpressionfncPrmset.EventMonitor).BNowactionworking = false;
+            ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             return "";
         }
 

@@ -20,13 +20,13 @@ namespace Xenon.Functions
         /// 
         /// </summary>
         /// <param name="cur_Event">設定ファイル以外で作る時は代わりが無いのでnullを指定する。</param>
-        public EventMonitorImpl(Givechapterandverse_Node cur_Event, Givechapterandverse_Node parent_Givechapterandverse)
+        public EventMonitorImpl(Configurationtree_Node cur_Event, Configurationtree_Node parent_Configurationtree)
         {
-            this.parent_Givechapterandverse = parent_Givechapterandverse;
+            this.parent_Configurationtree = parent_Configurationtree;
 
             if (null == cur_Event)
             {
-                cur_Event = new Givechapterandverse_NodeImpl(NamesNode.S_EVENT, new Givechapterandverse_NodeImpl(NamesNode.S_CONTROL1, null));//, new Givechapterandverse_NodeImpl("EventMonitorImpl<init>", null)
+                cur_Event = new Configurationtree_NodeImpl(NamesNode.S_EVENT, new Configurationtree_NodeImpl(NamesNode.S_CONTROL1, null));//, new Configurationtree_NodeImpl("EventMonitorImpl<init>", null)
             }
             this.givechapterandverse_Event = cur_Event;
         }
@@ -60,12 +60,12 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node givechapterandverse_Event;
+        private Configurationtree_Node givechapterandverse_Event;
 
         /// <summary>
         /// 問題箇所となる＜ｅｖｅｎｔ＞要素。
         /// </summary>
-        public Givechapterandverse_Node Givechapterandverse_Event
+        public Configurationtree_Node Configurationtree_Event
         {
             get
             {
@@ -75,16 +75,16 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private Givechapterandverse_Node parent_Givechapterandverse;
+        private Configurationtree_Node parent_Configurationtree;
 
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        public Givechapterandverse_Node Parent_Givechapterandverse
+        public Configurationtree_Node Parent
         {
             get
             {
-                return parent_Givechapterandverse;
+                return parent_Configurationtree;
             }
             //set
             //{

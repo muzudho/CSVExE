@@ -50,7 +50,7 @@ namespace Xenon.Middle
         /// <summary>
         /// バリデーション設定ファイル。
         /// </summary>
-        Givechapterandverse_Node Givechapterandverse_Validatorsconfig
+        Configurationtree_Node Configurationtree_Validatorsconfig
         {
             get;
         }

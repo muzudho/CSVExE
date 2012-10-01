@@ -13,7 +13,7 @@ namespace Xenon.MiddleImpl
     /// <summary>
     /// ＜input＞要素の名前つきリスト。
     /// </summary>
-    public class Dictionary_Fsetvar_GivechapterandverseImpl : Dictionary_Fsetvar_Givechapterandverse
+    public class Dictionary_Fsetvar_ConfigurationtreeImpl : Dictionary_Fsetvar_Configurationtree
     {
 
 
@@ -24,10 +24,10 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Dictionary_Fsetvar_GivechapterandverseImpl()
+        public Dictionary_Fsetvar_ConfigurationtreeImpl()
         {
-            Givechapterandverse_Node parent_Cf_Null = null;//TODO:this
-            this.list_ChildGivechapterandverse = new ListGivechapterandverse_NodeImpl(parent_Cf_Null);
+            Configurationtree_Node parent_Cf_Null = null;//TODO:this
+            this.list_Child = new List_Configurationtree_NodeImpl(parent_Cf_Null);
         }
 
         //────────────────────────────────────────
@@ -45,7 +45,7 @@ namespace Xenon.MiddleImpl
         /// <param name="inputName">name属性</param>
         /// <param name="bRequired">該当するデータがない場合、エラー</param>
         /// <returns></returns>
-        public Givechapterandverse_Node GetFsetvar(
+        public Configurationtree_Node GetFsetvar(
             string sNameVar,
             bool bRequired,
             Log_Reports log_Reports
@@ -57,17 +57,17 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            Givechapterandverse_Node cf_Result = null;
+            Configurationtree_Node cf_Result = null;
 
             if (log_Method.CanDebug(1))
             {
-                log_Method.WriteDebug_ToConsole("子＜ｆ－ｓｅｔ－ｖａｒ＞要素数=[" + this.List_ChildGivechapterandverse.Count + "]");
+                log_Method.WriteDebug_ToConsole("子＜ｆ－ｓｅｔ－ｖａｒ＞要素数=[" + this.List_Child.Count + "]");
             }
 
-            this.List_ChildGivechapterandverse.ForEach(delegate(Givechapterandverse_Node cf_Child, ref bool bBreak)
+            this.List_Child.ForEach(delegate(Configurationtree_Node cf_Child, ref bool bBreak)
             {
                 string sNamevar1;
-                cf_Child.Dictionary_Attribute_Givechapterandverse.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, log_Reports);
+                cf_Child.Dictionary_Attribute.TryGetValue(PmNames.S_NAME_VAR, out sNamevar1, true, log_Reports);
 
                 if (sNamevar1 == sNameVar)
                 {
@@ -133,16 +133,16 @@ namespace Xenon.MiddleImpl
         #region プロパティー
         //────────────────────────────────────────
 
-        private ListGivechapterandverse_Node list_ChildGivechapterandverse;
+        private List_Configurationtree_Node list_Child;
 
         /// <summary>
         /// input要素の名前つきリスト。
         /// </summary>
-        public ListGivechapterandverse_Node List_ChildGivechapterandverse
+        public List_Configurationtree_Node List_Child
         {
             get
             {
-                return list_ChildGivechapterandverse;
+                return list_Child;
             }
         }
 

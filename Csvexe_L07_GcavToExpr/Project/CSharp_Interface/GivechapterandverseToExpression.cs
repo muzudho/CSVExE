@@ -13,7 +13,7 @@ namespace Xenon.GcavToExpr
     /// <summary>
     /// 
     /// </summary>
-    public interface GivechapterandverseToExpression
+    public interface ConfigurationtreeToExpression
     {
 
 
@@ -29,11 +29,11 @@ namespace Xenon.GcavToExpr
         /// <param name="memoryApplication"></param>
         /// <param name="d_ParsingLog"></param>
         /// <param name="log_Reports"></param>
-        void ParseChild_InGivechapterandverseToExpression(
-            Givechapterandverse_Node cur_Gcav,
+        void ParseChild_InConfigurationtreeToExpression(
+            Configurationtree_Node cur_Gcav,
             Expression_Node_String parent_Expr,//nAcase,nFelemの両方の場合がある。Expression_Node_StringImpl
             MemoryApplication memoryApplication,
-            Log_TextIndented_GivechapterandverseToExpression pg_ParsingLog,
+            Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
             Log_Reports log_Reports
             );
 

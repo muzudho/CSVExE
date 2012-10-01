@@ -39,7 +39,7 @@ namespace Xenon.Csvexe
             pg_Method.BeginMethod(Info_CSVEditorImpl.Name_Library, "Form1", "static RegisterFunctions",pg_Logging);
             //
 
-            GivechapterandverseToFunction_Item transUnknown = new GivechapterandverseToFunction00_ItemImpl();//暫定
+            ConfigurationtreeToFunction_Item transUnknown = new ConfigurationtreeToFunction00_ItemImpl();//暫定
 
             // 親クラスを上書きしないよう、関数名は変えておくこと。
             {
@@ -98,7 +98,7 @@ namespace Xenon.Csvexe
             //
 
             Expression_Node_String parent_Expression_Null = null;
-            Givechapterandverse_Node cur_Gcav = new Givechapterandverse_NodeImpl(pg_Method.Fullname, null);
+            Configurationtree_Node cur_Gcav = new Configurationtree_NodeImpl(pg_Method.Fullname, null);
 
 
 
@@ -112,7 +112,7 @@ namespace Xenon.Csvexe
             this.memoryCsvEditor = new MemoryApplicationImpl();
             this.MemoryCsvEditor.InitializeBeforeUse(
                 new Mainwnd_FormWrappingImpl(this),
-                new GivechapterandverseToFunction_ListImpl(parent_Expression_Null, cur_Gcav, this.MemoryCsvEditor, pg_Logging_ThisMethod),
+                new ConfigurationtreeToFunction_ListImpl(parent_Expression_Null, cur_Gcav, this.MemoryCsvEditor, pg_Logging_ThisMethod),
                 new Form_ToolwindowImpl(),
                 new MemoryAatoolxmlDialogImpl(),
                 new UsercontrolStyleSetterImpl(),

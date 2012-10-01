@@ -45,7 +45,7 @@ namespace Xenon.Middle
 
         void InitializeBeforeUse(
             Mainwnd_FormWrapping mainwnd_FormWrapping,
-            GivechapterandverseToFunction gcavToFunc,
+            ConfigurationtreeToFunction gcavToFunc,
             Form_Toolwindow form_Toolwindow,
             MemoryAatoolxmlDialog moToolConfigDlg,
             UsercontrolStyleSetter uctStyleSetter,
@@ -197,8 +197,8 @@ namespace Xenon.Middle
         /// <param name="togetherConfig_Gcav">トゥゲザー設定です。</param>
         /// <param name="log_Reports"></param>
         void RefreshDataByTogether(
-            Givechapterandverse_Node together_Gcav,
-            Givechapterandverse_Node togetherConfig_Gcav,
+            Configurationtree_Node together_Gcav,
+            Configurationtree_Node togetherConfig_Gcav,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
@@ -294,7 +294,7 @@ namespace Xenon.Middle
         /// <summary>
         /// Functionexecuterを作るオブジェクト。使う前に設定してください。
         /// </summary>
-        GivechapterandverseToFunction GivechapterandverseToFunction
+        ConfigurationtreeToFunction ConfigurationtreeToFunction
         {
             get;
         }
