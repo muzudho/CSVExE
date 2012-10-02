@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+<!--
+■ 紹介
+┌──────────────────────────────────┐
+    ①の codefile-version属性は、
+        整数位：メジャーバージョン
+        小数位：マイナーバージョン
+    です。
+    ウィンドウバーに書いてあるのが、本体のスクリプトファイル・バージョ
+    ンです。
+    ・本体のバージョンより、このメジャーバージョンが 1 古くなったファイ
+      ルは、読めなくなります。
+    ・本体のバージョンより、バージョン番号が未来を指しているファイルも
+      読めません。
+└──────────────────────────────────┘
+-->
+                                      <!-- ↓① -->
+<codefile-functions codefile-version="2.0">
+
+
+    <!--
+        COND00 のデータを文章化します。
+    -->
+    <common-function name="Uf:COND00;">
+        <arg name="Pm:definition-parameters;">
+            <def-param name="Pm:Abcd;" />
+        </arg>
+
+
+        <!--
+            これはテストです。「引数テスト【☆】」という文章を出します。
+            ☆の中には、
+                <fnc name="Uf:COND00;">
+                    <arg name="Pm:Abcd;" value="☆" />
+                </fnc>
+            といったように引数で渡された文字列が入ります。
+        -->
+        <f-str value="引数テスト【" />
+        <f-param call="Pm:Abcd;"/>
+        <f-str value="】　" />
+
+
+        <!--
+            文章を作成します。
+        -->
+        <fnc name="Sf:TextTemplate;">
+            <!--
+                「HP 【%1%】％以上【%2%】％以下の時（0～100）」といった
+                テンプレートが登録されているテーブルを指定します。
+            -->
+            <arg name="Pm:table;" value="Ut:敵作戦条件;" />
+
+
+            <!--
+                テーブルの中のIDを指定します。
+            -->
+            <arg name="Pm:lookup-id;">
+                <fnc name="Sf:Cell;">
+                    <arg name="Pm:from;" value="Ut:敵作戦;" />
+                    <arg name="Pm:select;" description="select属性が「COND10～」">
+                        <f-str value="COND" />
+                        <f-var value="Ui:選択スキルリストID;" />
+                    </arg>
+                    <fnc name="Sf:Where;">
+                        <fnc name="Sf:RecCond;">
+                           <arg name="Pm:field;" value="ID" />
+                           <f-var value="Ui:選択モンスターID;" />
+                        </fnc>
+                    </fnc>
+                </fnc>
+            </arg>
+
+
+            <!--
+                テンプレートの「%1%」に当たる部分を抜き出します。
+            -->
+            <arg name="p1p">
+                <fnc name="Sf:Switch;">
+                    <arg name="Pm:value-switch;">
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:敵作戦;" />
+                            <arg name="Pm:select;" description="select属性が「COND10～」">
+                                <f-str value="COND" />
+                                <f-var value="Ui:選択スキルリストID;" />
+                            </arg>
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                   <arg name="Pm:field;" value="ID" />
+                                   <f-var value="Ui:選択モンスターID;" />
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </arg>
+                    <fnc name="Sf:Case;" description="「CONDP10x～」の値をそのまま。">
+                        <arg name="Pm:value-case;" value="1,2,3,6,9,10,11,12,13,14" />
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:敵作戦;" />
+                            <arg name="Pm:select;" description="select属性が「COND10x～」">
+                                <f-str value="COND" />
+                                <f-var value="Ui:選択スキルリストID;" />
+                                <f-str value="x" />
+                            </arg>
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                   <arg name="Pm:field;" value="ID" />
+                                   <f-var value="Ui:選択モンスターID;" />
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </fnc>
+                    <fnc name="Sf:Case;" description="敵の名前">
+                        <arg name="Pm:value-case;" value="4" />
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:敵;" />
+                            <arg name="Pm:select;" value="NAME" />
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                    <arg name="Pm:field;" value="ID" />
+                                    <fnc name="Sf:Cell;">
+                                        <arg name="Pm:from;" value="Ut:敵作戦;" />
+                                        <arg name="Pm:select;" description="select属性が「COND10x～」">
+                                            <f-str value="COND" />
+                                            <f-var value="Ui:選択スキルリストID;" />
+                                            <f-str value="x" />
+                                        </arg>
+                                        <fnc name="Sf:Where;">
+                                            <fnc name="Sf:RecCond;">
+                                                <arg name="Pm:field;" value="ID" />
+                                                <f-var value="Ui:選択モンスターID;" />
+                                            </fnc>
+                                        </fnc>
+                                    </fnc>
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </fnc>
+                    <fnc name="Sf:Case;" description="「COND10x～」の値でCondAtrテーブルを検索。">
+                        <arg name="Pm:value-case;" value="7,8" />
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:状態異常;" />
+                            <arg name="Pm:select;" value="Expl" />
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                    <arg name="Pm:field;" value="ID" />
+                                    <fnc name="Sf:Cell;">
+                                        <arg name="Pm:from;" value="Ut:敵作戦;" />
+                                        <arg name="Pm:select;" description="select属性が「COND10x～」">
+                                            <f-str value="COND" />
+                                            <f-var value="Ui:選択スキルリストID;" />
+                                            <f-str value="x" />
+                                        </arg>
+                                        <fnc name="Sf:Where;">
+                                            <fnc name="Sf:RecCond;">
+                                                <arg name="Pm:field;" value="ID" />
+                                                <f-var value="Ui:選択モンスターID;" />
+                                            </fnc>
+                                        </fnc>
+                                    </fnc>
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </fnc>
+                </fnc>
+            </arg>
+
+
+            <!--
+                テンプレートの「%2%」に当たる部分を抜き出します。
+            -->
+            <arg name="p2p">
+                <fnc name="Sf:Switch;">
+                    <arg name="Pm:value-switch;">
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:敵作戦;" />
+                            <arg name="Pm:select;" description="select属性が「COND10～」">
+                                <f-str value="COND" />
+                                <f-var value="Ui:選択スキルリストID;" />
+                            </arg>
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                   <arg name="Pm:field;" value="ID" />
+                                   <f-var value="Ui:選択モンスターID;" />
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </arg>
+                    <fnc name="Sf:Case;" description="「COND10y～」の値をそのまま。">
+                        <arg name="Pm:value-case;" value="1,2,3,9,10,11,12,13,14" />
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:敵作戦;" />
+                            <arg name="Pm:select;" description="select属性が「COND10y～」">
+                                <f-str value="COND" />
+                                <f-var value="Ui:選択スキルリストID;" />
+                                <f-str value="y" />
+                            </arg>
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                   <arg name="Pm:field;" value="ID" />
+                                   <f-var value="Ui:選択モンスターID;" />
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </fnc>
+                    <fnc name="Sf:Case;" description="「COND10y～」の値でCondAtrテーブルを検索。">
+                        <arg name="Pm:value-case;" value="7,8" />
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:状態異常;" />
+                            <arg name="Pm:select;" value="Expl" />
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                    <arg name="Pm:field;" value="ID" />
+                                    <fnc name="Sf:Cell;">
+                                        <arg name="Pm:from;" value="Ut:敵作戦;" />
+                                        <arg name="Pm:select;" description="select属性が「COND10y～」">
+                                            <f-str value="COND" />
+                                            <f-var value="Ui:選択スキルリストID;" />
+                                            <f-str value="y" />
+                                        </arg>
+                                        <fnc name="Sf:Where;">
+                                            <fnc name="Sf:RecCond;">
+                                                <arg name="Pm:field;" value="ID" />
+                                                <f-var value="Ui:選択モンスターID;" />
+                                            </fnc>
+                                        </fnc>
+                                    </fnc>
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </fnc>
+                </fnc>
+            </arg>
+
+
+            <!--
+                テンプレートの「%3%」に当たる部分を抜き出します。
+            -->
+            <arg name="p3p">
+                <fnc name="Sf:Switch;">
+                    <arg name="Pm:value-switch;">
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:敵作戦;" />
+                            <arg name="Pm:select;" description="select属性が「COND10～」">
+                                <f-str value="COND" />
+                                <f-var value="Ui:選択スキルリストID;" />
+                            </arg>
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                   <arg name="Pm:field;" value="ID" />
+                                   <f-var value="Ui:選択モンスターID;" />
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </arg>
+                    <fnc name="Sf:Case;" description="「COND10z～」の値でCondAtrテーブルを検索。">
+                        <arg name="Pm:value-case;" value="7,8" />
+                        <fnc name="Sf:Cell;">
+                            <arg name="Pm:from;" value="Ut:状態異常;" />
+                            <arg name="Pm:select;" value="Expl" />
+                            <fnc name="Sf:Where;">
+                                <fnc name="Sf:RecCond;">
+                                    <arg name="Pm:field;" value="ID" />
+                                    <fnc name="Sf:Cell;">
+                                        <arg name="Pm:from;" value="Ut:敵作戦;" />
+                                        <arg name="Pm:select;" description="select属性が「COND10z～」">
+                                            <f-str value="COND" />
+                                            <f-var value="Ui:選択スキルリストID;" />
+                                            <f-str value="z" />
+                                        </arg>
+                                        <fnc name="Sf:Where;">
+                                            <fnc name="Sf:RecCond;">
+                                                <arg name="Pm:field;" value="ID" />
+                                                <f-var value="Ui:選択モンスターID;" />
+                                            </fnc>
+                                        </fnc>
+                                    </fnc>
+                                </fnc>
+                            </fnc>
+                        </fnc>
+                    </fnc>
+                </fnc>
+            </arg>
+        </fnc>
+    </common-function>
+
+
+</codefile-functions>

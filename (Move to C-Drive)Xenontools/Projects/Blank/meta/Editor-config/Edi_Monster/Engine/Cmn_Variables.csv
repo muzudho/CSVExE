@@ -1,0 +1,6 @@
+NO,ID,Expl,NAME,VALUE,END
+int,int,string,string,string,END
+-1,識別子,解説,変数名,初期値,END
+0,,プログラマー用・デバッグモード「On」「Off」「」（空欄）のいずれか。,Ss:DebugMode_Programmer;,On,END
+1,,フォーム・デバッグモード「On」「Off」「」（空欄）のいずれか。,Ss:DebugMode_Form;,Off,END
+EOF,,,,,

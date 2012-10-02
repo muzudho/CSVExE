@@ -1,0 +1,5 @@
+NO,NAME,Expl,STYLE,END
+int,string,string,string,END
+-1,スタイルシート名,解説,スタイル指定,END
+0,1,Expl-SSフィールドが1の項目の文字色を赤くします。,color:red;,END
+EOF,,,,

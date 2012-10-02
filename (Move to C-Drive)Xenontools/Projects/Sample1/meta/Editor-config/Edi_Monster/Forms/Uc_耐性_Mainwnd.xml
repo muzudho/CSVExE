@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+                                    <!-- ↓このバージョン番号の説明は
+                                           Aa_Editor.xml参照 -->
+<codefile-controls codefile-version="2.0">
+
+
+    <!--
+      このコントロールの紹介
+    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+        ■
+      ■■■ 耐性選択ウィンドウの
+        ■   ウィンドウ
+                                        [記号] Uc:耐性_Mainwnd;
+                                        [種類] ウィンドウ（C:Wnd;）
+                                        [画面] 耐性選択ウィンドウ画面
+                                                        （Ufo:耐性;）
+                                                    （Forms/Ufo_耐性.csv）
+
+                耐性を選ばせるウィンドウです。
+                コントロールが置かれます。
+
+    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    -->
+    <control>
+    </control>
+
+
+</codefile-controls>

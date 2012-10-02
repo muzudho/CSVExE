@@ -1,0 +1,11 @@
+NO,ID,Expl,NAME,END
+int,int,string,string,END
+-1,スキルリストID,,ID兼表示名,END
+1,10,,SKL10,END
+2,11,,SKL11,END
+3,12,,SKL12,END
+4,13,,SKL13,END
+5,14,,SKL14,END
+EOF,,,,
+
+0,0,無該当(ID=空白),,

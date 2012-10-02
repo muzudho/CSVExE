@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+                                    <!-- ↓このバージョン番号の説明は
+                                           Aa_Editor.xml参照 -->
+<codefile-controls codefile-version="2.0">
+
+
+    <!--
+      このコントロールの紹介
+    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+        ■
+      ■■■ スキル選択ウィンドウの
+        ■   ウィンドウ
+                                        [記号] Uc:スキ_Mainwnd;
+                                        [種類] ウィンドウ（C:Wnd;）
+                                        [画面] スキル選択ウィンドウ画面
+                                                        （Ufo:スキル;）
+                                                    （Forms/Ufo_スキ.csv）
+
+                スキルを選ばせるウィンドウです。
+                コントロールが置かれます。
+
+    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    -->
+    <control description="メイン・ウィンドウ">
+    </control>
+    
+    
+</codefile-controls>

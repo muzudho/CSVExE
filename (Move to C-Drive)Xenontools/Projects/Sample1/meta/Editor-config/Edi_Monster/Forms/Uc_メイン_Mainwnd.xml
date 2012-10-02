@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="Shift_JIS" ?>
+                                    <!-- ↓このバージョン番号の説明は
+                                           Aa_Editor.xml参照 -->
+<codefile-controls codefile-version="2.0">
+
+
+    <!--
+      このコントロールの紹介
+    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+        ■
+      ■■■ メイン・ウィンドウ
+        ■
+                                        [記号] Sc:Mainwnd;
+                                        [種類] メイン・ウィンドウ（C:Mainwnd;）
+                                        [画面] メイン画面
+                                                        （Ufo:メイン;）
+                                                    （Forms/Ufo_メイン.csv）
+
+                エディターのウィンドウです。
+                コントロールが置かれます。
+
+    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    -->
+    <control>
+    </control>
+
+
+</codefile-controls>

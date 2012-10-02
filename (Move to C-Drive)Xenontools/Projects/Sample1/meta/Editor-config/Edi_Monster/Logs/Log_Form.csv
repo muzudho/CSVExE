@@ -1,0 +1,149 @@
+NO,ID,TREE,Expl,FILE,NAME,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,PIC_ZOOM,TAB_INDEX,BACK_COLOR,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,LIST_VALUE_FIELD,END
+int,int,int,string,string,string,string,string,string,int,int,int,int,bool,bool,bool,bool,string,string,string,int,int,string,int,string,string,END
+-1,使わない,ネスト関係,解説,コントロール設定ファイルパス,コントロール固有名,コントロールの型,初期値,フォントサイズ（pt）,左上角の座標X,左上角の座標Y,横幅ピクセル,縦幅ピクセル,活性化,可視,テキストボックス等を読み取り専用にするなら真。,テキストエリアで行を自動的に折り返すなら真。,（テキストエリア）改行記号。,テキストエリア等で利用。None,Horizontal,Vertical,Bothの４つ。使わないなら空欄。,チェックボックスの値の型。(空欄：false,true。ZERO_ONE：0,1）,（未実装）画像の倍角サイズ。2000で２倍。,タブ・インデックス,背景色,リストボックスの項目の高さ（ピクセル）,リストボックスの各項目の表示書式,（開発中）リストボックスの値が入っている、レコードのフィールド名。,END
+0,,TREE,Expl,FILE,control,TYPE,★★★★,9,0,0,800,630,True,True,,,,,,-1,0,,-1,,,END
+1,,TREE,Expl,FILE,control,TYPE,保存,9,4,4,128,28,True,True,,,,,,-1,0,,-1,,,END
+2,,TREE,Expl,FILE,control,TYPE,ゲーム用CSV書出,9,4,36,128,28,True,True,,,,,,-1,0,,-1,,,END
+3,,TREE,Expl,FILE,control,TYPE,モンスターリスト,9,4,72,128,16,True,True,,,,,,-1,0,,-1,,,END
+4,,TREE,Expl,FILE,control,TYPE,0,9,4,92,128,484,True,True,,,,BOTH,,-1,0,,16,%1%：%2%|ID|NAME,,END
+5,,TREE,Expl,FILE,control,TYPE,,9,136,4,652,588,True,True,,,,,,-1,0,,-1,,,END
+6,,TREE,Expl,FILE,control,TYPE,能力パネル,9,0,0,650,590,True,True,,,,,,-1,0,,-1,,,END
+7,,TREE,Expl,FILE,control,TYPE,ＮＯ,11,4,288,36,20,True,True,,,,,,-1,0,,-1,,,END
+8,,TREE,Expl,FILE,control,TYPE,0,9,40,288,50,19,,True,True,,,,,-1,0,,-1,,,END
+9,,TREE,Expl,FILE,control,TYPE,（ＮＯ変更不可）,11,92,288,124,20,True,True,,,,,,-1,0,,-1,,,END
+10,,TREE,Expl,FILE,control,TYPE,ＩＤ,11,4,312,36,20,True,True,,,,,,-1,0,,-1,,,END
+11,,TREE,Expl,FILE,control,TYPE,1001,9,40,312,50,19,,True,True,,,,,-1,0,,-1,,,END
+12,,TREE,Expl,FILE,control,TYPE,（ＩＤ変更未実装）,11,92,312,124,20,True,True,,,,,,-1,0,,-1,,,END
+13,,TREE,Expl,FILE,control,TYPE,名前,11,168,368,48,19,True,True,,,,,,-1,0,,-1,,,END
+14,,TREE,Expl,FILE,control,TYPE,さかなさんaz,9,216,368,216,19,True,True,,,,,,-1,0,,-1,,,END
+15,,TREE,Expl,FILE,control,TYPE,C:\ゼノンツールズ\プロジェクト集\作品01\img\monster\1001.png,9,112,4,280,280,True,True,,,,,,-1,0,,-1,,,END
+16,,TREE,Expl,FILE,control,TYPE,画像サイズ,11,260,288,88,20,True,True,,,,,,-1,0,,-1,,,END
+17,,TREE,Expl,FILE,control,TYPE,5,9,348,288,32,19,True,True,,,,,,-1,0,,-1,,,END
+18,,TREE,Expl,FILE,control,TYPE,画像代替ＩＤ,11,260,312,88,20,True,True,,,,,,-1,0,,-1,,,END
+19,,TREE,Expl,FILE,control,TYPE,,9,348,312,50,19,True,True,,,,,,-1,0,,-1,,,END
+20,,TREE,Expl,FILE,control,TYPE,,9,60,400,372,68,True,True,,,,,,-1,0,,-1,,,END
+21,,TREE,Expl,FILE,control,TYPE,属性特徴,11,0,0,72,19,True,True,,,,,,-1,0,,-1,,,END
+22,,TREE,Expl,FILE,control,TYPE,3002,9,72,0,50,19,True,True,,,,,,-1,0,,-1,,,END
+23,,TREE,Expl,FILE,control,TYPE,ウェハース　風に弱い。,9,124,0,248,68,,True,True,,\n,,,-1,0,,-1,,,END
+24,,TREE,Expl,FILE,control,TYPE,探,9,104,20,20,20,True,True,,,,,,-1,0,,-1,,,END
+25,,TREE,Expl,FILE,control,TYPE,種族,11,440,4,64,20,True,True,,,,,,-1,0,,-1,,,END
+26,,TREE,Expl,FILE,control,TYPE,12,9,504,4,38,19,True,True,,,,,,-1,0,,-1,,,END
+27,,TREE,Expl,FILE,control,TYPE,うさぎ,9,544,4,80,19,,True,True,,,,,-1,0,,-1,,,END
+28,,TREE,Expl,FILE,control,TYPE,ＬＶ,11,440,28,64,20,True,True,,,,,,-1,0,,-1,,,END
+29,,TREE,Expl,FILE,control,TYPE,21,9,504,28,86,19,True,True,,,,,,-1,0,,-1,,,END
+30,,TREE,Expl,FILE,control,TYPE,ＨＰ,11,440,52,64,20,True,True,,,,,,-1,0,,-1,,,END
+31,,TREE,Expl,FILE,control,TYPE,120,9,504,52,86,19,True,True,,,,,,-1,0,,-1,,,END
+32,,TREE,Expl,FILE,control,TYPE,ＭＰ,11,440,76,64,20,True,True,,,,,,-1,0,,-1,,,END
+33,,TREE,Expl,FILE,control,TYPE,81,9,504,76,86,19,True,True,,,,,,-1,0,,-1,,,END
+34,,TREE,Expl,FILE,control,TYPE,ＥＸＰ,11,440,100,64,20,True,True,,,,,,-1,0,,-1,,,END
+35,,TREE,Expl,FILE,control,TYPE,1400,9,504,100,86,19,True,True,,,,,,-1,0,,-1,,,END
+36,,TREE,Expl,FILE,control,TYPE,攻撃,11,440,144,64,20,True,True,,,,,,-1,0,,-1,,,END
+37,,TREE,Expl,FILE,control,TYPE,26,9,504,144,50,19,True,True,,,,,,-1,0,,-1,,,END
+38,,TREE,Expl,FILE,control,TYPE,防御,11,440,168,64,19,True,True,,,,,,-1,0,,-1,,,END
+39,,TREE,Expl,FILE,control,TYPE,10,9,504,168,50,19,True,True,,,,,,-1,0,,-1,,,END
+40,,TREE,Expl,FILE,control,TYPE,ドロップテーブル,11,4,480,112,19,True,True,,,,,,-1,0,,-1,,,END
+41,,TREE,Expl,FILE,control,TYPE,,9,4,504,540,20,True,True,,,,,,-1,0,,-1,,,END
+42,,TREE,Expl,FILE,control,TYPE,アイテム１,9,0,0,72,19,True,True,,,,,,-1,0,,-1,,,END
+43,,TREE,Expl,FILE,control,TYPE,2005,9,72,0,50,19,True,True,,,,,,-1,0,,-1,,,END
+44,,TREE,Expl,FILE,control,TYPE,孔明の罠,9,124,0,284,19,,True,True,,,,,-1,0,,-1,,,END
+45,,TREE,Expl,FILE,control,TYPE,探,9,408,0,20,20,True,True,,,,,,-1,0,,-1,,,END
+46,,TREE,Expl,FILE,control,TYPE,ドロップ,9,428,0,60,19,True,True,,,,,,-1,0,,-1,,,END
+47,,TREE,Expl,FILE,control,TYPE,51,9,488,0,50,19,True,True,,,,,,-1,0,,-1,,,END
+48,,TREE,Expl,FILE,control,TYPE,,9,4,528,540,20,True,True,,,,,,-1,0,,-1,,,END
+49,,TREE,Expl,FILE,control,TYPE,アイテム２,9,0,0,72,19,True,True,,,,,,-1,0,,-1,,,END
+50,,TREE,Expl,FILE,control,TYPE,2001,9,72,0,50,19,True,True,,,,,,-1,0,,-1,,,END
+51,,TREE,Expl,FILE,control,TYPE,栓抜き,9,124,0,284,19,,True,True,,,,,-1,0,,-1,,,END
+52,,TREE,Expl,FILE,control,TYPE,探,9,408,0,20,20,True,True,,,,,,-1,0,,-1,,,END
+53,,TREE,Expl,FILE,control,TYPE,ドロップ,9,428,0,60,19,True,True,,,,,,-1,0,,-1,,,END
+54,,TREE,Expl,FILE,control,TYPE,15,9,488,0,50,19,True,True,,,,,,-1,0,,-1,,,END
+55,,TREE,Expl,FILE,control,TYPE,敵作戦パネル,9,0,0,650,590,True,True,,,,,,-1,1,,-1,,,END
+56,,TREE,Expl,FILE,control,TYPE,武器,9,0,4,40,20,True,,,,,,,-1,0,,-1,,,END
+57,,TREE,Expl,FILE,control,TYPE,鉄琴,9,40,4,224,19,,,True,,,,,-1,0,,-1,,,END
+58,,TREE,Expl,FILE,control,TYPE,2004,9,264,4,50,19,True,,,,,,,-1,0,,-1,,,END
+59,,TREE,Expl,FILE,control,TYPE,探,9,316,4,20,20,True,,,,,,,-1,0,,-1,,,END
+60,,TREE,Expl,FILE,control,TYPE,攻撃回数,9,340,4,72,20,True,,,,,,,-1,0,,-1,,,END
+61,,TREE,Expl,FILE,control,TYPE,1,9,412,4,38,19,True,,,,,,,-1,0,,-1,,,END
+62,,TREE,Expl,FILE,control,TYPE,～,9,452,4,20,20,True,,,,,,,-1,0,,-1,,,END
+63,,TREE,Expl,FILE,control,TYPE,2,9,472,4,38,19,True,,,,,,,-1,0,,-1,,,END
+64,,TREE,Expl,FILE,control,TYPE,スリップ,9,520,4,64,20,True,,,,,,,-1,0,,-1,,,END
+65,,TREE,Expl,FILE,control,TYPE,false,9,584,4,20,20,True,,,,,,,-1,0,,-1,,,END
+66,,TREE,Expl,FILE,control,TYPE,行動回数,9,340,28,72,20,True,,,,,,,-1,0,,-1,,,END
+67,,TREE,Expl,FILE,control,TYPE,1,9,412,28,38,19,True,,,,,,,-1,0,,-1,,,END
+68,,TREE,Expl,FILE,control,TYPE,～,9,452,28,20,20,True,,,,,,,-1,0,,-1,,,END
+69,,TREE,Expl,FILE,control,TYPE,1,9,472,28,38,19,True,,,,,,,-1,0,,-1,,,END
+70,,TREE,Expl,FILE,control,TYPE,スキルXX,9,20,96,124,20,True,,,,,,,-1,0,,-1,,,END
+71,,TREE,Expl,FILE,control,TYPE,＜正常：データはない＞,9,20,120,124,238,True,,,,,VERTICAL,,-1,0,,16,%1%：%2%|ID|NAME,,END
+72,,TREE,Expl,FILE,control,TYPE,孔明の罠,9,160,120,240,19,,,True,,,,,-1,0,,-1,,,END
+73,,TREE,Expl,FILE,control,TYPE,2005,9,328,140,50,19,True,,,,,,,-1,0,,-1,,,END
+74,,TREE,Expl,FILE,control,TYPE,探,9,380,140,20,20,True,,,,,,,-1,0,,-1,,,END
+75,,TREE,Expl,FILE,control,TYPE,ＬＶ,9,160,160,40,20,True,,,,,,,-1,0,,-1,,,END
+76,,TREE,Expl,FILE,control,TYPE,11,9,200,160,38,19,True,,,,,,,-1,0,,-1,,,END
+77,,TREE,Expl,FILE,control,TYPE,OP,9,160,184,40,20,True,,,,,,,-1,0,,-1,,,END
+78,,TREE,Expl,FILE,control,TYPE,true,9,200,184,20,20,True,,,,,,ZERO_ONE,-1,0,,-1,,,END
+79,,TREE,Expl,FILE,control,TYPE,,9,160,208,328,176,True,,,,,,,-1,0,,-1,,,END
+80,,TREE,Expl,FILE,control,TYPE,引数テスト【あららりるれろ】　モンスター 【うさぎさんad】がいる時。,9,4,4,320,60,,,True,True,\n,,,-1,0,,-1,,,END
+81,,TREE,Expl,FILE,control,TYPE,条件,9,4,64,40,20,True,,,,,,,-1,0,,-1,,,END
+82,,TREE,Expl,FILE,control,TYPE,4,9,44,64,38,19,True,,,,,,,-1,0,,-1,,,END
+83,,TREE,Expl,FILE,control,TYPE,x,9,92,64,20,20,True,,,,,,,-1,0,,-1,,,END
+84,,TREE,Expl,FILE,control,TYPE,1003,9,112,64,50,19,True,,,,,,,-1,0,,-1,,,END
+85,,TREE,Expl,FILE,control,TYPE,y,9,172,64,20,20,True,,,,,,,-1,0,,-1,,,END
+86,,TREE,Expl,FILE,control,TYPE,,9,192,64,50,19,True,,,,,,,-1,0,,-1,,,END
+87,,TREE,Expl,FILE,control,TYPE,z,9,252,64,20,20,True,,,,,,,-1,0,,-1,,,END
+88,,TREE,Expl,FILE,control,TYPE,,9,272,64,50,19,True,,,,,,,-1,0,,-1,,,END
+89,,TREE,Expl,FILE,control,TYPE,優先度,9,4,92,64,20,True,,,,,,,-1,0,,-1,,,END
+90,,TREE,Expl,FILE,control,TYPE,2,9,68,92,50,19,True,,,,,,,-1,0,,-1,,,END
+91,,TREE,Expl,FILE,control,TYPE,使用確率,9,128,92,80,20,True,,,,,,,-1,0,,-1,,,END
+92,,TREE,Expl,FILE,control,TYPE,3,9,208,92,50,19,True,,,,,,,-1,0,,-1,,,END
+93,,TREE,Expl,FILE,control,TYPE,性格,9,4,120,36,40,True,,,,,,,-1,0,,-1,,,END
+94,,TREE,Expl,FILE,control,TYPE,ＨＰが一番高い者を狙う,9,40,120,160,40,,,True,True,\n,,,-1,0,,-1,,,END
+95,,TREE,Expl,FILE,control,TYPE,3,9,200,120,38,19,True,,,,,,,-1,0,,-1,,,END
+96,,TREE,Expl,FILE,control,TYPE,探,9,240,120,20,20,True,,,,,,,-1,0,,-1,,,END
+97,,TREE,Expl,FILE,control,TYPE,a,9,200,140,20,20,True,,,,,,,-1,0,,-1,,,END
+98,,TREE,Expl,FILE,control,TYPE,5,9,220,140,38,20,True,,,,,,,-1,0,,-1,,,END
+99,,TREE,Expl,FILE,control,TYPE,標本1,9,0,0,650,590,True,True,,,,,,-1,2,,-1,,,END
+100,,TREE,Expl,FILE,control,TYPE,フォントサイズ 1pt 枠高10px [www888霧霧霧],9,0,0,640,10,True,,,,,,,-1,0,LightCoral,-1,,,END
+101,,TREE,Expl,FILE,control,TYPE,フォントサイズ 2pt 枠高10px [www888霧霧霧],9,0,10,640,10,True,,,,,,,-1,0,White,-1,,,END
+102,,TREE,Expl,FILE,control,TYPE,フォントサイズ 3pt 枠高10px [www888霧霧霧],9,0,20,640,10,True,,,,,,,-1,0,LightCoral,-1,,,END
+103,,TREE,Expl,FILE,control,TYPE,フォントサイズ 4pt 枠高10px [www888霧霧霧],9,0,30,640,10,True,,,,,,,-1,0,White,-1,,,END
+104,,TREE,Expl,FILE,control,TYPE,フォントサイズ 5pt 枠高10px [www888霧霧霧],9,0,40,640,10,True,,,,,,,-1,0,LightCoral,-1,,,END
+105,,TREE,Expl,FILE,control,TYPE,フォントサイズ 6pt 枠高10px [www888霧霧霧],9,0,50,640,10,True,,,,,,,-1,0,White,-1,,,END
+106,,TREE,Expl,FILE,control,TYPE,フォントサイズ 7pt 枠高15px [www888霧霧霧],9,0,60,640,15,True,,,,,,,-1,0,LightCoral,-1,,,END
+107,,TREE,Expl,FILE,control,TYPE,フォントサイズ 8pt 枠高15px [www888霧霧霧],9,0,75,640,15,True,,,,,,,-1,0,White,-1,,,END
+108,,TREE,Expl,FILE,control,TYPE,フォントサイズ 9pt 枠高15px [www888霧霧霧],9,0,90,640,15,True,,,,,,,-1,0,LightCoral,-1,,,END
+109,,TREE,Expl,FILE,control,TYPE,フォントサイズ 10pt 枠高20px [www888霧霧霧],9,0,105,640,20,True,,,,,,,-1,0,White,-1,,,END
+110,,TREE,Expl,FILE,control,TYPE,フォントサイズ 11pt 枠高20px [www888霧霧霧],9,0,125,640,20,True,,,,,,,-1,0,LightCoral,-1,,,END
+111,,TREE,Expl,FILE,control,TYPE,フォントサイズ 12pt 枠高20px [www888霧霧霧],9,0,145,640,20,True,,,,,,,-1,0,White,-1,,,END
+112,,TREE,Expl,FILE,control,TYPE,フォントサイズ 13pt 枠高25px [www888霧霧霧],9,0,165,640,25,True,,,,,,,-1,0,LightCoral,-1,,,END
+113,,TREE,Expl,FILE,control,TYPE,フォントサイズ 14pt 枠高25px [www888霧霧霧],9,0,190,640,25,True,,,,,,,-1,0,White,-1,,,END
+114,,TREE,Expl,FILE,control,TYPE,フォントサイズ 15pt 枠高25px [www888霧霧霧],9,0,215,640,25,True,,,,,,,-1,0,LightCoral,-1,,,END
+115,,TREE,Expl,FILE,control,TYPE,フォントサイズ 16pt 枠高30px [www888霧霧霧],9,0,240,640,30,True,,,,,,,-1,0,White,-1,,,END
+116,,TREE,Expl,FILE,control,TYPE,フォントサイズ 17pt 枠高30px [www888霧霧霧],9,0,270,640,30,True,,,,,,,-1,0,LightCoral,-1,,,END
+117,,TREE,Expl,FILE,control,TYPE,フォントサイズ 18pt 枠高30px [www888霧霧霧],9,0,300,640,30,True,,,,,,,-1,0,White,-1,,,END
+118,,TREE,Expl,FILE,control,TYPE,フォントサイズ 19pt 枠高30px [www888霧霧霧],9,0,330,640,30,True,,,,,,,-1,0,LightCoral,-1,,,END
+119,,TREE,Expl,FILE,control,TYPE,フォントサイズ 20pt 枠高40px [www888霧霧霧],9,0,360,640,30,True,,,,,,,-1,0,White,-1,,,END
+120,,TREE,Expl,FILE,control,TYPE,フォントサイズ 21pt 枠高40px [www888霧霧霧],9,0,390,640,40,True,,,,,,,-1,0,LightCoral,-1,,,END
+121,,TREE,Expl,FILE,control,TYPE,フォントサイズ 22pt 枠高40px [www888霧霧霧],9,0,430,640,40,True,,,,,,,-1,0,White,-1,,,END
+122,,TREE,Expl,FILE,control,TYPE,フォントサイズ 23pt 枠高40px [www888霧霧霧],9,0,470,640,40,True,,,,,,,-1,0,LightCoral,-1,,,END
+123,,TREE,Expl,FILE,control,TYPE,フォントサイズ 24pt 枠高40px [www888霧霧霧],9,0,510,640,40,True,,,,,,,-1,0,White,-1,,,END
+124,,TREE,Expl,FILE,control,TYPE,標本2,9,0,0,650,590,True,True,,,,,,-1,3,,-1,,,END
+125,,TREE,Expl,FILE,control,TYPE,フォントサイズ 4pt 枠高14px [www888霧霧霧],9,0,0,640,14,True,,,,,,,-1,0,LightCyan,-1,,,END
+126,,TREE,Expl,FILE,control,TYPE,フォントサイズ 5pt 枠高15px [www888霧霧霧],9,0,14,640,15,True,,,,,,,-1,0,LightCoral,-1,,,END
+127,,TREE,Expl,FILE,control,TYPE,フォントサイズ 6pt 枠高16px [www888霧霧霧],9,0,29,640,16,True,,,,,,,-1,0,LightCyan,-1,,,END
+128,,TREE,Expl,FILE,control,TYPE,フォントサイズ 7pt 枠高17px [www888霧霧霧],9,0,45,640,17,True,,,,,,,-1,0,LightCoral,-1,,,END
+129,,TREE,Expl,FILE,control,TYPE,フォントサイズ 8pt 枠高19px [www888霧霧霧],9,0,62,640,19,True,,,,,,,-1,0,LightCyan,-1,,,END
+130,,TREE,Expl,FILE,control,TYPE,フォントサイズ 9pt 枠高20px [www888霧霧霧],9,0,81,640,20,True,,,,,,,-1,0,LightCoral,-1,,,END
+131,,TREE,Expl,FILE,control,TYPE,フォントサイズ 10pt 枠高22px [www888霧霧霧],9,0,101,640,22,True,,,,,,,-1,0,LightCyan,-1,,,END
+132,,TREE,Expl,FILE,control,TYPE,フォントサイズ 11pt 枠高23px [www888霧霧霧],9,0,123,640,23,True,,,,,,,-1,0,LightCoral,-1,,,END
+133,,TREE,Expl,FILE,control,TYPE,フォントサイズ 12pt 枠高24px [www888霧霧霧],9,0,146,640,24,True,,,,,,,-1,0,LightCyan,-1,,,END
+134,,TREE,Expl,FILE,control,TYPE,フォントサイズ 13pt 枠高26px [www888霧霧霧],9,0,170,640,26,True,,,,,,,-1,0,LightCoral,-1,,,END
+135,,TREE,Expl,FILE,control,TYPE,フォントサイズ 14pt 枠高27px [www888霧霧霧],9,0,196,640,27,True,,,,,,,-1,0,LightCyan,-1,,,END
+136,,TREE,Expl,FILE,control,TYPE,フォントサイズ 15pt 枠高28px [www888霧霧霧],9,0,223,640,28,True,,,,,,,-1,0,LightCoral,-1,,,END
+137,,TREE,Expl,FILE,control,TYPE,フォントサイズ 16pt 枠高30px [www888霧霧霧],9,0,251,640,30,True,,,,,,,-1,0,LightCyan,-1,,,END
+138,,TREE,Expl,FILE,control,TYPE,フォントサイズ 17pt 枠高30px [www888霧霧霧],9,0,281,640,30,True,,,,,,,-1,0,LightCoral,-1,,,END
+139,,TREE,Expl,FILE,control,TYPE,フォントサイズ 18pt 枠高32px [www888霧霧霧],9,0,311,640,32,True,,,,,,,-1,0,LightCyan,-1,,,END
+140,,TREE,Expl,FILE,control,TYPE,フォントサイズ 19pt 枠高34px [www888霧霧霧],9,0,343,640,34,True,,,,,,,-1,0,LightCoral,-1,,,END
+141,,TREE,Expl,FILE,control,TYPE,フォントサイズ 20pt 枠高35px [www888霧霧霧],9,0,377,640,35,True,,,,,,,-1,0,LightCyan,-1,,,END
+142,,TREE,Expl,FILE,control,TYPE,フォントサイズ 21pt 枠高36px [www888霧霧霧],9,0,412,640,36,True,,,,,,,-1,0,LightCoral,-1,,,END
+143,,TREE,Expl,FILE,control,TYPE,フォントサイズ 22pt 枠高38px [www888霧霧霧],9,0,448,640,38,True,,,,,,,-1,0,LightCyan,-1,,,END
+144,,TREE,Expl,FILE,control,TYPE,フォントサイズ 23pt 枠高39px [www888霧霧霧],9,0,486,640,39,True,,,,,,,-1,0,LightCoral,-1,,,END
+145,,TREE,Expl,FILE,control,TYPE,フォントサイズ 24pt 枠高40px [www888霧霧霧],9,0,525,640,40,True,,,,,,,-1,0,LightCyan,-1,,,END

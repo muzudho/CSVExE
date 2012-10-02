@@ -1,0 +1,10 @@
+NO,ID,EXPL,NAME_FORM,NAME,TYPE_DATA,FOLDER,FILE,SET_VAR_PATH,ROW_COL_REV,ALL_INT_FIELDS,DATE_BACKUP,COMMA_ENDING,END
+int,int,string,string,string,string,string,string,string,bool,bool,bool,bool,END
+-1,識別子は使いません,解説,画面１つに付けられたレイアウト名。レイアウトを適用するときは、テーブル名ではなく、このレイアウト名で呼ばれる。,CSVファイル１つに対応するテーブル名。,種類,（ファイルパス）変数名を書く。フォルダーへのパスが指定されているファイルパス変数の名前。（書かなければ .exe のあるフォルダー）,（ファイルパス）FOLDER列値からの相対ファイルパス（か絶対パス）,ファイルパスを、指定の変数にセットします。,（テーブル）行と列が逆向きならTRUE。空欄ならFALSE。,（テーブル）型定義のレコードがなく、全部int型ならTRUE、空欄ならFALSE。,（テーブル）日初めバックアップを行うならTRUE、空欄ならFALSE。,"（テーブル）行の末尾を「,」で終えるならTRUE、空欄ならFALSE。",END
+0,,レイアウト,Ufo:メイン;,Utfo:メイン;,T:TableForm;,Sp:Forms;,Ufo_メイン.csv,,,,,,END
+1,,レイアウト,Ufo:BEAR;,Utfo:BEAR;,T:TableForm;,Sp:Forms;,Ufo_耐性.csv,,,,,,END
+2,,レイアウト,Ufo:アイテム;,Utfo:アイテム;,T:TableForm;,Sp:Forms;,Ufo_アイ.csv,,,,,,END
+3,,レイアウト,Ufo:性格;,Utfo:性格;,T:TableForm;,Sp:Forms;,Ufo_性格.csv,,,,,,END
+4,,レイアウト,Ufo:WEAPON;,Utfo:WEAPON;,T:TableForm;,Sp:Forms;,Ufo_武器.csv,,,,,,END
+5,,レイアウト,Ufo:SK;,Utfo:SK;,T:TableForm;,Sp:Forms;,Ufo_スキ.csv,,,,,,END
+EOF,,,,,,,,,,,,,

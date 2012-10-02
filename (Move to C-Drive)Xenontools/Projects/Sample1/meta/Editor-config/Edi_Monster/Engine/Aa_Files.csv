@@ -1,0 +1,21 @@
+NO,ID,EXPL,NAME,TYPE_DATA,FOLDER,FILE,SET_VAR_PATH,ROW_COL_REV,ALL_INT_FIELDS,DATE_BACKUP,COMMA_ENDING,USE,END
+int,int,string,string,string,string,string,string,bool,bool,bool,bool,string,END
+-1,識別子は使いません,解説,CSVファイル１つに対応するテーブル名。,データの種類,（ファイルパス）変数名を書く。フォルダーへのパスが指定されているファイルパス変数の名前。（書かなければ .exe のあるフォルダー）,（ファイルパス）FOLDER列値からの相対ファイルパス（か絶対パス）,（ファイルパス）ファイルパスを、指定の変数にセットします。,（テーブル）行と列が逆向きならTRUE。空欄ならFALSE。,（テーブル）型定義のレコードがなく、全部int型ならTRUE、空欄ならFALSE。,（テーブル）日初めバックアップを行うならTRUE、空欄ならFALSE。,"（テーブル）行の末尾を「,」で終えるならTRUE、空欄ならFALSE。",（テーブル）用途。／「」指定なし。／「WriteOnly」データの読取を行わない。ログ出力先を登録しているだけなど。,END
+0,,フォーム一覧,St:Aa_Forms;,T:TablesForm;,Sp:Forms;,Aa_Forms.csv,,,,,,,END
+1,,スタイルシート・テーブル,St:Stylesheet;,T:TableStylesheet;,Sp:Engine;,Mde_Stylesheet.csv,,,,,,,END
+2,,エラーメッセージ・テーブル,Ut:Errormessages;,T:TableErrermessages;,Up:CommonProjects;,Mde_Errormessages.csv,,,,,,,END
+3,,,Ut:敵作戦条件;,T:TableData;,Sp:Engine;,Md_敵作戦条件.csv,,,,,,,END
+4,,,Ut:敵作戦性格;,T:TableData;,Sp:Engine;,Md_敵作戦性格.csv,,,,,,,END
+5,,,Ut:種族;,T:TableData;,Sp:Engine;,Md_種族.csv,,,,,,,END
+6,,,Ut:スキルリストID;,T:TableData;,Sp:Engine;,Md_スキルリストID.csv,,,,,,,END
+7,,,Ut:敵;,T:TableData;,Up:Contents;,元表_敵.csv,,,,TRUE,,,END
+8,,敵ルーチン,Ut:敵作戦;,T:TableData;,Up:Contents;,元表_敵作戦.csv,,TRUE,TRUE,TRUE,TRUE,,END
+9,,,Ut:耐性;,T:TableData;,Up:Contents;,元表_耐性.csv,,,,,,,END
+10,,,Ut:アイテム;,T:TableData;,Up:Contents;,元表_アイテム.csv,,,,,,,END
+11,,コンディション属性,Ut:状態異常;,T:TableData;,Up:Contents;,元表_状態異常.csv,,,,,,,END
+12,,パスを登録したいだけ。,Ut:敵ゲームデータ;,T:TableData;,Up:Project;,data\database\monster.csv,,,,,,,END
+13,,パスを登録したいだけ。,Ut:敵作戦ゲームデータ;,T:TableData;,Up:Project;,data\database\monster_routine.csv,,,,,,,END
+14,,,Ux:Validators001;,T:CodeValidators;,Sp:Engine;,Cmn_Validators001.xml,,,,,,,END
+15,,,Ux:Functions001;,T:CodeFunctions;,Sp:Engine;,Cmn_Functions001.xml,,,,,,,END
+16,,,Ux:Togethers001;,T:CodeTogethers;,Sp:Engine;,Cmn_Togethers001.xml,,,,,,,END
+EOF,,,,,,,,,,,,,
