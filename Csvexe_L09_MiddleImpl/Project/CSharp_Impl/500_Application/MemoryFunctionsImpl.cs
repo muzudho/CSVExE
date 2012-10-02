@@ -23,17 +23,25 @@ namespace Xenon.MiddleImpl
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryFunctionsImpl()
+        public MemoryFunctionsImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.dictionary_Item = new Dictionary<string, Expression_Node_Function>();
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear()
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
-            this.dictionary_Item.Clear();
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            if (null == this.dictionary_Item)
+            {
+                this.dictionary_Item = new Dictionary<string, Expression_Node_Function>();
+            }
+            else
+            {
+                this.dictionary_Item.Clear();
+            }
         }
 
         //────────────────────────────────────────
@@ -45,7 +53,7 @@ namespace Xenon.MiddleImpl
         #region アクション
         //────────────────────────────────────────
 
-        public void ForEach_Children(DLGT_E_DefFnc_Children dlgt1)
+        public void ForEach_Children(DELEGATE_E_DefFnc_Children dlgt1)
         {
             bool bBreak = false;
             bool bRemove = false;
@@ -182,8 +190,7 @@ namespace Xenon.MiddleImpl
         /// 『ユーザー定義関数設定ファイル(Fnc)』を読み取ります。
         /// </summary>
         public void LoadFile(
-            Expression_Node_Filepath ec_Fpath_Fnc,
-            MemoryApplication moApplication,
+            Expression_Node_Filepath expr_Fpath_Fnc,
             Log_Reports log_Reports
             )
         {
@@ -198,10 +205,10 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole(" ユーザー定義関数設定ファイルの読み取り。");
             }
 
-            Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, ec_Fpath_Fnc.Cur_Configurationtree);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
-            Expression_Node_String ec_FuncConfig = new Expression_Node_StringImpl(null, parent_Cf);
+            Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, expr_Fpath_Fnc.Cur_Configurationtree);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
+            Expression_Node_String expr_FuncConfig = new Expression_Node_StringImpl(null, parent_Cf);
 
-            string sFpatha = ec_Fpath_Fnc.Execute_OnExpressionString(
+            string sFpatha = expr_Fpath_Fnc.Execute_OnExpressionString(
                 Request_SelectingImpl.Unconstraint, log_Reports);
 
             if (!log_Reports.Successful)
@@ -281,7 +288,7 @@ namespace Xenon.MiddleImpl
                             xToCf.XToConfigurationtree(
                                 x_Cur,
                                 parent_Cf,
-                                moApplication,
+                                this.Owner_MemoryApplication,
                                 log_Reports
                                 );
 
@@ -293,14 +300,14 @@ namespace Xenon.MiddleImpl
                             });
 
                             // SToE
-                            Expression_Node_FunctionImpl ec_CommonFunction = new Expression_Node_FunctionImpl(ec_FuncConfig, s_Cur, new List<string>());
+                            Expression_Node_FunctionImpl ec_CommonFunction = new Expression_Node_FunctionImpl(expr_FuncConfig, s_Cur, new List<string>());
 
                             Log_TextIndented_ConfigurationtreeToExpressionImpl pg_ParsingLog = new Log_TextIndented_ConfigurationtreeToExpressionImpl();
                             pg_ParsingLog.BEnabled = false;
                             ConfigurationtreeToExpression_AbstractImpl.ParseChild_InAnotherLibrary(
                                 s_Cur,
                                 ec_CommonFunction,
-                                moApplication,
+                                this.Owner_MemoryApplication,
                                 pg_ParsingLog,
                                 log_Reports
                                 );
@@ -309,7 +316,7 @@ namespace Xenon.MiddleImpl
                                 log_Method.WriteInfo_ToConsole(" d_ParsingLog=" + Environment.NewLine + pg_ParsingLog.ToString());
                             }
 
-                            moApplication.MemoryFunctions.AddFunction(sNameValue, ec_CommonFunction, log_Reports);
+                            this.Owner_MemoryApplication.MemoryFunctions.AddFunction(sNameValue, ec_CommonFunction, log_Reports);
                         }
                         else
                         {
@@ -416,6 +423,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         private Dictionary<string, Expression_Node_Function> dictionary_Item;

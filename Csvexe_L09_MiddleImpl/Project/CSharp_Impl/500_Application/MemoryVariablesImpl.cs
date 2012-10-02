@@ -23,32 +23,42 @@ namespace Xenon.MiddleImpl
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryVariablesImpl()
+        public MemoryVariablesImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.dictionaryExpression_Item = new Dictionary<string, Expression_Node_String>();
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear(Log_Reports log_Reports)
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear",log_Reports);
+            Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear",log_Reports_ThisMethod);
             //
 
-            if (log_Method.CanDebug(1))
-            {
-                log_Method.WriteDebug_ToConsole("次の変数を消します。");
-                log_Method.WriteDebug_ToConsole("────────────────────");
-                foreach (KeyValuePair<string,Expression_Node_String> kvp in this.DictionaryExpression_Item)
-                {
-                    log_Method.WriteDebug_ToConsole("　　" + kvp.Key + "=" + kvp.Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                }
-                log_Method.WriteDebug_ToConsole("────────────────────");
-            }
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
 
-            this.DictionaryExpression_Item.Clear();
+            if (null == this.DictionaryExpression_Item)
+            {
+                this.dictionaryExpression_Item = new Dictionary<string, Expression_Node_String>();
+            }
+            else
+            {
+                if (log_Method.CanDebug(1))
+                {
+                    log_Method.WriteDebug_ToConsole("次の変数を消します。");
+                    log_Method.WriteDebug_ToConsole("────────────────────");
+                    foreach (KeyValuePair<string, Expression_Node_String> kvp in this.DictionaryExpression_Item)
+                    {
+                        log_Method.WriteDebug_ToConsole("　　" + kvp.Key + "=" + kvp.Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod));
+                    }
+                    log_Method.WriteDebug_ToConsole("────────────────────");
+                }
+
+                this.DictionaryExpression_Item.Clear();
+            }
 
             this.parent_Variablesconfig_Configurationtree = null;
 
@@ -56,7 +66,8 @@ namespace Xenon.MiddleImpl
             goto gt_EndMethod;
         //
         gt_EndMethod:
-            log_Method.EndMethod(log_Reports);
+            log_Method.EndMethod(log_Reports_ThisMethod);
+            log_Reports_ThisMethod.EndLogging(log_Method);
         }
 
         //────────────────────────────────────────
@@ -70,7 +81,6 @@ namespace Xenon.MiddleImpl
         public void TryGetTable_Variables(
             out XenonTable out_O_Table_Variables,
             String sFpath_Startup,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -86,7 +96,7 @@ namespace Xenon.MiddleImpl
             // 「変数設定ファイル」のファイルパス。
             //
             log_Reports.Log_Callstack.Push(log_Method, "①");
-            Expression_Node_Filepath ec_Fpath_Variables = moApplication.MemoryVariables.GetExpressionfilepathByVariablename(
+            Expression_Node_Filepath ec_Fpath_Variables = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
                 new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Configurationtree),
                 false,//必須ではありません。未該当であればヌルを返します。
                 log_Reports
@@ -136,7 +146,6 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public void LoadVariables(
             String sFpath_Startup,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -153,7 +162,6 @@ namespace Xenon.MiddleImpl
             this.TryGetTable_Variables(
                 out o_Table_Variables,
                 sFpath_Startup,
-                moApplication,
                 log_Reports
                 );
 
@@ -166,9 +174,8 @@ namespace Xenon.MiddleImpl
             if (log_Reports.Successful)
             {
 
-                moApplication.MemoryVariables.Load(
+                this.Owner_MemoryApplication.MemoryVariables.Load(
                     o_Table_Variables,
-                    moApplication,
                     log_Reports
                     );
             }
@@ -277,7 +284,6 @@ namespace Xenon.MiddleImpl
         /// <param oVariableName="log_Reports"></param>
         public void Load(
             XenonTable o_Table_Var,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -1193,7 +1199,7 @@ namespace Xenon.MiddleImpl
         /// ファイルパス一覧。
         /// </summary>
         /// <param name="dlgt_EachEFilePath"></param>
-        public void EachVariable(DLGT_EachVariable dlgt_EachVariable)
+        public void EachVariable(DELEGATE_EachVariable dlgt_EachVariable)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports d_Logging_Dammy = new Log_ReportsImpl(log_Method);
@@ -1225,6 +1231,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         /// <summary>

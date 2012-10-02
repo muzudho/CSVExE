@@ -32,7 +32,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate void DLGT_Clear_OnDropInit(
+        public delegate void DELEGATE_Clear_OnDropInit(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -47,7 +47,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate void DLGT_Catch_OnItemDropped(
+        public delegate void DELEGATE_Catch_OnItemDropped(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -63,7 +63,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate void DLGT_Report_OnDropFinished(
+        public delegate void DELEGATE_Report_OnDropFinished(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -80,7 +80,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate void DLGT_Clear_OnDragEnterInit(
+        public delegate void DELEGATE_Clear_OnDragEnterInit(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -95,7 +95,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public delegate void DLGT_Report_OnDragEnterFinished(
+        public delegate void DELEGATE_Report_OnDragEnterFinished(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -110,22 +110,22 @@ namespace Xenon.Operating
         /// <summary>
         /// ターゲットコントロールにマウスカーソルが入ってきたとき。受け取り態勢を整えます。処理開始前。
         /// </summary>
-        protected OperationOfDroppedFileImpl.DLGT_Clear_OnDragEnterInit dlgt_Clear_OnDragEnterInit;
+        protected OperationOfDroppedFileImpl.DELEGATE_Clear_OnDragEnterInit dlgt_Clear_OnDragEnterInit;
 
         /// <summary>
         /// ターゲットコントロールに画像をドロップしたとき。処理開始前。
         /// </summary>
-        protected OperationOfDroppedFileImpl.DLGT_Clear_OnDropInit dlgt_Clear_OnDropInit;
+        protected OperationOfDroppedFileImpl.DELEGATE_Clear_OnDropInit dlgt_Clear_OnDropInit;
 
         /// <summary>
         /// ターゲットコントロールに画像をドロップした時のメソッド。
         /// </summary>
-        protected OperationOfDroppedFileImpl.DLGT_Catch_OnItemDropped dlgt_Catch_OnItemDropped;
+        protected OperationOfDroppedFileImpl.DELEGATE_Catch_OnItemDropped dlgt_Catch_OnItemDropped;
 
         /// <summary>
         /// ターゲットコントロールに画像をドロップしたとき。全ての画像終了時。
         /// </summary>
-        protected OperationOfDroppedFileImpl.DLGT_Report_OnDropFinished dlgt_Report_OnDropFinished;
+        protected OperationOfDroppedFileImpl.DELEGATE_Report_OnDropFinished dlgt_Report_OnDropFinished;
 
         /// <summary>
         /// ターゲットコントロールにマウスカーソルが入ってきたとき。受け取り態勢を整えます。処理終了時。
@@ -133,7 +133,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        protected OperationOfDroppedFileImpl.DLGT_Report_OnDragEnterFinished dlgt_Report_OnDragEnterFinished;
+        protected OperationOfDroppedFileImpl.DELEGATE_Report_OnDragEnterFinished dlgt_Report_OnDragEnterFinished;
 
         //────────────────────────────────────────
         #endregion
@@ -321,7 +321,7 @@ namespace Xenon.Operating
         /// <summary>
         /// ターゲットコントロールにマウスカーソルが入ってきたとき。受け取り態勢を整えます。処理開始前。
         /// </summary>
-        public OperationOfDroppedFileImpl.DLGT_Clear_OnDragEnterInit Dlgt_Clear_OnDragEnterInit
+        public OperationOfDroppedFileImpl.DELEGATE_Clear_OnDragEnterInit Dlgt_Clear_OnDragEnterInit
         {
             get
             {
@@ -338,7 +338,7 @@ namespace Xenon.Operating
         /// <summary>
         /// ターゲットコントロールにマウスカーソルが入ってきたとき。受け取り態勢を整えます。処理終了時。
         /// </summary>
-        public OperationOfDroppedFileImpl.DLGT_Report_OnDragEnterFinished Dlgt_Report_OnDragEnterFinished
+        public OperationOfDroppedFileImpl.DELEGATE_Report_OnDragEnterFinished Dlgt_Report_OnDragEnterFinished
         {
             get
             {
@@ -355,7 +355,7 @@ namespace Xenon.Operating
         /// <summary>
         /// ターゲットコントロールにアイテムをドロップしたとき。処理開始前。
         /// </summary>
-        public OperationOfDroppedFileImpl.DLGT_Clear_OnDropInit Dlgt_Clear_OnDropInit
+        public OperationOfDroppedFileImpl.DELEGATE_Clear_OnDropInit Dlgt_Clear_OnDropInit
         {
             get
             {
@@ -372,7 +372,7 @@ namespace Xenon.Operating
         /// <summary>
         /// ターゲットコントロールにアイテムをドロップした時のメソッド。
         /// </summary>
-        public OperationOfDroppedFileImpl.DLGT_Catch_OnItemDropped Dlgt_Catch_OnItemDropped
+        public OperationOfDroppedFileImpl.DELEGATE_Catch_OnItemDropped Dlgt_Catch_OnItemDropped
         {
             get
             {
@@ -389,7 +389,7 @@ namespace Xenon.Operating
         /// <summary>
         /// ターゲットコントロールにアイテムをドロップしたとき。全ての画像終了時。
         /// </summary>
-        public OperationOfDroppedFileImpl.DLGT_Report_OnDropFinished Dlgt_Report_OnDropFinished
+        public OperationOfDroppedFileImpl.DELEGATE_Report_OnDropFinished Dlgt_Report_OnDropFinished
         {
             get
             {

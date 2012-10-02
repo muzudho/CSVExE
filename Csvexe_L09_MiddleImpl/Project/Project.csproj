@@ -90,7 +90,7 @@
     <Compile Include="CSharp_Impl\120_Toolconfig_Input\Dictionary_Fsetvar_GivechapterandverseImpl.cs" />
     <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemoryAaeditorxml_EditorImpl.cs" />
     <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemoryAatoolxml_EditorImpl.cs" />
-    <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemoryAaeditorxmlImpl.cs" />
+    <Compile Include="CSharp_Impl\500_Application\MemoryAaeditorxmlImpl.cs" />
     <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\MemorySetverContainerImpl.cs" />
     <Compile Include="CSharp_Impl\130_Toolconfig_EditorConfig\Dictionary_AatoolxmlEditorImpl.cs" />
     <Compile Include="CSharp_Impl\200_GcavToExpr\GivechapterandverseToExpression_EventImpl.cs" />

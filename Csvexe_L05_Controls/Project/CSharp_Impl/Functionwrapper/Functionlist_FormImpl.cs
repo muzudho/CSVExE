@@ -144,45 +144,11 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Gfea)
-                    //{
-                        expr_Func.Execute_OnDnD(sender, e);
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnDnD(sender, e);
                 }
             }
 
-
-
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports_ThisMethod.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー375！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_DnDを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports_ThisMethod.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports_ThisMethod);
@@ -274,52 +240,20 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Dea_P_S_S_Wr)
-                    //{
-                        expr_Func.Execute_OnImgDrop(
-                            sender,
-                            e,
-                            parentLocation,
-                            debugMessage1,
-                            debugStatusResultMessage,
-                            log_Reports
-                            );
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnImgDrop(
+                        sender,
+                        e,
+                        parentLocation,
+                        debugMessage1,
+                        debugStatusResultMessage,
+                        log_Reports
+                        );
                 }
             }
 
 
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー376！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_ImgDropを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports);
@@ -343,16 +277,6 @@ namespace Xenon.Controls
             Log_Reports log_Reports
             )
         {
-            //this.Set_OnImgDropB(
-            //    this.Function,
-            //    sender,
-            //    e,
-            //    parentLocation,
-            //    sFpatha_Image,
-            //    droppedBitmap,
-            //    log_Reports
-            //);
-
             Log_Method pg_Method = new Log_MethodImpl();
             pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_ImgDrop",log_Reports);
 
@@ -407,53 +331,18 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    //
-                    // 登録アクション作成・実行ループ。
-                    //
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Dea_P_S_B_Wr)
-                    //{
-                        expr_Func.Execute_OnImgDropB(
-                            sender,
-                            e,
-                            parentLocation,
-                            sFpatha_Image,
-                            droppedBitmap,
-                            log_Reports
-                            );
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnImgDropB(
+                        sender,
+                        e,
+                        parentLocation,
+                        sFpatha_Image,
+                        droppedBitmap,
+                        log_Reports
+                        );
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー377！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_ImgDropBを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports);
@@ -472,13 +361,6 @@ namespace Xenon.Controls
             Log_Reports log_Reports
             )
         {
-            //this.Set_OnLstBox(
-            //    this.Function,
-            //    sender,
-            //    itemValue,
-            //    log_Reports
-            //);
-
             Log_Method pg_Method = new Log_MethodImpl();
             pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_LstBox",log_Reports);
 
@@ -543,43 +425,11 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Wr)
-                    //{
-                        sReturnValue = expr_Func.Execute_OnLstBox(sender, itemValue, log_Reports);
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    sReturnValue = expr_Func.Execute_OnLstBox(sender, itemValue, log_Reports);
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー397！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_LstBoxを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports);
@@ -654,43 +504,11 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Mea)
-                    //{
-                        expr_Func.Execute_OnMouse(sender, e);
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnMouse(sender, e);
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports_ThisMethod.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー398！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_Mouseを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports_ThisMethod.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports_ThisMethod);
@@ -783,46 +601,12 @@ namespace Xenon.Controls
                 // 登録されているアクションを実行。
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Ea)
-                    //{
-                        expr_Func.Execute_OnOEa(sender, e);
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnOEa(sender, e);
                 }
             }
 
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports_ThisMethod.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー399！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("関数リストのExecute_OnOEaで、[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式の関数を実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports_ThisMethod.EndCreateReport();
-
-        //        //throw new Exception(t.ToString());
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports_ThisMethod);
@@ -902,48 +686,16 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.Tp_B_Wr_Rhn)
-                    //{
-                        expr_Func.Execute_OnEditorSelected(
-                            sender,
-                            st_SelectedEditorElm,
-                            projectValid,
-                            log_Reports
-                            );
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnEditorSelected(
+                        sender,
+                        st_SelectedEditorElm,
+                        projectValid,
+                        log_Reports
+                        );
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー401！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_PrjSelectedを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports);
@@ -1023,43 +775,11 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Qcdea)
-                    //{
-                        expr_Func.Execute_OnQueryContinueDragEventArgs(sender, e);
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnQueryContinueDragEventArgs(sender, e);
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports_ThisMethod.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー402！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_QueryContinueDragEventArgsを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports_ThisMethod.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports_ThisMethod);
@@ -1136,48 +856,16 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Qcdea)
-                    //{
-                        expr_Func.Execute_OnWrRhn(
-                            sender,
-                            eventMonitor,
-                            sWrittenPlace_EventOrigin,
-                            log_Reports
-                            );
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnWrRhn(
+                        sender,
+                        eventMonitor,
+                        sWrittenPlace_EventOrigin,
+                        log_Reports
+                        );
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー403！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(err_Eh);
-        //        t.Append("]形式のアクションリストが、Perform_WrRhnを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports);

@@ -22,9 +22,25 @@ namespace Xenon.MiddleImpl
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryFormsImpl()
+        public MemoryFormsImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.dictionary_Item = new Dictionary<string, Usercontrol>();
+            this.Clear(owner_MemoryApplication);
+        }
+
+        /// <summary>
+        /// クリアー
+        /// </summary>
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        {
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            if (null == this.dictionary_Item)
+            {
+                this.dictionary_Item = new Dictionary<string, Usercontrol>();
+            }
+            else
+            {
+                this.dictionary_Item.Clear();
+            }
         }
 
         public void InitializeBeforeUse(
@@ -50,14 +66,6 @@ namespace Xenon.MiddleImpl
         }
 
         /// <summary>
-        /// クリアー
-        /// </summary>
-        public void Clear()
-        {
-            this.dictionary_Item.Clear();
-        }
-
-        /// <summary>
         /// フォーム上の、コントロールを除外していきます。
         /// メインウィンドウ自身は除外せず残します。
         /// 
@@ -67,7 +75,6 @@ namespace Xenon.MiddleImpl
         /// <param name="log_Reports"></param>
         public void ClearForms(
             Control.ControlCollection formControls,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -93,7 +100,7 @@ namespace Xenon.MiddleImpl
                 //
                 //
                 //
-                moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
+                this.Owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
                     if (log_Reports.Successful)
                     {
@@ -115,7 +122,7 @@ namespace Xenon.MiddleImpl
                 //
                 //
                 //
-                moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
+                this.Owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
                     if (log_Reports.Successful)
                     {
@@ -137,7 +144,7 @@ namespace Xenon.MiddleImpl
                 //
                 //
                 //
-                moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
+                this.Owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
                     if (log_Reports.Successful)
                     {
@@ -159,7 +166,7 @@ namespace Xenon.MiddleImpl
                 //
                 //
                 //
-                moApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
+                this.Owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol uct, ref bool bRemove, ref bool bBreak)
                 {
                     if (log_Reports.Successful)
                     {
@@ -177,7 +184,7 @@ namespace Xenon.MiddleImpl
                 //
                 // ＣＳＶＥｘＥに登録されているコントロールの一覧を空にします。
                 //
-                this.Clear();
+                this.Clear(this.Owner_MemoryApplication);
                 //this.dic_Item.Add(NamesSc.S_MAINWND, (Usercontrol)mainwnd);
             }
 
@@ -203,7 +210,6 @@ namespace Xenon.MiddleImpl
         public void LoadFile(
             RecordUserformconfig fo_Record,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -293,7 +299,6 @@ namespace Xenon.MiddleImpl
                 cf_ControlConfig,
                 fo_Record,
                 ec_Fopath_Forms,
-                owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -342,7 +347,6 @@ namespace Xenon.MiddleImpl
         public void SetupUsercontrolconfigs(
             TableUserformconfig fo_Config,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -367,10 +371,9 @@ namespace Xenon.MiddleImpl
 
                     Expression_Node_Filepath e_Fpath_Usercontrol = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
-                    moApplication.MemoryForms.LoadFile(
+                    this.Owner_MemoryApplication.MemoryForms.LoadFile(
                         fo_Record,
                         ec_Fopath_Forms,
-                        moApplication,
                         log_Reports
                     );
                 }
@@ -400,7 +403,6 @@ namespace Xenon.MiddleImpl
         public void SetupFormAndLoadUsercontrolconfigs(
             List<XenonTable> listO_Table_Form,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication moApplication,
             Form form,
             Log_Reports log_Reports
             )
@@ -451,7 +453,6 @@ namespace Xenon.MiddleImpl
                 this.P1_XToMemory_Userformconfig(
                     fo_Config_ByTable,
                     o_Table_Form,
-                    moApplication,
                     log_Reports
                     );
             }
@@ -489,7 +490,6 @@ namespace Xenon.MiddleImpl
                 this.P1_XToMemory_Userformconfig(
                     fo_Config_ByGroup,
                     o_Table_Form,
-                    moApplication,
                     log_Reports
                     );
             }
@@ -502,13 +502,11 @@ namespace Xenon.MiddleImpl
                 this.P2_CreateForm(
                     fo_Config_ByGroup,
                     form,
-                    moApplication,
                     log_Reports
                     );
 
                 this.P3_ApplyStyleToUsercontrol(
                     fo_Config_ByGroup,
-                    moApplication,
                     log_Reports
                     );
 
@@ -522,10 +520,9 @@ namespace Xenon.MiddleImpl
                     //　　　　 『レイアウト設定ファイル』に記述されている、
                     //　　　　 FILE列 で示されたコンポーネント設定ファイルをもとに。
                     //
-                    moApplication.MemoryForms.SetupUsercontrolconfigs(
+                    this.Owner_MemoryApplication.MemoryForms.SetupUsercontrolconfigs(
                         fo_Config_ByGroup,
                         ec_Fopath_Forms,
-                        moApplication,
                         log_Reports
                         );
                 }
@@ -550,7 +547,6 @@ namespace Xenon.MiddleImpl
         public void P1_XToMemory_Userformconfig(
             TableUserformconfig fo_Config,
             XenonTable o_Table_Form,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -566,7 +562,7 @@ namespace Xenon.MiddleImpl
                 this.xToMemory_Form.LoadUserformconfigFile(
                     fo_Config,
                     o_Table_Form,
-                    moApplication,
+                    this.Owner_MemoryApplication,
                     log_Reports
                     );
 
@@ -594,7 +590,6 @@ namespace Xenon.MiddleImpl
         public void P2_CreateForm(
             TableUserformconfig fo_Config,
             Form form,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -613,7 +608,6 @@ namespace Xenon.MiddleImpl
                 this.CreateForm(
                     fo_Config,
                     form,
-                    moApplication,
                     log_Reports
                     );
             }
@@ -635,7 +629,6 @@ namespace Xenon.MiddleImpl
         /// <returns></returns>
         public void P3_ApplyStyleToUsercontrol(
             TableUserformconfig fo_Config,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -653,9 +646,9 @@ namespace Xenon.MiddleImpl
                 // 　　　　コントロール連想配列作成後。
                 // 　　　　（旧・データ・ソースと、データ・ターゲットを設定した後で）
 
-                moApplication.MemoryForms.UsercontrolStyleSetter.SetupStyle(
+                this.Owner_MemoryApplication.MemoryForms.UsercontrolStyleSetter.SetupStyle(
                     fo_Config,
-                    moApplication,
+                    this.Owner_MemoryApplication,
                     log_Reports
                     );
             }
@@ -678,7 +671,6 @@ namespace Xenon.MiddleImpl
         protected void CreateForm(
             TableUserformconfig fo_Config,
             Form form,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -754,7 +746,7 @@ namespace Xenon.MiddleImpl
                 Usercontrol uct = ucontrolCreator1.Create(
                     fo_Record,
                     true,
-                    moApplication,
+                    this.Owner_MemoryApplication,
                     log_Reports
                     );
 
@@ -782,7 +774,7 @@ namespace Xenon.MiddleImpl
                         // コントロール名の登録。
                         //
                         //
-                        moApplication.MemoryForms.PutUsercontrol(
+                        this.Owner_MemoryApplication.MemoryForms.PutUsercontrol(
                             ec_Str,
                             uct,
                             log_Reports
@@ -976,7 +968,6 @@ namespace Xenon.MiddleImpl
             Configurationtree_Node cf_FcConfig,
             RecordUserformconfig fo_Record,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -1037,7 +1028,7 @@ namespace Xenon.MiddleImpl
                 to2.Translate(
                     sList_ControlName,
                     cf_FcConfig,
-                    moApplication,
+                    this.Owner_MemoryApplication,
                     pg_ParsingLog,
                     log_Reports
                     );
@@ -1066,7 +1057,7 @@ namespace Xenon.MiddleImpl
                         log_Reports
                         );
 
-                    list_Usercontrol = moApplication.MemoryForms.GetUsercontrolsByName(
+                    list_Usercontrol = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                         ec_Str,
                         true,
                         log_Reports
@@ -1092,7 +1083,7 @@ namespace Xenon.MiddleImpl
                             sToE_Event.Configurationtree_Event = cf_Event;
                             Functionlist felist = uct.CreateFunctionlist(
                                 sToE_Event,
-                                moApplication,
+                                this.Owner_MemoryApplication,
                                 log_Reports
                                 );
                             sToE_Event.Owner_Functionlist = felist;
@@ -1114,7 +1105,7 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        public void ForEach_Children(DLGT_Usercontrol_Children dlgt1)
+        public void ForEach_Children(DELEGATE_Usercontrol_Children dlgt1)
         {
             bool bBreak = false;
             bool bRemove = false;
@@ -1456,7 +1447,6 @@ namespace Xenon.MiddleImpl
         public void RefreshDataByTogether(
             Configurationtree_Node cfTg_Together,
             Configurationtree_Node cfTg_Config_Hint,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -1879,6 +1869,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         /// <summary>

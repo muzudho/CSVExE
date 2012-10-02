@@ -149,7 +149,7 @@ namespace Xenon.Functions
                 //
                 //
                 {
-                    this.Owner_MemoryApplication.MemoryAatoolxml.P101_LoadAatoolxml(this.Owner_MemoryApplication, cf_ThisMethod, log_Reports);
+                    this.Owner_MemoryApplication.MemoryAatoolxml.P101_LoadAatoolxml( cf_ThisMethod, log_Reports);
                 }
 
 

@@ -18,7 +18,7 @@ namespace Xenon.Middle
     /// <param name="uct_Child"></param>
     /// <param name="bRemove"></param>
     /// <param name="bBreak"></param>
-    public delegate void DLGT_Usercontrol_Children(
+    public delegate void DELEGATE_Usercontrol_Children(
         string sKey, Usercontrol uct_Child, ref bool bRemove, ref bool bBreak);
 
     public interface MemoryForms
@@ -32,7 +32,7 @@ namespace Xenon.Middle
         /// <summary>
         /// コントロール集のディクショナリー。
         /// </summary>
-        void ForEach_Children(DLGT_Usercontrol_Children dlgt1);
+        void ForEach_Children(DELEGATE_Usercontrol_Children dlgt1);
 
         //────────────────────────────────────────
         #endregion
@@ -54,9 +54,9 @@ namespace Xenon.Middle
             );
 
         /// <summary>
-        /// クリアー
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear();
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
 
         /// <summary>
         /// フォーム上の、コントロールをクリアーしていきます。
@@ -65,7 +65,6 @@ namespace Xenon.Middle
         /// <param name="log_Reports"></param>
         void ClearForms(
             Control.ControlCollection formControls,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -83,7 +82,6 @@ namespace Xenon.Middle
         void LoadFile(
             RecordUserformconfig fo_Record,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -96,7 +94,6 @@ namespace Xenon.Middle
         void SetupUsercontrolconfigs(
             TableUserformconfig sl_Config,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -114,7 +111,6 @@ namespace Xenon.Middle
         void SetupFormAndLoadUsercontrolconfigs(
             List<XenonTable> listO_Table_Form,
             Expression_Node_Filepath ec_Fopath_Forms,
-            MemoryApplication memoryApplication,
             Form form,
             Log_Reports log_Reports
             );
@@ -122,20 +118,17 @@ namespace Xenon.Middle
         void P1_XToMemory_Userformconfig(
             TableUserformconfig fo_Config,
             XenonTable xenonTable_Form,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
         void P2_CreateForm(
             TableUserformconfig sl_Config,
             Form form,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
         void P3_ApplyStyleToUsercontrol(
             TableUserformconfig sl_Config,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -199,7 +192,6 @@ namespace Xenon.Middle
         void RefreshDataByTogether(
             Configurationtree_Node together_Gcav,
             Configurationtree_Node togetherConfig_Gcav,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 

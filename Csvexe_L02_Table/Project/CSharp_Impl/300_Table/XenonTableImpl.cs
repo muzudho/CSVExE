@@ -26,13 +26,13 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="e_Fpath_ConfigStack"></param>
-        public XenonTableImpl(string sName, Expression_Node_Filepath ec_Fpath_ConfigStack)
+        public XenonTableImpl(string name_Table, Expression_Node_Filepath ec_Fpath_ConfigStack)
             : base("ノード名未指定", ec_Fpath_ConfigStack.Cur_Configurationtree)
         {
             this.expression_Filepath_ConfigStack = ec_Fpath_ConfigStack;
 
             this.dataTable = new DataTable();
-            this.Name = sName;
+            this.name_Table = name_Table;
             this.xenonTableFormat = new XenonTableformatImpl();
             this.listO_FieldDefinition = new List<XenonFielddefinition>();
         }
@@ -1463,23 +1463,23 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private string sName;
+        private string name_Table;
 
         /// <summary>
         /// このテーブルの名前。なければ空文字列。
         /// </summary>
-        public string Name
+        public string Name_Table
         {
             get
             {
-                return sName;
+                return name_Table;
             }
             set
             {
-                sName = value;
+                name_Table = value;
 
                 // データテーブルに、テーブル名を上書きします。
-                this.DataTable.TableName = sName;
+                this.DataTable.TableName = name_Table;
             }
         }
 

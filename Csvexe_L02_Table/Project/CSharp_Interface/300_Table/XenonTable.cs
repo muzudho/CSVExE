@@ -195,7 +195,7 @@ namespace Xenon.Table
         /// <summary>
         /// テーブルの名前。
         /// </summary>
-        string Name
+        string Name_Table
         {
             get;
             set;
@@ -203,7 +203,8 @@ namespace Xenon.Table
 
         /// <summary>
         /// このテーブルの「テーブル_ユニット名」。なければ空文字列。使ってる？
-        /// (table unit)
+        /// （NAME_FORM）
+        /// (旧：table unit？)
         /// </summary>
         string Tableunit
         {

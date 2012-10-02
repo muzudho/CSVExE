@@ -364,7 +364,6 @@ namespace Xenon.Functions
             {
                 this.Owner_MemoryApplication.MemoryTogethers.RefreshDataByTogether(
                     cf_TgTogether,
-                    this.Owner_MemoryApplication,
                     log_Reports
                     );
             }
@@ -453,7 +452,6 @@ namespace Xenon.Functions
 
                             this.Owner_MemoryApplication.MemoryTogethers.RefreshDataByTogether(
                                 cf_TgTogether,
-                                this.Owner_MemoryApplication,
                                 log_Reports
                                 );
                         }

@@ -174,44 +174,68 @@ namespace Xenon.Table
         gt_Error_NotExistsFile:
             if(log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー234！", log_Method);
-
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("指定されたファイルはありませんでした。CSVファイルを読み込もうとしたとき。");
-                s.Newline();
-                s.Newline();
-
-                s.AppendI(1,"指定されたファイルパス=[");
-                s.Append(sFpatha_Csv);
-                s.Append("]");
-                s.Newline();
-
                 if ("" == request_ReadsTable.Expression_Filepath.Directory_Base)
                 {
-                    s.AppendI(1, "ベース・ディレクトリは指定されていません。");
+                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    r.SetTitle("Er:202;", log_Method);
+
+                    Log_TextIndented s = new Log_TextIndentedImpl();
+                    s.Append("指定されたファイルはありませんでした。CSVファイルを読み込もうとしたとき。");
                     s.Newline();
-                    s.AppendI(2,"もし相対パスが指定されていた場合、実行した.exeファイルからの相対パスとします。");
                     s.Newline();
+
+                    s.AppendI(1, "指定されたファイルパス=[");
+                    s.Append(sFpatha_Csv);
+                    s.Append("]");
                     s.Newline();
+
+                    {
+                        s.AppendI(1, "ベース・ディレクトリは指定されていません。");
+                        s.Newline();
+                        s.AppendI(2, "もし相対パスが指定されていた場合、実行した.exeファイルからの相対パスとします。");
+                        s.Newline();
+                        s.Newline();
+                    }
+
+                    s.Append("　ヒント：ファイルの有無、ファイル名、ファイル パスを確認してください。");
+                    s.Newline();
+
+                    // ヒント
+                    s.Append(r.Message_Configurationtree(request_ReadsTable.Expression_Filepath.Cur_Configurationtree));
+                    r.Message = s.ToString();
                 }
                 else
                 {
-                    s.AppendI(1, "指定されたベース・ディレクトリ=[");
-                    s.Append(request_ReadsTable.Expression_Filepath.Directory_Base);
+                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    r.SetTitle("▲エラー235！", log_Method);
+
+                    Log_TextIndented s = new Log_TextIndentedImpl();
+                    s.Append("指定されたファイルはありませんでした。CSVファイルを読み込もうとしたとき。");
+                    s.Newline();
+                    s.Newline();
+
+                    s.AppendI(1, "指定されたファイルパス=[");
+                    s.Append(sFpatha_Csv);
                     s.Append("]");
                     s.Newline();
+
+                    {
+                        s.AppendI(1, "指定されたベース・ディレクトリ=[");
+                        s.Append(request_ReadsTable.Expression_Filepath.Directory_Base);
+                        s.Append("]");
+                        s.Newline();
+                        s.Newline();
+                    }
+
+                    s.Append("　ヒント：ファイルの有無、ファイル名、ファイル パスを確認してください。");
                     s.Newline();
+
+                    // ヒント
+                    s.Append(r.Message_Configurationtree(request_ReadsTable.Expression_Filepath.Cur_Configurationtree));
+                    r.Message = s.ToString();
                 }
-                
 
-                s.Append("　ヒント：ファイルの有無、ファイル名、ファイル パスを確認してください。");
-                s.Newline();
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(request_ReadsTable.Expression_Filepath.Cur_Configurationtree));
-
-                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;

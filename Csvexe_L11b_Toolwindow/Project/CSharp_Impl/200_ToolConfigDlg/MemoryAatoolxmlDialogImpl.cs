@@ -21,11 +21,11 @@ namespace Xenon.Toolwindow
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryAatoolxmlDialogImpl()
+        public MemoryAatoolxmlDialogImpl(MemoryApplication owner_MemoryApplication)
         {
             this.Name_SelectedEditor = "";
             this.Name_Application = "";
-            this.memoryAatoolxml = new MemoryAatoolxmlImpl();
+            this.memoryAatoolxml = new MemoryAatoolxmlImpl(owner_MemoryApplication);
             this.dictionary_Editor = new Dictionary_Fsetvar_ConfigurationtreeImpl();
         }
 

@@ -114,7 +114,7 @@ namespace Xenon.Csvexe
                 new Mainwnd_FormWrappingImpl(this),
                 new ConfigurationtreeToFunction_ListImpl(parent_Expression_Null, cur_Gcav, this.MemoryCsvEditor, pg_Logging_ThisMethod),
                 new Form_ToolwindowImpl(),
-                new MemoryAatoolxmlDialogImpl(),
+                new MemoryAatoolxmlDialogImpl(this.MemoryCsvEditor),
                 new UsercontrolStyleSetterImpl(),
                 new UsercontrolCreator1Impl(),
                 new XToMemory_FormImpl()

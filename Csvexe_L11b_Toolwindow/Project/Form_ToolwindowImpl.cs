@@ -204,10 +204,10 @@ namespace Xenon.Toolwindow
             {
                 // ダミーを作成。
                 pg_Method.WriteInfo_ToConsole("ダミー・MemoryAatoolxmlDialogを作成。");
-                moAatoolxmlDialog = new MemoryAatoolxmlDialogImpl();
+                moAatoolxmlDialog = new MemoryAatoolxmlDialogImpl(this.Owner_MemoryApplication);
             }
 
-            moAatoolxmlDialog.MemoryAatoolxml = new MemoryAatoolxmlImpl();
+            moAatoolxmlDialog.MemoryAatoolxml = new MemoryAatoolxmlImpl(this.Owner_MemoryApplication);
 
 
             Configurationtree_Node parent_Gcav = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#Form1_Load", null);
@@ -709,18 +709,18 @@ namespace Xenon.Toolwindow
         #region プロパティー
         //────────────────────────────────────────
 
-        private DLGT_OnEditorSelected dlgt_OnEditorSelected;
+        private DELEGATE_OnEditorSelected dlgt_OnEditorSelected;
 
         //────────────────────────────────────────
 
-        private event DLGT_OnEditorSelected onEditorSelected;
+        private event DELEGATE_OnEditorSelected onEditorSelected;
 
         /// <summary>
         ///『Xn_L11_Function:Expression_Node_Function_BootCsvEditorImpl#Ex_ExecuteMain』で、
         ///『this.FwFnc_OnProjectSelected』がセットされる。
         ///
         /// </summary>
-        public event DLGT_OnEditorSelected OnEditorSelected
+        public event DELEGATE_OnEditorSelected OnEditorSelected
         {
             add
             {

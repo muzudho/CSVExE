@@ -76,10 +76,10 @@
     <Compile Include="CSharp_Interface\21_AaEditorXml\Dictionary_Fsetvar_Configurationtree.cs" />
     <Compile Include="CSharp_Interface\21_AaEditorXml\MemorySetvarContainer.cs" />
     <Compile Include="CSharp_Interface\21_AaEditorXml\MemoryAaeditorxml_Editor.cs" />
-    <Compile Include="CSharp_Interface\22_AaToolXml\MemoryAaeditorxml.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryAaeditorxml.cs" />
     <Compile Include="CSharp_Interface\21_AaEditorXml\MemoryAatoolxml_Editor.cs" />
     <Compile Include="CSharp_Interface\22_AaToolXml\Dictionary_AatoolxmlEditor.cs" />
-    <Compile Include="CSharp_Interface\22_AaToolXml\MemoryAatoolxml.cs" />
+    <Compile Include="CSharp_Interface\81_Application\MemoryAatoolxml.cs" />
     <Compile Include="CSharp_Info\Info_Middle.cs" />
     <Compile Include="CSharp_Interface\16_GcavToExpr\Log_TextIndented_ConfigurationtreeToExpression.cs" />
     <Compile Include="CSharp_Interface\01_MasterData\ValuesAttr.cs" />

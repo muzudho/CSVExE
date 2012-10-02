@@ -20,9 +20,9 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
-        /// クリアー。
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear(Log_Reports log_Reports);
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
 
         //────────────────────────────────────────
         #endregion
@@ -36,11 +36,9 @@ namespace Xenon.Middle
         /// システム変数を、自動類推して、自動登録します。
         /// </summary>
         /// <param name="ec_Fopath_Editor"></param>
-        /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
         void Load_AutoSystemVariable(
             Expression_Node_Filepath ec_Fopath_Editor,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -48,11 +46,9 @@ namespace Xenon.Middle
         /// ファイル読み込み。
         /// </summary>
         /// <param name="ec_Fopath_Editor"></param>
-        /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
         void LoadFile(
             Expression_Node_Filepath ec_Fopath_Editor,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 

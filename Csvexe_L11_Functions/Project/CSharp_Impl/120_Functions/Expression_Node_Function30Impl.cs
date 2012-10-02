@@ -318,7 +318,6 @@ namespace Xenon.Functions
                 this.Owner_MemoryApplication.MemoryForms.SetupFormAndLoadUsercontrolconfigs(
                     oList_Table_Form,
                     ec_Fopath_Forms,
-                    this.Owner_MemoryApplication,
                     this.Owner_MemoryApplication.MemoryForms.Mainwnd_FormWrapping.Form,
                     log_Reports
                     );
@@ -350,7 +349,7 @@ namespace Xenon.Functions
                     {
                         if (log_Reports.Successful)
                         {
-                            this.Owner_MemoryApplication.MemoryTogethers.LoadFile(scriptfile.Expression_Filepath, this.Owner_MemoryApplication, log_Reports);
+                            this.Owner_MemoryApplication.MemoryTogethers.LoadFile(scriptfile.Expression_Filepath, log_Reports);
                         }
                         else
                         {
@@ -415,7 +414,6 @@ namespace Xenon.Functions
                         {
                             this.Owner_MemoryApplication.MemoryValidators.LoadFile(
                                 moScriptfile.Expression_Filepath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports),
-                                this.Owner_MemoryApplication,
                                 log_Reports);
                         }
                         else

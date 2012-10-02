@@ -44,7 +44,7 @@ namespace Xenon.Table
                 if (bRequired)
                 {
                     Log_TextIndented t = new Log_TextIndentedImpl();
-                    t.Append("▲エラー202！（" + Info_Table.Name_Library + "）");
+                    t.Append("▲エラー292！（" + Info_Table.Name_Library + "）");
                     t.Newline();
                     t.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
                     t.Newline();

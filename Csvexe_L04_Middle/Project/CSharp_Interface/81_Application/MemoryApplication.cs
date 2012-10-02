@@ -50,6 +50,20 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="errorSymbol">「Er:301;」といった文字列。ソースコード内を文字列検索しやすいように、数字ではなく文字列として指定します。</param>
+        /// <param name="texttemplateBuilder_ParameterSetted"></param>
+        /// <param name="log_Reports"></param>
+        void CreateErrorReport(
+            string errorSymbol,
+            Builder_TexttemplateP1p texttemplateBuilder_ParameterSetted,
+            Log_Reports log_Reports
+            );
+
+        //────────────────────────────────────────
+
+        /// <summary>
         /// エディター設定ファイルによって設定された「アプリケーション・モデル」を空っぽにします。
         /// </summary>
         void ClearProject(

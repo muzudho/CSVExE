@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Data;
 using System.Xml;
 using Xenon.Syntax;
+using Xenon.Table;
 using Xenon.Middle;
 
 
@@ -25,21 +27,28 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public MemoryAatoolxmlImpl()
+        public MemoryAatoolxmlImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.cur_Configurationtree = new Configurationtree_NodeImpl( "<init>", null);
-            this.sDefaultEditor = "";
-            this.dictionary_Editor = new Dictionary_AatoolxmlEditorImpl(this);
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// new した直後の内容に戻します。
         /// </summary>
-        public void Clear()
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
-            this.SDefaultEditor = "";
-            this.Dictionary_Editor.Dictionary_Item.Clear();
+            this.Name_DefaultEditor = "";
+
+            if (null == this.dictionary_Editor)
+            {
+                this.dictionary_Editor = new Dictionary_AatoolxmlEditorImpl(this);
+            }
+            else
+            {
+                this.Dictionary_Editor.Dictionary_Item.Clear();
+            }
         }
 
         //────────────────────────────────────────
@@ -54,7 +63,6 @@ namespace Xenon.MiddleImpl
         /// 定型処理。
         /// </summary>
         public void P101_LoadAatoolxml(
-            MemoryApplication moApplication,
             Configurationtree_Node cf_CallerMethod,
             Log_Reports log_Reports
             )
@@ -64,7 +72,7 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            moApplication.MemoryAatoolxml.Clear();
+            this.Owner_MemoryApplication.MemoryAatoolxml.Clear(this.Owner_MemoryApplication);
 
             if (log_Reports.Successful)
             {
@@ -84,7 +92,7 @@ namespace Xenon.MiddleImpl
                     ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
                 }
 
-                moApplication.MemoryAatoolxml.LoadFile(ec_Fpath, log_Reports);
+                this.Owner_MemoryApplication.MemoryAatoolxml.LoadFile(ec_Fpath, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。
@@ -118,7 +126,6 @@ namespace Xenon.MiddleImpl
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile",log_Reports);
             //
-            //
 
             Exception err_Excp;
 
@@ -129,7 +136,7 @@ namespace Xenon.MiddleImpl
                 //
                 // 『ツール設定』をクリアー。
                 //
-                this.Clear();
+                this.Clear(this.Owner_MemoryApplication);
 
                 sFpatha_Aatoolxml = ec_Fpath_Aatoolxml.Execute_OnExpressionString(
                     Request_SelectingImpl.Unconstraint,
@@ -163,7 +170,7 @@ namespace Xenon.MiddleImpl
                     if (log_Reports.Successful)
                     {
                         // デフォルト・エディター名
-                        this.SDefaultEditor = xRoot.GetAttribute(PmNames.S_DEFAULT_EDITOR.Name_Attribute);
+                        this.Name_DefaultEditor = xRoot.GetAttribute(PmNames.S_DEFAULT_EDITOR.Name_Attribute);
 
                         // エディター要素を列挙
                         System.Xml.XmlNodeList xNl_Editor = xRoot.GetElementsByTagName(NamesNode.S_EDITOR);
@@ -267,7 +274,6 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                //
                 // 例外メッセージ
                 s.Append(r.Message_SException(err_Excp));
 
@@ -277,33 +283,13 @@ namespace Xenon.MiddleImpl
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NothingFile:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("Er:001;", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.Dictionary_NumberAndValue_Parameter.Add(1, ValuesAttr.S_FPATHR_AATOOLXML);
+                tmpl.Dictionary_NumberAndValue_Parameter.Add(2, Log_Report01Impl.ToMessage_Exception(err_Excp));
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("『ツール設定ファイル』が見つかりません。");
-                s.Newline();
-                s.Newline();
-
-                s.Append("ヒント");
-                s.Newline();
-                s.Append("・ファイルが存在しない？");
-                s.Newline();
-                s.Append("・『ツール設定ファイル』を、決まった場所「" + ValuesAttr.S_FPATHR_AATOOLXML + "」に置いていない？");
-                s.Newline();
-                s.Append("・ファイル名が間違っている？");
-                s.Newline();
-                s.Newline();
-
-                //ヒント
-                s.Append(r.Message_SException(err_Excp));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport( "Er:1;", tmpl, log_Reports );
             }
-
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Exception:
@@ -492,7 +478,7 @@ namespace Xenon.MiddleImpl
 
             MemoryAatoolxml_Editor aatool_DefaultEditor = null;
 
-            string sDefaultProjectName = this.SDefaultEditor.Trim();
+            string sDefaultProjectName = this.Name_DefaultEditor.Trim();
             if ("" != sDefaultProjectName)
             {
                 aatool_DefaultEditor = this.GetEditorByName(sDefaultProjectName, bRequired, log_Reports);
@@ -525,25 +511,42 @@ namespace Xenon.MiddleImpl
 
 
 
-
-
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sDefaultEditor;
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
+        //────────────────────────────────────────
+
+        private string name_DefaultEditor;
 
         /// <summary>
         /// デフォルトで選択されているプロジェクトの名前
         /// </summary>
-        public string SDefaultEditor
+        public string Name_DefaultEditor
         {
             get
             {
-                return sDefaultEditor;
+                return name_DefaultEditor;
             }
             set
             {
-                sDefaultEditor = value;
+                name_DefaultEditor = value;
             }
         }
 

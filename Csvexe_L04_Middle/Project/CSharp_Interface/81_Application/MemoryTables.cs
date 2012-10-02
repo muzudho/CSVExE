@@ -17,9 +17,9 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
-        /// クリアーします。
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear();
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
 
         //────────────────────────────────────────
         #endregion
@@ -51,13 +51,25 @@ namespace Xenon.Middle
             );
 
         /// <summary>
-        /// テーブルを返します。レイアウト_グループ名を指定してください。
+        /// テーブルを返します。NAME_FORM列値を指定してください。
         /// </summary>
         /// <param select="nTableName"></param>
         /// <param select="bRequired">該当しなかった場合にエラー扱いなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
         List<XenonTable> GetXenonTableByFormgroup(
             Expression_Node_String ec_Formgroup,
+            bool bRequired,
+            Log_Reports log_Reports
+            );
+
+        /// <summary>
+        /// テーブルを返します。レイアウト_グループ名を指定してください。
+        /// </summary>
+        /// <param select="nTableName"></param>
+        /// <param select="bRequired">該当しなかった場合にエラー扱いなら真。</param>
+        /// <returns>該当しなかった場合はヌルを返します。</returns>
+        List<XenonTable> GetXenonTableByTypedata(
+            Expression_Node_String expr_KeyExpected,
             bool bRequired,
             Log_Reports log_Reports
             );

@@ -7,7 +7,7 @@ using Xenon.Syntax;
 
 namespace Xenon.Middle
 {
-    public delegate void DLGT_E_DefFnc_Children(
+    public delegate void DELEGATE_E_DefFnc_Children(
         string sKey, Expression_Node_Function ec_Child, ref bool bRemove, ref bool bBreak);
 
     public interface MemoryFunctions
@@ -21,7 +21,7 @@ namespace Xenon.Middle
         /// <summary>
         /// コントロール集のディクショナリー。
         /// </summary>
-        void ForEach_Children(DLGT_E_DefFnc_Children dlgt1);
+        void ForEach_Children(DELEGATE_E_DefFnc_Children dlgt1);
 
         //────────────────────────────────────────
         #endregion
@@ -32,9 +32,9 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
-        /// クリアーします。
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear();
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
 
         //────────────────────────────────────────
         #endregion
@@ -50,7 +50,6 @@ namespace Xenon.Middle
         /// </summary>
         void LoadFile(
             Expression_Node_Filepath ec_Fpath_Fnc,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 

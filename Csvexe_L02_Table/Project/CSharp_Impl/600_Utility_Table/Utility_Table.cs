@@ -141,7 +141,7 @@ namespace Xenon.Table
         /// <param name="sFieldNameList"></param>
         /// <returns></returns>
         public static XenonTable CreateSubTableBySelect(
-            string sName_NewTable,
+            string name_NewTable,
             List<string> list_Src_SNewFieldName,
             Expression_Node_Filepath expr_Fpath_NewTable,
             EnumLogic enumWhereLogic,
@@ -159,7 +159,7 @@ namespace Xenon.Table
 
 
 
-            XenonTable o_NewTable = new XenonTableImpl(sName_NewTable, expr_Fpath_NewTable);
+            XenonTable o_NewTable = new XenonTableImpl(name_NewTable, expr_Fpath_NewTable);
 
             List<XenonFielddefinition> o_NewFldDefList;
             List<List<string>> sFieldListList;

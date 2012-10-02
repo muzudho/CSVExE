@@ -25,14 +25,14 @@ namespace Xenon.GridPanel
         /// </summary>
         public GridImpl()
         {
-            this.sName = "";
-            this.sName_ForegroundPen = "Black";
+            this.name = "";
+            this.name_ForegroundPen = "Black";
 
             this.ticklabel_X = new TicklabelImpl();
             this.ticklabel_Y = new TicklabelImpl();
 
-            this.bVisibled_Horizontalline = true;
-            this.bVisibled_Verticalline = true;
+            this.isVisibled_Horizontalline = true;
+            this.isVisibled_Verticalline = true;
         }
 
         //────────────────────────────────────────
@@ -69,7 +69,7 @@ namespace Xenon.GridPanel
                 for (int x = this.Lefttop_Table.X; x <= x2; x += this.Size_Cell.Width)
                 {
                     g.DrawLine(
-                        BuilderPen.Parse(this.sName_ForegroundPen),
+                        BuilderPen.Parse(this.name_ForegroundPen),
                         x + parentLocation.X,
                         this.Lefttop_Table.Y + parentLocation.Y,
                         x + parentLocation.X,
@@ -195,7 +195,7 @@ namespace Xenon.GridPanel
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sName;
+        private string name;
 
         /// <summary>
         /// このグリッドエリアの名前。
@@ -204,17 +204,17 @@ namespace Xenon.GridPanel
         {
             set
             {
-                sName = value;
+                name = value;
             }
             get
             {
-                return sName;
+                return name;
             }
         }
 
         //────────────────────────────────────────
 
-        private Point nLefttop_Table;
+        private Point lefttop_Table;
 
         /// <summary>
         /// 左上隅(Left Top)の絶対座標。
@@ -223,17 +223,17 @@ namespace Xenon.GridPanel
         {
             set
             {
-                nLefttop_Table = value;
+                lefttop_Table = value;
             }
             get
             {
-                return nLefttop_Table;
+                return lefttop_Table;
             }
         }
 
         //────────────────────────────────────────
 
-        private Size nSize_Cell;
+        private Size size_Cell;
 
         /// <summary>
         /// 1セルの横幅・縦幅ピクセル。
@@ -242,17 +242,17 @@ namespace Xenon.GridPanel
         {
             set
             {
-                nSize_Cell = value;
+                size_Cell = value;
             }
             get
             {
-                return nSize_Cell;
+                return size_Cell;
             }
         }
 
         //────────────────────────────────────────
 
-        private Size nSize_Total;
+        private Size size_Total;
 
         /// <summary>
         /// 全体の横幅・縦幅ピクセル。
@@ -261,17 +261,17 @@ namespace Xenon.GridPanel
         {
             set
             {
-                nSize_Total = value;
+                size_Total = value;
             }
             get
             {
-                return nSize_Total;
+                return size_Total;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sName_ForegroundPen;
+        private string name_ForegroundPen;
 
         /// <summary>
         /// 描画色のペンの名前。C#のPensで定義されているペン変数と同名。既定値は "Black"。
@@ -282,11 +282,11 @@ namespace Xenon.GridPanel
         {
             set
             {
-                sName_ForegroundPen = value;
+                name_ForegroundPen = value;
             }
             get
             {
-                return sName_ForegroundPen;
+                return name_ForegroundPen;
             }
         }
 
@@ -330,7 +330,7 @@ namespace Xenon.GridPanel
 
         //────────────────────────────────────────
 
-        private bool bVisibled_Horizontalline;
+        private bool isVisibled_Horizontalline;
 
         /// <summary>
         /// 水平線の可視
@@ -339,17 +339,17 @@ namespace Xenon.GridPanel
         {
             set
             {
-                bVisibled_Horizontalline = value;
+                isVisibled_Horizontalline = value;
             }
             get
             {
-                return bVisibled_Horizontalline;
+                return isVisibled_Horizontalline;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bVisibled_Verticalline;
+        private bool isVisibled_Verticalline;
 
         /// <summary>
         /// 垂直線の可視
@@ -358,11 +358,11 @@ namespace Xenon.GridPanel
         {
             set
             {
-                bVisibled_Verticalline = value;
+                isVisibled_Verticalline = value;
             }
             get
             {
-                return bVisibled_Verticalline;
+                return isVisibled_Verticalline;
             }
         }
 

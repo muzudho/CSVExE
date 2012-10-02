@@ -20,9 +20,9 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
-        /// クリアー
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear();
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
 
         //────────────────────────────────────────
         #endregion
@@ -36,7 +36,6 @@ namespace Xenon.Middle
         /// 定型処理。
         /// </summary>
         void P101_LoadAatoolxml(
-            MemoryApplication memoryApplication,
             Configurationtree_Node parent_Gcav,
             Log_Reports log_Reports
             );
@@ -106,7 +105,7 @@ namespace Xenon.Middle
         /// <summary>
         /// デフォルトで選択されているエディターの名前
         /// </summary>
-        string SDefaultEditor
+        string Name_DefaultEditor
         {
             get;
             set;

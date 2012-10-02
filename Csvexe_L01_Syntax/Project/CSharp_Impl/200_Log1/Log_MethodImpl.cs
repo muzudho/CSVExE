@@ -15,8 +15,8 @@ namespace Xenon.Syntax
 
         public Log_MethodImpl()
         {
-            this.nDebugLevel_Method = 0;
-            this.bDebugMode_Master = false;
+            this.debugLevel_Method = 0;
+            this.debugMode_Master = false;
             this.sName_Library = "";
             this.sName_Class = "";
             this.sName_Method = "";
@@ -25,8 +25,8 @@ namespace Xenon.Syntax
 
         public Log_MethodImpl(int nDebugLevel_Method)
         {
-            this.nDebugLevel_Method = nDebugLevel_Method;
-            this.bDebugMode_Master = true;
+            this.debugLevel_Method = nDebugLevel_Method;
+            this.debugMode_Master = true;
             this.sName_Library = "";
             this.sName_Class = "";
             this.sName_Method = "";
@@ -35,8 +35,8 @@ namespace Xenon.Syntax
 
         public Log_MethodImpl(int nLevel_MethodDebug, bool bDebugMode_Master)
         {
-            this.nDebugLevel_Method = nLevel_MethodDebug;
-            this.bDebugMode_Master = bDebugMode_Master;
+            this.debugLevel_Method = nLevel_MethodDebug;
+            this.debugMode_Master = bDebugMode_Master;
             this.sName_Library = "";
             this.sName_Class = "";
             this.sName_Method = "";
@@ -247,7 +247,7 @@ namespace Xenon.Syntax
         {
             bool bDebugMode;
 
-            if (this.bDebugMode_Master && nDebugLevel_Codeblock <= this.nDebugLevel_Method)
+            if (this.debugMode_Master && nDebugLevel_Codeblock <= this.debugLevel_Method)
             {
                 bDebugMode = true;
             }
@@ -263,7 +263,7 @@ namespace Xenon.Syntax
         {
             bool bInfoMode;
 
-            if (this.bDebugMode_Master)
+            if (this.debugMode_Master)
             {
                 bInfoMode = true;
             }
@@ -308,8 +308,8 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private int nDebugLevel_Method;
-        private bool bDebugMode_Master;
+        private int debugLevel_Method;
+        private bool debugMode_Master;
 
         //────────────────────────────────────────
 

@@ -100,27 +100,38 @@ namespace Xenon.Syntax
         /// <returns></returns>
         public string ToMessage(string sGroupTag)
         {
-            StringBuilder sb = new StringBuilder();
+            Log_Method log_Method = new Log_MethodImpl(0);
+            Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "ToMessage", log_Reports_ThisMethod);
+
+            Log_TextIndented s = new Log_TextIndentedImpl();
+
+            s.Append("このエラーメッセージを作っているロガー：");
+            s.Append(log_Method.Fullname);
+            s.Newline();
 
             if (null != this.log_Method_CreationMe)
             {
-                sb.Append("ロガー生成場所：");
-                sb.Append(this.Log_Method_CreationMe.Fullname);
-                sb.Append(System.Environment.NewLine);
+                s.Append("ロガー生成場所：");
+                s.Append(this.Log_Method_CreationMe.Fullname);
+                s.Newline();
             }
             else
             {
-                sb.Append("ロガー生成場所：ヌル");
-                sb.Append(System.Environment.NewLine);
+                s.Append("ロガー生成場所：ヌル");
+                s.Newline();
             }
 
-            sb.Append("ロガーの作成に関するコメント：");
-            sb.Append(this.Comment_EventCreationMe);
-            sb.Append(System.Environment.NewLine);
+            if (""!=this.Comment_EventCreationMe)
+            {
+                s.Append("ロガーの作成に関するコメント：");
+                s.Append(this.Comment_EventCreationMe);
+                s.Newline();
+            }
 
 
-            sb.Append("デバッグログ出力：");
-            sb.Append(System.Environment.NewLine);
+            s.Append("デバッグログ出力：");
+            s.Newline();
 
             int nErrorCount = 0;
             foreach (Log_RecordReport log_RecordReport in this.list_Record)
@@ -132,46 +143,44 @@ namespace Xenon.Syntax
                 {
                     if ("" == sGroupTag || sGroupTag == log_RecordReport.Tag_Group)
                     {
-                        sb.Append("(No.");
-                        sb.Append(nErrorCount);
-                        sb.Append(") ");
+                        s.Append("(No.");
+                        s.Append(nErrorCount);
+                        s.Append(") ");
 
                         // タイトル
-                        sb.Append(log_RecordReport.Title);
+                        s.Append(log_RecordReport.Title);
 
                         if ("" != log_RecordReport.Tag_Group)
                         {
                             // グループ・タグ
-                            sb.Append(log_RecordReport.Tag_Group);
+                            s.Append(log_RecordReport.Tag_Group);
                         }
 
-                        sb.Append(Environment.NewLine);
-                        sb.Append(Environment.NewLine);
+                        s.Newline();
+                        s.Newline();
 
                         if ("" != log_RecordReport.Logstack)
                         {
-                            sb.Append("エラー発生元データの推測ヒント：");
-                            sb.Append(log_RecordReport.Logstack);
-                            sb.Append(Environment.NewLine);
-                            sb.Append(Environment.NewLine);
+                            s.Append("エラー発生元データの推測ヒント：");
+                            s.Append(log_RecordReport.Logstack);
+                            s.Newline();
+                            s.Newline();
                         }
 
-                        sb.Append(log_RecordReport.GetMessage(this));
-                        sb.Append(Environment.NewLine);
-                        sb.Append(Environment.NewLine);
+                        s.Append(log_RecordReport.GetMessage(this));
+                        s.Newline();
+                        s.Newline();
 
                         if ("" != log_RecordReport.Logstack)
                         {
-                            sb.Append("プログラム実行経路推測ヒント：");
-                            sb.Append(this.Log_Callstack.ToString());
-                            sb.Append(Environment.NewLine);
-                            sb.Append(Environment.NewLine);
+                            s.Append("プログラム実行経路推測ヒント：");
+                            s.Append(this.Log_Callstack.ToString());
+                            s.Newline();
+                            s.Newline();
                         }
 
-                        sb.Append(Environment.NewLine);
-
+                        s.Newline();
                     }
-
 
                     // カウンターは、読み飛ばしたエラーもきちんとカウント。
                     nErrorCount++;
@@ -180,15 +189,18 @@ namespace Xenon.Syntax
 
             if (!Log_ReportsImpl.BDebugmode_Static)
             {
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
-                sb.Append("このデバッグ情報は、DebugModeフラグが立っていない状態でのものです。");
-                sb.Append(Environment.NewLine);
-                sb.Append("DDebuggerImpl.DebugModeフラグを立てると、今より詳細な情報が出力されるかもしれません。");
-                sb.Append(Environment.NewLine);
+                s.Newline();
+                s.Newline();
+                s.Append("このデバッグ情報は、DebugModeフラグが立っていない状態でのものです。");
+                s.Newline();
+                s.Append("DDebuggerImpl.DebugModeフラグを立てると、今より詳細な情報が出力されるかもしれません。");
+                s.Newline();
             }
 
-            return sb.ToString();
+
+            log_Method.EndMethod(log_Reports_ThisMethod);
+            log_Reports_ThisMethod.EndLogging(log_Method);
+            return s.ToString();
         }
 
         //────────────────────────────────────────
@@ -246,11 +258,13 @@ namespace Xenon.Syntax
             //必ず実行。
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("▲エラー！（");
-                sb.Append(log_Method.Fullname);
-                sb.Append("）（※EntThread）");
+                sb.Append("▲エラー！（EndLogging）");
 
-                MessageBox.Show(this.ToMessage(), sb.ToString());
+                string strMessage = this.ToMessage();
+                // \n を、実際に改行する命令に変換。
+                strMessage = strMessage.Replace("\\n", System.Environment.NewLine);
+
+                MessageBox.Show(strMessage, sb.ToString());
             }
         //────────────────────────────────────────
             #endregion

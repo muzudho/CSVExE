@@ -16,9 +16,9 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
-        /// クリアーします。
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear();
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
 
         //────────────────────────────────────────
         #endregion
@@ -35,7 +35,6 @@ namespace Xenon.Middle
         /// <param name="log_Reports"></param>
         void LoadFile(
             Expression_Node_Filepath ec_FilePath_Rfr,
-            MemoryApplication owner_MoApplication,
             Log_Reports log_Reports
             );
 
@@ -48,7 +47,6 @@ namespace Xenon.Middle
         /// <param name="log_Reports"></param>
         void RefreshDataByTogether(
             Configurationtree_Node together_Gcav,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -61,7 +59,6 @@ namespace Xenon.Middle
         /// <param name="o_Name_Together"></param>
         void RefreshDataRange(
             XenonName o_Name_Together,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 

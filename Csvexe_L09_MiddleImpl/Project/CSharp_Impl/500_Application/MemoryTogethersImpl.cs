@@ -17,16 +17,17 @@ namespace Xenon.MiddleImpl
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryTogethersImpl()
+        public MemoryTogethersImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.Clear();
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear()
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             this.givechapterandverse_Togetherconfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_TOGETHERS, new Configurationtree_NodeImpl(this.GetType().Name + "#<init>", null));
         }
 
@@ -45,7 +46,6 @@ namespace Xenon.MiddleImpl
         /// <param name="log_Reports"></param>
         public void LoadFile(
             Expression_Node_Filepath ec_Fpath_Rfr,
-            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -101,7 +101,6 @@ namespace Xenon.MiddleImpl
         /// <param select="o_Name_Together"></param>
         public void RefreshDataRange(
             XenonName o_Name_Together,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -142,7 +141,7 @@ namespace Xenon.MiddleImpl
                                     log_Reports
                                     );
 
-                                list_FcUc = moApplication.MemoryForms.GetUsercontrolsByName(
+                                list_FcUc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                                     e_str,
                                     true,
                                     log_Reports
@@ -181,7 +180,6 @@ namespace Xenon.MiddleImpl
         /// <param select="log_Reports"></param>
         public void RefreshDataByTogether(
             Configurationtree_Node cf_Together,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -190,10 +188,9 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            moApplication.MemoryForms.RefreshDataByTogether(
+            this.Owner_MemoryApplication.MemoryForms.RefreshDataByTogether(
                 cf_Together,
                 this.Configurationtree_Togetherconfig,
-                moApplication,
                 log_Reports
                 );
 
@@ -210,6 +207,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         private Configurationtree_Node givechapterandverse_Togetherconfig;

@@ -16,15 +16,15 @@ namespace Xenon.MiddleImpl
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryBackupImpl()
+        public MemoryBackupImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.Clear();
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear()
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
             this.name_SubFolder = "";
             this.backupKeptbackups = 0;
@@ -32,6 +32,7 @@ namespace Xenon.MiddleImpl
             Configurationtree_Node s_ParentNode_Null = null;
             this.givechapterandverse_Name_SubFolder = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
             this.givechapterandverse_BackupKeptbackups = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
         }
 
         //────────────────────────────────────────
@@ -40,6 +41,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         private string name_SubFolder;

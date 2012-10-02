@@ -76,7 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSharp_Impl\110_GcavToFunc\GivechapterandverseToFunction20_ItemImpl.cs" />
+    <Compile Include="CSharp_Impl\110_GcavToFunc\ConfigurationtreeToFunction20_ItemImpl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function44Impl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function45Impl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function46Impl.cs" />
@@ -117,12 +117,12 @@
     <Compile Include="CSharp_Impl\140_Functionperformer\Exe_2FunctionImpl.cs" />
     <Compile Include="CSharp_Impl\130_Usercontrolperformer\UsercontrolPerformerImpl.cs" />
     <Compile Include="CSharp_Impl\150_Eventperformer\Exe_1EventImpl.cs" />
-    <Compile Include="CSharp_Impl\110_GcavToFunc\GivechapterandverseToFunction_ListImpl.cs" />
+    <Compile Include="CSharp_Impl\110_GcavToFunc\ConfigurationtreeToFunction_ListImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CSharp_Impl\110_GcavToFunc\GivechapterandverseToFunction00_ItemImpl.cs" />
+    <Compile Include="CSharp_Impl\110_GcavToFunc\ConfigurationtreeToFunction00_ItemImpl.cs" />
     <Compile Include="CSharp_Impl\900_Utility\Utility_Textformat.cs" />
     <Compile Include="CSharp_Info\Info_FunctionsImpl.cs" />
-    <Compile Include="CSharp_Interface\GivechapterandverseToFunction_Item.cs" />
+    <Compile Include="CSharp_Interface\ConfigurationtreeToFunction_Item.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSharp_Impl\900_Utility\%40これは、リストボックスのユーティリティー。.txt" />

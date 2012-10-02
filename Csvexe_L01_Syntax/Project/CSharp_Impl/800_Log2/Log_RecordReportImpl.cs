@@ -65,7 +65,7 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public string Message_Configurationtree(
+        public static string ToMessage_Configurationtree(
             Configurationtree_Node parent_Gcav
             )
         {
@@ -84,7 +84,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Newline();
 
-                s.Append(this.Message_SSeparator());
+                s.Append(Log_Report01Impl.ToMessage_Separator());
 
                 s.Append("　　問題内部ヒント：");
                 s.Newline();
@@ -92,7 +92,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Newline();
 
-                s.Append(this.Message_SSeparator());
+                s.Append(Log_Report01Impl.ToMessage_Separator());
 
                 s.Append("　　問題を報告したオブジェクトの型: ");
                 s.Append(parent_Gcav.GetType());
@@ -103,6 +103,17 @@ namespace Xenon.Syntax
 
 
             return s.ToString();
+        }
+
+        /// <summary>
+        /// 警告メッセージの定型文を作ります。
+        /// </summary>
+        /// <returns></returns>
+        public string Message_Configurationtree(
+            Configurationtree_Node parent_Cnf
+            )
+        {
+            return Log_Report01Impl.ToMessage_Configurationtree(parent_Cnf);
         }
 
         //────────────────────────────────────────
@@ -134,7 +145,7 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public string Message_SException(
+        public static string ToMessage_Exception(
             Exception ex
             )
         {
@@ -164,13 +175,24 @@ namespace Xenon.Syntax
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 警告メッセージの定型文を作ります。
+        /// </summary>
+        /// <returns></returns>
+        public string Message_SException(
+            Exception ex
+            )
+        {
+            return Log_Report01Impl.ToMessage_Exception(ex);
+        }
+
         //────────────────────────────────────────
 
         /// <summary>
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public string Message_SSeparator()
+        public static string ToMessage_Separator()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -182,6 +204,15 @@ namespace Xenon.Syntax
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 警告メッセージの定型文を作ります。
+        /// </summary>
+        /// <returns></returns>
+        public string Message_SSeparator()
+        {
+            return Log_Report01Impl.ToMessage_Separator();
+        }
+
         //────────────────────────────────────────
 
         /// <summary>
@@ -189,9 +220,10 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="number">「%1%」で使う数字。1から始まる連番。</param>
         /// <param name="sMessage">「%1%」に対応する文字列。</param>
-        public void AddP1p(int nNumber, object sMessage)
+        public void AddP1p(int nNumber, object sMessage, Log_Reports log_Reports)
         {
-            this.p1pText.Dictionary_NumberAndValue_Parameter.Add(nNumber, sMessage.ToString());
+            //this.p1pText.Dictionary_NumberAndValue_Parameter.Add(nNumber, sMessage.ToString());
+            this.p1pText.AddParameter(nNumber, sMessage.ToString(), log_Reports);
         }
 
         //────────────────────────────────────────

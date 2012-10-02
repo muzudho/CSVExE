@@ -124,7 +124,7 @@ namespace Xenon.Table
                 goto gt_EndMethod;
             }
 
-            result = formatString.Perform();
+            result = formatString.Perform(log_Reports);
 
             
             goto gt_EndMethod;

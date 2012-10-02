@@ -38,6 +38,11 @@ namespace Xenon.Middle
         public const string S_TABLE_STYLESHEET = "T:TableStylesheet;";
 
         /// <summary>
+        /// エラーメッセージ表です。
+        /// </summary>
+        public const string S_TABLE_ERRORMESSAGES = "T:TableErrermessages;";
+
+        /// <summary>
         /// データ・テーブルです。
         /// </summary>
         public const string S_TABLE_DATA = "T:TableData;";
@@ -89,6 +94,7 @@ namespace Xenon.Middle
                 l.Add(ValuesTypeData.S_TABLE_FORM);
                 l.Add(ValuesTypeData.S_TABLE_FORM_LST);
                 l.Add(ValuesTypeData.S_TABLE_STYLESHEET);
+                l.Add(ValuesTypeData.S_TABLE_ERRORMESSAGES);
                 l.Add(ValuesTypeData.S_TABLES_FORM);
                 ValuesTypeData.LISTS_TABLES = l;
             }

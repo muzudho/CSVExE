@@ -19,17 +19,26 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public MemoryCodefilesImpl()
+        public MemoryCodefilesImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.dictionary_Table = new Dictionary<string, MemoryCodefileinfo>();
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear()
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
-            this.dictionary_Table.Clear();
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+
+            if (null == this.dictionary_Table)
+            {
+                this.dictionary_Table = new Dictionary<string, MemoryCodefileinfo>();
+            }
+            else
+            {
+                this.dictionary_Table.Clear();
+            }
         }
 
         //────────────────────────────────────────
@@ -208,6 +217,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         private Dictionary<string, MemoryCodefileinfo> dictionary_Table;

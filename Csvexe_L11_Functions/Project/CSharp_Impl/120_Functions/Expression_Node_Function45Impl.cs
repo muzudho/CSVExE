@@ -267,7 +267,6 @@ namespace Xenon.Functions
                 this.Owner_MemoryApplication.MemoryVariables.TryGetTable_Variables(
                     out o_Table_Variables,
                     Application.StartupPath,
-                    this.Owner_MemoryApplication,
                     log_Reports
                     );
 

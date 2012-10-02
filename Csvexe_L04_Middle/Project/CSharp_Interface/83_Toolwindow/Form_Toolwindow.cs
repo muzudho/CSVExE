@@ -21,7 +21,7 @@ namespace Xenon.Middle
     /// <param name="projectValid">エディター設定ファイルを読み込めていれば真</param>
     /// <param name="e"></param>
     /// <returns></returns>
-    public delegate void DLGT_OnEditorSelected(
+    public delegate void DELEGATE_OnEditorSelected(
         object sender,
         MemoryAatoolxml_Editor selectedEditorElm,
         bool bProjectValid,
@@ -48,7 +48,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 
         /// </summary>
-        event DLGT_OnEditorSelected OnEditorSelected;
+        event DELEGATE_OnEditorSelected OnEditorSelected;
 
         //────────────────────────────────────────
         #endregion

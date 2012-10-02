@@ -55,7 +55,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="number">「%1%」で使う数字。1から始まる連番。</param>
         /// <param name="sMessage">「%1%」に対応する文字列。</param>
-        void AddP1p(int nNumber, object sMessage);
+        void AddP1p(int nNumber, object sMessage, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion

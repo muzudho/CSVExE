@@ -9,7 +9,7 @@ using Xenon.Table;
 namespace Xenon.Middle
 {
 
-    public delegate void DLGT_EachVariable(string sKey, Expression_Node_String ec_String, ref bool bBreak);
+    public delegate void DELEGATE_EachVariable(string sKey, Expression_Node_String ec_String, ref bool bBreak);
 
     /// <summary>
     /// 変数モデル。
@@ -28,7 +28,7 @@ namespace Xenon.Middle
         /// ファイルパス一覧。
         /// </summary>
         /// <param name="dlgt_EachEFilePath"></param>
-        void EachVariable(DLGT_EachVariable dlgt_EachVariable);
+        void EachVariable(DELEGATE_EachVariable dlgt_EachVariable);
 
         //────────────────────────────────────────
         #endregion
@@ -39,11 +39,9 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         /// <summary>
-        /// 変数モデルをクリアーします。
+        /// new した直後の内容に戻します。
         /// </summary>
-        void Clear(
-            Log_Reports log_Reports
-            );
+        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//,Log_Reports log_Reports
 
         //────────────────────────────────────────
         #endregion
@@ -56,7 +54,6 @@ namespace Xenon.Middle
         void TryGetTable_Variables(
             out XenonTable out_O_Table_Variables,
             String sFpath_Startup,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -65,7 +62,6 @@ namespace Xenon.Middle
         /// </summary>
         void LoadVariables(
             String sStartupPath,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 
@@ -76,7 +72,6 @@ namespace Xenon.Middle
         /// <param name="log_Reports"></param>
         void Load(
             XenonTable o_Table_Variable,
-            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );
 

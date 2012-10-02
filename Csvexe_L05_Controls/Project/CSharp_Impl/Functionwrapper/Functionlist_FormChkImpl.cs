@@ -98,43 +98,10 @@ namespace Xenon.Controls
 
                 if (log_Reports_ThisMethod.Successful)
                 {
-                    //if (funcitem.EnumEventhandler == EnumEventhandler.O_Ea)
-                    //{
-                        expr_Func.Execute_OnOEa(sender, e);
-                    //}
-                    //else
-                    //{
-                    //    // エラー
-                    //    err_Eh = funcitem.EnumEventhandler;
-                    //    goto gt_Error_AnotherEvent;
-                    //}
+                    expr_Func.Execute_OnOEa(sender, e);
                 }
 
                 goto gt_EndMethod2;
-            //
-            //
-                #region 異常系
-            //────────────────────────────────────────
-            //gt_Error_AnotherEvent:
-            //    bBreak = true;
-            //    if (log_Reports_ThisMethod.CanCreateReport)
-            //    {
-            //        Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-            //        r.SetTitle("▲エラー405！", pg_Method);
-
-            //        StringBuilder t = new StringBuilder();
-            //        t.Append("[");
-            //        t.Append(err_Eh);
-            //        t.Append("]形式のアクションリストが、Perform_OEaを実行しようとしました。");
-            //        t.Append(Environment.NewLine);
-            //        t.Append("これはプログラムの間違いです。");
-            //        r.Message = t.ToString();
-            //        log_Reports_ThisMethod.EndCreateReport();
-            //    }
-            //    goto gt_EndMethod2;
-            //────────────────────────────────────────
-                #endregion
-            //
             //
             gt_EndMethod2:
                 ;

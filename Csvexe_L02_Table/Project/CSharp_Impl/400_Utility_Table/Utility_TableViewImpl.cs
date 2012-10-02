@@ -153,7 +153,7 @@ namespace Xenon.Table
         gt_Error_UnknownType:
             {
                 Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー202！(" + Info_Table.Name_Library + ")");
+                t.Append("▲エラー291！(" + Info_Table.Name_Library + ")");
                 t.Newline();
                 t.Append("未定義の型の列。テーブル名=[" + xenonTable.Name + "]");
                 sMessage_Error = t.ToString();

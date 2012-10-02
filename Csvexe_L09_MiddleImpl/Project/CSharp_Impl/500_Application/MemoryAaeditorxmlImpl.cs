@@ -26,19 +26,19 @@ namespace Xenon.MiddleImpl
         /// コンストラクター。
         /// </summary>
         /// <param name="tcProject"></param>
-        public MemoryAaeditorxmlImpl(MemoryAaeditorxml_Editor aaeditor_Editor)
+        public MemoryAaeditorxmlImpl(MemoryAaeditorxml_Editor aaeditor_Editor, MemoryApplication owner_MemoryApplication)
         {
-            this.cur_Configurationtree = new Configurationtree_NodeImpl( "<init>", null);
             this.memoryAaeditorxml_Editor = aaeditor_Editor;
+
+            this.Clear(owner_MemoryApplication);
         }
 
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public MemoryAaeditorxmlImpl()
+        public MemoryAaeditorxmlImpl( MemoryApplication owner_MemoryApplication)
         {
-            this.cur_Configurationtree = new Configurationtree_NodeImpl( "<init>", null);
-            this.memoryAaeditorxml_Editor = new MemoryAaeditorxml_EditorImpl(null);
+            this.Clear(owner_MemoryApplication);
         }
 
         //────────────────────────────────────────
@@ -46,25 +46,36 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアー
         /// </summary>
-        public void Clear(Log_Reports log_Reports)
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear",log_Reports);
+            Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear", log_Reports_ThisMethod);
             //
 
-            if (log_Method.CanDebug(1))
-            {
-                log_Method.WriteDebug_ToConsole("「エディター設定ファイル・モデル」をクリアーします。");
-            }
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
 
             this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
-            this.memoryAaeditorxml_Editor.Clear();
+            if (null == this.memoryAaeditorxml_Editor)
+            {
+                this.memoryAaeditorxml_Editor = new MemoryAaeditorxml_EditorImpl(null);
+            }
+            else
+            {
+                if (log_Method.CanDebug(1))
+                {
+                    log_Method.WriteDebug_ToConsole("「エディター設定ファイル・モデル」をクリアーします。");
+                }
+
+                this.memoryAaeditorxml_Editor.Clear();
+            }
 
 
             goto gt_EndMethod;
             //
         gt_EndMethod:
-            log_Method.EndMethod(log_Reports);
+            log_Method.EndMethod(log_Reports_ThisMethod);
+            log_Reports_ThisMethod.EndLogging(log_Method);
         }
 
         //────────────────────────────────────────
@@ -80,11 +91,9 @@ namespace Xenon.MiddleImpl
         /// システム変数を、自動類推して、自動登録します。
         /// </summary>
         /// <param name="ec_Fopath_Editor"></param>
-        /// <param name="moApplication"></param>
         /// <param name="log_Reports"></param>
         public void Load_AutoSystemVariable(
             Expression_Node_Filepath ec_Fopath_Editor,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -106,7 +115,7 @@ namespace Xenon.MiddleImpl
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE;
                 Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
-                moApplication.MemoryVariables.PutFilepath(
+                this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
                     new Expression_Node_FilepathImpl(cf_Fpath),
                     false,//重複登録可。
@@ -123,7 +132,7 @@ namespace Xenon.MiddleImpl
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_FORMS;
                 Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
-                moApplication.MemoryVariables.PutFilepath(
+                this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
                     new Expression_Node_FilepathImpl(cf_Fpath),
                     false,//重複登録可。
@@ -140,7 +149,7 @@ namespace Xenon.MiddleImpl
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOGS;
                 Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
-                moApplication.MemoryVariables.PutFilepath(
+                this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
                     new Expression_Node_FilepathImpl(cf_Fpath),
                     false,//重複登録可。
@@ -157,7 +166,7 @@ namespace Xenon.MiddleImpl
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_FILES_CSV;
                 Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
                 cf_Fpath.InitPath(sValue, log_Reports);
-                moApplication.MemoryVariables.PutFilepath(
+                this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
                     new Expression_Node_FilepathImpl(cf_Fpath),
                     false,//重複登録可。
@@ -182,7 +191,6 @@ namespace Xenon.MiddleImpl
         /// <param name="oProjectConfigFilePath"></param>
         public void LoadFile(
             Expression_Node_Filepath ec_Fopath_Editor,
-            MemoryApplication moApplication,
             Log_Reports log_Reports
             )
         {
@@ -387,6 +395,25 @@ namespace Xenon.MiddleImpl
         
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         private Configurationtree_Node cur_Configurationtree;

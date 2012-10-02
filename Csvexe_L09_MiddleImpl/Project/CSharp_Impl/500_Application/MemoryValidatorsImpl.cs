@@ -18,9 +18,9 @@ namespace Xenon.MiddleImpl
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public MemoryValidatorsImpl()
+        public MemoryValidatorsImpl(MemoryApplication owner_MemoryApplication)
         {
-            this.Clear();
+            this.Clear(owner_MemoryApplication);
         }
 
         //────────────────────────────────────────
@@ -28,8 +28,9 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear()
+        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
         {
+            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             this.xToConfigurationtree_V = new XToConfigurationtree_Validator_ConfigImpl();
             this.givechapterandverseToExpression_V = new ConfigurationtreeToExpression_V51_ConfigImpl();
 
@@ -51,7 +52,6 @@ namespace Xenon.MiddleImpl
         /// <param name="log_Reports"></param>
         public void LoadFile(
             string sFpatha,
-            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -89,6 +89,25 @@ namespace Xenon.MiddleImpl
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private MemoryApplication owner_MemoryApplication;
+
+        /// <summary>
+        /// このオブジェクトを所有するオブジェクト。
+        /// </summary>
+        public MemoryApplication Owner_MemoryApplication
+        {
+            get
+            {
+                return owner_MemoryApplication;
+            }
+            set
+            {
+                owner_MemoryApplication = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         /// <summary>

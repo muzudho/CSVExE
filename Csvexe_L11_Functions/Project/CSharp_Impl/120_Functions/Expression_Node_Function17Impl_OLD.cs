@@ -218,7 +218,7 @@ namespace Xenon.Functions
                         log_Method.WriteDebug_ToConsole( "⑤sFpatha_vcnf=[" + sFpatha_vcnf + "]");
                     }
 
-                    this.Owner_MemoryApplication.MemoryValidators.LoadFile(sFpatha_vcnf,this.Owner_MemoryApplication, log_Reports);//ここでバグる。
+                    this.Owner_MemoryApplication.MemoryValidators.LoadFile(sFpatha_vcnf, log_Reports);//ここでバグる。
                 }
             }
 

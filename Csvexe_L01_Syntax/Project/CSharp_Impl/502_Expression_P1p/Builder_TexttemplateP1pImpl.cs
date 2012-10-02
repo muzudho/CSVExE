@@ -42,6 +42,16 @@ namespace Xenon.Syntax
             this.dictionary_NumberAndValue_Parameter = new Dictionary<int, string>();
         }
 
+        /// <summary>
+        /// コンストラクター。
+        /// </summary>
+        public Builder_TexttemplateP1pImpl(string text)
+        {
+            this.text = text;
+
+            this.dictionary_NumberAndValue_Parameter = new Dictionary<int, string>();
+        }
+
         //────────────────────────────────────────
         #endregion
 
@@ -49,6 +59,27 @@ namespace Xenon.Syntax
 
         #region アクション
         //────────────────────────────────────────
+
+        /// <summary>
+        /// [1]=101
+        /// [2]=赤
+        /// といったディクショナリー。
+        /// 
+        /// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
+        /// Xn_L05_E:E_FtextTemplate#E_ExecuteでAddされます。
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="log_Reports"></param>
+        public void AddParameter(int key, string value, Log_Reports log_Reports)
+        {
+            this.dictionary_NumberAndValue_Parameter.Add(key, value);
+        }
+
+        public void TryGetParameter(out string out_Value, int key, Log_Reports log_Reports)
+        {
+            out_Value = this.dictionary_NumberAndValue_Parameter[key];
+        }
 
         /// <summary>
         /// 登録されている「%1%」、「%2%」といった記号の数字を一覧します。
@@ -136,24 +167,17 @@ namespace Xenon.Syntax
             Log_Reports log_Reports
             )
         {
-
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Compile",log_Reports);
-
-            //
-            //
-            //
             //
 
             String sTxtTmpl = this.Text;
-            //.WriteLine("★★★★★★★★" + this.GetType().Name + "#Compile: txtTmpl＝[" + txtTmpl + "]");
-            //essageBox.Show("★★★★★★★★" + this.GetType().Name + "#Compile: txtTmpl＝[" + txtTmpl + "]", this.GetType().Name + "#Compile:(TextTemplate)");
 
 
 
 
-            Configurationtree_Node parent_Gcav = new Configurationtree_NodeImpl("!ハードコーディング_TextTemplateImpl#Compile", null);
-            Expression_Node_StringImpl result = new Expression_Node_StringImpl(null,parent_Gcav);
+            Configurationtree_Node parent_Cnf = new Configurationtree_NodeImpl("!ハードコーディング_TextTemplateImpl#Compile", null);
+            Expression_Node_StringImpl result = new Expression_Node_StringImpl(null,parent_Cnf);
 
             int nCur = 0;
 
@@ -198,7 +222,7 @@ namespace Xenon.Syntax
                             string sPre = sTxtTmpl.Substring(nPreCur, nPreLen);
                             result.AppendTextNode(
                                 sPre,
-                                parent_Gcav,
+                                parent_Cnf,
                                 log_Reports
                                 );
 
@@ -207,8 +231,8 @@ namespace Xenon.Syntax
                             // 引数から値を取得。
 
                             // %数字%を、Expression化して追加。
-                            Expression_TexttemplateP1pImpl expr_P1p = new Expression_TexttemplateP1pImpl(null,parent_Gcav);
-                            expr_P1p.NP1p = nParameterIndex;
+                            Expression_TexttemplateP1pImpl expr_P1p = new Expression_TexttemplateP1pImpl(null,parent_Cnf);
+                            expr_P1p.NumberP1p = nParameterIndex;
                             expr_P1p.Dictionary_P1p = this.Dictionary_NumberAndValue_Parameter;
 
                             result.List_Expression_Child.Add(
@@ -227,7 +251,7 @@ namespace Xenon.Syntax
 
                             result.AppendTextNode(
                                 sTxtTmpl.Substring(nPreCur, nRestLen),
-                                parent_Gcav,
+                                parent_Cnf,
                                 log_Reports
                                 );
 
@@ -244,7 +268,7 @@ namespace Xenon.Syntax
 
                         result.AppendTextNode(
                             sTxtTmpl.Substring(nPreCur, nRestLen),
-                            parent_Gcav,
+                            parent_Cnf,
                             log_Reports
                             );
 
@@ -260,7 +284,7 @@ namespace Xenon.Syntax
 
                     result.AppendTextNode(
                         sTxtTmpl.Substring(nCur, nRestLen),
-                        parent_Gcav,
+                        parent_Cnf,
                         log_Reports
                         );
 
@@ -277,7 +301,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public String Perform()
+        public String Perform(Log_Reports log_Reports)
         {
             String sTxtTmpl = this.Text;
 
@@ -287,6 +311,12 @@ namespace Xenon.Syntax
 
             while (nCur < sTxtTmpl.Length)
             {
+                if (!log_Reports.Successful)
+                {
+                    //エラー時は抜ける。
+                    goto gt_EndMethod;
+                }
+
                 int nPreCur = nCur;
                 //.WriteLine(this.GetType().Name + "#Perform: ループ開始 cur＝[" + cur + "] preCur＝[" + preCur + "] txtTmpl.Length＝[" + txtTmpl.Length + "]");
 
@@ -332,48 +362,25 @@ namespace Xenon.Syntax
 
                             // 開き「%」までを、まず文字列化。
                             int nPreLen = nOp - nPreCur;
-                            //.WriteLine(this.GetType().Name + "#Perform: preLen[" + preLen + "]　＝　（　op[" + op + "]　－　preCur[" + preCur + "]　）");
                             string sPre = sTxtTmpl.Substring(nPreCur, nPreLen);
-                            //.WriteLine(this.GetType().Name + "#Perform: preStr＝[" + preStr + "]");
                             sb.Append(sPre);
-                            //.WriteLine(this.GetType().Name + "#Perform: resultTxt＝[" + resultTxt.ToString() + "]");
 
-
-                            //if (this.Parameters.Count <= parameterIndex)
-                            //{
-                            //    // 添字が、配列の要素数と同じか、超えている場合。
-
-                            //    dt.Append("[out of index " + parameterIndex + "]");
-                            //}
-                            //else
-                            //{
-                                // 引数から値を取得。
 
                             //string paramValue = this.Parameters[parameterIndex];
-                            string sParamValue = this.Dictionary_NumberAndValue_Parameter[nParameterIndex];
+                            string sParamValue;
+                            //sParamValue = this.Dictionary_NumberAndValue_Parameter[nParameterIndex];
+                            this.TryGetParameter(out sParamValue, nParameterIndex, log_Reports);
 
-                                //.WriteLine(this.GetType().Name + "#Perform: paramValue＝[" + paramValue + "]");
-                                sb.Append(sParamValue);
-//                            }
-
-
-                            // 続行。
-                            //.WriteLine(this.GetType().Name + "#Perform: resultTxt＝[" + resultTxt.ToString() + "]");
-
-
+                            sb.Append(sParamValue);
                         }
                         catch (Exception)
                         {
                             // 数字でないようなら。
-                            //.WriteLine(this.GetType().Name + "#Perform: 数字でないようなら。");
 
                             // 今回の判定は失敗したものとして、残りの長さ全て
                             int nRestLen = sTxtTmpl.Length - nPreCur;
-                            //.WriteLine(this.GetType().Name + "#Perform: restLen＝[" + restLen + "]");
                             sb.Append(sTxtTmpl.Substring(nPreCur, nRestLen));
-                            //.WriteLine(this.GetType().Name + "#Perform: resultTxt＝[" + resultTxt.ToString() + "]");
                             nCur = sTxtTmpl.Length;//終了（最後の文字の次へカーソルを出す）
-                            //.WriteLine(this.GetType().Name + "#Perform: cur＝[" + cur + "]");
                         }
                     }
                     else
@@ -405,8 +412,9 @@ namespace Xenon.Syntax
                 }
             }
 
-            
-
+            goto gt_EndMethod;
+            //
+        gt_EndMethod:
             return sb.ToString();
         }
 
@@ -453,10 +461,10 @@ namespace Xenon.Syntax
             {
                 return dictionary_NumberAndValue_Parameter;
             }
-            set
-            {
-                dictionary_NumberAndValue_Parameter = value;
-            }
+            //set
+            //{
+            //    dictionary_NumberAndValue_Parameter = value;
+            //}
         }
 
         //────────────────────────────────────────

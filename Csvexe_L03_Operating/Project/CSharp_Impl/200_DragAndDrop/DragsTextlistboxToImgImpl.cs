@@ -24,7 +24,7 @@ namespace Xenon.Operating
         #region 用意
         //────────────────────────────────────────
 
-        public delegate string DLGT_SourceListbox_GetFilepathFromItem(object itemValue, Log_Reports log_Reports);
+        public delegate string DELEGATE_SourceListbox_GetFilepathFromItem(object itemValue, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion
@@ -361,7 +361,7 @@ namespace Xenon.Operating
 
         //────────────────────────────────────────
 
-        private DragsTextlistboxToImgImpl.DLGT_SourceListbox_GetFilepathFromItem dlgt_SourceListbox_GetFilepathFromItem;
+        private DragsTextlistboxToImgImpl.DELEGATE_SourceListbox_GetFilepathFromItem dlgt_SourceListbox_GetFilepathFromItem;
 
         /// <summary>
         /// リストボックスの項目を解析し、ファイル名にして返します。
@@ -371,7 +371,7 @@ namespace Xenon.Operating
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public DragsTextlistboxToImgImpl.DLGT_SourceListbox_GetFilepathFromItem Dlgt_SourceListbox_GetFilepathFromItem
+        public DragsTextlistboxToImgImpl.DELEGATE_SourceListbox_GetFilepathFromItem Dlgt_SourceListbox_GetFilepathFromItem
         {
             get
             {

@@ -35,7 +35,7 @@ namespace Xenon.Syntax
         /// 実行します。
         /// </summary>
         /// <returns></returns>
-        String Perform();
+        String Perform(Log_Reports log_Reports);
 
         /// <summary>
         /// 登録されている「%1%」、「%2%」といった記号の数字を一覧します。
@@ -46,6 +46,21 @@ namespace Xenon.Syntax
             Dictionary_Expression_Node_String dic_Expr_Attr,
             Log_Reports log_Reports
             );
+
+        /// <summary>
+        /// [1]=101
+        /// [2]=赤
+        /// といったディクショナリー。
+        /// 
+        /// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
+        /// Xn_L05_E:E_FtextTemplate#E_ExecuteでAddされます。
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="log_Reports"></param>
+        void AddParameter(int key, string value, Log_Reports log_Reports);
+
+        void TryGetParameter(out string out_Value, int key, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion
@@ -70,12 +85,12 @@ namespace Xenon.Syntax
         /// といったディクショナリー。
         /// 
         /// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
-        /// Xn_L05_E:E_FtextTemplate#E_ExecuteでAddされます。
+        /// Xn_L01_Syntax:E_FtextTemplate#E_ExecuteでAddされます。
         /// </summary>
         Dictionary<int, string> Dictionary_NumberAndValue_Parameter
         {
             get;
-            set;
+            //set;
         }
 
         //────────────────────────────────────────

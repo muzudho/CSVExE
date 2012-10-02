@@ -105,7 +105,7 @@ namespace Xenon.Controls
             if (log_Reports.CanCreateReport)
             {
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー301！", pg_Method);
+                r.SetTitle("▲エラー901！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("例外の型：");

@@ -438,7 +438,6 @@ namespace Xenon.Functions
                     //
                     this.Owner_MemoryApplication.MemoryVariables.LoadVariables(
                         Application.StartupPath,
-                        this.Owner_MemoryApplication,
                         log_Reports
                         );
                 }
@@ -598,7 +597,6 @@ namespace Xenon.Functions
                             {
                                 this.Owner_MemoryApplication.MemoryFunctions.LoadFile(
                                     scriptfile.Expression_Filepath,
-                                    this.Owner_MemoryApplication,
                                     log_Reports);
 
                             }
@@ -949,14 +947,13 @@ namespace Xenon.Functions
             }
 
 
-            MemoryAaeditorxml moAaeditorxml = new MemoryAaeditorxmlImpl();
+            MemoryAaeditorxml moAaeditorxml = new MemoryAaeditorxmlImpl(this.Owner_MemoryApplication);
             //moAaeditorxml.Clear1(log_Reports);
 
             if (log_Reports.Successful)
             {
                 moAaeditorxml.Load_AutoSystemVariable(
                     ec_Fopath_Editor,
-                    this.Owner_MemoryApplication,
                     log_Reports
                     );
             }
@@ -977,7 +974,6 @@ namespace Xenon.Functions
             {
                 moAaeditorxml.LoadFile(
                     ec_Fopath_Editor,
-                    this.Owner_MemoryApplication,
                     log_Reports
                     );
             }

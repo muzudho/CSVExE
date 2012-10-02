@@ -263,8 +263,6 @@ namespace Xenon.Table
                 r.SetTitle("▲エラー201！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("▲エラー202！(" + Info_Table.Name_Library + ")");
-                s.Newline();
                 s.Append("　セルに、int型の値を入れてください。空欄にしないでください。");
                 s.Append(Environment.NewLine);
                 s.Append("　　intセル値=[");

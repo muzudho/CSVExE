@@ -148,7 +148,7 @@ namespace Xenon.Syntax
 
             try
             {
-                sResult = this.dictionary_P1p[this.nP1p];
+                sResult = this.dictionary_P1p[this.numberP1p];
             }
             catch (KeyNotFoundException e)
             {
@@ -172,7 +172,7 @@ namespace Xenon.Syntax
 
                     Log_TextIndented t = new Log_TextIndentedImpl();
                     t.Append("テキスト_テンプレートの引数 p");
-                    t.Append(this.nP1p);
+                    t.Append(this.numberP1p);
                     t.Append("p の取得に失敗しました。");
                     t.Newline();
 
@@ -472,22 +472,22 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private int nP1p;
+        private int numberP1p;
 
         /// <summary>
         /// 「p1p」、「p2p」といった引数名の中の数字。
         /// 
         /// 「p1p」は、「%1%」を名前にしたもの。
         /// </summary>
-        public int NP1p
+        public int NumberP1p
         {
             get
             {
-                return nP1p;
+                return numberP1p;
             }
             set
             {
-                this.nP1p = value;
+                this.numberP1p = value;
             }
         }
 
