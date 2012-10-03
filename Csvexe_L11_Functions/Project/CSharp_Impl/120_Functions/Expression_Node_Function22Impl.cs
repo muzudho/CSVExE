@@ -258,21 +258,12 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_EmptynameTable:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー529！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_NAME_TABLE.Name_Pm, log_Reports);//引数名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder s = new StringBuilder();
-                s.Append("引数 [" + PmNames.S_NAME_TABLE.Name_Pm + "] を指定してください。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110008;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -590,37 +581,16 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_TypeData:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー301！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesFld.S_TYPE_DATA, log_Reports);//フィールド名TYPE_DATA
+                tmpl.SetParameter(2, err_STypedata, log_Reports);//TYPE_DATAフィールドの値
+                tmpl.SetParameter(3, ValuesTypeData.Message_Allitems(), log_Reports);//TYPE_DATAフィールドに設定できる値のリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("未定義のデータ・タイプです。");
-                s.Newline();
+                Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部" + err_NRow + "行", o_Table_Aafiles.Parent);
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cf), log_Reports);//設定位置パンくずリスト
 
-                s.Append(NamesFld.S_TYPE_DATA);
-                s.Append("=[");
-                s.Append(err_STypedata);
-                s.Append("]。");
-                s.Newline();
-                s.Newline();
-
-                s.Append("次の値から選ばなければいけません。");
-                s.Newline();
-                s.Append(ValuesTypeData.Message_Allitems());
-                s.Newline();
-                s.Newline();
-
-                // ヒント
-                {
-                    Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部"+err_NRow+"行",o_Table_Aafiles.Parent);
-                    //s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-                    s.Append(r.Message_Configurationtree(cf));//o_Table_Aafiles.Parent
-                }
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110011;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -1052,20 +1022,11 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullFolder:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー502！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("フォルダーパスの取得に失敗しました。");
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110009;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

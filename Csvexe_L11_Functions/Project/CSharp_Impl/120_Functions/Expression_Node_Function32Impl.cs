@@ -222,22 +222,11 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundSelectedRow:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー198！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, pcLst.SelectedIndex.ToString(), log_Reports);//リストボックスで選択している項目のindex
 
-                StringBuilder s = new StringBuilder();
-                s.Append("未実装、リストボックスで選択している行がなかった。");
-                s.Append(Environment.NewLine);
-                s.Append("選択している項目インデックス番号は、[");
-                s.Append(pcLst.SelectedIndex);
-                s.Append("]です。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110016;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

@@ -243,26 +243,12 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NoSelectedField:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー198！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
+                tmpl.SetParameter(2, pcLst.SelectedIndex.ToString(), log_Reports);//リストボックスの選択しているindex
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("未実装、リストボックス[" );
-                sb.Append(sName_Control);
-                sb.Append("]で選択している行がなかった。");
-
-
-                sb.Append(Environment.NewLine);
-                sb.Append("リストボックスの、選択している項目インデックス番号は、[");
-                sb.Append(pcLst.SelectedIndex);
-                sb.Append("]です。");
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
-
-                r.Message = sb.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110010;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

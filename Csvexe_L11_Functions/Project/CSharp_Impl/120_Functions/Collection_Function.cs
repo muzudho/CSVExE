@@ -292,30 +292,13 @@ namespace Xenon.Functions
         //────────────────────────────────────────
         gt_Error_NotSupportedFunction:
             expr_Func = null;
-            if (log_Reports.CanCreateReport)
+
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー202！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Fnc, log_Reports);//関数名
+                tmpl.SetParameter(2, log_Method.Name_Method, log_Reports);//記述先の関数名
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("指定の[" + sName_Fnc + "]という関数はありませんでした。");
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
-
-                sb.Append("もしかして？");
-                sb.Append(Environment.NewLine);
-                sb.Append("　・プログラマー向け情報：[" + log_Method.Name_Method + "]関数に登録されていますか？");
-                sb.Append(Environment.NewLine);
-
-                sb.Append("　・または、そのイベントに追加できないアクションを記述しているのかもしれません。");
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
-
-                // ヒント
-                //todo: t.Append(r.Message_Configurationtree(e_Uic.Cur_Configurationtree));
-
-                r.Message = sb.ToString();
-                log_Reports.EndCreateReport();
+                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:110002;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

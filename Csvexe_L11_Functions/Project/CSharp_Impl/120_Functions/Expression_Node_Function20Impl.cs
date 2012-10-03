@@ -240,17 +240,11 @@ namespace Xenon.Functions
                                 else
                                 {
                                     //#連続エラー
-                                    if (log_Reports.CanCreateReport)
                                     {
-                                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                        r.SetTitle("▲エラー902！", log_Method);
+                                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                        tmpl.SetParameter(1, sDataMemory, log_Reports);//属性memoryの値
 
-                                        StringBuilder s = new StringBuilder();
-                                        s.Append("＜ｄａｔａ　ｍｅｍｏｒｙ＝”[");
-                                        s.Append(sDataMemory);
-                                        s.Append("]”＞属性でした。");
-                                        r.Message = s.ToString();
-                                        log_Reports.EndCreateReport();
+                                        this.Owner_MemoryApplication.CreateErrorReport("Er:110007;", tmpl, log_Reports);
                                     }
                                 }
                             }

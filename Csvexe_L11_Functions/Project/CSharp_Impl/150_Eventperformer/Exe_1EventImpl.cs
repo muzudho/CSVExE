@@ -134,6 +134,7 @@ namespace Xenon.Functions
                     expr_Func,
                     sender,
                     eventMonitor,
+                    owner_MemoryApplication,
                     log_Reports
                     );
 

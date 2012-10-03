@@ -82,31 +82,20 @@ namespace Xenon.Functions
             //
             gt_Error_UndefinedArgName:
                 bBreak = true;
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー702！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, err_sName_Attr, log_Reports);//引数名
 
-                    Log_TextIndented s = new Log_TextIndentedImpl();
-                    s.Append("未対応の引数名です。[");
-                    s.Append(err_sName_Attr);
-                    s.Append("]");
-                    s.Newline();
-
-                    s.Append("┌────────┐対応している引数名の一覧。");
-                    s.Newline();
+                    StringBuilder s1 = new StringBuilder();
                     foreach (string sLine in cur_Expr_Func.List_NameArgument)
                     {
-                        s.Append(sLine);
-                        s.Newline();
+                        s1.Append(sLine);
+                        s1.Append(System.Environment.NewLine);
                     }
-                    s.Append("└────────┘");
-                    s.Newline();
+                    tmpl.SetParameter(2, s1.ToString(), log_Reports);//引数名リスト
 
-                    r.Message = s.ToString();
-                    log_Reports.EndCreateReport();
+                    owner_MemoryApplication.CreateErrorReport("Er:110001;", tmpl, log_Reports);
                 }
-            //
             //
             gt_EndMethod2:
                 ;

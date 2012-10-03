@@ -481,89 +481,32 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullParentControl:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー110501！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFncName0, log_Reports);//関数名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("[");
-                s.Append(sFncName0);
-                s.Append("]アクションを実行しようとしましたが、");
-                s.Newline();
-
-                s.Append("トゥゲザー名が指定されていなかったので、自動判定をしようとしたとき、");
-                s.Newline();
-
-                s.Append("このアクションの親コントロールは　指定されていませんでした。");
-                s.Newline();
-
-                s.Append("プログラムのミスかもしれません。");
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110012;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullParentEvent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1101！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFncName0, log_Reports);//関数名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("[");
-                t.Append(sFncName0);
-                t.Append("]アクションを実行しようとしましたが、");
-                t.Newline();
-
-                t.Append("トゥゲザー名が指定されていなかったので、自動判定をしようとしたとき、");
-                t.Newline();
-
-                t.Append("このアクションの親イベントは　指定されていませんでした。");
-                t.Newline();
-
-                t.Append("プログラムのミスかもしれません。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110013;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullTogetherName:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1102！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFncName0, log_Reports);//関数名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("[");
-                t.Append(sFncName0);
-                t.Append("]アクションを実行しようとしましたが、");
-                t.Newline();
-
-                t.Append("トゥゲザー名が指定されていなかったので、自動判定をしようとしたとき、");
-                t.Newline();
-
-                t.Append("このアクションのアクション設定は　指定されていませんでした。");
-                t.Newline();
-
-                t.Append("プログラムのミスかもしれません。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110014;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

@@ -189,22 +189,12 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedUc:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー542！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_SFcName, log_Reports);//コントロール名
+                tmpl.SetParameter(2, err_SFcTypeName, log_Reports);//コントロールの型名
 
-                StringBuilder t = new StringBuilder();
-                t.Append("このアクションでは、指定のコントロールの種類に対して、プログラムが未実装です。");
-                t.Append(Environment.NewLine);
-
-                t.Append("Fc名[");
-                t.Append(err_SFcName);
-                t.Append("] Fc型[");
-                t.Append(err_SFcTypeName);
-                t.Append("]");
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110026;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

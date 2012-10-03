@@ -400,27 +400,12 @@ namespace Xenon.Functions
                             log_Reports
                             );
 
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー1108！", log_Method);
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, sFcName3, log_Reports);//コントロール名
+                            tmpl.SetParameter(2, sEventName, log_Reports);//イベント名
 
-                            StringBuilder t = new StringBuilder();
-                            t.Append("[");
-                            t.Append(sFcName3);
-                            t.Append("]という名前のコントロールには、");
-                            t.Append(Environment.NewLine);
-
-                            t.Append("[");
-                            t.Append(sEventName);
-                            t.Append("]という名前のイベントは　存在しませんでした。");
-                            t.Append(Environment.NewLine);
-                            t.Append(Environment.NewLine);
-
-                            // ヒント
-
-                            r.Message = t.ToString();
-                            log_Reports.EndCreateReport();
+                            owner_MemoryApplication.CreateErrorReport("Er:110027;", tmpl, log_Reports);
                         }
                     }
 
@@ -442,22 +427,11 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundUsercontrol:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1107！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Usercontrol, log_Reports);//コントロール名
 
-                StringBuilder t = new StringBuilder();
-                t.Append("[");
-                t.Append(sName_Usercontrol);
-                t.Append("]という名前のコントロールは存在しませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:110028;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

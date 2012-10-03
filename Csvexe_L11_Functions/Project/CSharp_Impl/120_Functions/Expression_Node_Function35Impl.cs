@@ -338,102 +338,59 @@ namespace Xenon.Functions
             //
                     // エラー。
                     gt_Error_NotListbox:
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー1103！", log_Method);
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//コントロール名
+                            tmpl.SetParameter(2, fct.GetType().Name, log_Reports);//コントロールのクラス名
 
-                            StringBuilder t = new StringBuilder();
-                            t.Append("コントロールがリストボックスではありませんでした。");
-                            t.Append(Environment.NewLine);
-                            t.Append("コントロール名＝[");
-                            t.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                            t.Append("]");
-                            t.Append(Environment.NewLine);
-                            t.Append("クラス＝[");
-                            t.Append(fct.GetType().Name);
-                            t.Append("]");
-                            r.Message = t.ToString();
-                            log_Reports.EndCreateReport();
+                            this.Owner_MemoryApplication.CreateErrorReport("Er:110019;", tmpl, log_Reports);
                         }
                         goto gt_EndMethod2;
 
                     //
                     // エラー。
                     gt_Error_NotFoundDataTarget:
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー110726！", log_Method);
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//コントロール名
 
-                            StringBuilder s = new StringBuilder();
-                            s.Append("＜ｄａｔａ　＞要素がありませんでした。");
-
-                            s.Append(Environment.NewLine);
-                            s.Append("コントロール名＝[");
-                            s.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                            s.Append("]");
-
-                            r.Message = s.ToString();
-                            log_Reports.EndCreateReport();
+                            this.Owner_MemoryApplication.CreateErrorReport("Er:110020;", tmpl, log_Reports);
                         }
                         goto gt_EndMethod2;
 
                     //
                     // エラー。
                     gt_Error_NullItemValueToVariable:
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー110725！", log_Method);
-
-                            Log_TextIndented s = new Log_TextIndentedImpl();
-                            s.Append("＜ｄａｔａ　＞に　[" + PmNames.S_NAME_VAR.Name_Pm + "]　属性がありませんでした。");
-                            s.Newline();
-
-                            s.Append("コントロール名＝[");
-                            s.Append(ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                            s.Append("]");
-                            s.Newline();
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, PmNames.S_NAME_VAR.Name_Pm, log_Reports);//引数名NameVar
+                            tmpl.SetParameter(2, ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//コントロール名
 
                             //
                             //　「ａｃｃｅｓｓ="ｔｏ"」要素を取得しているような。
                             //
-                            err_Ec_DataTarget.ToText_Snapshot(s);
+                            Log_TextIndented s1 = new Log_TextIndentedImpl();
+                            err_Ec_DataTarget.ToText_Snapshot(s1);
+                            tmpl.SetParameter(3, s1.ToString(), log_Reports);//データターゲットの変数の中身
 
-                            err_Ec_DataTarget.Cur_Configurationtree.ToText_Content(s);
+                            Log_TextIndented s2 = new Log_TextIndentedImpl();
+                            err_Ec_DataTarget.Cur_Configurationtree.ToText_Content(s2);
+                            tmpl.SetParameter(4, s2.ToString(), log_Reports);//データターゲットの設定の中身
 
-                            r.Message = s.ToString();
-                            log_Reports.EndCreateReport();
+                            this.Owner_MemoryApplication.CreateErrorReport("Er:110021;", tmpl, log_Reports);
                         }
                         goto gt_EndMethod2;
 
             //
                     // エラー。
                     gt_Error_UndefinedView:
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー1104！", log_Method);
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, errorRule.GetType().Name, log_Reports);//要素のクラス名
+                            tmpl.SetParameter(2, ec_Child.Cur_Configurationtree.Name, log_Reports);//設定の子要素のノード名
+                            tmpl.SetParameter(3, sFncName, log_Reports);//設定の子要素の関数名
 
-                            Log_TextIndented s = new Log_TextIndentedImpl();
-                            s.Append("＜ｖｉｅｗ＞の中に、未定義の要素がありました。");
-                            s.Append(Environment.NewLine);
-                            s.Append("そのクラス名＝[");
-                            s.Append(errorRule.GetType().Name);
-                            s.Append("]");
-                            s.Newline();
-
-                            s.Append("「E■[");
-                            s.Append(ec_Child.Cur_Configurationtree.Name);
-                            s.Append("]　");
-                            s.Append("ｎａｍｅ＝”[");
-                            s.Append(sFncName);
-                            s.Append("]”」");
-                            s.Newline();
-
-                            r.Message = s.ToString();
-                            log_Reports.EndCreateReport();
+                            this.Owner_MemoryApplication.CreateErrorReport("Er:110022;", tmpl, log_Reports);
                         }
                         goto gt_EndMethod2;
 
@@ -477,41 +434,20 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullFcUc:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1105！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//コントロール名
 
-                StringBuilder t = new StringBuilder();
-                t.Append("コントロール（fcUc）を取得できませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append("コントロール名＝[");
-                t.Append(err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                t.Append("]");
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110023;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_EmptyView:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1106！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//検索ヒット数
 
-                StringBuilder t = new StringBuilder();
-                t.Append("＜ｖｉｅｗ＞の中に有効な要素がありませんでした。");
-                t.Append(Environment.NewLine);
-
-                t.Append("有効な要素が１つ以上必要です。");
-                t.Append(Environment.NewLine);
-
-                t.Append("コントロール名＝[");
-                t.Append(err_Ec_FcName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                t.Append("]");
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110024;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

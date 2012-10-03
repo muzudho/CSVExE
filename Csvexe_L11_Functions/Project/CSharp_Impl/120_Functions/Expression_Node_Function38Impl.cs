@@ -195,27 +195,12 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotTo:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー110！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Expression_Node_Function38Impl.S_PM_TO, log_Reports);//引数名
+                tmpl.SetParameter(2, err_sNodeName, log_Reports);//ノード名
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("[" + Expression_Node_Function38Impl.S_PM_TO + "]要素が変でした。");
-                s.Newline();
-
-                s.Append("err_sNodeName=[");
-                s.Append(err_sNodeName);
-                s.Append("]");
-                s.Newline();
-
-                //s.Append("err_sFncName=[");
-                //s.Append(err_sFncName);
-                //s.Append("]");
-                //s.Newline();
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110025;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

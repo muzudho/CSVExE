@@ -294,19 +294,11 @@ namespace Xenon.Functions
                 // ↓追加
                 if (null == this.Functionparameterset.SelectedProjectElement_Configurationtree)
                 {
-                    if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                        r.SetTitle("▲エラー1029！", log_Method);
+                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                        tmpl.SetParameter(1, sName_SelectingEditor, log_Reports);//エディター名
 
-                        StringBuilder s = new StringBuilder();
-                        s.Append("ツール設定ファイルから、デフォルトプロジェクトを選べませんでした。");
-                        s.Append(Environment.NewLine);
-                        s.Append("エディター名＝[");
-                        s.Append(sName_SelectingEditor);
-                        s.Append("]");
-                        r.Message = s.ToString();
-                        log_Reports.EndCreateReport();
+                        this.Owner_MemoryApplication.CreateErrorReport("Er:110003;", tmpl, log_Reports);
                     }
                 }
                 // ↑追加
@@ -1262,20 +1254,12 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NoData:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー1202！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFpath_SelectedProject, log_Reports);//選択したエディター・フォルダーのファイルパス
+                tmpl.SetParameter(2, sArgName_Display, log_Reports);//表示名
 
-                StringBuilder sB = new StringBuilder();
-                sB.Append("『");
-                sB.Append(sFpath_SelectedProject);
-                sB.Append("』ファイルの『");
-                sB.Append(sArgName_Display);
-                sB.Append("』が未設定です。");
-                sB.Append(Environment.NewLine);
-                r.Message = sB.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110004;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -1314,39 +1298,22 @@ namespace Xenon.Functions
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullFpath:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー502！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFpath_SelectedProject, log_Reports);//選択したエディター・フォルダーのファイルパス
+                tmpl.SetParameter(2, sArgName, log_Reports);//引数名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("『");
-                s.Append(sFpath_SelectedProject);
-                s.Append("』エディター設定ファイルに、『");
-                s.Append(sArgName);
-                s.Append("』設定が　ありませんでした。");
-                s.Append(Environment.NewLine);
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110005;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NoData:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー501！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sArgName, log_Reports);//引数名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Fpath.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder s = new StringBuilder();
-                s.Append("『");
-                s.Append(sArgName);
-                s.Append("』が未設定です。");
-                s.Append(Environment.NewLine);
-
-                s.Append(r.Message_Configurationtree(ec_Fpath.Cur_Configurationtree));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110006;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

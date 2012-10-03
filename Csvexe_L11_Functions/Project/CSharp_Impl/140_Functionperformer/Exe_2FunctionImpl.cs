@@ -80,6 +80,7 @@ namespace Xenon.Functions
             Expression_Node_Function expr_Func,
             object sender,
             EventMonitorImpl eventMonitor,
+            MemoryApplication memoryApplication,
             Log_Reports log_Reports
         )
         {
@@ -163,35 +164,13 @@ namespace Xenon.Functions
         gt_Error_NotSupportedEnum:
             // アクションしていない、アクションは終了したという判断。
             eventMonitor.BNowactionworking = false;
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー202！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFncName, log_Reports);//関数名
+                tmpl.SetParameter(2, expr_Func.EnumEventhandler.ToString(), log_Reports);//イベントハンドラー名
+                tmpl.SetParameter(3, log_Method.Fullname, log_Reports);//問題のあったメソッド
 
-                string sActionName = "（エラー処理未実装 " + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform）";
-
-                StringBuilder t = new StringBuilder();
-                t.Append("指定のアクション[" + sActionName + "]を実行しようとしましたが、");
-                t.Append(Environment.NewLine);
-                t.Append("　enum=[");
-                t.Append(expr_Func.EnumEventhandler);
-                t.Append("]に対応するメソッドを呼び出すプログラムが書かれていません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("　" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Performに、プログラムを実装してください。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("　・または、そのイベントに追加できないアクションを記述しているのかもしれません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                //todo: t.Append(r.Message_Configurationtree(e_Uic.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:110029;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
