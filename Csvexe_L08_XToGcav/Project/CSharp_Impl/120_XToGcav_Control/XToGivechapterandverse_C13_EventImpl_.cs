@@ -129,42 +129,23 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFound:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー389！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_XAction.Name, log_Reports);//ノード名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("　<event>要素には、[" + err_XAction.Name + "]子要素は未対応です。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8023;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Excp:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー390！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("　予想だにしないエラー。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8024;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

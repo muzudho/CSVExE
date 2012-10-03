@@ -83,7 +83,7 @@ namespace Xenon.XToGcav
             log_Method.WriteWarning_ToConsole("③属性テスト [" + log_Reports.Successful + "]");
             if (log_Reports.Successful)
             {
-                this.Test_Attributes(cur_X, cur_Cf, log_Reports);
+                this.Test_Attributes(cur_X, cur_Cf, memoryApplication, log_Reports);
             }
 
 

@@ -355,160 +355,87 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gtj_Error_DuplicationIn:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー381！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
+                tmpl.SetParameter(2, PmNames.S_IN.Name_Attribute, log_Reports);//引数名
+                tmpl.SetParameter(3, err_SIn, log_Reports);//in属性値
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("同じin属性値を持つ<"+NamesNode.S_TOGETHER+">要素がありました。in属性値は重複してはいけません。");
-                t.Newline();
-
-                //t.Append("トゥゲザー登録ファイル（絶対パス）=[" + sFpatha + "]");
-                //t.Newline();
-
-                t.Append("トゥゲザーのin属性=[" + err_SIn + "]");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8026;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_DuplicationTogether:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー382！", log_Method);
-
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("同名の<" + NamesNode.S_TOGETHER + ">要素がありました。名前は重複してはいけません。");
-                t.Newline();
-
-                //t.Append("トゥゲザー登録ファイル（絶対パス）=[" + sFpatha + "]");
-                //t.Newline();
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
 
                 string sName_Tg;
                 cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Tg, false, log_Reports);
-                t.Append("トゥゲザー名=[" + sName_Tg + "]");
-                t.Newline();
+                tmpl.SetParameter(2, sName_Tg, log_Reports);//指定したtogether名
 
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8027;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_DuplicationOn:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー384！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_ON.Name_Attribute, log_Reports);//属性名on
+                tmpl.SetParameter(2, NamesNode.S_TOGETHER, log_Reports);//ノード名トゥゲザー
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("同名の[" + PmNames.S_ON.Name_Attribute + "]属性を持つ＜" + NamesNode.S_TOGETHER + "＞要素がありました。on属性は重複してはいけません。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8028;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Attr:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー383！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
+                tmpl.SetParameter(2, "in,name", log_Reports);//属性名リスト
 
-                t.Append("<" + NamesNode.S_TOGETHER + ">要素に、in属性、name属性のどちらもありませんでした。どちらかが必要です。");
-                t.Newline();
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                //t.Append("トゥゲザー登録ファイル（絶対パス）=[" + sFpatha + "]");
-                //t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8029;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Child:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー313！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
+                tmpl.SetParameter(2, NamesNode.S_TARGET, log_Reports);//期待する子ノード名
+                tmpl.SetParameter(3, err_Child_X.Name, log_Reports);//実際の子ノード名
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder s = new StringBuilder();
-                s.Append("<" + NamesNode.S_TOGETHER + ">要素に、<ｔａｒｇｅｔ>要素以外の要素[");
-                s.Append(err_Child_X.Name);
-                s.Append("]が含まれていました。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8030;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NoTarget:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー312！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
+                tmpl.SetParameter(2, PmNames.S_TARGET1.Name_Attribute, log_Reports);//期待する属性名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("<" + NamesNode.S_TOGETHER + ">要素に[" + PmNames.S_TARGET1.Name_Attribute + "]属性がありませんでした。");
-                s.Newline();
-
-                s.Append("コントロール設定ファイルの中に書く<" + NamesNode.S_TOGETHER + ">要素では必要です。");
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(parent_Cf));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8031;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NoOn:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー311！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
+                tmpl.SetParameter(2, PmNames.S_ON.Name_Attribute, log_Reports);//期待する属性名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("<" + NamesNode.S_TOGETHER + ">要素に[" + PmNames.S_ON.Name_Attribute + "]属性がありませんでした。");
-                s.Newline();
-
-                s.Append("コントロール設定ファイルの中に書く<" + NamesNode.S_TOGETHER + ">要素では必要です。");
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(parent_Cf));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8032;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

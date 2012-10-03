@@ -34,11 +34,12 @@ namespace Xenon.XToGcav
             string sFpatha_Fcnf,
             Configurationtree_Node cf_FcConfig,
             Expression_Node_Filepath ec_Fopath_Forms,
+            MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "GetControlNameList",log_Reports);
+            log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "GetList_NameControl", log_Reports);
             //
             //
 
@@ -150,125 +151,43 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_IoException:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー407！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
+                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
+                tmpl.SetParameter(3, sHiFpath_ControlFile, log_Reports);//コントロール設定ファイルパス（入力ママ）
+                tmpl.SetParameter(4, sFpatha_Fcnf, log_Reports);//コントロール設定ファイルパス（Formsフォルダーと結合後）
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-
-                t.Append("レイアウト設定ファイルの中に書かれている、[");
-                t.Append(sName_Control);
-                t.Append("]のレコードを元に、");
-                t.Append(Environment.NewLine);
-                t.Append("そのコントロールの設定ファイルを読み込もうとしましたが、");
-                t.Append(Environment.NewLine);
-                t.Append("そんなファイル、見つかりませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("ファイル パスか、フォルダー パスを確認してください。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("フォームズ_フォルダー：");
-                t.Append(Environment.NewLine);
-                t.Append("　　");
-                t.Append(ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("コントロール設定ファイル（入力ママ）：");
-                t.Append(Environment.NewLine);
-                t.Append("　　");
-                t.Append(sHiFpath_ControlFile);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-
-                t.Append("コントロール設定ファイル（フォームズ_フォルダーと結合後）：");
-                t.Append(Environment.NewLine);
-                t.Append("　　");
-                t.Append(sFpatha_Fcnf);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-
-                t.Append(Environment.NewLine);
-
-                t.Append("コントロール設定ファイル(Fcnf)を読み込もうとしたとき。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8004;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_XmlException01:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー408！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("エラー。XMLの書き方にミスがあるかも？");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("コントロール設定ファイルを読み込もうとしたとき。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8005;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedChildElement:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle( "▲エラー499！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_CONTROL1, log_Reports);//期待するノード名
+                tmpl.SetParameter(2, xError.Name, log_Reports);//含まれていたノード名
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("コントロール設定ファイルに、<");
-                sb.Append(NamesNode.S_CONTROL1);
-                sb.Append(">要素以外の要素[");
-                sb.Append(xError.Name);
-                sb.Append("]が含まれていました。");
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = sb.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8006;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_XmlException02:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー409！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("想定外のエラー。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8007;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

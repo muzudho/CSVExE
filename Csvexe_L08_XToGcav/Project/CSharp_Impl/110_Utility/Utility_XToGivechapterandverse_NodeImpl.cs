@@ -85,25 +85,12 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundFc02:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー396！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_FcName, log_Reports);//関数名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("[" + err_FcName + "]という名前のコントロールは、存在しません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("バリデーション設定ファイル読取時。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8001;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -129,7 +116,13 @@ namespace Xenon.XToGcav
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public static List<Configurationtree_Node> SelectItemsBySAttrAsCsv(
-            List<Configurationtree_Node> items, PmName pmName/*string sName_Attr*/, string sValue_Expected, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
+            List<Configurationtree_Node> items,
+            PmName pmName/*string sName_Attr*/,
+            string sValue_Expected,
+            bool bRemove,
+            Request_Selecting request,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_XToGcav.Name_Library, "Util_XToConfigurationtree_NodeImpl", "SelectItemsBySAttrAsCsv",log_Reports);
@@ -217,42 +210,20 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_errorNoHit:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー102！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cfList_Result.Count.ToString(), log_Reports);//検索ヒット数
 
-                StringBuilder s = new StringBuilder();
-                s.Append("必ず、１件以上ヒットする指定でしたが、[");
-                s.Append(cfList_Result.Count);
-                s.Append("]件ヒットしました。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8002;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_errorNotOne:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー101！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cfList_Result.Count.ToString(), log_Reports);//検索ヒット数
 
-                StringBuilder s = new StringBuilder();
-                s.Append("必ず、１件のみ取得する指定でしたが、[");
-                s.Append(cfList_Result.Count);
-                s.Append("]件取得しました。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8003;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

@@ -175,236 +175,78 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Root:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー502！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_CODEFILE_CONTROLS, log_Reports);//期待したルート要素名
+                tmpl.SetParameter(2, err_XElm.Name, log_Reports);//実際のルート要素名
+                tmpl.SetParameter(3, sFpatha_F, log_Reports);//コントロール設定絶対ファイルパス
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("コントロール設定ファイルのルート要素が、期待しないものでした。");
-                s.Newline();
-                s.Newline();
-                s.Append("期待したルート要素：<");
-                s.Append(NamesNode.S_CODEFILE_CONTROLS);
-                s.Append(">");
-                s.Newline();
-                s.Newline();
-                s.Append("実際のルート要素：<");
-                s.Append(err_XElm.Name);
-                s.Append(">");
-                s.Newline();
-                s.Newline();
-
-
-
-                s.Append("コントロール設定ファイル：");
-                s.Append(sFpatha_F);
-                s.Newline();
-                s.Newline();
-
-
-                // ヒント
-                s.Append(r.Message_SException(err_Excp));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8010;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NotFoundFile:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー501！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
+                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
+                tmpl.SetParameter(3, sFpathH_F, log_Reports);//コントロール設定ファイル（入力ママ）
+                tmpl.SetParameter(4, sFpatha_F, log_Reports);//コントロール設定ファイル絶対パス（Formsフォルダーと結合後）
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("指定のフォーム[");
-                s.Append(sName_Control);
-                s.Append("]の設定ファイルが見つかりません。");
-                s.Newline();
-                s.Newline();
-
-                s.Append("ファイル パスか、フォルダー パスを確認してください。");
-                s.Newline();
-
-                s.Append("フォームズ_フォルダー：");
-                s.Newline();
-                s.Append("　　");
-                s.Append(ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                s.Newline();
-                s.Newline();
-
-                s.Append("コントロール設定ファイル（入力ママ）：");
-                s.Newline();
-                s.Append("　　");
-                s.Append(sFpathH_F);
-                s.Newline();
-                s.Newline();
-
-
-                s.Append("コントロール設定ファイル（フォームズ_フォルダーと結合後）：");
-                s.Newline();
-                s.Append("　　");
-                s.Append(sFpatha_F);
-                s.Newline();
-                s.Newline();
-
-
-                s.Newline();
-
-                s.Append("コントロール設定ファイル(Fcnf)を読み込もうとしたとき。");
-                s.Newline();
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_SException(err_Excp));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8011;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_IoException:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー392！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
+                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
+                tmpl.SetParameter(3, sFpathH_F, log_Reports);//コントロール設定ファイル（入力ママ）
+                tmpl.SetParameter(4, sFpatha_F, log_Reports);//コントロール設定ファイル絶対パス（Formsフォルダーと結合後）
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("レイアウト設定ファイルの[");
-                t.Append(sName_Control);
-                t.Append("]レコードを元に、");
-                t.Newline();
-                t.Append("コントロールの設定ファイルを読み込もうとしたとき。");
-                t.Newline();
-                t.Newline();
-
-                t.Append("ファイル パスか、フォルダー パスを確認してください。");
-                t.Newline();
-                t.Append("ファイルが見つかりませんでした。");
-                t.Newline();
-
-                t.Append("フォームズ_フォルダー：");
-                t.Newline();
-                t.Append("　　");
-                t.Append(ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                t.Newline();
-                t.Newline();
-
-                t.Append("コントロール設定ファイル（入力ママ）：");
-                t.Newline();
-                t.Append("　　");
-                t.Append(sFpathH_F);
-                t.Newline();
-                t.Newline();
-
-
-                t.Append("コントロール設定ファイル（フォームズ_フォルダーと結合後）：");
-                t.Newline();
-                t.Append("　　");
-                t.Append(sFpatha_F);
-                t.Newline();
-                t.Newline();
-
-
-                t.Newline();
-
-                t.Append("コントロール設定ファイル(Fcnf)を読み込もうとしたとき。");
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8012;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_XmlException:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー393！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFpatha_F, log_Reports);//コントロール設定ファイル絶対パス（Formsフォルダーと結合後）
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("エラー。XMLの書き方にミスがあるかも？");
-                s.Newline();
-                s.Newline();
-
-                s.Append("コントロール設定ファイル：");
-                s.Append(sFpatha_F);
-                s.Newline();
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_SException(err_Excp));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8013;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Exception01:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー394！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("想定外のエラー。");
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8014;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Exception02:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー395！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("想定外のエラー。");
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8015;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedChildElement:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle( "▲エラー1494！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, NamesNode.S_CONTROL1, log_Reports);//期待するノード名
+                tmpl.SetParameter(2, err_XElm.Name, log_Reports);//実際のノード名
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("コントロール設定ファイルに、<");
-                sb.Append(NamesNode.S_CONTROL1);
-                sb.Append(">要素以外の要素[");
-                sb.Append(err_XElm.Name);
-                sb.Append("]が含まれていました。");
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = sb.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8016;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

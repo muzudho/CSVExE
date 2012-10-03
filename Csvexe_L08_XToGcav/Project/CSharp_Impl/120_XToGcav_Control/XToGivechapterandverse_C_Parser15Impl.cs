@@ -88,7 +88,7 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                this.Test_Attributes(cur_X, cur_Cf, log_Reports);
+                this.Test_Attributes(cur_X, cur_Cf, memoryApplication, log_Reports);
             }
 
 
@@ -218,29 +218,13 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedAttr:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー336！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cur_X.Name, log_Reports);//設定ノード名
+                tmpl.SetParameter(2, err_XAttr.Name, log_Reports);//属性名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("[");
-                s.Append(cur_X.Name);
-                s.Append("]要素を探索中に、未対応の属性が記述されていました。");
-                s.Newline();
-
-                s.Append("xAttr.Name=[");
-                s.Append(err_XAttr.Name);
-                s.Append("]");
-                s.Newline();
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8008;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -259,7 +243,9 @@ namespace Xenon.XToGcav
         /// <param name="x_Cur"></param>
         /// <param name="s_Cur"></param>
         /// <param name="log_Reports"></param>
-        protected virtual void Test_Attributes(XmlElement cur_X, Configurationtree_Node cur_Cf, Log_Reports log_Reports)
+        protected virtual void Test_Attributes(XmlElement cur_X, Configurationtree_Node cur_Cf,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             //
             //
@@ -294,21 +280,13 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NothingAttr:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー325！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cur_X.Name, log_Reports);//要素名
+                tmpl.SetParameter(2, err_SName_Attr, log_Reports);//属性名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("　[" + cur_X.Name + "]要素には、[" + err_SName_Attr + "]属性を記入してください。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8009;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

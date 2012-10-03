@@ -75,7 +75,7 @@ namespace Xenon.XToGcav
             //
             if (log_Reports.Successful)
             {
-                this.Test_Attributes(cur_X, cur_Cf, log_Reports);
+                this.Test_Attributes(cur_X, cur_Cf, memoryApplication, log_Reports);
             }
 
 
@@ -132,7 +132,9 @@ namespace Xenon.XToGcav
         /// <param name="x_Cur"></param>
         /// <param name="s_Cur"></param>
         /// <param name="log_Reports"></param>
-        protected override void Test_Attributes(XmlElement cur_X, Configurationtree_Node cur_Cf, Log_Reports log_Reports)
+        protected override void Test_Attributes(XmlElement cur_X, Configurationtree_Node cur_Cf,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_XToGcav.Name_Library, this, "Test_Attributes",log_Reports);
@@ -205,94 +207,72 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_GhostTarget:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー810！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_ACCESS.Name_Attribute, log_Reports);//属性名access
+                tmpl.SetParameter(2, ValuesAttr.S_TO, log_Reports);//属性値to
+                tmpl.SetParameter(3, PmNames.S_MEMORY.Name_Attribute, log_Reports);//属性名memory
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
+                StringBuilder s1 = new StringBuilder();
+                s1.Append("「");
+                s1.Append(ValuesAttr.S_NONE);
+                s1.Append("」「");
+                s1.Append(ValuesAttr.S_CELL);
+                s1.Append("」「");
+                s1.Append(ValuesAttr.S_RECORDS);
+                s1.Append("」");
+                tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性値
+
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+
                 //ａｃｃｅｓｓ属性に「ｔｏ」が指定されていない時に、ｔａｒｇｅｔ属性に「ｎｏｎｅ」「ｃｅｌｌ」「ｌｉｓｔｂｏｘ」以外のものが設定されていました。これはエラーです。
                 //
                 //ａｃｃｅｓｓ属性に「ｔｏ」が指定されていない場合は、ｔａｒｇｅｔ属性は「ｎｏｎｅ」「ｃｅｌｌ」「ｌｉｓｔｂｏｘ」のいずれかにしなければなりません。
-                s.Append(PmNames.S_ACCESS.Name_Attribute);
-                s.Append("属性に「");
-                s.Append(ValuesAttr.S_TO);
-                s.Append("」が指定されていない時に、");
-                s.Append(PmNames.S_MEMORY.Name_Attribute);
-                s.Append("属性に「");
-                s.Append(ValuesAttr.S_NONE);
-                s.Append("」「");
-                s.Append(ValuesAttr.S_CELL);
-                s.Append("」「");
-                s.Append(ValuesAttr.S_RECORDS);
-                s.Append("」以外のものが設定されていました。これはエラーです。");
-                s.Newline();
-                s.Newline();
 
-                s.Append(PmNames.S_ACCESS.Name_Attribute);
-                s.Append("属性に「");
-                s.Append(ValuesAttr.S_TO);
-                s.Append("」が指定されていない場合は、");
-                s.Append(PmNames.S_MEMORY.Name_Attribute);
-                s.Append("属性は「");
-                s.Append(ValuesAttr.S_NONE);
-                s.Append("」「");
-                s.Append(ValuesAttr.S_CELL);
-                s.Append("」「");
-                s.Append(ValuesAttr.S_RECORDS);
-                s.Append("」のいずれかにしなければなりません。");
-                s.Newline();
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8020;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_AttrType:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー809！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_MEMORY.Name_Attribute, log_Reports);//属性名memory
+                tmpl.SetParameter(2, sMemory, log_Reports);//属性名memoryの値
 
-                StringBuilder s = new StringBuilder();
-                s.Append(PmNames.S_MEMORY.Name_Attribute+"属性値[" + sMemory + "]はエラーです。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-                s.Append("「" + ValuesAttr.S_CELL + "」「" + ValuesAttr.S_RECORDS + "」「" + ValuesAttr.S_VARIABLE + "」、のいずれかを指定してください。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
+                StringBuilder s1 = new StringBuilder();
+                s1.Append("「");
+                s1.Append(ValuesAttr.S_CELL);
+                s1.Append("」「");
+                s1.Append(ValuesAttr.S_RECORDS);
+                s1.Append("」「");
+                s1.Append(ValuesAttr.S_VARIABLE);
+                s1.Append("」");
+                tmpl.SetParameter(3, s1.ToString(), log_Reports);//属性値
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8021;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_AttrAccess:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー809！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_ACCESS.Name_Attribute, log_Reports);//属性名access
+                tmpl.SetParameter(2, err_sAccess, log_Reports);//access属性の値
+                tmpl.SetParameter(3, sAccess_Src, log_Reports);//access指定値全文
 
-                StringBuilder s = new StringBuilder();
-                s.Append(PmNames.S_ACCESS.Name_Attribute+"属性値[" + err_sAccess + "]はエラーです。指定全文=[" + sAccess_Src + "]");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-                s.Append("「" + ValuesAttr.S_FROM + "」、「" + ValuesAttr.S_TO + "」、指定なし、のいずれかを指定してください。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
+                StringBuilder s1 = new StringBuilder();
+                s1.Append("「");
+                s1.Append(ValuesAttr.S_FROM);
+                s1.Append("」「");
+                s1.Append(ValuesAttr.S_TO);
+                s1.Append("」指定なし");
+                tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性値
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8022;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

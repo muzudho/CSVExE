@@ -90,21 +90,12 @@ namespace Xenon.XToGcav
                         else
                         {
                             //#連続エラー
-                            if (log_Reports.CanCreateReport)
                             {
-                                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                r.SetTitle("▲エラー391！", log_Method);
+                                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                tmpl.SetParameter(1, xChild.Name, log_Reports);//ノード名
+                                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                                StringBuilder t = new StringBuilder();
-                                t.Append("　<key-event>要素には、[" + xChild.Name + "]子要素は未対応です。");
-                                t.Append(Environment.NewLine);
-                                t.Append(Environment.NewLine);
-
-                                // ヒント
-                                t.Append(r.Message_Configurationtree(cur_Cf));
-
-                                r.Message = t.ToString();
-                                log_Reports.EndCreateReport();
+                                memoryApplication.CreateErrorReport("Er:8025;", tmpl, log_Reports);
                             }
                         }
                     }

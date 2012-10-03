@@ -165,74 +165,40 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundFc:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("△情報35！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
 
                 string sFcName = ec_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                tmpl.SetParameter(1, sFcName, log_Reports);//コントロール名
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("「コンポーネント設定ファイル」で指定されている、");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(sFcName);
-                t.Append("]という名前のコントロールは、登録されていませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cf_ControlConfig), log_Reports);//設定位置パンくずリスト
 
-                // ヒント
-                t.Append(r.Message_Configurationtree(cf_ControlConfig));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8017;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedChild:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー401！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("＜" + NamesNode.S_CONTROL1 + "＞要素の直下に、未対応の要素が書かれていました。");
-                sb.Append(Environment.NewLine);
-                sb.Append("xChild.Name=[");
-                sb.Append(err_11elm.Name);
-                sb.Append("]");
-                sb.Append(Environment.NewLine);
-                sb.Append(Environment.NewLine);
+                string sFcName = ec_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                tmpl.SetParameter(1, NamesNode.S_CONTROL1, log_Reports);//期待するノード名
+                tmpl.SetParameter(2, err_11elm.Name, log_Reports);//実際のノード名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                // ヒント
-                sb.Append(r.Message_Configurationtree(cur_Cf));
-                sb.Append(r.Message_SException(err_Excp));
-
-                r.Message = sb.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8018;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Exception03:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー402！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_11elm.Name, log_Reports);//ノード名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("予想外の例外。");
-                t.Append("xChild.Name=[");
-                t.Append(err_11elm.Name);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:8019;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

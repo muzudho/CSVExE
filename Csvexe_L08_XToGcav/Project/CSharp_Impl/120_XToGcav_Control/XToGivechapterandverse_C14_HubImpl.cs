@@ -102,57 +102,35 @@ namespace Xenon.XToGcav
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedElement:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー495！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_XElm.Name, log_Reports);//子要素名
+                tmpl.SetParameter(2, err_SName_CurNode, log_Reports);//自要素名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("＜");
-                s.Append(err_XElm.Name);
-                s.Append("＞という子要素が指定されていますが、対応できません。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-                s.Append("＜");
-                s.Append(err_SName_CurNode);
-                s.Append("＞要素が対応できる子要素は次のとおり。");
-                s.Append(Environment.NewLine);
+                StringBuilder s1 = new StringBuilder();
                 foreach (string key in this.Dictionary_XToConfigurationtree_ElmP.Keys)
                 {
-                    s.Append("　＜");
-                    s.Append(key);
-                    s.Append("＞");
-                    s.Append(Environment.NewLine);
+                    s1.Append("　＜");
+                    s1.Append(key);
+                    s1.Append("＞");
+                    s1.Append(Environment.NewLine);
                 }
-                s.Append(Environment.NewLine);
+                tmpl.SetParameter(3, s1.ToString(), log_Reports);//要素リスト
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8033;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Exception:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー90496！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_XElm.Name, log_Reports);//要素名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder s = new StringBuilder();
-                s.Append("＜");
-                s.Append(err_XElm.Name);
-                s.Append("＞という要素を読み取った時、予想できないエラーが発生しました。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
-                s.Append(r.Message_SException(err_Excp));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:8034;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
