@@ -45,10 +45,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -222,25 +224,11 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullDatatarget:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー455！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Name, log_Reports);//コントロール名
 
-                StringBuilder t = new StringBuilder();
-
-                t.Append("コントロール=[");
-                t.Append(this.Name);
-                t.Append("]には、NDataTarget が設定されていませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append("プログラミングのミスの可能性があります。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:512;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

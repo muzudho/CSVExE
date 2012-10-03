@@ -220,10 +220,9 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="number">「%1%」で使う数字。1から始まる連番。</param>
         /// <param name="sMessage">「%1%」に対応する文字列。</param>
-        public void AddP1p(int nNumber, object sMessage, Log_Reports log_Reports)
+        public void SetParameter_P1p(int nNumber, object sMessage, Log_Reports log_Reports)
         {
-            //this.p1pText.Dictionary_NumberAndValue_Parameter.Add(nNumber, sMessage.ToString());
-            this.p1pText.AddParameter(nNumber, sMessage.ToString(), log_Reports);
+            this.p1pText.SetParameter(nNumber, sMessage.ToString(), log_Reports);
         }
 
         //────────────────────────────────────────

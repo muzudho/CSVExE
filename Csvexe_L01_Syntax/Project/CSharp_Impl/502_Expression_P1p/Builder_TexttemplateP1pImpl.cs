@@ -71,7 +71,7 @@ namespace Xenon.Syntax
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="log_Reports"></param>
-        public void AddParameter(int key, string value, Log_Reports log_Reports)
+        public void SetParameter(int key, string value, Log_Reports log_Reports)
         {
             this.dictionary_NumberAndValue_Parameter.Add(key, value);
         }

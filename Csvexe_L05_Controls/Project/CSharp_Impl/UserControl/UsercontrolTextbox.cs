@@ -106,32 +106,13 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotSupportedEvent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー373！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
+                tmpl.SetParameter(2, sToE_Event.Name, log_Reports);//イベント名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("「コントロール設定ファイル」の記述エラーか、プログラムの未実装です。");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(this.GetType().Name);
-                t.Append("]クラスは、");
-                t.Append(Environment.NewLine);
-                t.Append("指定されたイベントの名前");
-                t.Append(Environment.NewLine);
-                t.Append("oEvent.Name=[");
-                t.Append(sToE_Event.Name);
-                t.Append("]には対応できません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(sToE_Event.Configurationtree_Event));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:516;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -298,10 +279,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 

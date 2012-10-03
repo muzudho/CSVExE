@@ -315,10 +315,6 @@ namespace Xenon.Controls
                 }
 
                 o_KeyFldDef = oList_KeyFldDef[0];
-                //WarningReport dr = new WarningReportImpl();
-                //.WriteLine("(" + Info_Forms .LibraryName+ ")" + this.GetType().NFcName + "#...: （２）キーフィールドの定義検索終了 nFcell.NKeyFldName=[" + nKeyFldName.Value + "] ソース=[" + dr.CreateWrittenPlaceMessage(nKeyFldName) + "]");
-
-
             }
             else
             {
@@ -362,9 +358,6 @@ namespace Xenon.Controls
                 {
                     goto gt_EndMethod;
                 }
-
-                //WarningReport dr = new WarningReportImpl();
-                //.WriteLine("(" + Info_Forms .LibraryName+ ")" + this.GetType().NFcName + "#...: （３）選択フィールドの定義検索終了 nFcell.SelectedFldName=[" + selectedFldName.Value + "] ソース=[" + dr.CreateWrittenPlaceMessage(selectedFldName) + "]");
             }
             else
             {

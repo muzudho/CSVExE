@@ -45,9 +45,15 @@ namespace Xenon.Controls
         /// </summary>
         public void ClearAllEventhandlers(Log_Reports log_Reports)
         {
-            Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(this, log_Reports);
+            Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
+                this,
+                this.ControlCommon.Owner_MemoryApplication,
+                log_Reports
+                );
 
-            remover.Suppress(log_Reports);
+            remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
+                log_Reports);
             //            remover.Resume(log_Reports);
         }
 
@@ -118,23 +124,11 @@ namespace Xenon.Controls
             //
 
             //#このルートはエラー
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー451！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                //%N%なし
 
-                StringBuilder t = new StringBuilder();
-
-                t.Append("ボタン が、UpdateData（データ編集）しようとしましたが、");
-                t.Append(Environment.NewLine);
-                t.Append("ボタン は、UpdateDataしてはいけません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:538;", tmpl, log_Reports);
             }
 
             //

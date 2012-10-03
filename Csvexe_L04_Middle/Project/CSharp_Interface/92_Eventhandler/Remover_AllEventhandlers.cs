@@ -16,6 +16,7 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         void Resume(
+            object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports
             );
 
@@ -23,6 +24,7 @@ namespace Xenon.Middle
         /// 全てのイベントハンドラーを削除します。
         /// </summary>
         void Suppress(
+            object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports
             );
 

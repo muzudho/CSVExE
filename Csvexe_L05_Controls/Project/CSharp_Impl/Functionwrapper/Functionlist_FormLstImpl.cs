@@ -127,58 +127,27 @@ namespace Xenon.Controls
             }
 
 
-            //if (this.EnumEventhandler == EnumEventhandler.O_Ea)
-            //{
-                //
-                // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
-                //
+            //
+            // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
+            //
 
-                Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Gcav, ref bool bBreak)
+            Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Gcav, ref bool bBreak)
+            {
+                Expression_Node_Function expr_Func = cct.ControlCommon.Owner_MemoryApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
+                    systemFunction_Gcav,
+                    true,
+                    log_Reports_ThisMethod
+                    );
+
+                if (log_Reports_ThisMethod.Successful)
                 {
-                    Expression_Node_Function expr_Func = cct.ControlCommon.Owner_MemoryApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
-                        systemFunction_Gcav,
-                        true,
-                        log_Reports_ThisMethod
-                        );
-
-                    if (log_Reports_ThisMethod.Successful)
-                    {
-                        //ystem.Console.WriteLine(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: 何回呼び出される？(B)");
-                        expr_Func.Execute_OnOEa(sender, e);
-                    }
-                });
-            //}
-            //else
-            //{
-            //    // エラー
-            //    goto gt_Error_AnotherEvent;
-            //}
+                    //ystem.Console.WriteLine(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: 何回呼び出される？(B)");
+                    expr_Func.Execute_OnOEa(sender, e);
+                }
+            });
 
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        //gt_Error_AnotherEvent:
-        //    if (log_Reports_ThisMethod.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-        //        r.SetTitle("▲エラー397！", pg_Method);
-
-        //        StringBuilder t = new StringBuilder();
-        //        t.Append("[");
-        //        t.Append(this.EnumEventhandler);
-        //        t.Append("]形式のアクションリストが、Perform_OEaを実行しようとしました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append("これはプログラムの間違いです。");
-        //        r.Message = t.ToString();
-        //        log_Reports_ThisMethod.EndCreateReport();
-        //    }
-        //    goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports_ThisMethod);

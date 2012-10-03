@@ -206,30 +206,13 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotSupportedValue:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー354！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports), log_Reports);//コントロール名
+                tmpl.SetParameter(2, sChkValueType, log_Reports);//CHK_VALUE_TYPEフィールド値
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("チェックボックス[");
-                t.Append(this.ControlCommon.Expression_Name_Control);
-                t.Append("]の");
-                t.Newline();
-
-                t.Append("レイアウト設定のCHK_VALUE_TYPEフィールドに、");
-                t.Newline();
-
-                t.Append("未対応の値[");
-                t.Append(sChkValueType);
-                t.Append("]が入っていました。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:519;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -310,32 +293,13 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotSupportedEvent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー355！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
+                tmpl.SetParameter(2, sToE_Event.Name, log_Reports);//イベント名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("「コントロール設定ファイル」の記述エラーか、プログラムの未実装です。");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(this.GetType().Name);
-                t.Append("]クラスは、");
-                t.Append(Environment.NewLine);
-                t.Append("指定されたイベントの名前");
-                t.Append(Environment.NewLine);
-                t.Append("oEvent.Name=[");
-                t.Append(sToE_Event.Name);
-                t.Append("]には対応できません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(sToE_Event.Configurationtree_Event));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:519;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -363,10 +327,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 

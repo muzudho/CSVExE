@@ -57,10 +57,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -201,23 +203,12 @@ namespace Xenon.Controls
                                                 this.BackColor = Color.Red;
 
                                                 //#内部メソッド内のエラー
-                                                if (log_Reports.CanCreateReport)
                                                 {
-                                                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                                    r.SetTitle("▲エラー902！", pg_Method);
+                                                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                                    tmpl.SetParameter(1, sValue, log_Reports);//値
+                                                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                                                    Log_TextIndented s = new Log_TextIndentedImpl();
-
-                                                    s.Append("false,true値に変換できませんでした。[");
-                                                    s.Append(sValue);
-                                                    s.Append("]");
-                                                    s.Newline();
-
-                                                    // ヒント
-                                                    s.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
-
-                                                    r.Message = s.ToString();
-                                                    log_Reports.EndCreateReport();
+                                                    this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:539;", tmpl, log_Reports);
                                                 }
                                             }
 
@@ -267,25 +258,13 @@ namespace Xenon.Controls
                                                     this.BackColor = Color.Red;
 
                                                     //#内部メソッド内のエラー
-                                                    if (log_Reports.CanCreateReport)
                                                     {
-                                                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Warning);
-                                                        r.SetTitle("▲エラー461！", pg_Method);
+                                                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                                        tmpl.SetParameter(1, nCheckedInt.ToString(), log_Reports);//値
+                                                        tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                                                        Log_TextIndented t = new Log_TextIndentedImpl();
-
-                                                        t.Append("0,1値が欲しいところに、[");
-                                                        t.Append(nCheckedInt);
-                                                        t.Append("]が入っていました。");
-                                                        t.Newline();
-
-                                                        // ヒント
-                                                        t.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
-
-                                                        r.Message = t.ToString();
-                                                        log_Reports.EndCreateReport();
+                                                        this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:540;", tmpl, log_Reports);
                                                     }
-                                                    //goto automatic_input_end;
                                                 }
                                             }
                                             else
@@ -297,21 +276,11 @@ namespace Xenon.Controls
                                                 this.BackColor = Color.Red;
 
                                                 //#内部メソッド内のエラー
-                                                if (log_Reports.CanCreateReport)
                                                 {
-                                                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                                    r.SetTitle("▲エラー462！", pg_Method);
+                                                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                                    tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                                                    Log_TextIndented t = new Log_TextIndentedImpl();
-
-                                                    t.Append("0,1値に変換できませんでした。");
-                                                    t.Newline();
-
-                                                    // ヒント
-                                                    t.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
-
-                                                    r.Message = t.ToString();
-                                                    log_Reports.EndCreateReport();
+                                                    this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:541;", tmpl, log_Reports);
                                                 }
                                             }
 
@@ -335,21 +304,11 @@ namespace Xenon.Controls
                                             this.BackColor = Color.Red;
 
                                             //#内部メソッド内のエラー
-                                            if (log_Reports.CanCreateReport)
                                             {
-                                                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                                r.SetTitle("▲エラー463！", pg_Method);
+                                                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                                                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                                                t.Append("プログラミング_ミス。未定義のEnum値。");
-                                                t.Newline();
-
-                                                // ヒント
-                                                t.Append(r.Message_Configurationtree(eFirst.Cur_Configurationtree));
-
-                                                r.Message = t.ToString();
-                                                log_Reports.EndCreateReport();
+                                                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:542;", tmpl, log_Reports);
                                             }
                                         }
                                         break;
@@ -474,21 +433,11 @@ namespace Xenon.Controls
                         break;
 
                     default:
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー465！", pg_Method);
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, this.enumCheckboxValuetype.ToString(),log_Reports);//未定義のEnum値。
 
-                            Log_TextIndented t = new Log_TextIndentedImpl();
-
-                            t.Append("プログラミング_ミス。未定義のEnum値。");
-                            t.Newline();
-
-                            // ヒント
-                            t.Append(r.Message_Configurationtree(ec_DataTarget.Cur_Configurationtree));
-
-                            r.Message = t.ToString();
-                            log_Reports.EndCreateReport();
+                            this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:506;", tmpl, log_Reports);
                         }
                         break;
                 }
@@ -512,25 +461,11 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullDatatarget:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー464！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Name, log_Reports);//コントロール名
 
-                StringBuilder t = new StringBuilder();
-
-                t.Append("コントロール=[");
-                t.Append(this.Name);
-                t.Append("]には、NDataTarget が設定されていませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append("プログラミングのミスの可能性があります。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:502;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

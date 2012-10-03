@@ -48,10 +48,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -196,26 +198,11 @@ namespace Xenon.Controls
                 //
                 // 未実装 TODO: 実装すること。
                 //
-
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー460！", pg_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, this.Name, log_Reports);//コントロール名
 
-                    StringBuilder t = new StringBuilder();
-
-                    t.Append("コントロール=[");
-                    t.Append(this.Name);
-                    t.Append("]のUpdateDataをしようとしましたが、CcLabel#UpdateDataは　未実装でした。");
-                    t.Append(Environment.NewLine);
-                    t.Append("プログラミングのミスの可能性があります。");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-
-                    // ヒント
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
+                    this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:537;", tmpl, log_Reports);
                 }
             }
 
@@ -225,25 +212,11 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Datatarget:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー459！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Name, log_Reports);//コントロール名
 
-                StringBuilder t = new StringBuilder();
-
-                t.Append("コントロール=[");
-                t.Append(this.Name);
-                t.Append("]には、NDataTarget が設定されていませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append("プログラミングのミスの可能性があります。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:504;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

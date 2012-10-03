@@ -285,8 +285,8 @@ namespace Xenon.MiddleImpl
         gt_Error_NothingFile:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.Dictionary_NumberAndValue_Parameter.Add(1, ValuesAttr.S_FPATHR_AATOOLXML);
-                tmpl.Dictionary_NumberAndValue_Parameter.Add(2, Log_Report01Impl.ToMessage_Exception(err_Excp));
+                tmpl.SetParameter(1, ValuesAttr.S_FPATHR_AATOOLXML,log_Reports);
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Exception(err_Excp),log_Reports);
 
                 this.Owner_MemoryApplication.CreateErrorReport( "Er:1;", tmpl, log_Reports );
             }

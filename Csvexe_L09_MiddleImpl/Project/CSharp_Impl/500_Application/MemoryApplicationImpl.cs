@@ -174,9 +174,9 @@ namespace Xenon.MiddleImpl
                     s.Append("エラーメッセージテーブルに、エラーメッセージの登録がありませんでした。\n%1%=[%2%]\nテーブル数=[%3%]");
 
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl(s.ToString());
-                    tmpl.Dictionary_NumberAndValue_Parameter.Add(1, NamesFld.S_TYPE_DATA);
-                    tmpl.Dictionary_NumberAndValue_Parameter.Add(2, strTypedata);
-                    tmpl.Dictionary_NumberAndValue_Parameter.Add(3, tables.Count.ToString());
+                    tmpl.SetParameter(1, NamesFld.S_TYPE_DATA,log_Reports);
+                    tmpl.SetParameter(2, strTypedata,log_Reports);
+                    tmpl.SetParameter(3, tables.Count.ToString(),log_Reports);
 
                     r.Message = tmpl.Compile(log_Reports).Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
                 }

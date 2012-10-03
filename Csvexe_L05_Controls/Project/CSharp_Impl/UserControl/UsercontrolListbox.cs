@@ -314,42 +314,19 @@ namespace Xenon.Controls
 
             goto gt_EndMethod;
         //
-        //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotSupportedEvent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー368！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
+                tmpl.SetParameter(2, sToE_Event.Name, log_Reports);//イベント名
 
-
-                StringBuilder t = new StringBuilder();
-
-                t.Append("「コントロール設定ファイル」の記述エラーか、プログラムの未実装です。");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(this.GetType().Name);
-                t.Append("]クラスは、");
-                t.Append(Environment.NewLine);
-                t.Append("指定されたイベントの名前");
-                t.Append(Environment.NewLine);
-                t.Append("rEvent.Name=[");
-                t.Append(sToE_Event.Name);
-                t.Append("]には対応できません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(sToE_Event.Configurationtree_Event));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:518;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
-        //
         //
         gt_EndMethod:
             pg_Method.EndMethod(log_Reports);
@@ -382,10 +359,12 @@ namespace Xenon.Controls
 
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this.CustomcontrolListbox1,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -1734,26 +1713,12 @@ namespace Xenon.Controls
                 #region 異常系
             //────────────────────────────────────────
             gt_Error_NameField:
-                if (log_Reports_ThisMethod.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー370！", pg_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, sListValueFld, log_Reports_ThisMethod);//リストボックスのフィールド名
+                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports_ThisMethod);//例外メッセージ
 
-                    StringBuilder t = new StringBuilder();
-                    t.Append("リストボックスのフィールド名指定ミス。");
-                    t.Append(Environment.NewLine);
-                    t.Append("LIST_VALUE_FLD=[");
-                    t.Append(sListValueFld);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-
-                    //
-                    // 例外ヒント
-                    t.Append(r.Message_SException(err_Excp));
-
-                    r.Message = t.ToString();
-                    log_Reports_ThisMethod.EndCreateReport();
+                    this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:517;", tmpl, log_Reports_ThisMethod);
                 }
                 goto gt_EndMethod;
             //────────────────────────────────────────

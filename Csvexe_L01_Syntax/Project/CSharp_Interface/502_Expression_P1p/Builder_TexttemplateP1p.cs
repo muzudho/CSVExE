@@ -58,7 +58,7 @@ namespace Xenon.Syntax
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="log_Reports"></param>
-        void AddParameter(int key, string value, Log_Reports log_Reports);
+        void SetParameter(int key, string value, Log_Reports log_Reports);
 
         void TryGetParameter(out string out_Value, int key, Log_Reports log_Reports);
 
@@ -79,19 +79,18 @@ namespace Xenon.Syntax
             set;
         }
 
-        /// <summary>
-        /// [1]=101
-        /// [2]=赤
-        /// といったディクショナリー。
-        /// 
-        /// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
-        /// Xn_L01_Syntax:E_FtextTemplate#E_ExecuteでAddされます。
-        /// </summary>
-        Dictionary<int, string> Dictionary_NumberAndValue_Parameter
-        {
-            get;
-            //set;
-        }
+        ///// <summary>
+        ///// [1]=101
+        ///// [2]=赤
+        ///// といったディクショナリー。
+        ///// 
+        ///// キーは %1%や、%2%といった名前の中の数字。[1]から始める。
+        ///// Xn_L01_Syntax:E_FtextTemplate#E_ExecuteでAddされます。
+        ///// </summary>
+        //Dictionary<int, string> Dictionary_NumberAndValue_Parameter
+        //{
+        //    get;
+        //}
 
         //────────────────────────────────────────
         #endregion

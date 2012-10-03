@@ -55,10 +55,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -292,27 +294,14 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundField:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー906！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_KeyFld,log_Reports);//キー・フィールド名
+                tmpl.SetParameter(2, err_STableName, log_Reports);//テーブル名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(ec_KeyFieldName.Cur_Configurationtree), log_Reports);//キー・フィールド名の設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(ec_ExpectedValue.Cur_Configurationtree), log_Reports);//テーブル名の設定位置パンくずリスト
 
-                StringBuilder s = new StringBuilder();
-
-                s.Append("指定のフィールド[");
-                s.Append(sName_KeyFld);
-                s.Append("]は、テーブル{");
-                s.Append(err_STableName);
-                s.Append("]にありませんでした。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(ec_KeyFieldName.Cur_Configurationtree));
-                s.Append(r.Message_Configurationtree(ec_ExpectedValue.Cur_Configurationtree));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:505;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -449,25 +438,11 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Datatarget:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー473！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Name, log_Reports);//コントロール名
 
-                StringBuilder t = new StringBuilder();
-
-                t.Append("コントロール=[");
-                t.Append(this.Name);
-                t.Append("]には、NDataTarget が設定されていませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append("プログラミングのミスの可能性があります。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:507;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

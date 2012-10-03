@@ -199,10 +199,12 @@ namespace Xenon.Controls
         {
             Remover_AllEventhandlers remover = new Remover_AllEventhandlersImpl(
                 this,
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
             remover.Suppress(
+                this.ControlCommon.Owner_MemoryApplication,
                 log_Reports
                 );
 
@@ -335,9 +337,9 @@ namespace Xenon.Controls
         gt_Error_NotSupportedEvent:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.Dictionary_NumberAndValue_Parameter.Add(1, this.GetType().Name);//クラス名
-                tmpl.Dictionary_NumberAndValue_Parameter.Add(2, sToE_Event.Name);//イベント名
-                tmpl.Dictionary_NumberAndValue_Parameter.Add(3, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event));//位置パンくずリスト
+                tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
+                tmpl.SetParameter(2, sToE_Event.Name, log_Reports);//イベント名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//位置パンくずリスト
 
                 owner_MemoryApplication.CreateErrorReport( "Er:501;", tmpl, log_Reports );
             }

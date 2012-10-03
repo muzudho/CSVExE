@@ -23,7 +23,10 @@ namespace Xenon.Middle
         /// <summary>
         /// イベントハンドラーを全て除去します。
         /// </summary>
-        void ClearAllEventhandlers(Log_Reports log_Reports);
+        void ClearAllEventhandlers(
+            //object/*MemoryApplication*/ owner_MemoryApplication,
+            Log_Reports log_Reports
+            );
 
         /// <summary>
         /// このコントロールを破棄する前の、後始末処理です。

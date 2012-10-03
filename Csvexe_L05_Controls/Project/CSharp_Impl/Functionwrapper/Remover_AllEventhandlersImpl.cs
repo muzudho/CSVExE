@@ -40,6 +40,7 @@ namespace Xenon.Controls
 
         public Remover_AllEventhandlersImpl(
             Control control,
+            object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -87,57 +88,38 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullControl:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー302！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                //%N%なし
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("指定のコントローラーがヌルでした。");
-                sb.Append(Environment.NewLine);
-
-                r.Message = sb.ToString();
-                log_Reports.EndCreateReport();
+                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:514;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Exception:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー901！", pg_Method);
-
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("例外の型：");
-                s.Append(err_Excp.GetType().Name);
-                s.Newline();
-                s.Newline();
-
-                s.Append("例外メッセージ：");
-                s.Append(err_Excp.Message);
-                s.Newline();
-
-                // ヒント
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型名
+                tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
                 if (null == err_Type_Control)
                 {
-                    s.Append("err_Type_Control がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(3, "ヌル", log_Reports);//コントロールの型名
+                }
+                else
+                {
+                    tmpl.SetParameter(3, err_Type_Control.GetType().Name, log_Reports);//コントロールの型名
                 }
 
                 if (null == this.eventHandlerList_Control)
                 {
-                    s.Append("this.eventHandlerList_SrcControl がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(4, "ヌル", log_Reports);//イベントハンドラーリストの型名
                 }
-
-                if (null == err_Type_EventHandlerListType_Control)
+                else
                 {
-                    s.Append("err_Type_EventHandlerListType_Control がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(4, this.eventHandlerList_Control.GetType().Name, log_Reports);//イベントハンドラーリストの型名
                 }
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:527;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -155,6 +137,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="log_Reports"></param>
         private void BuildList(
+            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -196,6 +179,7 @@ namespace Xenon.Controls
                             fi_Handler,
                             fi_Key,
                             fi_Next,
+                            owner_MemoryApplication,
                             log_Reports
                             );
                     }
@@ -214,20 +198,12 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_AnotherEvent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー302！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型名
+                tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("例外の型：");
-                t.Append(err_Excp.GetType().Name);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("例外メッセージ：");
-                t.Append(err_Excp.Message);
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                owner_MemoryApplication.CreateErrorReport("Er:528;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -252,6 +228,7 @@ namespace Xenon.Controls
             FieldInfo fi_Handler,
             FieldInfo fi_Key,
             FieldInfo fi_Next,
+            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -300,6 +277,7 @@ namespace Xenon.Controls
                                     fi_Handler,
                                     fi_Key,
                                     fi_Next,
+                                    owner_MemoryApplication,
                                     log_Reports
                                     );
                             }
@@ -320,60 +298,66 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Exception:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー305！", pg_Method);
-
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("例外の型：");
-                s.Append(err_Excp.GetType().Name);
-                s.Newline();
-                s.Newline();
-                s.Append("例外メッセージ：");
-                s.Append(err_Excp.Message);
-                s.Newline();
-
-
-                // ヒント
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型名
+                tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
+                //fi_Handlerの型名
                 if (null == fi_Handler)
                 {
-                    s.Append("delegateFI がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(3, "ヌル", log_Reports);
                 }
-
+                else
+                {
+                    tmpl.SetParameter(3, fi_Handler.GetType().Name, log_Reports);
+                }
+                //err_Deleの型名
                 if (null == err_Dele)
                 {
-                    s.Append("err_Dele がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(4, "ヌル", log_Reports);
                 }
-
+                else
+                {
+                    tmpl.SetParameter(4, err_Dele.GetType().Name, log_Reports);
+                }
+                //fi_Keyの型名
                 if (null == fi_Key)
                 {
-                    s.Append("keyFI がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(5, "ヌル", log_Reports);
                 }
-
+                else
+                {
+                    tmpl.SetParameter(5, fi_Key.GetType().Name, log_Reports);
+                }
+                //err_Keyの型名
                 if (null == err_Key)
                 {
-                    s.Append("err_Key がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(6, "ヌル", log_Reports);
                 }
-
+                else
+                {
+                    tmpl.SetParameter(6, err_Key.GetType().Name, log_Reports);
+                }
+                //nextFIの型名
                 if (null == fi_Next)
                 {
-                    s.Append("nextFI がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(7, "ヌル", log_Reports);
                 }
-
-                if (null == err_Next)
+                else
                 {
-                    s.Append("err_Next がヌルでした。");
-                    s.Newline();
+                    tmpl.SetParameter(7, fi_Next.GetType().Name, log_Reports);
                 }
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                //err_Nextの型名
+                if (null == fi_Next)
+                {
+                    tmpl.SetParameter(8, "ヌル", log_Reports);
+                }
+                else
+                {
+                    tmpl.SetParameter(8, err_Next.GetType().Name, log_Reports);
+                }
+                
+                owner_MemoryApplication.CreateErrorReport("Er:529;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -387,6 +371,7 @@ namespace Xenon.Controls
         //────────────────────────────────────────
 
         public void Resume(
+            object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -429,20 +414,12 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Exception:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー304！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型
+                tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("例外の型：");
-                t.Append(err_Excp.GetType().Name);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("例外メッセージ：");
-                t.Append(err_Excp.Message);
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:530;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -459,6 +436,7 @@ namespace Xenon.Controls
         /// 全てのイベントハンドラーを削除します。
         /// </summary>
         public void Suppress(
+            object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -480,6 +458,7 @@ namespace Xenon.Controls
                     }
 
                     this.BuildList(
+                        (MemoryApplication)owner_MemoryApplication,
                         log_Reports
                         );
 
@@ -504,20 +483,12 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Exception:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー305！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型名
+                tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("例外の型：");
-                t.Append(err_Excp.GetType().Name);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("例外メッセージ：");
-                t.Append(err_Excp.Message);
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:531;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

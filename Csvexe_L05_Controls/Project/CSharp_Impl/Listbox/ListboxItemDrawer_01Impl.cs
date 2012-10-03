@@ -186,32 +186,19 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedType:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー482！", pg_Method);
-
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("＜ａ－ｄｉｓｐｌａｙ＞の未対応のtype属性です。");
-                t.Newline();
-
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                //コントロールの型名
                 if (err_Expressionv_ADisplay.Dictionary_SAttribute.ContainsKey(PmNames.S_TYPE.Name_Pm))
                 {
-                    t.Append("sType＝[");
-                    t.Append(err_Expressionv_ADisplay.Dictionary_SAttribute[PmNames.S_TYPE.Name_Pm]);
-                    t.Append("]");
+                    tmpl.SetParameter(1, err_Expressionv_ADisplay.Dictionary_SAttribute[PmNames.S_TYPE.Name_Pm], log_Reports);
                 }
                 else
                 {
-                    t.Append("sType＝なし");
+                    tmpl.SetParameter(1, "ヌル", log_Reports);
                 }
-                t.Newline();
 
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:534;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -309,8 +296,6 @@ namespace Xenon.Controls
                 sDisplayText = null;// "(Err10)早すぎロード";//"[" + ccLst .ControlCommon.Expression_Name_Control.E_Execute(null)+ "]リストボックスにデータソース・テーブルが指定されていませんでした)");
 
                 // 項目数だけエラーダイアログボックスが出てくるので、省略。
-                //Log_RecordReport r = log_Reports.NewReport(EnumReport.Error);
-                //r.Message = Info_Forms.LibraryName + ":" + this.GetType().Name + "#P1_GetItemString: リストボックスにDataSourceテーブルが指定されていません。";
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -319,8 +304,6 @@ namespace Xenon.Controls
                 sDisplayText = "(リストボックスにDataSourceTableが指定されていません)";
 
                 // 項目数だけエラーダイアログボックスが出てくるので、省略。
-                //Log_RecordReport r = log_Reports.NewReport(EnumReport.Error);
-                //r.Message = Info_Forms.LibraryName + ":" + this.GetType().Name + "#P1_GetItemString: リストボックスにDataSourceTableが指定されていません";
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -550,41 +533,15 @@ namespace Xenon.Controls
             #region 異常系
         //────────────────────────────────────────
         gt_Error_ArgumentException:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー483！", pg_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sDisplayText, log_Reports);//表示テキスト
+                tmpl.SetParameter(2, e.Font.ToString(), log_Reports);//フォント名
+                tmpl.SetParameter(3, foreBrush.ToString(), log_Reports);//前景ブラシ名
+                tmpl.SetParameter(4, e.Bounds.ToString(), log_Reports);//矩形位置とサイズ
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("描画失敗。詳細不明。");
-                t.Newline();
-
-                t.Append("displayText＝[");
-                t.Append(sDisplayText);
-                t.Append("]");
-                t.Newline();
-
-                t.Append("e.Font＝[");
-                t.Append(e.Font.ToString());
-                t.Append("]");
-                t.Newline();
-
-                t.Append("foreBrush＝[");
-                t.Append(foreBrush.ToString());
-                t.Append("]");
-                t.Newline();
-
-                t.Append("e.Bounds＝[");
-                t.Append(e.Bounds.ToString());
-                t.Append("]");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:535;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
