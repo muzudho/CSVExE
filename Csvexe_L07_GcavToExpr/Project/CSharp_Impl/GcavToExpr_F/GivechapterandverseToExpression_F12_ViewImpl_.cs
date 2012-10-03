@@ -112,18 +112,12 @@ namespace Xenon.GcavToExpr
                         else
                         {
                             // エラー
-                            if (log_Reports.CanCreateReport)
                             {
-                                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                r.SetTitle("▲エラー603！", log_Method);
+                                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                                tmpl.SetParameter(1, sName_Node, log_Reports);//設定ノード名
+                                tmpl.SetParameter(2, sName_Fnc, log_Reports);//関数名
 
-                                StringBuilder t = new StringBuilder();
-                                t.Append("＜view＞要素の中に、未対応の子要素名がありました。");
-                                t.Append("未対応の要素＝＜[");
-                                t.Append(sName_Node);
-                                t.Append("]　ｎａｍｅ＝”[" + sName_Fnc + "]”＞");
-                                r.Message = t.ToString();
-                                log_Reports.EndCreateReport();
+                                memoryApplication.CreateErrorReport("Er:7003;", tmpl, log_Reports);
                             }
 
                             bBreak = true;

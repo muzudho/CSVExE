@@ -182,19 +182,11 @@ namespace Xenon.GcavToExpr
                 }
                 else
                 {
-                    // エラー
-                    if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                        r.SetTitle("▲エラー803！", log_Method);
+                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                        tmpl.SetParameter(1, child_Cf.Name, log_Reports);//子設定ノード名
 
-                        StringBuilder t = new StringBuilder();
-                        t.Append("＜f-listbox-for-items＞要素の中に、未対応の属性名がありました。");
-                        t.Append("未対応の属性＝＜");
-                        t.Append(child_Cf.Name);
-                        t.Append("＞");
-                        r.Message = t.ToString();
-                        log_Reports.EndCreateReport();
+                        memoryApplication.CreateErrorReport("Er:7019;", tmpl, log_Reports);
                     }
 
                     bBreak2 = true;

@@ -157,26 +157,14 @@ namespace Xenon.GcavToExpr
             #region 異常系
         //────────────────────────────────────────
         undefined_element:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー802！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Child_SName_Node, log_Reports);//子設定ノード名
+                tmpl.SetParameter(2, err_Parent_SName_Node, log_Reports);//親設定ノード名
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(err_Child_CfNode), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("＜");
-                t.Append(err_Child_SName_Node);
-                t.Append("＞要素の下に、＜");
-                t.Append(err_Parent_SName_Node);
-                t.Append("＞と記述されていますが、ここには書けません。");
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(err_Child_CfNode));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:7020;", tmpl, log_Reports);
             }
-
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion

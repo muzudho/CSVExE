@@ -139,25 +139,12 @@ namespace Xenon.GcavToExpr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundUsercontrol:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("△情報35！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName_Usercontrol, log_Reports);//コントロール名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cf_FcConfig), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("「コントロール設定ファイル」で指定されている、");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(sName_Usercontrol);
-                t.Append("]という名前のコントロールは、登録されていませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cf_FcConfig));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:7001;", tmpl, log_Reports);
             }
 
             // 処理を中断。

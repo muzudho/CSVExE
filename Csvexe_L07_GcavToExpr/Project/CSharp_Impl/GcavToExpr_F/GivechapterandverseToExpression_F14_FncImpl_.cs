@@ -349,108 +349,263 @@ namespace Xenon.GcavToExpr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_CanNotAddParent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー880！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
+                tmpl.SetParameter(2, sName_MyFnc, log_Reports);//関数名
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("親要素に連結不能でした。");
-                s.Append(Environment.NewLine);
+                if (null != cur_Ec)
+                {
+                    tmpl.SetParameter(3, cur_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//属性の数
 
-                this.WriteError_(
-                    "gt_Error_CanNotAddParent",
-                    s,
-                    cur_Cf,
-                    cur_Ec,
-                    parent_Ec,
-                    sName_MyFnc,
-                    parent_SName_Fnc,
-                    log_Reports
-                    );
+                    //属性リスト
+                    StringBuilder s1 = new StringBuilder();
+                    cur_Ec.Dictionary_Expression_Attribute.ForEach(
+                        delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
+                        {
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                        });
+                    tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(parent_Ec.Cur_Configurationtree));
+                    tmpl.SetParameter(5, cur_Ec.List_Expression_Child.Count.ToString(), log_Reports);//子要素の数
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                    //子要素リスト
+                    StringBuilder s2 = new StringBuilder();
+                    cur_Ec.List_Expression_Child.ForEach(
+                        delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                        {
+                            s2.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                        });
+                    tmpl.SetParameter(6, s2.ToString(), log_Reports);
+
+                    tmpl.SetParameter(7, NamesNode.S_ARG, log_Reports);//期待の親設定ノード名
+                    tmpl.SetParameter(8, PmNames.S_WHERE.Name_Pm, log_Reports);//期待の親設定関数名
+                }
+                else
+                {
+                    tmpl.SetParameter(3, "ヌル", log_Reports);//設定属性の数
+                    tmpl.SetParameter(4, "ヌル", log_Reports);//設定属性リスト
+                    tmpl.SetParameter(5, "ヌル", log_Reports);//設定子要素の数
+                    tmpl.SetParameter(6, "ヌル", log_Reports);//設定子要素リスト
+                    tmpl.SetParameter(7, "ヌル", log_Reports);//期待の親設定ノード名
+                    tmpl.SetParameter(8, "ヌル", log_Reports);//期待の親設定関数名
+                }
+
+                if (null != parent_Ec)
+                {
+                    tmpl.SetParameter(9, parent_Ec.Cur_Configurationtree.Name, log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(10, parent_SName_Fnc, log_Reports);//実際の親Expression要素関数名
+                    tmpl.SetParameter(11, parent_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//Expression属性の数
+
+                    StringBuilder s3 = new StringBuilder();
+                    parent_Ec.Dictionary_Expression_Attribute.ForEach(
+                        delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
+                        {
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                        });
+                    tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
+
+                    tmpl.SetParameter(13, parent_Ec.List_Expression_Child.Count.ToString(), log_Reports);//子Expression要素数
+
+                    StringBuilder s4 = new StringBuilder();
+                    parent_Ec.List_Expression_Child.ForEach(
+                        delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                        {
+                            s4.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                        });
+                    tmpl.SetParameter(14, s4.ToString(), log_Reports);//子Expression要素リスト
+
+                }
+                else
+                {
+                    tmpl.SetParameter(9, "ヌル", log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(10, "ヌル", log_Reports);//実際の親Expression要素関数名
+                    tmpl.SetParameter(11, "ヌル", log_Reports);//Expression属性の数
+                    tmpl.SetParameter(12, "ヌル", log_Reports);//子Expression属性リスト
+                    tmpl.SetParameter(13, "ヌル", log_Reports);//子Expression要素数
+                    tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
+                }
+
+                tmpl.SetParameter(15, Log_Report01Impl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+
+                memoryApplication.CreateErrorReport("Er:7021;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NoNameParent2:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー881！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
+                tmpl.SetParameter(2, sName_MyFnc, log_Reports);//関数名
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("自要素が、ｎａｍｅ属性を持たない「E■ｆｎｃ」だった。。");
-                s.Append(Environment.NewLine);
+                if (null != cur_Ec)
+                {
+                    tmpl.SetParameter(3, cur_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//属性の数
 
-                this.WriteError_(
-                    "gt_Error_NoNameParent2",
-                    s,
-                    cur_Cf,
-                    cur_Ec,
-                    parent_Ec,
-                    sName_MyFnc,
-                    parent_SName_Fnc,
-                    log_Reports
-                    );
+                    //属性リスト
+                    StringBuilder s1 = new StringBuilder();
+                    cur_Ec.Dictionary_Expression_Attribute.ForEach(
+                        delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
+                        {
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                        });
+                    tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(parent_Ec.Cur_Configurationtree));
+                    tmpl.SetParameter(5, cur_Ec.List_Expression_Child.Count.ToString(), log_Reports);//子要素の数
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                    //子要素リスト
+                    StringBuilder s2 = new StringBuilder();
+                    cur_Ec.List_Expression_Child.ForEach(
+                        delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                        {
+                            s2.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                        });
+                    tmpl.SetParameter(6, s2.ToString(), log_Reports);
+
+                    tmpl.SetParameter(7, NamesNode.S_ARG, log_Reports);//期待の親設定ノード名
+                    tmpl.SetParameter(8, PmNames.S_WHERE.Name_Pm, log_Reports);//期待の親設定関数名
+                }
+                else
+                {
+                    tmpl.SetParameter(3, "ヌル", log_Reports);//設定属性の数
+                    tmpl.SetParameter(4, "ヌル", log_Reports);//設定属性リスト
+                    tmpl.SetParameter(5, "ヌル", log_Reports);//設定子要素の数
+                    tmpl.SetParameter(6, "ヌル", log_Reports);//設定子要素リスト
+                    tmpl.SetParameter(7, "ヌル", log_Reports);//期待の親設定ノード名
+                    tmpl.SetParameter(8, "ヌル", log_Reports);//期待の親設定関数名
+                }
+
+                if (null != parent_Ec)
+                {
+                    tmpl.SetParameter(9, parent_Ec.Cur_Configurationtree.Name, log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(10, parent_SName_Fnc, log_Reports);//実際の親Expression要素関数名
+                    tmpl.SetParameter(11, parent_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//Expression属性の数
+
+                    StringBuilder s3 = new StringBuilder();
+                    parent_Ec.Dictionary_Expression_Attribute.ForEach(
+                        delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
+                        {
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                        });
+                    tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
+
+                    tmpl.SetParameter(13, parent_Ec.List_Expression_Child.Count.ToString(), log_Reports);//子Expression要素数
+
+                    StringBuilder s4 = new StringBuilder();
+                    parent_Ec.List_Expression_Child.ForEach(
+                        delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                        {
+                            s4.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                        });
+                    tmpl.SetParameter(14, s4.ToString(), log_Reports);//子Expression要素リスト
+
+                }
+                else
+                {
+                    tmpl.SetParameter(9, "ヌル", log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(10, "ヌル", log_Reports);//実際の親Expression要素関数名
+                    tmpl.SetParameter(11, "ヌル", log_Reports);//Expression属性の数
+                    tmpl.SetParameter(12, "ヌル", log_Reports);//子Expression属性リスト
+                    tmpl.SetParameter(13, "ヌル", log_Reports);//子Expression要素数
+                    tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
+                }
+
+                tmpl.SetParameter(15, Log_Report01Impl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+
+                memoryApplication.CreateErrorReport("Er:7022;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NoNameParent1:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー882！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
+                tmpl.SetParameter(2, sName_MyFnc, log_Reports);//関数名
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("親要素が、ｎａｍｅ属性を持たない「E■ｆｎｃ」だった。。");
-                s.Append(Environment.NewLine);
+                if (null != cur_Ec)
+                {
+                    tmpl.SetParameter(3, cur_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//属性の数
 
-                this.WriteError_(
-                    "gt_Error_NoNameParent1",
-                    s,
-                    cur_Cf,
-                    cur_Ec,
-                    parent_Ec,
-                    sName_MyFnc,
-                    parent_SName_Fnc,
-                    log_Reports
-                    );
+                    //属性リスト
+                    StringBuilder s1 = new StringBuilder();
+                    cur_Ec.Dictionary_Expression_Attribute.ForEach(
+                        delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
+                        {
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                        });
+                    tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(parent_Ec.Cur_Configurationtree));
+                    tmpl.SetParameter(5, cur_Ec.List_Expression_Child.Count.ToString(), log_Reports);//子要素の数
 
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                    //子要素リスト
+                    StringBuilder s2 = new StringBuilder();
+                    cur_Ec.List_Expression_Child.ForEach(
+                        delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                        {
+                            s2.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                        });
+                    tmpl.SetParameter(6, s2.ToString(), log_Reports);
+
+                    tmpl.SetParameter(7, NamesNode.S_ARG, log_Reports);//期待の親設定ノード名
+                    tmpl.SetParameter(8, PmNames.S_WHERE.Name_Pm, log_Reports);//期待の親設定関数名
+                }
+                else
+                {
+                    tmpl.SetParameter(3, "ヌル", log_Reports);//設定属性の数
+                    tmpl.SetParameter(4, "ヌル", log_Reports);//設定属性リスト
+                    tmpl.SetParameter(5, "ヌル", log_Reports);//設定子要素の数
+                    tmpl.SetParameter(6, "ヌル", log_Reports);//設定子要素リスト
+                    tmpl.SetParameter(7, "ヌル", log_Reports);//期待の親設定ノード名
+                    tmpl.SetParameter(8, "ヌル", log_Reports);//期待の親設定関数名
+                }
+
+                if (null != parent_Ec)
+                {
+                    tmpl.SetParameter(9, parent_Ec.Cur_Configurationtree.Name, log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(10, parent_SName_Fnc, log_Reports);//実際の親Expression要素関数名
+                    tmpl.SetParameter(11, parent_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//Expression属性の数
+
+                    StringBuilder s3 = new StringBuilder();
+                    parent_Ec.Dictionary_Expression_Attribute.ForEach(
+                        delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
+                        {
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                        });
+                    tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
+
+                    tmpl.SetParameter(13, parent_Ec.List_Expression_Child.Count.ToString(), log_Reports);//子Expression要素数
+
+                    StringBuilder s4 = new StringBuilder();
+                    parent_Ec.List_Expression_Child.ForEach(
+                        delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
+                        {
+                            s4.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                        });
+                    tmpl.SetParameter(14, s4.ToString(), log_Reports);//子Expression要素リスト
+
+                }
+                else
+                {
+                    tmpl.SetParameter(9, "ヌル", log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(10, "ヌル", log_Reports);//実際の親Expression要素関数名
+                    tmpl.SetParameter(11, "ヌル", log_Reports);//Expression属性の数
+                    tmpl.SetParameter(12, "ヌル", log_Reports);//子Expression属性リスト
+                    tmpl.SetParameter(13, "ヌル", log_Reports);//子Expression要素数
+                    tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
+                }
+
+                tmpl.SetParameter(15, Log_Report01Impl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+
+                memoryApplication.CreateErrorReport("Er:7023;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullParent:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー888！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("親要素の指定が空っぽ（ヌル）でした。プログラムミスの可能性。");
-                t.Append(Environment.NewLine);
-                // nFAelem はヌルなので、確認できない。
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:7004;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -464,112 +619,6 @@ namespace Xenon.GcavToExpr
             }
             log_Method.EndMethod(log_Reports);
         }
-
-        private void WriteError_(
-            string sComment,
-            Log_TextIndented s,
-            Configurationtree_Node cur_Cf,
-            Expression_Node_String cur_Ec,
-            Expression_Node_String parent_Ec,
-            string sName_MyFnc,
-            string parent_SName_Fnc,
-            Log_Reports log_Reports
-            )
-        {
-            s.Append("コメント「[" + sComment + "]」");
-            s.Newline();
-
-            //
-            // 自
-            //
-            s.Append("期待の自「S■[" + cur_Cf.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”」");
-            s.Newline();
-
-            if (null != cur_Ec)
-            {
-                //
-                // 属
-                //
-                s.Append("┌────┐属性の数=[" + cur_Ec.Dictionary_Expression_Attribute.Count + "]");
-                s.Newline();
-                cur_Ec.Dictionary_Expression_Attribute.ForEach(
-                    delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
-                    {
-                        s.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”");
-                        s.Newline();
-                    });
-                s.Append("└────┘");
-                s.Newline();
-
-                //
-                // 子
-                //
-                s.Append("┌────┐子要素の数=[" + cur_Ec.List_Expression_Child.Count + "]");
-                s.Newline();
-                cur_Ec.List_Expression_Child.ForEach(
-                    delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
-                    {
-                        s.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」");
-                        s.Newline();
-                    });
-                s.Append("└────┘");
-                s.Newline();
-                s.Newline();
-            }
-            else
-            {
-                s.Append("実際の自「ヌル」");
-                s.Newline();
-                s.Newline();
-            }
-
-
-            s.Append("期待の親「E■[" + NamesNode.S_ARG + "]　ｎａｍｅ＝”[" + PmNames.S_WHERE.Name_Pm + "]”」");
-            s.Newline();
-            if (null != parent_Ec)
-            {
-                //
-                // 親
-                //
-                s.Append("実際の親「E■[" + parent_Ec.Cur_Configurationtree.Name + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”」");
-                s.Newline();
-
-                //
-                // 属
-                //
-                s.Append("┌────┐属性の数=[" + parent_Ec.Dictionary_Expression_Attribute.Count + "]");
-                s.Newline();
-                parent_Ec.Dictionary_Expression_Attribute.ForEach(
-                    delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
-                    {
-                        s.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”");
-                        s.Newline();
-                    });
-                s.Append("└────┘");
-                s.Newline();
-
-                //
-                // 子
-                //
-                s.Append("┌────┐子要素の数=[" + parent_Ec.List_Expression_Child.Count + "]");
-                s.Newline();
-                parent_Ec.List_Expression_Child.ForEach(
-                    delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
-                    {
-                        s.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」");
-                        s.Newline();
-                    });
-                s.Append("└────┘");
-                s.Newline();
-            }
-            else
-            {
-                s.Append("親「ヌル」");
-                s.Newline();
-                s.Newline();
-            }
-        }
-
 
 
 
@@ -801,53 +850,34 @@ namespace Xenon.GcavToExpr
 
                 //
             gt_Error_UndefinedChlid:
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー829！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
+                    tmpl.SetParameter(2, s_Child.Name, log_Reports);//子要素名
+                    tmpl.SetParameter(3, cur_Cf.Dictionary_Attribute.Count.ToString(), log_Reports);//string属性の数
 
-                    StringBuilder s = new StringBuilder();
-                    s.Append("「S■[");
-                    s.Append(cur_Cf.Name);
-                    s.Append("]」に、未定義の子要素「S■[");
-                    s.Append(s_Child.Name);
-                    s.Append("]」がありました。");
-                    s.Append(Environment.NewLine);
-
-                    //
-                    // s属
-                    //
-                    s.Append(Info_ConfigurationtreeToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: ┌────┐string属性の数=[" + cur_Cf.Dictionary_Attribute.Count + "]");
-                    s.Append(Environment.NewLine);
+                    //string属性のリスト
+                    StringBuilder s1 = new StringBuilder();
                     cur_Cf.Dictionary_Attribute.ForEach(delegate(string sKey2, string sValue2, ref bool bBreak2)
                     {
-                        s.Append(Info_ConfigurationtreeToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: s属　[" + sKey2 + "]＝[" + sValue2 + "]");
-                        s.Append(Environment.NewLine);
+                        s1.Append("s属　[" + sKey2 + "]＝[" + sValue2 + "]\n");
                     });
-                    s.Append(Info_ConfigurationtreeToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: └────┘");
-                    s.Append(Environment.NewLine);
+                    tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
+                    tmpl.SetParameter(5, cur_Cf.List_Child.Count.ToString(), log_Reports);//子要素の数
 
-                    //
-                    // 子
-                    //
-                    s.Append(Info_ConfigurationtreeToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: ┌────┐子要素の数=[" + cur_Cf.List_Child.Count + "]");
-                    s.Append(Environment.NewLine);
+                    //子要素のリスト
+                    StringBuilder s2 = new StringBuilder();
                     cur_Cf.List_Child.ForEach(
                         delegate(Configurationtree_Node cf_Child2, ref bool bBreak5)
                         {
-                            s.Append(Info_ConfigurationtreeToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: 子「S■" + cf_Child2.Name + "」");
-                            s.Append(Environment.NewLine);
+                            s2.Append("子「S■" + cf_Child2.Name + "」\n");
                         });
-                    s.Append(Info_ConfigurationtreeToExpression.Name_Library + ":" + this.GetType().Name + "#SToE: └────┘");
-                    s.Append(Environment.NewLine);
+                    tmpl.SetParameter(6, s2.ToString(), log_Reports);
 
+                    tmpl.SetParameter(7, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                    // ヒント
-                    s.Append(r.Message_Configurationtree(cur_Cf));
-
-                    r.Message = s.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:7005;", tmpl, log_Reports);
                 }
                 goto gt_EndMethod2;
 
@@ -960,37 +990,16 @@ namespace Xenon.GcavToExpr
 
                         goto gt_EndMethod2;
                     //
-                    //
-                    //
                     gt_Error_NotACase:
-                        if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.SetTitle("▲エラー313！", log_Method);
+                            Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                            tmpl.SetParameter(1, err_CfAttr.Name, log_Reports);//設定ノード名
+                            tmpl.SetParameter(2, err_CfAttr.GetType().Name, log_Reports);//ノードのクラス名
+                            tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(err_CfAttr), log_Reports);//設定位置パンくずリスト
 
-                            Log_TextIndented t = new Log_TextIndentedImpl();
-
-                            t.Append("「ａ－ｃａｓｅ」という名前の要素を期待しましたが、[");
-                            t.Append(err_CfAttr.Name);
-                            t.Append("]でした。[");
-                            t.Append(err_CfAttr.GetType().Name);
-                            t.Append("]クラスでした。");
-                            t.Newline();
-
-                            t.Append("　プログラムにミスがあるかもしれません。");
-                            t.Newline();
-                            t.Newline();
-
-                            // ヒント
-                            t.Append(r.Message_Configurationtree(err_CfAttr));
-
-                            r.Message = t.ToString();
-                            log_Reports.EndCreateReport();
+                            memoryApplication.CreateErrorReport("Er:7006;", tmpl, log_Reports);
                         }
                         goto gt_EndMethod2;
-                    //
-                    //
-                    //
                     //
                     gt_EndMethod2:
                         ;
@@ -1222,97 +1231,41 @@ namespace Xenon.GcavToExpr
             //
 
             gt_errorNullValue:
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー804！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
+                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cf_Child), log_Reports);//設定位置パンくずリスト
 
-                    Log_TextIndented t = new Log_TextIndentedImpl();
-
-                    t.Append("　<" + cur_Cf.Name + ">要素に、ヌルのattr要素が入っていました。");
-                    t.Newline();
-
-                    t.Append("　プログラムのミスかも知れません。");
-                    t.Newline();
-                    t.Newline();
-
-                    t.Append("　　・(Fcnf) ＜" + cur_Cf.Name + "＞ 要素に、＜ａ－ｗｈｅｒｅ＞要素がないものには未対応です。");
-                    t.Newline();
-                    t.Newline();
-
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(cf_Child));
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:7007;", tmpl, log_Reports);
                 }
                 goto gt_nextAttr;
 
             gt_Error_KeyNotFound_Arg3:
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー315！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, err_Cf_AtElm.Name, log_Reports);//設定ノード名
+                    tmpl.SetParameter(2, err_SAtFncName, log_Reports);//関数名
+                    tmpl.SetParameter(3, err_Cf_AtElm.GetType().Name, log_Reports);//関数のクラス名
+                    tmpl.SetParameter(4, sName_OwnerNode, log_Reports);//親設定ノード名
+                    tmpl.SetParameter(5, sName_OwnerFnc, log_Reports);//親設定関数名
+                    tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(7, Log_Report01Impl.ToMessage_Exception(err_E), log_Reports);//例外メッセージ
 
-                    Log_TextIndented s = new Log_TextIndentedImpl();
-
-                    s.Append("「S■ａｒｇ３」のname属性で、「p1p」、「p2p」などのattr要素の名前を期待しましたが、「S■[");
-                    s.Append(err_Cf_AtElm.Name);
-                    s.Append("]　name=”[" + err_SAtFncName + "]”」でした。");
-                    s.Newline();
-                    s.Append("[");
-                    s.Append(err_Cf_AtElm.GetType().Name);
-                    s.Append("]クラスでした。");
-                    s.Newline();
-                    s.Newline();
-
-                    s.Append("親「S■[" + sName_OwnerNode + "]　ｎａｍｅ＝”[" + sName_OwnerFnc + "]”」");
-                    s.Newline();
-                    s.Newline();
-
-                    s.Append("　プログラムにミスがあるかもしれません。");
-                    s.Newline();
-                    s.Newline();
-
-                    // ヒント
-                    s.Append(r.Message_Configurationtree(err_Cf_AtElm));
-                    s.Append(r.Message_SException(err_E));
-
-                    r.Message = s.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:7008;", tmpl, log_Reports);
                 }
                 goto gt_nextAttr;
 
             gt_Error_KeyNotFound1:
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー314！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, err_Cf_AtElm.Name, log_Reports);//設定ノード名
+                    tmpl.SetParameter(2, err_Cf_AtElm.GetType().Name, log_Reports);//設定ノードのクラス名
+                    tmpl.SetParameter(3, sName_OwnerNode, log_Reports);//親設定ノード名
+                    tmpl.SetParameter(4, sName_OwnerFnc, log_Reports);//親設定関数名
+                    tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Exception(err_E), log_Reports);//例外メッセージ
 
-                    Log_TextIndented s = new Log_TextIndentedImpl();
-
-                    s.Append("（タイプ１）「select」、「ｆｒｏｍ」など、attr要素の名前を期待しましたが、[");
-                    s.Append(err_Cf_AtElm.Name);
-                    s.Append("]でした。[");
-                    s.Append(err_Cf_AtElm.GetType().Name);
-                    s.Append("]クラスでした。");
-                    s.Newline();
-                    s.Newline();
-
-                    s.Append("親「S■[" + sName_OwnerNode + "]　ｎａｍｅ＝”[" + sName_OwnerFnc + "]”」");
-                    s.Newline();
-                    s.Newline();
-
-                    s.Append("　プログラムにミスがあるかもしれません。");
-                    s.Newline();
-                    s.Newline();
-
-                    // ヒント
-                    s.Append(r.Message_Configurationtree(err_Cf_AtElm));
-                    s.Append(r.Message_SException(err_E));
-
-                    r.Message = s.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:7009;", tmpl, log_Reports);
                 }
                 goto gt_nextAttr;
 

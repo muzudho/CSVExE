@@ -114,21 +114,11 @@ namespace Xenon.GcavToExpr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullFAelem:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー889！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder s = new StringBuilder();
-                s.Append("＜？？＞要素の指定が空っぽ（ヌル）でした。プログラムミスの可能性。");
-                s.Append(Environment.NewLine);
-                // nFAelem はヌルなので、確認できない。
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:7016;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

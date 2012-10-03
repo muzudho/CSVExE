@@ -193,88 +193,46 @@ namespace Xenon.GcavToExpr
         //────────────────────────────────────────
         gt_Error_UndefinedValidator02:
             // TODO 未定義のバリデーターの場合。
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー806！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_VALUE_RESULT.Name_Pm, log_Reports);//引数名
+                tmpl.SetParameter(2, err_SParameterValue, log_Reports);//バリデーター名
 
-                StringBuilder t = new StringBuilder();
-                t.Append("バリデーション設定ファイル読取時。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("[" + PmNames.S_VALUE_RESULT.Name_Pm + "]引数に指定された[" + err_SParameterValue + "]というバリデーターは存在しません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                log_Reports.EndCreateReport();
+                ucontrol.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:7012;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_InvalidatedBegin02:
             // 設定エラー
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー807！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_BEGIN.Name_Pm, log_Reports);//属性名
+                tmpl.SetParameter(2, err_SValue, log_Reports);//属性値
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("バリデーション設定ファイル読取時。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("指定された[" + PmNames.S_BEGIN.Name_Pm + "]属性[" + err_SValue + "]は整数ではありません。：" + err_Excp.Message);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                ucontrol.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:7013;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_InvalidatedEnd02:
             // 設定エラー
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー808！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, PmNames.S_END.Name_Pm, log_Reports);//属性名
+                tmpl.SetParameter(2, err_SValue, log_Reports);//属性値
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("バリデーション設定ファイル読取時。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("指定された[" + PmNames.S_END.Name_Pm + "]属性[" + err_SValue + "]は整数ではありません。：" + err_Excp.Message);
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                ucontrol.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:7014;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedValidator03:
             // TODO 未定義のバリデーターの場合。
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー809！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_SName_Validator, log_Reports);//バリデーター名
 
-                StringBuilder t = new StringBuilder();
-                t.Append("バリデーション設定ファイル読取時。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-                t.Append("指定された[" + err_SName_Validator + "]というバリデーターは存在しません。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                ucontrol.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:7015;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

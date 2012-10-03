@@ -178,75 +178,47 @@ namespace Xenon.GcavToExpr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullNFAelem:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー801！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Expr.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("＜？？＞要素の指定が空っぽ（ヌル）でした。プログラムミスの可能性。");
-                t.Append(Environment.NewLine);
-                // nFAelem はヌルなので、確認できない。
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Expr.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:7010;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedElement:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー90317", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Configurationtree_Node2.Name, log_Reports);//設定ノード名
+                tmpl.SetParameter(2, err_Configurationtree_Node2.GetType().Name, log_Reports);//設定ノードのクラス名
+                tmpl.SetParameter(3, this.Dictionary_ConfigurationtreeToExpression.Count.ToString(), log_Reports);//キーの個数
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("　(Fcnf) 子 ＜f-●●＞要素を書くところに、未定義の要素＜");
-                s.Append(err_Configurationtree_Node2.Name);
-                s.Append("＞が書かれていました。これには未対応です。");
-                s.Newline();
-                s.Append("クラス=[");
-                s.Append(err_Configurationtree_Node2.GetType().Name);
-                s.Append("]");
-                s.Newline();
-                s.Newline();
-
-                s.Append("┌────┐書けるキー（個数＝[");
-                s.Append(this.Dictionary_ConfigurationtreeToExpression.Count);
-                s.Append("]）");
-                s.Newline();
+                StringBuilder s1 = new StringBuilder();
                 foreach (string sKey in this.Dictionary_ConfigurationtreeToExpression.Keys)
                 {
-                    s.Append(sKey);
-                    s.Newline();
+                    s1.Append(sKey);
+                    s1.Append(System.Environment.NewLine);
                 }
-                s.Append("└────┘");
-                s.Newline();
+                tmpl.SetParameter(4, s1.ToString(), log_Reports);//キーのリスト
 
+                //設定親ノード名
                 if (null != parent_Expr)
                 {
-                    s.Append("親要素は[");
-                    s.Append(parent_Expr.Cur_Configurationtree.Name);
-                    s.Append("]");
-                    s.Newline();
+                    tmpl.SetParameter(5, parent_Expr.Cur_Configurationtree.Name, log_Reports);
+                }
+                else
+                {
+                    tmpl.SetParameter(5, "ヌル", log_Reports);
                 }
 
-                s.Append("]");
-                s.Newline();
-                s.Newline();
+                tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Configurationtree(err_Configurationtree_Node2), log_Reports);//設定位置パンくずリスト
 
-                // ヒント
-                s.Append(r.Message_Configurationtree(err_Configurationtree_Node2));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:7011;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
+            //
         gt_EndMethod:
             if (Log_ReportsImpl.BDebugmode_Static)
             {
