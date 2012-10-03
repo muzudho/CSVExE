@@ -56,7 +56,7 @@ namespace Xenon.Middle
         /// <summary>
         /// new した直後の内容に戻します。
         /// </summary>
-        void Clear(object/*MemoryApplication*/ owner_MemoryApplication);//, Log_Reports log_Reports
+        void Clear(MemoryApplication owner_MemoryApplication);
 
         /// <summary>
         /// フォーム上の、コントロールをクリアーしていきます。

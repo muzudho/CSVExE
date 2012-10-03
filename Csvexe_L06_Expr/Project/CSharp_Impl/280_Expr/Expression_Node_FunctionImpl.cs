@@ -632,41 +632,18 @@ namespace Xenon.Expr
             string sResult = "";
 
             //#このルートはエラー
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.CreateDammyReport();
-                r.SetTitle("▲プログラミング_ミス599！", log_Method);
-
-                StringBuilder s = new StringBuilder();
-                s.Append(sLibraryName);
-                s.Append(":");
-                s.Append(sClassName);
-                s.Append("#");
-                s.Append(sMethodName);
-                s.Append(":　イベントハンドラーtype=[");
-                s.Append(enumEH);
-                s.Append("] は使わないでください。");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, log_Method.Fullname, log_Reports);//問題の起こったメソッド
+                tmpl.SetParameter(2, enumEH.ToString(), log_Reports);//イベントハンドラー
 
                 string sFncName0;
                 ec_CommonFunction.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                tmpl.SetParameter(3, sFncName0, log_Reports);//関数名
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cf_Node), log_Reports);//設定位置パンくずリスト
 
-                s.Append("　関数type=[");
-                s.Append(sFncName0);
-                s.Append("]");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                //
-                // 問題箇所ヒント
-                s.Append(r.Message_Configurationtree(cf_Node));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6039;", tmpl, log_Reports);
             }
-
 
             //            ((E_SysFncAbstract)this.E_SystemAction).EventMonitor.BNowActionWorking = false;
 

@@ -24,7 +24,7 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
             this.name_SubFolder = "";
             this.backupKeptbackups = 0;
@@ -32,7 +32,7 @@ namespace Xenon.MiddleImpl
             Configurationtree_Node s_ParentNode_Null = null;
             this.givechapterandverse_Name_SubFolder = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
             this.givechapterandverse_BackupKeptbackups = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, s_ParentNode_Null);
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
         }
 
         //────────────────────────────────────────

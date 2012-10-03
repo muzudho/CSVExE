@@ -46,14 +46,14 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアー
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
             log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "Clear", log_Reports_ThisMethod);
             //
 
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
 
             this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
             if (null == this.memoryAaeditorxml_Editor)

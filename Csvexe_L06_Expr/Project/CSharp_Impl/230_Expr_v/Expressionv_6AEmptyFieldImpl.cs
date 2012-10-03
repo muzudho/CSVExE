@@ -177,69 +177,24 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_ParseFailure01:
+            sResult = "false";
             {
-                sResult = "false";
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFormValue, log_Reports);//コントロールの値
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                if (log_Reports.CanCreateReport)
-                {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー127！", log_Method);
-
-                    Log_TextIndented t = new Log_TextIndentedImpl();
-
-                    t.Append("　チェックボックスの値が、true/false ではありませんでした。");
-                    t.Newline();
-
-                    t.Append("　sFormValue＝[");
-                    t.Append(sFormValue);
-                    t.Append("]");
-                    t.Newline();
-
-                    //
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                    t.Append(r.Message_SSeparator());
-                    t.Append("　　ヒント：");
-                    t.Newline();
-                    t.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
-                }
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6035;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_ParseFailure02:
+            sResult = "false";
             {
-                sResult = "false";
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFormValue, log_Reports);//コントロールの値
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                if (log_Reports.CanCreateReport)
-                {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー128！", log_Method);
-
-                    Log_TextIndented t = new Log_TextIndentedImpl();
-
-                    t.Append("　チェックボックスの値が、(真)0以外の数字/(偽)0 ではありませんでした。");
-                    t.Newline();
-
-                    t.Append("　sFormValue＝[");
-                    t.Append(sFormValue);
-                    t.Append("]");
-                    t.Newline();
-
-                    // ヒント：this
-                    t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                    t.Append(r.Message_SSeparator());
-                    t.Append("　　ヒント：");
-                    t.Newline();
-                    t.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
-                }
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6036;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

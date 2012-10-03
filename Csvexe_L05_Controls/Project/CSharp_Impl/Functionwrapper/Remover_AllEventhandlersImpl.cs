@@ -40,7 +40,7 @@ namespace Xenon.Controls
 
         public Remover_AllEventhandlersImpl(
             Control control,
-            object/*MemoryApplication*/ owner_MemoryApplication,
+            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -92,7 +92,7 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 //%N%なし
 
-                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:514;", tmpl, log_Reports);
+                owner_MemoryApplication.CreateErrorReport("Er:514;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -119,7 +119,7 @@ namespace Xenon.Controls
                     tmpl.SetParameter(4, this.eventHandlerList_Control.GetType().Name, log_Reports);//イベントハンドラーリストの型名
                 }
 
-                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:527;", tmpl, log_Reports);
+                owner_MemoryApplication.CreateErrorReport("Er:527;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -371,7 +371,7 @@ namespace Xenon.Controls
         //────────────────────────────────────────
 
         public void Resume(
-            object/*MemoryApplication*/ owner_MemoryApplication,
+            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -419,7 +419,7 @@ namespace Xenon.Controls
                 tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型
                 tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
 
-                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:530;", tmpl, log_Reports);
+                owner_MemoryApplication.CreateErrorReport("Er:530;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -436,7 +436,7 @@ namespace Xenon.Controls
         /// 全てのイベントハンドラーを削除します。
         /// </summary>
         public void Suppress(
-            object/*MemoryApplication*/ owner_MemoryApplication,
+            MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
@@ -458,7 +458,7 @@ namespace Xenon.Controls
                     }
 
                     this.BuildList(
-                        (MemoryApplication)owner_MemoryApplication,
+                        owner_MemoryApplication,
                         log_Reports
                         );
 
@@ -488,7 +488,7 @@ namespace Xenon.Controls
                 tmpl.SetParameter(1, err_Excp.GetType().Name, log_Reports);//例外の型名
                 tmpl.SetParameter(2, err_Excp.Message, log_Reports);//例外メッセージ
 
-                ((MemoryApplication)owner_MemoryApplication).CreateErrorReport("Er:531;", tmpl, log_Reports);
+                owner_MemoryApplication.CreateErrorReport("Er:531;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

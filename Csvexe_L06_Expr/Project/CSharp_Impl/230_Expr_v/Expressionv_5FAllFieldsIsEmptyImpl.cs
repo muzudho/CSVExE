@@ -68,7 +68,9 @@ namespace Xenon.Expr
                 // #デバッグ中
                 System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: ★★ record-set-load-ｆｒｏｍ＝[" + sRecordSetLoadFrom + "]");
 
-                recordSet = this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Get(ec_RecordSetLoadFrom, log_Reports);
+                recordSet = this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Get(ec_RecordSetLoadFrom,
+                    this.Owner_MemoryApplication,
+                    log_Reports);
             }
             else
             {
@@ -196,106 +198,56 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedType:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー115！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_OValue.GetType().Name, log_Reports);//値の型名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("未定義のタイプです。プログラミングのミス？");
-                t.Append(Environment.NewLine);
-                t.Append("oValueの型名＝[");
-                t.Append(err_OValue.GetType().Name);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6032;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedElementClass:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー116！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_Ev11.GetType().Name, log_Reports);//クラス名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("未定義のタイプです。プログラミングのミス？");
-                t.Append(Environment.NewLine);
-                t.Append("err_Ev11の型名＝[");
-                t.Append(err_Ev11.GetType().Name);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6033;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedFld:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー117！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_SFldName.ToUpper(), log_Reports);//フィールド名大文字化
+                tmpl.SetParameter(2, err_SCsv, log_Reports);//指定されたフィールド名の文字列
 
-                StringBuilder t = new StringBuilder();
-                t.Append("無いフィールドを指定しました。設定、もしくはプログラミングのミス？");
-                t.Append(Environment.NewLine);
-                t.Append("無いフィールド名＝[");
-                t.Append(err_SFldName.ToUpper());
-                t.Append("]（大文字化されます）");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-            
-
-                t.Append(Environment.NewLine);
-                t.Append("指定されたフィールド名の文字列＝[");
-                t.Append(err_SCsv);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-
-                t.Append("指定されたフィールド名の一覧");
-                t.Append(Environment.NewLine);
+                StringBuilder s1 = new StringBuilder();
                 foreach (string str in err_SList)
                 {
-                    t.Append("[");
-                    t.Append(str);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
+                    s1.Append("[");
+                    s1.Append(str);
+                    s1.Append("]");
+                    s1.Append(Environment.NewLine);
                 }
-                t.Append("以上");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
+                tmpl.SetParameter(3, s1.ToString(), log_Reports);//指定されたフィールド名の文字列
 
-
+                StringBuilder s2 = new StringBuilder();
                 // あるフィールド名の一覧
-                t.Append("フィールド名の一覧");
-                t.Append(Environment.NewLine);
                 foreach (DataColumn dataColumn in this.DataRow.Table.Columns)
                 {
-                    t.Append("[");
-                    t.Append(dataColumn.ColumnName);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
+                    s2.Append("[");
+                    s2.Append(dataColumn.ColumnName);
+                    s2.Append("]");
+                    s2.Append(Environment.NewLine);
                 }
-                t.Append("以上");
-                t.Append(Environment.NewLine);
+                tmpl.SetParameter(4, s1.ToString(), log_Reports);//指定されたフィールド名の文字列
 
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-                t.Append(r.Message_SException(err_Excp));
+                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6034;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

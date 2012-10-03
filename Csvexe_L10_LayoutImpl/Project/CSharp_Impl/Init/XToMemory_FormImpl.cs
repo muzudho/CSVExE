@@ -45,7 +45,7 @@ namespace Xenon.Layout
         public void LoadUserformconfigFile(
             TableUserformconfig fo_Config_Formgroup,
             XenonTable o_Table_Form,
-            MemoryApplication moApplication,
+            MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
         {
@@ -191,7 +191,7 @@ namespace Xenon.Layout
                         foreach (RecordUserformconfig fo_Record2 in fo_Config_Formgroup.List_RecordUserformconfig)
                         {
                             string sName_Control;
-                            fo_Record2.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", pg_Logging);
+                            fo_Record2.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", memoryApplication, pg_Logging);
 
                             if (sName_Control == sFoundNameRef)
                             {
@@ -224,6 +224,7 @@ namespace Xenon.Layout
                                 dataRow,
                                 o_Table_Form,
                                 fo_Config_Formgroup,
+                                memoryApplication,
                                 pg_Logging
                                 );
 
@@ -404,6 +405,7 @@ namespace Xenon.Layout
             DataRow dataRow,
             XenonTable o_Table_Form,
             TableUserformconfig fo_Config,
+            MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
         {
@@ -574,7 +576,7 @@ namespace Xenon.Layout
             // int型のTREEフィールドが-1の場合は、空行と判断します。
             //
             int nCurTree;
-            fo_Record.TryGetInt(out nCurTree, NamesFld.S_TREE, true, -1, pg_Logging);
+            fo_Record.TryGetInt(out nCurTree, NamesFld.S_TREE, true, -1, memoryApplication, pg_Logging);
             if (-1 == nCurTree)
             {
                 nResult = 2;

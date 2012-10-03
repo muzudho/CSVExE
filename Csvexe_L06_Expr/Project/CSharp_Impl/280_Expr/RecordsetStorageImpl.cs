@@ -39,7 +39,10 @@ namespace Xenon.Expr
         /// <param name="eName"></param>
         /// <param name="recordSet"></param>
         /// <param name="log_Reports"></param>
-        public void Add(Expression_Node_String ec_Name, RecordSet recordSet, Log_Reports log_Reports)
+        public void Add(
+            Expression_Node_String ec_Name, RecordSet recordSet,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "Add",log_Reports);
@@ -69,34 +72,13 @@ namespace Xenon.Expr
             {
                 //return;
 
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー129！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, sName, log_Reports);//名前
+                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
 
-                    StringBuilder t = new StringBuilder();
-                    t.Append("もしかして、既に追加されている要素を、また追加しましたか？");
-                    t.Append(Environment.NewLine);
-                    t.Append("record-set-save-to 名前＝[");
-                    t.Append(sName);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-                    t.Append("record-set-save-to属性を使って、一時記憶したレコードセットは、使い終わった時に、");
-                    t.Append(Environment.NewLine);
-                    t.Append("record-set-clear属性を使って、削除する必要があります。");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-
-
-                    // oSourceが無限ループ？？
-
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(ec_Name.Cur_Configurationtree));
-                    t.Append(r.Message_SException(ex));
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:6042;", tmpl, log_Reports);
                 }
             }
 
@@ -114,7 +96,9 @@ namespace Xenon.Expr
         /// <param name="eName"></param>
         /// <param name="log_Reports"></param>
         /// <returns>該当がなければヌル。</returns>
-        public RecordSet Get(Expression_Node_String ec_Name, Log_Reports log_Reports)
+        public RecordSet Get(Expression_Node_String ec_Name,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "Get",log_Reports);
@@ -135,59 +119,26 @@ namespace Xenon.Expr
             {
                 nResult = null;
 
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー130！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, sName, log_Reports);//名前
+                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
 
-                    StringBuilder t = new StringBuilder();
-                    t.Append("指定の名前で一時記憶されているレコードセットはありませんでした。");
-                    t.Append(Environment.NewLine);
-                    t.Append("record-set-load-ｆｒｏｍ 名前＝[");
-                    t.Append(sName);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-
-
-                    // oSourceが無限ループ？？
-
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(ec_Name.Cur_Configurationtree));
-                    t.Append(r.Message_SException(ex));
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:6043;", tmpl, log_Reports);
                 }
             }
             catch (Exception ex)
             {
                 nResult = null;
 
-                if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー131！", log_Method);
+                    Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                    tmpl.SetParameter(1, sName, log_Reports);//名前
+                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
 
-                    StringBuilder t = new StringBuilder();
-                    t.Append("原因不明。");
-                    t.Append(Environment.NewLine);
-                    t.Append("record-set-load-ｆｒｏｍ 名前＝[");
-                    t.Append(sName);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-
-
-                    // oSourceが無限ループ？？
-
-                    //
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(ec_Name.Cur_Configurationtree));
-                    t.Append(r.Message_SException(ex));
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
+                    memoryApplication.CreateErrorReport("Er:6044;", tmpl, log_Reports);
                 }
             }
 
@@ -205,7 +156,9 @@ namespace Xenon.Expr
         /// </summary>
         /// <param name="eStorage"></param>
         /// <param name="log_Reports"></param>
-        public void Remove(Expression_Node_String ec_Storage, Log_Reports log_Reports)
+        public void Remove(Expression_Node_String ec_Storage,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "Remove",log_Reports);
@@ -236,29 +189,13 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_Exception:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー132！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sStorage, log_Reports);//名前
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Storage.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("原因不明。");
-                t.Append(Environment.NewLine);
-                t.Append("＜a-record-set-to-save＞Ｓｔｏｒａｇｅ 名前＝[");
-                t.Append(sStorage);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-
-                // oSourceが無限ループ？？
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(ec_Storage.Cur_Configurationtree));
-                t.Append(r.Message_SException(err_Excp));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6045;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

@@ -36,6 +36,7 @@ namespace Xenon.Controls
         /// <returns></returns>
         public static float ParseFontSize(
             RecordUserformconfig fo_Record,
+            MemoryApplication memoryApplication,
             Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
@@ -46,7 +47,9 @@ namespace Xenon.Controls
             {
                 // 例："6.75" や ""（空文字列）。
                 string sFontSizePt;
-                fo_Record.TryGetString(out sFontSizePt, NamesFld.S_FONT_SIZE_PT, false, "", log_Reports);
+                fo_Record.TryGetString(out sFontSizePt, NamesFld.S_FONT_SIZE_PT, false, "",
+                    memoryApplication,
+                    log_Reports);
                 sFontSizePt = sFontSizePt.Trim();
 
                 if ("" == sFontSizePt)

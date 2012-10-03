@@ -460,114 +460,50 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullTable:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー301！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
 
-                StringBuilder s = new StringBuilder();
-                s.Append("ヌル＝oTable");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6024;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullKeyFldDefinition:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー133！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("ヌル＝keyFldDefinition");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf_Query));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6025;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullSelectedFldDefinition:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー134！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, o_Table.Name, log_Reports);//テーブル名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("ヌル＝selectedFldDefinition");
-                t.Append(Environment.NewLine);
-
-                t.Append("　refTable.Name=[");
-                t.Append(o_Table.Name);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf_Query));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6026;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedPrimitiveType:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー135！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, keyFldDefinition.Type.ToString(), log_Reports);//キー・フィールド定義型名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
-                StringBuilder t = new StringBuilder();
-                t.Append("プログラムに無い型です。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("　keyFldDefinition.Type=[");
-                t.Append(keyFldDefinition.Type);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf_Query));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6027;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NotFoundFld:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー136！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_SSelectedFldName, log_Reports);//選択フィールド名
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Exception), log_Reports);//例外メッセージ
 
-                StringBuilder t = new StringBuilder();
-                t.Append("指定されたフィールドは、テーブルにありませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                t.Append("　err_SSelectedFldName=[");
-                t.Append(err_SSelectedFldName);
-                t.Append("]");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf_Query));
-                t.Append(r.Message_SException(err_Exception));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6028;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -650,22 +586,11 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotSupportedType:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー598！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, selectedFldDefinition.GetTypeString(), log_Reports);//選択したフィールド定義の型名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("▲エラー5098！ 予期しない型です。selectedFldDefinition.Type=[" );
-                s.Append(selectedFldDefinition.Type);
-                s.Append("]");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6029;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

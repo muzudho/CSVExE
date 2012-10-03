@@ -30,9 +30,9 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアー
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
             if (null == this.dictionary_Item)
             {
                 this.dictionary_Item = new Dictionary<string, Usercontrol>();
@@ -220,11 +220,11 @@ namespace Xenon.MiddleImpl
 
             // 手入力の Fcnf ファイルパス
             Configurationtree_NodeFilepath cf_Fpath_Control;
-            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
+            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, this.Owner_MemoryApplication, log_Reports);
             string sFpathH_F = cf_Fpath_Control.GetHumaninput();
 
             string sName_Control;
-            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", log_Reports);
+            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", this.Owner_MemoryApplication, log_Reports);
 
             // FILE フィールド（ファイルパス）が未指定なら、処理せず。
             if (log_Reports.Successful)
@@ -367,7 +367,7 @@ namespace Xenon.MiddleImpl
                 foreach (RecordUserformconfig fo_Record in fo_Config.List_RecordUserformconfig)
                 {
                     Configurationtree_NodeFilepath cf_Fpath_Control;
-                    fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
+                    fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, this.Owner_MemoryApplication, log_Reports);
 
                     Expression_Node_Filepath e_Fpath_Usercontrol = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
@@ -735,7 +735,7 @@ namespace Xenon.MiddleImpl
             foreach (RecordUserformconfig fo_Record in fo_Config.List_RecordUserformconfig)
             {
                 int nCurTree;
-                fo_Record.TryGetInt(out nCurTree, NamesFld.S_TREE, true, -1, log_Reports);
+                fo_Record.TryGetInt(out nCurTree, NamesFld.S_TREE, true, -1, this.Owner_MemoryApplication, log_Reports);
 
                 //
                 //
@@ -759,7 +759,7 @@ namespace Xenon.MiddleImpl
                     if (null != uct)
                     {
                         string sName_Control;
-                        fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", log_Reports);
+                        fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", this.Owner_MemoryApplication, log_Reports);
 
 
                         Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(null, fo_Record.Parent_TableUserformconfig.Cur_Configurationtree);
@@ -980,13 +980,13 @@ namespace Xenon.MiddleImpl
             //
             // 手入力の (Fcnf) ファイルパス
             Configurationtree_NodeFilepath cf_Fpath_Control;
-            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, log_Reports);
+            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, this.Owner_MemoryApplication, log_Reports);
             string sFpath_f = cf_Fpath_Control.GetHumaninput();
 
             //
             // コントロール名。
             string sName_Control;
-            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", log_Reports);
+            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", this.Owner_MemoryApplication, log_Reports);
 
             //
             // (Fcnf) 絶対ファイルパス

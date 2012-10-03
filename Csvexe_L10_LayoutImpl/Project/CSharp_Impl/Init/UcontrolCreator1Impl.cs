@@ -129,7 +129,7 @@ namespace Xenon.Layout
 
 
             string sName_Control;
-            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", pg_Logging);
+            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", owner_MemoryApplication, pg_Logging);
 
             //
             // コントロール名　レコード→Ec
@@ -144,7 +144,7 @@ namespace Xenon.Layout
             Usercontrol ucontrol = null;
 
             string sType_Control;
-            fo_Record.TryGetString(out sType_Control, NamesFld.S_TYPE, true, "", pg_Logging);
+            fo_Record.TryGetString(out sType_Control, NamesFld.S_TYPE, true, "", owner_MemoryApplication, pg_Logging);
             if (null == sType_Control)
             {
                 goto gt_Error_Type;

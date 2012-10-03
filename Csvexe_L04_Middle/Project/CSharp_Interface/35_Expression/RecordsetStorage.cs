@@ -23,7 +23,9 @@ namespace Xenon.Middle
         /// <param name="eName"></param>
         /// <param name="recordSet"></param>
         /// <param name="log_Reports"></param>
-        void Add(Expression_Node_String ec_Name, RecordSet recordSet, Log_Reports log_Reports);
+        void Add(Expression_Node_String ec_Name, RecordSet recordSet,
+            MemoryApplication memoryApplication, 
+            Log_Reports log_Reports);
 
         /// <summary>
         /// レコードセットの取得。
@@ -31,14 +33,18 @@ namespace Xenon.Middle
         /// <param name="eName"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        RecordSet Get(Expression_Node_String ec_Name, Log_Reports log_Reports);
+        RecordSet Get(Expression_Node_String ec_Name,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports);
 
         /// <summary>
         /// レコードセットの削除。
         /// </summary>
         /// <param name="eName"></param>
         /// <param name="log_Reports"></param>
-        void Remove(Expression_Node_String ec_Name, Log_Reports log_Reports);
+        void Remove(Expression_Node_String ec_Name,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion

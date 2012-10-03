@@ -65,7 +65,10 @@ namespace Xenon.Expr
             }
         }
 
-        public void TryGetInt(out int out_NValue, string sName, bool bRequired, int nAlt, Log_Reports log_Reports)
+        public void TryGetInt(
+            out int out_NValue, string sName, bool bRequired, int nAlt,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetInt",log_Reports);
@@ -112,42 +115,21 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFound:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー101！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドはありませんでした。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6001;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Type:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー102！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
+                tmpl.SetParameter(2, fo_Field.EnumTypedb.ToString(), log_Reports);//フィールドの型名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドの型が異なりました。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-                s.Append(Environment.NewLine);
-                s.Append("フィールドの型=[");
-                s.Append(fo_Field.EnumTypedb);
-                s.Append("]");
-                
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6002;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -158,7 +140,9 @@ namespace Xenon.Expr
             log_Method.EndMethod(log_Reports);
         }
 
-        public void TryGetString(out string out_SValue, string sName, bool bRequired, string sAlt, Log_Reports log_Reports)
+        public void TryGetString(out string out_SValue, string sName, bool bRequired, string sAlt,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetString",log_Reports);
@@ -205,42 +189,21 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFound:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー101！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドはありませんでした。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6003;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Type:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー102！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
+                tmpl.SetParameter(2, fo_Field.EnumTypedb.ToString(), log_Reports);//フィールドの型名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドの型が異なりました。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-                s.Append(Environment.NewLine);
-                s.Append("フィールドの型=[");
-                s.Append(fo_Field.EnumTypedb);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6004;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -251,7 +214,9 @@ namespace Xenon.Expr
             log_Method.EndMethod(log_Reports);
         }
 
-        public void TryGetBool(out bool out_BValue, string sName, Log_Reports log_Reports)
+        public void TryGetBool(out bool out_BValue, string sName,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetBool",log_Reports);
@@ -280,42 +245,21 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFound:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー101！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドはありませんでした。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6005;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Type:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー102！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
+                tmpl.SetParameter(2, fo_Field.EnumTypedb.ToString(), log_Reports);//フィールドの型名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドの型が異なりました。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-                s.Append(Environment.NewLine);
-                s.Append("フィールドの型=[");
-                s.Append(fo_Field.EnumTypedb);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6006;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -326,7 +270,9 @@ namespace Xenon.Expr
             log_Method.EndMethod(log_Reports);
         }
 
-        public void TryGetFilepath_Configurationtree(out Configurationtree_NodeFilepath out_Value, string sName, bool bRequired, Log_Reports log_Reports)
+        public void TryGetFilepath_Configurationtree(out Configurationtree_NodeFilepath out_Value, string sName, bool bRequired,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "TryGetFilepath_Configurationtree", log_Reports);
@@ -373,42 +319,21 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFound:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー101！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドはありませんでした。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6007;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_Type:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー102！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sName, log_Reports);//フィールド名
+                tmpl.SetParameter(2, fo_Field.EnumTypedb.ToString(), log_Reports);//フィールドの型名
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定のフィールドの型が異なりました。");
-                s.Append(Environment.NewLine);
-                s.Append("フィールド名=[");
-                s.Append(sName);
-                s.Append("]");
-                s.Append(Environment.NewLine);
-                s.Append("フィールドの型=[");
-                s.Append(fo_Field.EnumTypedb);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                memoryApplication.CreateErrorReport("Er:6008;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

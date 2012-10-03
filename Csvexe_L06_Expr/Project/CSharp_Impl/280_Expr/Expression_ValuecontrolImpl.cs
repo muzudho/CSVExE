@@ -82,19 +82,11 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_No1Hit:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー542！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Expression_UsercontrolName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//コントロールの値
 
-                StringBuilder s = new StringBuilder();
-                s.Append("指定の名前のコントロールはありませんでした。");
-                s.Append(Environment.NewLine);
-                s.Append("[");
-                s.Append(this.Expression_UsercontrolName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-                s.Append("]");
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6041;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

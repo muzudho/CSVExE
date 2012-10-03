@@ -22,7 +22,7 @@ namespace Xenon.Layout
         /// </summary>
         public void SetupStyle(
             TableUserformconfig fo_Config,
-            MemoryApplication moApplication,
+            MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
         {
@@ -35,14 +35,14 @@ namespace Xenon.Layout
             //
             this.SuspendLayout(
                 fo_Config,
-                moApplication,
+                memoryApplication,
                 pg_Logging
                 );
 
             foreach (RecordUserformconfig fo_Record in fo_Config.List_RecordUserformconfig)
             {
                 string sName_Control;
-                fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", pg_Logging);
+                fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", memoryApplication, pg_Logging);
 
                 //
                 // S → E。 コントロール名
@@ -60,7 +60,7 @@ namespace Xenon.Layout
                 List<Usercontrol> fcUcList;
                 if (pg_Logging.Successful)
                 {
-                    fcUcList = moApplication.MemoryForms.GetUsercontrolsByName(
+                    fcUcList = memoryApplication.MemoryForms.GetUsercontrolsByName(
                         e_fcName,
                         true,
                         pg_Logging
@@ -88,7 +88,7 @@ namespace Xenon.Layout
 
                 // 「メインウィンドウ」の場合、更にスタイル設定の上書き。
                 string sType_Control;
-                fo_Record.TryGetString(out sType_Control, NamesFld.S_TYPE, true, "", pg_Logging);
+                fo_Record.TryGetString(out sType_Control, NamesFld.S_TYPE, true, "", memoryApplication, pg_Logging);
                 if (NamesF.S_MAINWND == sType_Control)
                 {
                     //
@@ -96,7 +96,7 @@ namespace Xenon.Layout
                     //
                     if (pg_Logging.Successful)
                     {
-                        moApplication.MemoryForms.Mainwnd_FormWrapping.SetupStyle(
+                        memoryApplication.MemoryForms.Mainwnd_FormWrapping.SetupStyle(
                             fo_Record,
                             pg_Logging
                             );
@@ -113,7 +113,7 @@ namespace Xenon.Layout
             //
             this.ResumeLayout(
                 fo_Config,
-                moApplication,
+                memoryApplication,
                 pg_Logging
                 );
 
@@ -132,7 +132,7 @@ namespace Xenon.Layout
         /// </summary>
         private void SuspendLayout(
             TableUserformconfig fo_Config,
-            MemoryApplication moApplication,
+            MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
         {
@@ -144,7 +144,7 @@ namespace Xenon.Layout
             foreach (RecordUserformconfig fo_Record in fo_Config.List_RecordUserformconfig)
             {
                 string sName_Control;
-                fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", pg_Logging);
+                fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", memoryApplication, pg_Logging);
 
                 //
                 // S → E。 コントロール名
@@ -159,7 +159,7 @@ namespace Xenon.Layout
                 List<Usercontrol> list_FcUc;
                 if (pg_Logging.Successful)
                 {
-                    list_FcUc = moApplication.MemoryForms.GetUsercontrolsByName(
+                    list_FcUc = memoryApplication.MemoryForms.GetUsercontrolsByName(
                         e_fcName,
                         true,
                         pg_Logging
@@ -197,7 +197,7 @@ namespace Xenon.Layout
         /// </summary>
         private void ResumeLayout(
             TableUserformconfig fo_Config,
-            MemoryApplication moApplication,
+            MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
         {
@@ -209,7 +209,7 @@ namespace Xenon.Layout
             foreach (RecordUserformconfig fo_Record in fo_Config.List_RecordUserformconfig)
             {
                 string sName_Control;
-                fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", pg_Logging);
+                fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", memoryApplication, pg_Logging);
 
                 //
                 // S → E。 コントロール名
@@ -224,7 +224,7 @@ namespace Xenon.Layout
                 List<Usercontrol> list_FcUc;
                 if (pg_Logging.Successful)
                 {
-                    list_FcUc = moApplication.MemoryForms.GetUsercontrolsByName(
+                    list_FcUc = memoryApplication.MemoryForms.GetUsercontrolsByName(
                         ec_FcName,
                         true,
                         pg_Logging

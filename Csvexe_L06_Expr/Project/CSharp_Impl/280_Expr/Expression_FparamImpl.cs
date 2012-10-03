@@ -104,22 +104,9 @@ namespace Xenon.Expr
         //────────────────────────────────────────
         gt_Error_CallAttr:
             sResult = "エラー。";
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー301！", log_Method);
-
-                StringBuilder s = new StringBuilder();
-                s.Append("・もしかして？　＜ｆ－ｐａｒａｍ＞要素にｃａｌｌ属性が無かった？");
-                s.Append(Environment.NewLine);
-                s.Append(Environment.NewLine);
-
-                //this.E_AttrDictionary.D
-
-                // ヒント
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6040;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

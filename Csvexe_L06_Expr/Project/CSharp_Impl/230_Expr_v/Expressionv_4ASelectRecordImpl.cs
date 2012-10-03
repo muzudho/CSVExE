@@ -266,41 +266,20 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_EmptyTableName:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー113！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　テーブル名が指定されていません。");
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree.Parent));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6030;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullTable:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー114！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree.Parent));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6031;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -329,7 +308,10 @@ namespace Xenon.Expr
                 {
                     //
                     // レコードセットを削除。
-                    this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Remove(this.Expression_Storage, log_Reports);
+                    this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Remove(
+                        this.Expression_Storage,
+                        this.Owner_MemoryApplication,
+                        log_Reports);
                 }
             }
 

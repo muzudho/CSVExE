@@ -34,9 +34,9 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
             if (null == this.dictionary_XenonTable)
             {
                 this.dictionary_XenonTable = new Dictionary<string, XenonTable>();

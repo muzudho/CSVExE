@@ -355,49 +355,22 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundRecordSet:
+            sResult = "＜「E■ｆ－ｃｅｌｌ」エラー１９２：該当レコードなし＞";
             {
-                sResult = "＜「E■ｆ－ｃｅｌｌ」エラー１９２：該当レコードなし＞";
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                if (log_Reports.CanCreateReport)
-                {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー118！", log_Method);
-
-                    Log_TextIndented t = new Log_TextIndentedImpl();
-
-                    t.Append("　レコードセットを絞り込めませんでした。");
-                    t.Newline();
-                    t.Newline();
-
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
-                }
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6012;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_ZeroField:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー461！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, sFieldListList.Count.ToString(), log_Reports);//行数
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　フィールドが０件？行数は[");
-                t.Append(sFieldListList.Count);
-                t.Append("]");
-
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6013;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -705,43 +678,22 @@ namespace Xenon.Expr
 
             goto gt_EndMethod;
         //
-        //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedOpe:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー371！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, err_SOpe, log_Reports);//演算子
+                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("ope属性には、＝の「eq」、！＝の「neq」、＜の「lt」、＜＝の「lteq」、＞の「gt」、＞＝の「gteq」しか設定してはいけません。");
-                s.Newline();
-                s.Append("ope＝[");
-                s.Append(err_SOpe);
-                s.Append("]");
-
-                //
-                // ヒント：this
-                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                s.Append(r.Message_SSeparator());
-                s.Append("　　ヒント：");
-                s.Newline();
-                s.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6014;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
         //
-        //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　「E■[" + src_E_ReccondListParent.Cur_Configurationtree.Name_Node + "]」解析　終了└────────────────┘");
         }
 
 
@@ -838,46 +790,23 @@ namespace Xenon.Expr
 
                     goto gt_EndMethod2;
 
-                            //
-                //
-                //
                 // エラー。
                 gt_Error_AtomWhr2:
-                    if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                        r.SetTitle("▲エラー103！", log_Method);
-
-                        Log_TextIndented s = new Log_TextIndentedImpl();
-
-                        s.Append("ｆ－ｃｅｌｌ要素の子ｗｈｅｒｅ要素が、Ｅ＿Ｓｔｒｉｎｇ＿ＡｔｏｍＩｍｐｌクラスでした。これはエラーです。");
-                        s.Newline();
+                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
 
                         Expression_Leaf_StringImpl ec_Leaf = (Expression_Leaf_StringImpl)ec_Awhr1_Src;
+                        tmpl.SetParameter(1, ec_Leaf.List_Expression_Child.Count.ToString(), log_Reports);//子要素の数
 
-                        s.Append("子要素の数＝[" + ec_Leaf.List_Expression_Child.Count + "]");
-                        s.Newline();
-                        //s.Append("属性の数＝[" + e_Atom.E_AttrDic.Count + "]");
-                        //s.Newline();
-                        //s.Append("親のノード名＝[" + e_Atom.E_ParentNode.Cur_Configurationtree.Name_Node + "]");
-                        //s.Newline();
+                        tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                        //
-                        // ヒント：this
-                        s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                        r.Message = s.ToString();
-                        log_Reports.EndCreateReport();
+                        this.Owner_MemoryApplication.CreateErrorReport("Er:6015;", tmpl, log_Reports);
                     }
                     goto gt_EndMethod2;
 
                     //
-                //
-                //
-                //
                 gt_EndMethod2:
                     ;
-
                 });
 
                 if (null != ec_Awhr_Src)
@@ -1178,115 +1107,64 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_ExistsFcellChild:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー391！", log_Method);
-
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("「E■[" + this.Cur_Configurationtree.Name + "]」（ｆ－ｃｅｌｌを想定）に、子要素が２つ以上ありました。これはエラーです。");
-                s.Newline();
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Cur_Configurationtree.Name, log_Reports);//設定ノード名
 
                 List<Expression_Node_String> e_List = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
-                s.Append("┌────────┐　子要素の数＝[" + e_List.Count + "]");
-                s.Newline();
+                tmpl.SetParameter(2, e_List.Count.ToString(), log_Reports);//子要素の数
 
+                Log_TextIndented s = new Log_TextIndentedImpl();
                 foreach (Expression_Node_String ec_Child in e_List)
                 {
-                    s.Append("「E■[" + ec_Child.Cur_Configurationtree.Name + "]」");
+                    s.Append("Expr[" + ec_Child.Cur_Configurationtree.Name + "]");
                     s.Newline();
                 }
+                tmpl.SetParameter(3, s.ToString(), log_Reports);//要素のリスト
 
-                s.Append("└────────┘");
-                s.Newline();
+                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-
-                //
-                // ヒント：this
-                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6016;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_EmptyKey:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー392！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, bExists_Awhr_Out.ToString(), log_Reports);//Where句の有無
+                tmpl.SetParameter(2, selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim(), log_Reports);//RecordSetLoadFrom属性
+                tmpl.SetParameter(3, this.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//属性の数
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("　＜f-cell＞要素の key値（または子要素）の指定がありません。");
-                s.Newline();
-                s.Newline();
-
-                s.Append("out_bExists_Awhr=[");
-                s.Append(bExists_Awhr_Out);
-                s.Append("]");
-                s.Newline();
-
-                s.Append("selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim()=[");
-                s.Append(selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim());
-                s.Append("]");
-                s.Newline();
-
-
-                s.Append("┌────────┐　属性の数＝[" + this.Dictionary_Expression_Attribute.Count + "]");
-                s.Newline();
+                Log_TextIndented s1 = new Log_TextIndentedImpl();
                 this.Dictionary_Expression_Attribute.ForEach(delegate(string sName3, Expression_Node_String e_Attr3, ref bool bBreak)
                 {
-                    s.Append("属　[" + sName3 + "]＝「E■[" + e_Attr3.Cur_Configurationtree.Name + "]　値＝[" + e_Attr3.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]」");
-                    s.Newline();
+                    s1.Append("Attribute[" + sName3 + "]=Expr[" + e_Attr3.Cur_Configurationtree.Name + "]　値＝[" + e_Attr3.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                    s1.Newline();
                 });
-                s.Append("└────────┘");
-                s.Newline();
+                tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性リスト
 
+                tmpl.SetParameter(5, this.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//子要素の数
 
-                s.Append("┌────────┐　子の数＝[" + this.List_Expression_Child.Count + "]");
-                s.Newline();
+                Log_TextIndented s2 = new Log_TextIndentedImpl();
                 this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
-                    s.Append("子　[" + e_Child.Cur_Configurationtree.Name + "]＝[" + e_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
-                    s.Newline();
+                    s2.Append("子　[" + e_Child.Cur_Configurationtree.Name + "]＝[" + e_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                    s2.Newline();
                 });
-                s.Append("└────────┘");
-                s.Newline();
+                tmpl.SetParameter(6, s2.ToString(), log_Reports);//子要素リスト
 
+                tmpl.SetParameter(7, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
-                //
-                // ヒント：this
-                s.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
-
-                s.Append(r.Message_SSeparator());
-                s.Append("　　ヒント：");
-                s.Newline();
-                s.Append("　　　例えば、変数名「$aaa」を書こうとして、「aaa」と文字列を入れていませんか？");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6017;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_EmptyTableName:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー119！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cf_Fcell), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　テーブル名が指定されていません。");
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(cf_Fcell));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6018;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -1508,21 +1386,11 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NullTable:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー120！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf_Query));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6019;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -1612,170 +1480,38 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotOne:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー121！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, nHitsCount.ToString(), log_Reports);//検索ヒット数
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("検索に1個だけ必ずヒットする予定でしたが、[");
-                t.Append(nHitsCount);
-                t.Append("]個ヒットしてしまいました。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                //dt.Append("簡易実装 SELECT ");
-                //dt.Append(nSELECT_selectedFldName);
-
-                //dt.Append(" FROM ");
-                //dt.Append(p3_Selectstatement_debug.NFrom);
-
-                //dt.Append(" Ｗｈｅｒｅ ");
-                //dt.Append(p3_Selectstatement_debug.NFld);
-
-                //dt.Append(" == ");
-
-                //{
-                //    List<NString> nStringList = this.ChildNList.GetList(
-                //    Request_SelectingImpl.Unconstraint,
-                //    log_Reports
-                //    );
-
-                //    nStringList[0].ToConfigStack(dt);
-                //}
-
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6020;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NotOneOrZero:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー122！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, nHitsCount.ToString(), log_Reports);//検索ヒット数
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("検索に1個だけヒットするか、またはヒットしないかのどちらかの予定でしたが、[");
-                t.Append(nHitsCount);
-                t.Append("]個ヒットしてしまいました。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                //dt.Append("簡易実装 SELECT ");
-                //dt.Append(nSELECT_selectedFldName);
-
-                //dt.Append(" FROM ");
-                //dt.Append(p3_Selectstatement_debug.NFrom);
-
-                //dt.Append(" Ｗｈｅｒｅ ");
-                //dt.Append(p3_Selectstatement_debug.NFld);
-
-                //dt.Append(" == ");
-                //{
-                //    List<NString> nStringList = this.ChildNList.GetList(
-                //        Request_SelectingImpl.Unconstraint,
-                //        log_Reports
-                //        );
-
-                //    nStringList[0].ToConfigStack(dt);
-                //}
-
-
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6021;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NotExists:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー123！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, nHitsCount.ToString(), log_Reports);//検索ヒット数
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("検索で1個以上ヒットする予定でしたが、[");
-                t.Append(nHitsCount);
-                t.Append("]個のヒットでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                //dt.Append("簡易実装 SELECT ");
-                //dt.Append(nSELECT_selectedFldName);
-
-                //dt.Append(" FROM ");
-                //dt.Append(p3_Selectstatement_debug.NFrom);
-
-                //dt.Append(" Ｗｈｅｒｅ ");
-                //dt.Append(p3_Selectstatement_debug.NFld);
-
-                //dt.Append(" == ");
-                //{
-                //    List<NString> nStringList = this.ChildNList.GetList(
-                //        Request_SelectingImpl.Unconstraint,
-                //        log_Reports
-                //        );
-
-                //    nStringList[0].ToConfigStack(dt);
-                //}
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6022;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UndefinedEnum:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー124！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, request.EnumHitcount.ToString(), log_Reports);//要求した検索ヒット区分
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("request.EnumHitcount=[");
-                t.Append(request.EnumHitcount.ToString());
-                t.Append("]には、プログラム側でまだ未対応です。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                //sResult.Append(dr.CreateSourceHintMessage(this));
-
-
-                //dt.Append("簡易実装 SELECT ");
-                //dt.Append(nSELECT_selectedFldName);
-
-                //dt.Append(" FROM ");
-                //dt.Append(p3_Selectstatement_debug.NFrom);
-
-                //dt.Append(" Ｗｈｅｒｅ ");
-                //dt.Append(p3_Selectstatement_debug.NFld);
-
-                //dt.Append(" == ");
-                //{
-                //    List<NString> nStringList = this.ChildNList.GetList(
-                //        Request_SelectingImpl.Unconstraint,
-                //        log_Reports
-                //        );
-
-                //    nStringList[0].ToConfigStack(dt);
-                //}
-
-
-                // ヒント
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6023;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

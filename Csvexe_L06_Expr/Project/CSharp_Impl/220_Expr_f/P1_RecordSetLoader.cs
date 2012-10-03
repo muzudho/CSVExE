@@ -61,7 +61,10 @@ namespace Xenon.Expr
                 {
                     //
                     // レコードセットを取得。
-                    recordSet = this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Get(ec_RecordSetLoadFrom, log_Reports);
+                    recordSet = this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Get(
+                        ec_RecordSetLoadFrom,
+                        this.Owner_MemoryApplication,
+                        log_Reports);
                 }
                 else
                 {

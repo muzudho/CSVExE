@@ -351,18 +351,11 @@ namespace Xenon.Expr
             }
 
 
-
-
-
-            //            sResult.Append(this.GetType().NodeName + "#GetString("+Info_N.LibraryName+"): ただいま開発中。nTableName=[" + nTableName + "] attr数=[" + this.NAttrDictionary.Count + "] lookup-nId=[" + lookupId + "] templateText=[" + textTemplate.Perform() + "] p1pValue=[" + p1pValue + "] p2p=[" + p2p + "] p3p=[" + p3p + "]");
-
             Expression_Node_String ec_TextTemplate = p1pText.Compile(
                 log_Reports
                 );
 
             sb_Result.Append(ec_TextTemplate.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
-
-            //sResult.Append( textTemplate.Perform() );
 
             
             //
@@ -379,61 +372,29 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundVariable:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー439！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("・もしかして？　無い変数名を指定したのかも知れません。");
-                s.Newline();
-                s.Newline();
-
-                // ヒント
-                s.Append(r.Message_Configurationtree(parent_Configurationtree_Node_Query));
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6009;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_EmptyTableName:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー125！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　テーブル名が指定されていません。");
-                t.Newline();
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Configurationtree_Node_Query));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6010;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_NullTable:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー126！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
 
-                Log_TextIndented t = new Log_TextIndentedImpl();
-
-                t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-                t.Newline();
-
-                // ヒント
-                t.Append(r.Message_Configurationtree(parent_Configurationtree_Node_Query));
-
-                r.Message = t.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6011;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

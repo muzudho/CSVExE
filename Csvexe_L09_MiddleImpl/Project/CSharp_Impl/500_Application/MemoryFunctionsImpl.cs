@@ -31,9 +31,9 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
             if (null == this.dictionary_Item)
             {
                 this.dictionary_Item = new Dictionary<string, Expression_Node_Function>();

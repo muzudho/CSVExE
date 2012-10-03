@@ -138,38 +138,18 @@ namespace Xenon.Expr
             #region 異常系
         //────────────────────────────────────────
         gt_ErrorNotFoundOne:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー111！", log_Method);
-
-                StringBuilder t = new StringBuilder();
-                t.Append("必ず、最初の１件を取得する指定でしたが、１件も存在しませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
-
-                // ヒント
-
-                r.Message = sb_Result.ToString();
-                log_Reports.EndCreateReport();
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6037;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_ErrorUndefinedEnum:
-            if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー112！", log_Method);
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, this.Request_Selecting.EnumHitcount.ToString(), log_Reports);//要求した検索ヒット区分
 
-                StringBuilder t = new StringBuilder();
-                t.Append("requestItems.EnumHitcount=[");
-                t.Append(this.Request_Selecting.EnumHitcount.ToString());
-                t.Append("]には、プログラム側でまだ未対応です。");
-
-                // ヒント
-
-                r.Message = sb_Result.ToString();
-                log_Reports.EndCreateReport();
+                this.Owner_MemoryApplication.CreateErrorReport("Er:6038;", tmpl, log_Reports);
             }
             goto gt_EndMethod;
         //────────────────────────────────────────

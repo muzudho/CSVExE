@@ -22,13 +22,21 @@ namespace Xenon.Middle
 
         void Set(string sName, EnumTypedb enum_Typedb, object value, Log_Reports log_Reports);
 
-        void TryGetInt(out int out_NValue, string sName, bool bRequired, int nAlt, Log_Reports log_Reports);
+        void TryGetInt(out int out_NValue, string sName, bool bRequired, int nAlt,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports);
 
-        void TryGetString(out string out_SValue, string sName, bool bRequired, string nAlt, Log_Reports log_Reports);
+        void TryGetString(out string out_SValue, string sName, bool bRequired, string nAlt,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports);
 
-        void TryGetBool(out bool out_BValue, string sName, Log_Reports log_Reports);
+        void TryGetBool(out bool out_BValue, string sName,
+            MemoryApplication memoryApplication, 
+            Log_Reports log_Reports);
 
-        void TryGetFilepath_Configurationtree(out Configurationtree_NodeFilepath out_BValue, string sName, bool bRequired, Log_Reports log_Reports);
+        void TryGetFilepath_Configurationtree(out Configurationtree_NodeFilepath out_BValue, string sName, bool bRequired,
+            MemoryApplication memoryApplication,
+            Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion

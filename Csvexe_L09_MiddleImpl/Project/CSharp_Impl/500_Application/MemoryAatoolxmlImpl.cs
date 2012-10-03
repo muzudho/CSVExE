@@ -35,9 +35,9 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// new した直後の内容に戻します。
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
             this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
             this.Name_DefaultEditor = "";
 

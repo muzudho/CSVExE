@@ -25,9 +25,9 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// クリアーします。
         /// </summary>
-        public void Clear(object/*MemoryApplication*/ owner_MemoryApplication)
+        public void Clear(MemoryApplication owner_MemoryApplication)
         {
-            this.owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
+            this.owner_MemoryApplication = owner_MemoryApplication;
             this.givechapterandverse_Togetherconfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_TOGETHERS, new Configurationtree_NodeImpl(this.GetType().Name + "#<init>", null));
         }
 

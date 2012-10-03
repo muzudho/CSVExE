@@ -277,22 +277,6 @@ namespace Xenon.Expr
         //                //
         //// エラー。
         //gt_Error_NullTable:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.STitle = "▲エラー433！(" + Info_E.LibraryName + ":" + this.GetType().Name + "#P2_ReadRecordSet)";
-
-        //        Log_TextIndented t = new Log_TextIndentedImpl();
-
-        //        t.Append("　テーブルがヌルです。プログラムのミスの可能性があります。");
-        //        t.Newline();
-
-        //        // ヒント
-        //        t.Append(r.Message_Configurationtree(s_ParentNode_Query));
-
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
         //    goto gt_EndMethod;
         //    //
         //    //
@@ -379,94 +363,22 @@ namespace Xenon.Expr
         //    //
         //// エラー。
         //gt_Error_NotOne:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.STitle = "▲エラー341！（" + Info_E.LibraryName + "）";
-
-        //        Log_TextIndented t = new Log_TextIndentedImpl();
-
-        //        t.Append("検索に1個だけ必ずヒットする予定でしたが、[");
-        //        t.Append(nHitsCount);
-        //        t.Append("]個ヒットしてしまいました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append(Environment.NewLine);
-
-        //        // ヒント
-
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
         //    goto gt_EndMethod;
 
 
         //    //
         //// エラー。
         //gt_Error_NotOneOrZero:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.STitle = "▲エラー342！（" + Info_E.LibraryName + "）";
-
-        //        Log_TextIndented t = new Log_TextIndentedImpl();
-
-        //        t.Append("検索に1個だけヒットするか、またはヒットしないかのどちらかの予定でしたが、[");
-        //        t.Append(nHitsCount);
-        //        t.Append("]個ヒットしてしまいました。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append(Environment.NewLine);
-
-        //        // ヒント
-
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
         //    goto gt_EndMethod;
 
         //                //
         //// エラー。
         //gt_Error_NotExists:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.STitle = "▲エラー343！（" + Info_E.LibraryName + "）";
-
-        //        Log_TextIndented t = new Log_TextIndentedImpl();
-
-        //        t.Append("検索で1個以上ヒットする予定でしたが、[");
-        //        t.Append(nHitsCount);
-        //        t.Append("]個のヒットでした。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append(Environment.NewLine);
-
-        //        // ヒント
-
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
         //    goto gt_EndMethod;
 
         //    //
         //// エラー。
         //gt_Error_UndefinedEnum:
-        //    if (log_Reports.CanCreateReport)
-        //    {
-        //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
-        //        r.STitle = "▲エラー344！（" + Info_E.LibraryName + "）";
-
-        //        Log_TextIndented t = new Log_TextIndentedImpl();
-
-        //        t.Append("request.EnumHitcount=[");
-        //        t.Append(request.EnumHitcount.ToString());
-        //        t.Append("]には、プログラム側でまだ未対応です。");
-        //        t.Append(Environment.NewLine);
-        //        t.Append(Environment.NewLine);
-
-        //        // ヒント
-
-        //        r.Message = t.ToString();
-        //        log_Reports.EndCreateReport();
-        //    }
         //    goto gt_EndMethod;
 
         //    //

@@ -282,39 +282,45 @@ namespace Xenon.Controls
 
             {
                 string sText;
-                fo_Record.TryGetString(out sText, NamesFld.S_TEXT, false, "", log_Reports);
+                fo_Record.TryGetString(out sText, NamesFld.S_TEXT, false, "", this.ControlCommon.Owner_MemoryApplication, log_Reports);
                 this.UsercontrolText = sText;
 
                 bool bEnabled;
-                fo_Record.TryGetBool(out bEnabled, NamesFld.S_ENABLED, log_Reports);
+                fo_Record.TryGetBool(out bEnabled, NamesFld.S_ENABLED, this.ControlCommon.Owner_MemoryApplication, log_Reports);
                 this.UsercontrolEnabled = bEnabled;
 
                 bool bVisible;
-                fo_Record.TryGetBool(out bVisible, NamesFld.S_VISIBLE, log_Reports);
+                fo_Record.TryGetBool(out bVisible, NamesFld.S_VISIBLE, this.ControlCommon.Owner_MemoryApplication, log_Reports);
                 this.UsercontrolVisible = bVisible;
 
 
                 int nAbsXLt;
-                fo_Record.TryGetInt(out nAbsXLt, NamesFld.S_X_LT, false, -1, log_Reports);
+                fo_Record.TryGetInt(out nAbsXLt, NamesFld.S_X_LT, false, -1, this.ControlCommon.Owner_MemoryApplication, log_Reports);
 
                 int nAbsYLt;
-                fo_Record.TryGetInt(out nAbsYLt, NamesFld.S_Y_LT, false, -1, log_Reports);
+                fo_Record.TryGetInt(out nAbsYLt, NamesFld.S_Y_LT, false, -1, this.ControlCommon.Owner_MemoryApplication, log_Reports);
 
                 this.Location = new System.Drawing.Point(nAbsXLt, nAbsYLt);
 
 
                 int nWidth;
-                fo_Record.TryGetInt(out nWidth, NamesFld.S_WIDTH, false, 1, log_Reports);
+                fo_Record.TryGetInt(out nWidth, NamesFld.S_WIDTH, false, 1, this.ControlCommon.Owner_MemoryApplication, log_Reports);
 
                 int nHeight;
-                fo_Record.TryGetInt(out nHeight, NamesFld.S_HEIGHT, false, 1, log_Reports);
+                fo_Record.TryGetInt(out nHeight, NamesFld.S_HEIGHT, false, 1, this.ControlCommon.Owner_MemoryApplication, log_Reports);
 
                 this.Size = new System.Drawing.Size(nWidth, nHeight);
             }
 
             // 背景色の設定
             string sBackColor;
-            fo_Record.TryGetString(out sBackColor, NamesFld.S_BACK_COLOR, false, "", log_Reports);
+            fo_Record.TryGetString(
+                out sBackColor,
+                NamesFld.S_BACK_COLOR,
+                false,
+                "",
+                this.ControlCommon.Owner_MemoryApplication,
+                log_Reports);
             this.UsercontrolBackcolor = sBackColor;
 
             //TODO:【特殊】PIC_ZOOM

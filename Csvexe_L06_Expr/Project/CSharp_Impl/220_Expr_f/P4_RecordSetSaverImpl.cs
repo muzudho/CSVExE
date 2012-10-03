@@ -71,6 +71,7 @@ namespace Xenon.Expr
                     this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Add(
                         ecvRequest_SelRec_OrNull.Expression_Storage,
                         recordSet_toSave,// p3_Selectstatement,
+                        this.Owner_MemoryApplication,
                         log_Reports);
                 }
             }
