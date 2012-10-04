@@ -103,7 +103,7 @@ namespace Xenon.MiddleImpl
             //
 
             // 「エディター・フォルダー」パス
-            string sFopath_Editor = ec_Fopath_Editor.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sFopath_Editor = ec_Fopath_Editor.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             //
             // Engine フォルダー
@@ -206,7 +206,7 @@ namespace Xenon.MiddleImpl
 
 
             // 「エディター・フォルダー」パス
-            string sFopath_Editor = ec_Fopath_Editor.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sFopath_Editor = ec_Fopath_Editor.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
 
             Configurationtree_Node cf_Auto = null;

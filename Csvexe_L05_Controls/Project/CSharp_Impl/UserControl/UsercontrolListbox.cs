@@ -273,7 +273,7 @@ namespace Xenon.Controls
                             this.functionlist_Event_SelectedValueChanged = fw;
 
 
-                            this.CustomcontrolListbox1.SelectedValueChanged += new System.EventHandler(this.functionlist_Event_SelectedValueChanged.Execute_OnOEa);
+                            this.CustomcontrolListbox1.SelectedValueChanged += new System.EventHandler(this.functionlist_Event_SelectedValueChanged.Execute4_OnOEa);
 
                             // ★DEBUG
                             //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
@@ -297,7 +297,7 @@ namespace Xenon.Controls
                             ((Functionlist_FormImpl)this.functionlist_Event_ItemDoubleClicked).InitializeBeforeUse();
 
 
-                            this.CustomcontrolListbox1.DoubleClick += new System.EventHandler(this.functionlist_Event_ItemDoubleClicked.Execute_OnOEa);
+                            this.CustomcontrolListbox1.DoubleClick += new System.EventHandler(this.functionlist_Event_ItemDoubleClicked.Execute4_OnOEa);
 
                             // ★DEBUG
                             //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
@@ -714,7 +714,7 @@ namespace Xenon.Controls
                             StringBuilder sb = new StringBuilder();
 
                             sb.Append(Info_Controls.Name_Library + ":" + this.GetType().Name + "#OnCreated:【一時記憶セット】");
-                            sb.Append("　FC＝[" + this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod) + "]");
+                            sb.Append("　FC＝[" + this.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod) + "]");
 
                             // #デバッグ出力
                             System.Console.WriteLine(sb.ToString());
@@ -1802,7 +1802,7 @@ namespace Xenon.Controls
                 else
                 {
                     this.CustomcontrolListbox1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     this.CustomcontrolListbox1.Name = sName_Usercontrol;
                 }
 

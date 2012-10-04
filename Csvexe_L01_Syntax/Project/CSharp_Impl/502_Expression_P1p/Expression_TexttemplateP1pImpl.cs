@@ -56,7 +56,7 @@ namespace Xenon.Syntax
             s.Append("「E■[");
             s.Append(this.Cur_Configurationtree.Name);
             s.Append("]　");
-            s.Append(this.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
+            s.Append(this.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
             s.Append("」");
             s.Newline();
 
@@ -134,12 +134,12 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public virtual string Expression_ExecuteMain(
+        public virtual string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute5_Main", log_Reports);
 
             string sResult;
             Exception err_Excp;
@@ -196,13 +196,13 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public string Execute_OnExpressionString(
+        public string Execute4_OnExpressionString(
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnExpressionString", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute4_OnExpressionString", log_Reports);
 
             //
             //
@@ -220,7 +220,7 @@ namespace Xenon.Syntax
             //    goto gt_EndMethod;
             //}
 
-            sResult = this.Expression_ExecuteMain(log_Reports);
+            sResult = this.Execute5_Main(log_Reports);
 
             // もとに戻す
             this.requestItems = EnumHitcount.Unconstraint;
@@ -242,12 +242,12 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
+        public Expression_Node_Filepath Execute4_OnExpressionString_AsFilepath(
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
-            return Expression_Node_StringImpl.Execute_OnEString_AsFilePath_Impl(this, request, log_Reports);
+            return Expression_Node_StringImpl.Execute4_OnExpressionString_AsFilepath_Impl(this, request, log_Reports);
         }
 
         //────────────────────────────────────────

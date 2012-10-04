@@ -55,7 +55,7 @@ namespace Xenon.Expr
 
             if (null != ec_RecordSetLoadFrom)
             {
-                string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
+                string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
                 if ("" != sRecordSetLoadFrom)
                 {

@@ -13,7 +13,7 @@ namespace Xenon.Functions
     /// <summary>
     /// コントロールの &lt;event&gt;要素の中を読み取って実行します。
     /// </summary>
-    public class UsercontrolPerformerImpl : UsercontrolPerformer
+    public class Executer1_UsercontrolAndEventImpl : Executer1_UsercontrolAndEvent
     {
 
 
@@ -25,7 +25,7 @@ namespace Xenon.Functions
         /// コンストラクター。
         /// </summary>
         /// <param name="form"></param>
-        public UsercontrolPerformerImpl()
+        public Executer1_UsercontrolAndEventImpl()
         {
         }
 
@@ -41,12 +41,14 @@ namespace Xenon.Functions
         /// 実行。
         /// 
         /// 指定のコントロールの、指定のイベントを実行します。
+        /// 
+        /// todo:どこで利用されている？
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="nFcName">コントロール名。</param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        public void Perform_Usercontrol(
+        public void Execute1_Usercontrol(
             object sender,
             Expression_Node_String ec_FcName,
             XenonName o_Name_Event,
@@ -58,20 +60,20 @@ namespace Xenon.Functions
             //.WriteLine(this.GetType().Name + "#PerformFc: 【アクション_パフォーマー開始】");
 
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_Fc",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_Usercontrol", log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_Fc:" + o_Name_Event.SValue + "＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
 
 
 
             Usercontrol ucFc = null;
 
-            string sFcName1 = ec_FcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sFcName1 = ec_FcName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol ucFc2, ref bool bRemove, ref bool bBreak)
             {
-                string sFcName2 = ucFc2.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sFcName2 = ucFc2.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 if (sFcName2 == sFcName1)
                 {
@@ -82,7 +84,7 @@ namespace Xenon.Functions
             if (null != ucFc)
             {
                 // 一致したfcUcがあれば、一致した最後のfcUcを。
-                this.Perform_UsercontrolImpl(
+                this.Execute1_UsercontrolImpl(
                     sender,
                     ucFc,
                     o_Name_Event,
@@ -113,11 +115,13 @@ namespace Xenon.Functions
         /// 実行。
         /// 
         /// コントロールの名前数文字を指定して、一致するコントロールのイベントを実行します。
+        /// 
+        /// todo:どこから呼び出されている？
         /// </summary>
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        public void Perform_UsercontrolNameStartsWith(
+        public void Execute1_UsercontrolNameStartsWith(
             object sender,
             string sFcNameStarts,
             XenonName o_Name_Event,
@@ -126,13 +130,11 @@ namespace Xenon.Functions
             Log_Reports log_Reports
             )
         {
-            //.WriteLine(this.GetType().Name + "#Perform_FcNameStartsWith: 【アクション_パフォーマー開始】");
-
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_FcNameStartsWith",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_UsercontrolNameStartsWith", log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_FcNameStartsWith:" + o_Name_Event.SValue + "＞";
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
 
             Dictionary<string, Usercontrol> dic = owner_MemoryApplication.MemoryForms.ItemsStartsWith(
                 sFcNameStarts,
@@ -143,7 +145,7 @@ namespace Xenon.Functions
             {
                 if (null != ucFc)
                 {
-                    this.Perform_UsercontrolImpl(
+                    this.Execute1_UsercontrolImpl(
                         sender,
                         ucFc,
                         o_Name_Event,
@@ -177,11 +179,13 @@ namespace Xenon.Functions
         /// 全てのコントロールの、指定のイベントを実行します。
         /// 
         /// アプリケーション起動時に、"OnLoad"を全て実行するなど。
+        /// 
+        /// 別の関数から呼び出されます。
         /// </summary>
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        public void Perform_AllUsercontrols(
+        public void Execute1_AllUsercontrols(
             List<string> sFcNameList,
             object sender,
             XenonName o_Name_Event,
@@ -191,10 +195,10 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_AllFcs",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_AllUsercontrols", log_Reports);
             //
             //
-            string sConfigStack = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_AllFcs:" + o_Name_Event.SValue + "＞";
+            string sConfigStack = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
             sConfigStack_EventOrigin += sConfigStack;
             Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack, null);
 
@@ -222,7 +226,7 @@ namespace Xenon.Functions
                 {
                     Usercontrol ucFc = list_UcFc[0];
 
-                    this.Perform_UsercontrolImpl(
+                    this.Execute1_UsercontrolImpl(
                         sender,
                         ucFc,
                         o_Name_Event,
@@ -253,7 +257,7 @@ namespace Xenon.Functions
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        protected void Perform_UsercontrolImpl(
+        protected void Execute1_UsercontrolImpl(
             object sender,
             Usercontrol ucFc,
             XenonName o_Name_Event,
@@ -263,11 +267,11 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_FcImpl",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_UsercontrolImpl", log_Reports);
             //
             //
-            string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_FcImpl:" + o_Name_Event.SValue + "＞";
+            string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
 
 
             if (null == ucFc.ControlCommon.Configurationtree_Control)
@@ -283,7 +287,7 @@ namespace Xenon.Functions
 
             //if (0 < fcUc.ControlCommon.OCnf_Control.OEvents.Count)
             //{
-            //    //.WriteLine(this.GetType().Name + "#PerformAllFcs: ■■コントロール=[" + fcNameStr2 + "] イベント数=[" + fcUc.ControlCommon.OFcnfControl.OEvents.Count + "]");
+            //    //.WriteLine(this.GetType().Name + "#: ■■コントロール=[" + fcNameStr2 + "] イベント数=[" + fcUc.ControlCommon.OFcnfControl.OEvents.Count + "]");
             //}
 
 
@@ -300,8 +304,8 @@ namespace Xenon.Functions
 
                 if (o_Name_Event.SValue == sEventName)
                 {
-                    Exe_1EventImpl exe1 = new Exe_1EventImpl();
-                    exe1.Perform(
+                    Executer2_EventImpl exe1 = new Executer2_EventImpl();
+                    exe1.Execute2_Event(
                         sender,
                         cf_Event,
                         owner_MemoryApplication,
@@ -330,9 +334,9 @@ namespace Xenon.Functions
         /// <param name="oEventName"></param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        public void Perform(
+        private void Execute1b(
             object sender,
-            string sName_Usercontrol,
+            string name_ExpectedUsercontrol,
             string sEventName,
             MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
@@ -340,62 +344,60 @@ namespace Xenon.Functions
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute2", log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:" + sEventName + "＞";
+            sConfigStack_EventOrigin += "＜" + log_Method.Fullname + ":" + sEventName + "＞";
 
 
-            //.WriteLine(this.GetType().Name + "#Perform:◆◆◆◆◆◆ 【アクション_パフォーマー開始】");
+            Usercontrol foundUsercontrol = null;
 
-            Usercontrol foundUcFc = null;
-
-            owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol ucFc, ref bool bRemove, ref bool bBreak)
+            owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol curUsercontrol, ref bool bRemove, ref bool bBreak)
             {
-                string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                string name_CurUsercontrol = curUsercontrol.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint,
                     log_Reports
                     );
 
 
-                //.WriteLine(this.GetType().Name + "#Perform_PrjSelected: ■■コントロール=[" + fcUc.ControlCommon.Name.Value + "] イベント数=[" + fcUc.ControlCommon.OEvents.Items.Count + "]");
+                //.WriteLine(this.GetType().Name + "#: ■■コントロール=[" + fcUc.ControlCommon.Name.Value + "] イベント数=[" + fcUc.ControlCommon.OEvents.Items.Count + "]");
 
-                if (sName_Usercontrol == sFcName2)
+                if (name_ExpectedUsercontrol == name_CurUsercontrol)
                 {
-                    foundUcFc = ucFc;
+                    foundUsercontrol = curUsercontrol;
 
 
-                    //.WriteLine(this.GetType().Name + "#Perform_PrjSelected: ■■コントロール=[" + fcNameStr2 + "] イベント数=[" + fcUc.ControlCommon.OFcnfControl.OEvents.Count + "]");
+                    //.WriteLine(this.GetType().Name + "#: ■■コントロール=[" + fcNameStr2 + "] イベント数=[" + fcUc.ControlCommon.OFcnfControl.OEvents.Count + "]");
 
-                    Configurationtree_Node cf_HitEvent = null;
-                    List<Configurationtree_Node> cfList_Event = ucFc.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
-                    foreach (Configurationtree_Node cf_Event in cfList_Event)
+                    Configurationtree_Node hitEvent_Cnf = null;
+                    List<Configurationtree_Node> list_EventCnf = curUsercontrol.ControlCommon.Configurationtree_Control.GetChildrenByNodename(NamesNode.S_EVENT, false, log_Reports);
+                    foreach (Configurationtree_Node event_Cnf in list_EventCnf)
                     {
-                        string sFncName;
-                        cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sFncName, false, log_Reports);
+                        string name_Fnc;
+                        event_Cnf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out name_Fnc, false, log_Reports);
 
-                        if (sFncName == sEventName)
+                        if (name_Fnc == sEventName)
                         {
-                            cf_HitEvent = cf_Event;
+                            hitEvent_Cnf = event_Cnf;
                         }
                     }
 
-                    if (null != cf_HitEvent)
+                    if (null != hitEvent_Cnf)
                     {
                         //
                         // 最初の<event>要素
                         //
-                        Exe_1EventImpl exe1 = new Exe_1EventImpl();
-                        exe1.Perform(
+                        Executer2_EventImpl exe1 = new Executer2_EventImpl();
+                        exe1.Execute2_Event(
                             sender,
-                            cf_HitEvent,
+                            hitEvent_Cnf,
                             owner_MemoryApplication,
                             log_Reports
                             );
                     }
                     else
                     {
-                        string sFcName3 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                        string sFcName3 = curUsercontrol.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                             EnumHitcount.Unconstraint,
                             log_Reports
                             );
@@ -414,9 +416,9 @@ namespace Xenon.Functions
             });
 
             //loop_end:
-            //.WriteLine(this.GetType().Name + "#Perform_PrjSelected: 【アクション_パフォーマー終了】");
+            //.WriteLine(this.GetType().Name + "#: 【アクション_パフォーマー終了】");
 
-            if (null == foundUcFc)
+            if (null == foundUsercontrol)
             {
                 goto gt_Error_NotFoundUsercontrol;
             }
@@ -429,7 +431,7 @@ namespace Xenon.Functions
         gt_Error_NotFoundUsercontrol:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, sName_Usercontrol, log_Reports);//コントロール名
+                tmpl.SetParameter(1, name_ExpectedUsercontrol, log_Reports);//コントロール名
 
                 owner_MemoryApplication.CreateErrorReport("Er:110028;", tmpl, log_Reports);
             }

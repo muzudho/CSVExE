@@ -89,15 +89,15 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             //（１）メソッド開始
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                string sConfigStack_ThisMethod = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";
+                string sConfigStack_ThisMethod = "＜" + log_Method.Fullname + ":＞";
                 Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_ThisMethod, null);
 
 
@@ -119,7 +119,7 @@ namespace Xenon.Functions
                             log_Reports
                             );
 
-                    this.Owner_MemoryApplication.MemoryForms.Mainwnd_FormWrapping.Form.KeyDown += new System.Windows.Forms.KeyEventHandler(((Expression_Node_FunctionImpl)expr_Func).Execute_OnKey);
+                    this.Owner_MemoryApplication.MemoryForms.Mainwnd_FormWrapping.Form.KeyDown += new System.Windows.Forms.KeyEventHandler(((Expression_Node_FunctionImpl)expr_Func).Execute4_OnKey);
                 }
 
 
@@ -148,14 +148,14 @@ namespace Xenon.Functions
                         log_Reports
                         );
                     //expr_Func.InitializeBeforeUse(this.Owner_MemoryApplication);
-                    this.Owner_MemoryApplication.MemoryForms.Form_Toolwindow.OnEditorSelected += expr_Func.Execute_OnEditorSelected;
+                    this.Owner_MemoryApplication.MemoryForms.Form_Toolwindow.OnEditorSelected += expr_Func.Execute4_OnEditorSelected;
                 }
 
 
                 //（７）「プロジェクト選択時」のイベントハンドラーを実行。（アプリケーション起動１回目）
                 if (log_Reports.Successful)
                 {
-                    this.Functionitem_OnProjectSelected.Execute_OnEditorSelected(
+                    this.Functionitem_OnProjectSelected.Execute4_OnEditorSelected(
                         this.Functionparameterset.Sender, null, false, log_Reports);
                 }
 

@@ -60,7 +60,7 @@ namespace Xenon.MiddleImpl
             {
                 // 正常時
 
-                sFpatha_rfr = ec_Fpath_Rfr.Execute_OnExpressionString(
+                sFpatha_rfr = ec_Fpath_Rfr.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint, log_Reports);
                 if (!log_Reports.Successful)
                 {

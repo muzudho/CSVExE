@@ -10,9 +10,9 @@ namespace Xenon.Middle
 {
 
     /// <summary>
-    /// アクションを実行します。
+    /// ユーザーコントロール名とイベント名を指定して、イベント内の関数を実行します。
     /// </summary>
-    public interface UsercontrolPerformer
+    public interface Executer1_UsercontrolAndEvent
     {
 
 
@@ -29,11 +29,11 @@ namespace Xenon.Middle
         /// <param name="nFcName">コントロール名。</param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        void Perform_Usercontrol(
+        void Execute1_Usercontrol(
             object sender,
-            Expression_Node_String ec_FcName,
-            XenonName o_Name_Event,
-            MemoryApplication owner_MoApplication,
+            Expression_Node_String expr_NameControl,
+            XenonName name_Event,
+            MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             );
@@ -46,11 +46,11 @@ namespace Xenon.Middle
         /// <param name="eventName"></param>
         /// <param name="eventName"></param>
         /// <param name="log_Reports"></param>
-        void Perform_UsercontrolNameStartsWith(
+        void Execute1_UsercontrolNameStartsWith(
             object sender,
-            string sFcNameStarts,
-            XenonName o_Name_Event,
-            MemoryApplication owner_MoApplication,
+            string name_Control_NameStarts,
+            XenonName name_Event,
+            MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             );
@@ -65,29 +65,29 @@ namespace Xenon.Middle
         /// <param name="nFcName"></param>
         /// <param name="oEventName"></param>
         /// <param name="log_Reports"></param>
-        void Perform_AllUsercontrols(
-            List<string> sList_Name_Ucontrol,
+        void Execute1_AllUsercontrols(
+            List<string> list_Name_Usercontrol,
             object sender,
-            XenonName o_Name_Event,
-            MemoryApplication owner_MoApplication,
+            XenonName name_Event,
+            MemoryApplication owner_MemoryApplication,
             string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             );
 
-        /// <summary>
-        /// 実行。
-        /// </summary>
-        /// <param name="nFcName"></param>
-        /// <param name="oEventName"></param>
-        /// <param name="log_Reports"></param>
-        void Perform(
-            object sender,
-            string sName_Ucontrol,
-            string sName_Event,
-            MemoryApplication owner_MoApplication,
-            string sConfigStack_EventOrigin,
-            Log_Reports log_Reports
-            );
+        ///// <summary>
+        ///// 実行。
+        ///// </summary>
+        ///// <param name="nFcName"></param>
+        ///// <param name="oEventName"></param>
+        ///// <param name="log_Reports"></param>
+        //void Execute2(
+        //    object sender,
+        //    string sName_Usercontrol,
+        //    string sName_Event,
+        //    MemoryApplication owner_MemoryApplication,
+        //    string sConfigStack_EventOrigin,
+        //    Log_Reports log_Reports
+        //    );
 
         //────────────────────────────────────────
         #endregion

@@ -15,7 +15,7 @@ namespace Xenon.Functions
     /// 
     /// Exe_1EventImpl#Perform で使用。
     /// </summary>
-    public class Exe_2FunctionImpl
+    public class Executer3_FunctionImpl
     {
 
 
@@ -76,7 +76,7 @@ namespace Xenon.Functions
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
         /// <param name="log_Reports"></param>
-        public void PerformUsercontrol(
+        public void Execute3_Function(
             Expression_Node_Function expr_Func,
             object sender,
             EventMonitorImpl eventMonitor,
@@ -85,7 +85,7 @@ namespace Xenon.Functions
         )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "PerformUsercontrol",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute3_Function", log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -95,7 +95,7 @@ namespace Xenon.Functions
             //
             //
             //
-            string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:＞";
+            string sConfigStack_EventOrigin = "＜" + log_Method.Fullname + ":＞";
 
             string sFncName;
             expr_Func.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -103,7 +103,7 @@ namespace Xenon.Functions
             //
             // アクションの実行
             //
-            //ystem.Console.WriteLine(this.GetType().Name + "#PerformAllFcs: 【開始】E_Action実行します。");
+            //ystem.Console.WriteLine(this.GetType().Name + "#: 【開始】E_Action実行します。");
             if (log_Reports.Successful)
             {
                 if (null != expr_Func)
@@ -117,7 +117,7 @@ namespace Xenon.Functions
                     {
                         case EnumEventhandler.O_Lr:
                             {
-                                expr_Func.Execute_OnLr(
+                                expr_Func.Execute4_OnLr(
                                     sender,
                                     eventMonitor,
                                     sConfigStack_EventOrigin,
@@ -129,7 +129,7 @@ namespace Xenon.Functions
                         case EnumEventhandler.O_Ea:
                             {
                                 // 変換 OEa → WrRhn。
-                                expr_Func.Execute_OnLr(
+                                expr_Func.Execute4_OnLr(
                                     sender,
                                     eventMonitor,
                                     sConfigStack_EventOrigin,
@@ -138,7 +138,7 @@ namespace Xenon.Functions
                             }
                             break;
 
-                        //case NActionPerformEnum.O_DEA_P_S_B_WR:
+                        //case EnumEventhandler.O_DEA_P_S_B_WR:
                         //    break;
 
                         default:

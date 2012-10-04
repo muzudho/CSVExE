@@ -17,7 +17,7 @@ namespace Xenon.Syntax
         #region 生成と破棄
         //────────────────────────────────────────
 
-        void InitializeBeforeUse(object/*MoApplication*/ moApplication);
+        void InitializeBeforeUse(object/*MemoryApplication*/ memoryApplication);
 
         //────────────────────────────────────────
         #endregion

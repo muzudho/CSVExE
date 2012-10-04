@@ -154,8 +154,8 @@ namespace Xenon.MiddleImpl
                             xenonValue_String.TryGet(out valueStr);
 
                             texttemplateBuilder_ParameterSetted.Text = valueStr;
-                            r.Message = texttemplateBuilder_ParameterSetted.Compile(log_Reports).Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-                            //log_Method.WriteDebug_ToConsole(texttemplateBuilder_ParameterSetted.Compile(log_Reports).Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                            r.Message = texttemplateBuilder_ParameterSetted.Compile(log_Reports).Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                            //log_Method.WriteDebug_ToConsole(texttemplateBuilder_ParameterSetted.Compile(log_Reports).Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
 
                             goto gt_EndLoop1;
                         }
@@ -178,7 +178,7 @@ namespace Xenon.MiddleImpl
                     tmpl.SetParameter(2, strTypedata,log_Reports);
                     tmpl.SetParameter(3, tables.Count.ToString(),log_Reports);
 
-                    r.Message = tmpl.Compile(log_Reports).Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    r.Message = tmpl.Compile(log_Reports).Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 }
 
                 log_Reports.EndCreateReport();

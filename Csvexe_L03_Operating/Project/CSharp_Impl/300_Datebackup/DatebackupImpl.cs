@@ -122,7 +122,7 @@ namespace Xenon.Operating
             //
             // 例：「editor-backup」
             // 
-            string sFpatha_BkHome = this.Expression_Filepath_Backuphome.Execute_OnExpressionString(
+            string sFpatha_BkHome = this.Expression_Filepath_Backuphome.Execute4_OnExpressionString(
                 EnumHitcount.Unconstraint,
                 log_Reports
                 );
@@ -166,7 +166,7 @@ namespace Xenon.Operating
                     goto gt_EndMethod;
                 }
 
-                sFopatha_date = ec_Dir.Execute_OnExpressionString(
+                sFopatha_date = ec_Dir.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint,
                     log_Reports
                     );
@@ -200,7 +200,7 @@ namespace Xenon.Operating
                     goto gt_EndMethod;
                 }
 
-                sFopatha_dateTemp = ec_Dir.Execute_OnExpressionString(
+                sFopatha_dateTemp = ec_Dir.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint,
                     log_Reports
                 );
@@ -279,7 +279,7 @@ namespace Xenon.Operating
                     goto gt_EndMethod;
                 }
 
-                string sFpatha_Source = ec_Fpath_WrittenPlace.Execute_OnExpressionString(
+                string sFpatha_Source = ec_Fpath_WrittenPlace.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint,
                     log_Reports
                 );
@@ -391,7 +391,7 @@ namespace Xenon.Operating
                 }
 
                 // もう一回、絶対パスの取得し直し
-                string sFpatha_Dst = ec_Fpath_Dst.Execute_OnExpressionString(
+                string sFpatha_Dst = ec_Fpath_Dst.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint,
                     log_Reports
                     );
@@ -687,7 +687,7 @@ namespace Xenon.Operating
                 if (log_Reports.Successful)
                 {
                     // 正常時
-                    sFopath_Deletee = ec_Fpath.Execute_OnExpressionString(
+                    sFopath_Deletee = ec_Fpath.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint,
                         log_Reports
                         );

@@ -66,10 +66,10 @@ namespace Xenon.Functions
         #region アクション
         //────────────────────────────────────────
 
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -91,7 +91,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint,
                         log_Reports
                         );
@@ -107,7 +107,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
 
 
                 //
@@ -340,7 +340,7 @@ namespace Xenon.Functions
                     gt_Error_NotListbox:
                         {
                             Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                            tmpl.SetParameter(1, ec_FcName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
+                            tmpl.SetParameter(1, ec_FcName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
                             tmpl.SetParameter(2, fct.GetType().Name, log_Reports);//コントロールのクラス名
 
                             this.Owner_MemoryApplication.CreateErrorReport("Er:110019;", tmpl, log_Reports);
@@ -352,7 +352,7 @@ namespace Xenon.Functions
                     gt_Error_NotFoundDataTarget:
                         {
                             Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                            tmpl.SetParameter(1, ec_FcName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
+                            tmpl.SetParameter(1, ec_FcName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
 
                             this.Owner_MemoryApplication.CreateErrorReport("Er:110020;", tmpl, log_Reports);
                         }
@@ -364,7 +364,7 @@ namespace Xenon.Functions
                         {
                             Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                             tmpl.SetParameter(1, PmNames.S_NAME_VAR.Name_Pm, log_Reports);//引数名NameVar
-                            tmpl.SetParameter(2, ec_FcName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
+                            tmpl.SetParameter(2, ec_FcName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
 
                             //
                             //　「ａｃｃｅｓｓ="ｔｏ"」要素を取得しているような。
@@ -436,7 +436,7 @@ namespace Xenon.Functions
         gt_Error_NullFcUc:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, err_Ec_FcName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
+                tmpl.SetParameter(1, err_Ec_FcName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロール名
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110023;", tmpl, log_Reports);
             }
@@ -445,7 +445,7 @@ namespace Xenon.Functions
         gt_Error_EmptyView:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, err_Ec_FcName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//検索ヒット数
+                tmpl.SetParameter(1, err_Ec_FcName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//検索ヒット数
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110024;", tmpl, log_Reports);
             }

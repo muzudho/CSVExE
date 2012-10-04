@@ -754,7 +754,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolWindow1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolWindow1.Name = sName_Usercontrol;
                 }
 

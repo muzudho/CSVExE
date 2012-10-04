@@ -93,7 +93,7 @@ namespace Xenon.Syntax
             bool bSuccessful = this.TrySelect(out ec_String, sName, request, log_Reports);
             if (bSuccessful)
             {
-                sResult = ec_String.Execute_OnExpressionString(request, log_Reports);
+                sResult = ec_String.Execute4_OnExpressionString(request, log_Reports);
                 bResult = true;
             }
             else
@@ -164,7 +164,7 @@ namespace Xenon.Syntax
             s.Newline();
             foreach (KeyValuePair<string, Expression_Node_String> kvp in this.dicExpression_Item)
             {
-                s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
+                s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                 s.Newline();
             }
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここまで");

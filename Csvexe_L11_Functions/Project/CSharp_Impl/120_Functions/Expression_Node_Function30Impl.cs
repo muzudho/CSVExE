@@ -99,7 +99,7 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             //
             //
@@ -109,15 +109,15 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
 
 
-                this.Perform2(
+                this.Execute6_Sub(
                     this.Functionparameterset.Sender,
                     (EventMonitor)this.Functionparameterset.EventMonitor,
                     this.Functionparameterset.Node_EventOrigin,
@@ -129,12 +129,12 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_OEa:＞";//sender=" + sender.ToString() + "／e=" + e.GetType().Name + " //+"／"+s.ToString()
+                string sConfigStack_EventOrigin = "＜" + log_Method.Fullname + ":＞";
                 Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_EventOrigin, null);
 
 
                 Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
-                this.Perform2(
+                this.Execute6_Sub(
                     this.Functionparameterset.Sender,
                     new EventMonitorImpl(cf_Event, cf_ThisMethod),
                     sConfigStack_EventOrigin,
@@ -149,7 +149,7 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform2(
+        protected void Execute6_Sub(
             object sender,
             EventMonitor eventMonitor,
             string sConfigStack_EventOrigin,
@@ -164,7 +164,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             //
             //
@@ -208,7 +208,7 @@ namespace Xenon.Functions
                     }
                     else
                     {
-                        sName_Control = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                        sName_Control = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                             EnumHitcount.Unconstraint,
                             log_Reports
                             );
@@ -229,8 +229,8 @@ namespace Xenon.Functions
             // ┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━┳━
             // ┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━┻━
 
-            Configurationtree_NodeImpl cf_ThisMethod = new Configurationtree_NodeImpl("!ハードコーディング_NAction30#Perform", null);
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:ウィンドウオープン時＞";
+            Configurationtree_NodeImpl cf_ThisMethod = new Configurationtree_NodeImpl("!ハードコーディング_NAction30#Execute6_Sub", null);
+            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Execute6_Sub:ウィンドウオープン時＞";
 
             if (log_Reports.Successful)
             {
@@ -413,7 +413,7 @@ namespace Xenon.Functions
                         if (log_Reports.Successful)
                         {
                             this.Owner_MemoryApplication.MemoryValidators.LoadFile(
-                                moScriptfile.Expression_Filepath.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports),
+                                moScriptfile.Expression_Filepath.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports),
                                 log_Reports);
                         }
                         else
@@ -457,8 +457,8 @@ namespace Xenon.Functions
             //
             if (log_Reports.Successful)
             {
-                UsercontrolPerformer ucontrolPerformer = new UsercontrolPerformerImpl();
-                ucontrolPerformer.Perform_AllUsercontrols(
+                Executer1_UsercontrolAndEvent exe1 = new Executer1_UsercontrolAndEventImpl();
+                exe1.Execute1_AllUsercontrols(
                     sList_Name_Control,
                     sender,
                     new XenonNameImpl(NamesSe.S_LOAD, cf_ThisMethod),

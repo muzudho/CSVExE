@@ -40,13 +40,13 @@ namespace Xenon.Expr
         /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public override string Execute_OnExpressionString(
+        public override string Execute4_OnExpressionString(
             EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute4_OnExpressionString",log_Reports);
             //
             //
 
@@ -70,7 +70,7 @@ namespace Xenon.Expr
                 {
                     //
                     // ＜f-cell＞要素を想定。
-                    sb.Append(ec_11.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                    sb.Append(ec_11.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 }
                 sFormValue = sb.ToString();
             }

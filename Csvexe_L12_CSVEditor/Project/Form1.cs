@@ -142,7 +142,7 @@ namespace Xenon.Csvexe
                 //expr_Func.InitializeBeforeUse(this.MoCsvEditor);
 
                 // 実行
-                expr_Func.Execute_OnOEa(sender, e);
+                expr_Func.Execute4_OnOEa(sender, e);
             }
 
 

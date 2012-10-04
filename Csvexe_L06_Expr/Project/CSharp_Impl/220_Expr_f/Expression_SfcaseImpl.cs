@@ -42,12 +42,12 @@ namespace Xenon.Expr
         /// 値を算出します。
         /// </summary>
         /// <returns></returns>
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
             StringBuilder sb_Result = new StringBuilder();
@@ -106,7 +106,7 @@ namespace Xenon.Expr
                 }
                 else
                 {
-                    string sValue = ec_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sValue = ec_Child.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     if (log_Method.CanDebug(1))
                     {
                         log_Method.WriteDebug_ToConsole(" ・子[" + sChildNodeName + "]　ｎａｍｅ＝”[" + sChildFncName + "]”　属性数＝[" + ec_Child.Dictionary_Expression_Attribute.Count + "]　値＝”[" + sValue + "]”");

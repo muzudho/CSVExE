@@ -137,7 +137,7 @@ namespace Xenon.Controls
                     //
                     // 最初の１件。なければ空文字列。
                     //
-                    this.UsercontrolText = ec_DataSource.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
+                    this.UsercontrolText = ec_DataSource.Execute4_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
 
                     this.ControlCommon.BAutomaticinputting = false;
                 }

@@ -49,12 +49,12 @@ namespace Xenon.Expr
         /// 値を算出します。
         /// </summary>
         /// <returns></returns>
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
 
@@ -90,7 +90,7 @@ namespace Xenon.Expr
 
                 foreach (Expression_Node_String ec_Child in ecList)
                 {
-                    sb.Append(ec_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                    sb.Append(ec_Child.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 }
                 sSwitchValue = sb.ToString();
             }
@@ -145,7 +145,7 @@ namespace Xenon.Expr
                 if (sList_ExpectedTrim.Contains(sSwitchValue))
                 {
                     log_Reports.Log_Callstack.Push(log_Method, "④");
-                    string sHit = ec_SfCase.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sHit = ec_SfCase.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "④");
 
 

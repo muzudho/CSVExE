@@ -79,7 +79,7 @@ namespace Xenon.Controls
 
                 //    if (log_Reports.Successful)
                 //    {
-                //        sSelectedFldName = list_Arg1[0].Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                //        sSelectedFldName = list_Arg1[0].Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 //    }
                 //}
             }
@@ -127,7 +127,7 @@ namespace Xenon.Controls
 
                                     if (pg_Method.CanDebug(2))
                                     {
-                                        pg_Method.WriteDebug_ToConsole( "「E■ｆ－ｃｅｌｌ」／「E■ａ－ｗｈｅｒｅ」／「E■ｆｎｃ　ｆｉｅｌｄ＝”[" + ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]”」。");
+                                        pg_Method.WriteDebug_ToConsole( "「E■ｆ－ｃｅｌｌ」／「E■ａ－ｗｈｅｒｅ」／「E■ｆｎｃ　ｆｉｅｌｄ＝”[" + ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]”」。");
                                     }
                                 }
                                 else
@@ -284,7 +284,7 @@ namespace Xenon.Controls
                 {
                     sList_KeyFldName = new List<string>();
 
-                    string sKeyFldName = ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sKeyFldName = ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     if ("" == sKeyFldName.Trim())
                     {
                         // エラー
@@ -393,8 +393,8 @@ namespace Xenon.Controls
                 List<DataRow> dst_Row = new List<DataRow>();
 
 
-                string sKeyFieldName = ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-                string sExpectedValue = ec_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sKeyFieldName = ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sExpectedValue = ec_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 Configurationtree_Node cf_WrittenPlace_Query = ec_SfCell.Cur_Configurationtree;
 
                 SelectPerformerImpl sp = new SelectPerformerImpl();
@@ -485,7 +485,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -513,7 +513,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -541,7 +541,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -569,7 +569,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -597,7 +597,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -624,7 +624,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -651,7 +651,7 @@ namespace Xenon.Controls
                 t.Append("「E■[");
                 t.Append(ec_KeyFldName1.Cur_Configurationtree.Name);
                 t.Append("]」、キーフィールド名=[");
-                t.Append(ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                t.Append(ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 t.Append("]");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -694,7 +694,7 @@ namespace Xenon.Controls
                 Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー344！", pg_Method);
 
-                string sDebugExceptedKey = ec_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sDebugExceptedKey = ec_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
@@ -708,7 +708,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("［");
-                s.Append(ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                s.Append(ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("］フィールドに");
 
                 s.Append("[");

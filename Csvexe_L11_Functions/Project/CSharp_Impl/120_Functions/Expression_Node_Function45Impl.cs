@@ -89,20 +89,20 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
 
 
-                this.Perform2(
+                this.Execute6_Sub(
                     log_Reports
                     );
 
@@ -121,7 +121,7 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                this.Perform2(
+                this.Execute6_Sub(
                     log_Reports
                     );
             }
@@ -134,12 +134,12 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform2(
+        protected void Execute6_Sub(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             string sName_Fnc;
             this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -213,7 +213,7 @@ namespace Xenon.Functions
                 {
                     if (log_Method.CanDebug(1))
                     {
-                        log_Method.WriteDebug_ToConsole("[" + sKey + "]=[" + ec_String.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
+                        log_Method.WriteDebug_ToConsole("[" + sKey + "]=[" + ec_String.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                     }
 
                     sb.Append(nAuto);//NO
@@ -226,7 +226,7 @@ namespace Xenon.Functions
                     sb.Append(",");
                     //FOLDER TODO:逆算が必要
                     sb.Append(",");
-                    sb.Append(ec_String.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));//VALUE
+                    sb.Append(ec_String.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));//VALUE
                     sb.Append(",");
                     sb.Append(NamesFld.S_END);//END
                     sb.Append(Environment.NewLine);
@@ -244,7 +244,7 @@ namespace Xenon.Functions
                 {
                     Expression_Node_Filepath ec_Fpath_Logs = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(NamesVar.S_SP_LOGS, null, cur_Cf), true, log_Reports);
 
-                    string sFpatha_LogVariables = ec_Fpath_Logs.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOG_VARIABLES;
+                    string sFpatha_LogVariables = ec_Fpath_Logs.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOG_VARIABLES;
 
                     if (log_Reports.Successful)
                     {
@@ -365,7 +365,7 @@ namespace Xenon.Functions
                         {
                             Expression_Node_Filepath ec_Fpath = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(sName_Var, null, cur_Cf), true, log_Reports);
                             // 絶対パスとは限らない。フォルダーを指していることもある。
-                            string sFpath = ec_Fpath.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                            string sFpath = ec_Fpath.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                             //フォルダー列値を取得。
                             string sNamevar_Folder_Src;
@@ -379,7 +379,7 @@ namespace Xenon.Functions
                                 {
                                     // FOLDER列に入力があれば。
 
-                                    string sFpath_Folder = ec_Folder.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                                    string sFpath_Folder = ec_Folder.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                     if (sValue_Var.StartsWith(sFpath_Folder))
                                     {
                                         // FOLDER列値をそのままキープ。
@@ -439,7 +439,7 @@ namespace Xenon.Functions
                     {
                         Expression_Node_Filepath ec_Fpath_Logs = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(NamesVar.S_SP_LOGS, null, cur_Cf), true, log_Reports);
 
-                        string sFpatha_LogVariables = ec_Fpath_Logs.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_SAVE_VARIABLES;
+                        string sFpatha_LogVariables = ec_Fpath_Logs.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_SAVE_VARIABLES;
 
                         if (log_Reports.Successful)
                         {
@@ -461,7 +461,7 @@ namespace Xenon.Functions
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append(this.GetType().Name);
-                sb.Append("#Perform:");
+                sb.Append("#Execute6_Sub:");
                 sb.Append(Environment.NewLine);
                 string sArgMessage;
                 this.TrySelectAttribute(out sArgMessage, Expression_Node_Function45Impl.PM_MESSAGE, EnumHitcount.One_Or_Zero, log_Reports);

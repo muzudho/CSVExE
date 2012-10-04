@@ -68,12 +68,12 @@ namespace Xenon.Expr
         /// ユーザー定義プログラムの実行。
         /// </summary>
         /// <returns></returns>
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
 
@@ -184,7 +184,7 @@ namespace Xenon.Expr
                 {
 
                     // テーブル名。
-                    if ("" == selectSt.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
+                    if ("" == selectSt.Expression_From.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                     {
                         //
                         // エラー。
@@ -297,7 +297,7 @@ namespace Xenon.Expr
 
                     txt.Append(" テーブル=[");
 
-                    txt.Append(selectSt.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                    txt.Append(selectSt.Expression_From.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                     txt.Append("]");
 
                     // キーフィールド
@@ -354,7 +354,7 @@ namespace Xenon.Expr
                 log_Reports
                 );
 
-            sb_Result.Append(ec_TextTemplate.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+            sb_Result.Append(ec_TextTemplate.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
 
             
             //

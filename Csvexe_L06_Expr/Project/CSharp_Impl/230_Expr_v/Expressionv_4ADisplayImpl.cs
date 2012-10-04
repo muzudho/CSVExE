@@ -35,13 +35,13 @@ namespace Xenon.Expr
         /// 子要素の文字列を単純に連結。属性は無視。
         /// </summary>
         /// <returns></returns>
-        public override string Execute_OnExpressionString(
+        public override string Execute4_OnExpressionString(
             EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute4_OnExpressionString",log_Reports);
             //
             //
             StringBuilder sb_Result = new StringBuilder();
@@ -61,7 +61,7 @@ namespace Xenon.Expr
                 Expressionv_Elem99 ecv_Elem = (Expressionv_Elem99)ec_11;
                 ecv_Elem.SetDataRow(this.DataRow);
                 sb_Result.Append(
-                    ecv_Elem.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
+                    ecv_Elem.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                     );
             }
 

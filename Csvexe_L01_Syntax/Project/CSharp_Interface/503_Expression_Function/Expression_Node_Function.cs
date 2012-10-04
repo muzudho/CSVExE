@@ -23,13 +23,13 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="parent_Expression"></param>
         /// <param name="cur_Gcav"></param>
-        /// <param name="moApplication"></param>
+        /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
             Configurationtree_Node cur_Gcav,
-            object/*MoApplication*/ moApplication,
+            object/*MemoryApplication*/ memoryApplication,
             Log_Reports log_Reports
             );
 

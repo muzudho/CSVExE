@@ -49,7 +49,7 @@ namespace Xenon.Expr
             //
             //
 
-            string sName = ec_Name.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
+            string sName = ec_Name.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
             try
             {
@@ -105,7 +105,7 @@ namespace Xenon.Expr
             //
             //
 
-            string sName = ec_Name.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
+            string sName = ec_Name.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
 
             RecordSet nResult;
@@ -165,7 +165,7 @@ namespace Xenon.Expr
             //
             //
 
-            string sStorage = ec_Storage.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
+            string sStorage = ec_Storage.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
             Exception err_Excp;
             try
@@ -222,7 +222,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         public bool Contains(Expression_Node_String ec_Name, Log_Reports log_Reports)
         {
-            string sName = ec_Name.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sName = ec_Name.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             return this.dictionary_Recordset.ContainsKey(sName);
         }

@@ -96,16 +96,16 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)// EventArgs e
+        public override string Execute5_Main(Log_Reports log_Reports)// EventArgs e
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                this.Perform2(
+                this.Execute6_Sub(
                     this.Functionparameterset.Sender,
                     log_Reports
                     );
@@ -113,10 +113,10 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname+":＞";
 
 
-                this.Perform2(
+                this.Execute6_Sub(
                     this.Functionparameterset.Sender,
                     log_Reports
                     );
@@ -145,13 +145,13 @@ namespace Xenon.Functions
         /// <summary>
         /// 変数を設定します。
         /// </summary>
-        protected void Perform2(
+        protected void Execute6_Sub(
             object sender,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
 
             string sFlowSkip;
@@ -182,7 +182,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
@@ -219,7 +219,7 @@ namespace Xenon.Functions
 
                 this.Owner_MemoryApplication.MemoryVariables.SetVariable(
                     new XenonNameImpl(
-                        ec_ArgVarName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
+                        ec_ArgVarName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
                         ec_ArgVarName.Cur_Configurationtree
                         ),
                     ec_ArgValue,

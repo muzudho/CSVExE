@@ -292,7 +292,7 @@ namespace Xenon.Syntax
             Expression_Node_String expr_Str = this.p1pText.Compile(log_Reports);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append(expr_Str.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+            sb.Append(expr_Str.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
             sb.Append(System.Environment.NewLine);
 
             // コールスタックを付けます。

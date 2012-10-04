@@ -101,10 +101,10 @@ namespace Xenon.Functions
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
         /// <param name="log_Reports"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain", log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main", log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -120,7 +120,7 @@ namespace Xenon.Functions
             {
                 Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
             }
@@ -136,15 +136,15 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
 
-                this.Perform2(log_Reports);
+                this.Execute6_Sub(log_Reports);
 
                 ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                this.Perform2(log_Reports);
+                this.Execute6_Sub(log_Reports);
             }
             else
             {
@@ -160,10 +160,10 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private void Perform2(Log_Reports log_Reports)
+        private void Execute6_Sub(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
 
             string sFlowSkip;
@@ -252,7 +252,7 @@ namespace Xenon.Functions
                     //essageBox.Show("テーブルのtext=[" + csvText + "]", "デバッグ");
 
                     // TODO ファイルパスの妥当性判定も欲しい
-                    sFpatha = o_Table.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
+                    sFpatha = o_Table.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint, log_Reports);
                     if (!log_Reports.Successful)
                     {

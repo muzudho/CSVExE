@@ -81,10 +81,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
             //
             //
 
@@ -97,7 +97,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol cct = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
                 }
@@ -107,7 +107,7 @@ namespace Xenon.Functions
                 }
 
 
-                this.Perform2(log_Reports);
+                this.Execute6_Sub(log_Reports);
 
                 //
                 //
@@ -127,7 +127,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
                 }
@@ -136,7 +136,7 @@ namespace Xenon.Functions
                     log_Reports.Comment_EventCreationMe += "／追加：NAction29を実行。";
                 }
 
-                this.Perform2(log_Reports);
+                this.Execute6_Sub(log_Reports);
             }
 
             //
@@ -147,12 +147,12 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform2(
+        protected void Execute6_Sub(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -180,7 +180,7 @@ namespace Xenon.Functions
                 //
                 this.TrySelectAttribute(out ec_Name_Control, Expression_Node_Function29Impl.PM_NAME_CONTROL, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sName_Control = ec_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sName_Control = ec_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
 
                 if ("" == sName_Control.Trim())
@@ -247,7 +247,7 @@ namespace Xenon.Functions
                     uct.JudgeValidity(log_Reports);
                 }
 
-                //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　妥当性判定を行った。");
+                //.WriteLine(this.GetType().Name + "#: ◆　妥当性判定を行った。");
             }
 
 
@@ -263,7 +263,7 @@ namespace Xenon.Functions
                 {
                     Usercontrol uct = list_Usercontrol[0];
 
-                    //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　指定のコントロールに、データのアップデートを指示。");
+                    //.WriteLine(this.GetType().Name + "#: ◆　指定のコントロールに、データのアップデートを指示。");
 
                     if (uct.ControlCommon.BAutomaticinputting)
                     {
@@ -279,7 +279,7 @@ namespace Xenon.Functions
                 }
 
 
-                //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　指示終了。");
+                //.WriteLine(this.GetType().Name + "#: ◆　指示終了。");
 
             }
 

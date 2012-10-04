@@ -136,7 +136,7 @@ namespace Xenon.Controls
                     // 最初の１件。なければ空文字列。
                     //
                     Expression_Node_String ec_Str = ec_DataSource;
-                    string sText = ec_Str.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
+                    string sText = ec_Str.Execute4_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
                     //
                     // 改行文字を、改行に変換。
                     //

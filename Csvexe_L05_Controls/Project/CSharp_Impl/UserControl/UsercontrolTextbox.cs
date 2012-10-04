@@ -89,7 +89,7 @@ namespace Xenon.Controls
                             ((Functionlist_FormImpl)this.functionlist_Event_ValueChanged).InitializeBeforeUse();
 
 
-                            this.customcontrolTextbox1.TextChanged += new System.EventHandler(this.functionlist_Event_ValueChanged.Execute_OnOEa);
+                            this.customcontrolTextbox1.TextChanged += new System.EventHandler(this.functionlist_Event_ValueChanged.Execute4_OnOEa);
 
                         }
                     }
@@ -980,7 +980,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolTextbox1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolTextbox1.Name = sName_Usercontrol;
                 }
 

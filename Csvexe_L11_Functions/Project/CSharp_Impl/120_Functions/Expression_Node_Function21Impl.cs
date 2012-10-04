@@ -73,10 +73,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -90,7 +90,7 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Kea)
             {
-                string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_Key:＞";
+                string sConfigStack_EventOrigin = "＜" + log_Method.Fullname + ":＞";
                 Configurationtree_Node cf_WrittenPlace_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_EventOrigin, null);
 
                 Keys keys = this.Functionparameterset.KeyEventArgs.KeyCode;
@@ -106,7 +106,7 @@ namespace Xenon.Functions
                         //
                         // 「ツール設定ウィンドウ」を開きます。
                         //
-                        //OWrittenPlace oWrittenPlace = new OWrittenPlaceImpl(this.OWrittenPlace.WrittenPlace + "!ハードコーディング_NAction21#Perform_Key(10)");
+                        //OWrittenPlace oWrittenPlace = new OWrittenPlaceImpl(this.OWrittenPlace.WrittenPlace + "!ハードコーディング_NAction21#(10)");
 
                         Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
                                 Expression_Node_Function11Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
@@ -118,7 +118,7 @@ namespace Xenon.Functions
                         }
 
 
-                        expr_Func.Execute_OnLr(
+                        expr_Func.Execute4_OnLr(
                             this.Functionparameterset.Sender,
                             new EventMonitorImpl(cf_Event, cf_WrittenPlace_ThisMethod),//ダミー
                             sConfigStack_EventOrigin,

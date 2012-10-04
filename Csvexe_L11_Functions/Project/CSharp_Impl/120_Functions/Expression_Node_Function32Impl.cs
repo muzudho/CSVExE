@@ -97,10 +97,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -111,7 +111,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
@@ -125,7 +125,7 @@ namespace Xenon.Functions
 
 
 
-                this.Perform2(pcLst, log_Reports);
+                this.Execute6_Sub(pcLst, log_Reports);
             }
 
             log_Method.EndMethod(log_Reports);
@@ -134,13 +134,13 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform2(
+        protected void Execute6_Sub(
             ListBox pcLst,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -160,8 +160,6 @@ namespace Xenon.Functions
                 goto gt_Error_NotFoundSelectedRow;
             }
 
-            //.WriteLine(this.GetType().Name + "#Perform_OEa: ◆　選択している行はあった。");
-
 
             Expression_Node_String ec_ArgTableName;
             this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function32Impl.PM_NAME_TABLE, EnumHitcount.One_Or_Zero, log_Reports);
@@ -179,7 +177,7 @@ namespace Xenon.Functions
             }
             DataTable dataTable = o_Table.DataTable;
 
-            //.WriteLine(this.GetType().Name + "#Perform_OEa: ◆　テーブルはあった。");
+            //.WriteLine(this.GetType().Name + "#: ◆　テーブルはあった。");
 
 
             // 現在選択しているレコードの NOフィールドの値を取得します。
@@ -190,7 +188,7 @@ namespace Xenon.Functions
                 XenonValue_IntImpl cellData = (XenonValue_IntImpl)selectedDataRow[sArgFieldName];
 
                 string sFieldValue = cellData.Humaninput.Trim();
-                //.WriteLine(this.GetType().Name + "#Perform_OEa: ◆　fieldValue=[" + fieldValue + "]");
+                //.WriteLine(this.GetType().Name + "#: ◆　fieldValue=[" + fieldValue + "]");
 
 
                 Expression_Node_String ec_ArgDestinationFcName;

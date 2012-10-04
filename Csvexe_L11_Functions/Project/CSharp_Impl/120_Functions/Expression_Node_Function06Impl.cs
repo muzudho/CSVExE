@@ -88,10 +88,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)// EventArgs e
+        public override string Execute5_Main(Log_Reports log_Reports)// EventArgs e
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -109,7 +109,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + fcNameStr + "]コントロールが、[" + sFncName + "]アクションを実行。";
                 }
@@ -152,7 +152,7 @@ namespace Xenon.Functions
                     // 正常時
 
                     // TODO ファイルパスの妥当性判定も欲しい
-                    sFpatha_csv = ec_Fpath_Csv.Execute_OnExpressionString(
+                    sFpatha_csv = ec_Fpath_Csv.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint, log_Reports);
                     if (!log_Reports.Successful)
                     {
@@ -171,7 +171,7 @@ namespace Xenon.Functions
                 Expression_Node_String ec_Fpath_ArgExternalApplication;
                 this.TrySelectAttribute(out ec_Fpath_ArgExternalApplication, Expression_Node_Function06Impl.PM_FILEPATH_EXTERNALAPPLICATION, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sEaFilePath = ec_Fpath_ArgExternalApplication.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sEaFilePath = ec_Fpath_ArgExternalApplication.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 if ("" != sEaFilePath)
                 {
@@ -187,7 +187,7 @@ namespace Xenon.Functions
                             log_Reports
                             );
 
-                        ec_Fpath_App = ecValue.Execute_OnExpressionString_AsFilepath(
+                        ec_Fpath_App = ecValue.Execute4_OnExpressionString_AsFilepath(
                             EnumHitcount.Unconstraint,
                             log_Reports
                             );
@@ -205,7 +205,7 @@ namespace Xenon.Functions
 
 
                         // 外部プログラムの起動
-                        sFpatha_ExternalApplication = ec_Fpath_App.Execute_OnExpressionString(
+                        sFpatha_ExternalApplication = ec_Fpath_App.Execute4_OnExpressionString(
                             EnumHitcount.Unconstraint, log_Reports);
                         if (!log_Reports.Successful)
                         {

@@ -131,7 +131,7 @@ namespace Xenon.MiddleImpl
                     sbHint.Append(this.GetType().Name);
                     Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl(sbHint.ToString(), null);
 
-                    string sVariableName = this.Expression_ValueVariableName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sVariableName = this.Expression_ValueVariableName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     XenonNameImpl o_Name_Variable = new XenonNameImpl(sVariableName, parent_Configurationtree_Node);
 
                     //ystem.Console.WriteLine(this.GetType().Name + "#P1_GetItemLabel: sVariableName=[" + sVariableName + "]　sValue=[" + sValue + "]");
@@ -150,7 +150,7 @@ namespace Xenon.MiddleImpl
 
                 //
                 // 表示文字列。
-                sDisplayText = this.Expression_ItemLabel.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sDisplayText = this.Expression_ItemLabel.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace Xenon.MiddleImpl
 
                 t.Append(Environment.NewLine);
                 t.Append("コントロール名＝[");
-                t.Append(cctLst.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                t.Append(cctLst.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 t.Append("]");
 
                 r.Message = t.ToString();

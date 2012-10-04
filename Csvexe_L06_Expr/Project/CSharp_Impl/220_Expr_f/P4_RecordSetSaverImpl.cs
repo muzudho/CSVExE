@@ -53,7 +53,7 @@ namespace Xenon.Expr
             {
                 //
                 // "RECORD_SAVE_TO:FC_mr_skillLst_001" といった、名前。
-                string sStorage = ecvRequest_SelRec_OrNull.Expression_Storage.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sStorage = ecvRequest_SelRec_OrNull.Expression_Storage.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 if ("" != sStorage.Trim())
                 {

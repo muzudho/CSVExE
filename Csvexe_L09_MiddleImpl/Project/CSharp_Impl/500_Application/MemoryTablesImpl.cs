@@ -76,7 +76,7 @@ namespace Xenon.MiddleImpl
             //
 
             XenonTable o_Table;
-            string sTableName = ec_TableName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports); ;
+            string sTableName = ec_TableName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports); ;
             if (this.dictionary_XenonTable.ContainsKey(sTableName))
             {
                 o_Table = this.dictionary_XenonTable[sTableName];
@@ -156,7 +156,7 @@ namespace Xenon.MiddleImpl
 
             try
             {
-                string str_KeyExpected = expr_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string str_KeyExpected = expr_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 foreach (XenonTable xenonTable in this.dictionary_XenonTable.Values)
                 {
                     if (null!=xenonTable.Tableunit &&
@@ -190,7 +190,7 @@ namespace Xenon.MiddleImpl
                 StringBuilder t = new StringBuilder();
                 t.Append("指定したレイアウト_グループ名[");
 
-                t.Append(expr_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                t.Append(expr_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
 
                 t.Append("]は、存在しませんでした。");
                 t.Append(Environment.NewLine);
@@ -244,7 +244,7 @@ namespace Xenon.MiddleImpl
 
             try
             {
-                str_KeyExpected = expr_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                str_KeyExpected = expr_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 foreach (XenonTable xenonTable in this.dictionary_XenonTable.Values)
                 {
                     if (null != xenonTable.Typedata &&
@@ -302,7 +302,7 @@ namespace Xenon.MiddleImpl
                 StringBuilder t = new StringBuilder();
                 t.Append("指定した"+NamesFld.S_TYPE_DATA+"[");
 
-                t.Append(expr_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                t.Append(expr_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
 
                 t.Append("]にヒットするテーブルは、存在しませんでした。\n\nもしかして？\n　・ツール設定ファイル、プロジェクトファイル、ファイル一覧ファイル、テーブルファイルをまだ読み込めていない？\n　・ファイル名が間違っている？");
                 t.Append(Environment.NewLine);

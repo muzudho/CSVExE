@@ -96,7 +96,7 @@ namespace Xenon.MiddleImpl
                 if (log_Reports_Meta.Successful)
                 {
                     // フォルダーへの絶対パス
-                    string sFopatha_Logs = ec_Fpath.Execute_OnExpressionString(
+                    string sFopatha_Logs = ec_Fpath.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint, log_Reports_Meta);
                     if (!log_Reports_Meta.Successful)
                     {
@@ -123,7 +123,7 @@ namespace Xenon.MiddleImpl
                         ec_Fpath2 = new Expression_Node_FilepathImpl(cf_Fpath);
                     }
 
-                    sFpatha = ec_Fpath2.Execute_OnExpressionString(
+                    sFpatha = ec_Fpath2.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint, log_Reports_Meta);
                 }
                 else

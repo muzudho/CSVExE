@@ -208,7 +208,7 @@ namespace Xenon.Controls
         gt_Error_NotSupportedValue:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports), log_Reports);//コントロール名
+                tmpl.SetParameter(1, this.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports), log_Reports);//コントロール名
                 tmpl.SetParameter(2, sChkValueType, log_Reports);//CHK_VALUE_TYPEフィールド値
                 tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
@@ -278,7 +278,7 @@ namespace Xenon.Controls
                             this.functionlist_Event_CheckedChanged = fw;
 
 
-                            this.customcontrolCheckbox1.CheckedChanged += new System.EventHandler(this.functionlist_Event_CheckedChanged.Execute_OnOEa);
+                            this.customcontrolCheckbox1.CheckedChanged += new System.EventHandler(this.functionlist_Event_CheckedChanged.Execute4_OnOEa);
                         }
                     }
                     break;
@@ -1434,7 +1434,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolCheckbox1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolCheckbox1.Name = sName_Usercontrol;
                 }
 

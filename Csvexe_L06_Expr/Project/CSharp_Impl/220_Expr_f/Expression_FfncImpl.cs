@@ -46,12 +46,12 @@ namespace Xenon.Expr
         /// ユーザー定義プログラムの実行。
         /// </summary>
         /// <returns></returns>
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
 
@@ -71,7 +71,7 @@ namespace Xenon.Expr
                 // エラー時
                 sResult = "＜エラー：ｎａｍｅ属性無し＞";
                 // #エラー
-                System.Console.WriteLine(this.GetType().Name + "#Expression_ExecuteMain: ｎａｍｅ属性なし");
+                System.Console.WriteLine(this.GetType().Name + "#Execute5_Main: ｎａｍｅ属性なし");
                 goto gt_EndMethod;
             }
 
@@ -85,7 +85,7 @@ namespace Xenon.Expr
                 sResult = "";
 
                 // #エラー
-                System.Console.WriteLine(this.GetType().Name + "#Expression_ExecuteMain: calll=[" + sFncName + "] コモン関数登録なし");
+                System.Console.WriteLine(this.GetType().Name + "#Execute5_Main: calll=[" + sFncName + "] コモン関数登録なし");
                 this.Owner_MemoryApplication.MemoryFunctions.WriteDebug_ToConsole();
                 goto gt_EndMethod;
             }
@@ -104,11 +104,11 @@ namespace Xenon.Expr
                 // 関数に引数を渡したい。
                 ec_CommonFunction.Dictionary_Expression_Parameter = ecDic_Argument;
 
-                //ystem.Console.WriteLine(this.GetType().Name + "#Expression_ExecuteMain: ★★★＜ｆ－ｆｎｃ＞要素実行 sCall=[" + sCall + "] e_Function.クラス名=[" + e_DefFunction.GetType().Name + "]");// ＜ａｒｇ＞=[" + d_sArg.ToString() + "]
+                //ystem.Console.WriteLine(this.GetType().Name + "#Execute5_Main: ★★★＜ｆ－ｆｎｃ＞要素実行 sCall=[" + sCall + "] e_Function.クラス名=[" + e_DefFunction.GetType().Name + "]");// ＜ａｒｇ＞=[" + d_sArg.ToString() + "]
                 // e_Function=" + Environment.NewLine + s2.ToString()
 
                 // 登録されている「ユーザー定義関数」を実行します。
-                sResult = ec_CommonFunction.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sResult = ec_CommonFunction.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             }
 
             goto gt_EndMethod;
@@ -168,7 +168,7 @@ namespace Xenon.Expr
         //        }
 
 
-        //        if ("" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
+        //        if ("" != selectSt.Expression_Where_RecordSetLoadFrom.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
         //        {
         //            bLoad = true;
         //        }

@@ -115,7 +115,7 @@ namespace Xenon.Controls
             string sErrorMsg;
 
 
-            string sName_KeyFld = ec_KeyFieldName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sName_KeyFld = ec_KeyFieldName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             //if(null==this.O_DsrcTable)
             //{
@@ -235,7 +235,7 @@ namespace Xenon.Controls
                         goto gt_EndMethod;
                     }
 
-                    o_ExpectedValue.Humaninput = ec_ExpectedValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    o_ExpectedValue.Humaninput = ec_ExpectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 }
 
                 if (log_Reports.Successful)
@@ -514,7 +514,7 @@ namespace Xenon.Controls
             pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ccListbox_DataSourceChanged",log_Reports_ThisMethod);
             //
             //
-            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
             log_Reports_ThisMethod.Comment_EventCreationMe  ="[" + sName_Usercontrol + "]コントロール（リストボックス）のデータソースが変更されました。";
 

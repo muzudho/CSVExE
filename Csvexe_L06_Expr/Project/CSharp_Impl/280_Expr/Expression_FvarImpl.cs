@@ -62,7 +62,7 @@ namespace Xenon.Expr
 
                 foreach (Expression_Node_String ec_11 in ecList)
                 {
-                    string sStr = ec_11.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sStr = ec_11.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     s.Append(sStr);
                 }
             }
@@ -72,12 +72,12 @@ namespace Xenon.Expr
 
         //────────────────────────────────────────
 
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
             string sResult;

@@ -125,7 +125,7 @@ namespace Xenon.Controls
                     bool bHit = ec_Item.TrySelectAttribute(out ec_AttrValue, sPmName, EnumHitcount.One_Or_Zero, log_Reports);
                     if (bHit)
                     {
-                        string sAttrValue = ec_AttrValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        string sAttrValue = ec_AttrValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                         CsvTo_ListImpl to = new CsvTo_ListImpl();
                         List<string> sList_Value = to.Read(sAttrValue);
@@ -276,7 +276,7 @@ namespace Xenon.Controls
                     s.Append("]　ｎａｍｅ＝”[");
                     s.Append(sAttrNameValue);
                     s.Append("]　値＝”[");
-                    s.Append(e_Item2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                    s.Append(e_Item2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                     s.Append("]”」");
                     s.Newline();
 

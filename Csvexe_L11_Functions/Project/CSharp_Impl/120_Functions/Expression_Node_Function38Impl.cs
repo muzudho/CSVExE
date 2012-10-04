@@ -87,19 +87,19 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
 
 
-                this.Perform3(
+                this.Execute6_Sub(
                     log_Reports
                     );
 
@@ -114,7 +114,7 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                this.Perform3(
+                this.Execute6_Sub(
                     log_Reports
                     );
             }
@@ -127,12 +127,12 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform3(
+        protected void Execute6_Sub(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform3",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -154,7 +154,7 @@ namespace Xenon.Functions
                 // ID？ 『f-var value="Us:クリップmr_SK10;"』のように記述されているので、変数展開して "6001"等 を取得する。
                 string sFrom;
                 this.TrySelectAttribute(out sFrom, Expression_Node_Function38Impl.PM_FROM, EnumHitcount.One_Or_Zero, log_Reports);
-                //ystem.Console.WriteLine(this.GetType().Name + "#Perform: ”ｆｒｏｍ”の型＝[" + this.In_nFrom.GetType().Name + "]　”ｆｒｏｍ”の子要素数＝[" + this.In_nFrom.ChildNList.Count + "] sFrom＝[" + sFrom + "]");
+                //ystem.Console.WriteLine(this.GetType().Name + "#: ”ｆｒｏｍ”の型＝[" + this.In_nFrom.GetType().Name + "]　”ｆｒｏｍ”の子要素数＝[" + this.In_nFrom.ChildNList.Count + "] sFrom＝[" + sFrom + "]");
 
                 // 『Sf:cell;』で、セルが指定されているはず。
                 Expression_Node_String ec_ArgTo;

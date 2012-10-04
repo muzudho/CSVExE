@@ -79,14 +79,14 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="sender"></param>
         /// <param nFcName="e"></param>
-        public override void Execute_OnDnD(
+        public override void Execute4_OnDnD(
             object sender,
             GiveFeedbackEventArgs e
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnDnD",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnDnD", log_Reports_ThisMethod);
 
             //
             //
@@ -102,7 +102,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでドラッグ＆ドロップされました。";
 
@@ -144,7 +144,7 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    expr_Func.Execute_OnDnD(sender, e);
+                    expr_Func.Execute4_OnDnD(sender, e);
                 }
             }
 
@@ -166,7 +166,7 @@ namespace Xenon.Controls
         /// <param nFcName="debugMessage1"></param>
         /// <param nFcName="debugStatusResultMessage"></param>
         /// <param nFcName="log_Reports"></param>
-        public override void Execute_OnImgDrop(
+        public override void Execute4_OnImgDrop(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -175,18 +175,8 @@ namespace Xenon.Controls
             Log_Reports log_Reports
             )
         {
-            //this.Set_OnImgDrop(
-            //    this.Function,
-            //    sender,
-            //    e,
-            //    parentLocation,
-            //    debugMessage1,
-            //    debugStatusResultMessage,
-            //    log_Reports
-            //    );
-
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_ImgDrop",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnImgDrop", log_Reports);
 
             //
             //
@@ -201,7 +191,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
 
                 // ステータスバーに、コントロール名を表示。
@@ -240,7 +230,7 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    expr_Func.Execute_OnImgDrop(
+                    expr_Func.Execute4_OnImgDrop(
                         sender,
                         e,
                         parentLocation,
@@ -268,7 +258,7 @@ namespace Xenon.Controls
         /// <param nFcName="e"></param>
         /// <param nFcName="fileName"></param>
         /// <param nFcName="droppedBitmap"></param>
-        public override void Execute_OnImgDropB(
+        public override void Execute4_OnImgDropB(
             object sender,
             DragEventArgs e,
             Point parentLocation,
@@ -278,7 +268,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_ImgDrop",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnImgDropB", log_Reports);
 
             //
             //
@@ -293,7 +283,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
 
@@ -331,7 +321,7 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    expr_Func.Execute_OnImgDropB(
+                    expr_Func.Execute4_OnImgDropB(
                         sender,
                         e,
                         parentLocation,
@@ -355,14 +345,14 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="sender"></param>
         /// <param nFcName="e"></param>
-        public override string Execute_OnLstBox(
+        public override string Execute4_OnLstBox(
             object sender,
             object itemValue,
             Log_Reports log_Reports
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_LstBox",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnLstBox", log_Reports);
 
             //
             //
@@ -377,7 +367,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでリストボックス用アクションが実行されました。";
 
@@ -425,7 +415,7 @@ namespace Xenon.Controls
             {
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    sReturnValue = expr_Func.Execute_OnLstBox(sender, itemValue, log_Reports);
+                    sReturnValue = expr_Func.Execute4_OnLstBox(sender, itemValue, log_Reports);
                 }
             }
 
@@ -443,13 +433,13 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="sender"></param>
         /// <param nFcName="e"></param>
-        public override void Execute_OnMouse(
+        public override void Execute4_OnMouse(
             object sender, MouseEventArgs e
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnMouse",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnMouse", log_Reports_ThisMethod);
             //
             //
 
@@ -463,7 +453,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでマウス_アクションが実行されました。";
 
@@ -504,7 +494,7 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    expr_Func.Execute_OnMouse(sender, e);
+                    expr_Func.Execute4_OnMouse(sender, e);
                 }
             }
 
@@ -530,13 +520,13 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="sender"></param>
         /// <param nFcName="e"></param>
-        public override void Execute_OnOEa(
+        public override void Execute4_OnOEa(
             object sender, EventArgs e
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnOEa",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnOEa", log_Reports_ThisMethod);
             //
             //
 
@@ -550,7 +540,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
 
@@ -601,7 +591,7 @@ namespace Xenon.Controls
                 // 登録されているアクションを実行。
                 foreach (Expression_Node_Function expr_Func in this.List_Item)
                 {
-                    expr_Func.Execute_OnOEa(sender, e);
+                    expr_Func.Execute4_OnOEa(sender, e);
                 }
             }
 
@@ -622,7 +612,7 @@ namespace Xenon.Controls
         /// <param nFcName="selectedProject"></param>
         /// <param nFcName="projectValid">プロジェクトの読み込みに成功していれば真。</param>
         /// <param nFcName="log_Reports"></param>
-        public override void Execute_OnEditorSelected(
+        public override void Execute4_OnEditorSelected(
             object sender,
             object st_SelectedEditorElm,
             bool projectValid,
@@ -630,7 +620,7 @@ namespace Xenon.Controls
             )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnEditorSelected",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnEditorSelected", log_Reports);
 
             //
             //
@@ -645,7 +635,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでプロジェクト選択アクションが実行されました。";
 
@@ -686,7 +676,7 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    expr_Func.Execute_OnEditorSelected(
+                    expr_Func.Execute4_OnEditorSelected(
                         sender,
                         st_SelectedEditorElm,
                         projectValid,
@@ -708,19 +698,19 @@ namespace Xenon.Controls
         /// </summary>
         /// <param nFcName="sender"></param>
         /// <param nFcName="e"></param>
-        public override void Execute_OnQueryContinueDragEventArgs(
+        public override void Execute4_OnQueryContinueDragEventArgs(
             object sender,
             QueryContinueDragEventArgs e
             )
         {
-            this.Execute_OnQueryContinueDragEventArgs(
+            this.Execute4_OnQueryContinueDragEventArgs(
                 sender,
                 e
             );
 
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnQueryContinueDragEventArgs",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnQueryContinueDragEventArgs", log_Reports_ThisMethod);
             //
             //
             Customcontrol cct = null;
@@ -733,7 +723,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでQueryContinueDragEventArgsアクションが実行されました。";
 
@@ -775,7 +765,7 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    expr_Func.Execute_OnQueryContinueDragEventArgs(sender, e);
+                    expr_Func.Execute4_OnQueryContinueDragEventArgs(sender, e);
                 }
             }
 
@@ -793,7 +783,7 @@ namespace Xenon.Controls
         /// todo:
         /// </summary>
         /// <param nFcName="log_Reports"></param>
-        public override void Execute_OnLr(
+        public override void Execute4_OnLr(
             object sender,
             object eventMonitor,//EventMonitor
             string sWrittenPlace_EventOrigin,
@@ -801,7 +791,7 @@ namespace Xenon.Controls
         )
         {
             Log_Method pg_Method = new Log_MethodImpl();
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Perform_WrRhn",log_Reports);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnLr", log_Reports);
             //
             //
 
@@ -815,7 +805,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでWrRhnアクションが実行されました。";
 
@@ -856,7 +846,7 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    expr_Func.Execute_OnLr(
+                    expr_Func.Execute4_OnLr(
                         sender,
                         eventMonitor,
                         sWrittenPlace_EventOrigin,
@@ -878,14 +868,11 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override void Execute_OnKey(
+        public override void Execute4_OnKey(
             object prm_Sender,
             KeyEventArgs prm_E
             )
         {
-            //this.Set_OnKey(
-            //    this.Function,
-            //    prm_Sender, prm_E);
         }
 
         //────────────────────────────────────────

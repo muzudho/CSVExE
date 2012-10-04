@@ -44,13 +44,13 @@ namespace Xenon.Expr
         /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public override string Execute_OnExpressionString(
+        public override string Execute4_OnExpressionString(
             EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute4_OnExpressionString",log_Reports);
             //
             //
 

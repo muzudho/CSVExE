@@ -43,7 +43,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public abstract void Execute_OnDnD(
+        public abstract void Execute4_OnDnD(
             object prm_Sender,
             GiveFeedbackEventArgs prm_E
             );
@@ -60,7 +60,7 @@ namespace Xenon.Controls
         /// <param name="debugStatusResultMessage"></param>
         /// <param name="log_Reports"></param>
         /// 
-        public abstract void Execute_OnImgDrop(
+        public abstract void Execute4_OnImgDrop(
             object prm_Sender,
             DragEventArgs prm_E,
             Point prm_ParentLocation,
@@ -78,7 +78,7 @@ namespace Xenon.Controls
         /// <param name="e"></param>
         /// <param name="fileName"></param>
         /// <param name="droppedBitmap"></param>
-        public abstract void Execute_OnImgDropB(
+        public abstract void Execute4_OnImgDropB(
             object prm_Sender,
             DragEventArgs prm_E,
             Point prm_ParentLocation,
@@ -94,7 +94,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public abstract string Execute_OnLstBox(
+        public abstract string Execute4_OnLstBox(
             object prm_Sender,
             object prm_ItemValue,
             Log_Reports prm_D_LoggingBuffer
@@ -107,7 +107,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public abstract void Execute_OnMouse(
+        public abstract void Execute4_OnMouse(
             object prm_Sender,
             MouseEventArgs prm_E
             );
@@ -119,7 +119,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public abstract void Execute_OnOEa(
+        public abstract void Execute4_OnOEa(
             object prm_Sender,
             EventArgs prm_E
             );
@@ -133,7 +133,7 @@ namespace Xenon.Controls
         /// <param name="selectedProject"></param>
         /// <param name="projectValid">プロジェクトの読み込みに成功していれば真。</param>
         /// <param name="log_Reports"></param>
-        public abstract void Execute_OnEditorSelected(
+        public abstract void Execute4_OnEditorSelected(
             object prm_Sender,
             object prm_St_selectedEditorElm,//St_ProjectElm
             bool prm_EditorValid,
@@ -147,7 +147,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public abstract void Execute_OnQueryContinueDragEventArgs(
+        public abstract void Execute4_OnQueryContinueDragEventArgs(
             object prm_Sender,
             QueryContinueDragEventArgs prm_E
             );
@@ -160,7 +160,7 @@ namespace Xenon.Controls
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
         /// <param name="log_Reports"></param>
-        public abstract void Execute_OnLr(
+        public abstract void Execute4_OnLr(
             object prm_Sender,
             object prm_EventMonitor,//EventMonitor
             string prm_SNode_EventOrigin,
@@ -174,7 +174,7 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public abstract void Execute_OnKey(
+        public abstract void Execute4_OnKey(
             object prm_Sender,
             KeyEventArgs prm_E
             );

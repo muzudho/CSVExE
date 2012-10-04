@@ -52,7 +52,7 @@ namespace Xenon.MiddleImpl
                     log_Method.WriteDebug_ToConsole("────────────────────");
                     foreach (KeyValuePair<string, Expression_Node_String> kvp in this.DictionaryExpression_Item)
                     {
-                        log_Method.WriteDebug_ToConsole("　　" + kvp.Key + "=" + kvp.Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod));
+                        log_Method.WriteDebug_ToConsole("　　" + kvp.Key + "=" + kvp.Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod));
                     }
                     log_Method.WriteDebug_ToConsole("────────────────────");
                 }
@@ -468,7 +468,7 @@ namespace Xenon.MiddleImpl
                                     true,
                                     log_Reports
                                     );
-                                cf_Fpath.SetDirectory_Base(ec_Fopath_Folder.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                                cf_Fpath.SetDirectory_Base(ec_Fopath_Folder.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                             }
                             //else
                             //{
@@ -489,7 +489,7 @@ namespace Xenon.MiddleImpl
 
                             //if (log_Method.CanDebug(1))
                             //{
-                            //    log_Method.WriteDebug_ToConsole("「変数登録ファイル」ファイルパス変数=[" + sName + "] 値=[" + ec_Fpath.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
+                            //    log_Method.WriteDebug_ToConsole("「変数登録ファイル」ファイルパス変数=[" + sName + "] 値=[" + ec_Fpath.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                             //}
                         }
                         else
@@ -652,14 +652,14 @@ namespace Xenon.MiddleImpl
                     string sOldValue = "";
                     if (log_Method.CanInfo())
                     {
-                        sOldValue = this.dictionaryExpression_Item[sName_Variable].Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        sOldValue = this.dictionaryExpression_Item[sName_Variable].Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     }
 
                     this.dictionaryExpression_Item[sName_Variable] = ec_InitialValue;
 
                     if (log_Method.CanInfo())
                     {
-                        log_Method.WriteInfo_ToConsole("変数[" + sName_Variable + "]は既に[" + sOldValue + "]と定義されていましたが、[" + ec_InitialValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]で上書きしました。");
+                        log_Method.WriteInfo_ToConsole("変数[" + sName_Variable + "]は既に[" + sOldValue + "]と定義されていましたが、[" + ec_InitialValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]で上書きしました。");
                     }
                 }
             }
@@ -712,7 +712,7 @@ namespace Xenon.MiddleImpl
                 o_Name_Variable.SValue.StartsWith(NamesVar.S_UP_)
                 )
             {
-                string sFilePath = ec_Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sFilePath = ec_Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 Configurationtree_Node parent_Configurationtree_Node = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#SetVariable", null);
 
@@ -742,7 +742,7 @@ namespace Xenon.MiddleImpl
                 o_Name_Variable.SValue.StartsWith(NamesVar.S_US_)
                 )
             {
-                string str1 = ec_Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string str1 = ec_Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 this.SetStringValue(
                     o_Name_Variable,
@@ -942,7 +942,7 @@ namespace Xenon.MiddleImpl
             //
 
             string sResult;
-            string sVarName = ec_VariableName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sVarName = ec_VariableName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             // 【仕様変更 2011-03-03】「変数名無し」（つまり「$」だけ）は、文字「$」を返します。
             //if ("" == sVarName)
@@ -962,7 +962,7 @@ namespace Xenon.MiddleImpl
             }
             else
             {
-                sResult = this.dictionaryExpression_Item[sVarName].Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sResult = this.dictionaryExpression_Item[sVarName].Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             }
 
             goto gt_EndMethod;
@@ -1044,7 +1044,7 @@ namespace Xenon.MiddleImpl
 
             Expression_Node_Filepath ec_Fpath_Result;
 
-            string sName_Var = ec_Name_Variable.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sName_Var = ec_Name_Variable.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             if (!this.dictionaryExpression_Item.ContainsKey(sName_Var))
             {
@@ -1065,7 +1065,7 @@ namespace Xenon.MiddleImpl
 
                     //if (ec_Fpath_Result.SDirectory_Base == "" && null != this.ec_FpathBaseOrNull)
                     //{
-                    //    string sFopath = this.ec_FpathBaseOrNull.Execute_OnExpressionString(
+                    //    string sFopath = this.ec_FpathBaseOrNull.Execute4_OnExpressionString(
                     //        EnumHitcount.Unconstraint, log_Reports);
                     //    if (log_Reports.Successful)
                     //    {
@@ -1108,7 +1108,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
                 foreach (KeyValuePair<string, Expression_Node_String> kvp in this.dictionaryExpression_Item)
                 {
-                    s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports) + "]");
+                    s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports) + "]");
                     s.Append(Environment.NewLine);
                 }
                 s.Append("──────────ここまで");
@@ -1172,11 +1172,11 @@ namespace Xenon.MiddleImpl
                         {
                             // ファイルパス型。
                             // bug: 絶対パスでない場合、空白になるので、SHumanInput で取得することになるはず。
-                            log_Method.WriteInfo_ToConsole(" [" + kvp.Key + "]=P型[" + kvp.Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, d_Logging_Dammy) + "]　／　SHumanInput=[" + ((Expression_Node_Filepath)kvp.Value).Humaninput + "]");
+                            log_Method.WriteInfo_ToConsole(" [" + kvp.Key + "]=P型[" + kvp.Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, d_Logging_Dammy) + "]　／　SHumanInput=[" + ((Expression_Node_Filepath)kvp.Value).Humaninput + "]");
                         }
                         else
                         {
-                            log_Method.WriteInfo_ToConsole(" [" + kvp.Key + "]=[" + kvp.Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, d_Logging_Dammy) + "]");
+                            log_Method.WriteInfo_ToConsole(" [" + kvp.Key + "]=[" + kvp.Value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, d_Logging_Dammy) + "]");
                         }
                     }
 

@@ -82,24 +82,24 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
 
 
                 if (this.Functionparameterset.Sender is Customcontrol)
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
                 }
@@ -109,7 +109,7 @@ namespace Xenon.Functions
                 }
 
 
-                this.Perform2(log_Reports);
+                this.Execute6_Sub(log_Reports);
 
                 //
                 //
@@ -126,7 +126,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
                 }
@@ -137,7 +137,7 @@ namespace Xenon.Functions
 
                 if (log_Reports.Successful)
                 {
-                    this.Perform2(
+                    this.Execute6_Sub(
                         log_Reports
                         );
                 }
@@ -161,12 +161,12 @@ namespace Xenon.Functions
         /// 「トゥゲザー設定ファイル（Frfr）」と、「コントロール設定ファイル（Fcnf）」の２箇所。
         /// </summary>
         /// <param name="log_Reports"></param>
-        protected void Perform2(
+        protected void Execute6_Sub(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -195,7 +195,7 @@ namespace Xenon.Functions
                     //
                     //
                     //
-                    this.Perform_ByName(
+                    this.Execute6_ByName(
                         out cf_TgTogether,
                         log_Reports);
                 }
@@ -208,7 +208,7 @@ namespace Xenon.Functions
                     //
                     //
                     //
-                    this.Perform_ByNoName(
+                    this.Execute6_ByNoName(
                         out cf_TgTogether,
                         log_Reports);
                 }
@@ -250,7 +250,7 @@ namespace Xenon.Functions
                 List<Configurationtree_Node> cfList_RfrTarget = cf_TgTogether.GetChildrenByNodename(NamesNode.S_TARGET,false,log_Reports);
 
 
-                //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　トゥゲザー名=[" + .Value + "] 対象Fc数=[" + oTargetList.Count + "]");
+                //.WriteLine(this.GetType().Name + "#: ◆　トゥゲザー名=[" + .Value + "] 対象Fc数=[" + oTargetList.Count + "]");
 
                 foreach (Configurationtree_Node cf_RfrTarget in cfList_RfrTarget)
                 {
@@ -310,12 +310,12 @@ namespace Xenon.Functions
         /// トゥゲザー名で指定した場合。
         /// </summary>
         /// <param name="log_Reports"></param>
-        private void Perform_ByName(
+        private void Execute6_ByName(
             out Configurationtree_Node cf_TgTogether,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByName",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_ByName", log_Reports);
 
             // 指定のコントロールの内容を、データ・ソースから読取り直して最新表示します。
 
@@ -343,7 +343,7 @@ namespace Xenon.Functions
                 Expression_Node_String ec_Arg_Name_Together;
                 this.TrySelectAttribute(out ec_Arg_Name_Together, Expression_Node_Function27Impl.PM_NAME_TOGETHER, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sExpectedFncName = ec_Arg_Name_Together.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sExpectedFncName = ec_Arg_Name_Together.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 List<Configurationtree_Node> listCf_Together = this.Owner_MemoryApplication.MemoryTogethers.Configurationtree_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
                 foreach (Configurationtree_Node cf_Together in listCf_Together)
@@ -380,12 +380,12 @@ namespace Xenon.Functions
         /// （２）なければ「トゥゲザー設定ファイル（Frfr）」の＜ｒｅｆｒｅｓｈｅｒ＞を読みにいく。
         /// </summary>
         /// <param name="log_Reports"></param>
-        private void Perform_ByNoName(
+        private void Execute6_ByNoName(
             out Configurationtree_Node cf_TgTogether,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByNoName",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_ByNoName", log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -415,7 +415,7 @@ namespace Xenon.Functions
                         //
                         //　（１）「コントロール設定ファイル（Fcnf）」の＜ｒｅｆｒｅｓｈｅｒ＞を読みにいく。
                         //
-                        this.Perform_ByNoName_1Fcnf(
+                        this.Execute3b_ByNoName_1Fcnf(
                             out cf_TgTogether,
                             owner_Configurationtree_Control,
                             cf_Event,
@@ -427,7 +427,7 @@ namespace Xenon.Functions
                             //
                             //　（２）「トゥゲザー設定ファイル（Frfr）」の＜ｒｅｆｒｅｓｈｅｒ＞を読みにいく。
                             //
-                            this.Perform_ByNoName_2Frfr(
+                            this.Execute3b_ByNoName_2Frfr(
                                 out cf_TgTogether,
                                 owner_Configurationtree_Control,
                                 cf_Event,
@@ -526,14 +526,14 @@ namespace Xenon.Functions
         /// なければヌル。
         /// </summary>
         /// <param name="log_Reports"></param>
-        private void Perform_ByNoName_1Fcnf(
+        private void Execute3b_ByNoName_1Fcnf(
             out Configurationtree_Node cf_TgTogether,
             Configurationtree_Node cf_Fc,
             Configurationtree_Node cf_Event,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByNoName_1Fcnf",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute3b_ByNoName_1Fcnf", log_Reports);
 
             //
             //
@@ -642,14 +642,14 @@ namespace Xenon.Functions
         /// （２）なければ「トゥゲザー設定ファイル（Frfr）」の＜ｒｅｆｒｅｓｈｅｒ＞を読みにいく。
         /// </summary>
         /// <param name="log_Reports"></param>
-        private void Perform_ByNoName_2Frfr(
+        private void Execute3b_ByNoName_2Frfr(
             out Configurationtree_Node cf_TgTogether,
             Configurationtree_Node s_Fc,
             Configurationtree_Node cf_Event,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_ByNoName_2Frfr",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute3b_ByNoName_2Frfr", log_Reports);
 
             //
             //

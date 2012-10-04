@@ -97,7 +97,7 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)// EventArgs e
+        public override string Execute5_Main(Log_Reports log_Reports)// EventArgs e
         {
             //
             //
@@ -107,7 +107,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -124,7 +124,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint,
                         log_Reports
                         );
@@ -138,7 +138,7 @@ namespace Xenon.Functions
 
 
                 ListBox pcLst = (ListBox)this.Functionparameterset.Sender;
-                this.Perform2(
+                this.Execute6_Sub(
                     pcLst,
                     log_Reports
                     );
@@ -155,7 +155,7 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="pcLst"></param>
         /// <param name="log_Reports"></param>
-        protected void Perform2(
+        protected void Execute6_Sub(
             ListBox pcLst,
             Log_Reports log_Reports
             )
@@ -168,7 +168,7 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
 
             //
@@ -178,7 +178,7 @@ namespace Xenon.Functions
             if (pcLst is CustomcontrolListbox)
             {
                 CustomcontrolListbox cclst = (CustomcontrolListbox)pcLst;
-                sName_Control = cclst.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                sName_Control = cclst.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 log_Method.WriteDebug_ToConsole(sName_Control);
             }
             else
@@ -219,7 +219,7 @@ namespace Xenon.Functions
                 //そのフィールドの値。
                 XenonValue_IntImpl cellData = (XenonValue_IntImpl)selectedDataRow[sName_Field];
                 string sValue_Field = cellData.Humaninput.Trim();
-                //.WriteLine(this.GetType().Name + "#Perform_OEa: ◆　fieldValue=[" + fieldValue + "]");
+                //.WriteLine(this.GetType().Name + "#: ◆　fieldValue=[" + fieldValue + "]");
 
                 //変数名。
                 Expression_Node_String ec_Name_ArgDestinationVariable;
@@ -228,7 +228,7 @@ namespace Xenon.Functions
                 //指定した変数に、フィールド値を格納します。
                 this.Owner_MemoryApplication.MemoryVariables.SetStringValue(
                     new XenonNameImpl(
-                        ec_Name_ArgDestinationVariable.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
+                        ec_Name_ArgDestinationVariable.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
                         ec_Name_ArgDestinationVariable.Cur_Configurationtree
                         ),
                     sValue_Field,

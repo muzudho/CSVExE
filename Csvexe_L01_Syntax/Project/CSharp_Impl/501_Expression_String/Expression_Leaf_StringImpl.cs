@@ -96,7 +96,7 @@ namespace Xenon.Syntax
             s.AppendI(0,"葉「E■[");
             s.Append(this.Cur_Configurationtree.Name);
             s.Append("]　");
-            s.Append(this.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
+            s.Append(this.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
             s.Append("」");
             s.Newline();
 
@@ -265,7 +265,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public virtual string Expression_ExecuteMain(
+        public virtual string Execute5_Main(
             Log_Reports log_Reports
             )
         {
@@ -279,20 +279,20 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public virtual string Execute_OnExpressionString(
+        public virtual string Execute4_OnExpressionString(
             EnumHitcount req_Items,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnEString",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute4_OnExpressionString", log_Reports);
             //
             //
 
             // もとに戻す
             this.enumHitcount = EnumHitcount.Unconstraint;
 
-            string sResult = this.Expression_ExecuteMain(log_Reports);// this.sHumanInput;
+            string sResult = this.Execute5_Main(log_Reports);// this.sHumanInput;
 
             //
             //
@@ -306,12 +306,12 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public virtual Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
+        public virtual Expression_Node_Filepath Execute4_OnExpressionString_AsFilepath(
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
-            return Expression_Node_StringImpl.Execute_OnEString_AsFilePath_Impl(this, request, log_Reports);
+            return Expression_Node_StringImpl.Execute4_OnExpressionString_AsFilepath_Impl(this, request, log_Reports);
         }
 
         //────────────────────────────────────────

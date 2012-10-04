@@ -70,10 +70,10 @@ namespace Xenon.Functions
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
         /// <param name="log_Reports"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
@@ -89,7 +89,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
 
 
                 // ツール設定モデルを共有します。

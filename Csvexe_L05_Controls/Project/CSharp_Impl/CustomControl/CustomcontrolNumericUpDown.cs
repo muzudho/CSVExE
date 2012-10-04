@@ -144,7 +144,7 @@ namespace Xenon.Controls
                             //
                             // 最初の１件。無ければ空文字列。
                             //
-                            string sValue = e_str.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
+                            string sValue = e_str.Execute4_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
 
                             if (sValue == "")
                             {
@@ -339,7 +339,7 @@ namespace Xenon.Controls
             //
             //
 
-            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
             log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（数値上下ボックス）のテキストが変更されました。";
 

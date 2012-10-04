@@ -84,7 +84,7 @@ namespace Xenon.Syntax
             s.Append("]クラス　");
 
             s.Append("子値＝[");
-            s.Append(this.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
+            s.Append(this.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
             s.Append("]");
 
             s.Append("」");
@@ -192,7 +192,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public virtual string Expression_ExecuteMain(
+        public virtual string Execute5_Main(
             Log_Reports log_Reports
             )
         {
@@ -216,7 +216,7 @@ namespace Xenon.Syntax
                         if (0 < ecList_Child.Count)
                         {
                             Expression_Node_String ec_Child = ecList_Child[0];
-                            string str1 = ec_Child.Execute_OnExpressionString(this.enumHitcount, log_Reports);
+                            string str1 = ec_Child.Execute4_OnExpressionString(this.enumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -237,7 +237,7 @@ namespace Xenon.Syntax
                         if (0 < ecList_Child.Count)
                         {
                             Expression_Node_String ec_Child = ecList_Child[0];
-                            string str1 = ec_Child.Execute_OnExpressionString(this.enumHitcount, log_Reports);
+                            string str1 = ec_Child.Execute4_OnExpressionString(this.enumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -260,7 +260,7 @@ namespace Xenon.Syntax
 
                         foreach (Expression_Node_String ec_Child in ecList_Child)
                         {
-                            string s1 = ec_Child.Execute_OnExpressionString(this.enumHitcount, log_Reports);
+                            string s1 = ec_Child.Execute4_OnExpressionString(this.enumHitcount, log_Reports);
 
                             sb_Result.Append(s1);
                         }
@@ -332,18 +332,18 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public virtual string Execute_OnExpressionString(
+        public virtual string Execute4_OnExpressionString(
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnEString①",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute4_OnExpressionString①", log_Reports);
             //
             //
 
             string sResult;
-            sResult = this.Expression_ExecuteMain(log_Reports);
+            sResult = this.Execute5_Main(log_Reports);
 
             //
             //
@@ -367,12 +367,12 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
+        public Expression_Node_Filepath Execute4_OnExpressionString_AsFilepath(
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
-            return Expression_Node_StringImpl.Execute_OnEString_AsFilePath_Impl(this, request, log_Reports);
+            return Expression_Node_StringImpl.Execute4_OnExpressionString_AsFilepath_Impl(this, request, log_Reports);
         }
 
         //────────────────────────────────────────
@@ -381,14 +381,14 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public static Expression_Node_Filepath Execute_OnEString_AsFilePath_Impl(
+        public static Expression_Node_Filepath Execute4_OnExpressionString_AsFilepath_Impl(
             Expression_Node_String ec_Caller,
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.Name_Library, ec_Caller, "Execute_OnEString_AsFilePath_Impl",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, ec_Caller, "Execute4_OnExpressionString_AsFilepath_Impl", log_Reports);
             //
             //
             //
@@ -398,7 +398,7 @@ namespace Xenon.Syntax
 
             //
             // ファイルパス。
-            string sFpath = ec_Caller.Expression_ExecuteMain(log_Reports);
+            string sFpath = ec_Caller.Execute5_Main(log_Reports);
             {
                 Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L01_1", ec_Caller.Cur_Configurationtree);
                 cf_Fpath.InitPath(sFpath, log_Reports);

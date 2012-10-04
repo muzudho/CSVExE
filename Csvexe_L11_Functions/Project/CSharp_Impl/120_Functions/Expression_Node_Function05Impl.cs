@@ -88,10 +88,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -110,7 +110,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追記：[" + fcNameStr + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
@@ -191,7 +191,7 @@ namespace Xenon.Functions
                 string sFpatha_Dst;//絶対ファイルパス
                 if (log_Reports.Successful)
                 {
-                    sFpatha_Dst = o_Table_Dst.Expression_Filepath_ConfigStack.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    sFpatha_Dst = o_Table_Dst.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 }
                 else
                 {

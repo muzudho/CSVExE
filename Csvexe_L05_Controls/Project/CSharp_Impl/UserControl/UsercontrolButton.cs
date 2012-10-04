@@ -229,7 +229,7 @@ namespace Xenon.Controls
                             this.functionlist_Event_Click = fc_Result;
                             ((Functionlist_FormImpl)this.functionlist_Event_Click).InitializeBeforeUse();
 
-                            this.UsercontroleventhandlerClick += new System.EventHandler(this.functionlist_Event_Click.Execute_OnOEa);
+                            this.UsercontroleventhandlerClick += new System.EventHandler(this.functionlist_Event_Click.Execute4_OnOEa);
                             //ccButton.Click += new System.EventHandler(this.e_ActionList_Click.Perform_OEa);
 
                             // ★DEBUG
@@ -1118,7 +1118,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolButton1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolButton1.Name = sName_Usercontrol;
                 }
 

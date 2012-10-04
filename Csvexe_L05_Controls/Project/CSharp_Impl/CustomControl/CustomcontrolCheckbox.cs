@@ -157,7 +157,7 @@ namespace Xenon.Controls
                                 else
                                 {
                                     Expression_Node_String e_str = (Expression_Node_String)expr_First;
-                                    sValue = e_str.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
+                                    sValue = e_str.Execute4_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
                                 }
 
 
@@ -511,7 +511,7 @@ namespace Xenon.Controls
             //
 
             //bug:Expression_Name_Controlがnull→コンストラクタでダミーを入れた
-            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
             log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（チェックボックス）のチェックが変更されました。";
 

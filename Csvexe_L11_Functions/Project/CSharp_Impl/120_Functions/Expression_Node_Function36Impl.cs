@@ -83,10 +83,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
             //
             //
 
@@ -96,7 +96,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint,
                         log_Reports
                         );
@@ -112,10 +112,10 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
 
 
-                this.Perform2(
+                this.Execute6_Sub(
                     log_Reports
                     );
 
@@ -137,7 +137,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint,
                         log_Reports
                         );
@@ -149,7 +149,7 @@ namespace Xenon.Functions
                     log_Reports.Comment_EventCreationMe += "／追記：[" + this.GetType().Name + "]を実行。";
                 }
 
-                this.Perform2(
+                this.Execute6_Sub(
                     log_Reports
                     );
             }
@@ -162,12 +162,12 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform2(
+        protected void Execute6_Sub(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -191,7 +191,7 @@ namespace Xenon.Functions
                 Expression_Node_String ec_FcName_Prm;
                 this.TrySelectAttribute(out ec_FcName_Prm, Expression_Node_Function36Impl.PM_CONTROL_NAME, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sFcName_Prm = ec_FcName_Prm.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports);
+                string sFcName_Prm = ec_FcName_Prm.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports);
 
 
                 List<Expression_Node_String> ecList_FcName = new List<Expression_Node_String>();
@@ -302,7 +302,7 @@ namespace Xenon.Functions
                     //        log_Reports
                     //        );
 
-                    //    //.WriteLine(this.GetType().Name + "#Perform_WrRhn: ◆　妥当性判定を行った。");
+                    //    //.WriteLine(this.GetType().Name + "#: ◆　妥当性判定を行った。");
                     //}
 
 

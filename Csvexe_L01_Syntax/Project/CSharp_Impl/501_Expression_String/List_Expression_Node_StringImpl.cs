@@ -139,7 +139,7 @@ namespace Xenon.Syntax
             s.Newline();
             foreach (Expression_Node_String e_Str in this.listExpression_Item)
             {
-                s.Append("E_String=[" + e_Str.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
+                s.Append("E_String=[" + e_Str.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                 s.Newline();
             }
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここまで");

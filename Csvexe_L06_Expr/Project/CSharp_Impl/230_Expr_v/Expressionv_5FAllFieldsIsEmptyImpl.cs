@@ -43,13 +43,13 @@ namespace Xenon.Expr
         /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public override string Execute_OnExpressionString(
+        public override string Execute4_OnExpressionString(
             EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnExpressionString",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute4_OnExpressionString",log_Reports);
             //
             //
 
@@ -64,7 +64,7 @@ namespace Xenon.Expr
             RecordSet recordSet;
             if (log_Reports.Successful)
             {
-                string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 // #デバッグ中
                 System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: ★★ record-set-load-ｆｒｏｍ＝[" + sRecordSetLoadFrom + "]");
 
@@ -100,11 +100,11 @@ namespace Xenon.Expr
                         {
                             Expressionv_Elem99 ev_elem = (Expressionv_Elem99)ec_11;
                             ev_elem.SetDataRow(this.DataRow);
-                            sb_Csv.Append(ev_elem.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                            sb_Csv.Append(ev_elem.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                         }
                         else if (ec_11 is Expression_Node_StringImpl)
                         {
-                            sb_Csv.Append(ec_11.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                            sb_Csv.Append(ec_11.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                         }
                         else
                         {

@@ -97,10 +97,10 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="moMre"></param>
         /// <param name="log_Reports"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             string sFncName;
             this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -126,7 +126,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint,
                         log_Reports
                         );
@@ -142,7 +142,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
 
 
 
@@ -439,7 +439,7 @@ namespace Xenon.Functions
             string sFpatha_Aafilescsv;
             if (log_Reports.Successful)
             {
-                sFpatha_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
+                sFpatha_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint, log_Reports);
                 if (!log_Reports.Successful)
                 {
@@ -641,7 +641,7 @@ namespace Xenon.Functions
             //
             // 「インデックス_テーブル」の絶対ファイルパス
             Expression_Node_Filepath ec_Fpath_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack;
-            string sFpatha_Aafilescsv = ec_Fpath_Aafilescsv.Execute_OnExpressionString(
+            string sFpatha_Aafilescsv = ec_Fpath_Aafilescsv.Execute4_OnExpressionString(
                 EnumHitcount.Unconstraint, log_Reports);
             //if (log_Method.CanDebug(1))
             //{
@@ -967,11 +967,11 @@ namespace Xenon.Functions
                         //}
 
                         log_Reports.Log_Callstack.Push(log_Method, "⑧");
-                        //bug:フォルダーパスだと Execute_OnExpressionString は空白を返す？？
-                        string sFopath2 = ec_Fopath.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        //bug:フォルダーパスだと Execute4_OnExpressionString は空白を返す？？
+                        string sFopath2 = ec_Fopath.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         if ("" == sFopath2)
                         {
-                            //bug:フォルダーパスだと Execute_OnExpressionString は空白を返すようなので、入力値をそのまま返すことにした。
+                            //bug:フォルダーパスだと Execute4_OnExpressionString は空白を返すようなので、入力値をそのまま返すことにした。
                             sFopath2 = ec_Fopath.Humaninput.Trim();
                         }
                         log_Reports.Log_Callstack.Pop(log_Method, "⑧");

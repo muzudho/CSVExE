@@ -54,13 +54,13 @@ namespace Xenon.Expr
             //
             // 既に、一時記憶に同名のレコードセットがないか検索。
 
-            string sStorage = this.Expression_Storage.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            string sStorage = this.Expression_Storage.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             if (!this.Owner_MemoryApplication.MemoryRecordset.RecordsetStorage.Contains(this.Expression_Storage, log_Reports))
             {
                 RecordSet dst_Rs_ToSave;
                 Selectstatement selectSt_ToSave;
                 {
-                    if ("" == this.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
+                    if ("" == this.Expression_From.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                     {
                         //
                         // エラー。
@@ -83,13 +83,13 @@ namespace Xenon.Expr
                             Recordcondition recCond1;// = new RecordconditionImpl(s_ParentNode);
 
                             // TODO: logic要素がある版も要るはず。
-                            bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, this.Expression_Field.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), this.Cur_Configurationtree.Parent, log_Reports);
-                            recCond1.Value = this.Expression_LookupVal.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                            bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, this.Expression_Field.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), this.Cur_Configurationtree.Parent, log_Reports);
+                            recCond1.Value = this.Expression_LookupVal.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                             selectSt_ToSave.List_Recordcondition.Add(recCond1);
                         }
-                        selectSt_ToSave.Required = this.Expression_Required.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        selectSt_ToSave.Required = this.Expression_Required.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         selectSt_ToSave.Expression_From = this.Expression_From;
-                        selectSt_ToSave.Storage = this.Expression_Storage.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        selectSt_ToSave.Storage = this.Expression_Storage.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     }
                 }
 
@@ -99,7 +99,7 @@ namespace Xenon.Expr
                     Configurationtree_Node parent_Cf_Query = this.Cur_Configurationtree.Parent;
 
                     // テーブル名。
-                    if ("" == selectSt_ToSave.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
+                    if ("" == selectSt_ToSave.Expression_From.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                     {
                         //
                         // エラー。
@@ -302,7 +302,7 @@ namespace Xenon.Expr
 
             if (null != this.Expression_Storage)
             {
-                string sStorage = this.Expression_Storage.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
+                string sStorage = this.Expression_Storage.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
                 if ("" != sStorage)
                 {

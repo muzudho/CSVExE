@@ -68,7 +68,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 今日の分のバックアップを取ります。
         /// </summary>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             //
             //
@@ -78,11 +78,11 @@ namespace Xenon.Functions
             //
             //
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
 
 
                 // 日付毎のバックアップ（バックアップ対象ファイルを、設定ファイルから読取り後）
@@ -105,7 +105,7 @@ namespace Xenon.Functions
                     {
                         XenonNameImpl o_Name_Variable = new XenonNameImpl(
                             NamesVar.S_SP_BACKUP_FOLDER,
-                            new Configurationtree_NodeImpl("!ハードコーディング_ExAction00031#Perform_WrRhn", null)
+                            new Configurationtree_NodeImpl("!ハードコーディング_ExAction00031#", null)
                             );
 
                         // 変数名。

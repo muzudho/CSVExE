@@ -97,10 +97,10 @@ namespace Xenon.Functions
         /// <summary>
         /// 
         /// </summary>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             string sFncName;
             this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -117,7 +117,7 @@ namespace Xenon.Functions
             {
                 Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
+                string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint,
                     log_Reports
                     );
@@ -191,7 +191,7 @@ namespace Xenon.Functions
                         log_Method.WriteDebug_ToConsole( "③");
                     }
 
-                    sFpatha_vcnf = e_ArgFilePath.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    sFpatha_vcnf = e_ArgFilePath.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。

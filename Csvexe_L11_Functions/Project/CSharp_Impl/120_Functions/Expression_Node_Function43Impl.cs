@@ -85,19 +85,19 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public override string Expression_ExecuteMain(Log_Reports log_Reports)
+        public override string Execute5_Main(Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute5_Main",log_Reports);
 
             //
             //
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
+                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
 
-                this.Perform2(this.Functionparameterset.Sender, log_Reports);
+                this.Execute6_Sub(this.Functionparameterset.Sender, log_Reports);
 
 
                 //
@@ -114,7 +114,7 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
-                this.Perform2(this.Functionparameterset.Sender, log_Reports);
+                this.Execute6_Sub(this.Functionparameterset.Sender, log_Reports);
 
             }
 
@@ -126,13 +126,13 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        protected void Perform2(
+        protected void Execute6_Sub(
             object sender,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -149,7 +149,7 @@ namespace Xenon.Functions
                 // 変数名が入っているはず。
                 Expression_Node_String ec_ArgNameVariable;
                 this.TrySelectAttribute(out ec_ArgNameVariable, Expression_Node_Function43Impl.PM_NAME_VAR, EnumHitcount.One_Or_Zero, log_Reports);
-                string sVariableName = ec_ArgNameVariable.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sVariableName = ec_ArgNameVariable.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 Expression_Node_String ec_ArgFcName;
                 this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function43Impl.PM_NAME_CONTROL, EnumHitcount.One_Or_Zero, log_Reports);
@@ -175,7 +175,7 @@ namespace Xenon.Functions
                     else
                     {
                         // エラー
-                        err_SFcName = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        err_SFcName = uct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         err_SFcTypeName = uct.GetType().Name;
                         goto gt_Error_UndefinedUc;
                     }

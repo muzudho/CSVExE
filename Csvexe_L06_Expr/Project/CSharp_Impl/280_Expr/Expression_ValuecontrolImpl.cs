@@ -46,12 +46,12 @@ namespace Xenon.Expr
         #region アクション
         //────────────────────────────────────────
 
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
             string sResult;
@@ -84,7 +84,7 @@ namespace Xenon.Expr
         gt_Error_No1Hit:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, this.Expression_UsercontrolName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロールの値
+                tmpl.SetParameter(1, this.Expression_UsercontrolName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロールの値
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6041;", tmpl, log_Reports);
             }
@@ -116,7 +116,7 @@ namespace Xenon.Expr
             sb.Append(" [");
             sb.Append(this.Dictionary_Expression_Attribute.ToString());//？
             sb.Append("] 変数名");
-            sb.Append(this.Expression_UsercontrolName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod));
+            sb.Append(this.Expression_UsercontrolName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod));
             sb.Append("");
 
             log_Reports_ThisMethod.EndCreateReport();

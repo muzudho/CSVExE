@@ -118,13 +118,13 @@ namespace Xenon.Syntax
         /// 起動「.exe」のあったパスが頭に付く。
         /// </summary>
         /// <returns></returns>
-        public override string Execute_OnExpressionString(
+        public override string Execute4_OnExpressionString(
             EnumHitcount request,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute_OnEString",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Execute4_OnExpressionString", log_Reports);
             //
             //
 
@@ -185,7 +185,7 @@ namespace Xenon.Syntax
         /// このデータは、ファイルパス型だ、と想定して、ファイルパスを取得します。
         /// </summary>
         /// <returns></returns>
-        public override Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
+        public override Expression_Node_Filepath Execute4_OnExpressionString_AsFilepath(
             EnumHitcount request,
             Log_Reports log_Reports
             )

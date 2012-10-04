@@ -70,7 +70,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        string Expression_ExecuteMain(
+        string Execute5_Main(
             Log_Reports log_Reports
             );
 
@@ -82,12 +82,12 @@ namespace Xenon.Syntax
         /// <param name="request">どういう結果が欲しいかの指定。</param>
         /// <param name="log_Reports"></param>
         /// <returns>処理結果の結合文字列。</returns>
-        string Execute_OnExpressionString(
+        string Execute4_OnExpressionString(
             EnumHitcount request,
             Log_Reports log_Reports
             );
 
-        Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
+        Expression_Node_Filepath Execute4_OnExpressionString_AsFilepath(
             EnumHitcount request,
             Log_Reports log_Reports
             );

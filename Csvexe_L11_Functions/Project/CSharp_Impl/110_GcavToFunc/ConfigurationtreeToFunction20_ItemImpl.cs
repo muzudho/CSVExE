@@ -46,7 +46,7 @@ namespace Xenon.Functions
             Expression_Node_String ec_ArgListboxName;
             parent_Expr_Func.TrySelectAttribute(out ec_ArgListboxName, Expression_Node_Function20Impl.PM_NAME_CONTROL_LISTBOX, EnumHitcount.One_Or_Zero, log_Reports);
 
-            if ("" == ec_ArgListboxName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports))
+            if ("" == ec_ArgListboxName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports))
             {
                 // 引数 listboxFcName が指定されていない場合は、その記述が書かれているコントロールの名前を入れる。
 

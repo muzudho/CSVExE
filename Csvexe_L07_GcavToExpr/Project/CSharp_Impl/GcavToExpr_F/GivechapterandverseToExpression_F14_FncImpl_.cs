@@ -363,7 +363,7 @@ namespace Xenon.GcavToExpr
                     cur_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
@@ -401,7 +401,7 @@ namespace Xenon.GcavToExpr
                     parent_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
 
@@ -447,7 +447,7 @@ namespace Xenon.GcavToExpr
                     cur_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
@@ -485,7 +485,7 @@ namespace Xenon.GcavToExpr
                     parent_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
 
@@ -531,7 +531,7 @@ namespace Xenon.GcavToExpr
                     cur_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
@@ -569,7 +569,7 @@ namespace Xenon.GcavToExpr
                     parent_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
 

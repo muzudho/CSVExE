@@ -14,7 +14,7 @@ namespace Xenon.Functions
     /// <summary>
     /// コントロールの ＜event＞要素の中を読み取って実行します。
     /// </summary>
-    public class Exe_1EventImpl
+    public class Executer2_EventImpl
     {
 
 
@@ -29,21 +29,21 @@ namespace Xenon.Functions
         /// cf_Eventは、ucFc.ControlCommon.Configurationtree_Control.SDic_Event から取っている。
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="cf_Event"></param>
+        /// <param name="event_Conf"></param>
         /// <param name="moWorkbench"></param>
         /// <param name="log_Reports"></param>
-        public void Perform(
+        public void Execute2_Event(
             object sender,
-            Configurationtree_Node cf_Event,
+            Configurationtree_Node event_Conf,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(1, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform",log_Reports);
+            log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute2_Event", log_Reports);
 
-            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl("＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform:＞", null);
-            EventMonitorImpl eventMonitor = new EventMonitorImpl(cf_Event, cf_ThisMethod);
+            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl("＜" + log_Method.Fullname + ":＞", null);
+            EventMonitorImpl eventMonitor = new EventMonitorImpl(event_Conf, cf_ThisMethod);
 
             if (log_Reports.CanStopwatch)
             {
@@ -54,18 +54,18 @@ namespace Xenon.Functions
 
                     string sName_Control;
                     {
-                        Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        Configurationtree_Node owner_Configurationtree_Control = event_Conf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
                         owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
                     }
 
                     string sEventName;
                     {
-                        cf_Event.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
+                        event_Conf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sEventName, false, log_Reports);
                     }
 
                     int nActionCount;
                     {
-                        nActionCount = cf_Event.List_Child.Count;
+                        nActionCount = event_Conf.List_Child.Count;
                     }
 
 
@@ -108,7 +108,7 @@ namespace Xenon.Functions
                     {
                         ccFc.ControlCommon.Owner_MemoryApplication.MemoryForms.AddStatus_ActionUsercontrolNameBegin(log_Reports);
 
-                        string sName_Usercontrol = sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        string sName_Usercontrol = sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         ccFc.ControlCommon.Owner_MemoryApplication.MemoryForms.AddStatus_ActionUsercontrolName(sName_Usercontrol, log_Reports);
                     }
 
@@ -116,21 +116,21 @@ namespace Xenon.Functions
             }
 
 
-            cf_Event.List_Child.ForEach(delegate(Configurationtree_Node s_Action, ref bool bBreak)
+            event_Conf.List_Child.ForEach(delegate(Configurationtree_Node s_Action, ref bool bBreak)
             {
                 eventMonitor.BNowactionworking = true;
 
-                Exe_2FunctionImpl actionPerformer = new Exe_2FunctionImpl();
+                Executer3_FunctionImpl exe2 = new Executer3_FunctionImpl();
 
                 // イベントハンドラーの作成
-                Expression_Node_Function expr_Func = actionPerformer.ConfigurationtreeToFunction(
+                Expression_Node_Function expr_Func = exe2.ConfigurationtreeToFunction(
                     s_Action,
                     owner_MemoryApplication,
                     log_Reports
                     );
 
                 // システム定義関数の実行
-                actionPerformer.PerformUsercontrol(
+                exe2.Execute3_Function(
                     expr_Func,
                     sender,
                     eventMonitor,
@@ -146,7 +146,7 @@ namespace Xenon.Functions
 
                 if (Log_ReportsImpl.BDebugmode_Static)
                 {
-                    //.WriteLine(this.GetType().Name + "#Perform:\n│\n│\n│\n│");
+                    //.WriteLine(this.GetType().Name + "#:\n│\n│\n│\n│");
                 }
             });
 

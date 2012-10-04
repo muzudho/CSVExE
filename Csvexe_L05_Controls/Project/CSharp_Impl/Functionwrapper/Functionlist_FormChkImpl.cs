@@ -42,13 +42,13 @@ namespace Xenon.Controls
         #region アクション
         //────────────────────────────────────────
 
-        public override void Execute_OnOEa(
+        public override void Execute4_OnOEa(
             object sender, EventArgs e
             )
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(pg_Method);
-            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute_OnOEa",log_Reports_ThisMethod);
+            pg_Method.BeginMethod(Info_Controls.Name_Library, this, "Execute4_OnOEa",log_Reports_ThisMethod);
             //
             //
 
@@ -59,7 +59,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
             }
@@ -98,7 +98,7 @@ namespace Xenon.Controls
 
                 if (log_Reports_ThisMethod.Successful)
                 {
-                    expr_Func.Execute_OnOEa(sender, e);
+                    expr_Func.Execute4_OnOEa(sender, e);
                 }
 
                 goto gt_EndMethod2;

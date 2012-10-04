@@ -44,12 +44,12 @@ namespace Xenon.Expr
         #region アクション
         //────────────────────────────────────────
 
-        public override string Expression_ExecuteMain(
+        public override string Execute5_Main(
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Expression_ExecuteMain",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute5_Main", log_Reports);
             //
             //
             string sResult;
@@ -73,7 +73,7 @@ namespace Xenon.Expr
             if (null == ec_CommonFunction)
             {
                 // エラー
-                sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" 親e_CommonFunctionなし＞";
+                sResult = "＜Xn_L05_E:E_FParamImpl#Execute5_Main ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" 親e_CommonFunctionなし＞";
             }
             else
             {
@@ -81,7 +81,7 @@ namespace Xenon.Expr
                 string sParam;
                 if (ec_CommonFunction.Dictionary_Expression_Parameter.TrySelect(out sParam, sCall, EnumHitcount.One, log_Reports))
                 {
-                    //sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\"　値＝”" + e_Param.E_Execute(EnumHitcount.Unconstraint,log_Reports) + "”＞";
+                    //sResult = "＜Xn_L05_E:E_FParamImpl#Execute5_Main ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\"　値＝”" + e_Param.E_Execute(EnumHitcount.Unconstraint,log_Reports) + "”＞";
                     sResult = sParam;
                 }
                 else
@@ -90,7 +90,7 @@ namespace Xenon.Expr
                     Log_TextIndented s1 = new Log_TextIndentedImpl();
                     ec_CommonFunction.Dictionary_Expression_Parameter.ToText_Debug(s1, log_Reports);
 
-                    sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Configurationtree.Name + "” 引数不該当＞s1=" + s1.ToString();
+                    sResult = "＜Xn_L05_E:E_FParamImpl#Execute5_Main ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Configurationtree.Name + "” 引数不該当＞s1=" + s1.ToString();
                 }
 
             }
