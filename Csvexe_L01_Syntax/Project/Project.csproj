@@ -76,11 +76,11 @@
     <Compile Include="CSharp_Impl\502_Expression_P1p\Utility_TexttemplateP1p.cs" />
     <Compile Include="CSharp_Impl\502_Expression_P1p\Builder_TexttemplateP1pImpl.cs" />
     <Compile Include="CSharp_Impl\800_Log2\Log_CallstackImpl.cs" />
-    <Compile Include="CSharp_Impl\800_Log2\Log_RecordReportImpl.cs" />
+    <Compile Include="CSharp_Impl\800_Log2\Log_RecordReportsImpl.cs" />
     <Compile Include="CSharp_Impl\800_Log2\Log_ReportsImpl.cs" />
     <Compile Include="CSharp_Impl\200_Log1\Log_StopwatchImpl.cs" />
     <Compile Include="CSharp_Interface\800_Log2\Log_Callstack.cs" />
-    <Compile Include="CSharp_Interface\800_Log2\Log_RecordReport.cs" />
+    <Compile Include="CSharp_Interface\800_Log2\Log_RecordReports.cs" />
     <Compile Include="CSharp_Interface\100_Masterdata\EnumReport.cs" />
     <Compile Include="CSharp_Interface\200_Log1\Log_Stopwatch.cs" />
     <Compile Include="CSharp_Interface\800_Log2\Log_Reports.cs" />

@@ -269,7 +269,7 @@ namespace Xenon.Table
         gt_Error_FdIndexOutOfRangeException:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー132！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

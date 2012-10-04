@@ -184,7 +184,7 @@ namespace Xenon.Layout
         gt_Error_NullUsercontrol:
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー356！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -204,7 +204,7 @@ namespace Xenon.Layout
         gt_Error_Type:
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー355！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -232,7 +232,7 @@ namespace Xenon.Layout
             // （Form_lstタイプには、TREEフィールドは要らない）
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー354！", pg_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();

@@ -96,7 +96,7 @@ namespace Xenon.Functions
             //
             //
 
-            if (this.EnumEventhandler == EnumEventhandler.O_Wr)
+            if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
                 this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 

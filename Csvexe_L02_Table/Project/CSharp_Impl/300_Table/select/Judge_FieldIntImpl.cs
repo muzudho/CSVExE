@@ -74,7 +74,7 @@ namespace Xenon.Table
                         bJudge = false;
                         if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
+                            Log_RecordReports d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
                             d_Report.SetTitle("▲エラー698！", log_Method);
                             d_Report.Message = "int型パース失敗。";
                             log_Reports.EndCreateReport();
@@ -150,7 +150,7 @@ namespace Xenon.Table
         gt_Error_DBNull:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー244！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -171,7 +171,7 @@ namespace Xenon.Table
             // 空値ではダメという設定の場合。
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー287！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

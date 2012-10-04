@@ -238,7 +238,7 @@ namespace Xenon.Syntax
             {
                 if (bRequired)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー501！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -334,7 +334,7 @@ namespace Xenon.Syntax
         gt_Error_EmptyHitChild:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー502！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

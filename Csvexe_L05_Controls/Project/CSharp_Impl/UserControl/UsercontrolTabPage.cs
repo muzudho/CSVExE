@@ -84,7 +84,7 @@ namespace Xenon.Controls
         gt_Error_NotSupportedEvent:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー475！", pg_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();

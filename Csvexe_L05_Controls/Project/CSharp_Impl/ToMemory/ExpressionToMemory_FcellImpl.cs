@@ -448,7 +448,7 @@ namespace Xenon.Controls
         gt_Error_NotSfcell:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー909！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -473,7 +473,7 @@ namespace Xenon.Controls
         gt_Error_NullKeyExpected:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー906！", pg_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -501,7 +501,7 @@ namespace Xenon.Controls
         gt_Error_EmptyKeyField:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー903！", pg_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -529,7 +529,7 @@ namespace Xenon.Controls
         gt_Error_ZeroKeyField:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー902！", pg_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -557,7 +557,7 @@ namespace Xenon.Controls
         gt_Error_EmptySelectField:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー904！", pg_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -585,7 +585,7 @@ namespace Xenon.Controls
         gt_Error_ZeroSelectField:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー901！", pg_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -614,7 +614,7 @@ namespace Xenon.Controls
         gt_Error_NotFoundTable:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー1011！", pg_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -640,7 +640,7 @@ namespace Xenon.Controls
         gt_Error_NotFoundKeyFldDefinition:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー478！", pg_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -667,7 +667,7 @@ namespace Xenon.Controls
         gt_Error_NotFoundSelectFldDefinition:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー479！", pg_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -691,7 +691,7 @@ namespace Xenon.Controls
         gt_Error_NotFoundRecord:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー344！", pg_Method);
 
                 string sDebugExceptedKey = ec_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);

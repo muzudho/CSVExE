@@ -286,7 +286,7 @@ namespace Xenon.Layout
             // （Form_lstタイプには、TREEフィールドは要らない）
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー91026！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -329,7 +329,7 @@ namespace Xenon.Layout
             // （両方に記述してはいけない）
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー901！", pg_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -1402,7 +1402,7 @@ namespace Xenon.Layout
                 {
                     if (pg_Logging.CanCreateReport)
                     {
-                        Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー921！", pg_Method);
                         r.Message = "[" + sFieldName + "]フィールドは、[" + o_Table_Form.Name + "]には存在しませんでした。";
                         pg_Logging.EndCreateReport();

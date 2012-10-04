@@ -169,7 +169,7 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
                 tmpl.SetParameter(1, sToE_Event.Name, log_Reports);//イベント名
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:533;", tmpl, log_Reports);
             }

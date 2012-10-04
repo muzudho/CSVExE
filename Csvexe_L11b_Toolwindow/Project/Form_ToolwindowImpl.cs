@@ -674,7 +674,7 @@ namespace Xenon.Toolwindow
         gt_Error_NotFoundProjectname:
             if (d_Logging_Click.CanCreateReport)
             {
-                Log_RecordReport r = d_Logging_Click.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = d_Logging_Click.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー902！", pg_Method);
 
                 StringBuilder t = new StringBuilder();

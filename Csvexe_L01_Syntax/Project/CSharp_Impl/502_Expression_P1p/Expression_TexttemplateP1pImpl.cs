@@ -164,7 +164,7 @@ namespace Xenon.Syntax
                 sResult = "";
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー211！", log_Method);
 
                     Log_TextIndented t = new Log_TextIndentedImpl();
@@ -276,7 +276,7 @@ namespace Xenon.Syntax
 
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
 
                 r.SetTitle("▲エラー201！", log_Method);
 
@@ -316,7 +316,7 @@ namespace Xenon.Syntax
 
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
 
                 r.SetTitle("▲エラー101！", log_Method);
 
@@ -397,7 +397,7 @@ namespace Xenon.Syntax
         gt_errorNotOne:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー101！", log_Method);
 
                 StringBuilder sb = new StringBuilder();

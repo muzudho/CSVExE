@@ -112,7 +112,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
 
-            if (this.EnumEventhandler == EnumEventhandler.O_Wr)
+            if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
                 this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 
@@ -484,7 +484,7 @@ namespace Xenon.Functions
         gt_Error_NoForm:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cf_ThisMethod), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(cf_ThisMethod), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110015;", tmpl, log_Reports);
             }

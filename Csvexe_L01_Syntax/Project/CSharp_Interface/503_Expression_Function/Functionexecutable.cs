@@ -136,7 +136,7 @@ namespace Xenon.Syntax
         /// 
         /// </summary>
         /// <param name="log_Reports"></param>
-        void Execute_OnWrRhn(
+        void Execute_OnLr(
             object sender,
             object eventMonitor,
             string parent_SNode_EventOrigin,

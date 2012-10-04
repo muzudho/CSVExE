@@ -539,7 +539,7 @@ namespace Xenon.Controls
                 tmpl.SetParameter(2, e.Font.ToString(), log_Reports);//フォント名
                 tmpl.SetParameter(3, foreBrush.ToString(), log_Reports);//前景ブラシ名
                 tmpl.SetParameter(4, e.Bounds.ToString(), log_Reports);//矩形位置とサイズ
-                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(5, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:535;", tmpl, log_Reports);
             }

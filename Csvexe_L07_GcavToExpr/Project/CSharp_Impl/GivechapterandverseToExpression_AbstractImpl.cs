@@ -180,7 +180,7 @@ namespace Xenon.GcavToExpr
         gt_Error_NullNFAelem:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(parent_Expr.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Expr.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7010;", tmpl, log_Reports);
             }
@@ -211,7 +211,7 @@ namespace Xenon.GcavToExpr
                     tmpl.SetParameter(5, "ヌル", log_Reports);
                 }
 
-                tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Configurationtree(err_Configurationtree_Node2), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(6, Log_RecordReportsImpl.ToMessage_Configurationtree(err_Configurationtree_Node2), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7011;", tmpl, log_Reports);
             }

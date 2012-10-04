@@ -181,7 +181,7 @@ namespace Xenon.Expr
         {
             if (null != expr_Func)//暫定
             {
-                expr_Func.EnumEventhandler = EnumEventhandler.O_Dea_P_S_S_Wr;
+                expr_Func.EnumEventhandler = EnumEventhandler.O_Dea_P_S_S_Lr;
                 expr_Func.Functionparameterset.Sender = prm_Sender;
                 expr_Func.Functionparameterset.DragEventArgs = prm_E;
                 expr_Func.Functionparameterset.ParentLocation = prm_ParentLocation;
@@ -244,7 +244,7 @@ namespace Xenon.Expr
         {
             if (null != expr_Func)//暫定
             {
-                expr_Func.EnumEventhandler = EnumEventhandler.O_Dea_P_S_B_Wr;
+                expr_Func.EnumEventhandler = EnumEventhandler.O_Dea_P_S_B_Lr;
                 expr_Func.Functionparameterset.Sender = prm_Sender;
                 expr_Func.Functionparameterset.DragEventArgs = prm_E;
                 expr_Func.Functionparameterset.ParentLocation = prm_ParentLocation;
@@ -294,7 +294,7 @@ namespace Xenon.Expr
         {
             if (null != expr_Func)//暫定
             {
-                expr_Func.EnumEventhandler = EnumEventhandler.O_Wr;
+                expr_Func.EnumEventhandler = EnumEventhandler.O_Lr;
                 expr_Func.Functionparameterset.Sender = prm_Sender;
                 expr_Func.Functionparameterset.ItemValue = prm_ItemValue;
             }
@@ -429,7 +429,7 @@ namespace Xenon.Expr
             //
 
             // イベントハンドラー引数の設定
-            this.Set_OnPrjSelected(
+            this.Set_OnEditorSelected(
                 this,
                 prm_Sender,
                 prm_St_selectedEditorElm,
@@ -443,17 +443,17 @@ namespace Xenon.Expr
             log_Method.EndMethod(log_Reports);
         }
 
-        protected void Set_OnPrjSelected(
+        protected void Set_OnEditorSelected(
             Expression_Node_Function expr_Func,
             object prm_Sender,
-            object prm_St_selectedProjectElm,//St_ProjectElm
+            object prm_St_selectedEditorElm,//St_ProjectElm
             bool prm_ProjectValid,
             Log_Reports prm_D_LoggingBuffer
             )
         {
-            expr_Func.EnumEventhandler = EnumEventhandler.Tp_B_Wr_Rhn;
+            expr_Func.EnumEventhandler = EnumEventhandler.Editor_B_Lr;
             expr_Func.Functionparameterset.Sender = prm_Sender;
-            expr_Func.Functionparameterset.SelectedProjectElement_Configurationtree = prm_St_selectedProjectElm;
+            expr_Func.Functionparameterset.SelectedProjectElement_Configurationtree = prm_St_selectedEditorElm;
             expr_Func.Functionparameterset.IsProjectValid = prm_ProjectValid;
         }
 
@@ -518,7 +518,7 @@ namespace Xenon.Expr
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
         /// <param name="log_Reports"></param>
-        public override void Execute_OnWrRhn(
+        public override void Execute_OnLr(
             object prm_Sender,
             object prm_EventMonitor,//EventMonitor
             string prm_SNode_EventOrigin,
@@ -526,7 +526,7 @@ namespace Xenon.Expr
         )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnWrRhn",log_Reports);
+            log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute_OnLr", log_Reports);
             //
             //
 
@@ -553,7 +553,7 @@ namespace Xenon.Expr
             Log_Reports prm_D_LoggingBuffer
         )
         {
-            expr_Func.EnumEventhandler = EnumEventhandler.O_Wr;
+            expr_Func.EnumEventhandler = EnumEventhandler.O_Lr;
             expr_Func.Functionparameterset.Sender = prm_Sender;
             expr_Func.Functionparameterset.EventMonitor = prm_EventMonitor;
             expr_Func.Functionparameterset.Node_EventOrigin = prm_SNode_EventOrigin;
@@ -640,7 +640,7 @@ namespace Xenon.Expr
                 string sFncName0;
                 ec_CommonFunction.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 tmpl.SetParameter(3, sFncName0, log_Reports);//関数名
-                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cf_Node), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(cf_Node), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6039;", tmpl, log_Reports);
             }
@@ -694,7 +694,7 @@ namespace Xenon.Expr
         //    // 画像ドロップ　アクション実行。
         //    //NActionAbstract#Perform_ImgDropB
 
-        //    //this.E_SystemAction.EnumEventhandler == EnumEventhandler.O_Wr
+        //    //this.E_SystemAction.EnumEventhandler == EnumEventhandler.O_Lr
         //    // リストボックス用アクション実行。
         //    //NActionAbstract#Perform_LstBox
 
@@ -718,7 +718,7 @@ namespace Xenon.Expr
         //    // ドラッグ＆ドロップ用アクション実行。
         //    //NActionAbstract#Perform_QueryContinueDragEventArgs
 
-        //    //EnumEventhandler.O_Wr
+        //    //EnumEventhandler.O_Lr
         //    // エラー
         //    //NActionAbstract#Perform_WrRhn
 

@@ -114,7 +114,7 @@ namespace Xenon.Controls
             {
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー398！", pg_Method);
 
                     StringBuilder t = new StringBuilder();

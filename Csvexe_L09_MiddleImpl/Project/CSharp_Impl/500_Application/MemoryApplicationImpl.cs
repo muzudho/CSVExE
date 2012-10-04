@@ -145,7 +145,7 @@ namespace Xenon.MiddleImpl
                             //ヒット
                             hit = true;
 
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                             r.SetTitle("Er:" + errorNumber + ";", log_Method);
 
                             XenonValue_StringImpl xenonValue_String = (XenonValue_StringImpl)dataRow["MESSAGE"];
@@ -167,7 +167,7 @@ namespace Xenon.MiddleImpl
                 {
                     //エラーメッセージの登録がない。
 
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("Er:0;", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -191,7 +191,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Symbol:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー204！", log_Method);
 
                 StringBuilder s = new StringBuilder();

@@ -264,7 +264,7 @@ namespace Xenon.Syntax
         gt_Error_ArgumentException:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー107！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -284,7 +284,7 @@ namespace Xenon.Syntax
         gt_Error_PathTooLongException:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー108！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -302,7 +302,7 @@ namespace Xenon.Syntax
         gt_Error_NotSupportedException:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー109！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -324,7 +324,7 @@ namespace Xenon.Syntax
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー109！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -395,7 +395,7 @@ namespace Xenon.Syntax
             bPathRooted = false;
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー211！", log_Method);
 
                 StringBuilder sb = new StringBuilder();

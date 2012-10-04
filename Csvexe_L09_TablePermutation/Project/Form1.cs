@@ -59,7 +59,7 @@ namespace Xenon.TablePermutation
                 // 既エラー。
                 if (pg_Logging.CanCreateReport)
                 {
-                    Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                     r.Message = sErrorMsg;
                     pg_Logging.EndCreateReport();
                 }
@@ -72,7 +72,7 @@ namespace Xenon.TablePermutation
                 // 既エラー。
                 if (pg_Logging.CanCreateReport)
                 {
-                    Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                     r.Message = sErrorMsg;
                     pg_Logging.EndCreateReport();
                 }
@@ -189,7 +189,7 @@ namespace Xenon.TablePermutation
         gt_Error_NullTable:
             if (d_Logging_Event.CanCreateReport)
             {
-                Log_RecordReport r = d_Logging_Event.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = d_Logging_Event.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー204！", pg_Method);
                 r.Message = "データソースとなるテーブルが未設定（ヌル）です。";
                 d_Logging_Event.EndCreateReport();

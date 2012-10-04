@@ -112,7 +112,7 @@ namespace Xenon.XToGcav
         gt_Error_UndefinedChild13:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー411！", log_Method);
 
                 StringBuilder t = new StringBuilder();

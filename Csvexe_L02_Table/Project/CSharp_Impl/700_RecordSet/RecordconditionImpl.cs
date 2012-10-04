@@ -99,7 +99,7 @@ namespace Xenon.Table
         gt_Error_Attribute:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー101！", log_Method);
 
                 StringBuilder s = new StringBuilder();

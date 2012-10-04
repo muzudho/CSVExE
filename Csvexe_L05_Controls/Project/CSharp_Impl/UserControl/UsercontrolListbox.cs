@@ -442,7 +442,7 @@ namespace Xenon.Controls
             //#このルートはエラー。
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー369！", pg_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -1716,7 +1716,7 @@ namespace Xenon.Controls
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, sListValueFld, log_Reports_ThisMethod);//リストボックスのフィールド名
-                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports_ThisMethod);//例外メッセージ
+                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports_ThisMethod);//例外メッセージ
 
                     this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:517;", tmpl, log_Reports_ThisMethod);
                 }

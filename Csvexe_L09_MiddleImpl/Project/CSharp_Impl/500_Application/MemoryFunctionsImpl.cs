@@ -116,7 +116,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Exists:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲設定エラー101！", log_Method);
                 r.Message = "ユーザー定義関数[" + sName + "]は既に定義されていますが、さらに定義されました。同じ名前のユーザー定義関数は１つしか定義してはいけません。";
                 log_Reports.EndCreateReport();
@@ -337,7 +337,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Fpath:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー101！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -355,7 +355,7 @@ namespace Xenon.MiddleImpl
         gt_Error_File:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー102！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -377,7 +377,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Doc:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー103！", log_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -395,7 +395,7 @@ namespace Xenon.MiddleImpl
         gt_Error_UndefinedChild:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー104！", log_Method);
 
                 StringBuilder s = new StringBuilder();

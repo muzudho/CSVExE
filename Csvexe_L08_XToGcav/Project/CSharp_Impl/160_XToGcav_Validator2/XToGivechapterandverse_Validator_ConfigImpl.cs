@@ -156,7 +156,7 @@ namespace Xenon.XToGcav
         gt_Error_NotFoundFile:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー31！", log_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -178,7 +178,7 @@ namespace Xenon.XToGcav
         gt_Error_IoException01:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー34！", log_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -199,7 +199,7 @@ namespace Xenon.XToGcav
         gt_Error_ArgException01:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー397！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -225,7 +225,7 @@ namespace Xenon.XToGcav
         gt_Error_UndefinedChild04:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー398！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
@@ -245,7 +245,7 @@ namespace Xenon.XToGcav
         gt_Error_Exception91:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー399！", log_Method);
 
                 StringBuilder t = new StringBuilder();

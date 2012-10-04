@@ -104,7 +104,7 @@ namespace Xenon.Functions
             }
 
 
-            if (this.EnumEventhandler == EnumEventhandler.O_Wr)
+            if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
                 string sName_Usercontrol;
                 if (this.Functionparameterset.Sender is Customcontrol)

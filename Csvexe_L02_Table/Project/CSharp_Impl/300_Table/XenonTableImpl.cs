@@ -79,7 +79,7 @@ namespace Xenon.Table
         gt_Error_Duplicated:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー111！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -400,7 +400,7 @@ namespace Xenon.Table
         gt_Error_ColumnIndexOver:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー463！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -463,7 +463,7 @@ namespace Xenon.Table
         gt_Error_Field:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー462！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -795,7 +795,7 @@ namespace Xenon.Table
 
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー121！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -819,7 +819,7 @@ namespace Xenon.Table
 
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー122！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -963,7 +963,7 @@ namespace Xenon.Table
         gt_Error_Spaces:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー641！", log_Method);
                 r.Message = "（空白なので中断）";
                 log_Reports.EndCreateReport();
@@ -973,7 +973,7 @@ namespace Xenon.Table
         gt_Error_Invalid:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー642！", log_Method);
                 r.Message = "（エラーデータなので中断）";
                 log_Reports.EndCreateReport();
@@ -1113,7 +1113,7 @@ namespace Xenon.Table
         gt_Error_Spaces:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー651！", log_Method);
                 r.Message = "＜空白で中断＞";
                 log_Reports.EndCreateReport();
@@ -1123,7 +1123,7 @@ namespace Xenon.Table
         gt_Error_Invalid:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー652！", log_Method);
                 r.Message = "＜エラーデータで中断＞";
                 log_Reports.EndCreateReport();
@@ -1133,7 +1133,7 @@ namespace Xenon.Table
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー653！", log_Method);
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(r.Message_SException(err_Excp));
@@ -1182,7 +1182,7 @@ namespace Xenon.Table
             //    result = null;
             //    if (log_Reports.CanCreateReport)
             //    {
-            //        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+            //        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
             //        r.SetTitle("▲エラー652！", this.GetType().Name, InfxenonTable.LibraryName);
             //        r.Message = "＜エラーデータで中断 BValidated=false＞";
             //        log_Reports.EndCreateReport();
@@ -1274,7 +1274,7 @@ namespace Xenon.Table
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー653！", log_Method);
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(r.Message_SException(err_Excp));
@@ -1293,7 +1293,7 @@ namespace Xenon.Table
                 // 必ず存在する最初の１件を返さなければなりませんが、そうではありませんでした。
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー654！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -1379,7 +1379,7 @@ namespace Xenon.Table
         gt_Error_NotFoundField:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー902！", log_Method);
 
                 StringBuilder sb = new StringBuilder();

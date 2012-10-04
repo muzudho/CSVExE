@@ -120,7 +120,7 @@ namespace Xenon.Controls
             //if(null==this.O_DsrcTable)
             //{
             //    // エラー
-            //    Log_RecordReport r = log_Reports.NewReport(EnumReport.Error);
+            //    Log_RecordReports r = log_Reports.NewReport(EnumReport.Error);
             //    r.SetTitle( "▲エラー344！", this.GetType().Name, Info_Forms.LibraryName );
 
             //    Log_TextIndented s = new Log_TextIndentedImpl();
@@ -144,7 +144,7 @@ namespace Xenon.Controls
             //else if (!this.O_DsrcTable.DataTable.Columns.Contains(sKeyFldName))
             //{
             //    // エラー
-            //    Log_RecordReport r = log_Reports.NewReport(EnumReport.Error);
+            //    Log_RecordReports r = log_Reports.NewReport(EnumReport.Error);
             //    r.STitle = "▲エラー343！（" + Info_Forms.LibraryName + "）";
 
             //    Log_TextIndented s = new Log_TextIndentedImpl();
@@ -198,7 +198,7 @@ namespace Xenon.Controls
                         {
                             if (log_Reports.CanCreateReport)
                             {
-                                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                                 r.Message = sErrorMsg;
                                 log_Reports.EndCreateReport();
                             }
@@ -228,7 +228,7 @@ namespace Xenon.Controls
                     {
                         if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                             r.Message = sErrorMsg;
                             log_Reports.EndCreateReport();
                         }
@@ -298,8 +298,8 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sName_KeyFld,log_Reports);//キー・フィールド名
                 tmpl.SetParameter(2, err_STableName, log_Reports);//テーブル名
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(ec_KeyFieldName.Cur_Configurationtree), log_Reports);//キー・フィールド名の設定位置パンくずリスト
-                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(ec_ExpectedValue.Cur_Configurationtree), log_Reports);//テーブル名の設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_KeyFieldName.Cur_Configurationtree), log_Reports);//キー・フィールド名の設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_ExpectedValue.Cur_Configurationtree), log_Reports);//テーブル名の設定位置パンくずリスト
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:505;", tmpl, log_Reports);
             }
@@ -412,7 +412,7 @@ namespace Xenon.Controls
                 //#未実装 TODO: 実装すること。
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー474！", pg_Method);
 
                     StringBuilder t = new StringBuilder();

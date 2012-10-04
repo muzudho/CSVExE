@@ -208,7 +208,7 @@ namespace Xenon.GcavToExpr
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, PmNames.S_BEGIN.Name_Pm, log_Reports);//属性名
                 tmpl.SetParameter(2, err_SValue, log_Reports);//属性値
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 ucontrol.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:7013;", tmpl, log_Reports);
             }
@@ -220,7 +220,7 @@ namespace Xenon.GcavToExpr
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, PmNames.S_END.Name_Pm, log_Reports);//属性名
                 tmpl.SetParameter(2, err_SValue, log_Reports);//属性値
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 ucontrol.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:7014;", tmpl, log_Reports);
             }

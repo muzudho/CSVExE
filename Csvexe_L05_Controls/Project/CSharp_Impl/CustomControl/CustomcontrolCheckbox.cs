@@ -199,7 +199,7 @@ namespace Xenon.Controls
                                                 {
                                                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                                                     tmpl.SetParameter(1, sValue, log_Reports);//値
-                                                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                     this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:539;", tmpl, log_Reports);
                                                 }
@@ -254,7 +254,7 @@ namespace Xenon.Controls
                                                     {
                                                         Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                                                         tmpl.SetParameter(1, nCheckedInt.ToString(), log_Reports);//値
-                                                        tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                         this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:540;", tmpl, log_Reports);
                                                     }
@@ -271,7 +271,7 @@ namespace Xenon.Controls
                                                 //#内部メソッド内のエラー
                                                 {
                                                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                                                    tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                    tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                     this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:541;", tmpl, log_Reports);
                                                 }
@@ -299,7 +299,7 @@ namespace Xenon.Controls
                                             //#内部メソッド内のエラー
                                             {
                                                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                                                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:542;", tmpl, log_Reports);
                                             }

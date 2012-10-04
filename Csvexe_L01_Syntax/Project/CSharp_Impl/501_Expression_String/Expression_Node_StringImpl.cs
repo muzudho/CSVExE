@@ -284,7 +284,7 @@ namespace Xenon.Syntax
         gt_Error_NotFoundOne:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー111！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
@@ -302,7 +302,7 @@ namespace Xenon.Syntax
         gt_Error_UndefinedEnum:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー113！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
@@ -547,7 +547,7 @@ namespace Xenon.Syntax
         gt_errorNoHit:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー102！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
@@ -568,7 +568,7 @@ namespace Xenon.Syntax
         gt_errorNotOne:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー101！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
@@ -685,7 +685,7 @@ namespace Xenon.Syntax
         gt_errorNoHit:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー102！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
@@ -706,7 +706,7 @@ namespace Xenon.Syntax
         gt_errorNotOne:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー101！", log_Method);
 
                 StringBuilder sb = new StringBuilder();

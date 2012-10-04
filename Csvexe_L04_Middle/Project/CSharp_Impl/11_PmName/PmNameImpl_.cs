@@ -59,7 +59,7 @@ namespace Xenon.Middle
         gt_Error_Format:
             if (log_Reports_ThisMethod.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports_ThisMethod.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー36！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

@@ -89,7 +89,7 @@ namespace Xenon.Syntax
                 // エラー。
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー902！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -159,7 +159,7 @@ namespace Xenon.Syntax
                 sFpath = "";
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー901！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -237,7 +237,7 @@ namespace Xenon.Syntax
                 // エラー
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー903！", log_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();

@@ -235,7 +235,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Filepath:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー35！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -253,7 +253,7 @@ namespace Xenon.MiddleImpl
         gt_Error_ContainsKey:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("Er:401;", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -530,7 +530,7 @@ namespace Xenon.MiddleImpl
         gt_Error_InputFolder:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("Er:402;", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -575,7 +575,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NullTable:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー918！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -593,7 +593,7 @@ namespace Xenon.MiddleImpl
         gt_Error_DoubleLoad:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー919！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -676,7 +676,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Duplicated:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー922！", log_Method);
                 r.Message = "変数[" + sName_Variable + "]は既に定義されていますが、さらに定義されました。";
                 log_Reports.EndCreateReport();
@@ -805,7 +805,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFoundVariable:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー923！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -903,7 +903,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFoundVariable:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー924！", log_Method);
                 r.Message = "変数[" + sVariableName + "]は存在しませんでした。";
                 log_Reports.EndCreateReport();
@@ -973,7 +973,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFoundVariable:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー925！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -1089,7 +1089,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFoundVariable:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー376！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -1127,7 +1127,7 @@ namespace Xenon.MiddleImpl
         gt_Error_AnotherClass:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー909", log_Method);
                 r.Message = "変数[" + sName_Var + "]はファイルパス型を期待しましたが、ファイルパス型ではありませんでした。";
                 log_Reports.EndCreateReport();

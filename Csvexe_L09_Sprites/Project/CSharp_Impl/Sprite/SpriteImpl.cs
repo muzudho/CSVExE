@@ -296,7 +296,7 @@ namespace Xenon.Sprites
         gt_Error_Exception:
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー451！", pg_Method);
                 r.Message = "予期しないエラー：" + err_Excp.Message;
                 pg_Logging.EndCreateReport();

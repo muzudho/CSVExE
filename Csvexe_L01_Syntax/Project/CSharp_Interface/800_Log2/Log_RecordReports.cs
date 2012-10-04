@@ -15,7 +15,7 @@ namespace Xenon.Syntax
     /// <summary>
     /// 警告データ
     /// </summary>
-    public interface Log_RecordReport
+    public interface Log_RecordReports
     {
 
 

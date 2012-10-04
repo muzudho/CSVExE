@@ -116,7 +116,7 @@ namespace Xenon.GcavToExpr
         gt_Error_NullFAelem:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7016;", tmpl, log_Reports);
             }

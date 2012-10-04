@@ -53,7 +53,7 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 // arg 不明
-                Collection_Function.SetFunction(Expression_Node_Function11Impl.NAME_FUNCTION, new Expression_Node_Function11Impl(EnumEventhandler.Wr_Rhn, list_Param, transUnknown), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function11Impl.NAME_FUNCTION, new Expression_Node_Function11Impl(EnumEventhandler.O_Lr, list_Param, transUnknown), log_Reports_ThisMethod);
             }
             {
                 //dic_E_Sf.Add(E_Sf17Impl_OLD.NAME_FUNCTION, new E_Sf17Impl_OLD(null, cf_Node));//todo:
@@ -61,13 +61,13 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 // arg 不明
-                Collection_Function.SetFunction(Expression_Node_Function19Impl.NAME_FUNCTION, new Expression_Node_Function19Impl(EnumEventhandler.Wr_Rhn, list_Param, transUnknown), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function19Impl.NAME_FUNCTION, new Expression_Node_Function19Impl(EnumEventhandler.O_Lr, list_Param, transUnknown), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function20Impl.PM_NAME_TABLE);
                 list_Param.Add(Expression_Node_Function20Impl.PM_NAME_CONTROL_LISTBOX);
-                Collection_Function.SetFunction(Expression_Node_Function20Impl.NAME_FUNCTION, new Expression_Node_Function20Impl(EnumEventhandler.Wr_Rhn, list_Param, trans20), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function20Impl.NAME_FUNCTION, new Expression_Node_Function20Impl(EnumEventhandler.O_Lr, list_Param, trans20), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
@@ -77,7 +77,7 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 // arg 不明
-                Collection_Function.SetFunction(Expression_Node_Function22Impl.NAME_FUNCTION, new Expression_Node_Function22Impl(EnumEventhandler.Wr_Rhn, list_Param, transUnknown), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function22Impl.NAME_FUNCTION, new Expression_Node_Function22Impl(EnumEventhandler.O_Lr, list_Param, transUnknown), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
@@ -88,28 +88,28 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function27Impl.PM_NAME_TOGETHER);
-                Collection_Function.SetFunction(Expression_Node_Function27Impl.NAME_FUNCTION, new Expression_Node_Function27Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function27Impl.NAME_FUNCTION, new Expression_Node_Function27Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function28Impl.PM_MESSAGE);
-                Collection_Function.SetFunction(Expression_Node_Function28Impl.NAME_FUNCTION, new Expression_Node_Function28Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function28Impl.NAME_FUNCTION, new Expression_Node_Function28Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function29Impl.PM_NAME_CONTROL);
-                Collection_Function.SetFunction(Expression_Node_Function29Impl.NAME_FUNCTION, new Expression_Node_Function29Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function29Impl.NAME_FUNCTION, new Expression_Node_Function29Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function30Impl.PM_NAME_TOGETHER);
                 list_Param.Add(Expression_Node_Function30Impl.PM_NAME_FORM);
-                Collection_Function.SetFunction(Expression_Node_Function30Impl.NAME_FUNCTION, new Expression_Node_Function30Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function30Impl.NAME_FUNCTION, new Expression_Node_Function30Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function31Impl.PM_NAME_CONTROL);
-                Collection_Function.SetFunction(Expression_Node_Function31Impl.NAME_FUNCTION, new Expression_Node_Function31Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function31Impl.NAME_FUNCTION, new Expression_Node_Function31Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
@@ -125,48 +125,48 @@ namespace Xenon.Functions
                 list_Param.Add(Expression_Node_Function33Impl.PM_VALUE_EXPECTED);
                 list_Param.Add(Expression_Node_Function33Impl.PM_VALUE_EXPECTED2);
                 list_Param.Add(Expression_Node_Function33Impl.PM_VALUE_EMPTY);
-                Collection_Function.SetFunction(Expression_Node_Function33Impl.NAME_FUNCTION, new Expression_Node_Function33Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function33Impl.NAME_FUNCTION, new Expression_Node_Function33Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function34Impl.PM_NAME_VAR);
                 list_Param.Add(Expression_Node_Function34Impl.PM_VALUE);
                 list_Param.Add(Expression_Node_Function34Impl.PM_FLOWSKIP);
-                Collection_Function.SetFunction(Expression_Node_Function34Impl.NAME_FUNCTION, new Expression_Node_Function34Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function34Impl.NAME_FUNCTION, new Expression_Node_Function34Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 // arg 無し
-                Collection_Function.SetFunction(Expression_Node_Function35Impl.NAME_FUNCTION, new Expression_Node_Function35Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function35Impl.NAME_FUNCTION, new Expression_Node_Function35Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function36Impl.PM_CONTROL_NAME);
-                Collection_Function.SetFunction(Expression_Node_Function36Impl.NAME_FUNCTION, new Expression_Node_Function36Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function36Impl.NAME_FUNCTION, new Expression_Node_Function36Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function37Impl.PM_FROM);
                 list_Param.Add(Expression_Node_Function37Impl.PM_TO);
-                Collection_Function.SetFunction(Expression_Node_Function37Impl.NAME_FUNCTION, new Expression_Node_Function37Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function37Impl.NAME_FUNCTION, new Expression_Node_Function37Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function38Impl.PM_FROM);
                 list_Param.Add(Expression_Node_Function38Impl.PM_TO);
-                Collection_Function.SetFunction(Expression_Node_Function38Impl.NAME_FUNCTION, new Expression_Node_Function38Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function38Impl.NAME_FUNCTION, new Expression_Node_Function38Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function39Impl.PM_NAME_CONTROL);
                 list_Param.Add(Expression_Node_Function39Impl.PM_VALUE_ENABLED);
-                Collection_Function.SetFunction(Expression_Node_Function39Impl.NAME_FUNCTION, new Expression_Node_Function39Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function39Impl.NAME_FUNCTION, new Expression_Node_Function39Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function40Impl.PM_NAME_CONTROL);
                 list_Param.Add(Expression_Node_Function40Impl.PM_VALUE_VISIBLED);
-                Collection_Function.SetFunction(Expression_Node_Function40Impl.NAME_FUNCTION, new Expression_Node_Function40Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function40Impl.NAME_FUNCTION, new Expression_Node_Function40Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
@@ -178,12 +178,12 @@ namespace Xenon.Functions
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function43Impl.PM_NAME_VAR);
                 list_Param.Add(Expression_Node_Function43Impl.PM_NAME_CONTROL);
-                Collection_Function.SetFunction(Expression_Node_Function43Impl.NAME_FUNCTION, new Expression_Node_Function43Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function43Impl.NAME_FUNCTION, new Expression_Node_Function43Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 // arg 不明
-                Collection_Function.SetFunction(Expression_Node_Function44Impl.NAME_FUNCTION, new Expression_Node_Function44Impl(EnumEventhandler.Wr_Rhn, list_Param, transUnknown), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function44Impl.NAME_FUNCTION, new Expression_Node_Function44Impl(EnumEventhandler.O_Lr, list_Param, transUnknown), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
@@ -203,7 +203,7 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 // arg 不明
-                Collection_Function.SetFunction(Expression_Node_Function_OnEditorSelected_Impl.NAME_FUNCTION, new Expression_Node_Function_OnEditorSelected_Impl(EnumEventhandler.Tp_B_Wr_Rhn, list_Param, transUnknown), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function_OnEditorSelected_Impl.NAME_FUNCTION, new Expression_Node_Function_OnEditorSelected_Impl(EnumEventhandler.Editor_B_Lr, list_Param, transUnknown), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
@@ -211,14 +211,14 @@ namespace Xenon.Functions
                 list_Param.Add(Expression_Node_Function47Impl.PM_FILE_EXPORT);
                 list_Param.Add(Expression_Node_Function47Impl.PM_FILTER);
                 list_Param.Add(Expression_Node_Function47Impl.PM_POPUP);
-                Collection_Function.SetFunction(Expression_Node_Function47Impl.NAME_FUNCTION, new Expression_Node_Function47Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function47Impl.NAME_FUNCTION, new Expression_Node_Function47Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function48Impl.PM_FILE_LISTFILE);
                 list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_SOURCE);
                 list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION);
-                Collection_Function.SetFunction(Expression_Node_Function48Impl.NAME_FUNCTION, new Expression_Node_Function48Impl(EnumEventhandler.Wr_Rhn, list_Param, trans00), log_Reports_ThisMethod);
+                Collection_Function.SetFunction(Expression_Node_Function48Impl.NAME_FUNCTION, new Expression_Node_Function48Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
 
             //

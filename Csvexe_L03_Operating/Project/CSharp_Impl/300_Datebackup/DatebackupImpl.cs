@@ -480,7 +480,7 @@ namespace Xenon.Operating
         gt_Error_BkFolder:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle( "▲エラー508！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -496,7 +496,7 @@ namespace Xenon.Operating
         gt_Error_MissIo:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle( "▲エラー65507！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -512,7 +512,7 @@ namespace Xenon.Operating
         gt_Error_MissCopy:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle( "▲エラー65506！", pg_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -544,7 +544,7 @@ namespace Xenon.Operating
         gt_Error_MissMove:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle( "▲エラー65508！", pg_Method);
 
                 Log_TextIndentedImpl t = new Log_TextIndentedImpl();

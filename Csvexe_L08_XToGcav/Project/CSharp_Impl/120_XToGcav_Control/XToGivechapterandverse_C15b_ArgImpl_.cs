@@ -256,7 +256,7 @@ namespace Xenon.XToGcav
         gt_Error_Parent:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー361！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -279,7 +279,7 @@ namespace Xenon.XToGcav
         gt_Error_Target:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー562！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -363,7 +363,7 @@ namespace Xenon.XToGcav
         gt_Error_UndefinedAttr:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー336！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

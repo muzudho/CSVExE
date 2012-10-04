@@ -127,7 +127,7 @@ namespace Xenon.Table
             result = null;
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー461！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -222,7 +222,7 @@ namespace Xenon.Table
             // エラー。指定のフィールドが見つからなかった。
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー603！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -252,7 +252,7 @@ namespace Xenon.Table
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー601！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -281,7 +281,7 @@ namespace Xenon.Table
         gt_Error_Null:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー602！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

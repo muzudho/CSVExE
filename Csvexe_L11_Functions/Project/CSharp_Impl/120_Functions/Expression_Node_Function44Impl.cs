@@ -80,7 +80,7 @@ namespace Xenon.Functions
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
-            if (this.EnumEventhandler == EnumEventhandler.O_Wr)
+            if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
                 this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_WrRhn:＞";
 

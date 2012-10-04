@@ -86,7 +86,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NoName:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー323！", log_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -106,7 +106,7 @@ namespace Xenon.MiddleImpl
         gt_Error_OverlappedName:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー322！", log_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -183,7 +183,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFound:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー927！", log_Method);
 
                 StringBuilder s = new StringBuilder();

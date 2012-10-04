@@ -27,7 +27,7 @@ namespace Xenon.Syntax
         /// このスレッドには追加されていないものを返します。
         /// </summary>
         /// <returns></returns>
-        Log_RecordReport CreateDammyReport();
+        Log_RecordReports CreateDammyReport();
 
         /// <summary>
         /// メッセージを全て消去します。
@@ -100,7 +100,7 @@ namespace Xenon.Syntax
         /// このスレッドに既に追加されたレポートを返します。
         /// </summary>
         /// <returns>新しいレポート。</returns>
-        Log_RecordReport BeginCreateReport(EnumReport enumReport);
+        Log_RecordReports BeginCreateReport(EnumReport enumReport);
 
         /// <summary>
         /// レポート作成終了。
@@ -151,7 +151,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// レポートのリスト。
         /// </summary>
-        List<Log_RecordReport> List_Record
+        List<Log_RecordReports> List_Record
         {
             get;
         }

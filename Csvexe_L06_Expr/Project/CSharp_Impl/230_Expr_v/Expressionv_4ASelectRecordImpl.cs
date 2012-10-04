@@ -268,7 +268,7 @@ namespace Xenon.Expr
         gt_Error_EmptyTableName:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6030;", tmpl, log_Reports);
             }
@@ -277,7 +277,7 @@ namespace Xenon.Expr
         gt_Error_NullTable:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6031;", tmpl, log_Reports);
             }

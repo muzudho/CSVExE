@@ -90,7 +90,7 @@ namespace Xenon.Functions
             //
             //
 
-            if (this.EnumEventhandler == EnumEventhandler.O_Wr)
+            if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
                 if (this.Functionparameterset.Sender is Customcontrol)
                 {

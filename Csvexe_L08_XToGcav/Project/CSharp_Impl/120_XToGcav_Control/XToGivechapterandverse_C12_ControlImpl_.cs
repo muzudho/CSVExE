@@ -171,7 +171,7 @@ namespace Xenon.XToGcav
                 string sFcName = ec_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 tmpl.SetParameter(1, sFcName, log_Reports);//コントロール名
 
-                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cf_ControlConfig), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(cf_ControlConfig), log_Reports);//設定位置パンくずリスト
 
                 owner_MemoryApplication.CreateErrorReport("Er:8017;", tmpl, log_Reports);
             }
@@ -184,8 +184,8 @@ namespace Xenon.XToGcav
                 string sFcName = ec_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 tmpl.SetParameter(1, NamesNode.S_CONTROL1, log_Reports);//期待するノード名
                 tmpl.SetParameter(2, err_11elm.Name, log_Reports);//実際のノード名
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
-                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 owner_MemoryApplication.CreateErrorReport("Er:8018;", tmpl, log_Reports);
             }
@@ -195,8 +195,8 @@ namespace Xenon.XToGcav
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_11elm.Name, log_Reports);//ノード名
-                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 owner_MemoryApplication.CreateErrorReport("Er:8019;", tmpl, log_Reports);
             }

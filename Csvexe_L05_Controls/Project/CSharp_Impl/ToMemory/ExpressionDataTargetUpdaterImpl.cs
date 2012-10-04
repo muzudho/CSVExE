@@ -112,7 +112,7 @@ namespace Xenon.Controls
                     {
                         if (log_Reports.CanCreateReport)
                         {
-                            Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                             r.SetTitle("▲エラー377！", pg_Method);
 
                             Log_TextIndented t = new Log_TextIndentedImpl();
@@ -212,7 +212,7 @@ namespace Xenon.Controls
 
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー311！", pg_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -255,7 +255,7 @@ namespace Xenon.Controls
             {
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー312！", pg_Method);
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
@@ -314,7 +314,7 @@ namespace Xenon.Controls
         gt_Error_NotSfcell:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー909！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

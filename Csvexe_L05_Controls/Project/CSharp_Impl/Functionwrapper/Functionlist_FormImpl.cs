@@ -793,7 +793,7 @@ namespace Xenon.Controls
         /// todo:
         /// </summary>
         /// <param nFcName="log_Reports"></param>
-        public override void Execute_OnWrRhn(
+        public override void Execute_OnLr(
             object sender,
             object eventMonitor,//EventMonitor
             string sWrittenPlace_EventOrigin,
@@ -856,7 +856,7 @@ namespace Xenon.Controls
                     //
                     // 登録アクション作成・実行ループ。
                     //
-                    expr_Func.Execute_OnWrRhn(
+                    expr_Func.Execute_OnLr(
                         sender,
                         eventMonitor,
                         sWrittenPlace_EventOrigin,

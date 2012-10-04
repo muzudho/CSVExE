@@ -136,7 +136,7 @@ namespace Xenon.Table
             result = "(テーブルが未指定です)";
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー131！", log_Method);
                 r.Message = "(エラー。テーブルが未指定です）";
                 log_Reports.EndCreateReport();

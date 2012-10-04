@@ -161,7 +161,7 @@ namespace Xenon.GcavToExpr
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_Child_SName_Node, log_Reports);//子設定ノード名
                 tmpl.SetParameter(2, err_Parent_SName_Node, log_Reports);//親設定ノード名
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(err_Child_CfNode), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(err_Child_CfNode), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7020;", tmpl, log_Reports);
             }

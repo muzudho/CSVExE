@@ -25,16 +25,16 @@ namespace Xenon.Syntax
         /// <summary>
         /// 画像ドロップ用
         /// 
-        /// object, DragEventArgs, Point, string, Bitmap, WarningReports
+        /// object, DragEventArgs, Point, string, Bitmap, Log_Reports
         /// </summary>
-        O_Dea_P_S_B_Wr,
+        O_Dea_P_S_B_Lr,
 
         /// <summary>
         /// 画像ドロップ用
         /// 
-        /// object, DragEventArgs, Point, string, string, WarningReports
+        /// object, DragEventArgs, Point, string, string, Log_Reports
         /// </summary>
-        O_Dea_P_S_S_Wr,
+        O_Dea_P_S_S_Lr,
 
         /// <summary>
         /// よく使うアクション object, EventArgs
@@ -70,23 +70,20 @@ namespace Xenon.Syntax
         O_Qcdea,
 
         /// <summary>
-        /// リストボックス用
+        /// よく使うメソッド。（旧：リストボックス用）
         /// 
-        /// object, WarningReports
+        /// object, Log_Reports
+        /// 
+        /// 旧：Lr_Rhn もここ。
         /// </summary>
-        O_Wr,
+        O_Lr,
         
         /// <summary>
-        /// プロジェクト読取用
+        /// エディター読取用
         /// 
-        /// TcProject, bool, WarningReports
+        /// 旧：Tp_B_Lr_Rhn（ TcProject, bool, Log_Reports, Rhn）
         /// </summary>
-        Tp_B_Wr_Rhn,
-
-        /// <summary>
-        /// WarningReports
-        /// </summary>
-        Wr_Rhn,
+        Editor_B_Lr,
 
         //────────────────────────────────────────
         #endregion

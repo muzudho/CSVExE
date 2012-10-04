@@ -469,7 +469,7 @@ namespace Xenon.Sprites
             {
                 if (pg_Logging.CanCreateReport)
                 {
-                    Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー805！", pg_Method);
 
                     StringBuilder t = new StringBuilder();
@@ -512,7 +512,7 @@ namespace Xenon.Sprites
         gt_Error_Exception:
             if (pg_Logging.CanCreateReport)
             {
-                Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー806！", pg_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -661,7 +661,7 @@ namespace Xenon.Sprites
 
                 if (pg_Logging.CanCreateReport)
                 {
-                    Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー803！", pg_Method);
                     r.Message = "スプライト コレクションにヌルは追加できません。";
 
@@ -676,7 +676,7 @@ namespace Xenon.Sprites
 
                 if (pg_Logging.CanCreateReport)
                 {
-                    Log_RecordReport r = pg_Logging.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー804！", pg_Method);
 
                     StringBuilder t = new StringBuilder();

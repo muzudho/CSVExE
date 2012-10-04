@@ -29,7 +29,7 @@ namespace Xenon.Syntax
             this.bDebugEnable = true;
 
             this.bNotInfiniteLoop = true;
-            this.list_Record = new List<Log_RecordReport>();
+            this.list_Record = new List<Log_RecordReports>();
 
             this.log_Callstack = new Log_CallstackImpl();
 
@@ -38,9 +38,9 @@ namespace Xenon.Syntax
             this.sComment_EventCreationMe = "";
         }
 
-        public Log_RecordReport CreateDammyReport()
+        public Log_RecordReports CreateDammyReport()
         {
-            return new Log_Report01Impl(this);
+            return new Log_RecordReportsImpl(this);
         }
 
         //────────────────────────────────────────
@@ -70,7 +70,7 @@ namespace Xenon.Syntax
         /// 警告メッセージを追加します。
         /// </summary>
         /// <param name="warningReport"></param>
-        private void Add(Log_RecordReport log_RecordReport)
+        private void Add(Log_RecordReports log_RecordReport)
         {
             this.list_Record.Add(log_RecordReport);
 
@@ -134,7 +134,7 @@ namespace Xenon.Syntax
             s.Newline();
 
             int nErrorCount = 0;
-            foreach (Log_RecordReport log_RecordReport in this.list_Record)
+            foreach (Log_RecordReports log_RecordReport in this.list_Record)
             {
                 // グループ・タグが指定されていれば、
                 // グループ・タグが一致するメッセージだけを出力します。
@@ -281,12 +281,12 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="d_EnumReport"></param>
         /// <returns>新しいレポート。</returns>
-        public Log_RecordReport BeginCreateReport(EnumReport enumReport)
+        public Log_RecordReports BeginCreateReport(EnumReport enumReport)
         {
             this.bNotInfiniteLoop = false;
 
-            Log_Report01Impl r;
-            r = new Log_Report01Impl(this);
+            Log_RecordReportsImpl r;
+            r = new Log_RecordReportsImpl(this);
 
             r.EnumReport = enumReport;
 
@@ -407,12 +407,12 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private List<Log_RecordReport> list_Record;
+        private List<Log_RecordReports> list_Record;
 
         /// <summary>
         /// 警告メッセージの一覧。
         /// </summary>
-        public List<Log_RecordReport> List_Record
+        public List<Log_RecordReports> List_Record
         {
             get
             {

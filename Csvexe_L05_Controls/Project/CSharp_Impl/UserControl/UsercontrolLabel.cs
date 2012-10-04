@@ -285,7 +285,7 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
                 tmpl.SetParameter(2, sToE_Event.Name, log_Reports);//イベント名
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:522;", tmpl, log_Reports);
             }
@@ -320,7 +320,7 @@ namespace Xenon.Controls
             //#このルートはエラー
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー353！", pg_Method);
 
                 StringBuilder t = new StringBuilder();

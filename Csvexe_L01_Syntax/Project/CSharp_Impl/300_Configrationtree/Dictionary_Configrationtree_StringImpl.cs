@@ -91,7 +91,7 @@ namespace Xenon.Syntax
         gt_Error_Duplicate:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー345！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -188,7 +188,7 @@ namespace Xenon.Syntax
         gt_Error_NoHit:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("Er:004;", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

@@ -125,7 +125,7 @@ namespace Xenon.XToGcav
         gt_Error_NotSupportedChild:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー387！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -146,7 +146,7 @@ namespace Xenon.XToGcav
         gt_Error_IOException:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー388！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -171,7 +171,7 @@ namespace Xenon.XToGcav
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー344！", log_Method);
 
                 StringBuilder t = new StringBuilder();

@@ -310,7 +310,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Fpath:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("△情報53！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -1267,7 +1267,7 @@ namespace Xenon.MiddleImpl
         gt_Error_ZeroCount:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー340！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -1291,7 +1291,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NullName:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー341！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -1313,7 +1313,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NullFc:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー932！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -1336,7 +1336,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFoundFc:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー372！", log_Method);
 
                 StringBuilder t = new StringBuilder();
@@ -1655,7 +1655,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NullFirstFc:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー721！", log_Method);
 
                 StringBuilder s = new StringBuilder();
@@ -1674,7 +1674,7 @@ namespace Xenon.MiddleImpl
         gt_Error_NotFoundUsercontrol:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー933！", log_Method);
 
                 StringBuilder t = new StringBuilder();

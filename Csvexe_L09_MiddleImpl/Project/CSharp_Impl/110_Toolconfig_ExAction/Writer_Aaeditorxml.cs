@@ -119,7 +119,7 @@ namespace Xenon.MiddleImpl
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー341！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

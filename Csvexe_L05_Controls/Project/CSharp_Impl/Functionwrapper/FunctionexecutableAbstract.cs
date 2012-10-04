@@ -160,7 +160,7 @@ namespace Xenon.Controls
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
         /// <param name="log_Reports"></param>
-        public abstract void Execute_OnWrRhn(
+        public abstract void Execute_OnLr(
             object prm_Sender,
             object prm_EventMonitor,//EventMonitor
             string prm_SNode_EventOrigin,

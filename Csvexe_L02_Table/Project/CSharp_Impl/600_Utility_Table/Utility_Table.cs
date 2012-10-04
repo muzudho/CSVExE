@@ -209,7 +209,7 @@ namespace Xenon.Table
         gt_Error_ZeroField:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー471！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -231,7 +231,7 @@ namespace Xenon.Table
         gt_Error_ZeroFieldDef:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー472！", log_Method);
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -514,7 +514,7 @@ namespace Xenon.Table
                             bool bHit2 = int.TryParse(childReccond.Value, out nExpectedInt);
                             if (!bHit2 && log_Reports.CanCreateReport)
                             {
-                                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー502！", log_Method);
                                 r.Message = "int型に変換できませんでした。sValue=[" + childReccond.Value + "]";
                                 log_Reports.EndCreateReport();
@@ -804,7 +804,7 @@ namespace Xenon.Table
         gt_Error_MissField:
             if(log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー501！", log_Method);
 
                 StringBuilder s = new StringBuilder();

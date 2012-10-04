@@ -88,7 +88,7 @@ namespace Xenon.XToGcav
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_FcName, log_Reports);//関数名
-                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8001;", tmpl, log_Reports);
             }

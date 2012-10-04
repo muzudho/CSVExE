@@ -214,7 +214,7 @@ namespace Xenon.Controls
         gt_Error_NoHit:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー102！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -308,7 +308,7 @@ namespace Xenon.Controls
         gt_Error_NotOne:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー101！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

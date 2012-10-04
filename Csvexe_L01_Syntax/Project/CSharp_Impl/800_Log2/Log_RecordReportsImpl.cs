@@ -15,7 +15,7 @@ namespace Xenon.Syntax
     /// <summary>
     /// 警告メッセージ。
     /// </summary>
-    public class Log_Report01Impl : Log_RecordReport
+    public class Log_RecordReportsImpl : Log_RecordReports
     {
 
 
@@ -26,9 +26,9 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Log_Report01Impl(Log_Reports parent_Log_Logging)
+        public Log_RecordReportsImpl(Log_Reports parent_Log_Logging)
         {
-            this.Parent_Log_Reports = parent_Log_Logging;
+            this.Owner = parent_Log_Logging;
             this.sTitle = "";
             this.p1pText = new Builder_TexttemplateP1pImpl();
             this.sConfigStack = "";
@@ -84,7 +84,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Newline();
 
-                s.Append(Log_Report01Impl.ToMessage_Separator());
+                s.Append(Log_RecordReportsImpl.ToMessage_Separator());
 
                 s.Append("　　問題内部ヒント：");
                 s.Newline();
@@ -92,7 +92,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Newline();
 
-                s.Append(Log_Report01Impl.ToMessage_Separator());
+                s.Append(Log_RecordReportsImpl.ToMessage_Separator());
 
                 s.Append("　　問題を報告したオブジェクトの型: ");
                 s.Append(parent_Gcav.GetType());
@@ -113,7 +113,7 @@ namespace Xenon.Syntax
             Configurationtree_Node parent_Cnf
             )
         {
-            return Log_Report01Impl.ToMessage_Configurationtree(parent_Cnf);
+            return Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cnf);
         }
 
         //────────────────────────────────────────
@@ -136,7 +136,7 @@ namespace Xenon.Syntax
             sb.Append(Environment.NewLine);
             sb.Append(Environment.NewLine);
 
-            this.sCallstack = sb.ToString();
+            this.text_Callstack = sb.ToString();
         }
 
         //────────────────────────────────────────
@@ -183,7 +183,7 @@ namespace Xenon.Syntax
             Exception ex
             )
         {
-            return Log_Report01Impl.ToMessage_Exception(ex);
+            return Log_RecordReportsImpl.ToMessage_Exception(ex);
         }
 
         //────────────────────────────────────────
@@ -210,7 +210,7 @@ namespace Xenon.Syntax
         /// <returns></returns>
         public string Message_SSeparator()
         {
-            return Log_Report01Impl.ToMessage_Separator();
+            return Log_RecordReportsImpl.ToMessage_Separator();
         }
 
         //────────────────────────────────────────
@@ -236,24 +236,24 @@ namespace Xenon.Syntax
         /// <summary>
         /// レポート作成時の、コールスタック文字列。
         /// </summary>
-        private string sCallstack;
+        private string text_Callstack;
 
         //────────────────────────────────────────
 
-        private Log_Reports parent_Log_Reports;
+        private Log_Reports owner;
 
         /// <summary>
         /// 親要素。
         /// </summary>
-        public Log_Reports Parent_Log_Reports
+        public Log_Reports Owner
         {
             get
             {
-                return parent_Log_Reports;
+                return owner;
             }
             set
             {
-                parent_Log_Reports = value;
+                owner = value;
             }
         }
 
@@ -301,7 +301,7 @@ namespace Xenon.Syntax
             sb.Append(System.Environment.NewLine);
 
             // コールスタックを付けます。
-            sb.Append(this.sCallstack);
+            sb.Append(this.text_Callstack);
 
             return sb.ToString();
         }

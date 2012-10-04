@@ -75,8 +75,8 @@ namespace Xenon.Expr
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, sName, log_Reports);//名前
-                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
-                    tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
+                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:6042;", tmpl, log_Reports);
                 }
@@ -122,8 +122,8 @@ namespace Xenon.Expr
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, sName, log_Reports);//名前
-                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
-                    tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
+                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:6043;", tmpl, log_Reports);
                 }
@@ -135,8 +135,8 @@ namespace Xenon.Expr
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, sName, log_Reports);//名前
-                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
-                    tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
+                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_Name.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(ex), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:6044;", tmpl, log_Reports);
                 }
@@ -192,8 +192,8 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sStorage, log_Reports);//名前
-                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Storage.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_Storage.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 memoryApplication.CreateErrorReport("Er:6045;", tmpl, log_Reports);
             }

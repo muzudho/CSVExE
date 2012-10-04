@@ -118,7 +118,7 @@ namespace Xenon.Functions
                         }
 
 
-                        expr_Func.Execute_OnWrRhn(
+                        expr_Func.Execute_OnLr(
                             this.Functionparameterset.Sender,
                             new EventMonitorImpl(cf_Event, cf_WrittenPlace_ThisMethod),//ダミー
                             sConfigStack_EventOrigin,

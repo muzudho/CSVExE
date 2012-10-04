@@ -426,7 +426,7 @@ namespace Xenon.GcavToExpr
                     tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
                 }
 
-                tmpl.SetParameter(15, Log_Report01Impl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(15, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7021;", tmpl, log_Reports);
             }
@@ -510,7 +510,7 @@ namespace Xenon.GcavToExpr
                     tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
                 }
 
-                tmpl.SetParameter(15, Log_Report01Impl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(15, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7022;", tmpl, log_Reports);
             }
@@ -594,7 +594,7 @@ namespace Xenon.GcavToExpr
                     tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
                 }
 
-                tmpl.SetParameter(15, Log_Report01Impl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(15, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7023;", tmpl, log_Reports);
             }
@@ -603,7 +603,7 @@ namespace Xenon.GcavToExpr
         gt_Error_NullParent:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7004;", tmpl, log_Reports);
             }
@@ -875,7 +875,7 @@ namespace Xenon.GcavToExpr
                         });
                     tmpl.SetParameter(6, s2.ToString(), log_Reports);
 
-                    tmpl.SetParameter(7, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(7, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                     memoryApplication.CreateErrorReport("Er:7005;", tmpl, log_Reports);
                 }
@@ -995,7 +995,7 @@ namespace Xenon.GcavToExpr
                             Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                             tmpl.SetParameter(1, err_CfAttr.Name, log_Reports);//設定ノード名
                             tmpl.SetParameter(2, err_CfAttr.GetType().Name, log_Reports);//ノードのクラス名
-                            tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(err_CfAttr), log_Reports);//設定位置パンくずリスト
+                            tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(err_CfAttr), log_Reports);//設定位置パンくずリスト
 
                             memoryApplication.CreateErrorReport("Er:7006;", tmpl, log_Reports);
                         }
@@ -1234,7 +1234,7 @@ namespace Xenon.GcavToExpr
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
-                    tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(cf_Child), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(cf_Child), log_Reports);//設定位置パンくずリスト
 
                     memoryApplication.CreateErrorReport("Er:7007;", tmpl, log_Reports);
                 }
@@ -1248,8 +1248,8 @@ namespace Xenon.GcavToExpr
                     tmpl.SetParameter(3, err_Cf_AtElm.GetType().Name, log_Reports);//関数のクラス名
                     tmpl.SetParameter(4, sName_OwnerNode, log_Reports);//親設定ノード名
                     tmpl.SetParameter(5, sName_OwnerFnc, log_Reports);//親設定関数名
-                    tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
-                    tmpl.SetParameter(7, Log_Report01Impl.ToMessage_Exception(err_E), log_Reports);//例外メッセージ
+                    tmpl.SetParameter(6, Log_RecordReportsImpl.ToMessage_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(7, Log_RecordReportsImpl.ToMessage_Exception(err_E), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:7008;", tmpl, log_Reports);
                 }
@@ -1262,8 +1262,8 @@ namespace Xenon.GcavToExpr
                     tmpl.SetParameter(2, err_Cf_AtElm.GetType().Name, log_Reports);//設定ノードのクラス名
                     tmpl.SetParameter(3, sName_OwnerNode, log_Reports);//親設定ノード名
                     tmpl.SetParameter(4, sName_OwnerFnc, log_Reports);//親設定関数名
-                    tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
-                    tmpl.SetParameter(6, Log_Report01Impl.ToMessage_Exception(err_E), log_Reports);//例外メッセージ
+                    tmpl.SetParameter(5, Log_RecordReportsImpl.ToMessage_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(6, Log_RecordReportsImpl.ToMessage_Exception(err_E), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:7009;", tmpl, log_Reports);
                 }

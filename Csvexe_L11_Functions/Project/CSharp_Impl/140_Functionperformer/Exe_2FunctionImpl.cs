@@ -115,9 +115,9 @@ namespace Xenon.Functions
 
                     switch (expr_Func.EnumEventhandler)
                     {
-                        case EnumEventhandler.Wr_Rhn:
+                        case EnumEventhandler.O_Lr:
                             {
-                                expr_Func.Execute_OnWrRhn(
+                                expr_Func.Execute_OnLr(
                                     sender,
                                     eventMonitor,
                                     sConfigStack_EventOrigin,
@@ -129,7 +129,7 @@ namespace Xenon.Functions
                         case EnumEventhandler.O_Ea:
                             {
                                 // 変換 OEa → WrRhn。
-                                expr_Func.Execute_OnWrRhn(
+                                expr_Func.Execute_OnLr(
                                     sender,
                                     eventMonitor,
                                     sConfigStack_EventOrigin,

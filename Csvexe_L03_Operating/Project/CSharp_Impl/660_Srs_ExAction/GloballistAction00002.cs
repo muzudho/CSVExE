@@ -61,7 +61,7 @@ namespace Xenon.Operating
                 {
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー0800206！", pg_Method);
 
                         StringBuilder t = new StringBuilder();
@@ -91,7 +91,7 @@ namespace Xenon.Operating
                 {
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー0800205！", pg_Method);
 
                         StringBuilder t = new StringBuilder();
@@ -208,7 +208,7 @@ namespace Xenon.Operating
                                             // エラー
                                             if (log_Reports.CanCreateReport)
                                             {
-                                                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                                                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                                                 r.SetTitle("▲エラー1002！", pg_Method);
                                                 r.Message = "指定された変数の型["+variable.Name_Type+"]が、重複されて記述されています。";
                                                 log_Reports.EndCreateReport();
@@ -262,7 +262,7 @@ namespace Xenon.Operating
                 {
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー080103！", pg_Method);
                         r.Message = "『SRSグローバルリスト』設定ファイルが見つかりません。：" + ex.Message;
                         log_Reports.EndCreateReport();
@@ -272,7 +272,7 @@ namespace Xenon.Operating
                 {
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー0800204！", pg_Method);
 
                         StringBuilder t = new StringBuilder();

@@ -210,7 +210,7 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports), log_Reports);//コントロール名
                 tmpl.SetParameter(2, sChkValueType, log_Reports);//CHK_VALUE_TYPEフィールド値
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:519;", tmpl, log_Reports);
             }
@@ -297,7 +297,7 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, this.GetType().Name, log_Reports);//クラス名
                 tmpl.SetParameter(2, sToE_Event.Name, log_Reports);//イベント名
-                tmpl.SetParameter(3, Log_Report01Impl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(sToE_Event.Configurationtree_Event), log_Reports);//設定位置パンくずリスト
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:519;", tmpl, log_Reports);
             }
@@ -409,7 +409,7 @@ namespace Xenon.Controls
             //#このルートはエラー
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー356！", pg_Method);
 
                 StringBuilder t = new StringBuilder();

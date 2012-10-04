@@ -108,7 +108,7 @@ namespace Xenon.Operating
                             // エラー
                             if (log_Reports_Load.CanCreateReport)
                             {
-                                Log_RecordReport r = log_Reports_Load.BeginCreateReport(EnumReport.Error);
+                                Log_RecordReports r = log_Reports_Load.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー111！", pg_Method);
                                 r.Message = sErrorMsg;
                                 log_Reports_Load.EndCreateReport();
@@ -125,7 +125,7 @@ namespace Xenon.Operating
                             // エラー
                             if (log_Reports_Load.CanCreateReport)
                             {
-                                Log_RecordReport r = log_Reports_Load.BeginCreateReport(EnumReport.Error);
+                                Log_RecordReports r = log_Reports_Load.BeginCreateReport(EnumReport.Error);
                                 r.SetTitle("▲エラー112！", pg_Method);
                                 r.Message = sErrorMsg;
                                 log_Reports_Load.EndCreateReport();

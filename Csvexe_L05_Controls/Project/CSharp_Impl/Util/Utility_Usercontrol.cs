@@ -86,7 +86,7 @@ namespace Xenon.Controls
         gt_Error_Exception:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲設定エラー4041！", pg_Method);
                 r.Message = "コントロール設定ファイルの読取エラー：" + err_Excp.Message;
                 log_Reports.EndCreateReport();

@@ -84,7 +84,7 @@ namespace Xenon.Functions
             //
 
             Expression_Node_String err_Ec_FcName1;
-            if (this.EnumEventhandler == EnumEventhandler.O_Wr)
+            if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
 
                 if (this.Functionparameterset.Sender is Customcontrol)

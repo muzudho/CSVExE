@@ -37,7 +37,7 @@ namespace Xenon.Operating
                 // グローバルリスト ファイルへのパスが空文字列だった場合
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー080011！", pg_Method);
                     r.Message = "グローバルリスト ファイルへのパスを指定してください。";
                     log_Reports.EndCreateReport();
@@ -59,7 +59,7 @@ namespace Xenon.Operating
                     sText1 = null;
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー0800023！", pg_Method);
 
                         StringBuilder t = new StringBuilder();
@@ -147,7 +147,7 @@ namespace Xenon.Operating
             {
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー0800871！", pg_Method);
 
                     StringBuilder t = new StringBuilder();
@@ -192,7 +192,7 @@ namespace Xenon.Operating
                 {
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー872！", pg_Method);
                         r.Message = "行内容[" + sLine + "]の[" + sToken1 + "]部分に、「,」が含まれていませんでした。";
                         log_Reports.EndCreateReport();
@@ -222,7 +222,7 @@ namespace Xenon.Operating
                     // エラー
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー878！", pg_Method);
                         r.Message = "変数番号[" + sNumber + "]を、int型の数値に変換できませんでした。";
                         log_Reports.EndCreateReport();

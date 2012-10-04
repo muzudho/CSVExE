@@ -59,7 +59,7 @@ namespace Xenon.Operating
                     // エラー処理
                     if (log_Reports.CanCreateReport)
                     {
-                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                         r.SetTitle("▲エラー0801087！", pg_Method);
                         r.Message = "[" + ex.GetType().Name + "]：" + ex.Message;
                         log_Reports.EndCreateReport();
@@ -74,7 +74,7 @@ namespace Xenon.Operating
             {
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー1086！", pg_Method);
                     r.Message = ex.Message;
                     log_Reports.EndCreateReport();
@@ -84,7 +84,7 @@ namespace Xenon.Operating
             {
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー1085！", pg_Method);
                     r.Message = ex.Message;
                     log_Reports.EndCreateReport();
@@ -94,7 +94,7 @@ namespace Xenon.Operating
             {
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー0801084！", pg_Method);
                     r.Message = "["+ex.GetType().Name+"]："+ex.Message;
                     log_Reports.EndCreateReport();

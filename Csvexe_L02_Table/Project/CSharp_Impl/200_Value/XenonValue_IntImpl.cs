@@ -232,7 +232,7 @@ namespace Xenon.Table
         gt_Error_AnotherType2:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー201！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -259,7 +259,7 @@ namespace Xenon.Table
         gt_Error_EmptyString:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー201！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -286,7 +286,7 @@ namespace Xenon.Table
         gt_Error_Invalid:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー111！！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -311,7 +311,7 @@ namespace Xenon.Table
         gt_Error_Null:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー110！", log_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -327,7 +327,7 @@ namespace Xenon.Table
         gt_Error_AnotherType:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー111！", log_Method);
 
                 Log_TextIndentedImpl s = new Log_TextIndentedImpl();
@@ -345,7 +345,7 @@ namespace Xenon.Table
         gt_Error_Class:
             if (log_Reports.CanCreateReport)
             {
-                Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー112！", log_Method);
 
                 Log_TextIndentedImpl s = new Log_TextIndentedImpl();

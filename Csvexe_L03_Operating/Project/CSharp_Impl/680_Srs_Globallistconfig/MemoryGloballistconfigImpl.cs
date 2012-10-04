@@ -86,7 +86,7 @@ namespace Xenon.Operating
                 // エラー
                 if (log_Reports.CanCreateReport)
                 {
-                    Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                     r.SetTitle("▲エラー1008！", pg_Method);
                     r.Message = "入力数値[" + sNumber + "]を、int型整数に変換できませんでした。";
                     log_Reports.EndCreateReport();
@@ -186,7 +186,7 @@ namespace Xenon.Operating
                                     // 情報・警告
                                     if (log_Reports.CanCreateReport)
                                     {
-                                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Warning);
+                                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Warning);
                                         r.Message = sInfoMsg.ToString();
                                         sInfoMsg.Length = 0;
                                         log_Reports.EndCreateReport();
@@ -198,7 +198,7 @@ namespace Xenon.Operating
                                     // エラー
                                     if (log_Reports.CanCreateReport)
                                     {
-                                        Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
+                                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                                         r.Message = sErrorMsg;
                                         log_Reports.EndCreateReport();
                                     }

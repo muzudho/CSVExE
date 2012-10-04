@@ -192,7 +192,7 @@ namespace Xenon.Middle
         gt_Error_OldMajor:
             if (pg_Loggin.CanCreateReport)
             {
-                Log_RecordReport r = pg_Loggin.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Loggin.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー41！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -219,7 +219,7 @@ namespace Xenon.Middle
         gt_Error_FutureVersion:
             if (pg_Loggin.CanCreateReport)
             {
-                Log_RecordReport r = pg_Loggin.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Loggin.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー41！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -246,7 +246,7 @@ namespace Xenon.Middle
         gt_Error_Parse:
             if (pg_Loggin.CanCreateReport)
             {
-                Log_RecordReport r = pg_Loggin.BeginCreateReport(EnumReport.Error);
+                Log_RecordReports r = pg_Loggin.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー41！", pg_Method);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();

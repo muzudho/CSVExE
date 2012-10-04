@@ -223,7 +223,7 @@ namespace Xenon.XToGcav
                 s1.Append("」");
                 tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性値
 
-                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(5, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 //ａｃｃｅｓｓ属性に「ｔｏ」が指定されていない時に、ｔａｒｇｅｔ属性に「ｎｏｎｅ」「ｃｅｌｌ」「ｌｉｓｔｂｏｘ」以外のものが設定されていました。これはエラーです。
                 //
@@ -249,7 +249,7 @@ namespace Xenon.XToGcav
                 s1.Append("」");
                 tmpl.SetParameter(3, s1.ToString(), log_Reports);//属性値
 
-                tmpl.SetParameter(4, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8021;", tmpl, log_Reports);
             }
@@ -270,7 +270,7 @@ namespace Xenon.XToGcav
                 s1.Append("」指定なし");
                 tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性値
 
-                tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(5, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8022;", tmpl, log_Reports);
             }

@@ -155,7 +155,7 @@ namespace Xenon.Functions
 
 
 
-            if (this.EnumEventhandler == EnumEventhandler.Tp_B_Wr_Rhn)
+            if (this.EnumEventhandler == EnumEventhandler.Editor_B_Lr)
             {
 
 
@@ -540,7 +540,7 @@ namespace Xenon.Functions
                                 this.Owner_MemoryApplication, log_Reports);
 
                         // 実行
-                        expr_Func.Execute_OnWrRhn(this.Functionparameterset.Sender, eventMonitor_Dammy, sConfigStack_EventOrigin, log_Reports);
+                        expr_Func.Execute_OnLr(this.Functionparameterset.Sender, eventMonitor_Dammy, sConfigStack_EventOrigin, log_Reports);
 
                         // 実行後
                         ecList_Fpath_BackupRequest = ((Expression_Node_Function22Impl)expr_Func).List_Expression_Filepath_BackupRequest_Out;
@@ -629,7 +629,7 @@ namespace Xenon.Functions
                     expr_Func.SetAttribute(Expression_Node_Function19Impl.PM_NAME_TABLE_STYLESHEET, ec_Str, log_Reports);
 
 
-                    expr_Func.Execute_OnWrRhn(
+                    expr_Func.Execute_OnLr(
                         this.Functionparameterset.Sender,
                         eventMonitor_Dammy,
                         sConfigStack_EventOrigin,
@@ -740,7 +740,7 @@ namespace Xenon.Functions
                     }
 
 
-                    expr_Func.Execute_OnWrRhn(
+                    expr_Func.Execute_OnLr(
                         this.Functionparameterset.Sender,
                         eventMonitor_Dammy,
                         sConfigStack_EventOrigin,
@@ -1004,7 +1004,7 @@ namespace Xenon.Functions
                     ((Expression_Node_Function44Impl)expr_Func).Expression_FilepathList_Backup = listExpression_Filepath_BackupRequest;
                 }
 
-                expr_Func.Execute_OnWrRhn(
+                expr_Func.Execute_OnLr(
                     sender,
                     eventMonitor_Dammy,
                     sConfigStack_EventOrigin,
@@ -1311,7 +1311,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sArgName, log_Reports);//引数名
-                tmpl.SetParameter(2, Log_Report01Impl.ToMessage_Configurationtree(ec_Fpath.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_Fpath.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110006;", tmpl, log_Reports);
             }
