@@ -329,7 +329,7 @@ namespace Xenon.Expr
                                     );
 
                                 //TODO:e_SelectedValue.SetValidation(...);
-                                list_FldImpl3.Add(ec_SelectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                                list_FldImpl3.Add(ec_SelectedValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                             }
 
                         }
@@ -375,7 +375,7 @@ namespace Xenon.Expr
                                             );
 
                                         //TODO:e_SelectedValue.SetValidation(...);
-                                        list_FldImpl3.Add(ec_SelectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                                        list_FldImpl3.Add(ec_SelectedValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                                     }
                                 }
                             }
@@ -413,7 +413,7 @@ namespace Xenon.Expr
                                     );
 
                                 //TODO:e_SelectedValue.SetValidation(...);
-                                list_FldImpl3.Add(ec_SelectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                                list_FldImpl3.Add(ec_SelectedValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                                 //                                fldListImpl3.Add(e_SelectedValue);
                             }
 

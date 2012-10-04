@@ -27,7 +27,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:CSV書出し_変数;";
+        public static readonly string NAME_FUNCTION = "Sf:CSV書出し_変数;";
 
         //────────────────────────────────────────
         //
@@ -37,7 +37,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 表示文章。
         /// </summary>
-        public static string S_PM_MESSAGE = PmNames.S_MESSAGE.Name_Pm;
+        public static string PM_MESSAGE = PmNames.S_MESSAGE.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -67,9 +67,9 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;            
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function45Impl.S_PM_MESSAGE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function45Impl.PM_MESSAGE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -142,7 +142,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             string sName_Fnc;
-            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -213,7 +213,7 @@ namespace Xenon.Functions
                 {
                     if (log_Method.CanDebug(1))
                     {
-                        log_Method.WriteDebug_ToConsole("[" + sKey + "]=[" + ec_String.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                        log_Method.WriteDebug_ToConsole("[" + sKey + "]=[" + ec_String.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                     }
 
                     sb.Append(nAuto);//NO
@@ -226,7 +226,7 @@ namespace Xenon.Functions
                     sb.Append(",");
                     //FOLDER TODO:逆算が必要
                     sb.Append(",");
-                    sb.Append(ec_String.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));//VALUE
+                    sb.Append(ec_String.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));//VALUE
                     sb.Append(",");
                     sb.Append(NamesFld.S_END);//END
                     sb.Append(Environment.NewLine);
@@ -244,7 +244,7 @@ namespace Xenon.Functions
                 {
                     Expression_Node_Filepath ec_Fpath_Logs = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(NamesVar.S_SP_LOGS, null, cur_Cf), true, log_Reports);
 
-                    string sFpatha_LogVariables = ec_Fpath_Logs.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOG_VARIABLES;
+                    string sFpatha_LogVariables = ec_Fpath_Logs.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOG_VARIABLES;
 
                     if (log_Reports.Successful)
                     {
@@ -365,7 +365,7 @@ namespace Xenon.Functions
                         {
                             Expression_Node_Filepath ec_Fpath = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(sName_Var, null, cur_Cf), true, log_Reports);
                             // 絶対パスとは限らない。フォルダーを指していることもある。
-                            string sFpath = ec_Fpath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                            string sFpath = ec_Fpath.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                             //フォルダー列値を取得。
                             string sNamevar_Folder_Src;
@@ -379,7 +379,7 @@ namespace Xenon.Functions
                                 {
                                     // FOLDER列に入力があれば。
 
-                                    string sFpath_Folder = ec_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                                    string sFpath_Folder = ec_Folder.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                     if (sValue_Var.StartsWith(sFpath_Folder))
                                     {
                                         // FOLDER列値をそのままキープ。
@@ -439,7 +439,7 @@ namespace Xenon.Functions
                     {
                         Expression_Node_Filepath ec_Fpath_Logs = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(NamesVar.S_SP_LOGS, null, cur_Cf), true, log_Reports);
 
-                        string sFpatha_LogVariables = ec_Fpath_Logs.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_SAVE_VARIABLES;
+                        string sFpatha_LogVariables = ec_Fpath_Logs.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_SAVE_VARIABLES;
 
                         if (log_Reports.Successful)
                         {
@@ -464,7 +464,7 @@ namespace Xenon.Functions
                 sb.Append("#Perform:");
                 sb.Append(Environment.NewLine);
                 string sArgMessage;
-                this.TrySelectAttribute(out sArgMessage, Expression_Node_Function45Impl.S_PM_MESSAGE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sArgMessage, Expression_Node_Function45Impl.PM_MESSAGE, EnumHitcount.One_Or_Zero, log_Reports);
 
                 sb.Append(sArgMessage);
 

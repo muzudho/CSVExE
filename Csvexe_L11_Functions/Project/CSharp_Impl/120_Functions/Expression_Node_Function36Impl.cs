@@ -22,7 +22,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:入力値の消去;";
+        public static readonly string NAME_FUNCTION = "Sf:入力値の消去;";
 
         //────────────────────────────────────────
         //
@@ -32,7 +32,7 @@ namespace Xenon.Functions
         /// <summary>
         /// コントロールの名前。
         /// </summary>
-        public static readonly string S_PM_FC_NAME = PmNames.S_NAME_CONTROL.Name_Pm;
+        public static readonly string PM_CONTROL_NAME = PmNames.S_NAME_CONTROL.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -61,9 +61,9 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function36Impl.S_PM_FC_NAME, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function36Impl.PM_CONTROL_NAME, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -97,7 +97,7 @@ namespace Xenon.Functions
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
 
@@ -138,7 +138,7 @@ namespace Xenon.Functions
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
 
@@ -170,7 +170,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -189,9 +189,9 @@ namespace Xenon.Functions
                 // 正常時
 
                 Expression_Node_String ec_FcName_Prm;
-                this.TrySelectAttribute(out ec_FcName_Prm, Expression_Node_Function36Impl.S_PM_FC_NAME, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_FcName_Prm, Expression_Node_Function36Impl.PM_CONTROL_NAME, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sFcName_Prm = ec_FcName_Prm.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports);
+                string sFcName_Prm = ec_FcName_Prm.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports);
 
 
                 List<Expression_Node_String> ecList_FcName = new List<Expression_Node_String>();

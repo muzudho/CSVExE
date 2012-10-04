@@ -318,7 +318,7 @@ namespace Xenon.Controls
 
 
                             // ★DEBUG
-                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(Request_SelectingImpl.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
+                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
 
                         }
                     }
@@ -1243,7 +1243,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolTextbox1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolTextbox1.Name = sName_Usercontrol;
                 }
 

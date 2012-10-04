@@ -126,7 +126,7 @@ namespace Xenon.Controls
                             // ★★★★★★★★★★★この中で時間食ってる。
                             DataRowView dataRowView = (DataRowView)ccLst.Items[e.Index];
                             ecv_ADisplay.SetDataRow(dataRowView.Row);
-                            string sResult = ecv_ADisplay.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                            string sResult = ecv_ADisplay.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                             // ★★★★★★★★★★★この中で時間食ってる。
 
 

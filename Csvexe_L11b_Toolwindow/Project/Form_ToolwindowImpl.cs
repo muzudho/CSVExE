@@ -132,7 +132,7 @@ namespace Xenon.Toolwindow
             }
 
             sFpatha = e_Fpath_prj.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, pg_Logging);
+                EnumHitcount.Unconstraint, pg_Logging);
             if (!pg_Logging.Successful)
             {
                 // 既エラー。
@@ -308,18 +308,18 @@ namespace Xenon.Toolwindow
             //■  ■ 「変数書出ボタン」のイベント設定
             //  ■
             {
-                Expression_Node_Function expr_Func = Collection_Function.NewFunction2( Expression_Node_Function45Impl.S_ACTION_NAME, 
+                Expression_Node_Function expr_Func = Collection_Function.NewFunction2( Expression_Node_Function45Impl.NAME_FUNCTION, 
                     parent_Expression_Null, parent_Gcav, this.Owner_MemoryApplication, pg_Logging);
-                expr_Func.Dictionary_Expression_Attribute.Set(Expression_Node_Function28Impl.S_PM_MESSAGE, new Expression_Leaf_StringImpl("変数出力試し", null, parent_Gcav), pg_Logging);
+                expr_Func.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Leaf_StringImpl("変数出力試し", null, parent_Gcav), pg_Logging);
             }
 
             //  ■
             //■  ■ 「フォームCSV書出ボタン」のイベント設定
             //  ■
             {
-                Expression_Node_Function expr_Func = Collection_Function.NewFunction2( Expression_Node_Function46Impl.S_ACTION_NAME,
+                Expression_Node_Function expr_Func = Collection_Function.NewFunction2(Expression_Node_Function46Impl.NAME_FUNCTION,
                         parent_Expression_Null, parent_Gcav, this.Owner_MemoryApplication, pg_Logging);
-                expr_Func.Dictionary_Expression_Attribute.Set(Expression_Node_Function28Impl.S_PM_MESSAGE, new Expression_Leaf_StringImpl("フォームCSV出力試し", null, parent_Gcav), pg_Logging);
+                expr_Func.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Leaf_StringImpl("フォームCSV出力試し", null, parent_Gcav), pg_Logging);
 
                 this.uctButton2.UsercontroleventhandlerClick += new EventHandler(expr_Func.Execute_OnOEa);
             }

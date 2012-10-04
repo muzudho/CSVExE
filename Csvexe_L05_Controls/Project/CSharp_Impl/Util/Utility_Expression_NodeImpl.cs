@@ -27,7 +27,7 @@ namespace Xenon.Controls
         /// <returns></returns>
         public static List<Expression_Node_String> SelectItemsByPmAsCsv_Unconditional(
             List<Expression_Node_String> ecList_Item, string sPmName, bool bRemove,
-            Request_Selecting request, Log_Reports log_Reports)
+            EnumHitcount hits, Log_Reports log_Reports)
         {
             return Utility_Expression_NodeImpl.SelectItemsByPmAsCsv_Full_(
                 ecList_Item,
@@ -35,7 +35,7 @@ namespace Xenon.Controls
                 true,
                 "",
                 bRemove,
-                request,
+                hits,
                 log_Reports
                 );
         }
@@ -55,7 +55,7 @@ namespace Xenon.Controls
         /// <returns></returns>
         public static List<Expression_Node_String> SelectItemsByPmAsCsv(
             List<Expression_Node_String> ecList_Item, string sPmName, string sExpectedValue,
-            bool bRemove, Request_Selecting request, Log_Reports log_Reports)
+            bool bRemove, EnumHitcount hits, Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
             pg_Method.BeginMethod(Info_Controls.Name_Library, "Util_E_NodeImpl", "SelectItemsByAttrAsCsv",log_Reports);
@@ -70,7 +70,7 @@ namespace Xenon.Controls
                 false,
                 sExpectedValue,
                 bRemove,
-                request,
+                hits,
                 log_Reports
                 );
 
@@ -103,7 +103,7 @@ namespace Xenon.Controls
             bool bUnconditional,//無条件一致なら真
             string sExpectedValue,
             bool bRemove,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -122,10 +122,10 @@ namespace Xenon.Controls
                 if (log_Reports.Successful)
                 {
                     Expression_Node_String ec_AttrValue;
-                    bool bHit = ec_Item.Dictionary_Expression_Attribute.TrySelect(out ec_AttrValue, sPmName, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = ec_Item.TrySelectAttribute(out ec_AttrValue, sPmName, EnumHitcount.One_Or_Zero, log_Reports);
                     if (bHit)
                     {
-                        string sAttrValue = ec_AttrValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                        string sAttrValue = ec_AttrValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                         CsvTo_ListImpl to = new CsvTo_ListImpl();
                         List<string> sList_Value = to.Read(sAttrValue);
@@ -156,8 +156,8 @@ namespace Xenon.Controls
                             }
 
 
-                            if (EnumHitcount.First_Exist == request.EnumHitcount ||
-                                EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+                            if (EnumHitcount.First_Exist == hits ||
+                                EnumHitcount.First_Exist_Or_Zero == hits)
                             {
                                 // 最初の１件で削除は終了。複数件ヒットするかどうかは判定しない。
                                 break;
@@ -171,7 +171,7 @@ namespace Xenon.Controls
             //ystem.Console.WriteLine(Info_Forms.LibraryName + ":Util_E_NodeImpl.GetItemsByAttrAsCsv: 直後 list_E_Result.Count=[" + list_E_Result.Count + "]");
 
 
-            if (EnumHitcount.One == request.EnumHitcount)
+            if (EnumHitcount.One == hits)
             {
                 // 必ず１件だけヒットする想定。
 
@@ -180,7 +180,7 @@ namespace Xenon.Controls
                     goto gt_Error_NotOne;
                 }
             }
-            else if (EnumHitcount.First_Exist == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist == hits)
             {
                 // 必ずヒットする。複数件あれば、最初の１件だけ取得。
 
@@ -193,7 +193,7 @@ namespace Xenon.Controls
                     ecList_Result.RemoveRange(1, ecList_Result.Count - 1);
                 }
             }
-            else if (EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist_Or_Zero == hits)
             {
                 // ヒットすれば最初の１件だけ、ヒットしなければ０件の想定。
 
@@ -255,8 +255,8 @@ namespace Xenon.Controls
                 s.Newline();
 
 
-                s.AppendI(1, "request_Items.EnumHitcount=[");
-                s.Append(request.EnumHitcount);
+                s.AppendI(1, "request_Items=[");
+                s.Append(hits);
                 s.Append("]");
                 s.Newline();
 
@@ -269,14 +269,14 @@ namespace Xenon.Controls
                 foreach (Expression_Node_String e_Item2 in ecList_Item)
                 {
                     string sAttrNameValue;
-                    bool bHit = e_Item2.Dictionary_Expression_Attribute.TrySelect(out sAttrNameValue, sPmName, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = e_Item2.TrySelectAttribute(out sAttrNameValue, sPmName, EnumHitcount.One_Or_Zero, log_Reports);
 
                     s.AppendI(1, "・「E■[");
                     s.Append(e_Item2.Cur_Configurationtree.Name);
                     s.Append("]　ｎａｍｅ＝”[");
                     s.Append(sAttrNameValue);
                     s.Append("]　値＝”[");
-                    s.Append(e_Item2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                    s.Append(e_Item2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                     s.Append("]”」");
                     s.Newline();
 

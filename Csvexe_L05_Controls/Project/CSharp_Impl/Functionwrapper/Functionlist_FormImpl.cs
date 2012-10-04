@@ -102,7 +102,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでドラッグ＆ドロップされました。";
 
@@ -201,7 +201,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
 
                 // ステータスバーに、コントロール名を表示。
@@ -293,7 +293,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールで画像がドロップされました。";
 
@@ -377,7 +377,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでリストボックス用アクションが実行されました。";
 
@@ -463,7 +463,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでマウス_アクションが実行されました。";
 
@@ -550,7 +550,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでOEaアクションが実行されました。";
 
@@ -645,7 +645,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでプロジェクト選択アクションが実行されました。";
 
@@ -733,7 +733,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
                 log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでQueryContinueDragEventArgsアクションが実行されました。";
 
@@ -815,7 +815,7 @@ namespace Xenon.Controls
             {
                 cct = (Customcontrol)sender;
 
-                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールでWrRhnアクションが実行されました。";
 

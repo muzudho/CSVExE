@@ -67,11 +67,11 @@ namespace Xenon.Functions
 
             Usercontrol ucFc = null;
 
-            string sFcName1 = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sFcName1 = ec_FcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol ucFc2, ref bool bRemove, ref bool bBreak)
             {
-                string sFcName2 = ucFc2.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sFcName2 = ucFc2.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 if (sFcName2 == sFcName1)
                 {
@@ -266,7 +266,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform_FcImpl",log_Reports);
             //
             //
-            string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_FcImpl:" + o_Name_Event.SValue + "＞";
 
 
@@ -353,7 +353,7 @@ namespace Xenon.Functions
             owner_MemoryApplication.MemoryForms.ForEach_Children(delegate(string sKey, Usercontrol ucFc, ref bool bRemove, ref bool bBreak)
             {
                 string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                     );
 
@@ -396,7 +396,7 @@ namespace Xenon.Functions
                     else
                     {
                         string sFcName3 = ucFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                            Request_SelectingImpl.Unconstraint,
+                            EnumHitcount.Unconstraint,
                             log_Reports
                             );
 

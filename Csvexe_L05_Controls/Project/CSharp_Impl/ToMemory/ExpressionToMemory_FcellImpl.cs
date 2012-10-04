@@ -43,7 +43,7 @@ namespace Xenon.Controls
             //
 
             string sName_Fnc;
-            ec_SfCell.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            ec_SfCell.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
             if (NamesFnc.S_CELL != sName_Fnc)
             {
                 // エラー。
@@ -57,8 +57,7 @@ namespace Xenon.Controls
                 bool bHit = ec_SfCell.TrySelectAttribute(
                     out sSelectedFldName,
                     PmNames.S_SELECT.Name_Pm,
-                    false,//true,
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.One_Or_Zero,
                     log_Reports
                     );
 
@@ -66,7 +65,7 @@ namespace Xenon.Controls
                 //{
                 //    // 【追加 2012-07-10】
                 //    // Sf:cell; の子要素arg1 には、name="ｓｅｌｅｃｔ" のものがある。本来これは属性連結しておいて欲しい。
-                //    List<Expression_Node_String> list_Arg1 = e_SfCell.SelectDirectchildByNodename(NamesNode.S_ARG1, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                //    List<Expression_Node_String> list_Arg1 = e_SfCell.SelectDirectchildByNodename(NamesNode.S_ARG1, false, EnumHitcount.Unconstraint, log_Reports);
 
                 //    d_InMethod.WriteDebug_ToConsole(1, "sSelectedFldNameが属性になかった。子要素ａｒｇ１（" + list_Arg1 .Count+ "個）から探す。");
                 //    if (0<d_InMethod.NDebugLevel && list_Arg1.Count<=0)
@@ -76,11 +75,11 @@ namespace Xenon.Controls
                 //        d_InMethod.WriteDebug_ToConsole(1, s.ToString());   
                 //    }
 
-                //    EUtil_NodeImpl.SelectItemsByAttrAsCsv(list_Arg1, PmNames.NAME.SAttrName, ValuesAttr.S_SELECT, false, Request_SelectingImpl.First_Exist, log_Reports);
+                //    EUtil_NodeImpl.SelectItemsByAttrAsCsv(list_Arg1, PmNames.NAME.SAttrName, ValuesAttr.S_SELECT, false, EnumHitcount.First_Exist, log_Reports);
 
                 //    if (log_Reports.Successful)
                 //    {
-                //        sSelectedFldName = list_Arg1[0].Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                //        sSelectedFldName = list_Arg1[0].Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 //    }
                 //}
             }
@@ -103,7 +102,7 @@ namespace Xenon.Controls
                 ec_SfCell.List_Expression_Child.ForEach(delegate(Expression_Node_String ec_Child, ref bool bRemove, ref bool bBreak)
                 {
                     string sValue;
-                    ec_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    ec_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
 
                     if (NamesNode.S_FNC == ec_Child.Cur_Configurationtree.Name &&
                         NamesFnc.S_WHERE == sValue)
@@ -120,7 +119,7 @@ namespace Xenon.Controls
                             if (NamesNode.S_FNC == e_Item.Cur_Configurationtree.Name)
                             {
                                 Expression_Node_String ec_Field;
-                                bool bHit3 = e_Item.TrySelectAttribute(out ec_Field, PmNames.S_FIELD.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                                bool bHit3 = e_Item.TrySelectAttribute(out ec_Field, PmNames.S_FIELD.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                                 if (bHit3)
                                 {
                                     //「E■ｆ－ｃｅｌｌ」／「E■＠ｗｈｅｒｅ」／「E■ｆｎｃ　ｆｉｅｌｄ＝”★”」。
@@ -128,7 +127,7 @@ namespace Xenon.Controls
 
                                     if (pg_Method.CanDebug(2))
                                     {
-                                        pg_Method.WriteDebug_ToConsole( "「E■ｆ－ｃｅｌｌ」／「E■ａ－ｗｈｅｒｅ」／「E■ｆｎｃ　ｆｉｅｌｄ＝”[" + ec_KeyFldName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]”」。");
+                                        pg_Method.WriteDebug_ToConsole( "「E■ｆ－ｃｅｌｌ」／「E■ａ－ｗｈｅｒｅ」／「E■ｆｎｃ　ｆｉｅｌｄ＝”[" + ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]”」。");
                                     }
                                 }
                                 else
@@ -175,8 +174,7 @@ namespace Xenon.Controls
                 bool bHit = ec_SfCell.TrySelectAttribute(
                     out ec_TableName1,
                     PmNames.S_FROM.Name_Pm,
-                    true,
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.One,
                     log_Reports
                     );
 
@@ -185,8 +183,8 @@ namespace Xenon.Controls
                 //    d_InMethod.WriteDebug_ToConsole(1, "e_TableName1が属性になかった。子要素ａｒｇ１から探す。");
                 //    // 【追加 2012-07-10】
                 //    // Sf:cell; の子要素arg1 には、name=”ｆｒｏｍ” のものがある。本来これは属性連結しておいて欲しい。
-                //    List<Expression_Node_String> list_Arg1 = e_SfCell.SelectDirectchildByNodename(NamesNode.S_ARG1, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                //    EUtil_NodeImpl.SelectItemsByAttrAsCsv(list_Arg1, PmNames.NAME.SAttrName, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+                //    List<Expression_Node_String> list_Arg1 = e_SfCell.SelectDirectchildByNodename(NamesNode.S_ARG1, false, EnumHitcount.Unconstraint, log_Reports);
+                //    EUtil_NodeImpl.SelectItemsByAttrAsCsv(list_Arg1, PmNames.NAME.SAttrName, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
 
                 //    if (log_Reports.Successful)
                 //    {
@@ -207,7 +205,7 @@ namespace Xenon.Controls
             if (log_Reports.Successful)
             {
                 string sRequired1;
-                bool bHit = ec_SfCell.TrySelectAttribute(out sRequired1, PmNames.S_REQUIRED.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = ec_SfCell.TrySelectAttribute(out sRequired1, PmNames.S_REQUIRED.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 if (bHit)
                 {
                     // 【旧仕様】
@@ -222,7 +220,7 @@ namespace Xenon.Controls
                     //
                     {
                         Expression_Node_String ec_Where;
-                        bool bHit1 = ec_SfCell.TrySelectAttribute(out ec_Where, PmNames.S_WHERE.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        bool bHit1 = ec_SfCell.TrySelectAttribute(out ec_Where, PmNames.S_WHERE.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                         if (bHit1)
                         {
                             throw new Exception("こーこは通らない？");
@@ -286,7 +284,7 @@ namespace Xenon.Controls
                 {
                     sList_KeyFldName = new List<string>();
 
-                    string sKeyFldName = ec_KeyFldName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sKeyFldName = ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     if ("" == sKeyFldName.Trim())
                     {
                         // エラー
@@ -395,8 +393,8 @@ namespace Xenon.Controls
                 List<DataRow> dst_Row = new List<DataRow>();
 
 
-                string sKeyFieldName = ec_KeyFldName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
-                string sExpectedValue = ec_KeyExpected.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sKeyFieldName = ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string sExpectedValue = ec_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 Configurationtree_Node cf_WrittenPlace_Query = ec_SfCell.Cur_Configurationtree;
 
                 SelectPerformerImpl sp = new SelectPerformerImpl();
@@ -487,7 +485,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -515,7 +513,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -543,7 +541,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -571,7 +569,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -599,7 +597,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -626,7 +624,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("　　this.TableName=[");
-                s.Append(ec_TableName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_TableName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -653,7 +651,7 @@ namespace Xenon.Controls
                 t.Append("「E■[");
                 t.Append(ec_KeyFldName1.Cur_Configurationtree.Name);
                 t.Append("]」、キーフィールド名=[");
-                t.Append(ec_KeyFldName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                t.Append(ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 t.Append("]");
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
@@ -696,7 +694,7 @@ namespace Xenon.Controls
                 Log_RecordReport r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー344！", pg_Method);
 
-                string sDebugExceptedKey = ec_KeyExpected.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sDebugExceptedKey = ec_KeyExpected.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
@@ -710,7 +708,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 s.Append("［");
-                s.Append(ec_KeyFldName1.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_KeyFldName1.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("］フィールドに");
 
                 s.Append("[");

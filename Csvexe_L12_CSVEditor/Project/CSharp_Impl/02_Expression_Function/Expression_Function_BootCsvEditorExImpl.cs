@@ -24,7 +24,7 @@ namespace Xenon.Csvexe
         /// <summary>
         /// 関数名。
         /// </summary>
-        public new const string S_ACTION_NAME = "Sf:Frame02Ex;";
+        public new const string NAME_FUNCTION = "Sf:Frame02Ex;";
 
         //────────────────────────────────────────
         #endregion
@@ -52,12 +52,12 @@ namespace Xenon.Csvexe
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), pg_Logging);
+            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), pg_Logging);
 
             //「プロジェクト選択時」のイベントハンドラーを上書き要求。
             {
                 Expression_Node_Function expr_Func2 = Collection_Function.NewFunction2(
-                        Expression_Node_Function_OnEditorSelected_Impl.S_ACTION_NAME,
+                        Expression_Node_Function_OnEditorSelected_Impl.NAME_FUNCTION,
                         f0,
                         cur_Gcav,
                         //EnumEventhandler.Tp_B_Wr_Rhn,

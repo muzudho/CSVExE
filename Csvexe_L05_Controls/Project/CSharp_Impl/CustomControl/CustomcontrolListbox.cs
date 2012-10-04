@@ -115,7 +115,7 @@ namespace Xenon.Controls
             string sErrorMsg;
 
 
-            string sName_KeyFld = ec_KeyFieldName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sName_KeyFld = ec_KeyFieldName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             //if(null==this.O_DsrcTable)
             //{
@@ -235,7 +235,7 @@ namespace Xenon.Controls
                         goto gt_EndMethod;
                     }
 
-                    o_ExpectedValue.Humaninput = ec_ExpectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    o_ExpectedValue.Humaninput = ec_ExpectedValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 }
 
                 if (log_Reports.Successful)
@@ -338,8 +338,8 @@ namespace Xenon.Controls
             Log_Reports log_Reports
             )
         {
-            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
@@ -391,8 +391,8 @@ namespace Xenon.Controls
             }
 
 
-            List<Expression_Node_String> listExpr_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> listExpr_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
@@ -514,7 +514,7 @@ namespace Xenon.Controls
             pg_Method.BeginMethod(Info_Controls.Name_Library, this, "ccListbox_DataSourceChanged",log_Reports_ThisMethod);
             //
             //
-            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
             log_Reports_ThisMethod.Comment_EventCreationMe  ="[" + sName_Usercontrol + "]コントロール（リストボックス）のデータソースが変更されました。";
 

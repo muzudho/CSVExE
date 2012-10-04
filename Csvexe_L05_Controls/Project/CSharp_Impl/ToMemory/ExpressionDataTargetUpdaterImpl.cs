@@ -38,8 +38,8 @@ namespace Xenon.Controls
             //
             //
 
-            List<Expression_Node_String> listExpr_Data = ec_Control.SelectDirectchildByNodename( NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> listExpr_Data = ec_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> listExpr_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(listExpr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
@@ -88,7 +88,7 @@ namespace Xenon.Controls
             parent_Expr_Fcells.List_Expression_Child.ForEach(delegate(Expression_Node_String child_Expr, ref bool bRemove, ref bool bBreak)
             {
                 string sName_Fnc;
-                child_Expr.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                child_Expr.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
 
                 if (log_Reports.Successful)
                 {
@@ -159,7 +159,7 @@ namespace Xenon.Controls
 
 
             string sName_Fnc;
-            ec_SfCell.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            ec_SfCell.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
             if (NamesFnc.S_CELL != sName_Fnc)
             {
                 // エラー。
@@ -187,7 +187,7 @@ namespace Xenon.Controls
             {
                 //「E■ｒｅｃ－ｃｏｎｄ」を調べる。
                 Expression_Node_String ec_Where;
-                bool bHit2 = ec_SfCell.TrySelectAttribute(out ec_Where, PmNames.S_WHERE.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit2 = ec_SfCell.TrySelectAttribute(out ec_Where, PmNames.S_WHERE.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 if (bHit2)
                 {
                     ec_Where.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)

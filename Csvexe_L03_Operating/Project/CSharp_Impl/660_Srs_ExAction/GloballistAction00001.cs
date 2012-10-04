@@ -25,7 +25,7 @@ namespace Xenon.Operating
             MemoryGloballist moGl = new MemoryGloballistImpl();
 
             string sFpatha = expr_Fpath_GloballistText.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, log_Reports);//絶対ファイルパス
+                EnumHitcount.Unconstraint, log_Reports);//絶対ファイルパス
             if (!log_Reports.Successful)
             {
                 // 既エラー。

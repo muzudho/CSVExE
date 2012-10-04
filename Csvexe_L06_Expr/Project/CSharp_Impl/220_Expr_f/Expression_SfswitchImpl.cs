@@ -66,7 +66,7 @@ namespace Xenon.Expr
             {
                 // ＜ａｒｇ１　ｎａｍｅ＝”ｓｗｉｔｃｈＶａｌｕｅ”　＞
                 log_Reports.Log_Callstack.Push(log_Method, "①");
-                this.Dictionary_Expression_Attribute.TrySelect(out sSwitchValue, PmNames.S_VALUE_SWITCH.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sSwitchValue, PmNames.S_VALUE_SWITCH.Name_Pm, EnumHitcount.One, log_Reports);
                 log_Reports.Log_Callstack.Pop(log_Method, "①");
             }
 
@@ -84,13 +84,13 @@ namespace Xenon.Expr
                 StringBuilder sb = new StringBuilder();
 
                 List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                     );
 
                 foreach (Expression_Node_String ec_Child in ecList)
                 {
-                    sb.Append(ec_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                    sb.Append(ec_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 }
                 sSwitchValue = sb.ToString();
             }
@@ -110,7 +110,7 @@ namespace Xenon.Expr
                 string sExpected;
                 {
                     log_Reports.Log_Callstack.Push(log_Method, "②");
-                    ec_SfCase.TrySelectAttribute(out sExpected, PmNames.S_VALUE_CASE.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    ec_SfCase.TrySelectAttribute(out sExpected, PmNames.S_VALUE_CASE.Name_Pm, EnumHitcount.One, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "②");
                 }
 
@@ -145,7 +145,7 @@ namespace Xenon.Expr
                 if (sList_ExpectedTrim.Contains(sSwitchValue))
                 {
                     log_Reports.Log_Callstack.Push(log_Method, "④");
-                    string sHit = ec_SfCase.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sHit = ec_SfCase.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "④");
 
 

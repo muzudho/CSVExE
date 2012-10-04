@@ -437,7 +437,7 @@ namespace Xenon.MiddleImpl
                         o_Table_Form.Name,
                         new Configurationtree_NodeImpl(
                             NamesNode.S_FORM_CONFIG,
-                            o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
+                            o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                         ));
                     if (!log_Reports.Successful)
                     {
@@ -474,7 +474,7 @@ namespace Xenon.MiddleImpl
                     fo_Config_ByGroup = new TableUserformconfigImpl(
                         o_Table_Form.Name,
                         new Configurationtree_NodeImpl(NamesNode.S_FORM_CONFIG,
-                        o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
+                        o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                         ));
                     if (!log_Reports.Successful)
                     {
@@ -1150,7 +1150,7 @@ namespace Xenon.MiddleImpl
 
             this.ForEach_Children(delegate(string sKey, Usercontrol fcUc, ref bool bRemove, ref bool bBreak)
             {
-                string sFcName = fcUc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sFcName = fcUc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 if (log_Reports.Successful && sFcName.StartsWith(sStarts))
                 {
@@ -1203,7 +1203,7 @@ namespace Xenon.MiddleImpl
                 }
 
                 // コントロール名。カンマ区切りかも知れない。
-                sFcNameCsv = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sFcNameCsv = ec_FcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 List<string> sList_FcName = new CsvTo_ListImpl().Read(sFcNameCsv);
 
@@ -1385,7 +1385,7 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            string sFcName = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sFcName = ec_FcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             bool bResult = this.dictionary_Item.Remove(sFcName);
 
             //
@@ -1415,7 +1415,7 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            string sFcName = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sFcName = ec_FcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
 
             if (fcUc is Control)
@@ -1663,7 +1663,7 @@ namespace Xenon.MiddleImpl
 
                 s.Append(Environment.NewLine);
                 s.Append("コントロール名＝[");
-                s.Append(err_EFcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(err_EFcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 s.Append("]");
 
                 r.Message = s.ToString();
@@ -1735,7 +1735,7 @@ namespace Xenon.MiddleImpl
                     goto end_fc;
                 }
 
-                log_Method.WriteInfo_ToConsole("(" + nCount + ")" + fcUc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_Dammy));
+                log_Method.WriteInfo_ToConsole("(" + nCount + ")" + fcUc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_Dammy));
             // fcUc.ControlCommon.Configurationtree_Control は、ヌルのことがある。
 
 
@@ -1936,7 +1936,7 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            string sFcName = ec_FcName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sFcName = ec_FcName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             bool bResult = this.dictionary_Item.ContainsKey(sFcName);
 
             //

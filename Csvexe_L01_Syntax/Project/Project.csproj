@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharp_Interface\100_Masterdata\Utility_Hitcount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp_Impl\200_Log1\Log_MethodImpl.cs" />
     <Compile Include="CSharp_Impl\300_Configrationtree\Dictionary_Configrationtree_StringImpl.cs" />
@@ -71,8 +72,6 @@
     <Compile Include="CSharp_Impl\501_Expression_String\Dictionary_Expression_Node_StringImpl.cs" />
     <Compile Include="CSharp_Impl\501_Expression_String\Expression_Node_StringImpl.cs" />
     <Compile Include="CSharp_Impl\501_Expression_String\Expression_Leaf_StringImpl.cs" />
-    <Compile Include="CSharp_Impl\501_Expression_String\Request_SelectingBuilderImpl.cs" />
-    <Compile Include="CSharp_Impl\501_Expression_String\Request_SelectingImpl.cs" />
     <Compile Include="CSharp_Impl\502_Expression_P1p\Expression_TexttemplateP1pImpl.cs" />
     <Compile Include="CSharp_Impl\502_Expression_P1p\Utility_TexttemplateP1p.cs" />
     <Compile Include="CSharp_Impl\502_Expression_P1p\Builder_TexttemplateP1pImpl.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="CSharp_Interface\100_Masterdata\EnumReport.cs" />
     <Compile Include="CSharp_Interface\200_Log1\Log_Stopwatch.cs" />
     <Compile Include="CSharp_Interface\800_Log2\Log_Reports.cs" />
-    <Compile Include="CSharp_Interface\800_Log2\Request_Selecting.cs" />
     <Compile Include="CSharp_Interface\100_Masterdata\EnumHitcount.cs" />
     <Compile Include="CSharp_Interface\300_Configrationtree\List_Configrationtree_Node.cs" />
     <Compile Include="CSharp_Impl\300_Configrationtree\Configrationtree_NodeFilepathImpl.cs" />

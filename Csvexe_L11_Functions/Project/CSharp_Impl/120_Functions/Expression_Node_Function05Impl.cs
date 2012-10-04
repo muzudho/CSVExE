@@ -22,7 +22,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:CSV書出;";
+        public static readonly string NAME_FUNCTION = "Sf:CSV書出;";
 
         //────────────────────────────────────────
         //
@@ -32,12 +32,12 @@ namespace Xenon.Functions
         /// <summary>
         /// 元となるテーブル名。//カンマ区切りで複数指定できる。
         /// </summary>
-        public static readonly string S_PM_NAME_TABLE_SRC = PmNames.S_NAME_TABLE_SRC.Name_Pm;
+        public static readonly string PM_NAME_TABLE_SOURCE = PmNames.S_NAME_TABLE_SRC.Name_Pm;
 
         /// <summary>
         /// 書き出し先となるテーブル名。//カンマ区切りで複数指定できる。
         /// </summary>
-        public static readonly string S_PM_NAME_TABLE_DST = PmNames.S_NAME_TABLE_DST.Name_Pm;
+        public static readonly string PM_NAME_TABLE_DESTINATION = PmNames.S_NAME_TABLE_DST.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -65,10 +65,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function05Impl.S_PM_NAME_TABLE_SRC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function05Impl.S_PM_NAME_TABLE_DST, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function05Impl.PM_NAME_TABLE_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function05Impl.PM_NAME_TABLE_DESTINATION, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -94,7 +94,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -110,7 +110,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追記：[" + fcNameStr + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
@@ -125,7 +125,7 @@ namespace Xenon.Functions
                 XenonTable o_Table_Src;
                 {
                     Expression_Node_String ec_ArgTableName;
-                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function05Impl.S_PM_NAME_TABLE_SRC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function05Impl.PM_NAME_TABLE_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
 
                     o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
                         ec_ArgTableName,
@@ -172,7 +172,7 @@ namespace Xenon.Functions
                 if (log_Reports.Successful)
                 {
                     Expression_Node_String ec_ArgTableName;
-                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function05Impl.S_PM_NAME_TABLE_DST, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function05Impl.PM_NAME_TABLE_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
 
                     o_Table_Dst = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
                         ec_ArgTableName,
@@ -191,7 +191,7 @@ namespace Xenon.Functions
                 string sFpatha_Dst;//絶対ファイルパス
                 if (log_Reports.Successful)
                 {
-                    sFpatha_Dst = o_Table_Dst.Expression_Filepath_ConfigStack.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    sFpatha_Dst = o_Table_Dst.Expression_Filepath_ConfigStack.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 }
                 else
                 {

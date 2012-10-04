@@ -21,7 +21,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:入力値の確定;";
+        public static readonly string NAME_FUNCTION = "Sf:入力値の確定;";
 
         //────────────────────────────────────────
         //
@@ -31,7 +31,7 @@ namespace Xenon.Functions
         /// <summary>
         /// コントロールの名前。
         /// </summary>
-        public static readonly string S_PM_NAME_CONTROL = PmNames.S_NAME_CONTROL.Name_Pm;
+        public static readonly string PM_NAME_CONTROL = PmNames.S_NAME_CONTROL.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -59,9 +59,9 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function29Impl.S_PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function29Impl.PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -97,7 +97,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol cct = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sName_Usercontrol = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
                 }
@@ -127,7 +127,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、NAction29を実行。";
                 }
@@ -155,7 +155,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -178,9 +178,9 @@ namespace Xenon.Functions
                 //
                 // コントロール名が指定されていれば、そのコントロール名。
                 //
-                this.TrySelectAttribute(out ec_Name_Control, Expression_Node_Function29Impl.S_PM_NAME_CONTROL, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Name_Control, Expression_Node_Function29Impl.PM_NAME_CONTROL, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sName_Control = ec_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sName_Control = ec_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
 
                 if ("" == sName_Control.Trim())

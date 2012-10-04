@@ -84,7 +84,7 @@ namespace Xenon.Syntax
         /// 一覧。
         /// </summary>
         public List<Configurationtree_Node> SelectList(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             )
         {

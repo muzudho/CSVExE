@@ -123,7 +123,7 @@ namespace Xenon.Operating
             // 例：「editor-backup」
             // 
             string sFpatha_BkHome = this.Expression_Filepath_Backuphome.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint,
+                EnumHitcount.Unconstraint,
                 log_Reports
                 );
             if (!log_Reports.Successful)
@@ -167,7 +167,7 @@ namespace Xenon.Operating
                 }
 
                 sFopatha_date = ec_Dir.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                     );
                 if (!log_Reports.Successful)
@@ -201,7 +201,7 @@ namespace Xenon.Operating
                 }
 
                 sFopatha_dateTemp = ec_Dir.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                 );
                 if (!log_Reports.Successful)
@@ -280,7 +280,7 @@ namespace Xenon.Operating
                 }
 
                 string sFpatha_Source = ec_Fpath_WrittenPlace.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                 );
                 if (!log_Reports.Successful)
@@ -392,7 +392,7 @@ namespace Xenon.Operating
 
                 // もう一回、絶対パスの取得し直し
                 string sFpatha_Dst = ec_Fpath_Dst.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                     );
                 if (!log_Reports.Successful)
@@ -688,7 +688,7 @@ namespace Xenon.Operating
                 {
                     // 正常時
                     sFopath_Deletee = ec_Fpath.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
                     if (!log_Reports.Successful)

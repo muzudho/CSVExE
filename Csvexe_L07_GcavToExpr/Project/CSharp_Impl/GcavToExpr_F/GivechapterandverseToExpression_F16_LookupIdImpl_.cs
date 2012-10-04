@@ -98,7 +98,7 @@ namespace Xenon.GcavToExpr
                     //
                     //
                     //
-                    parent_Ec.Dictionary_Expression_Attribute.Set(PmNames.S_LOOKUP_ID.Name_Pm, cur_Ec, log_Reports);
+                    parent_Ec.SetAttribute(PmNames.S_LOOKUP_ID.Name_Pm, cur_Ec, log_Reports);
 
                     goto gt_EndMethod;
                 }
@@ -136,7 +136,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Ec.Dictionary_Expression_Attribute.Set(PmNames.S_LOOKUP_ID.Name_Pm, cur_Ec, log_Reports);
+            parent_Ec.SetAttribute(PmNames.S_LOOKUP_ID.Name_Pm, cur_Ec, log_Reports);
 
 
             //
@@ -149,11 +149,11 @@ namespace Xenon.GcavToExpr
             if (log_Method.CanDebug(1))
             {
                 string parent_SName_Fnc;
-                parent_Ec.Dictionary_Expression_Attribute.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                parent_Ec.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 親＜[" + parent_Ec.Cur_Configurationtree.Name + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”　＞");
 
                 string sName_MyFnc;
-                cur_Ec.Dictionary_Expression_Attribute.TrySelect(out sName_MyFnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                cur_Ec.TrySelectAttribute(out sName_MyFnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 自＜[" + cur_Ec.Cur_Configurationtree.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”　＞");
             }
 

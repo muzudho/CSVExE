@@ -21,7 +21,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:リスト項目選択;";
+        public static readonly string NAME_FUNCTION = "Sf:リスト項目選択;";
 
         //────────────────────────────────────────
         //
@@ -31,27 +31,27 @@ namespace Xenon.Functions
         /// <summary>
         /// コントロール（リストボックス）の名前。
         /// </summary>
-        public static readonly string S_PM_NAME_FC = PmNames.S_NAME_CONTROL.Name_Pm;
+        public static readonly string PM_NAME_CONTROL = PmNames.S_NAME_CONTROL.Name_Pm;
 
         /// <summary>
         /// キーフィールド名。
         /// </summary>
-        public static readonly string S_PM_NAME_FIELD_KEY = PmNames.S_NAME_FIELD_KEY.Name_Pm;// "keyFieldName";
+        public static readonly string PM_NAME_FIELD_KEY = PmNames.S_NAME_FIELD_KEY.Name_Pm;// "keyFieldName";
 
         /// <summary>
         /// 比較する値１。
         /// </summary>
-        public static readonly string S_PM_VALUE_EXPECTED = PmNames.S_VALUE_EXPECTED.Name_Pm;
+        public static readonly string PM_VALUE_EXPECTED = PmNames.S_VALUE_EXPECTED.Name_Pm;
 
         /// <summary>
         /// 比較する値２。
         /// </summary>
-        public static readonly string S_PM_VALUE_EXPECTED2 = PmNames.S_VALUE_EXPECTED2.Name_Pm;
+        public static readonly string PM_VALUE_EXPECTED2 = PmNames.S_VALUE_EXPECTED2.Name_Pm;
 
         /// <summary>
         /// 空文字列だった場合の代替文字列。
         /// </summary>
-        public static readonly string S_PM_VALUE_EMPTY = PmNames.S_VALUE_EMPTY.Name_Pm;// "emptyToAltValue";
+        public static readonly string PM_VALUE_EMPTY = PmNames.S_VALUE_EMPTY.Name_Pm;// "emptyToAltValue";
         
         //────────────────────────────────────────
         #endregion
@@ -79,13 +79,13 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function33Impl.S_PM_NAME_FC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function33Impl.S_PM_NAME_FIELD_KEY, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function33Impl.S_PM_VALUE_EXPECTED, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function33Impl.S_PM_VALUE_EXPECTED2, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function33Impl.S_PM_VALUE_EMPTY, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function33Impl.PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function33Impl.PM_NAME_FIELD_KEY, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function33Impl.PM_VALUE_EXPECTED, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function33Impl.PM_VALUE_EXPECTED2, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function33Impl.PM_VALUE_EMPTY, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -160,7 +160,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -179,7 +179,7 @@ namespace Xenon.Functions
                     Customcontrol fcCc = (Customcontrol)sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
 
@@ -205,7 +205,7 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 Expression_Node_String ec_ArgFcName;
-                this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function33Impl.S_PM_NAME_FC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function33Impl.PM_NAME_CONTROL, EnumHitcount.One_Or_Zero, log_Reports);
 
 
                 List<Usercontrol> list_FcUc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
@@ -248,15 +248,15 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 Expression_Node_String ec_ArgExpectedValue;
-                this.TrySelectAttribute(out ec_ArgExpectedValue, Expression_Node_Function33Impl.S_PM_VALUE_EXPECTED, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgExpectedValue, Expression_Node_Function33Impl.PM_VALUE_EXPECTED, EnumHitcount.One_Or_Zero, log_Reports);
 
                 Expression_Node_String ec_ArgKeyFieldName;
-                this.TrySelectAttribute(out ec_ArgKeyFieldName, Expression_Node_Function33Impl.S_PM_NAME_FIELD_KEY, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgKeyFieldName, Expression_Node_Function33Impl.PM_NAME_FIELD_KEY, EnumHitcount.One_Or_Zero, log_Reports);
 
                 Expression_Node_String ec_ArgEmptyToAltValue;
-                this.TrySelectAttribute(out ec_ArgEmptyToAltValue, Expression_Node_Function33Impl.S_PM_VALUE_EMPTY, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgEmptyToAltValue, Expression_Node_Function33Impl.PM_VALUE_EMPTY, EnumHitcount.One_Or_Zero, log_Reports);
 
-                if ("" == ec_ArgExpectedValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports))
+                if ("" == ec_ArgExpectedValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports))
                 {
                     //
                     // 空文字列が指定されたときの代替値で検索。（初期値は空文字列）。
@@ -287,14 +287,14 @@ namespace Xenon.Functions
                     log_Method.WriteWarning_ToConsole("選択されてない。。。");
 
                     Expression_Node_String ec_ArgExpectedValue2;
-                    this.TrySelectAttribute(out ec_ArgExpectedValue2, Expression_Node_Function33Impl.S_PM_VALUE_EXPECTED2, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgExpectedValue2, Expression_Node_Function33Impl.PM_VALUE_EXPECTED2, EnumHitcount.One_Or_Zero, log_Reports);
 
                     //
                     // デフォルト値の設定があるかどうか。
                     //
-                    if ("" != ec_ArgExpectedValue2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports))
+                    if ("" != ec_ArgExpectedValue2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports))
                     {
-                        if ("" == ec_ArgExpectedValue2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports))
+                        if ("" == ec_ArgExpectedValue2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports))
                         {
                             //
                             // 空文字列が指定されたときの代替値で検索。（初期値は空文字列）。

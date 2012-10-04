@@ -66,7 +66,7 @@ namespace Xenon.Expr
 
             // ｎａｍｅ属性
             string sFncName;
-            if (!this.Dictionary_Expression_Attribute.TrySelect(out sFncName, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports))
+            if (!this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports))
             {
                 // エラー時
                 sResult = "＜エラー：ｎａｍｅ属性無し＞";
@@ -108,7 +108,7 @@ namespace Xenon.Expr
                 // e_Function=" + Environment.NewLine + s2.ToString()
 
                 // 登録されている「ユーザー定義関数」を実行します。
-                sResult = ec_CommonFunction.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sResult = ec_CommonFunction.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             }
 
             goto gt_EndMethod;
@@ -156,11 +156,11 @@ namespace Xenon.Expr
         //        {
         //            //ｗｈｅｒｅ
         //            Expression_Node_String e_Awhr_RecordSetLoadFrom;//ソース情報利用
-        //            bool bHit = this.Dictionary_Expression_Attribute.TryGet(
+        //            bool bHit = this.TrySelectAttribute(
         //                 out e_Awhr_RecordSetLoadFrom,
         //                NamesNode.S_RECORD_SET_LOAD_FROM5,
         //                false,
-        //                Request_SelectingImpl.Unconstraint,
+        //                EnumHitcount.Unconstraint,
         //                log_Reports //null
         //                );
 
@@ -168,7 +168,7 @@ namespace Xenon.Expr
         //        }
 
 
-        //        if ("" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
+        //        if ("" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
         //        {
         //            bLoad = true;
         //        }
@@ -292,7 +292,7 @@ namespace Xenon.Expr
         ///// <returns></returns>
         //private void E_Execute_P4(
         //    int nHitsCount,//eRecordList.Count
-        //    Request_Selecting request,
+        //    EnumHitcount request,
         //    Log_Reports log_Reports
         //    )
         //{
@@ -302,7 +302,7 @@ namespace Xenon.Expr
         //    //
         //    //
 
-        //    switch (request.EnumHitcount)
+        //    switch (request)
         //    {
         //        case EnumHitcount.One:
         //            if (1 != nHitsCount)

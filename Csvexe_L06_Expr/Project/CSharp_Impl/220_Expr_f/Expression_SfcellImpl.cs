@@ -133,7 +133,7 @@ namespace Xenon.Expr
             if (log_Reports.Successful)
             {
                 // into属性の有無。
-                if ("" != selectSt.Expression_Into.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
+                if ("" != selectSt.Expression_Into.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                 {
                     bExists_Into = true;
                 }
@@ -258,7 +258,7 @@ namespace Xenon.Expr
             //
             this.E_Execute_P4(
                 sFieldListList.Count,
-                this.Request_Selecting,
+                this.EnumHitcount,
                 log_Reports
                 );
             if (!log_Reports.Successful)
@@ -302,7 +302,7 @@ namespace Xenon.Expr
 
                 // into句のテーブルの、情報を読み込みます。
                 XenonTable o_IntoTableInfoOnly;
-                //ystem.Console.WriteLine(Info_E.LibraryName + ":E_FcellImpl#Expression_ExecuteMain: into属性が指定されています。e_Into=[" + selectSt.Expression_Into.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                //ystem.Console.WriteLine(Info_E.LibraryName + ":E_FcellImpl#Expression_ExecuteMain: into属性が指定されています。e_Into=[" + selectSt.Expression_Into.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                 o_IntoTableInfoOnly = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_Into, true, log_Reports);
 
                 if (!log_Reports.Successful)
@@ -337,7 +337,7 @@ namespace Xenon.Expr
                 // 作ったテーブルをセット。
                 //
                 // 新規なら追加、既存なら上書き。
-                this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable[selectSt.Expression_Into.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)] = o_NewTable;
+                this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable[selectSt.Expression_Into.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)] = o_NewTable;
 
                 if (!log_Reports.Successful)
                 {
@@ -407,7 +407,7 @@ namespace Xenon.Expr
 
             //　「E■＠ｗｈｅｒｅ」の子要素＜ｒｅｃ－ｃｏｎｄ＞。
             //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　src_E_ReccondParent＝[" + src_E_ReccondListParent.Cur_Configurationtree.Name_Node + "]　属性数＝[" + src_E_ReccondListParent.E_AttrDic.Count + "]　子要素数＝[" + src_E_ReccondListParent.CountChildNodes + "]");
-            foreach (Expression_Node_String ec_Reccond_Src in parent_Expression_ReccondList_Src.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports))
+            foreach (Expression_Node_String ec_Reccond_Src in parent_Expression_ReccondList_Src.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports))
             {
                 // logic属性=""
                 EnumLogic enumLogic = EnumLogic.None;
@@ -434,7 +434,7 @@ namespace Xenon.Expr
                 if (NamesNode.S_FNC == ec_Reccond_Src.Cur_Configurationtree.Name)
                 {
                     string sFncName;
-                    ec_Reccond_Src.Dictionary_Expression_Attribute.TrySelect(out sFncName, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    ec_Reccond_Src.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
                     if (sFncName == NamesFnc.S_REC_COND)
                     {
                         //
@@ -449,24 +449,24 @@ namespace Xenon.Expr
                         ec_Reccond_Src.Dictionary_Expression_Attribute.ForEach(
                             delegate(string sPmName, Expression_Node_String ec_Attr2, ref bool bBreak)
                             {
-                                //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　[属性] " + sAttrName + "＝”" + e_Attr.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”");
+                                //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　[属性] " + sAttrName + "＝”" + e_Attr.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”");
 
                                 if (sPmName == PmNames.S_LOGIC.Name_Pm)
                                 {
                                     // 「＠ｌｏｇｉｃ」値
-                                    enumLogic = Utility_Table.LogicStringToEnum(ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                                    enumLogic = Utility_Table.LogicStringToEnum(ec_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                                     bRead_Logic = true;
                                 }
                                 else if (sPmName == PmNames.S_FIELD.Name_Pm)
                                 {
                                     // field属性="" （logic属性がない場合は必須）
-                                    sField = ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                                    sField = ec_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                     bRead_Field = true;
                                 }
                                 else if (sPmName == PmNames.S_OPE.Name_Pm)
                                 {
                                     // ope属性=""
-                                    sOpe = ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                                    sOpe = ec_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                     bRead_Ope = true;
                                 }
                                 else if (sPmName == PmNames.S_VALUE.Name_Pm)
@@ -476,7 +476,7 @@ namespace Xenon.Expr
                                     System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList:　※valueは属性にせず、子要素にしたい。★★★★★★★★★☆★★★★★★★★★☆★★★★★★★★★☆");
 
                                     // value属性=""
-                                    sValue = ec_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                                    sValue = ec_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                     bRead_Value = true;
                                 }
                                 else if (sPmName == PmNames.S_DESCRIPTION.Name_Pm)
@@ -513,7 +513,7 @@ namespace Xenon.Expr
                                     NamesNode.S_FNC == ec_Child.Cur_Configurationtree.Name
                                     )
                                 {
-                                    sValue = ec_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                                    sValue = ec_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                     bRead_Value = true;
                                     //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の子要素=[" + e_Child.Cur_Configurationtree.Name_Node + "]　sValue=[" + sValue + "]");
                                 }
@@ -736,12 +736,12 @@ namespace Xenon.Expr
             Expression_Node_String ec_Aselect = null;//ソース情報利用のE
             if (log_Reports.Successful)
             {
-                this.Dictionary_Expression_Attribute.TrySelect(out ec_Aselect, PmNames.S_SELECT.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Aselect, PmNames.S_SELECT.Name_Pm, EnumHitcount.One, log_Reports);
             }
 
             if (log_Reports.Successful)
             {
-                selectSt.List_SName_SelectField = new CsvTo_ListImpl().Read(ec_Aselect.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                selectSt.List_SName_SelectField = new CsvTo_ListImpl().Read(ec_Aselect.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
             }
 
             //
@@ -750,7 +750,7 @@ namespace Xenon.Expr
             if (log_Reports.Successful)
             {
                 Expression_Node_String ec_Into;//ソース情報利用のE
-                bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_Into, "into", false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = this.TrySelectAttribute(out ec_Into, "into", EnumHitcount.One_Or_Zero, log_Reports);
                 if (bHit)
                 {
                     selectSt.Expression_Into = ec_Into;
@@ -767,7 +767,7 @@ namespace Xenon.Expr
                 this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
                     string sValue;
-                    e_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    e_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
 
                     if (NamesNode.S_FNC == e_Child.Cur_Configurationtree.Name &&
                         NamesFnc.S_WHERE == sValue)
@@ -848,7 +848,7 @@ namespace Xenon.Expr
                 // 
 
                 string sRequired;
-                bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out sRequired, PmNames.S_REQUIRED.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = this.TrySelectAttribute(out sRequired, PmNames.S_REQUIRED.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 if (bHit)
                 {
                     selectSt.Required = sRequired;
@@ -864,10 +864,10 @@ namespace Xenon.Expr
                     // ｗｈｅｒｅ属性で「E■ｗｈｅｒｅ」（ｆｎｃ）を持っているはず。（無条件のときは持っていない）
                     //
                     Expression_Node_String ec_Whr;//属性利用
-                    bool bHit2 = this.Dictionary_Expression_Attribute.TrySelect(out ec_Whr, PmNames.S_WHERE.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit2 = this.TrySelectAttribute(out ec_Whr, PmNames.S_WHERE.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                     if (bHit2)
                     {
-                        bool bHit3 = ec_Whr.Dictionary_Expression_Attribute.TrySelect(out sRequired, PmNames.S_REQUIRED.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        bool bHit3 = ec_Whr.TrySelectAttribute(out sRequired, PmNames.S_REQUIRED.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                         if (bHit3)
                         {
                             selectSt.Required = sRequired;
@@ -897,7 +897,7 @@ namespace Xenon.Expr
                         //    System.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect:┌────────┐this.E_AttrDic.Count=[" + this.E_AttrDic.Count + "]");
                         //    this.E_AttrDic.Each_E_Nodes(delegate(string sName, Expression_Node_String e_Child, ref bool bBreak)
                         //    {
-                        //        System.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect:　[" + sName + "]＝[" + e_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                        //        System.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect:　[" + sName + "]＝[" + e_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                         //    });
                         //    System.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_P1_CleateSelect:└────────┘");
                         //}
@@ -914,14 +914,14 @@ namespace Xenon.Expr
             {
                 // ＜ｆ－ｃｅｌｌ　ｆｒｏｍ＝”☆”＞を使う。
                 Expression_Node_String ec_From;//ソース情報利用
-                bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_From, PmNames.S_FROM.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = this.TrySelectAttribute(out ec_From, PmNames.S_FROM.Name_Pm, EnumHitcount.One, log_Reports);
                 if (bHit)
                 {
                     selectSt.Expression_From = ec_From;
                 }
 
                 // テーブル名は必須。
-                if ("" == selectSt.Expression_From.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
+                if ("" == selectSt.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                 {
                     //
                     // エラー。
@@ -951,7 +951,7 @@ namespace Xenon.Expr
             if (log_Reports.Successful)
             {
                 // 子要素。
-                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports);
                 //if (0 < e_List.Count)
                 if (1 < ecList.Count)
                 {
@@ -968,7 +968,7 @@ namespace Xenon.Expr
 
                 if (
                     bExists_Awhr_Out ||
-                    "" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim()
+                    "" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim()
                     )
                 {
                     //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute_PP1_FcellToSelectSt:　「E■ａ－ｗｈｅｒｅ　keyField＝”☆”」は無かったが、「子E■ｒｅｃ－ｃｏｎｄ」要素はあった場合。");
@@ -1005,7 +1005,7 @@ namespace Xenon.Expr
                     // 「E■＠ｗｈｅｒｅ」の ｌｏｇｉｃ属性を取得しておく。
                     {
                         string sLogic;
-                        bool bHit = ec_Awhr_Src.TrySelectAttribute(out sLogic, PmNames.S_LOGIC.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        bool bHit = ec_Awhr_Src.TrySelectAttribute(out sLogic, PmNames.S_LOGIC.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                         if (bHit)
                         {
                             selectSt.EnumWherelogic = Utility_Table.LogicStringToEnum(sLogic);
@@ -1111,7 +1111,7 @@ namespace Xenon.Expr
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, this.Cur_Configurationtree.Name, log_Reports);//設定ノード名
 
-                List<Expression_Node_String> e_List = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+                List<Expression_Node_String> e_List = this.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports);
                 tmpl.SetParameter(2, e_List.Count.ToString(), log_Reports);//子要素の数
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
@@ -1132,13 +1132,13 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, bExists_Awhr_Out.ToString(), log_Reports);//Where句の有無
-                tmpl.SetParameter(2, selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim(), log_Reports);//RecordSetLoadFrom属性
+                tmpl.SetParameter(2, selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim(), log_Reports);//RecordSetLoadFrom属性
                 tmpl.SetParameter(3, this.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//属性の数
 
                 Log_TextIndented s1 = new Log_TextIndentedImpl();
                 this.Dictionary_Expression_Attribute.ForEach(delegate(string sName3, Expression_Node_String e_Attr3, ref bool bBreak)
                 {
-                    s1.Append("Attribute[" + sName3 + "]=Expr[" + e_Attr3.Cur_Configurationtree.Name + "]　値＝[" + e_Attr3.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                    s1.Append("Attribute[" + sName3 + "]=Expr[" + e_Attr3.Cur_Configurationtree.Name + "]　値＝[" + e_Attr3.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                     s1.Newline();
                 });
                 tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性リスト
@@ -1148,7 +1148,7 @@ namespace Xenon.Expr
                 Log_TextIndented s2 = new Log_TextIndentedImpl();
                 this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
-                    s2.Append("子　[" + e_Child.Cur_Configurationtree.Name + "]＝[" + e_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                    s2.Append("子　[" + e_Child.Cur_Configurationtree.Name + "]＝[" + e_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                     s2.Newline();
                 });
                 tmpl.SetParameter(6, s2.ToString(), log_Reports);//子要素リスト
@@ -1213,11 +1213,10 @@ namespace Xenon.Expr
             {
                 {
                     Expression_Node_String ec_Awhr_RecordSetLoadFrom;//ソース情報利用
-                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(
+                    bool bHit = this.TrySelectAttribute(
                          out ec_Awhr_RecordSetLoadFrom,
                         NamesNode.S_RECORD_SET_LOAD_FROM,
-                        false,
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.One_Or_Zero,
                         log_Reports //null
                         );
 
@@ -1225,7 +1224,7 @@ namespace Xenon.Expr
                 }
 
 
-                if ("" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
+                if ("" != selectSt.Expression_Where_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                 {
                     bLoad = true;
                 }
@@ -1409,7 +1408,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         private void E_Execute_P4(
             int nHitsCount,//eRecordList.Count
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -1418,7 +1417,7 @@ namespace Xenon.Expr
             //
             //
 
-            switch (request.EnumHitcount)
+            switch (hits)
             {
                 case EnumHitcount.One:
                     if (1 != nHitsCount)
@@ -1509,7 +1508,7 @@ namespace Xenon.Expr
         gt_Error_UndefinedEnum:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, request.EnumHitcount.ToString(), log_Reports);//要求した検索ヒット区分
+                tmpl.SetParameter(1, hits.ToString(), log_Reports);//要求した検索ヒット区分
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6023;", tmpl, log_Reports);
             }

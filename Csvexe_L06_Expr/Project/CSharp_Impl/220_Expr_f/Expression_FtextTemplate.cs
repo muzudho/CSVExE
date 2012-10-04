@@ -115,7 +115,7 @@ namespace Xenon.Expr
                     //
 
                     string sLookupId;
-                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out sLookupId, PmNames.S_LOOKUP_ID.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = this.TrySelectAttribute(out sLookupId, PmNames.S_LOOKUP_ID.Name_Pm, EnumHitcount.One, log_Reports);
                     if (bHit)
                     {
                         recCond1.Value = sLookupId;
@@ -153,7 +153,7 @@ namespace Xenon.Expr
                 // （４）テーブル名
                 {
                     Expression_Node_String ec_Result;//ソース情報利用
-                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_Result, PmNames.S_TABLE.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = this.TrySelectAttribute(out ec_Result, PmNames.S_TABLE.Name_Pm, EnumHitcount.One, log_Reports);
                     selectSt.Expression_From = ec_Result;
                 }
 
@@ -184,7 +184,7 @@ namespace Xenon.Expr
                 {
 
                     // テーブル名。
-                    if ("" == selectSt.Expression_From.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim())
+                    if ("" == selectSt.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
                     {
                         //
                         // エラー。
@@ -297,7 +297,7 @@ namespace Xenon.Expr
 
                     txt.Append(" テーブル=[");
 
-                    txt.Append(selectSt.Expression_From.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                    txt.Append(selectSt.Expression_From.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                     txt.Append("]");
 
                     // キーフィールド
@@ -330,11 +330,10 @@ namespace Xenon.Expr
             {
                 string p1pValue;
                 {
-                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(
+                    bool bHit = this.TrySelectAttribute(
                         out p1pValue,
                         "p" + n_P1p+"p",
-                        true,
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.One,
                         log_Reports
                         );
 
@@ -355,7 +354,7 @@ namespace Xenon.Expr
                 log_Reports
                 );
 
-            sb_Result.Append(ec_TextTemplate.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+            sb_Result.Append(ec_TextTemplate.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
 
             
             //

@@ -190,7 +190,7 @@ namespace Xenon.XToGcav
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
-                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
+                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
                 tmpl.SetParameter(3, sFpathH_F, log_Reports);//コントロール設定ファイル（入力ママ）
                 tmpl.SetParameter(4, sFpatha_F, log_Reports);//コントロール設定ファイル絶対パス（Formsフォルダーと結合後）
                 tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
@@ -203,7 +203,7 @@ namespace Xenon.XToGcav
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
-                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
+                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
                 tmpl.SetParameter(3, sFpathH_F, log_Reports);//コントロール設定ファイル（入力ママ）
                 tmpl.SetParameter(4, sFpatha_F, log_Reports);//コントロール設定ファイル絶対パス（Formsフォルダーと結合後）
                 tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ

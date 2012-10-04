@@ -49,7 +49,7 @@ namespace Xenon.Expr
             //
             //
 
-            string sName = ec_Name.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim();
+            string sName = ec_Name.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
             try
             {
@@ -58,12 +58,12 @@ namespace Xenon.Expr
                 //// debug: 追加したレコードセットの内容。
                 //{
                 //    ystem.Console.WriteLine(Info_N.LibraryName + ":" + this.GetType().Name + "#Add: 追加したレコードセットの内容"+
-                //        "　fld＝["+oRecordSet.NField.E_Execute(Request_SelectingImpl.Unconstraint, log_Reports)+"]" +
-                //        "　ｌｏｏｋｕｐ－ｖａｌｕｅ＝["+oRecordSet.NLookupValue.E_Execute(Request_SelectingImpl.Unconstraint, log_Reports)+"]" +
-                //        "　required＝[" + oRecordSet.NRequired.E_Execute(Request_SelectingImpl.Unconstraint, log_Reports) + "]" +
-                //        "　ｆｒｏｍ＝[" + oRecordSet.NFrom.E_Execute(Request_SelectingImpl.Unconstraint, log_Reports) + "]" +
-                //        "　ｄescription＝[" + oRecordSet.NDescription.E_Execute(Request_SelectingImpl.Unconstraint, log_Reports) + "]" +
-                //        "　Ｓｔｏｒａｇｅ＝[" + oRecordSet.NStorage.E_Execute(Request_SelectingImpl.Unconstraint, log_Reports) + "]"
+                //        "　fld＝["+oRecordSet.NField.E_Execute(EnumHitcount.Unconstraint, log_Reports)+"]" +
+                //        "　ｌｏｏｋｕｐ－ｖａｌｕｅ＝["+oRecordSet.NLookupValue.E_Execute(EnumHitcount.Unconstraint, log_Reports)+"]" +
+                //        "　required＝[" + oRecordSet.NRequired.E_Execute(EnumHitcount.Unconstraint, log_Reports) + "]" +
+                //        "　ｆｒｏｍ＝[" + oRecordSet.NFrom.E_Execute(EnumHitcount.Unconstraint, log_Reports) + "]" +
+                //        "　ｄescription＝[" + oRecordSet.NDescription.E_Execute(EnumHitcount.Unconstraint, log_Reports) + "]" +
+                //        "　Ｓｔｏｒａｇｅ＝[" + oRecordSet.NStorage.E_Execute(EnumHitcount.Unconstraint, log_Reports) + "]"
                 //        );
 
                 //}
@@ -105,7 +105,7 @@ namespace Xenon.Expr
             //
             //
 
-            string sName = ec_Name.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim();
+            string sName = ec_Name.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
 
             RecordSet nResult;
@@ -165,7 +165,7 @@ namespace Xenon.Expr
             //
             //
 
-            string sStorage = ec_Storage.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports).Trim();
+            string sStorage = ec_Storage.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim();
 
             Exception err_Excp;
             try
@@ -222,7 +222,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         public bool Contains(Expression_Node_String ec_Name, Log_Reports log_Reports)
         {
-            string sName = ec_Name.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sName = ec_Name.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
             return this.dictionary_Recordset.ContainsKey(sName);
         }

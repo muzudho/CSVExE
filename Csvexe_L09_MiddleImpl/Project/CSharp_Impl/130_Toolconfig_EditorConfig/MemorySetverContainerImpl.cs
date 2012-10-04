@@ -62,7 +62,7 @@ namespace Xenon.MiddleImpl
             string sFpatha;
             {
                 sFpatha = ec_Fpath_Aaxml.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports//out sErrorMsg
                     );//絶対ファイルパス
                 if (!log_Reports.Successful)
@@ -136,7 +136,7 @@ namespace Xenon.MiddleImpl
                                     if (log_Reports.Successful)
                                     {
                                         cf_Fpath.SetDirectory_Base(
-                                            ec_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
+                                            ec_Folder.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                                             //sFolder
                                             );
                                     }
@@ -276,7 +276,7 @@ namespace Xenon.MiddleImpl
 
                             if (log_Reports.Successful)
                             {
-                                string sDirectory = ec_Fpath_Folder.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                                string sDirectory = ec_Fpath_Folder.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                                 if (log_Method.CanDebug(1))
                                 {
                                     log_Method.WriteDebug_ToConsole("folder=[" + sFolder + "] directory=[" + sDirectory + "]");

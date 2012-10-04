@@ -68,7 +68,7 @@ namespace Xenon.GcavToExpr
             //
             Expression_Node_StringImpl ec_Ap1p = new Expression_Node_StringImpl(parent_Ec, cur_Cf);
 
-            ec_Ap1p.Dictionary_Expression_Attribute.Set(
+            ec_Ap1p.SetAttribute(
                 PmNames.S_NAME.Name_Pm,
                 ec_Value,
                 log_Reports
@@ -88,7 +88,7 @@ namespace Xenon.GcavToExpr
             //
             //
             //
-            parent_Ec.Dictionary_Expression_Attribute.Set(
+            parent_Ec.SetAttribute(
                 sb.ToString(),
                 ((Expression_Node_String)ec_Ap1p),
                 log_Reports

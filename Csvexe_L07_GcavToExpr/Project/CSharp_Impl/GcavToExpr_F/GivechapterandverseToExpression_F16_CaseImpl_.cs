@@ -56,7 +56,7 @@ namespace Xenon.GcavToExpr
             //
 
             string parent_SName_Fnc;
-            parent_Expr.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            parent_Expr.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
 
 
             if (NamesFnc.S_SWITCH != parent_SName_Fnc)

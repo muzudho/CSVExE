@@ -51,8 +51,7 @@ namespace Xenon.Controls
                 bool bHit = ec_Fcell.TrySelectAttribute(
                     out sName_SelectedFld,
                     PmNames.S_SELECT.Name_Pm,
-                    true,
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.One,
                     log_Reports
                     );
             }

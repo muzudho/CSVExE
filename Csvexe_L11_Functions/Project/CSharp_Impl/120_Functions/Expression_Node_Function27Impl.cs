@@ -22,7 +22,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:整合性を取る;";
+        public static readonly string NAME_FUNCTION = "Sf:整合性を取る;";
 
         //────────────────────────────────────────
         //
@@ -32,7 +32,7 @@ namespace Xenon.Functions
         /// <summary>
         /// トゥゲザー名。
         /// </summary>
-        public static string S_PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.Name_Pm;
+        public static string PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -60,9 +60,9 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function27Impl.PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -99,7 +99,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
                 }
@@ -126,7 +126,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロールが、NAction27を実行。";
                 }
@@ -184,7 +184,7 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 string sArg_Name_Together;
-                this.TrySelectAttribute(out sArg_Name_Together, Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sArg_Name_Together, Expression_Node_Function27Impl.PM_NAME_TOGETHER, EnumHitcount.One_Or_Zero, log_Reports);
 
                 if ("" != sArg_Name_Together.Trim())
                 {
@@ -341,9 +341,9 @@ namespace Xenon.Functions
             cf_TgTogether = null;
             {
                 Expression_Node_String ec_Arg_Name_Together;
-                this.TrySelectAttribute(out ec_Arg_Name_Together, Expression_Node_Function27Impl.S_PM_NAME_TOGETHER, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Arg_Name_Together, Expression_Node_Function27Impl.PM_NAME_TOGETHER, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sExpectedFncName = ec_Arg_Name_Together.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sExpectedFncName = ec_Arg_Name_Together.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 List<Configurationtree_Node> listCf_Together = this.Owner_MemoryApplication.MemoryTogethers.Configurationtree_Togetherconfig.GetChildrenByNodename(NamesNode.S_TOGETHER, false, log_Reports);
                 foreach (Configurationtree_Node cf_Together in listCf_Together)
@@ -401,7 +401,7 @@ namespace Xenon.Functions
             //
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (null != this.Cur_Configurationtree)
             {

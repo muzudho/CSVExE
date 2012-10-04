@@ -22,7 +22,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:値To変数;";
+        public static readonly string NAME_FUNCTION = "Sf:値To変数;";
 
         //────────────────────────────────────────
         //
@@ -32,12 +32,12 @@ namespace Xenon.Functions
         /// <summary>
         /// セットしたい値。
         /// </summary>
-        public static string S_PM_FROM = PmNames.S_FROM.Name_Pm;
+        public static string PM_FROM = PmNames.S_FROM.Name_Pm;
 
         /// <summary>
         /// セット先の変数名。
         /// </summary>
-        public static readonly string S_PM_TO = PmNames.S_TO.Name_Pm;
+        public static readonly string PM_TO = PmNames.S_TO.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -65,10 +65,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function37Impl.S_PM_FROM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function37Impl.S_PM_TO, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function37Impl.PM_FROM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function37Impl.PM_TO, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -139,7 +139,7 @@ namespace Xenon.Functions
             if (log_Reports.CanStopwatch)
             {
                 string sFncName0;
-                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName0 + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
@@ -149,14 +149,14 @@ namespace Xenon.Functions
             //
             // 変数名
             Expression_Node_String ec_ArgTo;
-            this.TrySelectAttribute(out ec_ArgTo, Expression_Node_Function37Impl.S_PM_TO, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out ec_ArgTo, Expression_Node_Function37Impl.PM_TO, EnumHitcount.One, log_Reports);
 
-            XenonNameImpl o_Name_Var = new XenonNameImpl(ec_ArgTo.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports), ec_ArgTo.Cur_Configurationtree);
+            XenonNameImpl o_Name_Var = new XenonNameImpl(ec_ArgTo.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports), ec_ArgTo.Cur_Configurationtree);
 
             if (log_Reports.Successful)
             {
                 string sArgFrom;
-                this.TrySelectAttribute(out sArgFrom, Expression_Node_Function37Impl.S_PM_FROM, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sArgFrom, Expression_Node_Function37Impl.PM_FROM, EnumHitcount.One, log_Reports);
 
                 //
                 // 変数 (暫定、文字列型と決め打ち)

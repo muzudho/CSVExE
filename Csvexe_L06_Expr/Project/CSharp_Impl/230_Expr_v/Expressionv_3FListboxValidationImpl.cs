@@ -41,11 +41,11 @@ namespace Xenon.Expr
         /// <summary>
         /// ユーザー定義プログラムの実行。
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public override string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {

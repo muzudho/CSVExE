@@ -87,7 +87,7 @@ namespace Xenon.GcavToExpr
 
                     // なんでも属性として追加。
                     Expression_Node_String ec_Value = new Expression_Leaf_StringImpl(sValue, cur_Ec, cur_Cf);
-                    cur_Ec.Dictionary_Expression_Attribute.Set(sPmName, ec_Value, log_Reports);
+                    cur_Ec.SetAttribute(sPmName, ec_Value, log_Reports);
                 }
                 else
                 {

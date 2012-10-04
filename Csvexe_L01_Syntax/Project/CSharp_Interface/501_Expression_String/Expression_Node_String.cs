@@ -39,14 +39,13 @@ namespace Xenon.Syntax
         /// <param name="out_Expression_Result">検索結果。</param>
         /// <param name="sName"></param>
         /// <param name="bRequired"></param>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
         bool TrySelectAttribute(
             out Expression_Node_String out_Expression_Result,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             );
 
@@ -56,14 +55,13 @@ namespace Xenon.Syntax
         /// <param name="out_Result">検索結果。</param>
         /// <param name="sName"></param>
         /// <param name="bRequired"></param>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
         bool TrySelectAttribute(
             out string out_SResult,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             );
 
@@ -85,12 +83,12 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns>処理結果の結合文字列。</returns>
         string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             );
 
         Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             );
 
@@ -112,7 +110,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         List<Expression_Node_String> SelectDirectchildByNodename(
-            string sName_ExpectedNode, bool bRemove, Request_Selecting request, Log_Reports log_Reports);
+            string sName_ExpectedNode, bool bRemove, EnumHitcount request, Log_Reports log_Reports);
 
         /// <summary>
         /// 文字列を、子要素として追加。
@@ -141,6 +139,20 @@ namespace Xenon.Syntax
         {
             get;
         }
+
+        /// <summary>
+        /// 属性を上書きします。
+        /// </summary>
+        /// <param name="name_Attribute"></param>
+        /// <param name="expr_Attribute"></param>
+        /// <param name="log_Reports"></param>
+        void SetAttribute(
+            string name_Attribute,
+            Expression_Node_String expr_Attribute,
+            Log_Reports log_Reports
+            );
+
+        //────────────────────────────────────────
 
         /// <summary>
         /// 親要素。

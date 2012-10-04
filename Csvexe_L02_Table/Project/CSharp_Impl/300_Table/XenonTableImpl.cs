@@ -1162,7 +1162,7 @@ namespace Xenon.Table
         public List<DataRow> SelectByString(
             string sFieldName,
             XenonValue_StringImpl expectedStringParam,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -1248,7 +1248,7 @@ namespace Xenon.Table
                                     // 一致すれば。
                                     list_Result.Add(dataRow);
 
-                                    if (request.EnumHitcount == EnumHitcount.First_Exist)
+                                    if (hits == EnumHitcount.First_Exist)
                                     {
                                         // 正常
                                         goto gt_EndMethod;
@@ -1288,7 +1288,7 @@ namespace Xenon.Table
             //
             //
         gt_EndMethod:
-            if (request.EnumHitcount == EnumHitcount.First_Exist && list_Result.Count != 1)
+            if (hits == EnumHitcount.First_Exist && list_Result.Count != 1)
             {
                 // 必ず存在する最初の１件を返さなければなりませんが、そうではありませんでした。
                 if (log_Reports.CanCreateReport)

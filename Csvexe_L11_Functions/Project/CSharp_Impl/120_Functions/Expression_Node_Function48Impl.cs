@@ -9,7 +9,11 @@ using Xenon.Middle;//MoOpyopyo,FormObjectProperties,Usercontrol
 
 namespace Xenon.Functions
 {
-    public class Expression_Node_Function28Impl : Expression_Node_FunctionAbstract
+
+    /// <summary>
+    /// フォルダー構造を、別のフォルダー下に複製します。
+    /// </summary>
+    public class Expression_Node_Function48Impl : Expression_Node_FunctionAbstract
     {
 
 
@@ -20,7 +24,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string NAME_FUNCTION = "Sf:デバッグ表示;";
+        public static readonly string NAME_FUNCTION = "Sf:フォルダー構造の複製;";
 
         //────────────────────────────────────────
         //
@@ -30,7 +34,9 @@ namespace Xenon.Functions
         /// <summary>
         /// 表示文章。
         /// </summary>
-        public static string PM_MESSAGE = PmNames.S_MESSAGE.Name_Pm;
+        public static string PM_FILE_LISTFILE = "Pm:file-listfile;";
+        public static string PM_FOLDER_SOURCE = "Pm:folder-source;";
+        public static string PM_FOLDER_DESTINATION = "Pm:folder-destination;";
 
         //────────────────────────────────────────
         #endregion
@@ -40,7 +46,7 @@ namespace Xenon.Functions
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Expression_Node_Function28Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
+        public Expression_Node_Function48Impl(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
             :base(enumEventhandler,listS_ArgName,functiontranslatoritem)
         {
         }
@@ -53,14 +59,16 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function28Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function48Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_FILE_LISTFILE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -144,15 +152,29 @@ namespace Xenon.Functions
             //
             // メッセージボックスの表示。
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.GetType().Name);
-            sb.Append("#Perform:");
+            sb.Append(log_Method.Fullname);
+            sb.Append(":");
             sb.Append(Environment.NewLine);
-            string sArgMessage;
-            this.TrySelectAttribute(out sArgMessage, Expression_Node_Function28Impl.PM_MESSAGE, EnumHitcount.One_Or_Zero, log_Reports);
 
-            sb.Append(sArgMessage);
+            string sPmFileListfile;
+            this.TrySelectAttribute(out sPmFileListfile, Expression_Node_Function48Impl.PM_FILE_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
+            string sPmFolderSource;
+            this.TrySelectAttribute(out sPmFolderSource, Expression_Node_Function48Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
+            string sPmFolderDestination;
+            this.TrySelectAttribute(out sPmFolderDestination, Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
+
+            sb.Append(
+                "\n"+
+                "file-listfile = " + sPmFileListfile + "\n\n" +
+                "folder-source = " + sPmFolderSource + "\n\n" +
+                "folder-destination = " + sPmFolderDestination + "\n\n"
+                );
 
             MessageBox.Show(sb.ToString(), "デバッグ表示");
+
+
+            // CSVファイル読取り
+
 
             log_Method.EndMethod(log_Reports);
         }

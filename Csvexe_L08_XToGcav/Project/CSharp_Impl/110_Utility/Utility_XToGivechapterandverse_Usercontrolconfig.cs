@@ -154,7 +154,7 @@ namespace Xenon.XToGcav
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sName_Control, log_Reports);//コントロール名
-                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
+                tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
                 tmpl.SetParameter(3, sHiFpath_ControlFile, log_Reports);//コントロール設定ファイルパス（入力ママ）
                 tmpl.SetParameter(4, sFpatha_Fcnf, log_Reports);//コントロール設定ファイルパス（Formsフォルダーと結合後）
                 tmpl.SetParameter(5, Log_Report01Impl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
@@ -214,7 +214,7 @@ namespace Xenon.XToGcav
             //
             // forms フォルダー
             //
-            string sFopatha_Forms = ec_Fopath_Forms.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+            string sFopatha_Forms = ec_Fopath_Forms.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
             if (!log_Reports.Successful)
             {
                 // 既エラー。
@@ -246,7 +246,7 @@ namespace Xenon.XToGcav
                 }
 
                 Expression_Node_Filepath ec_Fpatha_Fcnf = new Expression_Node_FilepathImpl(cf_Fpath);
-                sFpatha_Fcnf = ec_Fpatha_Fcnf.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sFpatha_Fcnf = ec_Fpatha_Fcnf.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。

@@ -75,21 +75,21 @@ namespace Xenon.GcavToExpr
             string parent_SName_Node = parent_Expr.Cur_Configurationtree.Name;
             string parent_SName_Fnc = "";
             {
-                bool bRequired;
+                EnumHitcount enumHitcount;
                 if (NamesNode.S_FNC == parent_SName_Node)
                 {
-                    //todo: bRequired = true;
-                    bRequired = false;
+                    //todo: enumHitcount = EnumHitcount.One;
+                    enumHitcount = EnumHitcount.One_Or_Zero;
                 }
                 else
                 {
-                    bRequired = false;
+                    enumHitcount = EnumHitcount.One_Or_Zero;
                 }
 
 
 
                 log_Reports.Log_Callstack.Push(log_Method, "①");
-                bool bHit = parent_Expr.Dictionary_Expression_Attribute.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = parent_Expr.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, enumHitcount, log_Reports);
                 log_Reports.Log_Callstack.Pop(log_Method, "①");
             }
 

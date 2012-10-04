@@ -119,7 +119,7 @@ namespace Xenon.GcavToExpr
                         else
                         {
                             // 属性にする。
-                            cur_Ec.Dictionary_Expression_Attribute.Set(sPmName, ec_AttrValue, log_Reports);
+                            cur_Ec.SetAttribute(sPmName, ec_AttrValue, log_Reports);
                         }
                     }
                     else
@@ -133,7 +133,7 @@ namespace Xenon.GcavToExpr
                         log_Method.WriteDebug_ToConsole( "　├属性[" + sPmName + "]＝”[" + sAttrValue + "]”");
                     }
 
-                    //　追加したe_Attr=[" + e_AttrValue.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]　e属性数=[" + e_Cur.Dictionary_Expression_Attribute.Count + "]　子要素数＝[" + e_Cur.List_Child.Count + "]
+                    //　追加したe_Attr=[" + e_AttrValue.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]　e属性数=[" + e_Cur.Dictionary_Expression_Attribute.Count + "]　子要素数＝[" + e_Cur.List_Child.Count + "]
 
                     goto gt_EndMethod1;
                 //
@@ -159,7 +159,7 @@ namespace Xenon.GcavToExpr
                     //
                     string sFncName2;
                     log_Reports.Log_Callstack.Push(log_Method, "①name必須指定");
-                    cur_Ec.TrySelectAttribute(out sFncName2, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    cur_Ec.TrySelectAttribute(out sFncName2, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
                     log_Reports.Log_Callstack.Pop(log_Method, "①name必須指定");
 
                     if (log_Method.CanDebug(1))

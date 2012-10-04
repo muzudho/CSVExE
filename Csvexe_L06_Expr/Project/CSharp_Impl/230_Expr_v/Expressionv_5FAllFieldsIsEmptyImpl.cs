@@ -40,11 +40,11 @@ namespace Xenon.Expr
         /// <summary>
         /// ユーザー定義プログラムの実行。
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public override string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -57,14 +57,14 @@ namespace Xenon.Expr
             bool bAllFldsIsEmpty = true;
 
             Expression_Node_String ec_RecordSetLoadFrom;//ソース情報利用
-            bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out ec_RecordSetLoadFrom, NamesNode.S_RECORD_SET_LOAD_FROM, true, Request_SelectingImpl.Unconstraint, log_Reports);
+            bool bHit = this.TrySelectAttribute(out ec_RecordSetLoadFrom, NamesNode.S_RECORD_SET_LOAD_FROM, EnumHitcount.One, log_Reports);
 
             //
             // 一時記憶に記憶されているレコードセットのコピー内容。
             RecordSet recordSet;
             if (log_Reports.Successful)
             {
-                string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sRecordSetLoadFrom = ec_RecordSetLoadFrom.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 // #デバッグ中
                 System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: ★★ record-set-load-ｆｒｏｍ＝[" + sRecordSetLoadFrom + "]");
 
@@ -90,7 +90,7 @@ namespace Xenon.Expr
                 StringBuilder sb_Csv = new StringBuilder();
                 {
                     List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
 
@@ -100,11 +100,11 @@ namespace Xenon.Expr
                         {
                             Expressionv_Elem99 ev_elem = (Expressionv_Elem99)ec_11;
                             ev_elem.SetDataRow(this.DataRow);
-                            sb_Csv.Append(ev_elem.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                            sb_Csv.Append(ev_elem.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                         }
                         else if (ec_11 is Expression_Node_StringImpl)
                         {
-                            sb_Csv.Append(ec_11.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                            sb_Csv.Append(ec_11.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                         }
                         else
                         {

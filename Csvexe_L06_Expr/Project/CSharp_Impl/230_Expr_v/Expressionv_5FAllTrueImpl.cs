@@ -44,11 +44,11 @@ namespace Xenon.Expr
         /// <summary>
         /// ユーザー定義プログラムの実行。
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public override string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -65,7 +65,7 @@ namespace Xenon.Expr
             bool bResult = true;
             {
                 List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(//Nv_Elem
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                     );
 
@@ -76,7 +76,7 @@ namespace Xenon.Expr
                 {
                     Expressionv_Elem99 ecv_Elem = (Expressionv_Elem99)ec_11;
                     ecv_Elem.SetDataRow(this.DataRow);
-                    string str = ecv_Elem.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string str = ecv_Elem.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     // ★★★★★★★★★ここが遅い？ 42項目あると、42個全部調べることになります。
                     //ystem.Console.WriteLine(this.GetType().Name + "#GetString: str＝[" + str + "]");

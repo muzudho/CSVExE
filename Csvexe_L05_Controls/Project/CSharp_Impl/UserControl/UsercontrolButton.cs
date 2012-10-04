@@ -233,7 +233,7 @@ namespace Xenon.Controls
                             //ccButton.Click += new System.EventHandler(this.e_ActionList_Click.Perform_OEa);
 
                             // ★DEBUG
-                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(Request_SelectingImpl.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
+                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
 
                         }
                     }
@@ -1118,7 +1118,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolButton1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolButton1.Name = sName_Usercontrol;
                 }
 

@@ -111,8 +111,8 @@ namespace Xenon.Controls
             //
             //
 
-            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
@@ -137,37 +137,7 @@ namespace Xenon.Controls
                     //
                     // 最初の１件。なければ空文字列。
                     //
-                    Request_SelectingBuilderImpl requestItems = new Request_SelectingBuilderImpl();
-                    requestItems.EnumHitcount = EnumHitcount.First_Exist_Or_Zero;
-
-
-
-                    this.UsercontrolText = ec_DataSource.Execute_OnExpressionString(requestItems.ToObject(log_Reports), log_Reports);
-
-                    //if ("" != this.sText)
-                    //{
-                    //    FileStream fs = null;
-                    //    try
-                    //    {
-                    //        fs = new FileStream(this.sText, FileMode.Open, FileAccess.Read);
-                    //        this.Image = Image.FromStream(fs);
-                    //    }
-                    //    catch (Exception)
-                    //    {
-                    //        this.Image = null;
-                    //    }
-                    //    finally
-                    //    {
-                    //        if (null != fs)
-                    //        {
-                    //            fs.Close();
-                    //        }
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    this.Image = null;
-                    //}
+                    this.UsercontrolText = ec_DataSource.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
 
                     this.ControlCommon.BAutomaticinputting = false;
                 }
@@ -204,8 +174,8 @@ namespace Xenon.Controls
             }
 
 
-            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;

@@ -106,9 +106,9 @@ namespace Xenon.MiddleImpl
                     // 最初のデータソースを抜き取る。
                     Expression_Node_String ec_DataSource;
                     {
-                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
                         // 抜き取りフラグ。
-                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, true, Request_SelectingImpl.First_Exist, log_Reports);
+                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, true, EnumHitcount.First_Exist, log_Reports);
                         if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
@@ -147,9 +147,9 @@ namespace Xenon.MiddleImpl
                     // 最初のデータターゲットを抜き取る。
                     Expression_Node_String ec_DataTarget;
                     {
-                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
                         // 抜き取りフラグ。
-                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, true, Request_SelectingImpl.First_Exist, log_Reports);
+                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, true, EnumHitcount.First_Exist, log_Reports);
                         if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
@@ -257,8 +257,8 @@ namespace Xenon.MiddleImpl
 
                     Expression_Node_String ec_DataSource;
                     {
-                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+                        List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
                         if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;
@@ -285,8 +285,8 @@ namespace Xenon.MiddleImpl
 
                     Expression_Node_String ec_DataTarget;
                     {
-                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+                        List<Expression_Node_String> ecList_Data = fcUc.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+                        List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, EnumHitcount.First_Exist, log_Reports);
                         if (!log_Reports.Successful)
                         {
                             goto gt_EndMethod;

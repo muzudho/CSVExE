@@ -65,7 +65,7 @@ namespace Xenon.GcavToExpr
                     if (bHit)
                     {
                         Expression_Leaf_String ec_Leaf = new Expression_Leaf_StringImpl(sValue, parent_Expr, cur_Cf);
-                        ecv_AEmptyFld.Dictionary_Expression_Attribute.Set(pmName.Name_Pm, ec_Leaf, log_Reports);
+                        ecv_AEmptyFld.SetAttribute(pmName.Name_Pm, ec_Leaf, log_Reports);
                         //evAEmptyFld.Dictionary_SAttribute.Add(sAttrName, s_Cur.SAttrDic.Get(sAttrName, true, log_Reports));
                     }
                     else
@@ -81,7 +81,7 @@ namespace Xenon.GcavToExpr
                     if (bHit)
                     {
                         Expression_Leaf_String ec_Leaf = new Expression_Leaf_StringImpl(sValue, parent_Expr, cur_Cf);
-                        ecv_AEmptyFld.Dictionary_Expression_Attribute.Set(pmName.Name_Pm, ec_Leaf, log_Reports);
+                        ecv_AEmptyFld.SetAttribute(pmName.Name_Pm, ec_Leaf, log_Reports);
                     }
                     else
                     {

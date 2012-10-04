@@ -980,7 +980,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolTextbox1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolTextbox1.Name = sName_Usercontrol;
                 }
 

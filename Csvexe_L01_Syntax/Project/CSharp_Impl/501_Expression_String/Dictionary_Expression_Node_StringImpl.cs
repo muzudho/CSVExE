@@ -83,15 +83,14 @@ namespace Xenon.Syntax
         public bool TrySelect(
             out string sResult,
             string sName,
-            bool bRequired,
-            Request_Selecting request,//todo:正しい使い方を。
+            EnumHitcount request,//todo:正しい使い方を。
             Log_Reports log_Reports
             )
         {
             bool bResult;
             Expression_Node_String ec_String;
 
-            bool bSuccessful = this.TrySelect(out ec_String, sName, bRequired, request, log_Reports);
+            bool bSuccessful = this.TrySelect(out ec_String, sName, request, log_Reports);
             if (bSuccessful)
             {
                 sResult = ec_String.Execute_OnExpressionString(request, log_Reports);
@@ -165,7 +164,7 @@ namespace Xenon.Syntax
             s.Newline();
             foreach (KeyValuePair<string, Expression_Node_String> kvp in this.dicExpression_Item)
             {
-                s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]");
+                s.Append("key=[" + kvp.Key + "]　value=[" + kvp.Value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                 s.Newline();
             }
             s.Append(this.GetType().Name + "#DebugWrite:──────────ここまで");
@@ -196,14 +195,13 @@ namespace Xenon.Syntax
         /// <param name="e_Result">検索結果。</param>
         /// <param name="sName"></param>
         /// <param name="bRequired"></param>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
         public bool TrySelect(
             out Expression_Node_String ec_Result_Out,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports//bug:ヌルのことがある？
             )
         {
@@ -226,7 +224,7 @@ namespace Xenon.Syntax
             {
                 // 一致なし。
 
-                if (bRequired)
+                if (Utility_Hitcount.IsRequired(hits,log_Reports))
                 {
                     if (log_Reports.CanCreateReport)
                     {

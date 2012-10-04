@@ -276,7 +276,7 @@ namespace Xenon.Controls
                             this.CustomcontrolListbox1.SelectedValueChanged += new System.EventHandler(this.functionlist_Event_SelectedValueChanged.Execute_OnOEa);
 
                             // ★DEBUG
-                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(Request_SelectingImpl.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
+                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
 
                         }
                     }
@@ -300,7 +300,7 @@ namespace Xenon.Controls
                             this.CustomcontrolListbox1.DoubleClick += new System.EventHandler(this.functionlist_Event_ItemDoubleClicked.Execute_OnOEa);
 
                             // ★DEBUG
-                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(Request_SelectingImpl.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
+                            //essageBox.Show(Info_Forms.LibraryName + ":" + this.GetType().Name + "#Perform_OEa: FC[" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "]で、EV[" + rEvent.Name + "]のアクションが登録されました。");
 
                         }
                     }
@@ -590,8 +590,8 @@ namespace Xenon.Controls
             //
             pg_Method.EndMethod(log_Reports);
 
-            //ystem.Console.WriteLine(this.GetType().Name + "#RefreshData: ★★デバッグ中。「" + this.ControlCommon.NFcName.GetString(Request_SelectingImpl.Unconstraint, log_Reports) + "」更新。");
-            //if (this.ControlCommon.NFcName.GetString(Request_SelectingImpl.Unconstraint, log_Reports) == "FC_main_recordsLst")
+            //ystem.Console.WriteLine(this.GetType().Name + "#RefreshData: ★★デバッグ中。「" + this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) + "」更新。");
+            //if (this.ControlCommon.NFcName.GetString(EnumHitcount.Unconstraint, log_Reports) == "FC_main_recordsLst")
             //{
             //    ystem.Console.WriteLine(this.GetType().Name + "#RefreshData: ★★デバッグ中。「FC_main_recordsLst」更新。");
             //}
@@ -714,7 +714,7 @@ namespace Xenon.Controls
                             StringBuilder sb = new StringBuilder();
 
                             sb.Append(Info_Controls.Name_Library + ":" + this.GetType().Name + "#OnCreated:【一時記憶セット】");
-                            sb.Append("　FC＝[" + this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod) + "]");
+                            sb.Append("　FC＝[" + this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod) + "]");
 
                             // #デバッグ出力
                             System.Console.WriteLine(sb.ToString());
@@ -1802,7 +1802,7 @@ namespace Xenon.Controls
                 else
                 {
                     this.CustomcontrolListbox1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     this.CustomcontrolListbox1.Name = sName_Usercontrol;
                 }
 

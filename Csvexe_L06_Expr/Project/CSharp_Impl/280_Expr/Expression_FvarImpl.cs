@@ -58,11 +58,11 @@ namespace Xenon.Expr
 
             if (log_Reports.Successful)//null != log_Reports && 
             {
-                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+                List<Expression_Node_String> ecList = this.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports);
 
                 foreach (Expression_Node_String ec_11 in ecList)
                 {
-                    string sStr = ec_11.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sStr = ec_11.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     s.Append(sStr);
                 }
             }
@@ -122,7 +122,7 @@ namespace Xenon.Expr
         /// <param oNodeName="log_Reports"></param>
         /// <returns></returns>
         public Expression_Node_Filepath GetEFilePath(
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {

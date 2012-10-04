@@ -52,7 +52,7 @@ namespace Xenon.Functions
             string sActionType = "";
             {
                 string sFncName0;
-                ec_Sa.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                ec_Sa.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 sActionType = sFncName0;
             }
 

@@ -20,7 +20,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:可視化;";
+        public static readonly string NAME_FUNCTION = "Sf:可視化;";
 
         //────────────────────────────────────────
         //
@@ -30,12 +30,12 @@ namespace Xenon.Functions
         /// <summary>
         /// コントロール名。
         /// </summary>
-        public static readonly string S_PM_NAME_FC = PmNames.S_NAME_CONTROL.Name_Pm;
+        public static readonly string PM_NAME_CONTROL = PmNames.S_NAME_CONTROL.Name_Pm;
 
         /// <summary>
         /// 可視。コントロールの可視／不可視を切り替えます。true または false を指定してください。
         /// </summary>
-        public static string S_PM_VALUE_VISIBLED = PmNames.S_VALUE_VISIBLED.Name_Pm;
+        public static string PM_VALUE_VISIBLED = PmNames.S_VALUE_VISIBLED.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -63,10 +63,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function40Impl.S_PM_NAME_FC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function40Impl.S_PM_VALUE_VISIBLED, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function40Impl.PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function40Impl.PM_VALUE_VISIBLED, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -138,7 +138,7 @@ namespace Xenon.Functions
             if (log_Reports.CanStopwatch)
             {
                 string sFncName;
-                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
@@ -146,7 +146,7 @@ namespace Xenon.Functions
 
             {
                 Expression_Node_String ec_ArgFcName;
-                this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function40Impl.S_PM_NAME_FC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function40Impl.PM_NAME_CONTROL, EnumHitcount.One_Or_Zero, log_Reports);
 
                 // コントロールを1つ検索。
                 List<Usercontrol> list_FcUc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
@@ -157,7 +157,7 @@ namespace Xenon.Functions
                     Usercontrol fcUc = list_FcUc[0];
 
                     string sValue;
-                    this.TrySelectAttribute(out sValue, Expression_Node_Function40Impl.S_PM_VALUE_VISIBLED, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out sValue, Expression_Node_Function40Impl.PM_VALUE_VISIBLED, EnumHitcount.One_Or_Zero, log_Reports);
 
                     bool bValue;
                     if (Boolean.TryParse(sValue, out bValue))

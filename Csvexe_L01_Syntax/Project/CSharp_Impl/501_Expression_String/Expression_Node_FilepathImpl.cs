@@ -119,7 +119,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <returns></returns>
         public override string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             )
         {
@@ -186,7 +186,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <returns></returns>
         public override Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             )
         {

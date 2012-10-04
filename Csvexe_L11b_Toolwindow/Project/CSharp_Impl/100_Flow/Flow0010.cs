@@ -56,7 +56,7 @@ namespace Xenon.Toolwindow
 
                 Expression_Node_Filepath ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
                 sFpatha_xml = ec_Fpath.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint, pg_Logging);
+                    EnumHitcount.Unconstraint, pg_Logging);
                 if (!pg_Logging.Successful)
                 {
                     // 既エラー。

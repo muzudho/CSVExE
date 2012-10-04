@@ -209,7 +209,7 @@ namespace Xenon.MiddleImpl
             Expression_Node_String expr_FuncConfig = new Expression_Node_StringImpl(null, parent_Cf);
 
             string sFpatha = expr_Fpath_Fnc.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, log_Reports);
+                EnumHitcount.Unconstraint, log_Reports);
 
             if (!log_Reports.Successful)
             {

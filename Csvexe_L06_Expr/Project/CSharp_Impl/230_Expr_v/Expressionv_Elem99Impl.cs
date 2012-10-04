@@ -54,13 +54,13 @@ namespace Xenon.Expr
             StringBuilder sb_Result = new StringBuilder();
 
             List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(
-                Request_SelectingImpl.Unconstraint,
+                EnumHitcount.Unconstraint,
                 log_Reports
                 );
 
 
 
-            switch (this.Request_Selecting.EnumHitcount)
+            switch (this.EnumHitcount)
             {
                 case EnumHitcount.First_Exist:
                     {
@@ -71,7 +71,7 @@ namespace Xenon.Expr
                         {
                             Expressionv_Elem99 ecv_Child = (Expressionv_Elem99)ecList_Child[0];
                             ecv_Child.SetDataRow(dataRow);
-                            string str1 = ecv_Child.Execute_OnExpressionString(this.Request_Selecting, log_Reports);
+                            string str1 = ecv_Child.Execute_OnExpressionString(this.EnumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -93,7 +93,7 @@ namespace Xenon.Expr
                         {
                             Expressionv_Elem99 ecv_Child = (Expressionv_Elem99)ecList_Child[0];
                             ecv_Child.SetDataRow(dataRow);
-                            string str1 = ecv_Child.Execute_OnExpressionString(this.Request_Selecting, log_Reports);
+                            string str1 = ecv_Child.Execute_OnExpressionString(this.EnumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -116,7 +116,7 @@ namespace Xenon.Expr
 
                         foreach (Expression_Node_String ec_Child in ecList_Child)
                         {
-                            string str1 = ec_Child.Execute_OnExpressionString(this.Request_Selecting, log_Reports);
+                            string str1 = ec_Child.Execute_OnExpressionString(this.EnumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -147,7 +147,7 @@ namespace Xenon.Expr
         gt_ErrorUndefinedEnum:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, this.Request_Selecting.EnumHitcount.ToString(), log_Reports);//要求した検索ヒット区分
+                tmpl.SetParameter(1, this.EnumHitcount.ToString(), log_Reports);//要求した検索ヒット区分
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6038;", tmpl, log_Reports);
             }

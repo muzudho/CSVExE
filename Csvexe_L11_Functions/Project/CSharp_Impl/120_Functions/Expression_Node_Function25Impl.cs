@@ -30,7 +30,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:変数設定_選択行の列指定;";
+        public static readonly string NAME_FUNCTION = "Sf:変数設定_選択行の列指定;";
 
         //────────────────────────────────────────
         //
@@ -42,12 +42,12 @@ namespace Xenon.Functions
         /// 
         /// 元は名無し。
         /// </summary>
-        public static readonly string S_PM_NAME_FIELD = PmNames.S_NAME_FIELD.Name_Pm;
+        public static readonly string PM_NAME_FIELD = PmNames.S_NAME_FIELD.Name_Pm;
 
         /// <summary>
         /// 値格納先変数名。
         /// </summary>
-        public static readonly string S_PM_NAME_VAR_DESTINATION = PmNames.S_NAME_VAR_DESTINATION.Name_Pm;
+        public static readonly string PM_NAME_VAR_DESTINATION = PmNames.S_NAME_VAR_DESTINATION.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -75,10 +75,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function25Impl.S_PM_NAME_FIELD, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function25Impl.S_PM_NAME_VAR_DESTINATION, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function25Impl.PM_NAME_FIELD, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function25Impl.PM_NAME_VAR_DESTINATION, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -110,7 +110,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -125,7 +125,7 @@ namespace Xenon.Functions
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
 
@@ -178,7 +178,7 @@ namespace Xenon.Functions
             if (pcLst is CustomcontrolListbox)
             {
                 CustomcontrolListbox cclst = (CustomcontrolListbox)pcLst;
-                sName_Control = cclst.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                sName_Control = cclst.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 log_Method.WriteDebug_ToConsole(sName_Control);
             }
             else
@@ -214,7 +214,7 @@ namespace Xenon.Functions
             {
                 //指定されているフィールド名。
                 string sName_Field;
-                this.TrySelectAttribute(out sName_Field, Expression_Node_Function25Impl.S_PM_NAME_FIELD, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sName_Field, Expression_Node_Function25Impl.PM_NAME_FIELD, EnumHitcount.One_Or_Zero, log_Reports);
 
                 //そのフィールドの値。
                 XenonValue_IntImpl cellData = (XenonValue_IntImpl)selectedDataRow[sName_Field];
@@ -223,12 +223,12 @@ namespace Xenon.Functions
 
                 //変数名。
                 Expression_Node_String ec_Name_ArgDestinationVariable;
-                this.TrySelectAttribute(out ec_Name_ArgDestinationVariable, Expression_Node_Function25Impl.S_PM_NAME_VAR_DESTINATION, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Name_ArgDestinationVariable, Expression_Node_Function25Impl.PM_NAME_VAR_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
 
                 //指定した変数に、フィールド値を格納します。
                 this.Owner_MemoryApplication.MemoryVariables.SetStringValue(
                     new XenonNameImpl(
-                        ec_Name_ArgDestinationVariable.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports),
+                        ec_Name_ArgDestinationVariable.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
                         ec_Name_ArgDestinationVariable.Cur_Configurationtree
                         ),
                     sValue_Field,

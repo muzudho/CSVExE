@@ -97,7 +97,7 @@ namespace Xenon.MiddleImpl
                 {
                     // フォルダーへの絶対パス
                     string sFopatha_Logs = ec_Fpath.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint, log_Reports_Meta);
+                        EnumHitcount.Unconstraint, log_Reports_Meta);
                     if (!log_Reports_Meta.Successful)
                     {
                         // 既エラー。
@@ -124,7 +124,7 @@ namespace Xenon.MiddleImpl
                     }
 
                     sFpatha = ec_Fpath2.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint, log_Reports_Meta);
+                        EnumHitcount.Unconstraint, log_Reports_Meta);
                 }
                 else
                 {

@@ -20,7 +20,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:Action11;";
+        public static readonly string NAME_FUNCTION = "Sf:Action11;";
 
         //────────────────────────────────────────
         //
@@ -51,7 +51,7 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             return f0;
         }
@@ -80,7 +80,7 @@ namespace Xenon.Functions
                 if (log_Reports.CanStopwatch)
                 {
                     string sFncName;
-                    this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                     log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName + "]実行";
                     log_Method.Log_Stopwatch.Begin();
                 }

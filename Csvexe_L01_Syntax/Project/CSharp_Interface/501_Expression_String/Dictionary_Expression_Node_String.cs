@@ -48,8 +48,7 @@ namespace Xenon.Syntax
         bool TrySelect(
             out Expression_Node_String out_Expression_Result,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             );
 
@@ -65,8 +64,7 @@ namespace Xenon.Syntax
         bool TrySelect(
             out string out_SResult,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             );
 

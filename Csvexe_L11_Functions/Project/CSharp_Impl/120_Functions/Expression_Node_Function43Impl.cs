@@ -26,7 +26,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:変数設定_コントロール値;";
+        public static readonly string NAME_FUNCTION = "Sf:変数設定_コントロール値;";
 
         //────────────────────────────────────────
         //
@@ -36,12 +36,12 @@ namespace Xenon.Functions
         /// <summary>
         /// 値格納先変数名。
         /// </summary>
-        public static readonly string S_PM_NAME_VAR = PmNames.S_NAME_VAR.Name_Pm;
+        public static readonly string PM_NAME_VAR = PmNames.S_NAME_VAR.Name_Pm;
 
         /// <summary>
         /// コントロール名。
         /// </summary>
-        public static readonly string S_PM_NAME_FC = PmNames.S_NAME_CONTROL.Name_Pm;
+        public static readonly string PM_NAME_CONTROL = PmNames.S_NAME_CONTROL.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -67,7 +67,7 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             return f0;
         }
@@ -137,7 +137,7 @@ namespace Xenon.Functions
             if (log_Reports.CanStopwatch)
             {
                 string sFncName;
-                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
@@ -148,11 +148,11 @@ namespace Xenon.Functions
             {
                 // 変数名が入っているはず。
                 Expression_Node_String ec_ArgNameVariable;
-                this.TrySelectAttribute(out ec_ArgNameVariable, Expression_Node_Function43Impl.S_PM_NAME_VAR, false, Request_SelectingImpl.Unconstraint, log_Reports);
-                string sVariableName = ec_ArgNameVariable.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgNameVariable, Expression_Node_Function43Impl.PM_NAME_VAR, EnumHitcount.One_Or_Zero, log_Reports);
+                string sVariableName = ec_ArgNameVariable.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 Expression_Node_String ec_ArgFcName;
-                this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function43Impl.S_PM_NAME_FC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFcName, Expression_Node_Function43Impl.PM_NAME_CONTROL, EnumHitcount.One_Or_Zero, log_Reports);
                 List<Usercontrol> list_UcFc = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(ec_ArgFcName, true, log_Reports);
                 foreach (Usercontrol uct in list_UcFc)
                 {
@@ -175,7 +175,7 @@ namespace Xenon.Functions
                     else
                     {
                         // エラー
-                        err_SFcName = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                        err_SFcName = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         err_SFcTypeName = uct.GetType().Name;
                         goto gt_Error_UndefinedUc;
                     }

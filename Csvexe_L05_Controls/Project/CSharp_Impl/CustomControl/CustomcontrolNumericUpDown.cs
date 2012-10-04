@@ -113,8 +113,8 @@ namespace Xenon.Controls
             //
 
 
-            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
@@ -132,12 +132,8 @@ namespace Xenon.Controls
             {
                 if (log_Reports.Successful)
                 {
-                    Request_SelectingBuilderImpl requestItems = new Request_SelectingBuilderImpl();
-                    requestItems.EnumHitcount = EnumHitcount.First_Exist_Or_Zero;
-                    //eChildList = this.ControlCommon.Expression_Control.E_DataSource.E_ChildList.GetList(
-                    //    requestItems.ToObject(log_Reports),
-                    //    log_Reports
-                    //);
+                    //EnumHitcount requestItems = new EnumHitcount();
+                    //requestItems = EnumHitcount.First_Exist_Or_Zero;
 
                     if (0 < ec_DataSource.List_Expression_Child.Count)
                     {
@@ -148,10 +144,7 @@ namespace Xenon.Controls
                             //
                             // 最初の１件。無ければ空文字列。
                             //
-                            Request_SelectingBuilderImpl requestItems2 = new Request_SelectingBuilderImpl();
-                            requestItems2.EnumHitcount = EnumHitcount.First_Exist_Or_Zero;
-
-                            string sValue = e_str.Execute_OnExpressionString(requestItems2.ToObject(log_Reports), log_Reports);
+                            string sValue = e_str.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
 
                             if (sValue == "")
                             {
@@ -254,8 +247,8 @@ namespace Xenon.Controls
             }
 
 
-            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, Request_SelectingImpl.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, Request_SelectingImpl.First_Exist, log_Reports);
+            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_DataTarget = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_TO, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
@@ -346,7 +339,7 @@ namespace Xenon.Controls
             //
             //
 
-            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+            string sName_Usercontrol = this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
 
             log_Reports_ThisMethod.Comment_EventCreationMe = "[" + sName_Usercontrol + "]コントロール（数値上下ボックス）のテキストが変更されました。";
 

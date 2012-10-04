@@ -27,7 +27,7 @@ namespace Xenon.Syntax
             this.parent_Expression = parent_Expression;
             this.cur_Configurationtree = cur_Gcav;
 
-            request_Selecting = Request_SelectingImpl.Unconstraint;
+            enumHitcount = EnumHitcount.Unconstraint;
             this.ecList_Child = new List_Expression_Node_StringImpl(this);
             this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
         }
@@ -84,7 +84,7 @@ namespace Xenon.Syntax
             s.Append("]クラス　");
 
             s.Append("子値＝[");
-            s.Append(this.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ForSnapshot));
+            s.Append(this.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
             s.Append("]");
 
             s.Append("」");
@@ -130,19 +130,18 @@ namespace Xenon.Syntax
         /// <param name="out_E_Result">検索結果。</param>
         /// <param name="sName"></param>
         /// <param name="bRequired"></param>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
         public bool TrySelectAttribute(
             out Expression_Node_String ec_Result_Out,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
             return this.Dictionary_Expression_Attribute.TrySelect(
-                out ec_Result_Out, sName, bRequired, request, log_Reports);
+                out ec_Result_Out, sName, hits, log_Reports);
         }
 
         //────────────────────────────────────────
@@ -150,8 +149,7 @@ namespace Xenon.Syntax
         public bool TrySelectAttribute(
             out string sResult_Out,
             string sName,
-            bool bRequired,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -162,7 +160,7 @@ namespace Xenon.Syntax
             //
             //
 
-            bool bResult = this.Dictionary_Expression_Attribute.TrySelect(out sResult_Out, sName, bRequired, request, log_Reports);
+            bool bResult = this.Dictionary_Expression_Attribute.TrySelect(out sResult_Out, sName, hits, log_Reports);
 
             goto gt_EndMethod;
         //
@@ -206,9 +204,9 @@ namespace Xenon.Syntax
 
             StringBuilder sb_Result = new StringBuilder();
 
-            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint, log_Reports);
+            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports);
 
-            switch (this.request_Selecting.EnumHitcount)
+            switch (this.enumHitcount)
             {
                 case EnumHitcount.First_Exist:
                     {
@@ -218,7 +216,7 @@ namespace Xenon.Syntax
                         if (0 < ecList_Child.Count)
                         {
                             Expression_Node_String ec_Child = ecList_Child[0];
-                            string str1 = ec_Child.Execute_OnExpressionString(this.request_Selecting, log_Reports);
+                            string str1 = ec_Child.Execute_OnExpressionString(this.enumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -239,7 +237,7 @@ namespace Xenon.Syntax
                         if (0 < ecList_Child.Count)
                         {
                             Expression_Node_String ec_Child = ecList_Child[0];
-                            string str1 = ec_Child.Execute_OnExpressionString(this.request_Selecting, log_Reports);
+                            string str1 = ec_Child.Execute_OnExpressionString(this.enumHitcount, log_Reports);
 
                             sb_Result.Append(str1);
                         }
@@ -262,7 +260,7 @@ namespace Xenon.Syntax
 
                         foreach (Expression_Node_String ec_Child in ecList_Child)
                         {
-                            string s1 = ec_Child.Execute_OnExpressionString(this.request_Selecting, log_Reports);
+                            string s1 = ec_Child.Execute_OnExpressionString(this.enumHitcount, log_Reports);
 
                             sb_Result.Append(s1);
                         }
@@ -309,7 +307,7 @@ namespace Xenon.Syntax
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("this.requestItems.VolumeConstraintEnum=[");
-                sb.Append(this.request_Selecting.EnumHitcount.ToString());
+                sb.Append(this.enumHitcount.ToString());
                 sb.Append("]には、プログラム側でまだ未対応です。");
 
                 // ヒント
@@ -335,7 +333,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public virtual string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             )
         {
@@ -353,7 +351,7 @@ namespace Xenon.Syntax
             //
 
             // もとに戻す
-            this.request_Selecting = Request_SelectingImpl.Unconstraint;
+            this.enumHitcount = EnumHitcount.Unconstraint;
 
             goto gt_EndMethod;
         //
@@ -370,7 +368,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <returns></returns>
         public Expression_Node_Filepath Execute_OnExpressionString_AsFilepath(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             )
         {
@@ -385,7 +383,7 @@ namespace Xenon.Syntax
         /// <returns></returns>
         public static Expression_Node_Filepath Execute_OnEString_AsFilePath_Impl(
             Expression_Node_String ec_Caller,
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             )
         {
@@ -474,7 +472,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public List<Expression_Node_String> SelectDirectchildByNodename(
-            string sExpectedNodeName, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
+            string sExpectedNodeName, bool bRemove, EnumHitcount request, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Divide3Blocks",log_Reports);
@@ -496,8 +494,8 @@ namespace Xenon.Syntax
                         }
 
 
-                        if (EnumHitcount.First_Exist == request.EnumHitcount ||
-                            EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+                        if (EnumHitcount.First_Exist == request ||
+                            EnumHitcount.First_Exist_Or_Zero == request)
                         {
                             // 最初の１件で削除は終了。複数件ヒットするかどうかは判定しない。
                             bBreak2 = true;
@@ -506,7 +504,7 @@ namespace Xenon.Syntax
                 }
             });
 
-            if (EnumHitcount.One == request.EnumHitcount)
+            if (EnumHitcount.One == request)
             {
                 // 必ず１件だけヒットする想定。
 
@@ -515,7 +513,7 @@ namespace Xenon.Syntax
                     goto gt_errorNotOne;
                 }
             }
-            else if (EnumHitcount.First_Exist == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist == request)
             {
                 // 必ずヒットする。複数件あれば、最初の１件だけ取得。
 
@@ -528,7 +526,7 @@ namespace Xenon.Syntax
                     result.RemoveRange(1, result.Count - 1);
                 }
             }
-            else if (EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist_Or_Zero == request)
             {
                 // ヒットすれば最初の１件だけ、ヒットしなければ０件の想定。
 
@@ -607,7 +605,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public static List<Expression_Node_String> SelectItemByNodeName(
-            List<Expression_Node_String> listExpression, string sName_ExpectedNode, bool bRemove, Request_Selecting request, Log_Reports log_Reports)
+            List<Expression_Node_String> listExpression, string sName_ExpectedNode, bool bRemove, EnumHitcount request, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Syntax.Name_Library, "Expression_Node_StringImpl", "SelectItemByNodeName",log_Reports);
@@ -633,8 +631,8 @@ namespace Xenon.Syntax
                         }
 
 
-                        if (EnumHitcount.First_Exist == request.EnumHitcount ||
-                            EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+                        if (EnumHitcount.First_Exist == request ||
+                            EnumHitcount.First_Exist_Or_Zero == request)
                         {
                             // 最初の１件で終了。複数件ヒットするかどうかは判定しない。
                             break;
@@ -644,7 +642,7 @@ namespace Xenon.Syntax
             }
 
 
-            if (EnumHitcount.One == request.EnumHitcount)
+            if (EnumHitcount.One == request)
             {
                 // 必ず１件だけヒットする想定。
 
@@ -653,7 +651,7 @@ namespace Xenon.Syntax
                     goto gt_errorNotOne;
                 }
             }
-            else if (EnumHitcount.First_Exist == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist == request)
             {
                 // 必ずヒットする。複数件あれば、最初の１件だけ取得。
 
@@ -666,7 +664,7 @@ namespace Xenon.Syntax
                     result.RemoveRange(1, result.Count - 1);
                 }
             }
-            else if (EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist_Or_Zero == request)
             {
                 // ヒットすれば最初の１件だけ、ヒットしなければ０件の想定。
 
@@ -782,27 +780,25 @@ namespace Xenon.Syntax
         /// <summary>
         /// どういう結果が欲しいかの指定。
         /// </summary>
-        private Request_Selecting request_Selecting;
+        private EnumHitcount enumHitcount;
 
-        protected Request_Selecting Request_Selecting
+        protected EnumHitcount EnumHitcount
         {
             get
             {
-                return this.request_Selecting;
+                return this.enumHitcount;
             }
         }
 
         /// <summary>
         /// どういう結果が欲しいかの指定。
-        /// 
-        /// 旧名：SetValidation
         /// </summary>
         /// <param name="request"></param>
-        public void SetRequest_Selecting(
-            Request_Selecting request
+        public void SetEnumHitcount(
+            EnumHitcount request
             )
         {
-            request_Selecting = request;
+            enumHitcount = request;
         }
 
         //────────────────────────────────────────
@@ -833,6 +829,21 @@ namespace Xenon.Syntax
             {
                 return dictionary_Expression_Attribute;
             }
+        }
+
+        /// <summary>
+        /// 属性を上書きします。
+        /// </summary>
+        /// <param name="name_Attribute"></param>
+        /// <param name="expr_Attribute"></param>
+        /// <param name="log_Reports"></param>
+        public void SetAttribute(
+            string name_Attribute,
+            Expression_Node_String expr_Attribute,
+            Log_Reports log_Reports
+            )
+        {
+            this.Dictionary_Expression_Attribute.Set(name_Attribute, expr_Attribute, log_Reports);
         }
 
         //────────────────────────────────────────

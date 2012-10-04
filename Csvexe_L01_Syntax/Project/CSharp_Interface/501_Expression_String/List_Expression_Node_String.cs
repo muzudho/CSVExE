@@ -69,7 +69,7 @@ namespace Xenon.Syntax
         /// 子要素のリスト。
         /// </summary>
         List<Expression_Node_String> SelectList(
-            Request_Selecting request,
+            EnumHitcount request,
             Log_Reports log_Reports
             );
 

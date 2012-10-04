@@ -38,7 +38,7 @@ namespace Xenon.Operating
 
             Expression_Node_Filepath ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath);
             string sFpatha_Xml = ec_Fpath.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, log_Reports);
+                EnumHitcount.Unconstraint, log_Reports);
             if (!log_Reports.Successful)
             {
                 // 既エラー。

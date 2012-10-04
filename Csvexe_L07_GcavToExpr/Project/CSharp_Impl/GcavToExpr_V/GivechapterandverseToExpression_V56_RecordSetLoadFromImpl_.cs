@@ -75,13 +75,13 @@ namespace Xenon.GcavToExpr
             //
             //
             {
-                cur_Expr.Dictionary_Expression_Attribute.Set(
+                cur_Expr.SetAttribute(
                     PmNames.S_NAME.Name_Pm,
                     ec_Value,
                     log_Reports
                     );
 
-                parent_Expr.Dictionary_Expression_Attribute.Set(
+                parent_Expr.SetAttribute(
                     NamesNode.S_RECORD_SET_LOAD_FROM,
                     ((Expression_Node_String)cur_Expr),
                     log_Reports

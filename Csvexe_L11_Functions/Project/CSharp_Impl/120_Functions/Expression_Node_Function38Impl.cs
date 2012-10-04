@@ -21,7 +21,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:値Toセル;";
+        public static readonly string NAME_FUNCTION = "Sf:値Toセル;";
 
         //────────────────────────────────────────
         //
@@ -31,12 +31,12 @@ namespace Xenon.Functions
         /// <summary>
         /// セットしたい値。
         /// </summary>
-        public static readonly string S_PM_FROM = PmNames.S_FROM.Name_Pm;
+        public static readonly string PM_FROM = PmNames.S_FROM.Name_Pm;
 
         /// <summary>
         /// セット先。＜fnc name="Sf:cell;"＞を子として持つもの。
         /// </summary>
-        public static readonly string S_PM_TO = PmNames.S_TO.Name_Pm;
+        public static readonly string PM_TO = PmNames.S_TO.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -64,10 +64,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function38Impl.S_PM_FROM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function38Impl.S_PM_TO, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function38Impl.PM_FROM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function38Impl.PM_TO, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -137,7 +137,7 @@ namespace Xenon.Functions
             if (log_Reports.CanStopwatch)
             {
                 string sFncName;
-                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
@@ -153,12 +153,12 @@ namespace Xenon.Functions
 
                 // ID？ 『f-var value="Us:クリップmr_SK10;"』のように記述されているので、変数展開して "6001"等 を取得する。
                 string sFrom;
-                this.TrySelectAttribute(out sFrom, Expression_Node_Function38Impl.S_PM_FROM, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFrom, Expression_Node_Function38Impl.PM_FROM, EnumHitcount.One_Or_Zero, log_Reports);
                 //ystem.Console.WriteLine(this.GetType().Name + "#Perform: ”ｆｒｏｍ”の型＝[" + this.In_nFrom.GetType().Name + "]　”ｆｒｏｍ”の子要素数＝[" + this.In_nFrom.ChildNList.Count + "] sFrom＝[" + sFrom + "]");
 
                 // 『Sf:cell;』で、セルが指定されているはず。
                 Expression_Node_String ec_ArgTo;
-                this.TrySelectAttribute(out ec_ArgTo, Expression_Node_Function38Impl.S_PM_TO, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgTo, Expression_Node_Function38Impl.PM_TO, EnumHitcount.One_Or_Zero, log_Reports);
 
                 {
                     string sNodeName;
@@ -166,7 +166,7 @@ namespace Xenon.Functions
 
                     // ａｒｇ３はバグで、ｎａｍｅ属性は取得できない。
                     //string sFncName;
-                    //e_ArgTo.TrySelectAttribute(out sFncName, PmNames.NAME.SAttrName, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    //e_ArgTo.TrySelectAttribute(out sFncName, PmNames.NAME.SAttrName, true, EnumHitcount.Unconstraint, log_Reports);
 
                     if (!(NamesNode.S_ARG == sNodeName))// && E_SysFnc38Impl.S_ARG_TO == sFncName
                     {
@@ -197,7 +197,7 @@ namespace Xenon.Functions
         gt_Error_NotTo:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Expression_Node_Function38Impl.S_PM_TO, log_Reports);//引数名
+                tmpl.SetParameter(1, Expression_Node_Function38Impl.PM_TO, log_Reports);//引数名
                 tmpl.SetParameter(2, err_sNodeName, log_Reports);//ノード名
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110025;", tmpl, log_Reports);

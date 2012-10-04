@@ -24,7 +24,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 関数名。
         /// </summary>
-        public static readonly string S_ACTION_NAME = "Sf:Action21;";
+        public static readonly string NAME_FUNCTION = "Sf:Action21;";
 
         //────────────────────────────────────────
         //
@@ -55,7 +55,7 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             return f0;
         }
@@ -81,7 +81,7 @@ namespace Xenon.Functions
             if (log_Reports.CanStopwatch)
             {
                 string sFncName0;
-                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 log_Method.Log_Stopwatch.Message = "Nアクション[" + sFncName0 + "]実行";
                 log_Method.Log_Stopwatch.Begin();
             }
@@ -109,7 +109,7 @@ namespace Xenon.Functions
                         //OWrittenPlace oWrittenPlace = new OWrittenPlaceImpl(this.OWrittenPlace.WrittenPlace + "!ハードコーディング_NAction21#Perform_Key(10)");
 
                         Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                                Expression_Node_Function11Impl.S_ACTION_NAME, this, this.Cur_Configurationtree,
+                                Expression_Node_Function11Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
                                 this.Owner_MemoryApplication, log_Reports);
 
                         Configurationtree_Node cf_Event;

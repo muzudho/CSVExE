@@ -58,7 +58,7 @@ namespace Xenon.Expr
             // call属性（必須）
             string sCall;
             {
-                if (this.Dictionary_Expression_Attribute.TrySelect(out sCall, PmNames.S_CALL.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports))
+                if (this.TrySelectAttribute(out sCall, PmNames.S_CALL.Name_Pm, EnumHitcount.One, log_Reports))
                 {
                 }
                 else
@@ -79,9 +79,9 @@ namespace Xenon.Expr
             {
                 // 親「E■ｆｕｎｃｔｉｏｎ」取得。
                 string sParam;
-                if (ec_CommonFunction.Dictionary_Expression_Parameter.TrySelect(out sParam, sCall, true, Request_SelectingImpl.Unconstraint, log_Reports))
+                if (ec_CommonFunction.Dictionary_Expression_Parameter.TrySelect(out sParam, sCall, EnumHitcount.One, log_Reports))
                 {
-                    //sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\"　値＝”" + e_Param.E_Execute(Request_SelectingImpl.Unconstraint,log_Reports) + "”＞";
+                    //sResult = "＜Xn_L05_E:E_FParamImpl#Expression_ExecuteMain ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\"　値＝”" + e_Param.E_Execute(EnumHitcount.Unconstraint,log_Reports) + "”＞";
                     sResult = sParam;
                 }
                 else

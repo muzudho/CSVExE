@@ -29,7 +29,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 関数名。
         /// </summary>
-        public const string S_ACTION_NAME = "Sf:Frame02;";
+        public const string NAME_FUNCTION = "Sf:Frame02;";
 
         //────────────────────────────────────────
         #endregion
@@ -57,12 +57,12 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             //「プロジェクト選択時」のイベントハンドラーを上書き要求。
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                        Expression_Node_Function_OnEditorSelected_Impl.S_ACTION_NAME,
+                        Expression_Node_Function_OnEditorSelected_Impl.NAME_FUNCTION,
                         f0,
                         cur_Gcav,
                         owner_MemoryApplication,
@@ -130,7 +130,7 @@ namespace Xenon.Functions
                 //
                 {
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                            Expression_Node_Function21Impl.S_ACTION_NAME,
+                            Expression_Node_Function21Impl.NAME_FUNCTION,
                             this,
                             this.Cur_Configurationtree,
                             this.Owner_MemoryApplication,

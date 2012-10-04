@@ -37,7 +37,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 関数名。
         /// </summary>
-        public static readonly string S_ACTION_NAME = "Sa:Frame01;";
+        public static readonly string NAME_FUNCTION = "Sa:Frame01;";
 
         //────────────────────────────────────────
         #endregion
@@ -67,7 +67,7 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
             ((Expression_Node_Function_OnEditorSelected_Impl)f0).in_Subroutine_Function30_1_OrNull = null;
             ((Expression_Node_Function_OnEditorSelected_Impl)f0).in_Subroutine_Function30_2_OrNull = null;
 
@@ -126,11 +126,11 @@ namespace Xenon.Functions
             //
             {
                 string sFncName0;
-                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 if (this.Functionparameterset.Sender is Customcontrol)
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
-                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     log_Reports.Comment_EventCreationMe += "／追加：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
                 else
@@ -361,7 +361,7 @@ namespace Xenon.Functions
                         null);
 
                     // フォルダーパス ＋ \Aa_Editor.xml
-                    string sFpatha_Aaeditorxml = ec_Fopath_Editor.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
+                    string sFpatha_Aaeditorxml = ec_Fopath_Editor.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
 
                     // プロジェクト起動時に。
                     cf_Fpath_EditorXml.InitPath(
@@ -536,7 +536,7 @@ namespace Xenon.Functions
                         // 正常時
 
                         Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                                Expression_Node_Function22Impl.S_ACTION_NAME, this, this.Cur_Configurationtree,
+                                Expression_Node_Function22Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
                                 this.Owner_MemoryApplication, log_Reports);
 
                         // 実行
@@ -620,13 +620,13 @@ namespace Xenon.Functions
                 if (log_Reports.Successful)
                 {
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                        Expression_Node_Function19Impl.S_ACTION_NAME, this, this.Cur_Configurationtree,
+                        Expression_Node_Function19Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
                         this.Owner_MemoryApplication, log_Reports);
 
                     Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, cf_ThisMethod);
                     ec_Str.AppendTextNode(NamesVar.S_ST_STYLESHEET, this.Cur_Configurationtree, log_Reports);
 
-                    expr_Func.Dictionary_Expression_Attribute.Set(Expression_Node_Function19Impl.S_PM_NAME_TABLE_STYLE_SHEET, ec_Str, log_Reports);
+                    expr_Func.SetAttribute(Expression_Node_Function19Impl.PM_NAME_TABLE_STYLESHEET, ec_Str, log_Reports);
 
 
                     expr_Func.Execute_OnWrRhn(
@@ -714,7 +714,7 @@ namespace Xenon.Functions
                 {
 
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                            Expression_Node_Function30Impl.S_ACTION_NAME, this, this.Cur_Configurationtree,
+                            Expression_Node_Function30Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
                             this.Owner_MemoryApplication, log_Reports);
 
                     {
@@ -729,13 +729,13 @@ namespace Xenon.Functions
                                 ec_FormStart = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
                                 ec_FormStart.List_Expression_Child.Add(ec_Fvar, log_Reports);
                             }
-                            ((Expression_Node_Function30Impl)expr_Func).Dictionary_Expression_Attribute.Set(Expression_Node_Function30Impl.S_PM_NAME_FORM, ec_FormStart, log_Reports);
+                            ((Expression_Node_Function30Impl)expr_Func).SetAttribute(Expression_Node_Function30Impl.PM_NAME_FORM, ec_FormStart, log_Reports);
                         }
 
                         ((Expression_Node_Function30Impl)expr_Func).In_Subroutine_Function30_1 = this.In_Subroutine_Function30_1_OrNull;
                         ((Expression_Node_Function30Impl)expr_Func).In_Subroutine_Function30_2 = this.In_Subroutine_Function30_2_OrNull;
-                        ((Expression_Node_Function30Impl)expr_Func).Dictionary_Expression_Attribute.Set(
-                            Expression_Node_Function30Impl.S_PM_NAME_TOGETHER,
+                        ((Expression_Node_Function30Impl)expr_Func).SetAttribute(
+                            Expression_Node_Function30Impl.PM_NAME_TOGETHER,
                             new Expression_Leaf_StringImpl(NamesStg.S_STG_BEGIN_APPLICATION, null, cf_ThisMethod), log_Reports);
                     }
 
@@ -997,7 +997,7 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                        Expression_Node_Function44Impl.S_ACTION_NAME, this, this.Cur_Configurationtree,
+                        Expression_Node_Function44Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
                         this.Owner_MemoryApplication, log_Reports);
 
                 {
@@ -1108,7 +1108,7 @@ namespace Xenon.Functions
                 this.TestExists_EmptyFilePath(
                     "BackupBaseDirectory",
                     ec_Fpath_Exports,
-                    ec_Fpath_AaEditorXml.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports),
+                    ec_Fpath_AaEditorXml.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
                     log_Reports
                 );
             }
@@ -1130,7 +1130,7 @@ namespace Xenon.Functions
                 this.TestExists_String(
                     "DateBackupKeptbackups",
                     sValue,
-                    ec_Fpath_AaEditorXml.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports),
+                    ec_Fpath_AaEditorXml.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
                     log_Reports
                 );
             }
@@ -1153,7 +1153,7 @@ namespace Xenon.Functions
                 this.TestExists_String(
                     "DateBackupFolderOwnerName",
                     sValue,
-                    ec_Fpath_AaEditorXml.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports),
+                    ec_Fpath_AaEditorXml.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
                     log_Reports
                 );
             }

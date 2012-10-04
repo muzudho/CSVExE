@@ -111,13 +111,13 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="sFieldName"></param>
         /// <param name="sExpectedStringParam"></param>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>一致しなければヌル。</returns>
         List<DataRow> SelectByString(
             string sFieldName,
             XenonValue_StringImpl sExpectedStringParam,
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             );
 

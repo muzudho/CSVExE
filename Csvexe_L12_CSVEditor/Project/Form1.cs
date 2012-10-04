@@ -45,7 +45,7 @@ namespace Xenon.Csvexe
             {
                 List<string> sList = new List<string>();
                 // arg 不明
-                Collection_Function.SetFunction(Expression_Node_Function_BootCsvEditorExImpl.S_ACTION_NAME, new Expression_Node_Function_BootCsvEditorExImpl(EnumEventhandler.O_Ea, sList, transUnknown), pg_Logging);
+                Collection_Function.SetFunction(Expression_Node_Function_BootCsvEditorExImpl.NAME_FUNCTION, new Expression_Node_Function_BootCsvEditorExImpl(EnumEventhandler.O_Ea, sList, transUnknown), pg_Logging);
             }
             pg_Method.WriteDebug_ToConsole("ＣＳＶエディター用のブート関数を登録。");
 
@@ -133,7 +133,7 @@ namespace Xenon.Csvexe
             {
 
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                        Expression_Node_Function_BootCsvEditorExImpl.S_ACTION_NAME,
+                        Expression_Node_Function_BootCsvEditorExImpl.NAME_FUNCTION,
                         null,
                         cur_Gcav,
                         this.MemoryCsvEditor,

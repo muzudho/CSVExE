@@ -67,7 +67,7 @@ namespace Xenon.Table
                     Type type = xenonTable.List_Fielddefinition[nFieldIndex].Type;
 
                     String sConfigStack = xenonTable.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint, log_Reports);
+                        EnumHitcount.Unconstraint, log_Reports);
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。

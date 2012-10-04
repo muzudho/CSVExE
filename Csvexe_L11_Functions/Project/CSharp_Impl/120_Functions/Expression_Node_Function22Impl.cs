@@ -30,7 +30,7 @@ namespace Xenon.Functions
         /// <summary>
         /// 関数名。
         /// </summary>
-        public static readonly string S_ACTION_NAME = "Sf:Action22;";
+        public static readonly string NAME_FUNCTION = "Sf:Action22;";
 
         //────────────────────────────────────────
         //
@@ -70,7 +70,7 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -103,7 +103,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
             string sFncName;
-            this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -127,7 +127,7 @@ namespace Xenon.Functions
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
                     string sName_Usercontrol = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint,
+                        EnumHitcount.Unconstraint,
                         log_Reports
                         );
 
@@ -321,7 +321,7 @@ namespace Xenon.Functions
 
                 forIndexTable_Request.Expression_Filepath = ec_Fpath_Aafilescsv;
 
-                //this.TrySelectAttribute(out ec_Atom, Ec_Sf22Impl.S_PM_NAME_VAR_FILEPATH, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                //this.TrySelectAttribute(out ec_Atom, Ec_Sf22Impl.S_PM_NAME_VAR_FILEPATH, false, EnumHitcount.Unconstraint, log_Reports);
                 //if (log_Reports.Successful)
                 //{
                 //    // ファイルパス。
@@ -440,7 +440,7 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 sFpatha_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint, log_Reports);
+                    EnumHitcount.Unconstraint, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。
@@ -642,7 +642,7 @@ namespace Xenon.Functions
             // 「インデックス_テーブル」の絶対ファイルパス
             Expression_Node_Filepath ec_Fpath_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack;
             string sFpatha_Aafilescsv = ec_Fpath_Aafilescsv.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, log_Reports);
+                EnumHitcount.Unconstraint, log_Reports);
             //if (log_Method.CanDebug(1))
             //{
             //    log_Method.WriteDebug_ToConsole("「Aa_Files.csv」のファイルパス＝[" + sFpatha_Aafilescsv + "]");
@@ -968,7 +968,7 @@ namespace Xenon.Functions
 
                         log_Reports.Log_Callstack.Push(log_Method, "⑧");
                         //bug:フォルダーパスだと Execute_OnExpressionString は空白を返す？？
-                        string sFopath2 = ec_Fopath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                        string sFopath2 = ec_Fopath.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         if ("" == sFopath2)
                         {
                             //bug:フォルダーパスだと Execute_OnExpressionString は空白を返すようなので、入力値をそのまま返すことにした。

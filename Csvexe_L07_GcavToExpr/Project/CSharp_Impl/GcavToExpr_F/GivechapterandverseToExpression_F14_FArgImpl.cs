@@ -64,10 +64,8 @@ namespace Xenon.GcavToExpr
 
             string parent_SName_Fnc;
             {
-                bool bRequired;
-                //todo: bRequired = true;//エラー。
-                bRequired = false;
-                parent_Ec.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                // ヒット必須にするとエラーになる？
+                parent_Ec.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     goto gt_EndMethod;
@@ -142,7 +140,7 @@ namespace Xenon.GcavToExpr
             //
             if (log_Reports.Successful)
             {
-                parent_Ec.Dictionary_Expression_Attribute.Set(sName_MyFnc, cur_Ec, log_Reports);
+                parent_Ec.SetAttribute(sName_MyFnc, cur_Ec, log_Reports);
             }
 
             goto gt_EndMethod;

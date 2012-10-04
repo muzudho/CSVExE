@@ -91,7 +91,7 @@ namespace Xenon.Functions
             }
             else
             {
-                string sName_Usercontrol = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sName_Usercontrol = uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 MessageBox.Show("該当する型のないコントロールでした。[" + sName_Usercontrol + "]", "▲L11エラー③！");
             }

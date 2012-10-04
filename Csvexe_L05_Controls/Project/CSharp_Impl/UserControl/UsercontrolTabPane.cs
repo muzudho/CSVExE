@@ -339,8 +339,8 @@ namespace Xenon.Controls
         gt_Error_AnotherChildType:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports), log_Reports);//タブペーン・コントロール名
-                tmpl.SetParameter(2, uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports), log_Reports);//追加しようとしたコントロール名
+                tmpl.SetParameter(1, this.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//タブペーン・コントロール名
+                tmpl.SetParameter(2, uct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//追加しようとしたコントロール名
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:524;", tmpl, log_Reports);
             }
@@ -758,7 +758,7 @@ namespace Xenon.Controls
                 else
                 {
                     customcontrolTabControl1.ControlCommon.Expression_Name_Control = value;
-                    string sName_Usercontrol = value.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod);
+                    string sName_Usercontrol = value.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod);
                     customcontrolTabControl1.Name = sName_Usercontrol;
                 }
 

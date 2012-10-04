@@ -24,7 +24,7 @@ namespace Xenon.Functions
 
         /// <summary>
         /// </summary>
-        public static readonly string S_ACTION_NAME = "Sf:E_Sf44Impl;";
+        public static readonly string NAME_FUNCTION = "Sf:E_Sf44Impl;";
 
         //────────────────────────────────────────
         #endregion
@@ -51,7 +51,7 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             return f0;
         }

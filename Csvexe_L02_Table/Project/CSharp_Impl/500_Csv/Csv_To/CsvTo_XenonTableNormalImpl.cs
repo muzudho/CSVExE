@@ -280,7 +280,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
 
                 string sFpatha = forTable_request.Expression_Filepath.Execute_OnExpressionString(
-                    Request_SelectingImpl.Unconstraint, log_Reports);
+                    EnumHitcount.Unconstraint, log_Reports);
                 s.Append("ファイルパス＝[");
                 s.Append(sFpatha);
                 s.Append("]");

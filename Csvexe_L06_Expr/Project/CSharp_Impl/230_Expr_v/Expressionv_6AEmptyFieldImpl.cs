@@ -37,11 +37,11 @@ namespace Xenon.Expr
         /// <summary>
         /// ユーザー定義プログラムの実行。
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public override string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -56,7 +56,7 @@ namespace Xenon.Expr
             {
                 StringBuilder sb = new StringBuilder();
                 List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(//Nv_Elem
-                    Request_SelectingImpl.Unconstraint,
+                    EnumHitcount.Unconstraint,
                     log_Reports
                     );
 
@@ -70,7 +70,7 @@ namespace Xenon.Expr
                 {
                     //
                     // ＜f-cell＞要素を想定。
-                    sb.Append(ec_11.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                    sb.Append(ec_11.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 }
                 sFormValue = sb.ToString();
             }
@@ -83,7 +83,7 @@ namespace Xenon.Expr
 
                 string sType;
                 {
-                    bool bHit = this.Dictionary_Expression_Attribute.TrySelect(out sType, PmNames.S_TYPE.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = this.TrySelectAttribute(out sType, PmNames.S_TYPE.Name_Pm, EnumHitcount.One, log_Reports);
                 }
 
                 if ("chk" == sType.Trim())

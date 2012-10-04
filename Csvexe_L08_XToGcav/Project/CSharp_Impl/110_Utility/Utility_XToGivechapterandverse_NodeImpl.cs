@@ -120,7 +120,7 @@ namespace Xenon.XToGcav
             PmName pmName/*string sName_Attr*/,
             string sValue_Expected,
             bool bRemove,
-            Request_Selecting request,
+            EnumHitcount hits,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports)
         {
@@ -154,8 +154,8 @@ namespace Xenon.XToGcav
                             }
 
 
-                            if (EnumHitcount.First_Exist == request.EnumHitcount ||
-                                EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+                            if (EnumHitcount.First_Exist == hits ||
+                                EnumHitcount.First_Exist_Or_Zero == hits)
                             {
                                 // 最初の１件で削除は終了。複数件ヒットするかどうかは判定しない。
                                 break;
@@ -169,7 +169,7 @@ namespace Xenon.XToGcav
             //ystem.Console.WriteLine(Info_Forms.LibraryName + ":EUtil_NodeImpl.GetItemsByAttrAsCsv: 直後 list_Result.Count=[" + list_Result.Count + "]");
 
 
-            if (EnumHitcount.One == request.EnumHitcount)
+            if (EnumHitcount.One == hits)
             {
                 // 必ず１件だけヒットする想定。
 
@@ -178,7 +178,7 @@ namespace Xenon.XToGcav
                     goto gt_errorNotOne;
                 }
             }
-            else if (EnumHitcount.First_Exist == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist == hits)
             {
                 // 必ずヒットする。複数件あれば、最初の１件だけ取得。
 
@@ -191,7 +191,7 @@ namespace Xenon.XToGcav
                     cfList_Result.RemoveRange(1, cfList_Result.Count - 1);
                 }
             }
-            else if (EnumHitcount.First_Exist_Or_Zero == request.EnumHitcount)
+            else if (EnumHitcount.First_Exist_Or_Zero == hits)
             {
                 // ヒットすれば最初の１件だけ、ヒットしなければ０件の想定。
 

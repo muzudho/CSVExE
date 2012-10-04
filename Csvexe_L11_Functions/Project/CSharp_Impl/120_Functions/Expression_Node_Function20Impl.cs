@@ -21,7 +21,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:リストボックス_表関連付け;";
+        public static readonly string NAME_FUNCTION = "Sf:リストボックス_表関連付け;";
 
         //────────────────────────────────────────
         //
@@ -31,13 +31,13 @@ namespace Xenon.Functions
         /// <summary>
         /// テーブル名。
         /// </summary>
-        public static readonly string S_PM_NAME_TABLE = PmNames.S_NAME_TABLE.Name_Pm;
+        public static readonly string PM_NAME_TABLE = PmNames.S_NAME_TABLE.Name_Pm;
 
         /// <summary>
         /// リストボックス・コントロールの名前。
         /// このアクションを記述しているコントロールの名前を入れたい場合は、省略（空文字列）にしておけばよい。
         /// </summary>
-        public static readonly string S_PM_NAME_FC_LST = PmNames.S_NAME_CONTROL_LST.Name_Pm;
+        public static readonly string PM_NAME_CONTROL_LISTBOX = PmNames.S_NAME_CONTROL_LST.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -65,10 +65,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function20Impl.S_PM_NAME_TABLE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function20Impl.S_PM_NAME_FC_LST, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function20Impl.PM_NAME_TABLE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function20Impl.PM_NAME_CONTROL_LISTBOX, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -95,7 +95,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain", log_Reports);
 
             string sFncName0;
-            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -111,7 +111,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    sName_Usercontrol = ccFc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe += "／追記：[" + sName_Usercontrol + "]コントロールが、[" + sFncName0 + "]アクションを実行。";
                 }
@@ -142,7 +142,7 @@ namespace Xenon.Functions
                     // まず取得。
                     //
                     Expression_Node_String ec_ArgListboxName;
-                    this.TrySelectAttribute(out ec_ArgListboxName, Expression_Node_Function20Impl.S_PM_NAME_FC_LST, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgListboxName, Expression_Node_Function20Impl.PM_NAME_CONTROL_LISTBOX, EnumHitcount.One_Or_Zero, log_Reports);
 
                     ucFcList = this.Owner_MemoryApplication.MemoryForms.GetUsercontrolsByName(
                         ec_ArgListboxName, true, log_Reports);
@@ -164,17 +164,17 @@ namespace Xenon.Functions
 
                     Expression_Node_String ec_TableName = null;
                     string sTableName;
-                    this.TrySelectAttribute(out sTableName, Expression_Node_Function20Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out sTableName, Expression_Node_Function20Impl.PM_NAME_TABLE, EnumHitcount.One_Or_Zero, log_Reports);
 
                     if ("" != sTableName)//this.E_SysArgDic.ContainsKey(E_SysFnc20Impl.S_ARG_TABLE_NAME)
                     {
                         //テーブル名を指定（アクション用引数）
-                        this.TrySelectAttribute(out ec_TableName, Expression_Node_Function20Impl.S_PM_NAME_TABLE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                        this.TrySelectAttribute(out ec_TableName, Expression_Node_Function20Impl.PM_NAME_TABLE, EnumHitcount.One_Or_Zero, log_Reports);
 
                         // #デバッグ
                         if (log_Method.CanWarning())
                         {
-                            log_Method.WriteWarning_ToConsole(" ＜ａｒｇ３　ｔａｂｌｅＮａｍｅ＝”[" + ec_TableName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "]”＞属性でした。");
+                            log_Method.WriteWarning_ToConsole(" ＜ａｒｇ３　ｔａｂｌｅＮａｍｅ＝”[" + ec_TableName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]”＞属性でした。");
                         }
                     }
                     else

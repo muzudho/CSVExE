@@ -58,7 +58,7 @@ namespace Xenon.Table
             XenonTable xenonTable_Result;
 
             string sFpatha_Csv = request_ReadsTable.Expression_Filepath.Execute_OnExpressionString(
-                Request_SelectingImpl.Unconstraint, log_Reports);
+                EnumHitcount.Unconstraint, log_Reports);
             if (!log_Reports.Successful)
             {
                 // 既エラー。

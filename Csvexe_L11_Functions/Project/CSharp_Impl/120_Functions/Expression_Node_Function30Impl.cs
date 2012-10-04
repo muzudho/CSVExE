@@ -29,7 +29,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:ウィンドウ表示;";
+        public static readonly string NAME_FUNCTION = "Sf:ウィンドウ表示;";
 
         //────────────────────────────────────────
         //
@@ -41,12 +41,12 @@ namespace Xenon.Functions
         /// 
         /// TODO:使ってる？？
         /// </summary>
-        public static string S_PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.Name_Pm;
+        public static string PM_NAME_TOGETHER = PmNames.S_NAME_TOGETHER.Name_Pm;
 
         /// <summary>
         /// フォーム・グループ名。未設定ならヌル。
         /// </summary>
-        public static string S_PM_NAME_FORM = PmNames.S_NAME_FORM.Name_Pm;
+        public static string PM_NAME_FORM = PmNames.S_NAME_FORM.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -74,12 +74,12 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
             ((Expression_Node_Function30Impl)f0).In_Subroutine_Function30_1 = null;
             ((Expression_Node_Function30Impl)f0).In_Subroutine_Function30_2 = null;
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function30Impl.S_PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function30Impl.S_PM_NAME_FORM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function30Impl.PM_NAME_TOGETHER, new Expression_Leaf_StringImpl("", null, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function30Impl.PM_NAME_FORM, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -180,7 +180,7 @@ namespace Xenon.Functions
 
 
             string sName_Fnc;
-            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -209,7 +209,7 @@ namespace Xenon.Functions
                     else
                     {
                         sName_Control = cct.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(
-                            Request_SelectingImpl.Unconstraint,
+                            EnumHitcount.Unconstraint,
                             log_Reports
                             );
                     }
@@ -237,7 +237,7 @@ namespace Xenon.Functions
                 // 正常時
 
                 Expression_Node_String ec_ArgFormgroup;
-                this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.S_PM_NAME_FORM, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.PM_NAME_FORM, EnumHitcount.One_Or_Zero, log_Reports);
 
                 if (null == ec_ArgFormgroup)
                 {
@@ -265,7 +265,7 @@ namespace Xenon.Functions
 
                 // テーブル名から、レイアウト・ファイルパスの取得。
                 Expression_Node_String ec_ArgFormgroup;
-                this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.S_PM_NAME_FORM, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.PM_NAME_FORM, EnumHitcount.One_Or_Zero, log_Reports);
 
                 oList_Table_Form = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByFormgroup(ec_ArgFormgroup, true, log_Reports);
             }
@@ -413,7 +413,7 @@ namespace Xenon.Functions
                         if (log_Reports.Successful)
                         {
                             this.Owner_MemoryApplication.MemoryValidators.LoadFile(
-                                moScriptfile.Expression_Filepath.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint,log_Reports),
+                                moScriptfile.Expression_Filepath.Execute_OnExpressionString(EnumHitcount.Unconstraint,log_Reports),
                                 log_Reports);
                         }
                         else

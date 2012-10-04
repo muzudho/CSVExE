@@ -156,7 +156,7 @@ namespace Xenon.MiddleImpl
 
             try
             {
-                string sExpectedTypedata = ec_Typedata.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sExpectedTypedata = ec_Typedata.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 foreach (MemoryCodefileinfo codefile in this.Dictionary_Table.Values)
                 {
                     if (sExpectedTypedata == codefile.Typedata)
@@ -189,7 +189,7 @@ namespace Xenon.MiddleImpl
                 StringBuilder s = new StringBuilder();
                 s.Append("指定したタイプデータ名[");
 
-                s.Append(ec_Typedata.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports));
+                s.Append(ec_Typedata.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
 
                 s.Append("]は、存在しませんでした。");
                 s.Append(Environment.NewLine);

@@ -36,7 +36,7 @@ namespace Xenon.Expr
         /// </summary>
         /// <returns></returns>
         public override string Execute_OnExpressionString(
-            Request_Selecting request,
+            EnumHitcount hits,
             Log_Reports log_Reports
             )
         {
@@ -52,7 +52,7 @@ namespace Xenon.Expr
             // 子要素全部。
 
             List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(//Nv_Elem
-                Request_SelectingImpl.Unconstraint,
+                EnumHitcount.Unconstraint,
                 log_Reports
                 );
 
@@ -61,7 +61,7 @@ namespace Xenon.Expr
                 Expressionv_Elem99 ecv_Elem = (Expressionv_Elem99)ec_11;
                 ecv_Elem.SetDataRow(this.DataRow);
                 sb_Result.Append(
-                    ecv_Elem.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports)
+                    ecv_Elem.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                     );
             }
 

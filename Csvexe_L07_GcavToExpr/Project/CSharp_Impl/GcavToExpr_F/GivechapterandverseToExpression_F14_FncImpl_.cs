@@ -70,7 +70,7 @@ namespace Xenon.GcavToExpr
             string parent_SName_Fnc = "";
             string sName_MyFnc = "";
             {
-                bool bHit9 = parent_Ec.Dictionary_Expression_Attribute.TrySelect(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit9 = parent_Ec.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
 
                 if (!log_Reports.Successful)
@@ -327,7 +327,7 @@ namespace Xenon.GcavToExpr
                     // ｎａｍｅ属性の指定は必須です。
                     //
                     string sName8;
-                    bool bHit8 = cur_Ec.Dictionary_Expression_Attribute.TrySelect(out sName8, PmNames.S_NAME.Name_Pm, true, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit8 = cur_Ec.TrySelectAttribute(out sName8, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
                     if (!bHit8)
                     {
                         // todo:
@@ -363,7 +363,7 @@ namespace Xenon.GcavToExpr
                     cur_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
@@ -401,7 +401,7 @@ namespace Xenon.GcavToExpr
                     parent_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
 
@@ -447,7 +447,7 @@ namespace Xenon.GcavToExpr
                     cur_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
@@ -485,7 +485,7 @@ namespace Xenon.GcavToExpr
                     parent_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
 
@@ -531,7 +531,7 @@ namespace Xenon.GcavToExpr
                     cur_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                            s1.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(4, s1.ToString(), log_Reports);
 
@@ -569,7 +569,7 @@ namespace Xenon.GcavToExpr
                     parent_Ec.Dictionary_Expression_Attribute.ForEach(
                         delegate(string sName2, Expression_Node_String e_Attr2, ref bool bBreak)
                         {
-                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports) + "”\n");
+                            s3.Append("属" + sName2 + "＝”" + e_Attr2.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "”\n");
                         });
                     tmpl.SetParameter(12, s3.ToString(), log_Reports);//子Expression属性リスト
 
@@ -707,7 +707,7 @@ namespace Xenon.GcavToExpr
 
                                     // 「E■ａｒｇ１」は作らずに、親要素の属性として追加。
                                     Expression_Node_String e_Value = new Expression_Leaf_StringImpl(sValue, cur_Ec, cur_Ec.Cur_Configurationtree);
-                                    cur_Ec.Dictionary_Expression_Attribute.Set(sName_ChildFnc, e_Value, log_Reports);
+                                    cur_Ec.SetAttribute(sName_ChildFnc, e_Value, log_Reports);
                                 }
                             });
 
@@ -744,7 +744,7 @@ namespace Xenon.GcavToExpr
                                     //
                                     // 「E■ａｒｇ１」は作らずに、親要素の属性として追加。
                                     //
-                                    cur_Ec.Dictionary_Expression_Attribute.Set(sName_ChildFnc, ec_Value, log_Reports);
+                                    cur_Ec.SetAttribute(sName_ChildFnc, ec_Value, log_Reports);
                                 }
                             }
                             else
@@ -920,19 +920,19 @@ namespace Xenon.GcavToExpr
             string sName_OwnerNode = owner_Ec.Cur_Configurationtree.Name;
             string sName_OwnerFnc = "";
             {
-                bool bRequired;
+                EnumHitcount enumHitcount;
                 if (NamesNode.S_FNC == sName_OwnerNode
                     //||
                     //NamesNode.S_F_TEXT_TEMPLATE2 == sOwnerNodeName
                     )
                 {
-                    bRequired = true;
+                    enumHitcount = EnumHitcount.One;
                 }
                 else
                 {
-                    bRequired = false;
+                    enumHitcount = EnumHitcount.One_Or_Zero;
                 }
-                bool bHit = owner_Ec.Dictionary_Expression_Attribute.TrySelect(out sName_OwnerFnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = owner_Ec.TrySelectAttribute(out sName_OwnerFnc, PmNames.S_NAME.Name_Pm, enumHitcount, log_Reports);
             }
 
 
@@ -1040,19 +1040,19 @@ namespace Xenon.GcavToExpr
             string sName_OwnerNode = owner_Ec.Cur_Configurationtree.Name;
             string sName_OwnerFnc = "";
             {
-                bool bRequired;
+                EnumHitcount enumHitcount;
                 if (NamesNode.S_FNC == sName_OwnerNode
                     //||
                     //NamesNode.S_F_TEXT_TEMPLATE2 == sOwnerNodeName
                     )
                 {
-                    bRequired = true;
+                    enumHitcount = EnumHitcount.One;
                 }
                 else
                 {
-                    bRequired = false;
+                    enumHitcount = EnumHitcount.One_Or_Zero;
                 }
-                bool bHit = owner_Ec.Dictionary_Expression_Attribute.TrySelect(out sName_OwnerFnc, PmNames.S_NAME.Name_Pm, bRequired, Request_SelectingImpl.Unconstraint, log_Reports);
+                bool bHit = owner_Ec.TrySelectAttribute(out sName_OwnerFnc, PmNames.S_NAME.Name_Pm, enumHitcount, log_Reports);
             }
 
 
@@ -1161,7 +1161,7 @@ namespace Xenon.GcavToExpr
                                     log_Reports
                                     );
 
-                                owner_Ec.Dictionary_Expression_Attribute.Set(
+                                owner_Ec.SetAttribute(
                                     PmNames.S_TABLE.Name_Pm,
                                     ec_Tbl,
                                     log_Reports

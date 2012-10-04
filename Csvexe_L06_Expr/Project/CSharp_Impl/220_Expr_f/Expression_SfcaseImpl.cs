@@ -64,7 +64,7 @@ namespace Xenon.Expr
                 log_Method.WriteDebug_ToConsole(" ┌────┐ 子要素数＝[" + this.List_Expression_Child.Count + "]");
             }
 
-            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(Request_SelectingImpl.Unconstraint,log_Reports);
+            List<Expression_Node_String> ecList_Child = this.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports);
             foreach (Expression_Node_String ec_Child in ecList_Child)
             {
 
@@ -75,7 +75,7 @@ namespace Xenon.Expr
 
                 string sChildFncName = "";
                 {
-                    bool bRequired2;
+                    EnumHitcount hits;
                     if (
                         NamesNode.S_ARG == sChildNodeName ||
                         NamesNode.S_FNC == sChildNodeName
@@ -83,13 +83,13 @@ namespace Xenon.Expr
                     {
                         // ＜ａｒｇ　＞の場合。
                         // ＜ｆｎｃ　＞の場合。
-                        bRequired2 = true;
+                        hits = EnumHitcount.One;
                     }
                     else
                     {
-                        bRequired2 = false;
+                        hits = EnumHitcount.One_Or_Zero;
                     }
-                    bool bHit = ec_Child.Dictionary_Expression_Attribute.TrySelect(out sChildFncName, PmNames.S_NAME.Name_Pm, bRequired2, Request_SelectingImpl.Unconstraint, log_Reports);
+                    bool bHit = ec_Child.TrySelectAttribute(out sChildFncName, PmNames.S_NAME.Name_Pm, hits, log_Reports);
                 }
 
 
@@ -106,7 +106,7 @@ namespace Xenon.Expr
                 }
                 else
                 {
-                    string sValue = ec_Child.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sValue = ec_Child.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     if (log_Method.CanDebug(1))
                     {
                         log_Method.WriteDebug_ToConsole(" ・子[" + sChildNodeName + "]　ｎａｍｅ＝”[" + sChildFncName + "]”　属性数＝[" + ec_Child.Dictionary_Expression_Attribute.Count + "]　値＝”[" + sValue + "]”");

@@ -84,7 +84,7 @@ namespace Xenon.Expr
         gt_Error_No1Hit:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, this.Expression_UsercontrolName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports), log_Reports);//コントロールの値
+                tmpl.SetParameter(1, this.Expression_UsercontrolName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//コントロールの値
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6041;", tmpl, log_Reports);
             }
@@ -114,9 +114,9 @@ namespace Xenon.Expr
             sb.Append(" ");
             sb.Append(this.Cur_Configurationtree.Parent);
             sb.Append(" [");
-            sb.Append(this.Dictionary_Expression_Attribute.ToString());
+            sb.Append(this.Dictionary_Expression_Attribute.ToString());//？
             sb.Append("] 変数名");
-            sb.Append(this.Expression_UsercontrolName.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports_ThisMethod));
+            sb.Append(this.Expression_UsercontrolName.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ThisMethod));
             sb.Append("");
 
             log_Reports_ThisMethod.EndCreateReport();

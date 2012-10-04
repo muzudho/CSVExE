@@ -22,7 +22,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:外部アプリケーション起動_CSV渡す;";
+        public static readonly string NAME_FUNCTION = "Sf:外部アプリケーション起動_CSV渡す;";
 
         //────────────────────────────────────────
         //
@@ -32,12 +32,12 @@ namespace Xenon.Functions
         /// <summary>
         /// 元となるテーブル名。//カンマ区切りで複数指定できる。
         /// </summary>
-        public static readonly string S_PM_NAME_TABLE_SRC = PmNames.S_NAME_TABLE_SRC.Name_Pm;
+        public static readonly string PM_NAME_TABLE_SOURCE = PmNames.S_NAME_TABLE_SRC.Name_Pm;
 
         /// <summary>
         /// 外部アプリケーションを実行するなら、そのファイルパス。なければ空文字列。
         /// </summary>
-        public static string S_PM_FILEPATH_EXTERNALAPPLICATION = PmNames.S_FILEPATH_EXTERNALAPPLICATION.Name_Pm;
+        public static string PM_FILEPATH_EXTERNALAPPLICATION = PmNames.S_FILEPATH_EXTERNALAPPLICATION.Name_Pm;
 
         //────────────────────────────────────────
         #endregion
@@ -65,10 +65,10 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function06Impl.S_PM_NAME_TABLE_SRC, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function06Impl.S_PM_FILEPATH_EXTERNALAPPLICATION, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function06Impl.PM_NAME_TABLE_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function06Impl.PM_FILEPATH_EXTERNALAPPLICATION, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -96,7 +96,7 @@ namespace Xenon.Functions
             if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
                 string sFncName;
-                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
                 if (log_Reports.CanStopwatch)
                 {
@@ -109,7 +109,7 @@ namespace Xenon.Functions
                 {
                     Customcontrol fcCc = (Customcontrol)this.Functionparameterset.Sender;
 
-                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string fcNameStr = fcCc.ControlCommon.Expression_Name_Control.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                     log_Reports.Comment_EventCreationMe = "[" + fcNameStr + "]コントロールが、[" + sFncName + "]アクションを実行。";
                 }
@@ -124,7 +124,7 @@ namespace Xenon.Functions
                 XenonTable o_Table_Src;
                 {
                     Expression_Node_String ec_ArgTableName;
-                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function06Impl.S_PM_NAME_TABLE_SRC, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                    this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function06Impl.PM_NAME_TABLE_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
 
                     o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
                         ec_ArgTableName,
@@ -153,7 +153,7 @@ namespace Xenon.Functions
 
                     // TODO ファイルパスの妥当性判定も欲しい
                     sFpatha_csv = ec_Fpath_Csv.Execute_OnExpressionString(
-                        Request_SelectingImpl.Unconstraint, log_Reports);
+                        EnumHitcount.Unconstraint, log_Reports);
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。
@@ -169,9 +169,9 @@ namespace Xenon.Functions
                 // 外部アプリケーションの起動。
                 //
                 Expression_Node_String ec_Fpath_ArgExternalApplication;
-                this.TrySelectAttribute(out ec_Fpath_ArgExternalApplication, Expression_Node_Function06Impl.S_PM_FILEPATH_EXTERNALAPPLICATION, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out ec_Fpath_ArgExternalApplication, Expression_Node_Function06Impl.PM_FILEPATH_EXTERNALAPPLICATION, EnumHitcount.One_Or_Zero, log_Reports);
 
-                string sEaFilePath = ec_Fpath_ArgExternalApplication.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                string sEaFilePath = ec_Fpath_ArgExternalApplication.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
 
                 if ("" != sEaFilePath)
                 {
@@ -188,7 +188,7 @@ namespace Xenon.Functions
                             );
 
                         ec_Fpath_App = ecValue.Execute_OnExpressionString_AsFilepath(
-                            Request_SelectingImpl.Unconstraint,
+                            EnumHitcount.Unconstraint,
                             log_Reports
                             );
                     }
@@ -206,7 +206,7 @@ namespace Xenon.Functions
 
                         // 外部プログラムの起動
                         sFpatha_ExternalApplication = ec_Fpath_App.Execute_OnExpressionString(
-                            Request_SelectingImpl.Unconstraint, log_Reports);
+                            EnumHitcount.Unconstraint, log_Reports);
                         if (!log_Reports.Successful)
                         {
                             // 既エラー。

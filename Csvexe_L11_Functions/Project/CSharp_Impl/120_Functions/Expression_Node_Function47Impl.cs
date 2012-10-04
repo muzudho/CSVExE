@@ -30,7 +30,7 @@ namespace Xenon.Functions
         // 関数名
         //
 
-        public static readonly string S_ACTION_NAME = "Sf:CSV書出し_ファイルリスト;";
+        public static readonly string NAME_FUNCTION = "Sf:CSV書出し_ファイルリスト;";
 
         //────────────────────────────────────────
         //
@@ -40,22 +40,22 @@ namespace Xenon.Functions
         /// <summary>
         /// 検索されるフォルダー。
         /// </summary>
-        public const string S_PM_FOLDER_SOURCE = "Pm:folder-source;";
+        public const string PM_FOLDER_SOURCE = "Pm:folder-source;";
 
         /// <summary>
         /// 出力先ファイル。
         /// </summary>
-        public const string S_PM_FILE_EXPORT = "Pm:file-export;";
+        public const string PM_FILE_EXPORT = "Pm:file-export;";
 
         /// <summary>
         /// 「File」「Folder」「Both」のいずれか。無指定なら「Both」扱い。
         /// </summary>
-        public const string S_PM_FILTER = "Pm:filter;";
+        public const string PM_FILTER = "Pm:filter;";
 
         /// <summary>
         /// ポップアップの有無。「block」なら出ない。
         /// </summary>
-        public const string S_PM_POPUP = "Pm:popup;";
+        public const string PM_POPUP = "Pm:popup;";
 
         public const string S_FILE = "File";
         public const string S_FOLDER = "Folder";
@@ -88,9 +88,9 @@ namespace Xenon.Functions
             f0.Cur_Configurationtree = cur_Gcav;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(S_ACTION_NAME, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
 
-            f0.Dictionary_Expression_Attribute.Set(Expression_Node_Function47Impl.S_PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function47Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -163,7 +163,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Perform2", log_Reports);
 
             string sName_Fnc;
-            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
             if (log_Reports.CanStopwatch)
             {
@@ -175,17 +175,17 @@ namespace Xenon.Functions
             //ScriptVariableフォルダー
             string sFolder_Scriptvariable;
             {
-                this.TrySelectAttribute(out sFolder_Scriptvariable, Expression_Node_Function47Impl.S_PM_FOLDER_SOURCE, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFolder_Scriptvariable, Expression_Node_Function47Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
             }
             //書出し先ファイル
             Expression_Node_String expr_Variablefile_Export;
             {
-                this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.PM_FILE_EXPORT, EnumHitcount.One_Or_Zero, log_Reports);
             }
             //Expression_Node_Filepath file_Export;
             //{
             //    Expression_Node_String expr_Variablefile_Export;
-            //    this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, Request_SelectingImpl.Unconstraint, log_Reports);
+            //    this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, EnumHitcount.Unconstraint, log_Reports);
             //    {
             //        file_Export = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(expr_Variablefile_Export, true, log_Reports);
 
@@ -198,13 +198,13 @@ namespace Xenon.Functions
             //フィルター指定
             string sFilter;
             {
-                this.TrySelectAttribute(out sFilter, Expression_Node_Function47Impl.S_PM_FILTER, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sFilter, Expression_Node_Function47Impl.PM_FILTER, EnumHitcount.One_Or_Zero, log_Reports);
                 sFilter = sFilter.Trim();
             }
             //ポップアップ指定
             string sPopup;
             {
-                this.TrySelectAttribute(out sPopup, Expression_Node_Function47Impl.S_PM_POPUP, false, Request_SelectingImpl.Unconstraint, log_Reports);
+                this.TrySelectAttribute(out sPopup, Expression_Node_Function47Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
                 sPopup = sPopup.Trim();
             }
 
@@ -259,7 +259,7 @@ namespace Xenon.Functions
 
                 try
                 {
-                    string sFile_Export2 = expr_Variablefile_Export.Execute_OnExpressionString(Request_SelectingImpl.Unconstraint, log_Reports);
+                    string sFile_Export2 = expr_Variablefile_Export.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     System.IO.File.WriteAllText(
                         sFile_Export2,
                         sb.ToString(),
