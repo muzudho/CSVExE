@@ -218,7 +218,7 @@ namespace Xenon.Syntax
 
             foreach (Log_RecordCallstack d_Record in this.stack.Reverse())//this.stack
             {
-                sb.Append(d_Record.ToMessage());
+                sb.Append(d_Record.ToText_Pathbreadcrumbs());
             }
 
             return sb.ToString();

@@ -101,33 +101,15 @@ namespace Xenon.Functions
                 Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_ThisMethod, null);
 
 
-                //
-                //
-                //
                 //（２）独自実装のモデルをセットアップするタイミング。
-                //
-                //
-                //
                 this.On_P2_NewModelSetup(log_Reports);
 
 
-                //
-                //
-                //
                 //（３）.exeのファイルパス
-                //
-                //
-                //
                 string sFpath_Startup = Application.StartupPath;
 
 
-                //
-                //
-                //
                 //（４）[F8]キーを押すと、「ツール設定ダイアログ」が開くようにします。
-                //
-                //
-                //
                 {
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
                             Expression_Node_Function21Impl.NAME_FUNCTION,
@@ -141,25 +123,13 @@ namespace Xenon.Functions
                 }
 
 
-                //
-                //
-                //
                 //（５）『ツール設定ファイル』読取。
-                //
-                //
-                //
                 {
                     this.Owner_MemoryApplication.MemoryAatoolxml.P101_LoadAatoolxml( cf_ThisMethod, log_Reports);
                 }
 
 
-                //
-                //
-                //
                 //（６）『ツール設定ダイアログ』の初期設定。
-                //
-                //
-                //
                 if (log_Reports.Successful)
                 {
                     this.Owner_MemoryApplication.MemoryForms.Form_Toolwindow.Clear();
@@ -182,13 +152,7 @@ namespace Xenon.Functions
                 }
 
 
-                //
-                //
-                //
                 //（７）「プロジェクト選択時」のイベントハンドラーを実行。（アプリケーション起動１回目）
-                //
-                //
-                //
                 if (log_Reports.Successful)
                 {
                     this.Functionitem_OnProjectSelected.Execute_OnEditorSelected(
@@ -197,13 +161,7 @@ namespace Xenon.Functions
 
 
 
-                //
-                //
-                //
                 //（８）タイトル
-                //
-                //
-                //
                 if (log_Reports.Successful)
                 {
                     // タイトルは、外部ファイルで記述します。
@@ -236,13 +194,7 @@ namespace Xenon.Functions
             }
 
 
-            //
-            //
-            //
             //（１０）メソッド終了
-            //
-            //
-            //
             log_Method.EndMethod(log_Reports);
             return "";
         }

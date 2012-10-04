@@ -373,7 +373,7 @@ namespace Xenon.Expr
         gt_Error_NotFoundVariable:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6009;", tmpl, log_Reports);
             }
@@ -382,7 +382,7 @@ namespace Xenon.Expr
         gt_Error_EmptyTableName:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6010;", tmpl, log_Reports);
             }
@@ -391,7 +391,7 @@ namespace Xenon.Expr
         gt_Error_NullTable:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Configurationtree_Node_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6011;", tmpl, log_Reports);
             }

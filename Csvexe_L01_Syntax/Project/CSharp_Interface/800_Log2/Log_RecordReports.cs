@@ -88,11 +88,18 @@ namespace Xenon.Syntax
         string GetMessage(Log_Reports d_Logging_orNull);
 
         /// <summary>
-        /// 警告タイトル
+        /// エラー記号。
         /// </summary>
-        string Title
+        string ErrorSymbol
         {
-            //set;
+            get;
+        }
+
+        /// <summary>
+        /// 問題が発生したメソッド。
+        /// </summary>
+        string FullnameMethod
+        {
             get;
         }
 

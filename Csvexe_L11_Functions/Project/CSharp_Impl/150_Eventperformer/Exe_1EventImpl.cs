@@ -141,7 +141,7 @@ namespace Xenon.Functions
                 while (eventMonitor.BNowactionworking)
                 {
                     // 他の待機スレッドに、実行順番を譲る。
-                    System.Threading.Thread.Sleep(0);
+                    //TODO: System.Threading.Thread.Sleep(0);
                 }
 
                 if (Log_ReportsImpl.BDebugmode_Static)

@@ -93,23 +93,11 @@ namespace Xenon.Functions
         /// <param name="log_Reports"></param>
         public override string Expression_ExecuteMain(Log_Reports log_Reports)
         {
-            //
-            //
-            //
             //（）メソッド開始
-            //
-            //
-            //
             Log_Method log_Method = new Log_MethodImpl(1);
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Expression_ExecuteMain",log_Reports);
 
 
-            //
-            //
-            //
-            //
-            //
-            //
             //
             if (log_Method.CanDebug(1))
             {
@@ -117,13 +105,7 @@ namespace Xenon.Functions
             }
 
 
-            //
-            //
-            //
             //（）タスク_デスクリプション
-            //
-            //
-            //
             {
                 string sFncName0;
                 this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -144,12 +126,7 @@ namespace Xenon.Functions
             string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#Perform_PrjSelected:プロジェクト選択時＞";
             Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_EventOrigin, null);
             //
-            //
-            //
             //（）ダミー・イベントモニターの作成。
-            //
-            //
-            //
             EventMonitor eventMonitor_Dammy = new EventMonitorImpl(null, cf_ThisMethod);
 
 
@@ -157,15 +134,7 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.Editor_B_Lr)
             {
-
-
-                //
-                //
-                //
                 //（４）独自モデルの取得
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（４）独自モデルの取得");
@@ -174,15 +143,7 @@ namespace Xenon.Functions
                 this.On_P04_ReadNewModel(log_Reports);
 
 
-
-
-                //
-                //
-                //
                 //（５）エディター名。ツール設定ファイルに記載されている方。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（５）エディター名。ツール設定ファイルに記載されている方。");
@@ -207,14 +168,7 @@ namespace Xenon.Functions
 
 
 
-
-                //
-                //
-                //
                 //（６）まず、きれいさっぱり　プロジェクトをクリアーします。（切替用）
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（６）まず、きれいさっぱり　プロジェクトをクリアーします。（切替用）");
@@ -224,14 +178,7 @@ namespace Xenon.Functions
 
 
 
-
-                //
-                //
-                //
                 //（７）「Aa_Editor.xml」読取。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（７）「Aa_Editor.xml」読取。");
@@ -305,14 +252,7 @@ namespace Xenon.Functions
 
 
 
-
-                //
-                //
-                //
                 //（１３ａ）エディター・フォルダー。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１３ａ）エディター・フォルダーパス類推。");
@@ -337,13 +277,7 @@ namespace Xenon.Functions
                 }
 
 
-                //
-                //
-                //
                 //（１３ｂ）「Aa_Editor.xml」読取。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１３ｂ）「Aa_Editor.xml」ファイルパス類推。");
@@ -376,13 +310,7 @@ namespace Xenon.Functions
                 }
 
 
-                //
-                //
-                //
                 //（８）「エディター設定ファイル」に記述されている＜ｆ－ｓｅｔ－ｖａｒ＞要素を、「エディター設定ファイル・モデル」に格納。Cf→M
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（８）「エディター設定ファイル」に記述されている＜ｆ－ｓｅｔ－ｖａｒ＞要素を、「エディター設定ファイル・モデル」に格納。Cf→M。この時点で「Sp:Engine;」といったシステム変数は自動類推が終わっている必要があります。");
@@ -416,13 +344,7 @@ namespace Xenon.Functions
 
                 if (log_Reports.Successful)
                 {
-                    //
-                    //
-                    //
                     //（９）変数ファイル読取
-                    //
-                    //
-                    //
                     if (log_Method.CanDebug(1))
                     {
                         log_Method.WriteDebug_ToConsole("（９）変数ファイル読取");
@@ -439,13 +361,7 @@ namespace Xenon.Functions
 
                 if (log_Reports.Successful)
                 {
-                    //
-                    //
-                    //
                     //（１０）プログラマー用・デバッグモードのON/OFF。
-                    //
-                    //
-                    //
                     if (log_Method.CanDebug(1))
                     {
                         log_Method.WriteDebug_ToConsole("（１０）プログラマー用・デバッグモードのON/OFF。");
@@ -480,13 +396,7 @@ namespace Xenon.Functions
 
                 if (log_Reports.Successful)
                 {
-                    //
-                    //
-                    //
                     //（１１）画面レイアウト・デバッグモードのON/OFF。
-                    //
-                    //
-                    //
                     if (log_Method.CanDebug(1))
                     {
                         log_Method.WriteDebug_ToConsole("（１１）フォーム・デバッグモードのON/OFF。");
@@ -517,13 +427,7 @@ namespace Xenon.Functions
 
 
 
-                //
-                //
-                //
                 //（１４）「Aa_Files.csv」読取。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１４）「Aa_Files.csv」読取。");
@@ -557,13 +461,7 @@ namespace Xenon.Functions
 
 
 
-                //
-                //
-                //
                 //（１４ｂ）ユーザー定義関数設定ファイル読取【2012-03-30追加】
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１４ｂ）ユーザー定義関数設定ファイル読取【2012-03-30追加】");
@@ -605,13 +503,7 @@ namespace Xenon.Functions
 
 
 
-                //
-                //
-                //
                 //（１６）『スタイルシート設定ファイル』読取
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１６）『スタイルシート設定ファイル』読取");
@@ -639,13 +531,7 @@ namespace Xenon.Functions
 
 
 
-                //
-                //
-                //
                 //（１７ａ）「バックアップを取る」前にしておく独自実装をするタイミング。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１７ａ）「バックアップを取る」前にしておく独自実装をするタイミング。");
@@ -661,13 +547,7 @@ namespace Xenon.Functions
                     sConfigStack_EventOrigin,
                     log_Reports);
 
-                //
-                //
-                //
                 //（１７ｂ）今日の分のバックアップを取ります。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１７ｂ）今日の分のバックアップを取ります。");
@@ -676,13 +556,7 @@ namespace Xenon.Functions
                 this.On_P17b_DateBackup(ecList_Fpath_BackupRequest, this.Functionparameterset.Sender, eventMonitor_Dammy, sConfigStack_EventOrigin, log_Reports);
 
 
-                //
-                //
-                //
                 //（１７ｃ）「新規ウィンドウを開く」前にしておく独自実装をするタイミング。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１７ｃ）「新規ウィンドウを開く」前にしておく独自実装をするタイミング。");
@@ -699,13 +573,7 @@ namespace Xenon.Functions
                     log_Reports);
 
 
-                //
-                //
-                //
                 //（１８）関数３０「新規ウィンドウを開く」実行。引数には関数を２つ指定できる。
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１８）関数３０「新規ウィンドウを開く」実行。引数には関数を２つ指定できる。");
@@ -749,13 +617,7 @@ namespace Xenon.Functions
                 }
 
 
-                //
-                //
-                //
                 //（１９）最後に
-                //
-                //
-                //
                 if (log_Method.CanDebug(1))
                 {
                     log_Method.WriteDebug_ToConsole("（１９）最後に");
@@ -772,17 +634,9 @@ namespace Xenon.Functions
 
 
                 //
-                //
-                //
                 // 「S」と「E」を出力したい。
-                //
-                //
-                //
                 if (false)
                 {
-                    //List<string> list_sNodeName = new List<string>();
-                    //List<string> list_eNodeName = new List<string>();
-
                     // 「S」全てのコントロールと、ユーザー定義関数について。
 
                     log_Method.WriteInfo_ToConsole("┌──────────┐「S」全てのコントロールについて。");
@@ -842,7 +696,6 @@ namespace Xenon.Functions
 
 
                 goto gt_EndMethod;
-            //
             //
             gt_EndMethod:
                 log_Method.EndMethod(log_Reports);
@@ -1311,7 +1164,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sArgName, log_Reports);//引数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(ec_Fpath.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(ec_Fpath.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110006;", tmpl, log_Reports);
             }

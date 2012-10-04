@@ -21,9 +21,11 @@ namespace Xenon.Syntax
 
         /// <summary>
         /// コールスタックの表示。
+        /// 
+        /// 実行パス・パンくずリスト。
         /// </summary>
         /// <returns></returns>
-        string ToMessage();
+        string ToText_Pathbreadcrumbs();
 
         //────────────────────────────────────────
         #endregion

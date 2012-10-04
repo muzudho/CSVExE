@@ -45,7 +45,7 @@ namespace Xenon.MiddleImpl
             //
             string sOutput;
             {
-                sOutput = log_ReportsBuffer_Output.ToMessage();
+                sOutput = log_ReportsBuffer_Output.ToText();
             }
 
             //

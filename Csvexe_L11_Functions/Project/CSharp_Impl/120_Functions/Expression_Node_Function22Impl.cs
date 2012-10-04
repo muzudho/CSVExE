@@ -261,7 +261,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, PmNames.S_NAME_TABLE.Name_Pm, log_Reports);//引数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110008;", tmpl, log_Reports);
             }
@@ -588,7 +588,7 @@ namespace Xenon.Functions
                 tmpl.SetParameter(3, ValuesTypeData.Message_Allitems(), log_Reports);//TYPE_DATAフィールドに設定できる値のリスト
 
                 Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部" + err_NRow + "行", o_Table_Aafiles.Parent);
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cf), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110011;", tmpl, log_Reports);
             }
@@ -1024,7 +1024,7 @@ namespace Xenon.Functions
         gt_Error_NullFolder:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110009;", tmpl, log_Reports);
             }

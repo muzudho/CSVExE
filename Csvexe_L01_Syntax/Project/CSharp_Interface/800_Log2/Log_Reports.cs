@@ -52,13 +52,13 @@ namespace Xenon.Syntax
         /// 警告が出ていれば、そのテキスト。
         /// </summary>
         /// <returns></returns>
-        string ToMessage(string sGroupTag);
+        string ToText(string sGroupTag);
 
         /// <summary>
         /// 警告が出ていれば、そのテキスト。
         /// </summary>
         /// <returns></returns>
-        string ToMessage();
+        string ToText();
 
         //────────────────────────────────────────
         #endregion

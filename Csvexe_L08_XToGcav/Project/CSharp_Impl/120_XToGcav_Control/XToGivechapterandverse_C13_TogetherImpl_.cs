@@ -360,7 +360,7 @@ namespace Xenon.XToGcav
                 tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
                 tmpl.SetParameter(2, PmNames.S_IN.Name_Attribute, log_Reports);//引数名
                 tmpl.SetParameter(3, err_SIn, log_Reports);//in属性値
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8026;", tmpl, log_Reports);
             }
@@ -375,7 +375,7 @@ namespace Xenon.XToGcav
                 cur_Cf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Tg, false, log_Reports);
                 tmpl.SetParameter(2, sName_Tg, log_Reports);//指定したtogether名
 
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8027;", tmpl, log_Reports);
             }
@@ -386,7 +386,7 @@ namespace Xenon.XToGcav
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, PmNames.S_ON.Name_Attribute, log_Reports);//属性名on
                 tmpl.SetParameter(2, NamesNode.S_TOGETHER, log_Reports);//ノード名トゥゲザー
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8028;", tmpl, log_Reports);
             }
@@ -399,7 +399,7 @@ namespace Xenon.XToGcav
 
                 tmpl.SetParameter(2, "in,name", log_Reports);//属性名リスト
 
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8029;", tmpl, log_Reports);
             }
@@ -411,7 +411,7 @@ namespace Xenon.XToGcav
                 tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
                 tmpl.SetParameter(2, NamesNode.S_TARGET, log_Reports);//期待する子ノード名
                 tmpl.SetParameter(3, err_Child_X.Name, log_Reports);//実際の子ノード名
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8030;", tmpl, log_Reports);
             }
@@ -422,7 +422,7 @@ namespace Xenon.XToGcav
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
                 tmpl.SetParameter(2, PmNames.S_TARGET1.Name_Attribute, log_Reports);//期待する属性名
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8031;", tmpl, log_Reports);
             }
@@ -433,7 +433,7 @@ namespace Xenon.XToGcav
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, NamesNode.S_TOGETHER, log_Reports);//ノード名
                 tmpl.SetParameter(2, PmNames.S_ON.Name_Attribute, log_Reports);//期待する属性名
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8032;", tmpl, log_Reports);
             }

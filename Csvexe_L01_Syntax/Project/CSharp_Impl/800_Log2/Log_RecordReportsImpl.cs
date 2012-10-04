@@ -29,7 +29,8 @@ namespace Xenon.Syntax
         public Log_RecordReportsImpl(Log_Reports parent_Log_Logging)
         {
             this.Owner = parent_Log_Logging;
-            this.sTitle = "";
+            this.errorSymbol = "";
+            this.fullnameMethod = "";
             this.p1pText = new Builder_TexttemplateP1pImpl();
             this.sConfigStack = "";
             this.sGroupTag = "";
@@ -48,15 +49,13 @@ namespace Xenon.Syntax
         /// <summary>
         /// 警告タイトル。
         /// </summary>
-        public void SetTitle(string sErrorNumber, Log_Method log_Method)
+        /// <param name="symbolError">エラー記号</param>
+        /// <param name="log_Method"></param>
+        public void SetTitle(string symbolError, Log_Method log_Method)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("【");
-            sb.Append(sErrorNumber);
-            sb.Append("】（");
-            sb.Append(log_Method.Fullname);
-            sb.Append("）");
-            this.Title = sb.ToString();
+            this.ErrorSymbol = symbolError;
+
+            this.fullnameMethod = log_Method.Fullname;
         }
 
         //────────────────────────────────────────
@@ -65,7 +64,7 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public static string ToMessage_Configurationtree(
+        public static string ToText_Configurationtree(
             Configurationtree_Node parent_Gcav
             )
         {
@@ -77,22 +76,18 @@ namespace Xenon.Syntax
             }
             else
             {
-                s.Append("　　問題箇所ヒント：");
+                s.Append("　　設定位置パンくずリスト（問題個所ヒント）：");
                 s.Newline();
                 s.Newline();
                 parent_Gcav.ToText_Locationbreadcrumbs(s);
                 s.Newline();
                 s.Newline();
 
-                s.Append(Log_RecordReportsImpl.ToMessage_Separator());
-
-                s.Append("　　問題内部ヒント：");
-                s.Newline();
                 parent_Gcav.ToText_Content(s);
                 s.Newline();
                 s.Newline();
 
-                s.Append(Log_RecordReportsImpl.ToMessage_Separator());
+                s.Append(Log_RecordReportsImpl.ToText_Separator());
 
                 s.Append("　　問題を報告したオブジェクトの型: ");
                 s.Append(parent_Gcav.GetType());
@@ -113,7 +108,7 @@ namespace Xenon.Syntax
             Configurationtree_Node parent_Cnf
             )
         {
-            return Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cnf);
+            return Log_RecordReportsImpl.ToText_Configurationtree(parent_Cnf);
         }
 
         //────────────────────────────────────────
@@ -122,13 +117,13 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public void WriteCallstack(Log_Callstack log_CallStack)
+        public void ToText_Pathbreadcrumbs(Log_Callstack log_CallStack)
         {
             StringBuilder sb = new StringBuilder();
 
             sb.Append(this.Message_SSeparator());
 
-            sb.Append("　　実行経路ヒント：");
+            sb.Append("　　実行パス・パンくずリスト（プログラマー向けヒント）：");
             sb.Append(Environment.NewLine);
             sb.Append("　　　");
 
@@ -145,7 +140,7 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public static string ToMessage_Exception(
+        public static string ToText_Exception(
             Exception ex
             )
         {
@@ -183,7 +178,7 @@ namespace Xenon.Syntax
             Exception ex
             )
         {
-            return Log_RecordReportsImpl.ToMessage_Exception(ex);
+            return Log_RecordReportsImpl.ToText_Exception(ex);
         }
 
         //────────────────────────────────────────
@@ -192,7 +187,7 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public static string ToMessage_Separator()
+        public static string ToText_Separator()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -210,7 +205,7 @@ namespace Xenon.Syntax
         /// <returns></returns>
         public string Message_SSeparator()
         {
-            return Log_RecordReportsImpl.ToMessage_Separator();
+            return Log_RecordReportsImpl.ToText_Separator();
         }
 
         //────────────────────────────────────────
@@ -308,20 +303,35 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private string sTitle;
+        private string errorSymbol;
 
         /// <summary>
-        /// 警告タイトル。
+        /// エラー記号。
         /// </summary>
-        public string Title
+        public string ErrorSymbol
         {
             set
             {
-                sTitle = value;
+                errorSymbol = value;
             }
             get
             {
-                return sTitle;
+                return errorSymbol;
+            }
+        }
+
+        //────────────────────────────────────────
+
+        private string fullnameMethod;
+
+        /// <summary>
+        /// 問題が発生したメソッド。
+        /// </summary>
+        public string FullnameMethod
+        {
+            get
+            {
+                return fullnameMethod;
             }
         }
 

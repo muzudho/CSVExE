@@ -1189,7 +1189,7 @@ namespace Xenon.MiddleImpl
             d_Logging_Dammy.EndLogging(log_Method);
             if (!d_Logging_Dammy.Successful)
             {
-                log_Method.WriteDebug_ToConsole(d_Logging_Dammy.ToMessage());
+                log_Method.WriteDebug_ToConsole(d_Logging_Dammy.ToText());
             }
         }
 

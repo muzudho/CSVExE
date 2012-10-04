@@ -133,45 +133,40 @@ namespace Xenon.Syntax
             s.Increment();
 
             // ノード名
-            s.AppendI(0, "<[");
+            s.AppendI(0, "<");
             s.Append(this.Name);
-            s.Append("]　");
-
-            // クラス
-            s.Append("[");
-            s.Append(this.GetType().Name);
-            s.Append("]クラス");
-
-            s.Append(">");
-            s.Newline();
-
+            s.Append(" ");
 
             //
-            // string 属性
+            // 属性
             //
-            s.AppendI(1, "string属性");
-            s.Newline();
             this.Dictionary_Attribute.ForEach(delegate(string sKey, string sValue, ref bool bBreak)
             {
-                s.AppendI(1, "[");
                 s.Append(sKey);
-                s.Append("]=[");
+                s.Append("=[");
                 s.Append(sValue);
-                s.Append("]");
-                s.Newline();
+                s.Append("] ");
             });
 
 
-            //
-            // 子要素
-            //
-            this.list_Child.ToText_Content(s);
+            if (0 < this.list_Child.Count)
+            {
+                s.Append(">");
+                s.Newline();
 
+                // 子要素
+                this.list_Child.ToText_Content(s);
 
-            s.AppendI(0, "</");
-            s.Append(this.GetType().Name);
-            s.Append("クラス>");
-            s.Newline();
+                s.AppendI(0, "</");
+                s.Append(this.Name);
+                s.Append(">");
+                s.Newline();
+            }
+            else
+            {
+                s.Append("/>");
+                s.Newline();
+            }
 
 
             s.Decrement();

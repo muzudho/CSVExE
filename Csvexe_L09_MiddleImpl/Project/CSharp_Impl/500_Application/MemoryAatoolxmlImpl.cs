@@ -286,7 +286,7 @@ namespace Xenon.MiddleImpl
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, ValuesAttr.S_FPATHR_AATOOLXML,log_Reports);
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Exception(err_Excp),log_Reports);
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Exception(err_Excp),log_Reports);
 
                 this.Owner_MemoryApplication.CreateErrorReport( "Er:1;", tmpl, log_Reports );
             }

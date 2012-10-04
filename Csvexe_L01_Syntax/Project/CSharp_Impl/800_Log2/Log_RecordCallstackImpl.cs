@@ -13,11 +13,10 @@ namespace Xenon.Syntax
         #region アクション
         //────────────────────────────────────────
 
-        public string ToMessage()
+        public string ToText_Pathbreadcrumbs()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("*＜");
             sb.Append(this.Log_Method.Fullname);
 
             if ("" != this.Comment_Statement)
@@ -26,7 +25,7 @@ namespace Xenon.Syntax
                 sb.Append(this.Comment_Statement);
             }
 
-            sb.Append("＞");
+            sb.Append(" > ");
 
             return sb.ToString();
         }
@@ -55,17 +54,17 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private string sComment_Statement;
+        private string comment_Statement;
 
         public string Comment_Statement
         {
             get
             {
-                return sComment_Statement;
+                return comment_Statement;
             }
             set
             {
-                sComment_Statement = value;
+                comment_Statement = value;
             }
         }
 

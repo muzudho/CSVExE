@@ -470,7 +470,7 @@ namespace Xenon.Expr
         gt_Error_NullKeyFldDefinition:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6025;", tmpl, log_Reports);
             }
@@ -480,7 +480,7 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, o_Table.Name, log_Reports);//テーブル名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6026;", tmpl, log_Reports);
             }
@@ -490,7 +490,7 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, keyFldDefinition.Type.ToString(), log_Reports);//キー・フィールド定義型名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6027;", tmpl, log_Reports);
             }
@@ -500,8 +500,8 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_SSelectedFldName, log_Reports);//選択フィールド名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToMessage_Exception(err_Exception), log_Reports);//例外メッセージ
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Exception(err_Exception), log_Reports);//例外メッセージ
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6028;", tmpl, log_Reports);
             }

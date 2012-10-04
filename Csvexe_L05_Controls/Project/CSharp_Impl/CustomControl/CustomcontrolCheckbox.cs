@@ -119,16 +119,16 @@ namespace Xenon.Controls
             //
 
 
-            List<Expression_Node_String> ecList_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
-            List<Expression_Node_String> ecList_DataSource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(ecList_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
+            List<Expression_Node_String> list_Expr_Data = this.ControlCommon.Expression_Control.SelectDirectchildByNodename(NamesNode.S_DATA, false, EnumHitcount.Unconstraint, log_Reports);
+            List<Expression_Node_String> list_Expr_Datasource = Utility_Expression_NodeImpl.SelectItemsByPmAsCsv(list_Expr_Data, PmNames.S_ACCESS.Name_Pm, ValuesAttr.S_FROM, false, EnumHitcount.First_Exist, log_Reports);
             if (!log_Reports.Successful)
             {
                 goto gt_EndMethod;
             }
-            Expression_Node_String e_DataSource = ecList_DataSource[0];
+            Expression_Node_String expr_Datasource = list_Expr_Datasource[0];
 
 
-            if (null == e_DataSource)
+            if (null == expr_Datasource)
             {
                 // データソースが設定されていないとき
 
@@ -139,12 +139,9 @@ namespace Xenon.Controls
                 if (log_Reports.Successful)
                 {
 
-                    //EnumHitcount requestItems = new EnumHitcount();
-                    //requestItems = EnumHitcount.One;
-
-                    if (0 < e_DataSource.List_Expression_Child.Count)
+                    if (0 < expr_Datasource.List_Expression_Child.Count)
                     {
-                        e_DataSource.List_Expression_Child.ForEach(delegate(Expression_Node_String eFirst, ref bool bRemove, ref bool bBreak)
+                        expr_Datasource.List_Expression_Child.ForEach(delegate(Expression_Node_String expr_First, ref bool bRemove, ref bool bBreak)
                         {
                             if (log_Reports.Successful)
                             {
@@ -153,13 +150,13 @@ namespace Xenon.Controls
                                 //
 
                                 string sValue;
-                                if (null == eFirst)
+                                if (null == expr_First)
                                 {
                                     sValue = "";
                                 }
                                 else
                                 {
-                                    Expression_Node_String e_str = (Expression_Node_String)eFirst;
+                                    Expression_Node_String e_str = (Expression_Node_String)expr_First;
                                     sValue = e_str.Execute_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
                                 }
 
@@ -199,7 +196,11 @@ namespace Xenon.Controls
                                                 {
                                                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                                                     tmpl.SetParameter(1, sValue, log_Reports);//値
-                                                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+
+                                                    // データソース要素のソースを調べますが、「どのテーブルから取ってきたか」ではなく、
+                                                    // 「設定ファイルに何と書かれていたか」を取ってきます。
+                                                    //tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(expr_Datasource.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(expr_First.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                     this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:539;", tmpl, log_Reports);
                                                 }
@@ -254,7 +255,7 @@ namespace Xenon.Controls
                                                     {
                                                         Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                                                         tmpl.SetParameter(1, nCheckedInt.ToString(), log_Reports);//値
-                                                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(expr_First.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                         this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:540;", tmpl, log_Reports);
                                                     }
@@ -271,7 +272,7 @@ namespace Xenon.Controls
                                                 //#内部メソッド内のエラー
                                                 {
                                                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                                                    tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                    tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(expr_First.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                     this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:541;", tmpl, log_Reports);
                                                 }
@@ -299,7 +300,7 @@ namespace Xenon.Controls
                                             //#内部メソッド内のエラー
                                             {
                                                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                                                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Configurationtree(eFirst.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                                                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(expr_First.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
 
                                                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:542;", tmpl, log_Reports);
                                             }

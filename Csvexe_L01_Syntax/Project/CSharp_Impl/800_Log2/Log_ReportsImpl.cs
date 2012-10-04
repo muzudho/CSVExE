@@ -35,7 +35,7 @@ namespace Xenon.Syntax
 
             this.bSuccessful = true;
             this.log_Method_CreationMe = log_Method_CreationMe;
-            this.sComment_EventCreationMe = "";
+            this.comment_EventCreationMe = "";
         }
 
         public Log_RecordReports CreateDammyReport()
@@ -98,39 +98,17 @@ namespace Xenon.Syntax
         /// 警告が出ていれば、そのテキスト。
         /// </summary>
         /// <returns></returns>
-        public string ToMessage(string sGroupTag)
+        public string ToText(string sGroupTag)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "ToMessage", log_Reports_ThisMethod);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "ToText", log_Reports_ThisMethod);
 
             Log_TextIndented s = new Log_TextIndentedImpl();
 
-            s.Append("このエラーメッセージを作っているロガー：");
-            s.Append(log_Method.Fullname);
-            s.Newline();
-
-            if (null != this.log_Method_CreationMe)
-            {
-                s.Append("ロガー生成場所：");
-                s.Append(this.Log_Method_CreationMe.Fullname);
-                s.Newline();
-            }
-            else
-            {
-                s.Append("ロガー生成場所：ヌル");
-                s.Newline();
-            }
-
-            if (""!=this.Comment_EventCreationMe)
-            {
-                s.Append("ロガーの作成に関するコメント：");
-                s.Append(this.Comment_EventCreationMe);
-                s.Newline();
-            }
 
 
-            s.Append("デバッグログ出力：");
+            s.Append("ログ出力：");
             s.Newline();
 
             int nErrorCount = 0;
@@ -148,7 +126,7 @@ namespace Xenon.Syntax
                         s.Append(") ");
 
                         // タイトル
-                        s.Append(log_RecordReport.Title);
+                        s.Append(log_RecordReport.ErrorSymbol);
 
                         if ("" != log_RecordReport.Tag_Group)
                         {
@@ -180,11 +158,50 @@ namespace Xenon.Syntax
                         }
 
                         s.Newline();
+                        s.Newline();
+
+                        // エラーが発生したメソッド。
+                        s.Append(log_RecordReport.FullnameMethod);
+
+                        s.Newline();
                     }
 
                     // カウンターは、読み飛ばしたエラーもきちんとカウント。
                     nErrorCount++;
                 }
+            }
+
+            {
+                s.Append(Log_RecordReportsImpl.ToText_Separator());
+            }
+
+            {
+                if ("" != this.Comment_EventCreationMe)
+                {
+                    s.Append("ロガーの作成に関するコメント：");
+                    s.Append(this.Comment_EventCreationMe);
+                    s.Newline();
+                }
+            }
+
+            {
+                if (null != this.log_Method_CreationMe)
+                {
+                    s.Append("ロガー生成場所：");
+                    s.Append(this.Log_Method_CreationMe.Fullname);
+                    s.Newline();
+                }
+                else
+                {
+                    s.Append("ロガー生成場所：ヌル");
+                    s.Newline();
+                }
+            }
+
+            {
+                s.Append("このエラーメッセージを作っているロガー：");
+                s.Append(log_Method.Fullname);
+                s.Newline();
             }
 
             if (!Log_ReportsImpl.BDebugmode_Static)
@@ -209,10 +226,10 @@ namespace Xenon.Syntax
         /// 警告が出ていれば、そのテキスト。
         /// </summary>
         /// <returns></returns>
-        public string ToMessage()//WarningMessage
+        public string ToText()
         {
             // タグ指定なし。
-            return this.ToMessage("");
+            return this.ToText("");
         }
 
         //────────────────────────────────────────
@@ -260,7 +277,7 @@ namespace Xenon.Syntax
                 StringBuilder sb = new StringBuilder();
                 sb.Append("▲エラー！（EndLogging）");
 
-                string strMessage = this.ToMessage();
+                string strMessage = this.ToText();
                 // \n を、実際に改行する命令に変換。
                 strMessage = strMessage.Replace("\\n", System.Environment.NewLine);
 
@@ -293,7 +310,7 @@ namespace Xenon.Syntax
             // ダミーレポートでない場合、レポートを記録します。
             if (EnumReport.Dammy != enumReport)
             {
-                r.WriteCallstack(this.Log_Callstack);
+                r.ToText_Pathbreadcrumbs(this.Log_Callstack);
                 this.Add(r);
             }
 
@@ -365,7 +382,7 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private string sComment_EventCreationMe;
+        private string comment_EventCreationMe;
         /// <summary>
         /// このロガーを new したイベントの説明。
         /// </summary>
@@ -373,11 +390,11 @@ namespace Xenon.Syntax
         {
             get
             {
-                return this.sComment_EventCreationMe;
+                return this.comment_EventCreationMe;
             }
             set
             {
-                this.sComment_EventCreationMe = value;
+                this.comment_EventCreationMe = value;
             }
         }
 

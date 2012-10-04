@@ -640,7 +640,7 @@ namespace Xenon.Expr
                 string sFncName0;
                 ec_CommonFunction.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 tmpl.SetParameter(3, sFncName0, log_Reports);//関数名
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToMessage_Configurationtree(cf_Node), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cf_Node), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6039;", tmpl, log_Reports);
             }

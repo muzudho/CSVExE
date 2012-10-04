@@ -157,7 +157,7 @@ namespace Xenon.XToGcav
                 tmpl.SetParameter(2, ec_Fopath_Forms.Execute_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), log_Reports);//Formsフォルダーパス
                 tmpl.SetParameter(3, sHiFpath_ControlFile, log_Reports);//コントロール設定ファイルパス（入力ママ）
                 tmpl.SetParameter(4, sFpatha_Fcnf, log_Reports);//コントロール設定ファイルパス（Formsフォルダーと結合後）
-                tmpl.SetParameter(5, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(5, Log_RecordReportsImpl.ToText_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 memoryApplication.CreateErrorReport("Er:8004;", tmpl, log_Reports);
             }
@@ -166,7 +166,7 @@ namespace Xenon.XToGcav
         gt_Error_XmlException01:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 memoryApplication.CreateErrorReport("Er:8005;", tmpl, log_Reports);
             }
@@ -185,7 +185,7 @@ namespace Xenon.XToGcav
         gt_Error_XmlException02:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToMessage_Exception(err_Excp), log_Reports);//例外メッセージ
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 memoryApplication.CreateErrorReport("Er:8007;", tmpl, log_Reports);
             }
