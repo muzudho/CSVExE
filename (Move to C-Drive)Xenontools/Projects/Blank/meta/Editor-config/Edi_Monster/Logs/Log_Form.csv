@@ -1,5 +1,0 @@
-NO,ID,TREE,Expl,FILE,NAME,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,PIC_ZOOM,TAB_INDEX,BACK_COLOR,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,LIST_VALUE_FIELD,END
-int,int,int,string,string,string,string,string,string,int,int,int,int,bool,bool,bool,bool,string,string,string,int,int,string,int,string,string,END
--1,使わない,ネスト関係,解説,コントロール設定ファイルパス,コントロール固有名,コントロールの型,初期値,フォントサイズ（pt）,左上角の座標X,左上角の座標Y,横幅ピクセル,縦幅ピクセル,活性化,可視,テキストボックス等を読み取り専用にするなら真。,テキストエリアで行を自動的に折り返すなら真。,（テキストエリア）改行記号。,テキストエリア等で利用。None,Horizontal,Vertical,Bothの４つ。使わないなら空欄。,チェックボックスの値の型。(空欄：false,true。ZERO_ONE：0,1）,（未実装）画像の倍角サイズ。2000で２倍。,タブ・インデックス,背景色,リストボックスの項目の高さ（ピクセル）,リストボックスの各項目の表示書式,（開発中）リストボックスの値が入っている、レコードのフィールド名。,END
-0,,TREE,Expl,FILE,control,TYPE,CSVE×E　紹介用,9,0,0,800,630,True,True,,,,,,-1,0,,-1,,,END
-1,,TREE,Expl,FILE,control,TYPE,空っぽだよ。,9,300,300,200,20,True,True,,,,,,-1,0,,-1,,,END

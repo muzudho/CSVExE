@@ -113,19 +113,31 @@ namespace Xenon.Table
 
         public override void ToText_Content(Log_TextIndented s)
         {
+            Log_Method log_Method = new Log_MethodImpl();
+            Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ToText_Content", log_Reports_ThisMethod);
+
             s.Increment();
+            s.AppendI(0, "[table]");
+            s.Append(Environment.NewLine);
 
-
-            s.AppendI(0, "<OTableImplクラス>");
+            s.Increment();
+            s.AppendI(0, "[プログラム]");
+            s.Append(log_Method.Fullname);
             s.Append(Environment.NewLine);
 
             this.Expression_Filepath_ConfigStack.Cur_Configurationtree.ToText_Content(s);
 
-            s.AppendI(0, "</OTableImplクラス>");
+            s.AppendI(0, "[/プログラム]");
+            s.Append(log_Method.Fullname);
             s.Append(Environment.NewLine);
-
-
             s.Decrement();
+
+            s.AppendI(0, "[/table]");
+            s.Append(Environment.NewLine);
+            s.Decrement();
+
+            log_Method.EndMethod(log_Reports_ThisMethod);
         }
 
         //────────────────────────────────────────

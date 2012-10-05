@@ -133,6 +133,26 @@ namespace Xenon.Syntax
         /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
+        public bool TrySelectAttribute_ExpressionFilepath(
+            out Expression_Node_Filepath ec_Result_Out,
+            string sName,
+            EnumHitcount hits,
+            Log_Reports log_Reports
+            )
+        {
+            return this.Dictionary_Expression_Attribute.TrySelect_ExpressionFilepath(
+                out ec_Result_Out, sName, hits, log_Reports);
+        }
+
+        /// <summary>
+        /// E_Elm属性。
+        /// </summary>
+        /// <param name="out_E_Result">検索結果。</param>
+        /// <param name="sName"></param>
+        /// <param name="bRequired"></param>
+        /// <param name="hits"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns>検索結果が1件以上あれば真。</returns>
         public bool TrySelectAttribute(
             out Expression_Node_String ec_Result_Out,
             string sName,
@@ -143,8 +163,6 @@ namespace Xenon.Syntax
             return this.Dictionary_Expression_Attribute.TrySelect(
                 out ec_Result_Out, sName, hits, log_Reports);
         }
-
-        //────────────────────────────────────────
 
         public bool TrySelectAttribute(
             out string sResult_Out,

@@ -1,96 +1,96 @@
-NO,ID,TREE,EXPL2,EXPL,NAME,FILE,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,PIC_ZOOM,TAB_INDEX,BACK_COLOR,END
+ï»¿NO,ID,TREE,EXPL2,EXPL,NAME,FILE,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,PIC_ZOOM,TAB_INDEX,BACK_COLOR,END
 int,string,int,string,string,string,string,string,string,string,int,int,int,int,bool,bool,bool,bool,string,string,string,int,string,int,int,string,END
--1,Žg‚¢‚Ü‚¹‚ñB,À•W‚ÌƒlƒXƒgŠÖŒW,‰ðà2,‰ðà,ƒRƒ“ƒgƒ[ƒ‹–¼,ƒtƒ@ƒCƒ‹ƒpƒXBFormsƒtƒHƒ‹ƒ_[‰º‚©‚ç‚Ì‘Š‘ÎƒpƒXBƒRƒ“ƒgƒ[ƒ‹Ý’èƒtƒ@ƒCƒ‹ƒpƒX‚ðŽw‚·B,ƒRƒ“ƒgƒ[ƒ‹‚ÌŒ^,‰Šú’l,ƒtƒHƒ“ƒgƒTƒCƒYiptj,¶ãŠp‚ÌÀ•WX,¶ãŠp‚ÌÀ•WY,‰¡•ƒsƒNƒZƒ‹,c•ƒsƒNƒZƒ‹,Šˆ«‰»BŽg—p‰Â”\‚È‚çTRUEB‹ó—“‚ÍFALSEB,‰ÂŽ‹B•\Ž¦‚³‚ê‚Ä‚¢‚é‚È‚çTRUEB‹ó—“‚ÍFALSEB,ƒeƒLƒXƒgƒ{ƒbƒNƒX“™‚ð“Ç‚ÝŽæ‚èê—p‚É‚·‚é‚È‚çTRUEB‹ó—“‚È‚çFALSEB,ƒeƒLƒXƒgƒGƒŠƒA‚Ås‚ðŽ©“®“I‚ÉÜ‚è•Ô‚·‚È‚çTRUEB‹ó—“‚È‚çFALSEB,‰üs‹L†,ƒeƒLƒXƒgƒGƒŠƒA“™‚Å—˜—pBuNonevƒXƒNƒ[ƒ‹ƒo[–³‚µ‚ð–¾Ž¦BuHorizontalv…•½ƒXƒNƒ[ƒ‹ƒo[—L‚èBuVerticalv‚’¼ƒXƒNƒ[ƒ‹ƒo[—L‚èBuBothv…•½E‚’¼ƒXƒNƒ[ƒ‹ƒo[—L‚èB‚Ì‚S‚ÂBŽg‚í‚È‚¢‚È‚ç‹ó—“B,"ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚Ì’l‚ÌŒ^B(‹ó—“Ffalse,trueBZERO_ONEF0,1j",ƒŠƒXƒgƒ{ƒbƒNƒX‚Ì€–Ú‚Ì‚‚³iƒsƒNƒZƒ‹j,ƒŠƒXƒgƒ{ƒbƒNƒX‚ÌŠe€–Ú‚Ì•\Ž¦‘Ž®,i–¢ŽÀ‘•j‰æ‘œ‚Ì”{ŠpƒTƒCƒYB2000‚Å‚Q”{B,ƒ^ƒuEƒCƒ“ƒfƒbƒNƒX,”wŒiF,END
-,,1,ƒƒCƒ“EƒEƒBƒ“ƒhƒE,ƒƒCƒ“ƒEƒBƒ“ƒhƒE,Sc:Mainwnd;,Uc_ƒƒCƒ“_Mainwnd.xml,C:Mainwnd;,šššš,,0,0,800,630,TRUE,TRUE,,,,,,0,,,,,END
+-1,ä½¿ã„ã¾ã›ã‚“ã€‚,åº§æ¨™ã®ãƒã‚¹ãƒˆé–¢ä¿‚,è§£èª¬2,è§£èª¬,ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å,ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã€‚Formsãƒ•ã‚©ãƒ«ãƒ€ãƒ¼ä¸‹ã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹ã€‚ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’æŒ‡ã™ã€‚,ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®åž‹,åˆæœŸå€¤,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºï¼ˆptï¼‰,å·¦ä¸Šè§’ã®åº§æ¨™X,å·¦ä¸Šè§’ã®åº§æ¨™Y,æ¨ªå¹…ãƒ”ã‚¯ã‚»ãƒ«,ç¸¦å¹…ãƒ”ã‚¯ã‚»ãƒ«,æ´»æ€§åŒ–ã€‚ä½¿ç”¨å¯èƒ½ãªã‚‰TRUEã€‚ç©ºæ¬„ã¯FALSEã€‚,å¯è¦–ã€‚è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãªã‚‰TRUEã€‚ç©ºæ¬„ã¯FALSEã€‚,ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ç­‰ã‚’èª­ã¿å–ã‚Šå°‚ç”¨ã«ã™ã‚‹ãªã‚‰TRUEã€‚ç©ºæ¬„ãªã‚‰FALSEã€‚,ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ã§è¡Œã‚’è‡ªå‹•çš„ã«æŠ˜ã‚Šè¿”ã™ãªã‚‰TRUEã€‚ç©ºæ¬„ãªã‚‰FALSEã€‚,æ”¹è¡Œè¨˜å·,ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ç­‰ã§åˆ©ç”¨ã€‚ã€ŒNoneã€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ç„¡ã—ã‚’æ˜Žç¤ºã€‚ã€ŒHorizontalã€æ°´å¹³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼æœ‰ã‚Šã€‚ã€ŒVerticalã€åž‚ç›´ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼æœ‰ã‚Šã€‚ã€ŒBothã€æ°´å¹³ãƒ»åž‚ç›´ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼æœ‰ã‚Šã€‚ã®ï¼”ã¤ã€‚ä½¿ã‚ãªã„ãªã‚‰ç©ºæ¬„ã€‚,"ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã®å€¤ã®åž‹ã€‚(ç©ºæ¬„ï¼šfalse,trueã€‚ZERO_ONEï¼š0,1ï¼‰",ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®é …ç›®ã®é«˜ã•ï¼ˆãƒ”ã‚¯ã‚»ãƒ«ï¼‰,ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®å„é …ç›®ã®è¡¨ç¤ºæ›¸å¼,ï¼ˆæœªå®Ÿè£…ï¼‰ç”»åƒã®å€è§’ã‚µã‚¤ã‚ºã€‚2000ã§ï¼’å€ã€‚,ã‚¿ãƒ–ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹,èƒŒæ™¯è‰²,END
+,,1,ãƒ¡ã‚¤ãƒ³ãƒ»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦,ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦,Sc:Mainwnd;,Uc_ãƒ¡ã‚¤ãƒ³_Mainwnd.xml,C:Mainwnd;,â˜…â˜…â˜…â˜…,,0,0,800,630,TRUE,TRUE,,,,,,0,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,2,CSV•Û‘¶ƒ{ƒ^ƒ“,•Û‘¶ƒ{ƒ^ƒ“,Uc:ƒƒCƒ“_savesBtn;,Uc_ƒƒCƒ“_savesBtn.xml,C:Btn;,•Û‘¶,,4,4,128,28,TRUE,TRUE,,,,,,0,,,,,END
+,,2,CSVä¿å­˜ãƒœã‚¿ãƒ³,ä¿å­˜ãƒœã‚¿ãƒ³,Uc:ãƒ¡ã‚¤ãƒ³_savesBtn;,Uc_ãƒ¡ã‚¤ãƒ³_savesBtn.xml,C:Btn;,ä¿å­˜,,4,4,128,28,TRUE,TRUE,,,,,,0,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,2,CSV‘oƒ{ƒ^ƒ“,ƒ{ƒ^ƒ“,Uc:ƒƒCƒ“_exportsBtn;,Uc_ƒƒCƒ“_exportsBtn.xml,C:Btn;,ƒQ[ƒ€—pCSV‘o,,4,36,128,28,TRUE,TRUE,,,,,,0,,,,,END
+,,2,CSVæ›¸å‡ºãƒœã‚¿ãƒ³,ãƒœã‚¿ãƒ³,Uc:ãƒ¡ã‚¤ãƒ³_exportsBtn;,Uc_ãƒ¡ã‚¤ãƒ³_exportsBtn.xml,C:Btn;,ã‚²ãƒ¼ãƒ ç”¨CSVæ›¸å‡º,,4,36,128,28,TRUE,TRUE,,,,,,0,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,2,,1,Uc:ƒƒCƒ“_recordsLbl;,,C:Lbl;,ƒ‚ƒ“ƒXƒ^[ƒŠƒXƒg,,4,72,128,16,TRUE,TRUE,,,,,,0,,,,,END
-,,2,ƒ‚ƒ“ƒXƒ^[‘I‘ð,ƒŠƒXƒgƒ{ƒbƒNƒX,Uc:ƒƒCƒ“_recordsLst;,Uc_ƒƒCƒ“_recordsLst.xml,C:Lst;,,,4,92,128,498,TRUE,TRUE,,,,Both,,16,%1%F%2%|ID|NAME,,,,END
+,,2,,1,Uc:ãƒ¡ã‚¤ãƒ³_recordsLbl;,,C:Lbl;,ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒªã‚¹ãƒˆ,,4,72,128,16,TRUE,TRUE,,,,,,0,,,,,END
+,,2,ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é¸æŠž,ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹,Uc:ãƒ¡ã‚¤ãƒ³_recordsLst;,Uc_ãƒ¡ã‚¤ãƒ³_recordsLst.xml,C:Lst;,,,4,92,128,498,TRUE,TRUE,,,,Both,,16,%1%ï¼š%2%|ID|NAME,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,2,,ƒ^ƒuƒy[ƒ“,mainTbp,,C:Tbp;,,,136,4,652,588,TRUE,TRUE,,,,,,0,,,,,END
+,,2,,ã‚¿ãƒ–ãƒšãƒ¼ãƒ³,mainTbp,,C:Tbp;,,,136,4,652,588,TRUE,TRUE,,,,,,0,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,3,,ƒXƒe[ƒ^ƒXEƒy[ƒW,statusTbg,,C:Tbg;,”\—Íƒpƒlƒ‹,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
+,,3,,ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ»ãƒšãƒ¼ã‚¸,statusTbg,,C:Tbg;,èƒ½åŠ›ãƒ‘ãƒãƒ«,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_NO_1;,,C:Lbl;,‚m‚n,11,4,288,36,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒeƒLƒXƒg,Uc:”\—Í_NO;,Uc_”\—Í_NO.xml,C:Txt;,,9,40,288,50,19,,TRUE,TRUE,,,,,,,,,,END
-,,4,,2,Uc:”\—Í_NO_2;,,C:Lbl;,i‚m‚n•ÏX•s‰Âj,11,92,288,124,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_NO_1;,,C:Lbl;,ï¼®ï¼¯,11,4,288,36,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒ†ã‚­ã‚¹ãƒˆ,Uc:èƒ½åŠ›_NO;,Uc_èƒ½åŠ›_NO.xml,C:Txt;,,9,40,288,50,19,,TRUE,TRUE,,,,,,,,,,END
+,,4,,2,Uc:èƒ½åŠ›_NO_2;,,C:Lbl;,ï¼ˆï¼®ï¼¯å¤‰æ›´ä¸å¯ï¼‰,11,92,288,124,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_ID_1;,,C:Lbl;,‚h‚c,11,4,312,36,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒeƒLƒXƒg,Uc:”\—Í_ID;,Uc_”\—Í_ID.xml,C:Txt;,,9,40,312,50,19,,TRUE,TRUE,,,,,,,,,,END
-,,4,,2,Uc:”\—Í_ID_2;,,C:Lbl;,i‚h‚c•ÏX–¢ŽÀ‘•j,11,92,312,124,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_ID_1;,,C:Lbl;,ï¼©ï¼¤,11,4,312,36,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒ†ã‚­ã‚¹ãƒˆ,Uc:èƒ½åŠ›_ID;,Uc_èƒ½åŠ›_ID.xml,C:Txt;,,9,40,312,50,19,,TRUE,TRUE,,,,,,,,,,END
+,,4,,2,Uc:èƒ½åŠ›_ID_2;,,C:Lbl;,ï¼ˆï¼©ï¼¤å¤‰æ›´æœªå®Ÿè£…ï¼‰,11,92,312,124,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_NAME_1;,,C:Lbl;,–¼‘O,11,168,368,48,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒeƒLƒXƒg,Uc:”\—Í_NAME;,Uc_”\—Í_NAME.xml,C:Txt;,,9,216,368,216,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_NAME_1;,,C:Lbl;,åå‰,11,168,368,48,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒ†ã‚­ã‚¹ãƒˆ,Uc:èƒ½åŠ›_NAME;,Uc_èƒ½åŠ›_NAME.xml,C:Txt;,,9,216,368,216,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,ƒsƒNƒ`ƒƒ[,Uc:”\—Í_PICTURE;,Uc_”\—Í_PICTURE.xml,C:Pic;,,,112,4,280,280,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒ”ã‚¯ãƒãƒ£ãƒ¼,Uc:èƒ½åŠ›_PICTURE;,Uc_èƒ½åŠ›_PICTURE.xml,C:Pic;,,,112,4,280,280,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_SIZE_1;,,C:Lbl;,‰æ‘œƒTƒCƒY,11,260,288,88,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_SIZE;,Uc_”\—Í_SIZE.xml,C:Num;,,9,348,288,32,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_SIZE_1;,,C:Lbl;,ç”»åƒã‚µã‚¤ã‚º,11,260,288,88,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_SIZE;,Uc_èƒ½åŠ›_SIZE.xml,C:Num;,,9,348,288,32,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,mnsPicCompo1,,C:Lbl;,‰æ‘œ‘ã‘Ö‚h‚c,11,260,312,88,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_PIC;,Uc_”\—Í_PIC.xml,C:Num;,,9,348,312,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,mnsPicCompo1,,C:Lbl;,ç”»åƒä»£æ›¿ï¼©ï¼¤,11,260,312,88,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_PIC;,Uc_èƒ½åŠ›_PIC.xml,C:Num;,,9,348,312,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,BEARƒRƒ“ƒ|,Uc:”\—Í_BEAR_Compo;,,C:Ara;,,,60,400,372,68,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:”\—Í_BEAR_1;,,C:Lbl;,‘®«“Á’¥,11,0,0,72,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:”\—Í_BEAR;,Uc_”\—Í_BEAR.xml,C:Num;,,9,72,0,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,‰ðà—“,Uc:”\—Í_BEAR_Name;,Uc_”\—Í_BEAR_Name.xml,C:Txa;,,9,124,0,248,68,,TRUE,TRUE,,\n,,,,,,,,END
-,,5,,[’T],Uc:”\—Í_BEAR_Find;,Uc_”\—Í_BEAR_Find.xml,C:Btn;,’T,9,104,20,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,BEARã‚³ãƒ³ãƒ,Uc:èƒ½åŠ›_BEAR_Compo;,,C:Ara;,,,60,400,372,68,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:èƒ½åŠ›_BEAR_1;,,C:Lbl;,å±žæ€§ç‰¹å¾´,11,0,0,72,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_BEAR;,Uc_èƒ½åŠ›_BEAR.xml,C:Num;,,9,72,0,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,è§£èª¬æ¬„,Uc:èƒ½åŠ›_BEAR_Name;,Uc_èƒ½åŠ›_BEAR_Name.xml,C:Txa;,,9,124,0,248,68,,TRUE,TRUE,,\n,,,,,,,,END
+,,5,,[æŽ¢],Uc:èƒ½åŠ›_BEAR_Find;,Uc_èƒ½åŠ›_BEAR_Find.xml,C:Btn;,æŽ¢,9,104,20,20,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_RACE_1;,,C:Lbl;,Ží‘°,11,440,4,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_RACE;,Uc_”\—Í_RACE.xml,C:Num;,,9,504,4,38,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,–¼Ì,Uc:”\—Í_RACE_Name;,Uc_”\—Í_RACE_Name.xml,C:Txt;,,9,544,4,80,19,,TRUE,TRUE,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_RACE_1;,,C:Lbl;,ç¨®æ—,11,440,4,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_RACE;,Uc_èƒ½åŠ›_RACE.xml,C:Num;,,9,504,4,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,åç§°,Uc:èƒ½åŠ›_RACE_Name;,Uc_èƒ½åŠ›_RACE_Name.xml,C:Txt;,,9,544,4,80,19,,TRUE,TRUE,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_LV_1;,,C:Lbl;,‚k‚u,11,440,28,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒeƒLƒXƒg,Uc:”\—Í_LV;,Uc_”\—Í_LV.xml,C:Num;,,9,504,28,86,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_LV_1;,,C:Lbl;,ï¼¬ï¼¶,11,440,28,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒ†ã‚­ã‚¹ãƒˆ,Uc:èƒ½åŠ›_LV;,Uc_èƒ½åŠ›_LV.xml,C:Num;,,9,504,28,86,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_HP_1;,,C:Lbl;,‚g‚o,11,440,52,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_HP;,Uc_”\—Í_HP.xml,C:Num;,,9,504,52,86,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_HP_1;,,C:Lbl;,ï¼¨ï¼°,11,440,52,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_HP;,Uc_èƒ½åŠ›_HP.xml,C:Num;,,9,504,52,86,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_MP_1;,,C:Lbl;,‚l‚o,11,440,76,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_MP;,Uc_”\—Í_MP.xml,C:Num;,,9,504,76,86,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_MP_1;,,C:Lbl;,ï¼­ï¼°,11,440,76,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_MP;,Uc_èƒ½åŠ›_MP.xml,C:Num;,,9,504,76,86,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_EXP_1;,,C:Lbl;,‚d‚w‚o,11,440,100,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_EXP;,Uc_”\—Í_EXP.xml,C:Num;,,9,504,100,86,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_EXP_1;,,C:Lbl;,ï¼¥ï¼¸ï¼°,11,440,100,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_EXP;,Uc_èƒ½åŠ›_EXP.xml,C:Num;,,9,504,100,86,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_ATKCompo1;,,C:Lbl;,UŒ‚,11,440,144,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_ATK;,Uc_”\—Í_ATK.xml,C:Num;,,9,504,144,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_ATKCompo1;,,C:Lbl;,æ”»æ’ƒ,11,440,144,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_ATK;,Uc_èƒ½åŠ›_ATK.xml,C:Num;,,9,504,144,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_DEF_1;,,C:Lbl;,–hŒä,11,440,168,64,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:”\—Í_DEF;,Uc_”\—Í_DEF.xml,C:Num;,,9,504,168,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_DEF_1;,,C:Lbl;,é˜²å¾¡,11,440,168,64,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_DEF;,Uc_èƒ½åŠ›_DEF.xml,C:Num;,,9,504,168,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:”\—Í_DropTable_1;,,C:Lbl;,ƒhƒƒbƒvƒe[ƒuƒ‹,11,4,480,112,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:èƒ½åŠ›_DropTable_1;,,C:Lbl;,ãƒ‰ãƒ­ãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«,11,4,480,112,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,Item1ƒRƒ“ƒ|,Uc:”\—Í_ITEM1_Compo;,,C:Ara;,,,4,504,540,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:”\—Í_ITEM1_1;,,C:Lbl;,ƒAƒCƒeƒ€‚P,,0,0,72,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:”\—Í_ITEM1;,Uc_”\—Í_ITEM1.xml,C:Num;,,,72,0,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,–¼Ì,Uc:”\—Í_ITEM1_Name;,Uc_”\—Í_ITEM1_Name.xml,C:Txt;,,,124,0,284,19,,TRUE,TRUE,,,,,,,,,,END
-,,5,,ƒ{ƒ^ƒ“,Uc:”\—Í_ITEM1_Find;,Uc_”\—Í_ITEM1_Find.xml,C:Btn;,’T,,408,0,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:”\—Í_DROP1_1;,,C:Lbl;,ƒhƒƒbƒv,,428,0,60,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:”\—Í_DROP1;,Uc_”\—Í_DROP1.xml,C:Num;,,,488,0,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,Item1ã‚³ãƒ³ãƒ,Uc:èƒ½åŠ›_ITEM1_Compo;,,C:Ara;,,,4,504,540,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:èƒ½åŠ›_ITEM1_1;,,C:Lbl;,ã‚¢ã‚¤ãƒ†ãƒ ï¼‘,,0,0,72,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_ITEM1;,Uc_èƒ½åŠ›_ITEM1.xml,C:Num;,,,72,0,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,åç§°,Uc:èƒ½åŠ›_ITEM1_Name;,Uc_èƒ½åŠ›_ITEM1_Name.xml,C:Txt;,,,124,0,284,19,,TRUE,TRUE,,,,,,,,,,END
+,,5,,ãƒœã‚¿ãƒ³,Uc:èƒ½åŠ›_ITEM1_Find;,Uc_èƒ½åŠ›_ITEM1_Find.xml,C:Btn;,æŽ¢,,408,0,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:èƒ½åŠ›_DROP1_1;,,C:Lbl;,ãƒ‰ãƒ­ãƒƒãƒ—,,428,0,60,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_DROP1;,Uc_èƒ½åŠ›_DROP1.xml,C:Num;,,,488,0,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,Item2ƒRƒ“ƒ|,Uc:”\—Í_ITEM2_Compo;,,C:Ara;,,,4,528,540,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:”\—Í_ITEM2_1;,,C:Lbl;,ƒAƒCƒeƒ€‚Q,,0,0,72,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:”\—Í_ITEM2;,Uc_”\—Í_ITEM2.xml,C:Num;,,,72,0,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,–¼Ì,Uc:”\—Í_ITEM2_Name;,Uc_”\—Í_ITEM2_Name.xml,C:Txt;,,,124,0,284,19,,TRUE,TRUE,,,,,,,,,,END
-,,5,,ƒ{ƒ^ƒ“,Uc:”\—Í_ITEM2_Find;,Uc_”\—Í_ITEM2_Find.xml,C:Btn;,’T,,408,0,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:”\—Í_DROP2_1;,,C:Lbl;,ƒhƒƒbƒv,,428,0,60,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:”\—Í_DROP2;,Uc_”\—Í_DROP2.xml,C:Num;,,,488,0,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,Item2ã‚³ãƒ³ãƒ,Uc:èƒ½åŠ›_ITEM2_Compo;,,C:Ara;,,,4,528,540,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:èƒ½åŠ›_ITEM2_1;,,C:Lbl;,ã‚¢ã‚¤ãƒ†ãƒ ï¼’,,0,0,72,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_ITEM2;,Uc_èƒ½åŠ›_ITEM2.xml,C:Num;,,,72,0,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,åç§°,Uc:èƒ½åŠ›_ITEM2_Name;,Uc_èƒ½åŠ›_ITEM2_Name.xml,C:Txt;,,,124,0,284,19,,TRUE,TRUE,,,,,,,,,,END
+,,5,,ãƒœã‚¿ãƒ³,Uc:èƒ½åŠ›_ITEM2_Find;,Uc_èƒ½åŠ›_ITEM2_Find.xml,C:Btn;,æŽ¢,,408,0,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:èƒ½åŠ›_DROP2_1;,,C:Lbl;,ãƒ‰ãƒ­ãƒƒãƒ—,,428,0,60,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:èƒ½åŠ›_DROP2;,Uc_èƒ½åŠ›_DROP2.xml,C:Num;,,,488,0,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
@@ -101,142 +101,142 @@ int,string,int,string,string,string,string,string,string,string,int,int,int,int,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,3,,ƒ‚ƒ“ƒXƒ^[ƒ‹[ƒ`ƒ“Eƒy[ƒW,Uc:ìí_Tbg;,,C:Tbg;,“Gìíƒpƒlƒ‹,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
+,,3,,ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ«ãƒ¼ãƒãƒ³ãƒ»ãƒšãƒ¼ã‚¸,Uc:ä½œæˆ¦_Tbg;,,C:Tbg;,æ•µä½œæˆ¦ãƒ‘ãƒãƒ«,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:ìí_WEAPON_1;,,C:Lbl;,•Ší,10,0,4,40,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,–¼Ì,Uc:ìí_WEAPON_Name;,Uc_ìí_WEAPON_Name.xml,C:Txt;,,9,40,4,224,19,,TRUE,TRUE,,,,,,,,,,END
-,,4,,”ã‰º,Uc:ìí_WEAPON;,Uc_ìí_WEAPON.xml,C:Num;,,9,264,4,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒ{ƒ^ƒ“,Uc:ìí_WEAPON_Find;,Uc_ìí_WEAPON_Find.xml,C:Btn;,’T,9,316,4,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_WEAPON_1;,,C:Lbl;,æ­¦å™¨,10,0,4,40,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,åç§°,Uc:ä½œæˆ¦_WEAPON_Name;,Uc_ä½œæˆ¦_WEAPON_Name.xml,C:Txt;,,9,40,4,224,19,,TRUE,TRUE,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_WEAPON;,Uc_ä½œæˆ¦_WEAPON.xml,C:Num;,,9,264,4,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒœã‚¿ãƒ³,Uc:ä½œæˆ¦_WEAPON_Find;,Uc_ä½œæˆ¦_WEAPON_Find.xml,C:Btn;,æŽ¢,9,316,4,20,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:ìí_MltAtk0_1;,,C:Lbl;,UŒ‚‰ñ”,11,340,4,72,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:ìí_MltAtk0;,Uc_ìí_MltAtk0.xml,C:Num;,,9,412,4,38,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,`,Uc:ìí_MltAtk0_2;,,C:Lbl;,`,9,452,4,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º2,Uc:ìí_MltAtk1;,Uc_ìí_MltAtk1.xml,C:Num;,,9,472,4,38,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,1,Uc:ìí_MltAtkS_1;,,C:Lbl;,ƒXƒŠƒbƒv,11,520,4,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒ`ƒFƒbƒNƒ{ƒbƒNƒX,Uc:ìí_MltAtkS;,Uc_ìí_MltAtkS.xml,C:Chk;,,,584,4,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_MltAtk0_1;,,C:Lbl;,æ”»æ’ƒå›žæ•°,11,340,4,72,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_MltAtk0;,Uc_ä½œæˆ¦_MltAtk0.xml,C:Num;,,9,412,4,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ï½ž,Uc:ä½œæˆ¦_MltAtk0_2;,,C:Lbl;,ï½ž,9,452,4,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹2,Uc:ä½œæˆ¦_MltAtk1;,Uc_ä½œæˆ¦_MltAtk1.xml,C:Num;,,9,472,4,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_MltAtkS_1;,,C:Lbl;,ã‚¹ãƒªãƒƒãƒ—,11,520,4,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹,Uc:ä½œæˆ¦_MltAtkS;,Uc_ä½œæˆ¦_MltAtkS.xml,C:Chk;,,,584,4,20,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:ìí_MltCmd0_1;,,C:Lbl;,s“®‰ñ”,11,340,28,72,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:ìí_MltCmd0;,Uc_ìí_MltCmd0.xml,C:Num;,,9,412,28,38,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,`,Uc:ìí_MltCmd0_2;,,C:Lbl;,`,11,452,28,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º2,Uc:ìí_MltCmd1;,Uc_ìí_MltCmd1.xml,C:Num;,,9,472,28,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_MltCmd0_1;,,C:Lbl;,è¡Œå‹•å›žæ•°,11,340,28,72,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_MltCmd0;,Uc_ä½œæˆ¦_MltCmd0.xml,C:Num;,,9,412,28,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ï½ž,Uc:ä½œæˆ¦_MltCmd0_2;,,C:Lbl;,ï½ž,11,452,28,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹2,Uc:ä½œæˆ¦_MltCmd1;,Uc_ä½œæˆ¦_MltCmd1.xml,C:Num;,,9,472,28,38,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:ìí_SKL00_Label;,Uc_ìí_SKL00_Label.xml,C:Lbl;,ƒXƒLƒ‹XX,11,20,96,124,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_SKL00_Label;,Uc_ä½œæˆ¦_SKL00_Label.xml,C:Lbl;,ã‚¹ã‚­ãƒ«XX,11,20,96,124,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,ƒXƒLƒ‹ƒŠƒXƒg,Uc:ìí_skillLst;,Uc_ìí_skillLst.xml,C:Lst;,,9,20,120,124,238,TRUE,TRUE,,,,Vertical,,,%1%F%2%|ID|NAME,,,,END
+,,4,,ã‚¹ã‚­ãƒ«ãƒªã‚¹ãƒˆ,Uc:ä½œæˆ¦_skillLst;,Uc_ä½œæˆ¦_skillLst.xml,C:Lst;,,9,20,120,124,238,TRUE,TRUE,,,,Vertical,,,%1%ï¼š%2%|ID|NAME,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,–¼Ì,Uc:ìí_SKL00_Name;,Uc_ìí_SKL00_Name.xml,C:Txt;,,9,160,120,240,19,,TRUE,TRUE,,,,,,,,,,END
-,,4,,”ã‰º,Uc:ìí_SKL00;,Uc_ìí_SKL00.xml,C:Num;,,9,328,140,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒ{ƒ^ƒ“,Uc:ìí_SKL00_Find;,Uc_ìí_SKL00_Find.xml,C:Btn;,’T,9,380,140,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,åç§°,Uc:ä½œæˆ¦_SKL00_Name;,Uc_ä½œæˆ¦_SKL00_Name.xml,C:Txt;,,9,160,120,240,19,,TRUE,TRUE,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_SKL00;,Uc_ä½œæˆ¦_SKL00.xml,C:Num;,,9,328,140,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒœã‚¿ãƒ³,Uc:ä½œæˆ¦_SKL00_Find;,Uc_ä½œæˆ¦_SKL00_Find.xml,C:Btn;,æŽ¢,9,380,140,20,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:ìí_LV00_1;,,C:Lbl;,‚k‚u,11,160,160,40,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,”ã‰º,Uc:ìí_LV00;,Uc_ìí_LV00.xml,C:Num;,,9,200,160,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_LV00_1;,,C:Lbl;,ï¼¬ï¼¶,11,160,160,40,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_LV00;,Uc_ä½œæˆ¦_LV00.xml,C:Num;,,9,200,160,38,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,1,Uc:ìí_OPT00_1;,,C:Lbl;,OP,11,160,184,40,20,TRUE,TRUE,,,,,,,,,,,END
-,,4,,ƒ`ƒFƒbƒN,Uc:ìí_OPT00;,Uc_ìí_OPT00.xml,C:Chk;,,,200,184,20,20,TRUE,TRUE,,,,,ZERO_ONE,,,,,,END
+,,4,,1,Uc:ä½œæˆ¦_OPT00_1;,,C:Lbl;,OP,11,160,184,40,20,TRUE,TRUE,,,,,,,,,,,END
+,,4,,ãƒã‚§ãƒƒã‚¯,Uc:ä½œæˆ¦_OPT00;,Uc_ä½œæˆ¦_OPT00.xml,C:Chk;,,,200,184,20,20,TRUE,TRUE,,,,,ZERO_ONE,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,OPƒGƒŠƒA,Uc:ìí_OPT00_Ara;,,C:Ara;,,,160,208,328,176,TRUE,TRUE,,,,,,,,,,,END
+,,4,,OPã‚¨ãƒªã‚¢,Uc:ä½œæˆ¦_OPT00_Ara;,,C:Ara;,,,160,208,328,176,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,5,ðŒ‰ðà•¶ ƒRƒ“ƒgƒ[ƒ‹,ðŒ_‰ðà—“,Uc:ìí_COND00_Explain;,Uc_ìí_COND00_Explain.xml,C:Txa;,,9,4,4,320,60,,TRUE,TRUE,TRUE,\n,,,,,,,,END
-,,5,,1,Uc:ìí_COND00_1;,,C:Lbl;,ðŒ,10,4,64,40,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,ðŒƒAƒCƒfƒB[,”ã‰º,Uc:ìí_COND00;,Uc_ìí_COND00.xml,C:Num;,,9,44,64,38,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:ìí_COND00x_1;,,C:Lbl;,x,11,92,64,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_COND00x;,Uc_ìí_COND00x.xml,C:Num;,,9,112,64,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:ìí_COND00y_1;,,C:Lbl;,y,11,172,64,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_COND00y;,Uc_ìí_COND00y.xml,C:Num;,,9,192,64,50,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,1,Uc:ìí_COND00z_1;,,C:Lbl;,z,11,252,64,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_COND00z;,Uc_ìí_COND00z.xml,C:Num;,,9,272,64,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,æ¡ä»¶è§£èª¬æ–‡ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«,æ¡ä»¶_è§£èª¬æ¬„,Uc:ä½œæˆ¦_COND00_Explain;,Uc_ä½œæˆ¦_COND00_Explain.xml,C:Txa;,,9,4,4,320,60,,TRUE,TRUE,TRUE,\n,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_COND00_1;,,C:Lbl;,æ¡ä»¶,10,4,64,40,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,æ¡ä»¶ã‚¢ã‚¤ãƒ‡ã‚£ãƒ¼,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_COND00;,Uc_ä½œæˆ¦_COND00.xml,C:Num;,,9,44,64,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_COND00x_1;,,C:Lbl;,x,11,92,64,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_COND00x;,Uc_ä½œæˆ¦_COND00x.xml,C:Num;,,9,112,64,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_COND00y_1;,,C:Lbl;,y,11,172,64,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_COND00y;,Uc_ä½œæˆ¦_COND00y.xml,C:Num;,,9,192,64,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_COND00z_1;,,C:Lbl;,z,11,252,64,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_COND00z;,Uc_ä½œæˆ¦_COND00z.xml,C:Num;,,9,272,64,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,5,,1,Uc:ìí_PRI00_1;,,C:Lbl;,—Dæ“x,11,4,92,64,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_PRI00;,Uc_ìí_PRI00.xml,C:Num;,,9,68,92,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_PRI00_1;,,C:Lbl;,å„ªå…ˆåº¦,11,4,92,64,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_PRI00;,Uc_ä½œæˆ¦_PRI00.xml,C:Num;,,9,68,92,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,5,,1,Uc:ìí_USE00_1;,,C:Lbl;,Žg—pŠm—¦,11,128,92,80,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_USE00;,Uc_ìí_USE00.xml,C:Num;,,9,208,92,50,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_USE00_1;,,C:Lbl;,ä½¿ç”¨ç¢ºçŽ‡,11,128,92,80,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_USE00;,Uc_ä½œæˆ¦_USE00.xml,C:Num;,,9,208,92,50,19,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,5,,1,Uc:ìí_PER00_Explain_1;,,C:Lbl;,«Ši,9,4,120,36,40,TRUE,TRUE,,,,,,,,,,,END
-,,5,,‰ðà—“,Uc:ìí_PER00_Explain;,Uc_ìí_PER00_Explain.xml,C:Txa;,,9,40,120,160,40,,TRUE,TRUE,TRUE,\n,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_PER00;,Uc_ìí_PER00.xml,C:Num;,,9,200,120,38,19,TRUE,TRUE,,,,,,,,,,,END
-,,5,,ƒ{ƒ^ƒ“,Uc:ìí_PER00_Find;,Uc_ìí_PER00_Find.xml,C:Btn;,’T,9,240,120,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,2,Uc:ìí_PER00_Explain_2;,,C:Lbl;,a,9,200,140,20,20,TRUE,TRUE,,,,,,,,,,,END
-,,5,,”ã‰º,Uc:ìí_PER00a;,Uc_ìí_PER00a.xml,C:Num;,,9,220,140,38,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,1,Uc:ä½œæˆ¦_PER00_Explain_1;,,C:Lbl;,æ€§æ ¼,9,4,120,36,40,TRUE,TRUE,,,,,,,,,,,END
+,,5,,è§£èª¬æ¬„,Uc:ä½œæˆ¦_PER00_Explain;,Uc_ä½œæˆ¦_PER00_Explain.xml,C:Txa;,,9,40,120,160,40,,TRUE,TRUE,TRUE,\n,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_PER00;,Uc_ä½œæˆ¦_PER00.xml,C:Num;,,9,200,120,38,19,TRUE,TRUE,,,,,,,,,,,END
+,,5,,ãƒœã‚¿ãƒ³,Uc:ä½œæˆ¦_PER00_Find;,Uc_ä½œæˆ¦_PER00_Find.xml,C:Btn;,æŽ¢,9,240,120,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,2,Uc:ä½œæˆ¦_PER00_Explain_2;,,C:Lbl;,a,9,200,140,20,20,TRUE,TRUE,,,,,,,,,,,END
+,,5,,æ•°ä¸Šä¸‹,Uc:ä½œæˆ¦_PER00a;,Uc_ä½œæˆ¦_PER00a.xml,C:Num;,,9,220,140,38,20,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,3,,•W–{ƒy[ƒW1,sample1Tbg,,C:Tbg;,•W–{1,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
+,,3,,æ¨™æœ¬ãƒšãƒ¼ã‚¸1,sample1Tbg,,C:Tbg;,æ¨™æœ¬1,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,font_1pt,Uc:sp_font1;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 1pt ˜g‚10px [www888–¶–¶–¶],1,0,0,640,10,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_2pt,Uc:sp_font2;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 2pt ˜g‚10px [www888–¶–¶–¶],2,0,10,640,10,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_3pt,Uc:sp_font3;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 3pt ˜g‚10px [www888–¶–¶–¶],3,0,20,640,10,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_4pt,Uc:sp_font4;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 4pt ˜g‚10px [www888–¶–¶–¶],4,0,30,640,10,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_5pt,Uc:sp_font5;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 5pt ˜g‚10px [www888–¶–¶–¶],5,0,40,640,10,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_6pt,Uc:sp_font6;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 6pt ˜g‚10px [www888–¶–¶–¶],6,0,50,640,10,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_7pt,Uc:sp_font7;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 7pt ˜g‚15px [www888–¶–¶–¶],7,0,60,640,15,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_8pt,Uc:sp_font8;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 8pt ˜g‚15px [www888–¶–¶–¶],8,0,75,640,15,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_9pt,Uc:sp_font9;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 9pt ˜g‚15px [www888–¶–¶–¶],9,0,90,640,15,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_10pt,Uc:sp_font10;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 10pt ˜g‚20px [www888–¶–¶–¶],10,0,105,640,20,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_11pt,Uc:sp_font11;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 11pt ˜g‚20px [www888–¶–¶–¶],11,0,125,640,20,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_12pt,Uc:sp_font12;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 12pt ˜g‚20px [www888–¶–¶–¶],12,0,145,640,20,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_13pt,Uc:sp_font13;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 13pt ˜g‚25px [www888–¶–¶–¶],13,0,165,640,25,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_14pt,Uc:sp_font14;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 14pt ˜g‚25px [www888–¶–¶–¶],14,0,190,640,25,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_15pt,Uc:sp_font15;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 15pt ˜g‚25px [www888–¶–¶–¶],15,0,215,640,25,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_16pt,Uc:sp_font16;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 16pt ˜g‚30px [www888–¶–¶–¶],16,0,240,640,30,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_17pt,Uc:sp_font17;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 17pt ˜g‚30px [www888–¶–¶–¶],17,0,270,640,30,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_18pt,Uc:sp_font18;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 18pt ˜g‚30px [www888–¶–¶–¶],18,0,300,640,30,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_19pt,Uc:sp_font19;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 19pt ˜g‚30px [www888–¶–¶–¶],19,0,330,640,30,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_20pt,Uc:sp_font20;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 20pt ˜g‚40px [www888–¶–¶–¶],20,0,360,640,30,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_21pt,Uc:sp_font21;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 21pt ˜g‚40px [www888–¶–¶–¶],21,0,390,640,40,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_22pt,Uc:sp_font22;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 22pt ˜g‚40px [www888–¶–¶–¶],22,0,430,640,40,TRUE,TRUE,,,,,,,,,,White,END
-,,4,,font_23pt,Uc:sp_font23;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 23pt ˜g‚40px [www888–¶–¶–¶],23,0,470,640,40,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,font_24pt,Uc:sp_font24;,,C:Lbl;,ƒtƒHƒ“ƒgƒTƒCƒY 24pt ˜g‚40px [www888–¶–¶–¶],24,0,510,640,40,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_1pt,Uc:sp_font1;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 1pt æž é«˜10px [www888éœ§éœ§éœ§],1,0,0,640,10,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_2pt,Uc:sp_font2;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 2pt æž é«˜10px [www888éœ§éœ§éœ§],2,0,10,640,10,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_3pt,Uc:sp_font3;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 3pt æž é«˜10px [www888éœ§éœ§éœ§],3,0,20,640,10,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_4pt,Uc:sp_font4;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 4pt æž é«˜10px [www888éœ§éœ§éœ§],4,0,30,640,10,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_5pt,Uc:sp_font5;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 5pt æž é«˜10px [www888éœ§éœ§éœ§],5,0,40,640,10,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_6pt,Uc:sp_font6;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 6pt æž é«˜10px [www888éœ§éœ§éœ§],6,0,50,640,10,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_7pt,Uc:sp_font7;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 7pt æž é«˜15px [www888éœ§éœ§éœ§],7,0,60,640,15,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_8pt,Uc:sp_font8;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 8pt æž é«˜15px [www888éœ§éœ§éœ§],8,0,75,640,15,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_9pt,Uc:sp_font9;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 9pt æž é«˜15px [www888éœ§éœ§éœ§],9,0,90,640,15,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_10pt,Uc:sp_font10;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 10pt æž é«˜20px [www888éœ§éœ§éœ§],10,0,105,640,20,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_11pt,Uc:sp_font11;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 11pt æž é«˜20px [www888éœ§éœ§éœ§],11,0,125,640,20,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_12pt,Uc:sp_font12;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 12pt æž é«˜20px [www888éœ§éœ§éœ§],12,0,145,640,20,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_13pt,Uc:sp_font13;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 13pt æž é«˜25px [www888éœ§éœ§éœ§],13,0,165,640,25,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_14pt,Uc:sp_font14;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 14pt æž é«˜25px [www888éœ§éœ§éœ§],14,0,190,640,25,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_15pt,Uc:sp_font15;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 15pt æž é«˜25px [www888éœ§éœ§éœ§],15,0,215,640,25,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_16pt,Uc:sp_font16;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 16pt æž é«˜30px [www888éœ§éœ§éœ§],16,0,240,640,30,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_17pt,Uc:sp_font17;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 17pt æž é«˜30px [www888éœ§éœ§éœ§],17,0,270,640,30,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_18pt,Uc:sp_font18;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 18pt æž é«˜30px [www888éœ§éœ§éœ§],18,0,300,640,30,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_19pt,Uc:sp_font19;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 19pt æž é«˜30px [www888éœ§éœ§éœ§],19,0,330,640,30,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_20pt,Uc:sp_font20;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 20pt æž é«˜40px [www888éœ§éœ§éœ§],20,0,360,640,30,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_21pt,Uc:sp_font21;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 21pt æž é«˜40px [www888éœ§éœ§éœ§],21,0,390,640,40,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_22pt,Uc:sp_font22;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 22pt æž é«˜40px [www888éœ§éœ§éœ§],22,0,430,640,40,TRUE,TRUE,,,,,,,,,,White,END
+,,4,,font_23pt,Uc:sp_font23;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 23pt æž é«˜40px [www888éœ§éœ§éœ§],23,0,470,640,40,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,font_24pt,Uc:sp_font24;,,C:Lbl;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 24pt æž é«˜40px [www888éœ§éœ§éœ§],24,0,510,640,40,TRUE,TRUE,,,,,,,,,,White,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,3,,•W–{ƒy[ƒW2,sample2Tbg,,C:Tbg;,•W–{2,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
+,,3,,æ¨™æœ¬ãƒšãƒ¼ã‚¸2,sample2Tbg,,C:Tbg;,æ¨™æœ¬2,,0,0,650,590,TRUE,TRUE,,,,,,,,,,,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
-,,4,,txt_4px,Uc:sp_txt4;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 4pt ˜g‚14px [www888–¶–¶–¶],4,0,0,640,14,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_5px,Uc:sp_txt5;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 5pt ˜g‚15px [www888–¶–¶–¶],5,0,14,640,15,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_6px,Uc:sp_txt6;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 6pt ˜g‚16px [www888–¶–¶–¶],6,0,29,640,16,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_7px,Uc:sp_txt7;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 7pt ˜g‚17px [www888–¶–¶–¶],7,0,45,640,17,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_8px,Uc:sp_txt8;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 8pt ˜g‚19px [www888–¶–¶–¶],8,0,62,640,19,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_9px,Uc:sp_txt9;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 9pt ˜g‚20px [www888–¶–¶–¶],9,0,81,640,20,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_10px,Uc:sp_txt10;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 10pt ˜g‚22px [www888–¶–¶–¶],10,0,101,640,22,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_11px,Uc:sp_txt11;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 11pt ˜g‚23px [www888–¶–¶–¶],11,0,123,640,23,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_12px,Uc:sp_txt12;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 12pt ˜g‚24px [www888–¶–¶–¶],12,0,146,640,24,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_13px,Uc:sp_txt13;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 13pt ˜g‚26px [www888–¶–¶–¶],13,0,170,640,26,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_14px,Uc:sp_txt14;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 14pt ˜g‚27px [www888–¶–¶–¶],14,0,196,640,27,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_15px,Uc:sp_txt15;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 15pt ˜g‚28px [www888–¶–¶–¶],15,0,223,640,28,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_16px,Uc:sp_txt16;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 16pt ˜g‚30px [www888–¶–¶–¶],16,0,251,640,30,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_17px,Uc:sp_txt17;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 17pt ˜g‚30px [www888–¶–¶–¶],17,0,281,640,30,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_18px,Uc:sp_txt18;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 18pt ˜g‚32px [www888–¶–¶–¶],18,0,311,640,32,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_19px,Uc:sp_txt19;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 19pt ˜g‚34px [www888–¶–¶–¶],19,0,343,640,34,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_20px,Uc:sp_txt20;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 20pt ˜g‚35px [www888–¶–¶–¶],20,0,377,640,35,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_21px,Uc:sp_txt21;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 21pt ˜g‚36px [www888–¶–¶–¶],21,0,412,640,36,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_22px,Uc:sp_txt22;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 22pt ˜g‚38px [www888–¶–¶–¶],22,0,448,640,38,TRUE,TRUE,,,,,,,,,,LightCyan,END
-,,4,,txt_23px,Uc:sp_txt23;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 23pt ˜g‚39px [www888–¶–¶–¶],23,0,486,640,39,TRUE,TRUE,,,,,,,,,,LightCoral,END
-,,4,,txt_24px,Uc:sp_txt24;,,C:Txt;,ƒtƒHƒ“ƒgƒTƒCƒY 24pt ˜g‚40px [www888–¶–¶–¶],24,0,525,640,40,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_4px,Uc:sp_txt4;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 4pt æž é«˜14px [www888éœ§éœ§éœ§],4,0,0,640,14,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_5px,Uc:sp_txt5;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 5pt æž é«˜15px [www888éœ§éœ§éœ§],5,0,14,640,15,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_6px,Uc:sp_txt6;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 6pt æž é«˜16px [www888éœ§éœ§éœ§],6,0,29,640,16,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_7px,Uc:sp_txt7;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 7pt æž é«˜17px [www888éœ§éœ§éœ§],7,0,45,640,17,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_8px,Uc:sp_txt8;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 8pt æž é«˜19px [www888éœ§éœ§éœ§],8,0,62,640,19,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_9px,Uc:sp_txt9;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 9pt æž é«˜20px [www888éœ§éœ§éœ§],9,0,81,640,20,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_10px,Uc:sp_txt10;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 10pt æž é«˜22px [www888éœ§éœ§éœ§],10,0,101,640,22,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_11px,Uc:sp_txt11;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 11pt æž é«˜23px [www888éœ§éœ§éœ§],11,0,123,640,23,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_12px,Uc:sp_txt12;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 12pt æž é«˜24px [www888éœ§éœ§éœ§],12,0,146,640,24,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_13px,Uc:sp_txt13;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 13pt æž é«˜26px [www888éœ§éœ§éœ§],13,0,170,640,26,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_14px,Uc:sp_txt14;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 14pt æž é«˜27px [www888éœ§éœ§éœ§],14,0,196,640,27,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_15px,Uc:sp_txt15;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 15pt æž é«˜28px [www888éœ§éœ§éœ§],15,0,223,640,28,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_16px,Uc:sp_txt16;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 16pt æž é«˜30px [www888éœ§éœ§éœ§],16,0,251,640,30,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_17px,Uc:sp_txt17;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 17pt æž é«˜30px [www888éœ§éœ§éœ§],17,0,281,640,30,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_18px,Uc:sp_txt18;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 18pt æž é«˜32px [www888éœ§éœ§éœ§],18,0,311,640,32,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_19px,Uc:sp_txt19;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 19pt æž é«˜34px [www888éœ§éœ§éœ§],19,0,343,640,34,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_20px,Uc:sp_txt20;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 20pt æž é«˜35px [www888éœ§éœ§éœ§],20,0,377,640,35,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_21px,Uc:sp_txt21;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 21pt æž é«˜36px [www888éœ§éœ§éœ§],21,0,412,640,36,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_22px,Uc:sp_txt22;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 22pt æž é«˜38px [www888éœ§éœ§éœ§],22,0,448,640,38,TRUE,TRUE,,,,,,,,,,LightCyan,END
+,,4,,txt_23px,Uc:sp_txt23;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 23pt æž é«˜39px [www888éœ§éœ§éœ§],23,0,486,640,39,TRUE,TRUE,,,,,,,,,,LightCoral,END
+,,4,,txt_24px,Uc:sp_txt24;,,C:Txt;,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º 24pt æž é«˜40px [www888éœ§éœ§éœ§],24,0,525,640,40,TRUE,TRUE,,,,,,,,,,LightCyan,END
 ,,,,,,,,,,,,,,,,,,,,,,,,,,END
 EOF,,,,,,,,,,,,,,,,,,,,,,,,,,

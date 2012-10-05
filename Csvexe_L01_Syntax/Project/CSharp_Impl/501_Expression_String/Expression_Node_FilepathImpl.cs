@@ -49,7 +49,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="s_Fpath"></param>
         public Expression_Node_FilepathImpl(Configurationtree_NodeFilepath fpath_Conf)
-            :base(null,fpath_Conf)
+            : base(null, fpath_Conf)
         {
         }
 
@@ -62,6 +62,107 @@ namespace Xenon.Syntax
         //────────────────────────────────────────
 
         /// <summary>
+        /// フォルダー絶対パスを指定すると、そのフォルダーパスを切り落とした文字列を返します。
+        /// 
+        /// 違うフォルダーだった場合、失敗します。
+        /// 
+        /// 先頭がディレクトリー区切り文字にならないようにして結果を返します。
+        /// </summary>
+        /// <param name="folerpath"></param>
+        public void TryCutFolderpath(
+            out string out_Filepath_New,
+            Expression_Node_Filepath folderpath,
+            bool isRequired,
+            Log_Reports log_Reports
+            )
+        {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TryCutFolderpath", log_Reports);
+
+            //まず、自分の絶対パス
+            string my = this.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            //if(log_Method.CanDebug(1))
+            //{
+            //    log_Method.WriteDebug_ToConsole("my=[" + my + "]");
+            //}
+
+            //指定されたフォルダーの絶対パス
+            string you = folderpath.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+            //if (log_Method.CanDebug(1))
+            //{
+            //    log_Method.WriteDebug_ToConsole("you=[" + you + "]");
+            //}
+
+            //if (log_Method.CanDebug(1))
+            //{
+            //    log_Method.WriteDebug_ToConsole("my.StartsWith(you)=[" + my.StartsWith(you) + "]");
+            //}
+
+            if (my.StartsWith(you))
+            {
+                out_Filepath_New = my.Substring(you.Length);
+                //if (log_Method.CanDebug(1))
+                //{
+                //    log_Method.WriteDebug_ToConsole("you.Length=[" + you.Length + "]");
+                //    log_Method.WriteDebug_ToConsole("filepath_New1=[" + filepath_New1 + "]");
+                //    log_Method.WriteDebug_ToConsole("filepath_New1.StartsWith(System.IO.Path.DirectorySeparatorChar.ToString())=[" + filepath_New1.StartsWith(System.IO.Path.DirectorySeparatorChar.ToString()) + "]");
+                //    if (filepath_New1.StartsWith(System.IO.Path.DirectorySeparatorChar.ToString()))
+                //    {
+                //        log_Method.WriteDebug_ToConsole("filepath_New1=[" + filepath_New1.Substring(1) + "]");
+                //    }
+                //}
+
+                // 先頭がディレクトリー区切り文字だった場合、それを切り捨てます。
+                if (out_Filepath_New.StartsWith(System.IO.Path.DirectorySeparatorChar.ToString()))
+                {
+                    out_Filepath_New = out_Filepath_New.Substring(1);
+                }
+
+                //Configurationtree_NodeFilepath filepath_Conf_New = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
+                //filepath_Conf_New.InitPath(filepath_New1, log_Reports);
+                //out_Filepath_ExprNew = new Expression_Node_FilepathImpl(filepath_Conf_New);
+            }
+            else
+            {
+                //失敗
+                out_Filepath_New = "";
+
+                if (isRequired)
+                {
+                    // エラー。
+                    goto gt_Error_Failure;
+                }
+            }
+
+            goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_Failure:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー922！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("ファイルパスの加工に失敗しました。\n");
+                s.Append("[" + my + "]の頭から、フォルダー[" + you + "]を切りぬこうとしましたが、フォルダーが違いました。");
+
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
+        //
+        gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
         /// 設定ファイルに記述されているままのファイル・パス表記。
         /// 
         /// 相対パス、絶対パスのどちらでも構わない。
@@ -70,17 +171,17 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="newHumanInputFilePath"></param>
         public void SetHumaninput(
-            string sFpath_Humaninput_New,
+            string filepath_Humaninput_New,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetSHumaninput",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetHumaninput", log_Reports);
 
             if (this.Cur_Configurationtree is Configurationtree_NodeFilepath)
             {
                 ((Configurationtree_NodeFilepath)this.Cur_Configurationtree).SetHumaninput(
-                sFpath_Humaninput_New,
+                filepath_Humaninput_New,
                 log_Reports
                 );
             }
@@ -206,7 +307,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetSDirectory_Base",log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetSDirectory_Base", log_Reports);
 
             // ダミー・フラグ。使いません。
             bool bDammyFlagCheckPathTooLong = false;
@@ -283,7 +384,7 @@ namespace Xenon.Syntax
                 else
                 {
                     // エラー。
-                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#SBaseDirectory:型が違います。[" + this.Cur_Configurationtree.GetType().Name+ "]＞";
+                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#SBaseDirectory:型が違います。[" + this.Cur_Configurationtree.GetType().Name + "]＞";
                 }
 
                 return sResult;

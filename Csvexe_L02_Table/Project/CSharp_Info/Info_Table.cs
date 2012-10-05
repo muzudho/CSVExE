@@ -12,6 +12,7 @@ namespace Xenon.Table
 
         #region プロパティー
         //────────────────────────────────────────
+
         static public String Name_Library
         {
             get
@@ -19,6 +20,7 @@ namespace Xenon.Table
                 return "Csvexe_L02_Table";
             }
         }
+
         //────────────────────────────────────────
         #endregion
 

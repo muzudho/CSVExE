@@ -222,6 +222,29 @@ namespace Xenon.Syntax
         /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
+        public bool TrySelectAttribute_ExpressionFilepath(
+            out Expression_Node_Filepath ec_Result_Out,
+            string sName,
+            EnumHitcount hits,
+            Log_Reports log_Reports
+            )
+        {
+            // 使いません。
+            Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(sName, this.Cur_Configurationtree);
+            filepath_Conf.InitPath("", log_Reports);
+            ec_Result_Out = new Expression_Node_FilepathImpl(filepath_Conf);
+            return false;
+        }
+
+        /// <summary>
+        /// 属性。
+        /// </summary>
+        /// <param name="out_E_Result">検索結果。</param>
+        /// <param name="sName"></param>
+        /// <param name="bRequired"></param>
+        /// <param name="hits"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns>検索結果が1件以上あれば真。</returns>
         public bool TrySelectAttribute(
             out Expression_Node_String ec_Result_Out,
             string sName,

@@ -215,10 +215,19 @@ namespace Xenon.Functions
             }
             {
                 List<string> list_Param = new List<string>();
-                list_Param.Add(Expression_Node_Function48Impl.PM_FILE_LISTFILE);
-                list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_SOURCE);
-                list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION);
+                list_Param.Add(Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE);
+                //list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_SOURCE);
+                //list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION);
                 Collection_Function.SetFunction(Expression_Node_Function48Impl.NAME_FUNCTION, new Expression_Node_Function48Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
+            }
+            {
+                List<string> list_Param = new List<string>();
+                list_Param.Add(Expression_Node_Function49Impl.PM_FILE_IMPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_FOLDER_SOURCE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_FOLDER_DESTINATION);
+                list_Param.Add(Expression_Node_Function49Impl.PM_POPUP);
+                Collection_Function.SetFunction(Expression_Node_Function49Impl.NAME_FUNCTION, new Expression_Node_Function49Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
 
             //
@@ -269,7 +278,6 @@ namespace Xenon.Functions
         public static Expression_Node_Function NewFunction2(
             string sName_Fnc,
             Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
-            //EnumEventhandler enumEventhandler,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
@@ -281,11 +289,9 @@ namespace Xenon.Functions
                 expr_Func = dictionary_Interlibrary[sName_Fnc].NewInstance(
                     parent_Expression,
                     cur_Conf, 
-                    //enumEventhandler,
                     owner_MemoryApplication,
                     log_Reports
                     );
-                //expr_Func.EnumEventhandler = enumEventhandler;
             }
             else
             {

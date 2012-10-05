@@ -1,6 +1,6 @@
-NO,ID,TREE,EXPL,FILE,NAME,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,TAB_INDEX,BACK_COLOR,END
+﻿NO,ID,TREE,EXPL,FILE,NAME,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,TAB_INDEX,BACK_COLOR,END
 int,string,int,string,string,string,string,string,string,int,int,int,int,bool,bool,bool,bool,string,string,string,int,string,int,string,END
--1,�g���܂���B,���W�̃l�X�g�֌W,���,�t�@�C���p�X�BForms�t�H���_�[������̑��΃p�X�B�R���g���[���ݒ�t�@�C���p�X���w���B,�R���g���[����,�R���g���[���̌^,�����l,�t�H���g�T�C�Y�ipt�j,����p�̍��WX,����p�̍��WY,�����s�N�Z��,�c���s�N�Z��,�������B�g�p�\�Ȃ�TRUE�B�󗓂�FALSE�B,���B�\������Ă���Ȃ�TRUE�B�󗓂�FALSE�B,�e�L�X�g�{�b�N�X����ǂݎ���p�ɂ���Ȃ�TRUE�B�󗓂Ȃ�FALSE�B,�e�L�X�g�G���A�ōs�������I�ɐ܂�Ԃ��Ȃ�TRUE�B�󗓂Ȃ�FALSE�B,���s�L��,�e�L�X�g�G���A���ŗ��p�B�uNone�v�X�N���[���o�[�����𖾎��B�uHorizontal�v�����X�N���[���o�[�L��B�uVertical�v�����X�N���[���o�[�L��B�uBoth�v�����E�����X�N���[���o�[�L��B�̂S�B�g��Ȃ��Ȃ�󗓁B,"�`�F�b�N�{�b�N�X�̒l�̌^�B(�󗓁Ffalse,true�BZERO_ONE�F0,1�j",���X�g�{�b�N�X�̍��ڂ̍����i�s�N�Z���j,���X�g�{�b�N�X�̊e���ڂ̕\������,�^�u�E�C���f�b�N�X,�w�i�F,END
-0,,1,�E�B���h�E,Uc_�ϐ�_Mainwnd.xml,Uc:�ϐ�_Mainwnd;,C:Wnd;,���������I��,,0,0,300,792,TRUE,TRUE,,,,,,0,,,,END
-2,,2,�����X�^�[ID���X�g,Uc_�ϐ�_recordsLst.xml,Uc:�ϐ�_recordsLst;,C:Lst;,,,0,0,292,770,TRUE,TRUE,,,,Both,,,%1%�F%2%�F%3%|ID|Expl|NAME,,,END
+-1,使いません。,座標のネスト関係,解説,ファイルパス。Formsフォルダー下からの相対パス。コントロール設定ファイルパスを指す。,コントロール名,コントロールの型,初期値,フォントサイズ（pt）,左上角の座標X,左上角の座標Y,横幅ピクセル,縦幅ピクセル,活性化。使用可能ならTRUE。空欄はFALSE。,可視。表示されているならTRUE。空欄はFALSE。,テキストボックス等を読み取り専用にするならTRUE。空欄ならFALSE。,テキストエリアで行を自動的に折り返すならTRUE。空欄ならFALSE。,改行記号,テキストエリア等で利用。「None」スクロールバー無しを明示。「Horizontal」水平スクロールバー有り。「Vertical」垂直スクロールバー有り。「Both」水平・垂直スクロールバー有り。の４つ。使わないなら空欄。,"チェックボックスの値の型。(空欄：false,true。ZERO_ONE：0,1）",リストボックスの項目の高さ（ピクセル）,リストボックスの各項目の表示書式,タブ・インデックス,背景色,END
+0,,1,ウィンドウ,Uc_耐性_Mainwnd.xml,Uc:耐性_Mainwnd;,C:Wnd;,属性特徴選択,,0,0,300,792,TRUE,TRUE,,,,,,0,,,,END
+2,,2,モンスターIDリスト,Uc_耐性_recordsLst.xml,Uc:耐性_recordsLst;,C:Lst;,,,0,0,292,770,TRUE,TRUE,,,,Both,,,%1%：%2%：%3%|ID|Expl|NAME,,,END
 EOF,,,,,,,,,,,,,,,,,,,,,,,,

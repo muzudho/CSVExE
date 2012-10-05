@@ -137,6 +137,8 @@ namespace Xenon.Controls
                     //
                     Expression_Node_String ec_Str = ec_DataSource;
                     string sText = ec_Str.Execute4_OnExpressionString(EnumHitcount.First_Exist_Or_Zero, log_Reports);
+                    //pg_Method.WriteDebug_ToConsole("ec_Str.Execute4=[" + sText + "]");
+
                     //
                     // 改行文字を、改行に変換。
                     //
@@ -144,6 +146,7 @@ namespace Xenon.Controls
                     {
                         sText = sText.Replace(this.SNewline, Environment.NewLine);
                     }
+
                     this.Text = sText;
 
                     this.ControlCommon.BAutomaticinputting = false;

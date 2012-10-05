@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Windows.Forms;//Application
+using System.Data;
+using System.Windows.Forms;
 using Xenon.Syntax;
-using Xenon.Middle;//MoOpyopyo,FormObjectProperties,Usercontrol
+using Xenon.Table;
+using Xenon.Middle;
 
 namespace Xenon.Functions
 {
 
     /// <summary>
     /// フォルダー構造を、別のフォルダー下に複製します。
+    /// 
+    /// フォルダー構造をそのままコピーするのではなく、
+    /// 「ファイルパス一覧CSV」をもとに複製します。
     /// </summary>
     public class Expression_Node_Function48Impl : Expression_Node_FunctionAbstract
     {
@@ -34,9 +39,9 @@ namespace Xenon.Functions
         /// <summary>
         /// 表示文章。
         /// </summary>
-        public static string PM_FILE_LISTFILE = "Pm:file-listfile;";
-        public static string PM_FOLDER_SOURCE = "Pm:folder-source;";
-        public static string PM_FOLDER_DESTINATION = "Pm:folder-destination;";
+        public static readonly string PM_FILE_IMPORT_LISTFILE = "Pm:file-import-listfile;";
+        //public static readonly string PM_FOLDER_SOURCE = "Pm:folder-source;";
+        //public static readonly string PM_FOLDER_DESTINATION = "Pm:folder-destination;";
 
         //────────────────────────────────────────
         #endregion
@@ -66,9 +71,9 @@ namespace Xenon.Functions
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
 
-            f0.SetAttribute(Expression_Node_Function48Impl.PM_FILE_LISTFILE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
-            f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
-            f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
+            //f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
+            //f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -140,6 +145,10 @@ namespace Xenon.Functions
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute6_Sub", log_Reports);
 
+            string error_Filepath_Source;
+            int error_RowNumber;
+            XenonTable error_XenonTable;
+
             string sName_Fnc;
             this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
@@ -157,25 +166,143 @@ namespace Xenon.Functions
             sb.Append(Environment.NewLine);
 
             string sPmFileListfile;
-            this.TrySelectAttribute(out sPmFileListfile, Expression_Node_Function48Impl.PM_FILE_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
-            string sPmFolderSource;
-            this.TrySelectAttribute(out sPmFolderSource, Expression_Node_Function48Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
-            string sPmFolderDestination;
-            this.TrySelectAttribute(out sPmFolderDestination, Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
+            this.TrySelectAttribute(out sPmFileListfile, Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
+            //string sPmFolderSource;
+            //this.TrySelectAttribute(out sPmFolderSource, Expression_Node_Function48Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
+            //string sPmFolderDestination;
+            //this.TrySelectAttribute(out sPmFolderDestination, Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
+
+            Configurationtree_NodeFilepath fileListfile_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
+            fileListfile_Conf.InitPath(sPmFileListfile, log_Reports);
+            //Configurationtree_NodeFilepath folderSource_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
+            //folderSource_Conf.InitPath(sPmFolderSource,log_Reports);
+            //Configurationtree_NodeFilepath folderDestination_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
+            //folderDestination_Conf.InitPath(sPmFolderDestination, log_Reports);
+
+            Expression_Node_Filepath fileListfile_Expr = new Expression_Node_FilepathImpl(fileListfile_Conf);
+            //Expression_Node_Filepath folderSource_Expr = new Expression_Node_FilepathImpl(folderSource_Conf);//頭をカットするのに使う。
+            //Expression_Node_Filepath folderDestination_Expr = new Expression_Node_FilepathImpl(folderDestination_Conf);
 
             sb.Append(
-                "\n"+
-                "file-listfile = " + sPmFileListfile + "\n\n" +
-                "folder-source = " + sPmFolderSource + "\n\n" +
-                "folder-destination = " + sPmFolderDestination + "\n\n"
+                "\n" +
+                "file-listfile = " + fileListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports) + "\n\n"
+                //"folder-source = " + folderSource_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n" +
+                //"folder-destination = " + folderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n"
                 );
 
             MessageBox.Show(sb.ToString(), "デバッグ表示");
 
 
             // CSVファイル読取り
+            if (log_Reports.Successful)
+            {
+                //
+                // CSVソースファイル読取
+                //
+                CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
+
+                Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
+                XenonTableformat tblFormat_puts = new XenonTableformatImpl();
+                request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
+                request_tblReads.Expression_Filepath = fileListfile_Expr;
+
+                XenonTable xenonTable = reader.Read(
+                    request_tblReads,
+                    tblFormat_puts,
+                    true,
+                    log_Reports
+                    );
+
+                int rowNumber = 1;
+                foreach (DataRow row in xenonTable.DataTable.Rows)
+                {
+
+                    //記述されているファイルパス
+                    string filepath_Source_Cur;
+                    string filepath_Destination_Cur;
+                    if (log_Reports.Successful)
+                    {
+                        XenonValue_StringImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
+                        XenonValue_StringImpl.TryParse(row["FILE2"], out filepath_Destination_Cur, "", "", log_Method, log_Reports);
+                        //if (log_Method.CanDebug(9))
+                        //{
+                        log_Method.WriteDebug_ToConsole("コピーしたいfilepath：①[" + filepath_Source_Cur + "]→②[" + filepath_Destination_Cur + "]");
+                        //}
+                    }
+                    else
+                    {
+                        filepath_Source_Cur = "";
+                        filepath_Destination_Cur = "";
+                    }
+
+                    //
+                    // ファイルのコピー（上書き）
+                    //
+                    {
+                        //フォルダーのコピー方法は別。
+                        if (System.IO.Directory.Exists(filepath_Source_Cur))
+                        {
+                            //フォルダー
+
+                            //コピー先のディレクトリがないときは作る
+                            if (!System.IO.Directory.Exists(filepath_Destination_Cur))
+                            {
+                                System.IO.Directory.CreateDirectory(filepath_Destination_Cur);
+                                //属性もコピー
+                                System.IO.File.SetAttributes(filepath_Destination_Cur,
+                                    System.IO.File.GetAttributes(filepath_Source_Cur));
+                            }
+
+                        }
+                        else if (System.IO.File.Exists(filepath_Source_Cur))
+                        {
+                            //ファイル
+
+                            //第一引数で示されたファイルを、第二引数で示されたファイル位置にコピー。
+                            //第3項にtrueを指定することにより、上書きを許可
+                            System.IO.File.Copy(filepath_Source_Cur, filepath_Destination_Cur, true);
+                        }
+                        else
+                        {
+                            //エラー
+                            //
+                            error_Filepath_Source = filepath_Source_Cur;
+                            error_RowNumber = rowNumber;
+                            error_XenonTable = xenonTable;
+                            goto gt_Error_NoFilesystementry;
+                        }
+                    }
+
+                    if (!log_Reports.Successful)
+                    {
+                        //エラー
+                        break;
+                    }
+
+                    rowNumber++;
+                }
+            }
 
 
+
+            goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_NoFilesystementry:
+            {
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, error_Filepath_Source, log_Reports);//ファイルパス
+                tmpl.SetParameter(2, error_RowNumber.ToString(), log_Reports);//エラーのあった行
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(error_XenonTable), log_Reports);//設定位置パンくずリスト
+
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110030;", tmpl, log_Reports);
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
+        //
+        gt_EndMethod:
             log_Method.EndMethod(log_Reports);
         }
 

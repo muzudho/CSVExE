@@ -190,12 +190,12 @@ namespace Xenon.MiddleImpl
         /// 『ユーザー定義関数設定ファイル(Fnc)』を読み取ります。
         /// </summary>
         public void LoadFile(
-            Expression_Node_Filepath expr_Fpath_Fnc,
+            Expression_Node_Filepath filepath_Userfunctionconfig_Expr,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile_Fnc", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "LoadFile", log_Reports);
 
             //
             //
@@ -205,10 +205,10 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole(" ユーザー定義関数設定ファイルの読み取り。");
             }
 
-            Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, expr_Fpath_Fnc.Cur_Configurationtree);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
-            Expression_Node_String expr_FuncConfig = new Expression_Node_StringImpl(null, parent_Cf);
+            Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, filepath_Userfunctionconfig_Expr.Cur_Configurationtree);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
+            Expression_Node_String userfunctionconfig_Expr = new Expression_Node_StringImpl(null, parent_Conf);
 
-            string sFpatha = expr_Fpath_Fnc.Execute4_OnExpressionString(
+            string filepathabsolute = filepath_Userfunctionconfig_Expr.Execute4_OnExpressionString(
                 EnumHitcount.Unconstraint, log_Reports);
 
             if (!log_Reports.Successful)
@@ -216,7 +216,7 @@ namespace Xenon.MiddleImpl
                 goto gt_Error_Fpath;
             }
 
-            if (!System.IO.File.Exists(sFpatha))
+            if (!System.IO.File.Exists(filepathabsolute))
             {
                 goto gt_Error_File;
             }
@@ -226,7 +226,7 @@ namespace Xenon.MiddleImpl
             Exception err_Excp = null;
             try
             {
-                xDoc.Load(sFpatha);
+                xDoc.Load(filepathabsolute);
             }
             catch (System.IO.IOException ex)
             {
@@ -260,7 +260,7 @@ namespace Xenon.MiddleImpl
                 ValuesAttr.Test_Codefileversion(
                     xRoot.GetAttribute(PmNames.S_CODEFILE_VERSION.Name_Attribute),
                     log_Reports,
-                    new Configurationtree_NodeImpl(sFpatha, null),
+                    new Configurationtree_NodeImpl(filepathabsolute, null),
                     NamesNode.S_CODEFILE_FUNCTIONS
                     );
             }
@@ -287,20 +287,20 @@ namespace Xenon.MiddleImpl
                             XmlToConfigurationtree_C15_Elm xToCf = XmlToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_COMMON_FUNCTION, log_Reports);
                             xToCf.XmlToConfigurationtree(
                                 x_Cur,
-                                parent_Cf,
+                                parent_Conf,
                                 this.Owner_MemoryApplication,
                                 log_Reports
                                 );
 
                             Configurationtree_Node s_Cur = null;
-                            parent_Cf.List_Child.ForEach(delegate(Configurationtree_Node s_Child, ref bool bBreak)
+                            parent_Conf.List_Child.ForEach(delegate(Configurationtree_Node s_Child, ref bool bBreak)
                             {
                                 s_Cur = s_Child;
                                 bBreak = true;
                             });
 
                             // SToE
-                            Expression_Node_FunctionImpl ec_CommonFunction = new Expression_Node_FunctionImpl(expr_FuncConfig, s_Cur, new List<string>());
+                            Expression_Node_FunctionImpl ec_CommonFunction = new Expression_Node_FunctionImpl(userfunctionconfig_Expr, s_Cur, new List<string>());
 
                             Log_TextIndented_ConfigurationtreeToExpressionImpl pg_ParsingLog = new Log_TextIndented_ConfigurationtreeToExpressionImpl();
                             pg_ParsingLog.BEnabled = false;
@@ -362,7 +362,7 @@ namespace Xenon.MiddleImpl
                 s.Append("ユーザー定義関数設定ファイルがありません。");
                 s.Newline();
                 s.Append("file=[");
-                s.Append(sFpatha);
+                s.Append(filepathabsolute);
                 s.Append("]");
                 s.Newline();
                 s.Newline();
@@ -384,6 +384,8 @@ namespace Xenon.MiddleImpl
                 s.Append("エラー：" + err_Excp.Message);
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
+
+                s.Append(Log_RecordReportsImpl.ToText_Configurationtree(filepath_Userfunctionconfig_Expr.Cur_Configurationtree));
 
                 // ヒント
 

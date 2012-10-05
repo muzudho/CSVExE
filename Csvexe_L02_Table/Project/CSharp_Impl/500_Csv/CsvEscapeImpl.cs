@@ -17,8 +17,8 @@ namespace Xenon.Table
 
         public List<string> UnescapeRecordToFieldList(string sSrc, char chDelimiter)
         {
-            int nLen = sSrc.Length;
-            List<string> sList_Dst = new List<string>();
+            int length = sSrc.Length;
+            List<string> list_Dst = new List<string>();
             char ch;
 
             // 空か。
@@ -30,7 +30,7 @@ namespace Xenon.Table
 
             StringBuilder sb_Cell = new StringBuilder();
             int nI = 0;
-            while(nI < nLen)
+            while(nI < length)
             {
                 sb_Cell.Length = 0;
                 ch = sSrc[nI];
@@ -46,7 +46,7 @@ namespace Xenon.Table
                     nI++;
                     
                     // エスケープしながら、単独「"」が出てくるまでそのまま出力。
-                    while (nI < nLen)
+                    while (nI < length)
                     {
                         ch = sSrc[nI];
 
@@ -54,7 +54,7 @@ namespace Xenon.Table
                         {
                             // 「"」だった。
 
-                            if (nI + 1 == nLen)
+                            if (nI + 1 == length)
                             {
                                 // 2文字目が無ければ、
                                 //「"」を無視して終了。
@@ -93,7 +93,7 @@ namespace Xenon.Table
 
                     // 1文字目が「"」でないなら、「,」が出てくるか、次がなくなるまでそのまま出力。
                     // フォーマットチェックは行わない。
-                    while(nI < nLen)
+                    while(nI < length)
                     {
                         ch = sSrc[nI];
 
@@ -115,14 +115,14 @@ namespace Xenon.Table
                 }
 
                 //ystem.Console.WriteLine(InfxenonTable.LibraryName + ":" + this.GetType().Name + "#UnescapeToList: cell=["+sCell.ToString()+"]");
-                sList_Dst.Add(sb_Cell.ToString());
+                list_Dst.Add(sb_Cell.ToString());
 
             }
 
 
 
         gt_EndMethod:
-            return sList_Dst;
+            return list_Dst;
         }
 
         //────────────────────────────────────────

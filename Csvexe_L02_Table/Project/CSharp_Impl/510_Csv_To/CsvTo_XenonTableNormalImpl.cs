@@ -40,7 +40,7 @@ namespace Xenon.Table
         /// <param name="csvText"></param>
         /// <returns>列名情報も含むテーブル。列の型は文字列型とします。</returns>
         public XenonTable Read(
-            string sText_SrcCsv,
+            string string_Csv,
             Request_ReadsTable forTable_request,
             XenonTableformat forTable_puts,
             Log_Reports log_Reports
@@ -50,7 +50,6 @@ namespace Xenon.Table
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Read(1)",log_Reports);
 
             XenonTable xenonTable = new XenonTableImpl(forTable_request.Name_PutToTable,forTable_request.Expression_Filepath);
-            //table.SName = forTable_request.STableNameToPuts;
             xenonTable.Tableunit = forTable_request.Tableunit;
             xenonTable.Typedata = forTable_request.Typedata;
             xenonTable.IsDatebackupActivated = forTable_request.IsDatebackupActivated;
@@ -58,6 +57,8 @@ namespace Xenon.Table
 
 
             Exception err_Excp;
+            int error_Count_Index;
+            string[] error_Fields_Cur;
 
 
             //
@@ -73,7 +74,7 @@ namespace Xenon.Table
             List<List<string>> dataTableRows = new List<List<string>>();
 
             // CSVテキストを読み込み、型とデータのバッファーを作成します。
-            System.IO.StringReader reader = new System.IO.StringReader(sText_SrcCsv);
+            System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
             // CSVを解析して、テーブル形式で格納。
@@ -82,12 +83,12 @@ namespace Xenon.Table
                 int nDataColumnsCount = 0;
 
                 int nRowIndex = 0;
-                string[] sFields;
+                string[] fields_Cur;
                 while (-1 < reader.Peek())
                 {
                     string sLine = reader.ReadLine();
 
-                    sFields = ce.UnescapeRecordToFieldList(sLine,',').ToArray();
+                    fields_Cur = ce.UnescapeRecordToFieldList(sLine,',').ToArray();
                     //sFields = sLine.Split(',');
 
 
@@ -97,9 +98,9 @@ namespace Xenon.Table
                         
                         // 列名の行とします。
 
-                        for (int nColumnIx = 0; nColumnIx < sFields.Length; nColumnIx++)
+                        for (int nColumnIx = 0; nColumnIx < fields_Cur.Length; nColumnIx++)
                         {
-                            string sColumnName = sFields[nColumnIx];
+                            string sColumnName = fields_Cur[nColumnIx];
 
                             // 列名を読み込みました。
 
@@ -132,7 +133,7 @@ namespace Xenon.Table
                             string sFieldTypeNameLower;
                             try
                             {
-                                sFieldTypeNameLower = sFields[nColumnIx].ToLower();
+                                sFieldTypeNameLower = fields_Cur[nColumnIx].ToLower();
                             }
                             catch (IndexOutOfRangeException e)
                             {
@@ -176,11 +177,19 @@ namespace Xenon.Table
                         // フィールドのコメントの行。
                         // TODO: フィールドのコメントの行は省略されることがある。
 
-                        for (int nColumnIx = 0; nColumnIx < nDataColumnsCount; nColumnIx++)
+                        for (int column = 0; column < nDataColumnsCount; column++)
                         {
-                            string sFieldComment = sFields[nColumnIx];
+                            if (fields_Cur.Length<=column)
+                            {
+                                error_Fields_Cur = fields_Cur;
+                                //error_Count_Columns = fields_Cur.Length;
+                                error_Count_Index = column;
+                                goto gt_Error_CommentFieldCount;
+                            }
 
-                            list_FldDef[nColumnIx].Comment = sFieldComment;
+                            string comment_Field = fields_Cur[column];//todo:bug:境界線エラーをキャッチしてない。
+
+                            list_FldDef[column].Comment = comment_Field;
                         }
 
                         // 2行目は、テーブルのデータとしては持ちません。
@@ -192,24 +201,24 @@ namespace Xenon.Table
 
                         // データ・テーブル部で、0列目に「EOF」と入っていれば終了。大文字・小文字は区別せず。
 
-                        if (sFields.Length < 1)
+                        if (fields_Cur.Length < 1)
                         {
                             // 空行は無視。
                             goto end_recordAdd;
                         }
                         //ystem.Console.WriteLine(InfxenonTable.LibraryName + ":" + this.GetType().Name + "#UnescapeToList: sFields[0]=[" + sFields[0] + "] sLine=[" + sLine + "]");
 
-                        string sCellValueTrimUpper = sFields[0].Trim().ToUpper();
+                        string sCellValueTrimUpper = fields_Cur[0].Trim().ToUpper();
                         if (ToCsv_OTableImpl.S_EOF == sCellValueTrimUpper)
                         {
                             goto reading_end;
                         }
 
                         int nColumnCount;
-                        if (sFields.Length < nDataColumnsCount)
+                        if (fields_Cur.Length < nDataColumnsCount)
                         {
                             // 「実際にデータとして存在する列数」
-                            nColumnCount = sFields.Length;
+                            nColumnCount = fields_Cur.Length;
                         }
                         else
                         {
@@ -222,7 +231,7 @@ namespace Xenon.Table
                         {
                             string sValue;
 
-                            sValue = sFields[nColumnIx];
+                            sValue = fields_Cur[nColumnIx];
 
                             if (list_FldDef.Count <= nColumnIx)
                             {
@@ -265,6 +274,50 @@ namespace Xenon.Table
         //
         //
             #region 異常系
+        //────────────────────────────────────────
+        gt_Error_CommentFieldCount:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー1356！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+
+                s.Append("「フィールド・コメント」行のフィールド数が合いませんでした。");
+                s.Append(Environment.NewLine);
+                s.Append(Environment.NewLine);
+
+                s.Append("index＝[");
+                s.Append(error_Count_Index);
+                s.Append("]");
+                s.Append(Environment.NewLine);
+
+                s.Append("列数＝[");
+                s.Append(error_Fields_Cur.Length);
+                s.Append("]");
+                s.Append(Environment.NewLine);
+                s.Append(Environment.NewLine);
+
+                s.Append("──────────fields ここから");
+                s.Append(Environment.NewLine);
+                foreach (string field in error_Fields_Cur)
+                {
+                    s.Append("field=[");
+                    s.Append(field);
+                    s.Append("]");
+                    s.Append(Environment.NewLine);
+                }
+                s.Append("──────────fields ここまで");
+                s.Append(Environment.NewLine);
+
+                //
+                // ヒント
+                s.Append(Log_RecordReportsImpl.ToText_Configurationtree(xenonTable));
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_FdIndexOutOfRangeException:
             if (log_Reports.CanCreateReport)

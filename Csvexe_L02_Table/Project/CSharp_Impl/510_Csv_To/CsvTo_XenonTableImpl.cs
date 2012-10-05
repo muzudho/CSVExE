@@ -40,13 +40,13 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="request_ReadsTable">テーブルに付けたい名前や、ファイルパスの要求。</param>
         /// <param name="xenonTableFormat_puts">テーブルの行列が逆になっているなどの、設定。</param>
-        /// <param name="bRequired">テーブルが無かった場合、エラーとするなら真。</param>
+        /// <param name="isRequired">テーブルが無かった場合、エラーとするなら真。</param>
         /// <param name="out_sErrorMsg"></param>
         /// <returns></returns>
         public XenonTable Read(
             Request_ReadsTable request_ReadsTable,
             XenonTableformat xenonTableFormat_puts,
-            bool bRequired,
+            bool isRequired,
             Log_Reports log_Reports
             )
         {
@@ -57,7 +57,7 @@ namespace Xenon.Table
 
             XenonTable xenonTable_Result;
 
-            string sFpatha_Csv = request_ReadsTable.Expression_Filepath.Execute4_OnExpressionString(
+            string filepathabsolute_Csv = request_ReadsTable.Expression_Filepath.Execute4_OnExpressionString(
                 EnumHitcount.Unconstraint, log_Reports);
             if (!log_Reports.Successful)
             {
@@ -66,10 +66,10 @@ namespace Xenon.Table
                 goto gt_EndMethod;
             }
 
-            string sCsv;
+            string string_Csv;
 
             // CSVテキスト
-            Exception err_Excp;
+            Exception error_Excp;
             if (CsvTo_XenonTableImpl.S_WRITE_ONLY!=request_ReadsTable.Use)
             {
                 // 書き出し専用でなければ。
@@ -77,7 +77,7 @@ namespace Xenon.Table
 
                 try
                 {
-                    if (!System.IO.File.Exists(sFpatha_Csv))
+                    if (!System.IO.File.Exists(filepathabsolute_Csv))
                     {
                         // ファイルが存在しない場合。
                         xenonTable_Result = null;
@@ -85,32 +85,34 @@ namespace Xenon.Table
                     }
 
                     // TODO:IOException 別スレッドで開いているときなど。
-                    sCsv = System.IO.File.ReadAllText(sFpatha_Csv, Encoding.Default);
+
+                    string_Csv = System.IO.File.ReadAllText(filepathabsolute_Csv, Global.ENCODING_CSV);
+                    //log_Method.WriteDebug_ToConsole(string_Csv);
                 }
                 catch (System.IO.IOException e)
                 {
                     // エラー処理。
                     xenonTable_Result = null;
-                    sCsv = "";
-                    err_Excp = e;
+                    string_Csv = "";
+                    error_Excp = e;
                     goto gt_Error_FileOpen;
                 }
                 catch (Exception e)
                 {
                     // エラー処理。
                     xenonTable_Result = null;
-                    sCsv = "";
-                    err_Excp = e;
+                    string_Csv = "";
+                    error_Excp = e;
                     goto gt_Error_Exception;
                 }
             }
             else
             {
-                sCsv = "";
+                string_Csv = "";
             }
 
             xenonTable_Result = this.Read(
-                sCsv,
+                string_Csv,
                 request_ReadsTable,
                 xenonTableFormat_puts,
                 log_Reports
@@ -124,7 +126,7 @@ namespace Xenon.Table
             // NOフィールドの値を 0からの連番に振りなおします。
             xenonTable_Result.RenumberingNoField();
 
-            if (bRequired && null == xenonTable_Result)
+            if (isRequired && null == xenonTable_Result)
             {
                 goto gt_Error_NullTable;
             }
@@ -146,7 +148,7 @@ namespace Xenon.Table
                 s.Newline();
 
                 s.Append("　ファイル=[");
-                s.Append(sFpatha_Csv);
+                s.Append(filepathabsolute_Csv);
                 s.Append("]");
                 s.Newline();
                 s.Newline();
@@ -163,7 +165,7 @@ namespace Xenon.Table
                 //
                 // ヒント
                 request_ReadsTable.Expression_Filepath.Cur_Configurationtree.ToText_Locationbreadcrumbs(s);
-                s.Append(err_Excp.Message);
+                s.Append(error_Excp.Message);
 
                 r.Message = s.ToString();
 
@@ -185,7 +187,7 @@ namespace Xenon.Table
                     s.Newline();
 
                     s.AppendI(1, "指定されたファイルパス=[");
-                    s.Append(sFpatha_Csv);
+                    s.Append(filepathabsolute_Csv);
                     s.Append("]");
                     s.Newline();
 
@@ -215,7 +217,7 @@ namespace Xenon.Table
                     s.Newline();
 
                     s.AppendI(1, "指定されたファイルパス=[");
-                    s.Append(sFpatha_Csv);
+                    s.Append(filepathabsolute_Csv);
                     s.Append("]");
                     s.Newline();
 
@@ -253,7 +255,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
                 s.Append("指定CSVファイル=[");
-                s.Append(sFpatha_Csv);
+                s.Append(filepathabsolute_Csv);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -264,11 +266,11 @@ namespace Xenon.Table
 
 
                 s.Append("エラーの種類：");
-                s.Append(err_Excp.GetType().Name);
+                s.Append(error_Excp.GetType().Name);
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
                 s.Append("エラーメッセージ：");
-                s.Append(err_Excp.Message);
+                s.Append(error_Excp.Message);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -308,20 +310,20 @@ namespace Xenon.Table
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sText_Csv"></param>
+        /// <param name="string_Csv"></param>
         /// <param name="request_ReadsTable"></param>
         /// <param name="xenonTableFormat_puts"></param>
         /// <param name="out_SErrorMsg"></param>
         /// <returns></returns>
         public XenonTable Read(
-            string sText_Csv,
+            string string_Csv,
             Request_ReadsTable request_ReadsTable,
             XenonTableformat xenonTableFormat_puts,
             Log_Reports log_Reports
             )
         {
 
-            XenonTable o_Result;
+            XenonTable result;
 
             if (xenonTableFormat_puts.IsRowcolumnreverse)
             {
@@ -338,7 +340,7 @@ namespace Xenon.Table
                     CsvTo_XenonTableReverseAllIntsImpl csvTo = new CsvTo_XenonTableReverseAllIntsImpl();
 
                     XenonTable xenonTable = csvTo.Read(
-                        sText_Csv,
+                        string_Csv,
                         request_ReadsTable,
                         xenonTableFormat_puts,
                         log_Reports
@@ -346,18 +348,18 @@ namespace Xenon.Table
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。
-                        o_Result = null;
+                        result = null;
                         goto gt_EndMethod;
                     }
 
-                    o_Result = xenonTable;
+                    result = xenonTable;
                 }
                 else
                 {
                     CsvTo_XenonTableReverseImpl csvTo = new CsvTo_XenonTableReverseImpl();
 
                     XenonTable xenonTable = csvTo.Read(
-                        sText_Csv,
+                        string_Csv,
                         request_ReadsTable,
                         xenonTableFormat_puts,
                         log_Reports
@@ -365,12 +367,12 @@ namespace Xenon.Table
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。
-                        o_Result = null;
+                        result = null;
 
                         goto gt_EndMethod;
                     }
 
-                    o_Result = xenonTable;
+                    result = xenonTable;
                 }
             }
             else
@@ -381,7 +383,7 @@ namespace Xenon.Table
                 CsvTo_XenonTableNormalImpl csvTo = new CsvTo_XenonTableNormalImpl();
 
                 XenonTable xenonTable = csvTo.Read(
-                    sText_Csv,
+                    string_Csv,
                     request_ReadsTable,
                     xenonTableFormat_puts,
                     log_Reports
@@ -389,12 +391,12 @@ namespace Xenon.Table
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。
-                    o_Result = null;
+                    result = null;
 
                     goto gt_EndMethod;
                 }
 
-                o_Result = xenonTable;
+                result = xenonTable;
             }
 
             goto gt_EndMethod;
@@ -404,7 +406,7 @@ namespace Xenon.Table
             //
             //
         gt_EndMethod:
-            return o_Result;
+            return result;
         }
 
         //────────────────────────────────────────

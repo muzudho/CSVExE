@@ -46,13 +46,13 @@ namespace Xenon.Table
         /// <param name="csvText"></param>
         /// <returns></returns>
         public List<string> Read(
-            string sText_Csv
+            string string_Csv
             )
         {
             // テーブルを作成します。
-            List<string> sList = new List<string>();
+            List<string> list_String = new List<string>();
 
-            System.IO.StringReader reader = new System.IO.StringReader(sText_Csv);
+            System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
             // CSVを解析して、テーブル形式で格納。
@@ -80,7 +80,7 @@ namespace Xenon.Table
                                 // 行の最後が「,」で終わる場合、最後のトークンは空白が入っているのではなく、追加しません。
                                 break;
                             }
-                            sList.Add(fields[nColumnIndex]);
+                            list_String.Add(fields[nColumnIndex]);
                         }
                     }
 
@@ -90,7 +90,7 @@ namespace Xenon.Table
             // ストリームを閉じます。
             reader.Close();
 
-            return sList;
+            return list_String;
         }
 
         //────────────────────────────────────────

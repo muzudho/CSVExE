@@ -45,6 +45,22 @@ namespace Xenon.Syntax
         /// <param name="request"></param>
         /// <param name="log_Reports"></param>
         /// <returns>検索結果が1件以上あれば真。</returns>
+        bool TrySelect_ExpressionFilepath(
+            out Expression_Node_Filepath out_Expression_Result,
+            string sName,
+            EnumHitcount request,
+            Log_Reports log_Reports
+            );
+
+        /// <summary>
+        /// 項目を取得します。
+        /// </summary>
+        /// <param name="out_E_Result">検索結果。</param>
+        /// <param name="sName"></param>
+        /// <param name="bRequired"></param>
+        /// <param name="request"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns>検索結果が1件以上あれば真。</returns>
         bool TrySelect(
             out Expression_Node_String out_Expression_Result,
             string sName,

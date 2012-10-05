@@ -1,6 +1,6 @@
-NO,ID,Expl,NAME,END
+ï»¿NO,ID,Expl,NAME,END
 int,int,string,string,END
--1,ƒXƒLƒ‹ƒŠƒXƒgID,,IDŒ“•\¦–¼,END
+-1,ã‚¹ã‚­ãƒ«ãƒªã‚¹ãƒˆID,,IDå…¼è¡¨ç¤ºå,END
 1,10,,SKL10,END
 2,11,,SKL11,END
 3,12,,SKL12,END
@@ -8,4 +8,4 @@ int,int,string,string,END
 5,14,,SKL14,END
 EOF,,,,
 
-0,0,–³ŠY“–(ID=‹ó”’),,
+0,0,ç„¡è©²å½“(ID=ç©ºç™½),,

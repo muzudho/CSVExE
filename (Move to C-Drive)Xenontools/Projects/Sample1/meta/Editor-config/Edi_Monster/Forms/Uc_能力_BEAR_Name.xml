@@ -1,97 +1,97 @@
-<?xml version="1.0" encoding="Shift_JIS" ?>
-                                    <!-- «‚±‚Ìƒo[ƒWƒ‡ƒ“”Ô†‚Ìà–¾‚Í
-                                           Aa_Editor.xmlŽQÆ -->
+ï»¿<?xml version="1.0" encoding="Shift_JIS" ?>
+                                    <!-- â†“ã“ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·ã®èª¬æ˜Žã¯
+                                           Aa_Editor.xmlå‚ç…§ -->
 <codefile-controls codefile-version="2.0">
 
 
     <!--
-      ‚±‚ÌƒRƒ“ƒgƒ[ƒ‹‚ÌÐ‰î
-    „¬„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„­
-        ¡
-      ¡¡¡ ‘Ï«–¼ƒeƒLƒXƒgƒGƒŠƒA
-        ¡
-                                        [‹L†] Uc:”\—Í_BEAR_Name;
-                                        [Ží—Þ] ƒeƒLƒXƒgƒGƒŠƒAiC:Txa;j
-                                        [‰æ–Ê] ƒƒCƒ“‰æ–ÊiUfo:ƒƒCƒ“;j
-                                                    iForms/Ufo_ƒƒCƒ“.csvj
+      ã“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®ç´¹ä»‹
+    â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“
+        â– 
+      â– â– â–  è€æ€§åãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢
+        â– 
+                                        [è¨˜å·] Uc:èƒ½åŠ›_BEAR_Name;
+                                        [ç¨®é¡ž] ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ï¼ˆC:Txa;ï¼‰
+                                        [ç”»é¢] ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼ˆUfo:ãƒ¡ã‚¤ãƒ³;ï¼‰
+                                                    ï¼ˆForms/Ufo_ãƒ¡ã‚¤ãƒ³.csvï¼‰
 
-                ƒ‚ƒ“ƒXƒ^[‚Ì‘Ï«‚ÌA–¼‘O‚ð
-                •\Ž¦‚µ‚Ü‚·B
+                ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®è€æ€§ã®ã€åå‰ã‚’
+                è¡¨ç¤ºã—ã¾ã™ã€‚
 
-    „¯„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„ª„®
+    â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›
     -->
     <control>
 
 
         <!--
-          ƒf[ƒ^‚ÌÝ’è
-        „¡„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„¢
-            ¡¡
-          ¡  ¡ ƒf[ƒ^“ÇŽæŒ³
-            ¡¡
-                    ‘Ï«ƒe[ƒuƒ‹‚Ì Expl ƒtƒB[ƒ‹ƒhB
-                    {
-                    u@v
-                    {
-                    ‘Ï«ƒe[ƒuƒ‹‚Ì NAME ƒtƒB[ƒ‹ƒhB
+          ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
+        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+            â– â– 
+          â–   â–  ãƒ‡ãƒ¼ã‚¿èª­å–å…ƒ
+            â– â– 
+                    è€æ€§ãƒ†ãƒ¼ãƒ–ãƒ«ã® Expl ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚
+                    ï¼‹
+                    ã€Œã€€ã€
+                    ï¼‹
+                    è€æ€§ãƒ†ãƒ¼ãƒ–ãƒ«ã® NAME ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚
                     
-                    ‹‚ß•û
-                        “Gƒe[ƒuƒ‹‚ÌAŒ»Ý‘I‘ð’†‚Ìƒ‚ƒ“ƒXƒ^
-                        [‚ÉŠY“–‚·‚és‚ÌABEAR —ñ‚Ì’l‚ðŒ©‚ÄA
+                    æ±‚ã‚æ–¹
+                        æ•µãƒ†ãƒ¼ãƒ–ãƒ«ã®ã€ç¾åœ¨é¸æŠžä¸­ã®ãƒ¢ãƒ³ã‚¹ã‚¿
+                        ãƒ¼ã«è©²å½“ã™ã‚‹è¡Œã®ã€BEAR åˆ—ã®å€¤ã‚’è¦‹ã¦ã€
                         
-                        ‘Ï«ƒe[ƒuƒ‹‚Ì ID —ñ‚©‚çˆê’v‚·‚éƒŒ
-                        ƒR[ƒh‚ð’T‚µA‚»‚Ì Expl‚ÆAName —ñ
-                        ‚Ì’l‚ð•\Ž¦‚µ‚Ü‚·B
+                        è€æ€§ãƒ†ãƒ¼ãƒ–ãƒ«ã® ID åˆ—ã‹ã‚‰ä¸€è‡´ã™ã‚‹ãƒ¬
+                        ã‚³ãƒ¼ãƒ‰ã‚’æŽ¢ã—ã€ãã® Explã¨ã€Name åˆ—
+                        ã®å€¤ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
 
-                    i¦‹r’‚j
+                    ï¼ˆâ€»è„šæ³¨ï½ï¼‰
 
-          ¡¡
-          ¡  ¡ ƒf[ƒ^•ÏXæ
-          ¡¡
-                    ‚È‚µB
+          â– â– 
+          â–   â–  ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å…ˆ
+          â– â– 
+                    ãªã—ã€‚
 
         -->
         <data access="from" memory="none">
-            <!-- i‚Pj -->
+            <!-- ï¼ˆï¼‘ï¼‰ -->
             <fnc name="Sf:Cell;">
-                <arg name="Pm:select;" value="Expl" /><!-- ‡A -->
-                <arg name="Pm:from;" value="Ut:‘Ï«;" /><!-- ‡@ -->
+                <arg name="Pm:select;" value="Expl" /><!-- â‘¡ -->
+                <arg name="Pm:from;" value="Ut:è€æ€§;" /><!-- â‘  -->
                 <fnc name="Sf:Where;">
-                    <!-- ‡B -->
+                    <!-- â‘¢ -->
                     <fnc name="Sf:RecCond;">
-                        <arg name="Pm:field;" value="ID" /><!-- ‡C -->
-                        <!-- ‡D -->
+                        <arg name="Pm:field;" value="ID" /><!-- â‘£ -->
+                        <!-- â‘¤ -->
                         <fnc name="Sf:Cell;">
-                            <arg name="Pm:select;" value="BEAR" /><!-- ‡F -->
-                            <arg name="Pm:from;" value="Ut:“G;" /><!-- ‡E -->
+                            <arg name="Pm:select;" value="BEAR" /><!-- â‘¦ -->
+                            <arg name="Pm:from;" value="Ut:æ•µ;" /><!-- â‘¥ -->
                             <fnc name="Sf:Where;">
                                 <fnc name="Sf:RecCond;">
-                                    <arg name="Pm:field;" value="NO" /><!-- ‡G -->
-                                    <f-var value="Ui:‘I‘ðƒ‚ƒ“ƒXƒ^[RNo;" /><!-- ‡H -->
+                                    <arg name="Pm:field;" value="NO" /><!-- â‘§ -->
+                                    <f-var value="Ui:é¸æŠžãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼RNo;" /><!-- â‘¨ -->
                                 </fnc>
                             </fnc>
                         </fnc>
                     </fnc>
                 </fnc>
             </fnc>
-            <!-- i‚Qj -->
-            <f-str value="@" />
-            <!-- i‚Rj -->
+            <!-- ï¼ˆï¼’ï¼‰ -->
+            <f-str value="ã€€" />
+            <!-- ï¼ˆï¼“ï¼‰ -->
             <fnc name="Sf:Cell;">
-                <arg name="Pm:select;" value="NAME" /><!-- ‡K -->
-                <arg name="Pm:from;" value="Ut:‘Ï«;" /><!-- ‡J -->
+                <arg name="Pm:select;" value="NAME" /><!-- â‘« -->
+                <arg name="Pm:from;" value="Ut:è€æ€§;" /><!-- â‘ª -->
                 <fnc name="Sf:Where;">
-                    <!-- ‡L -->
+                    <!-- â‘¬ -->
                     <fnc name="Sf:RecCond;">
-                        <arg name="Pm:field;" value="ID" /><!-- ‡M -->
-                        <!-- ‡N -->
+                        <arg name="Pm:field;" value="ID" /><!-- â‘­ -->
+                        <!-- â‘® -->
                         <fnc name="Sf:Cell;">
-                            <arg name="Pm:select;" value="BEAR" /><!-- ‡P -->
-                            <arg name="Pm:from;" value="Ut:“G;" /><!-- ‡O -->
+                            <arg name="Pm:select;" value="BEAR" /><!-- â‘° -->
+                            <arg name="Pm:from;" value="Ut:æ•µ;" /><!-- â‘¯ -->
                             <fnc name="Sf:Where;">
                                 <fnc name="Sf:RecCond;">
-                                    <arg name="Pm:field;" value="NO" /><!-- ‡Q -->
-                                    <f-var value="Ui:‘I‘ðƒ‚ƒ“ƒXƒ^[RNo;" /><!-- ‡R -->
+                                    <arg name="Pm:field;" value="NO" /><!-- â‘± -->
+                                    <f-var value="Ui:é¸æŠžãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼RNo;" /><!-- â‘² -->
                                 </fnc>
                             </fnc>
                         </fnc>
@@ -100,40 +100,40 @@
             </fnc>
         </data>
         <!--
-        „¥„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„§
-        ¦‹r’‚
-                  E‚±‚ÌƒRƒ“ƒgƒ[ƒ‹‚ÍA
-                    ŽŸ‚Ì‚R‚Â‚Ì•¶Žš—ñ‚ð‡”Ô‚É˜AŒ‹‚µ‚½‚à‚Ì‚ð•\Ž¦‚µ‚Ü‚·B
-                        i‚Pjƒe[ƒuƒ‹‚©‚çŒŸõ‚µ‚½’l
-                        i‚Qj<f-str>‚ÅŽw’è‚µ‚½•¶Žš—ñ
-                        i‚Rjƒe[ƒuƒ‹‚©‚çŒŸõ‚µ‚½’l
+        â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+        â€»è„šæ³¨ï½
+                  ãƒ»ã“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã¯ã€
+                    æ¬¡ã®ï¼“ã¤ã®æ–‡å­—åˆ—ã‚’é †ç•ªã«é€£çµã—ãŸã‚‚ã®ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+                        ï¼ˆï¼‘ï¼‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æ¤œç´¢ã—ãŸå€¤
+                        ï¼ˆï¼’ï¼‰<f-str>ã§æŒ‡å®šã—ãŸæ–‡å­—åˆ—
+                        ï¼ˆï¼“ï¼‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æ¤œç´¢ã—ãŸå€¤
         
-                  Ei‚Pj‚ÍAuUt:‘Ï«;vƒe[ƒuƒ‹i‡@j‚ÌuExplvƒtƒB[ƒ‹ƒh
-                    i‡Aj‚ðŒŸõ‚µ‚½’l‚Å‚·B
-                    ƒŒƒR[ƒh‚ð‘I‚ÔðŒ‚ðŽw’è‚µ‚Ü‚·Bi‡Bj
-                  EID —ñi‡Cj‚ÉAŒ©‚Â‚¯‚½‚¢’li‡Dj‚ª“ü‚Á‚Ä‚¢‚é‚±‚ÆB
-                    ‡D‚Ì’l‚à‚Ü‚½ŒŸõ‚ÅŒ©‚Â‚¯‚Ü‚·B
+                  ãƒ»ï¼ˆï¼‘ï¼‰ã¯ã€ã€ŒUt:è€æ€§;ã€ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆâ‘ ï¼‰ã®ã€ŒExplã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+                    ï¼ˆâ‘¡ï¼‰ã‚’æ¤œç´¢ã—ãŸå€¤ã§ã™ã€‚
+                    ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é¸ã¶æ¡ä»¶ã‚’æŒ‡å®šã—ã¾ã™ã€‚ï¼ˆâ‘¢ï¼‰
+                  ãƒ»ID åˆ—ï¼ˆâ‘£ï¼‰ã«ã€è¦‹ã¤ã‘ãŸã„å€¤ï¼ˆâ‘¤ï¼‰ãŒå…¥ã£ã¦ã„ã‚‹ã“ã¨ã€‚
+                    â‘¤ã®å€¤ã‚‚ã¾ãŸæ¤œç´¢ã§è¦‹ã¤ã‘ã¾ã™ã€‚
         
-                    ‡D‚Ì’l‚ð‘I‚Ô•û–@‚ðŽw’è‚µ‚Ü‚·B
-                        EuUt:“G;vƒe[ƒuƒ‹i‡Ej‚ÌuBEARvƒtƒB[ƒ‹ƒhi‡Fj‚ð
-                            ŒŸõ‚µ‚½’l‚Å‚·B
-                            uNOvƒtƒB[ƒ‹ƒhi‡Gj‚ÉAuUi:‘I‘ðƒ‚ƒ“ƒXƒ^[RNo;v
-                            •Ï”i‡Hj‚Ì’l‚ª“ü‚Á‚Ä‚¢‚éƒŒƒR[ƒh‚ð‘I‚Ñ‚Ü‚·B
+                    â‘¤ã®å€¤ã‚’é¸ã¶æ–¹æ³•ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+                        ãƒ»ã€ŒUt:æ•µ;ã€ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆâ‘¥ï¼‰ã®ã€ŒBEARã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆâ‘¦ï¼‰ã‚’
+                            æ¤œç´¢ã—ãŸå€¤ã§ã™ã€‚
+                            ã€ŒNOã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆâ‘§ï¼‰ã«ã€ã€ŒUi:é¸æŠžãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼RNo;ã€
+                            å¤‰æ•°ï¼ˆâ‘¨ï¼‰ã®å€¤ãŒå…¥ã£ã¦ã„ã‚‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é¸ã³ã¾ã™ã€‚
         
-                  Ei‚Qj‚ÍA‘SŠp‹ó”’‚Å‚·B
+                  ãƒ»ï¼ˆï¼’ï¼‰ã¯ã€å…¨è§’ç©ºç™½ã§ã™ã€‚
         
-                  Ei‚Rj‚ÍAuUt:‘Ï«;vƒe[ƒuƒ‹i‡Jj‚ÌuNAMEvƒtƒB[ƒ‹ƒh
-                    i‡Kj‚ðŒŸõ‚µ‚½’l‚Å‚·B
-                    ƒŒƒR[ƒh‚ð‘I‚ÔðŒ‚ðŽw’è‚µ‚Ü‚·Bi‡Lj
-                  EID —ñi‡Mj‚ÉAŒ©‚Â‚¯‚½‚¢’li‡Nj‚ª“ü‚Á‚Ä‚¢‚é‚±‚ÆB
-                    ‡N‚Ì’l‚à‚Ü‚½ŒŸõ‚ÅŒ©‚Â‚¯‚Ü‚·B
+                  ãƒ»ï¼ˆï¼“ï¼‰ã¯ã€ã€ŒUt:è€æ€§;ã€ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆâ‘ªï¼‰ã®ã€ŒNAMEã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+                    ï¼ˆâ‘«ï¼‰ã‚’æ¤œç´¢ã—ãŸå€¤ã§ã™ã€‚
+                    ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é¸ã¶æ¡ä»¶ã‚’æŒ‡å®šã—ã¾ã™ã€‚ï¼ˆâ‘¬ï¼‰
+                  ãƒ»ID åˆ—ï¼ˆâ‘­ï¼‰ã«ã€è¦‹ã¤ã‘ãŸã„å€¤ï¼ˆâ‘®ï¼‰ãŒå…¥ã£ã¦ã„ã‚‹ã“ã¨ã€‚
+                    â‘®ã®å€¤ã‚‚ã¾ãŸæ¤œç´¢ã§è¦‹ã¤ã‘ã¾ã™ã€‚
         
-                    ‡N‚Ì’l‚ð‘I‚Ô•û–@‚ðŽw’è‚µ‚Ü‚·B
-                        EuUt:“G;vƒe[ƒuƒ‹i‡Oj‚ÌuBEARvƒtƒB[ƒ‹ƒhi‡Pj‚ð
-                            ŒŸõ‚µ‚½’l‚Å‚·B
-                            uNOvƒtƒB[ƒ‹ƒhi‡Qj‚ÉAuUi:‘I‘ðƒ‚ƒ“ƒXƒ^[RNo;v
-                            •Ï”i‡Rj‚Ì’l‚ª“ü‚Á‚Ä‚¢‚éƒŒƒR[ƒh‚ð‘I‚Ñ‚Ü‚·B
-        „¤„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„£
+                    â‘®ã®å€¤ã‚’é¸ã¶æ–¹æ³•ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+                        ãƒ»ã€ŒUt:æ•µ;ã€ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆâ‘¯ï¼‰ã®ã€ŒBEARã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆâ‘°ï¼‰ã‚’
+                            æ¤œç´¢ã—ãŸå€¤ã§ã™ã€‚
+                            ã€ŒNOã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆâ‘±ï¼‰ã«ã€ã€ŒUi:é¸æŠžãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼RNo;ã€
+                            å¤‰æ•°ï¼ˆâ‘²ï¼‰ã®å€¤ãŒå…¥ã£ã¦ã„ã‚‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é¸ã³ã¾ã™ã€‚
+        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
         -->
 
 

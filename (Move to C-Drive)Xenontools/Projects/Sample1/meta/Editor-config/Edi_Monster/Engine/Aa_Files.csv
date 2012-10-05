@@ -1,20 +1,20 @@
-NO,ID,EXPL,NAME,TYPE_DATA,FOLDER,FILE,SET_VAR_PATH,ROW_COL_REV,ALL_INT_FIELDS,DATE_BACKUP,COMMA_ENDING,USE,END
+ï»¿NO,ID,EXPL,NAME,TYPE_DATA,FOLDER,FILE,SET_VAR_PATH,ROW_COL_REV,ALL_INT_FIELDS,DATE_BACKUP,COMMA_ENDING,USE,END
 int,int,string,string,string,string,string,string,bool,bool,bool,bool,string,END
--1,¯•Êq‚Íg‚¢‚Ü‚¹‚ñ,‰ğà,CSVƒtƒ@ƒCƒ‹‚P‚Â‚É‘Î‰‚·‚éƒe[ƒuƒ‹–¼B,ƒf[ƒ^‚Ìí—Ş,iƒtƒ@ƒCƒ‹ƒpƒXj•Ï”–¼‚ğ‘‚­BƒtƒHƒ‹ƒ_[‚Ö‚ÌƒpƒX‚ªw’è‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹ƒpƒX•Ï”‚Ì–¼‘OBi‘‚©‚È‚¯‚ê‚Î .exe ‚Ì‚ ‚éƒtƒHƒ‹ƒ_[j,iƒtƒ@ƒCƒ‹ƒpƒXjFOLDER—ñ’l‚©‚ç‚Ì‘Š‘Îƒtƒ@ƒCƒ‹ƒpƒXi‚©â‘ÎƒpƒXj,iƒtƒ@ƒCƒ‹ƒpƒXjƒtƒ@ƒCƒ‹ƒpƒX‚ğAw’è‚Ì•Ï”‚ÉƒZƒbƒg‚µ‚Ü‚·B,iƒe[ƒuƒ‹js‚Æ—ñ‚ª‹tŒü‚«‚È‚çTRUEB‹ó—“‚È‚çFALSEB,iƒe[ƒuƒ‹jŒ^’è‹`‚ÌƒŒƒR[ƒh‚ª‚È‚­A‘S•”intŒ^‚È‚çTRUEA‹ó—“‚È‚çFALSEB,iƒe[ƒuƒ‹j“ú‰‚ßƒoƒbƒNƒAƒbƒv‚ğs‚¤‚È‚çTRUEA‹ó—“‚È‚çFALSEB,"iƒe[ƒuƒ‹js‚Ì––”ö‚ğu,v‚ÅI‚¦‚é‚È‚çTRUEA‹ó—“‚È‚çFALSEB",iƒe[ƒuƒ‹j—p“rB^uvw’è‚È‚µB^uWriteOnlyvƒf[ƒ^‚Ì“Çæ‚ğs‚í‚È‚¢BƒƒOo—Íæ‚ğ“o˜^‚µ‚Ä‚¢‚é‚¾‚¯‚È‚ÇB,END
-0,,ƒtƒH[ƒ€ˆê——,St:Aa_Forms;,T:TablesForm;,Sp:Forms;,Aa_Forms.csv,,,,,,,END
-1,,ƒXƒ^ƒCƒ‹ƒV[ƒgEƒe[ƒuƒ‹,St:Stylesheet;,T:TableStylesheet;,Sp:Engine;,Mde_Stylesheet.csv,,,,,,,END
-2,,ƒGƒ‰[ƒƒbƒZ[ƒWEƒe[ƒuƒ‹,Ut:Errormessages;,T:TableErrermessages;,Up:CommonProjects;,Mde_Errormessages.csv,,,,,,,END
-3,,,Ut:“GìíğŒ;,T:TableData;,Sp:Engine;,Md_“GìíğŒ.csv,,,,,,,END
-4,,,Ut:“Gìí«Ši;,T:TableData;,Sp:Engine;,Md_“Gìí«Ši.csv,,,,,,,END
-5,,,Ut:í‘°;,T:TableData;,Sp:Engine;,Md_í‘°.csv,,,,,,,END
-6,,,Ut:ƒXƒLƒ‹ƒŠƒXƒgID;,T:TableData;,Sp:Engine;,Md_ƒXƒLƒ‹ƒŠƒXƒgID.csv,,,,,,,END
-7,,,Ut:“G;,T:TableData;,Up:Contents;,Œ³•\_“G.csv,,,,TRUE,,,END
-8,,“Gƒ‹[ƒ`ƒ“,Ut:“Gìí;,T:TableData;,Up:Contents;,Œ³•\_“Gìí.csv,,TRUE,TRUE,TRUE,TRUE,,END
-9,,,Ut:‘Ï«;,T:TableData;,Up:Contents;,Œ³•\_‘Ï«.csv,,,,,,,END
-10,,,Ut:ƒAƒCƒeƒ€;,T:TableData;,Up:Contents;,Œ³•\_ƒAƒCƒeƒ€.csv,,,,,,,END
-11,,ƒRƒ“ƒfƒBƒVƒ‡ƒ“‘®«,Ut:ó‘ÔˆÙí;,T:TableData;,Up:Contents;,Œ³•\_ó‘ÔˆÙí.csv,,,,,,,END
-12,,ƒpƒX‚ğ“o˜^‚µ‚½‚¢‚¾‚¯B,Ut:“GƒQ[ƒ€ƒf[ƒ^;,T:TableData;,Up:Project;,data\database\monster.csv,,,,,,,END
-13,,ƒpƒX‚ğ“o˜^‚µ‚½‚¢‚¾‚¯B,Ut:“GìíƒQ[ƒ€ƒf[ƒ^;,T:TableData;,Up:Project;,data\database\monster_routine.csv,,,,,,,END
+-1,è­˜åˆ¥å­ã¯ä½¿ã„ã¾ã›ã‚“,è§£èª¬,CSVãƒ•ã‚¡ã‚¤ãƒ«ï¼‘ã¤ã«å¯¾å¿œã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«åã€‚,ãƒ‡ãƒ¼ã‚¿ã®ç¨®é¡,ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ï¼‰å¤‰æ•°åã‚’æ›¸ãã€‚ãƒ•ã‚©ãƒ«ãƒ€ãƒ¼ã¸ã®ãƒ‘ã‚¹ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹å¤‰æ•°ã®åå‰ã€‚ï¼ˆæ›¸ã‹ãªã‘ã‚Œã° .exe ã®ã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ãƒ¼ï¼‰,ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ï¼‰FOLDERåˆ—å€¤ã‹ã‚‰ã®ç›¸å¯¾ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ï¼ˆã‹çµ¶å¯¾ãƒ‘ã‚¹ï¼‰,ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ï¼‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã€æŒ‡å®šã®å¤‰æ•°ã«ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚,ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼‰è¡Œã¨åˆ—ãŒé€†å‘ããªã‚‰TRUEã€‚ç©ºæ¬„ãªã‚‰FALSEã€‚,ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼‰å‹å®šç¾©ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒãªãã€å…¨éƒ¨intå‹ãªã‚‰TRUEã€ç©ºæ¬„ãªã‚‰FALSEã€‚,ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼‰æ—¥åˆã‚ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’è¡Œã†ãªã‚‰TRUEã€ç©ºæ¬„ãªã‚‰FALSEã€‚,"ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼‰è¡Œã®æœ«å°¾ã‚’ã€Œ,ã€ã§çµ‚ãˆã‚‹ãªã‚‰TRUEã€ç©ºæ¬„ãªã‚‰FALSEã€‚",ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼‰ç”¨é€”ã€‚ï¼ã€Œã€æŒ‡å®šãªã—ã€‚ï¼ã€ŒWriteOnlyã€ãƒ‡ãƒ¼ã‚¿ã®èª­å–ã‚’è¡Œã‚ãªã„ã€‚ãƒ­ã‚°å‡ºåŠ›å…ˆã‚’ç™»éŒ²ã—ã¦ã„ã‚‹ã ã‘ãªã©ã€‚,END
+0,,ãƒ•ã‚©ãƒ¼ãƒ ä¸€è¦§,St:Aa_Forms;,T:TablesForm;,Sp:Forms;,Aa_Forms.csv,,,,,,,END
+1,,ã‚¹ã‚¿ã‚¤ãƒ«ã‚·ãƒ¼ãƒˆãƒ»ãƒ†ãƒ¼ãƒ–ãƒ«,St:Stylesheet;,T:TableStylesheet;,Sp:Engine;,Mde_Stylesheet.csv,,,,,,,END
+2,,ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ»ãƒ†ãƒ¼ãƒ–ãƒ«,Ut:Errormessages;,T:TableErrermessages;,Up:CommonProjects;,Mde_Errormessages.csv,,,,,,,END
+3,,,Ut:æ•µä½œæˆ¦æ¡ä»¶;,T:TableData;,Sp:Engine;,Md_æ•µä½œæˆ¦æ¡ä»¶.csv,,,,,,,END
+4,,,Ut:æ•µä½œæˆ¦æ€§æ ¼;,T:TableData;,Sp:Engine;,Md_æ•µä½œæˆ¦æ€§æ ¼.csv,,,,,,,END
+5,,,Ut:ç¨®æ—;,T:TableData;,Sp:Engine;,Md_ç¨®æ—.csv,,,,,,,END
+6,,,Ut:ã‚¹ã‚­ãƒ«ãƒªã‚¹ãƒˆID;,T:TableData;,Sp:Engine;,Md_ã‚¹ã‚­ãƒ«ãƒªã‚¹ãƒˆID.csv,,,,,,,END
+7,,,Ut:æ•µ;,T:TableData;,Up:Contents;,å…ƒè¡¨_æ•µ.csv,,,,TRUE,,,END
+8,,æ•µãƒ«ãƒ¼ãƒãƒ³,Ut:æ•µä½œæˆ¦;,T:TableData;,Up:Contents;,å…ƒè¡¨_æ•µä½œæˆ¦.csv,,TRUE,TRUE,TRUE,TRUE,,END
+9,,,Ut:è€æ€§;,T:TableData;,Up:Contents;,å…ƒè¡¨_è€æ€§.csv,,,,,,,END
+10,,,Ut:ã‚¢ã‚¤ãƒ†ãƒ ;,T:TableData;,Up:Contents;,å…ƒè¡¨_ã‚¢ã‚¤ãƒ†ãƒ .csv,,,,,,,END
+11,,ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å±æ€§,Ut:çŠ¶æ…‹ç•°å¸¸;,T:TableData;,Up:Contents;,å…ƒè¡¨_çŠ¶æ…‹ç•°å¸¸.csv,,,,,,,END
+12,,ãƒ‘ã‚¹ã‚’ç™»éŒ²ã—ãŸã„ã ã‘ã€‚,Ut:æ•µã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿;,T:TableData;,Up:Project;,data\database\monster.csv,,,,,,,END
+13,,ãƒ‘ã‚¹ã‚’ç™»éŒ²ã—ãŸã„ã ã‘ã€‚,Ut:æ•µä½œæˆ¦ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿;,T:TableData;,Up:Project;,data\database\monster_routine.csv,,,,,,,END
 14,,,Ux:Validators001;,T:CodeValidators;,Sp:Engine;,Cmn_Validators001.xml,,,,,,,END
 15,,,Ux:Functions001;,T:CodeFunctions;,Sp:Engine;,Cmn_Functions001.xml,,,,,,,END
 16,,,Ux:Togethers001;,T:CodeTogethers;,Sp:Engine;,Cmn_Togethers001.xml,,,,,,,END

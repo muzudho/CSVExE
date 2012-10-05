@@ -43,15 +43,15 @@ namespace Xenon.Table
         /// <param name="csvText"></param>
         /// <returns></returns>
         public List<string[]> Read(
-            string sText_Csv
+            string string_Csv
             )
         {
             //
             // テーブルを作成します。
             //
-            List<string[]> list_SArray = new List<string[]>();
+            List<string[]> list_ArrayString = new List<string[]>();
 
-            System.IO.StringReader reader = new System.IO.StringReader(sText_Csv);
+            System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
             // CSVを解析して、テーブル形式で格納。
@@ -65,8 +65,7 @@ namespace Xenon.Table
                     // 配列の返却値を、ダイレクトに渡します。
                     //
                     string[] sFields = ce.UnescapeRecordToFieldList(sLine, this.ChSeparator).ToArray();
-                    list_SArray.Add(sFields);
-                    //listArray.Add(line.Split(this.SeparatorChar));//','
+                    list_ArrayString.Add(sFields);
 
                     nRowIndex++;
                 }
@@ -75,7 +74,7 @@ namespace Xenon.Table
             // ストリームを閉じます。
             reader.Close();
 
-            return list_SArray;
+            return list_ArrayString;
         }
 
         //────────────────────────────────────────

@@ -79,25 +79,25 @@ namespace Xenon.MiddleImpl
         //────────────────────────────────────────
 
         public void TryGetTable_Variables(
-            out XenonTable out_O_Table_Variables,
-            String sFpath_Startup,
+            out XenonTable out_xenonTable_Variables,
+            String filepath_Startup,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "TryGetTable_Variables",log_Reports);
 
-            out_O_Table_Variables = null;
+            out_xenonTable_Variables = null;
 
             //『Sp:Variables;』で指定されているテーブル
-            XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_VARIABLES, new Configurationtree_NodeImpl("!ハードコーディング_MoNorenImpl#LoadVariables", null));
+            XenonName xenonName_Variable = new XenonNameImpl(NamesVar.S_SP_VARIABLES, new Configurationtree_NodeImpl("!ハードコーディング_MoNorenImpl#LoadVariables", null));
 
             //
             // 「変数設定ファイル」のファイルパス。
             //
             log_Reports.Log_Callstack.Push(log_Method, "①");
             Expression_Node_Filepath ec_Fpath_Variables = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
-                new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Configurationtree),
+                new Expression_Leaf_StringImpl(xenonName_Variable.SValue, null, xenonName_Variable.Cur_Configurationtree),
                 false,//必須ではありません。未該当であればヌルを返します。
                 log_Reports
                 );
@@ -127,7 +127,7 @@ namespace Xenon.MiddleImpl
                 request_tblReads.Name_PutToTable = NamesVar.S_ST_VARIABLES2;
                 request_tblReads.Expression_Filepath = ec_Fpath_Variables;
 
-                out_O_Table_Variables = reader.Read(
+                out_xenonTable_Variables = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,
@@ -158,14 +158,14 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole("「変数登録ファイル」を読込みます。");
             }
 
-            XenonTable o_Table_Variables;
+            XenonTable xenonTable_Variables;
             this.TryGetTable_Variables(
-                out o_Table_Variables,
+                out xenonTable_Variables,
                 sFpath_Startup,
                 log_Reports
                 );
 
-            if (null==o_Table_Variables)
+            if (null==xenonTable_Variables)
             {
                 //変数登録ファイルが無ければ無視。
                 goto gt_EndMethod;
@@ -174,8 +174,9 @@ namespace Xenon.MiddleImpl
             if (log_Reports.Successful)
             {
 
-                this.Owner_MemoryApplication.MemoryVariables.Load(
-                    o_Table_Variables,
+                //this.Owner_MemoryApplication.MemoryVariables.Load(
+                this.Load(
+                    xenonTable_Variables,
                     log_Reports
                     );
             }

@@ -159,8 +159,8 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                string sTableName = this.GetSNameTableAafilescsv();
-                if ("" == sTableName)
+                string name_Table = this.GetSNameTableAafilescsv();
+                if ("" == name_Table)
                 {
                     goto gt_Error_EmptynameTable;
                 }
@@ -173,14 +173,14 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                XenonTable o_Table_Aafiles;
+                XenonTable xenonTable_Aafilescsv;
                 if (log_Reports.Successful)
                 {
-                    o_Table_Aafiles = this.Read_AaFilesCsv(log_Reports);
+                    xenonTable_Aafilescsv = this.Read_AaFilesCsv(log_Reports);
                 }
                 else
                 {
-                    o_Table_Aafiles = null;
+                    xenonTable_Aafilescsv = null;
                 }
 
 
@@ -193,7 +193,7 @@ namespace Xenon.Functions
                 //
                 if (log_Reports.Successful)
                 {
-                    this.Owner_MemoryApplication.MemoryTables.AddXenonTable(o_Table_Aafiles, log_Reports);
+                    this.Owner_MemoryApplication.MemoryTables.AddXenonTable(xenonTable_Aafilescsv, log_Reports);
                 }
 
 
@@ -203,7 +203,7 @@ namespace Xenon.Functions
                 {
                     // 正常時
 
-                    this.ReadAndRegisterFiles(o_Table_Aafiles, log_Reports);
+                    this.ReadAndRegisterFiles(xenonTable_Aafilescsv, log_Reports);
                 }
 
 
@@ -376,12 +376,12 @@ namespace Xenon.Functions
             //
             // 「Aa_Files.csv」読取り
             CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
-            XenonTable o_AaFilesTable;
+            XenonTable xenonTable_Aafilescsv;
             if (log_Reports.Successful)
             {
                 // 正常時
 
-                o_AaFilesTable = reader.Read(
+                xenonTable_Aafilescsv = reader.Read(
                         forAafilescsv_Request,
                         forAafilescsv_Format,
                         true,
@@ -395,7 +395,7 @@ namespace Xenon.Functions
             }
             else
             {
-                o_AaFilesTable = null;
+                xenonTable_Aafilescsv = null;
             }
 
             //
@@ -403,7 +403,7 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            return o_AaFilesTable;
+            return xenonTable_Aafilescsv;
         }
 
         //────────────────────────────────────────
@@ -412,7 +412,7 @@ namespace Xenon.Functions
         /// 「Aa_Files.csv」に書かれている「テーブル」と「スクリプト」を読取り、登録します。
         /// </summary>
         private void ReadAndRegisterFiles(
-            XenonTable o_Table_Aafiles,
+            XenonTable xenonTable_Aafilescsv,
             Log_Reports log_Reports
             )
         {
@@ -439,7 +439,7 @@ namespace Xenon.Functions
             string sFpatha_Aafilescsv;
             if (log_Reports.Successful)
             {
-                sFpatha_Aafilescsv = o_Table_Aafiles.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(
+                sFpatha_Aafilescsv = xenonTable_Aafilescsv.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(
                     EnumHitcount.Unconstraint, log_Reports);
                 if (!log_Reports.Successful)
                 {
@@ -460,21 +460,21 @@ namespace Xenon.Functions
             //
             //
             //
-            bool bExistsField_TypeData;
+            bool isExists_FieldTypedata;
             if (log_Reports.Successful)
             {
-                if (o_Table_Aafiles.DataTable.Columns.Contains(NamesFld.S_TYPE_DATA))
+                if (xenonTable_Aafilescsv.DataTable.Columns.Contains(NamesFld.S_TYPE_DATA))
                 {
-                    bExistsField_TypeData = true;
+                    isExists_FieldTypedata = true;
                 }
                 else
                 {
-                    bExistsField_TypeData = false;
+                    isExists_FieldTypedata = false;
                 }
             }
             else
             {
-                bExistsField_TypeData = false;
+                isExists_FieldTypedata = false;
             }
 
 
@@ -486,13 +486,13 @@ namespace Xenon.Functions
                 // テーブルを全て（読み込まないもの除く）読み取ります。
                 //
 
-                foreach (DataRow dataRow in o_Table_Aafiles.DataTable.Rows)
+                foreach (DataRow datarow in xenonTable_Aafilescsv.DataTable.Rows)
                 {
 
 
                     Request_ReadsTable requestRead = this.CreateReadRequest(
-                        dataRow,
-                        o_Table_Aafiles,
+                        datarow,
+                        xenonTable_Aafilescsv,
                         log_Reports);
 
                     if (!log_Reports.Successful)
@@ -506,7 +506,7 @@ namespace Xenon.Functions
                     //
                     if (
                         ValuesTypeData.TestTable(requestRead.Typedata) ||
-                        !bExistsField_TypeData //TYPE_DATAフィールドそのものが無ければ、エラーとはせず、テーブルとして読み込みます。
+                        !isExists_FieldTypedata //TYPE_DATAフィールドそのものが無ければ、エラーとはせず、テーブルとして読み込みます。
                         )
                     {
                         //
@@ -514,7 +514,7 @@ namespace Xenon.Functions
                         //
 
                         XenonTableformat forTable_format = this.Read_RequestPart_Table(
-                            dataRow, sFpatha_Aafilescsv, log_Reports);
+                            datarow, sFpatha_Aafilescsv, log_Reports);
 
                         XenonTable oTable;
                         // テーブル読取の実行。（書き出し専用の場合は、登録だけする）
@@ -544,9 +544,9 @@ namespace Xenon.Functions
                         //
 
                         MemoryCodefileinfo moScriptfileInfo = this.Read_RequestPart_Script(
-                            dataRow,
+                            datarow,
                             sFpatha_Aafilescsv,
-                            o_Table_Aafiles,
+                            xenonTable_Aafilescsv,
                             log_Reports
                             );
 
@@ -587,7 +587,7 @@ namespace Xenon.Functions
                 tmpl.SetParameter(2, err_STypedata, log_Reports);//TYPE_DATAフィールドの値
                 tmpl.SetParameter(3, ValuesTypeData.Message_Allitems(), log_Reports);//TYPE_DATAフィールドに設定できる値のリスト
 
-                Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部" + err_NRow + "行", o_Table_Aafiles.Parent);
+                Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部" + err_NRow + "行", xenonTable_Aafilescsv.Parent);
                 tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cf), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110011;", tmpl, log_Reports);
@@ -1042,13 +1042,13 @@ namespace Xenon.Functions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataRow"></param>
+        /// <param name="datarow"></param>
         /// <param name="forIndexTable_csvAbsFilePath"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         private XenonTableformat Read_RequestPart_Table(
-            DataRow dataRow,
-            string sForIndexTable_csvFpatha,
+            DataRow datarow,
+            string filepath_ForAafilescsv,
             Log_Reports log_Reports
             )
         {
@@ -1061,11 +1061,11 @@ namespace Xenon.Functions
             // 縦、横がひっくり返っているかどうか。
             //
             {
-                bool bRowColRev;
+                bool isRowColRev;
 
-                bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
-                    dataRow[NamesFld.S_ROW_COL_REV],
-                    out bRowColRev,
+                bool isSuccessful_Parsed = XenonValue_BoolImpl.TryParse(
+                    datarow[NamesFld.S_ROW_COL_REV],
+                    out isRowColRev,
                     EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                     false,
                     log_Reports
@@ -1076,11 +1076,11 @@ namespace Xenon.Functions
                     goto gt_EndMethod;
                 }
 
-                if (bParsedSuccessful)
+                if (isSuccessful_Parsed)
                 {
 
                 }
-                forTable_format.IsRowcolumnreverse = bRowColRev;
+                forTable_format.IsRowcolumnreverse = isRowColRev;
             }
 
             //
@@ -1088,11 +1088,11 @@ namespace Xenon.Functions
             // 全フィールドがint型のテーブルかどうか。
             //
             {
-                bool bAllIntFields;
+                bool isAllIntFields;
 
-                bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
-                    dataRow[NamesFld.S_ALL_INT_FIELDS],
-                    out bAllIntFields,
+                bool isSuccessful_Parsed = XenonValue_BoolImpl.TryParse(
+                    datarow[NamesFld.S_ALL_INT_FIELDS],
+                    out isAllIntFields,
                     EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                     false,
                     log_Reports
@@ -1103,24 +1103,24 @@ namespace Xenon.Functions
                     goto gt_EndMethod;
                 }
 
-                if (bParsedSuccessful)
+                if (isSuccessful_Parsed)
                 {
 
                 }
-                forTable_format.IsAllintfieldsActivated = bAllIntFields;
+                forTable_format.IsAllintfieldsActivated = isAllIntFields;
             }
 
             //
             // 行の末尾を「,」で終える場合、真。
             //
             {
-                string sName_Field = NamesFld.S_COMMA_ENDING;
-                bool bCommaEnding;
-                if (dataRow.Table.Columns.Contains(sName_Field))
+                string name_Field = NamesFld.S_COMMA_ENDING;
+                bool isCommaEnding;
+                if (datarow.Table.Columns.Contains(name_Field))
                 {
-                    bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
-                        dataRow[sName_Field],
-                        out bCommaEnding,
+                    bool isSuccessful_Parsed = XenonValue_BoolImpl.TryParse(
+                        datarow[name_Field],
+                        out isCommaEnding,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
                         false,
                         log_Reports
@@ -1131,17 +1131,17 @@ namespace Xenon.Functions
                         goto gt_EndMethod;
                     }
 
-                    if (bParsedSuccessful)
+                    if (isSuccessful_Parsed)
                     {
 
                     }
                 }
                 else
                 {
-                    bCommaEnding = false;
+                    isCommaEnding = false;
                 }
 
-                forTable_format.IsCommaending = bCommaEnding;
+                forTable_format.IsCommaending = isCommaEnding;
             }
 
             //

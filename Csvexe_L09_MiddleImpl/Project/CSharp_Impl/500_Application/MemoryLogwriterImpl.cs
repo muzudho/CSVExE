@@ -137,7 +137,7 @@ namespace Xenon.MiddleImpl
 
                     try
                     {
-                        System.IO.File.WriteAllText(sFpatha, sOutput, Encoding.Default);
+                        System.IO.File.WriteAllText(sFpatha, sOutput, Global.ENCODING_LOG);
 
                         //#正常な、エラー出力
                         StringBuilder sb = new StringBuilder();

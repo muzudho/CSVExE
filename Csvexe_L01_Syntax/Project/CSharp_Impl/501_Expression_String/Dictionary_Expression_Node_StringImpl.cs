@@ -80,33 +80,6 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public bool TrySelect(
-            out string sResult,
-            string sName,
-            EnumHitcount request,//todo:正しい使い方を。
-            Log_Reports log_Reports
-            )
-        {
-            bool bResult;
-            Expression_Node_String ec_String;
-
-            bool bSuccessful = this.TrySelect(out ec_String, sName, request, log_Reports);
-            if (bSuccessful)
-            {
-                sResult = ec_String.Execute4_OnExpressionString(request, log_Reports);
-                bResult = true;
-            }
-            else
-            {
-                sResult = "";
-                bResult = false;
-            }
-
-            return bResult;
-        }
-
-        //────────────────────────────────────────
-
         /// <summary>
         /// 子要素を追加します。
         /// </summary>
@@ -188,6 +161,44 @@ namespace Xenon.Syntax
         }
 
         //────────────────────────────────────────
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e_Result">検索結果。</param>
+        /// <param name="name_Attribute"></param>
+        /// <param name="bRequired"></param>
+        /// <param name="hits"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns>検索結果が1件以上あれば真。</returns>
+        public bool TrySelect_ExpressionFilepath(
+            out Expression_Node_Filepath out_Fliepath_Expr,
+            string name_Attribute,
+            EnumHitcount hits,
+            Log_Reports log_Reports
+            )
+        {
+            Log_Method log_Method = new Log_MethodImpl();
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TrySelect_ExpressionFilepath", log_Reports);
+
+
+            string value;
+            bool result = this.TrySelect(out value, name_Attribute, hits, log_Reports);
+
+
+            Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
+            filepath_Conf.InitPath(value, log_Reports);
+
+
+            out_Fliepath_Expr = new Expression_Node_FilepathImpl(filepath_Conf);
+
+
+            goto gt_EndMethod;
+
+        gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
+            return result;
+        }
 
         /// <summary>
         /// 
@@ -304,6 +315,31 @@ namespace Xenon.Syntax
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
             return bHit;
+        }
+
+        public bool TrySelect(
+            out string sResult,
+            string sName,
+            EnumHitcount request,//todo:正しい使い方を。
+            Log_Reports log_Reports
+            )
+        {
+            bool bResult;
+            Expression_Node_String ec_String;
+
+            bool bSuccessful = this.TrySelect(out ec_String, sName, request, log_Reports);
+            if (bSuccessful)
+            {
+                sResult = ec_String.Execute4_OnExpressionString(request, log_Reports);
+                bResult = true;
+            }
+            else
+            {
+                sResult = "";
+                bResult = false;
+            }
+
+            return bResult;
         }
 
         //────────────────────────────────────────

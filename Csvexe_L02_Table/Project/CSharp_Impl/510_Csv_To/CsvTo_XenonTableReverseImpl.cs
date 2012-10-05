@@ -10,7 +10,7 @@ using Xenon.Syntax;//WarningReports, HumanInputFilePath
 
 namespace Xenon.Table
 {
-    public class CsvTo_XenonTableReverseAllIntsImpl
+    public class CsvTo_XenonTableReverseImpl
     {
 
 
@@ -22,13 +22,31 @@ namespace Xenon.Table
         /// TODO:「,」「"」に対応したい。
         /// 
         /// 
-        /// 縦、横がひっくり返っていて、
-        /// 型定義レコードがないCSVテーブルの読取。
+        /// 縦と横が逆のテーブル。
+        /// 
+        /// CSVを読取り、テーブルにして返します。
+        /// 
+        /// 
+        /// SRS仕様の実装状況
+        /// ここでは、先頭行を[0]行目と数えるものとします。
+        /// (1)CSVの[0]行目は列名です。
+        /// (2)CSVの[1]行目は型名です。
+        /// (3)CSVの[2]行目はコメントです。
+        /// 
+        /// (4)データ・テーブル部で、0列目に「EOF」と入っていれば終了。大文字・小文字は区別せず。
+        ///    それ以降に、コメントのようなデータが入力されていることがあるが、フィールドの型に一致しないことがあるので無視。
+        ///    TODO EOF以降の行も、コメントとして残したい。
+        /// 
+        /// (5)列名にENDがある場合、その手前までの列が有効データです。
+        ///    END以降の列は無視します。
+        ///    TODO END以降の行も、コメントとして残したい。
+        /// 
+        /// (6)int型として指定されているフィールドのデータ・テーブル部に空欄があった場合、DBNull（データベース用のヌル）とします。
         /// </summary>
         /// <param name="csvText"></param>
-        /// <returns>列名情報も含むテーブル。</returns>
+        /// <returns>列名情報も含むテーブル。列の型は文字列型とします。</returns>
         public XenonTable Read(
-            string sText_Csv,
+            string string_Csv,
             Request_ReadsTable forTable_Request,
             XenonTableformat forTable_Format,
             Log_Reports log_Reports
@@ -43,7 +61,8 @@ namespace Xenon.Table
             //
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
-            XenonTable xenonTable = new XenonTableImpl(forTable_Request.Name_PutToTable, forTable_Request.Expression_Filepath);
+
+            XenonTable xenonTable = new XenonTableImpl(forTable_Request.Name_PutToTable,forTable_Request.Expression_Filepath);
             xenonTable.Tableunit = forTable_Request.Tableunit;
             xenonTable.Typedata = forTable_Request.Typedata;
             xenonTable.IsDatebackupActivated = forTable_Request.IsDatebackupActivated;
@@ -57,17 +76,16 @@ namespace Xenon.Table
 
             {
                 // CSVテキストを読み込み、型とデータのバッファーを作成します。
-                System.IO.StringReader reader = new System.IO.StringReader(sText_Csv);
+                System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
 
 
-                string[] sFields;
                 while (-1 < reader.Peek())
                 {
                     string sLine = reader.ReadLine();
                     List<string> tokens = new List<string>();
 
+                    string[] sFields;
                     sFields = ce.UnescapeRecordToFieldList(sLine, ',').ToArray();
-//                    sFields = line.Split(',');
 
                     int nColumnIndex = 0;
                     foreach (string sToken in sFields)
@@ -109,7 +127,7 @@ namespace Xenon.Table
             List<List<string>> rows = new List<List<string>>();
 
             //
-            // まず、0列目、1列目のデータを読み取ります。
+            // まず、0列目、1列目、2列目のデータを読み取ります。
             //
             int nRowIndex=0;
             foreach (List<string> tokens in lines)
@@ -132,18 +150,87 @@ namespace Xenon.Table
                         // テーブルのフィールドを追加します。型の既定値は文字列型とします。
                         fieldDefinition = new XenonFielddefinitionImpl(sFieldName, typeof(XenonValue_StringImpl));
                         list_FldDef.Add(fieldDefinition);
-
-                        //
-                        // フィールドの型は、intに固定です。
-                        //
-                        fieldDefinition.Type = typeof(XenonValue_IntImpl);
                     }
                     else if(1==nColumnIndex)
                     {
                         //
-                        // 1列目は、フィールドのコメントとします。
+                        // 1列目は、フィールドの型名です。
                         //
                         nColumnIndex = 1;
+                        string sFieldTypeNameLower = sToken.Trim().ToLower();
+
+                        // テーブルのフィールドを追加します。型の既定値は文字列型とします。
+                        // TODO int型とboolean型にも対応したい。
+                        if (XenonFielddefinitionImpl.S_STRING.Equals(sFieldTypeNameLower))
+                        {
+                            fieldDefinition.Type = typeof(XenonValue_StringImpl);
+                        }
+                        else if (XenonFielddefinitionImpl.S_INT.Equals(sFieldTypeNameLower))
+                        {
+                            fieldDefinition.Type = typeof(XenonValue_IntImpl);
+                        }
+                        else if (XenonFielddefinitionImpl.S_BOOL.Equals(sFieldTypeNameLower))
+                        {
+                            fieldDefinition.Type = typeof(XenonValue_BoolImpl);
+                        }
+                        else
+                        {
+                            // 型が未定義の列は、文字列型として読み取ります。
+
+                            // TODO: 警告。（エラーではない）
+
+                            Log_TextIndented t = new Log_TextIndentedImpl();
+                            t.Append("▲エラー45！(" + Info_Table.Name_Library + ")");
+                            t.Newline();
+
+                            t.Append("型の名前を記入してください。");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
+                            t.Append("※縦と横がひっくり返っているテーブルと指定されています。");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
+                            t.Append("1列目（先頭を0とする）に、型の名前は必須です。");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
+                            t.Append("[");
+
+                            t.Append(fieldDefinition.Name_Humaninput);
+
+                            t.Append("]フィールド　（[");
+                            t.Append(nRowIndex);
+                            t.Append("]行目）に、");
+                            t.Append(Environment.NewLine);
+                            t.Append("型名が[");
+                            t.Append(sFieldTypeNameLower);
+                            t.Append("]と入っています。この名前には、未対応です。");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
+                            t.Append("文字列型として続行します。");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
+                            t.Append("テーブル名＝[");
+                            t.Append(forTable_Request.Name_PutToTable);
+                            t.Append("]");
+                            t.Append(Environment.NewLine);
+                            t.Append("ファイル・パス＝[");
+                            t.Append(forTable_Request.Expression_Filepath.Humaninput);
+                            t.Append("]");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
+
+                            string sWarning = t.ToString();
+
+                            MessageBox.Show(sWarning, "▲警告！（L02）");
+
+                            fieldDefinition.Type = typeof(XenonValue_StringImpl);
+                        }
+                    }
+                    else if(2==nColumnIndex)
+                    {
+                        //
+                        // 2列目は、フィールドのコメントとします。
+                        //
+                        nColumnIndex = 2;
                         {
                             fieldDefinition.Comment = sToken;
                         }
@@ -152,7 +239,7 @@ namespace Xenon.Table
                     else
                     {
                         //
-                        // 2列目から右側は、データ・テーブル部。
+                        // 3列目から右側は、データ・テーブル部。
                         //
 
                         if(0==nRowIndex)
@@ -183,9 +270,9 @@ namespace Xenon.Table
                             //
 
                             //
-                            // 先頭の2つのレコード分、切り詰めます。
+                            // 先頭の3つのレコード分、切り詰めます。
                             //
-                            int nDataIndex = nColumnIndex - 2;
+                            int nDataIndex = nColumnIndex - 3;
                             if (nDataIndex < rows.Count)
                             {
                                 List<string> record = rows[nDataIndex];
@@ -215,16 +302,16 @@ namespace Xenon.Table
             //essageBox.Show("CSV読取終わり1 rows.Count=[" + rows.Count + "]", "TableCsvLibデバッグ");
 
             // テーブル作成。テーブルのフィールド型定義と、データ本体をセットします。
-            xenonTable.CreateTable(list_FldDef,log_Reports);
-            if( log_Reports.Successful)
+            xenonTable.CreateTable(list_FldDef, log_Reports);
+            if (log_Reports.Successful)
             {
                 xenonTable.AddRecordList(rows, list_FldDef, log_Reports);
                 //essageBox.Show("CSV読取後のテーブル作成終わり", "TableCsvLibデバッグ");
             }
 
             goto gt_EndMethod;
-            //
-            //
+        //
+        //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
             return xenonTable;

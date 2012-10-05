@@ -182,19 +182,6 @@ namespace Xenon.Functions
             {
                 this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.PM_FILE_EXPORT, EnumHitcount.One_Or_Zero, log_Reports);
             }
-            //Expression_Node_Filepath file_Export;
-            //{
-            //    Expression_Node_String expr_Variablefile_Export;
-            //    this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.S_PM_FILE_EXPORT, false, EnumHitcount.Unconstraint, log_Reports);
-            //    {
-            //        file_Export = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(expr_Variablefile_Export, true, log_Reports);
-
-            //        //Configurationtree_NodeFilepath file_Export_Conf = new Configurationtree_NodeFilepathImpl(sVariablefile_Export, null);
-            //        //file_Export = new Expression_Node_FilepathImpl(file_Export_Conf);
-            //        //file_Export.SetSDirectory_Base(sFolder_Export, log_Reports);
-            //        //file_Export.SetSHumaninput("SrvList.csv", log_Reports);
-            //    }
-            //}
             //フィルター指定
             string sFilter;
             {
@@ -202,10 +189,10 @@ namespace Xenon.Functions
                 sFilter = sFilter.Trim();
             }
             //ポップアップ指定
-            string sPopup;
+            string str_Popup;
             {
-                this.TrySelectAttribute(out sPopup, Expression_Node_Function47Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
-                sPopup = sPopup.Trim();
+                this.TrySelectAttribute(out str_Popup, Expression_Node_Function47Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
+                str_Popup = str_Popup.Trim();
             }
 
             {
@@ -254,7 +241,7 @@ namespace Xenon.Functions
                 sb.Append("EOF,,");
                 sb.Append(Environment.NewLine);
 
-                System.Console.WriteLine(sb.ToString());
+                //System.Console.WriteLine(sb.ToString());
 
 
                 try
@@ -263,10 +250,10 @@ namespace Xenon.Functions
                     System.IO.File.WriteAllText(
                         sFile_Export2,
                         sb.ToString(),
-                        Encoding.Default
+                        Global.ENCODING_CSV
                         );
 
-                    if (sPopup != S_BLOCK)
+                    if (str_Popup != S_BLOCK)
                     {
                         Log_TextIndented s = new Log_TextIndentedImpl();
 

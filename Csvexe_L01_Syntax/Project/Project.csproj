@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharp_Interface\100_Masterdata\Global.cs" />
     <Compile Include="CSharp_Interface\100_Masterdata\Utility_Hitcount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp_Impl\200_Log1\Log_MethodImpl.cs" />

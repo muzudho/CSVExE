@@ -44,21 +44,21 @@ namespace Xenon.Table
         /// <param name="csvText"></param>
         /// <returns></returns>
         public DataTable Read(
-            string sText_Csv
+            string string_Csv
             )
         {
             // テーブルを作成します。
             DataTable dataTable = new DataTable();
 
-            System.IO.StringReader reader = new System.IO.StringReader(sText_Csv);
+            System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
 
             //
             // CSVを解析して、テーブル形式で格納。
             //
 
-            int nRowIndex = 0;
-            string[] sFieldArray;
-            DataRow dataRow;
+            int index_Row = 0;
+            string[] array_Field;
+            DataRow datarow;
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
             if (-1 < reader.Peek())
@@ -70,26 +70,26 @@ namespace Xenon.Table
                 //
 
                 // 読み取った返却値を、変数に入れ直さずにスプリット。
-                sFieldArray = ce.UnescapeRecordToFieldList(reader.ReadLine(), this.ChSeparator).ToArray();
+                array_Field = ce.UnescapeRecordToFieldList(reader.ReadLine(), this.ChSeparator).ToArray();
                 //                sFieldArray = reader.ReadLine().Split(this.SeparatorChar);//','
 
                 // 行を作成します。
-                dataRow = dataTable.NewRow();
+                datarow = dataTable.NewRow();
 
                 int nColumnIndex1 = 0;
-                while (nColumnIndex1 < sFieldArray.Length)
+                while (nColumnIndex1 < array_Field.Length)
                 {
                     // 列情報を追加します。 型は文字列型とします。
-                    dataTable.Columns.Add(sFieldArray[nColumnIndex1], typeof(string));
+                    dataTable.Columns.Add(array_Field[nColumnIndex1], typeof(string));
 
                     // データとしても早速格納します。
-                    dataRow[nColumnIndex1] = sFieldArray[nColumnIndex1];
+                    datarow[nColumnIndex1] = array_Field[nColumnIndex1];
 
                     nColumnIndex1++;
                 }
 
-                dataTable.Rows.Add(dataRow);
-                nRowIndex++;
+                dataTable.Rows.Add(datarow);
+                index_Row++;
 
 
 
@@ -101,16 +101,16 @@ namespace Xenon.Table
                     // 1行ずつ読み取ります。
 
                     // 読み取った返却値を、変数に入れ直さずにスプリット。
-                    sFieldArray = reader.ReadLine().Split(this.ChSeparator);//','
+                    array_Field = reader.ReadLine().Split(this.ChSeparator);//','
 
                     // 行を作成します。
-                    dataRow = dataTable.NewRow();
+                    datarow = dataTable.NewRow();
 
                     //
                     // 追加する列数
                     //
-                    object[] o_RecordFieldArray = dataRow.ItemArray;//ItemArrayは1回の呼び出しが重い。
-                    int nAddsColumns = sFieldArray.Length - o_RecordFieldArray.Length;
+                    object[] o_RecordFieldArray = datarow.ItemArray;//ItemArrayは1回の呼び出しが重い。
+                    int nAddsColumns = array_Field.Length - o_RecordFieldArray.Length;
                     for (int nCount = 0; nCount < nAddsColumns; nCount++)
                     {
                         // 0行目で数えた列数より多い場合。
@@ -121,14 +121,14 @@ namespace Xenon.Table
                     }
 
                     int nColumnIndex3 = 0;
-                    while (nColumnIndex3 < sFieldArray.Length)
+                    while (nColumnIndex3 < array_Field.Length)
                     {
-                        dataRow[nColumnIndex3] = sFieldArray[nColumnIndex3];
+                        datarow[nColumnIndex3] = array_Field[nColumnIndex3];
                         nColumnIndex3++;
                     }
 
-                    dataTable.Rows.Add(dataRow);
-                    nRowIndex++;
+                    dataTable.Rows.Add(datarow);
+                    index_Row++;
                 }
             }
 

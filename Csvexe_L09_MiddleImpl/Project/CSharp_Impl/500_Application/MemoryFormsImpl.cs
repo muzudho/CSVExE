@@ -208,8 +208,8 @@ namespace Xenon.MiddleImpl
         /// X→S、S→E、S→A。
         /// </summary>
         public void LoadFile(
-            RecordUserformconfig fo_Record,
-            Expression_Node_Filepath ec_Fopath_Forms,
+            RecordUserformconfig record_Uf,
+            Expression_Node_Filepath folderpath_Forms_Expr,
             Log_Reports log_Reports
             )
         {
@@ -219,61 +219,61 @@ namespace Xenon.MiddleImpl
             //
 
             // 手入力の Fcnf ファイルパス
-            Configurationtree_NodeFilepath cf_Fpath_Control;
-            fo_Record.TryGetFilepath_Configurationtree(out cf_Fpath_Control, NamesFld.S_FILE, false, this.Owner_MemoryApplication, log_Reports);
-            string sFpathH_F = cf_Fpath_Control.GetHumaninput();
+            Configurationtree_NodeFilepath filepath_Control_Conf;
+            record_Uf.TryGetFilepath_Configurationtree(out filepath_Control_Conf, NamesFld.S_FILE, false, this.Owner_MemoryApplication, log_Reports);
+            string filepathHi_Uf = filepath_Control_Conf.GetHumaninput();
 
-            string sName_Control;
-            fo_Record.TryGetString(out sName_Control, NamesFld.S_NAME, true, "", this.Owner_MemoryApplication, log_Reports);
+            string name_Control;
+            record_Uf.TryGetString(out name_Control, NamesFld.S_NAME, true, "", this.Owner_MemoryApplication, log_Reports);
 
             // FILE フィールド（ファイルパス）が未指定なら、処理せず。
             if (log_Reports.Successful)
             {
-                if ("" == sFpathH_F)
+                if ("" == filepathHi_Uf)
                 {
                     goto gt_EndMethod;
                 }
             }
 
             // (F) 絶対ファイルパス
-            string sFpatha_F;
+            string filepathabs_Uf;
             {
                 Utility_XmlToConfigurationtree_Usercontrolconfig to = new Utility_XmlToConfigurationtree_Usercontrolconfig();
 
-                Expression_Node_FilepathImpl ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath_Control);
+                Expression_Node_FilepathImpl fpath_Expr = new Expression_Node_FilepathImpl(filepath_Control_Conf);
 
-                sFpatha_F = to.GetSFilepath_UsercontrolconfigAbsolute(
-                    ec_Fpath,//sl_record.Cf_File,
-                    ec_Fopath_Forms,
+                filepathabs_Uf = to.GetSFilepath_UsercontrolconfigAbsolute(
+                    fpath_Expr,//sl_record.Cf_File,
+                    folderpath_Forms_Expr,
                     log_Reports
                     );
             }
 
             //
             // Fcnf ファイルパス
-            Expression_Node_Filepath ec_Fpath_F;
+            Expression_Node_Filepath filepath_Uf_Expr;
             {
-                Configurationtree_Node parent_Cf = new Configurationtree_NodeImpl(log_Method.Fullname + ".LoadFcnfFile record[" + cf_Fpath_Control.GetHumaninput() + "]", null);
+                Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl(log_Method.Fullname + ".LoadFcnfFile record[" + filepath_Control_Conf.GetHumaninput() + "]", null);
 
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_3", parent_Cf);
-                cf_Fpath.InitPath(sFpathH_F, sFpatha_F, log_Reports);
+                Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09Mid_3", parent_Conf);
+                filepath_Conf.InitPath(filepathHi_Uf, filepathabs_Uf, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。
                     goto gt_EndMethod;
                 }
 
-                ec_Fpath_F = new Expression_Node_FilepathImpl(cf_Fpath);
+                filepath_Uf_Expr = new Expression_Node_FilepathImpl(filepath_Conf);
             }
 
-            if ("" == sFpatha_F)
+            if ("" == filepathabs_Uf)
             {
                 // コンポーネント設定ファイルへのパスが指定されていなければ、処理しません。
                 goto gt_Error_Fpath;
             }
 
 
-            Configurationtree_Node cf_ControlConfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_CONTROLS, ec_Fpath_F.Cur_Configurationtree);
+            Configurationtree_Node Usercontrolconfig_Conf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_CONTROLS, filepath_Uf_Expr.Cur_Configurationtree);
 
 
             //
@@ -282,11 +282,11 @@ namespace Xenon.MiddleImpl
             {
                 XmlToConfigurationtree_C11_Config to = new XmlToConfigurationtree_C11_ConfigImpl();
                 to.XmlToConfigurationtree(
-                    sName_Control,
-                    sFpathH_F,
-                    sFpatha_F,
-                    cf_ControlConfig,
-                    ec_Fopath_Forms,
+                    name_Control,
+                    filepathHi_Uf,
+                    filepathabs_Uf,
+                    Usercontrolconfig_Conf,
+                    folderpath_Forms_Expr,
                     owner_MemoryApplication,
                     log_Reports
                     );
@@ -296,9 +296,9 @@ namespace Xenon.MiddleImpl
             //
             // (F) X → E
             this.XToEc_Usercontrolconfig(
-                cf_ControlConfig,
-                fo_Record,
-                ec_Fopath_Forms,
+                Usercontrolconfig_Conf,
+                record_Uf,
+                folderpath_Forms_Expr,
                 log_Reports
                 );
 

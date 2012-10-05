@@ -26,7 +26,7 @@ namespace Xenon.Table
 
             try
             {
-                System.IO.File.WriteAllText(sFpatha, sText_Csv, Encoding.Default);
+                System.IO.File.WriteAllText(sFpatha, sText_Csv, Global.ENCODING_CSV);
 
                 if (bSuccessfulDialogPopup)
                 {

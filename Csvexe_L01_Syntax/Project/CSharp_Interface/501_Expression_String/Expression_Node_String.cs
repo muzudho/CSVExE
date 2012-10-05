@@ -33,6 +33,24 @@ namespace Xenon.Syntax
         /// </summary>
         void ToText_Snapshot(Log_TextIndented s);
 
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 属性を取得します。
+        /// </summary>
+        /// <param name="out_Expression_Result">検索結果。</param>
+        /// <param name="sName"></param>
+        /// <param name="bRequired"></param>
+        /// <param name="hits"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns>検索結果が1件以上あれば真。</returns>
+        bool TrySelectAttribute_ExpressionFilepath(
+            out Expression_Node_Filepath out_Expression_Result,
+            string sName,
+            EnumHitcount hits,
+            Log_Reports log_Reports
+            );
+
         /// <summary>
         /// 属性を取得します。
         /// </summary>
@@ -64,6 +82,8 @@ namespace Xenon.Syntax
             EnumHitcount hits,
             Log_Reports log_Reports
             );
+
+        //────────────────────────────────────────
 
         /// <summary>
         /// 内部実装用。

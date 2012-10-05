@@ -41,6 +41,23 @@ namespace Xenon.Syntax
         //────────────────────────────────────────
 
         /// <summary>
+        /// フォルダー絶対パスを指定すると、そのフォルダーパスを切り落とした文字列を返します。
+        /// 
+        /// 違うフォルダーだった場合、失敗します。
+        /// 
+        /// 先頭がディレクトリー区切り文字にならないようにして結果を返します。
+        /// </summary>
+        /// <param name="folerpath"></param>
+        void TryCutFolderpath(
+            out string out_Filepath_New,
+            Expression_Node_Filepath folderpath,
+            bool isRequired,
+            Log_Reports log_Reports
+            );
+
+        //────────────────────────────────────────
+
+        /// <summary>
         /// 相対パスが設定されていた場合、その相対元となるディレクトリーへのパスです。
         /// そうでない場合は、System.Windows.Forms.StartupPath を入れてください。
         /// </summary>

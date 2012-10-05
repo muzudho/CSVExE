@@ -113,8 +113,8 @@ namespace Xenon.Syntax
 
 
             s.AppendI(0, "<");
-            s.Append(this.GetType().Name);
-            s.Append("クラス>");
+            s.Append(this.Name);
+            s.Append(">");
             s.Newline();
 
             //
@@ -124,25 +124,21 @@ namespace Xenon.Syntax
             //
             // メンバ変数
             //
-            s.Append("ノード名=[");
-            s.Append(this.Name);
-            s.Append("]");
-            s.Newline();
 
-            s.Append("sBaseDirectory=[");
+            s.Append("directory_Base=[");
             s.Append(this.directory_Base);
             s.Append("]");
             s.Newline();
 
-            s.Append("sHumanInput=[");
+            s.Append("humaninput=[");
             s.Append(this.humaninput);
             s.Append("]");
             s.Newline();
 
 
             s.AppendI(0, "</");
-            s.Append(this.GetType().Name);
-            s.Append("クラス>");
+            s.Append(this.Name);
+            s.Append(">");
             s.Newline();
 
 
@@ -176,29 +172,31 @@ namespace Xenon.Syntax
         }
 
         public void SetHumaninput(
-            string sFpath_Newhumaninput,
+            string filepath_Humaninput_New,
             Log_Reports log_Reports
             )
         {
-            // ダミー・フラグ。使いません。
-            bool bDammyFlagCheckPathTooLong = false;
 
             if (log_Reports.Successful)
             {
-                // チェック。絶対パスにすることができればOK。
+                // ダミー・フラグ。使いません。
+                bool bDammyFlagCheckPathTooLong = false;
+
+                // チェックするだけ。 絶対パスにすることができれば問題なし、そのままスルー。
                 Utility_Configurationtree_Filepath.ToFilepathabsolute(
                     this.directory_Base,
-                    sFpath_Newhumaninput,
+                    filepath_Humaninput_New,
                     ref bDammyFlagCheckPathTooLong,
                     false,//ファイル名の長さが上限超過ならエラー
-                    log_Reports,//out out_sErrorMsg,
+                    log_Reports,
                     this.Parent
                 );
             }
 
             if (log_Reports.Successful)
             {
-                this.humaninput = sFpath_Newhumaninput;
+                // 引数を受け入れます。
+                this.humaninput = filepath_Humaninput_New;
             }
 
             goto gt_EndMethod;

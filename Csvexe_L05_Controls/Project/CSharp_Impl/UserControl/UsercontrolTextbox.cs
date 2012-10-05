@@ -871,10 +871,11 @@ namespace Xenon.Controls
         {
             set
             {
-                string sOld = customcontrolTextbox1.Text;
+                string string_Old = customcontrolTextbox1.Text;
+                //ystem.Console.WriteLine("L05 value=[" + value + "]");
                 customcontrolTextbox1.Text = value;
 
-                if (sOld != customcontrolTextbox1.Text)
+                if (string_Old != customcontrolTextbox1.Text)
                 {
                     // 変更されたとき。
 

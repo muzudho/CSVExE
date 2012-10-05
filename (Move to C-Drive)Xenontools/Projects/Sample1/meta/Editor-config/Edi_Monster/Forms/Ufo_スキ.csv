@@ -1,6 +1,6 @@
-NO,ID,TREE,EXPL2,EXPL,FILE,NAME,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,TAB_INDEX,BACK_COLOR,END
+ï»¿NO,ID,TREE,EXPL2,EXPL,FILE,NAME,TYPE,TEXT,FONT_SIZE_PT,X_LT,Y_LT,WIDTH,HEIGHT,ENABLED,VISIBLE,READ_ONLY,WORD_WRAP,NEW_LINE,SCROLL_BARS,CHK_VALUE_TYPE,ITEM_HEIGHT_PX,ITEM_DISPLAY_FORMAT,TAB_INDEX,BACK_COLOR,END
 int,string,int,string,string,string,string,string,string,string,int,int,int,int,bool,bool,bool,bool,string,string,string,int,string,int,string,END
--1,Žg‚¢‚Ü‚¹‚ñB,À•W‚ÌƒlƒXƒgŠÖŒW,‰ðà2,‰ðà,ƒtƒ@ƒCƒ‹ƒpƒXBFormsƒtƒHƒ‹ƒ_[‰º‚©‚ç‚Ì‘Š‘ÎƒpƒXBƒRƒ“ƒgƒ[ƒ‹Ý’èƒtƒ@ƒCƒ‹ƒpƒX‚ðŽw‚·B,ƒRƒ“ƒgƒ[ƒ‹–¼,ƒRƒ“ƒgƒ[ƒ‹‚ÌŒ^,‰Šú’l,ƒtƒHƒ“ƒgƒTƒCƒYiptj,¶ãŠp‚ÌÀ•WX,¶ãŠp‚ÌÀ•WY,‰¡•ƒsƒNƒZƒ‹,c•ƒsƒNƒZƒ‹,Šˆ«‰»BŽg—p‰Â”\‚È‚çTRUEB‹ó—“‚ÍFALSEB,‰ÂŽ‹B•\Ž¦‚³‚ê‚Ä‚¢‚é‚È‚çTRUEB‹ó—“‚ÍFALSEB,ƒeƒLƒXƒgƒ{ƒbƒNƒX“™‚ð“Ç‚ÝŽæ‚èê—p‚É‚·‚é‚È‚çTRUEB‹ó—“‚È‚çFALSEB,ƒeƒLƒXƒgƒGƒŠƒA‚Ås‚ðŽ©“®“I‚ÉÜ‚è•Ô‚·‚È‚çTRUEB‹ó—“‚È‚çFALSEB,‰üs‹L†,ƒeƒLƒXƒgƒGƒŠƒA“™‚Å—˜—pBuNonevƒXƒNƒ[ƒ‹ƒo[–³‚µ‚ð–¾Ž¦BuHorizontalv…•½ƒXƒNƒ[ƒ‹ƒo[—L‚èBuVerticalv‚’¼ƒXƒNƒ[ƒ‹ƒo[—L‚èBuBothv…•½E‚’¼ƒXƒNƒ[ƒ‹ƒo[—L‚èB‚Ì‚S‚ÂBŽg‚í‚È‚¢‚È‚ç‹ó—“B,"ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚Ì’l‚ÌŒ^B(‹ó—“Ffalse,trueBZERO_ONEF0,1j",ƒŠƒXƒgƒ{ƒbƒNƒX‚Ì€–Ú‚Ì‚‚³iƒsƒNƒZƒ‹j,ƒŠƒXƒgƒ{ƒbƒNƒX‚ÌŠe€–Ú‚Ì•\Ž¦‘Ž®,ƒ^ƒuEƒCƒ“ƒfƒbƒNƒX,”wŒiF,END
-0,,1,ƒXƒLƒ‹Eƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX@ƒƒCƒ“‰æ–Ê,ƒEƒBƒ“ƒhƒE,Uc_ƒXƒL_Mainwnd.xml,Uc:ƒXƒL_Mainwnd;,C:Wnd;,ƒXƒLƒ‹‘I‘ð,,0,0,300,792,TRUE,TRUE,,,,,,0,,,,END
-2,,2,ƒXƒLƒ‹‘I‘ð,ƒŠƒXƒgƒ{ƒbƒNƒX,Uc_ƒXƒL_recordsLst.xml,Uc:ƒXƒL_recordsLst;,C:Lst;,,,0,0,292,770,TRUE,TRUE,,,,Both,,,%1%F%2%F%3%|ID|Expl|NAME,,,END
+-1,ä½¿ã„ã¾ã›ã‚“ã€‚,åº§æ¨™ã®ãƒã‚¹ãƒˆé–¢ä¿‚,è§£èª¬2,è§£èª¬,ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã€‚Formsãƒ•ã‚©ãƒ«ãƒ€ãƒ¼ä¸‹ã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹ã€‚ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’æŒ‡ã™ã€‚,ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å,ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®åž‹,åˆæœŸå€¤,ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºï¼ˆptï¼‰,å·¦ä¸Šè§’ã®åº§æ¨™X,å·¦ä¸Šè§’ã®åº§æ¨™Y,æ¨ªå¹…ãƒ”ã‚¯ã‚»ãƒ«,ç¸¦å¹…ãƒ”ã‚¯ã‚»ãƒ«,æ´»æ€§åŒ–ã€‚ä½¿ç”¨å¯èƒ½ãªã‚‰TRUEã€‚ç©ºæ¬„ã¯FALSEã€‚,å¯è¦–ã€‚è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãªã‚‰TRUEã€‚ç©ºæ¬„ã¯FALSEã€‚,ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ç­‰ã‚’èª­ã¿å–ã‚Šå°‚ç”¨ã«ã™ã‚‹ãªã‚‰TRUEã€‚ç©ºæ¬„ãªã‚‰FALSEã€‚,ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ã§è¡Œã‚’è‡ªå‹•çš„ã«æŠ˜ã‚Šè¿”ã™ãªã‚‰TRUEã€‚ç©ºæ¬„ãªã‚‰FALSEã€‚,æ”¹è¡Œè¨˜å·,ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢ç­‰ã§åˆ©ç”¨ã€‚ã€ŒNoneã€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ç„¡ã—ã‚’æ˜Žç¤ºã€‚ã€ŒHorizontalã€æ°´å¹³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼æœ‰ã‚Šã€‚ã€ŒVerticalã€åž‚ç›´ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼æœ‰ã‚Šã€‚ã€ŒBothã€æ°´å¹³ãƒ»åž‚ç›´ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼æœ‰ã‚Šã€‚ã®ï¼”ã¤ã€‚ä½¿ã‚ãªã„ãªã‚‰ç©ºæ¬„ã€‚,"ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã®å€¤ã®åž‹ã€‚(ç©ºæ¬„ï¼šfalse,trueã€‚ZERO_ONEï¼š0,1ï¼‰",ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®é …ç›®ã®é«˜ã•ï¼ˆãƒ”ã‚¯ã‚»ãƒ«ï¼‰,ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®å„é …ç›®ã®è¡¨ç¤ºæ›¸å¼,ã‚¿ãƒ–ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹,èƒŒæ™¯è‰²,END
+0,,1,ã‚¹ã‚­ãƒ«ãƒ»ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã€€ãƒ¡ã‚¤ãƒ³ç”»é¢,ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦,Uc_ã‚¹ã‚­_Mainwnd.xml,Uc:ã‚¹ã‚­_Mainwnd;,C:Wnd;,ã‚¹ã‚­ãƒ«é¸æŠž,,0,0,300,792,TRUE,TRUE,,,,,,0,,,,END
+2,,2,ã‚¹ã‚­ãƒ«é¸æŠž,ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹,Uc_ã‚¹ã‚­_recordsLst.xml,Uc:ã‚¹ã‚­_recordsLst;,C:Lst;,,,0,0,292,770,TRUE,TRUE,,,,Both,,,%1%ï¼š%2%ï¼š%3%|ID|Expl|NAME,,,END
 EOF,,,,,,,,,,,,,,,,,,,,,,,,,

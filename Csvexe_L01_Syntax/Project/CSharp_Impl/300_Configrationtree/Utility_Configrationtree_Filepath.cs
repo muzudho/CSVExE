@@ -23,6 +23,9 @@ namespace Xenon.Syntax
             Configurationtree_Node cur_Conf
             )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "ToFilepathabsolute③", log_Reports);
+
             string sResult;
 
             if (log_Reports.Successful)
@@ -45,6 +48,7 @@ namespace Xenon.Syntax
         //
         //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return sResult;
         }
 
@@ -57,6 +61,9 @@ namespace Xenon.Syntax
             Log_Reports log_Reports
             )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "ToFilepathabsolute①", log_Reports);
+
             string sResult;
 
             if (log_Reports.Successful)
@@ -79,6 +86,7 @@ namespace Xenon.Syntax
         //
         //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return sResult;
         }
 
@@ -114,7 +122,7 @@ namespace Xenon.Syntax
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "ToFilepathabsolute", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "ToFilepathabsolute②", log_Reports);
             //
             //
 
@@ -135,7 +143,7 @@ namespace Xenon.Syntax
 
             Exception err_Excp;
 
-            string sResult_FilePath;//ファイルパス
+            string result_Filepath;//ファイルパス
 
             // フラグのクリアー。
             ref_IsTooLong_Path = false;
@@ -145,29 +153,29 @@ namespace Xenon.Syntax
             //
             // 「絶対パス」「相対パス」のどちらでも指定されます。
             //
-            string sFpath_Src = humaninput.Trim();
+            string filepath_Source = humaninput.Trim();
 
-            if ("" == sFpath_Src)
+            if ("" == filepath_Source)
             {
                 // 未設定の場合。
-                sResult_FilePath = "";//ファイルパスとしては使えない文字列。
+                result_Filepath = "";//ファイルパスとしては使えない文字列。
                 goto gt_EndMethod;
             }
 
             // 「絶対パス」か、「相対パス」かを判断します。
-            bool bPathRooted = Utility_Configurationtree_Filepath.IsRooted_Path(
-                sFpath_Src,
+            bool isRooted_Path = Utility_Configurationtree_Filepath.IsRooted_Path(
+                filepath_Source,
                 log_Reports
                 );
 
             if (!log_Reports.Successful)
             {
                 // 既エラー。
-                sResult_FilePath = "";//ファイルパスとしては使えない文字列。
+                result_Filepath = "";//ファイルパスとしては使えない文字列。
                 goto gt_EndMethod;
             }
 
-            if (!bPathRooted)
+            if (!isRooted_Path)
             {
                 // 相対パスの場合
 
@@ -179,11 +187,11 @@ namespace Xenon.Syntax
 
                     if (!directory_Base.EndsWith(Path.DirectorySeparatorChar.ToString()))
                     {
-                        sFpath_Src = directory_Base + Path.DirectorySeparatorChar + sFpath_Src;
+                        filepath_Source = directory_Base + Path.DirectorySeparatorChar + filepath_Source;
                     }
                     else
                     {
-                        sFpath_Src = directory_Base + sFpath_Src;
+                        filepath_Source = directory_Base + filepath_Source;
                     }
                 }
                 else
@@ -192,11 +200,11 @@ namespace Xenon.Syntax
 
                     if (!directory_Base.EndsWith(Path.DirectorySeparatorChar.ToString()))
                     {
-                        sFpath_Src = Application.StartupPath + Path.DirectorySeparatorChar + sFpath_Src;
+                        filepath_Source = Application.StartupPath + Path.DirectorySeparatorChar + filepath_Source;
                     }
                     else
                     {
-                        sFpath_Src = Application.StartupPath + sFpath_Src;
+                        filepath_Source = Application.StartupPath + filepath_Source;
                     }
                 }
             }
@@ -210,13 +218,13 @@ namespace Xenon.Syntax
                 // 絶対パスの場合、GetFullPathを通す必要はないが、
                 // ファイルパスに使えない文字列を判定するために、
                 // 例外を返すメソッドを使っています。
-                sResult_FilePath = System.IO.Path.GetFullPath(sFpath_Src);
+                result_Filepath = System.IO.Path.GetFullPath(filepath_Source);
             }
             catch (ArgumentException e)
             {
                 // 指定のファイルパスに「*」など、ファイルパスとして使えない文字列が含まれていた場合など。
 
-                sResult_FilePath = "";//ファイルパスとしては使えない文字列。
+                result_Filepath = "";//ファイルパスとしては使えない文字列。
 
                 err_Excp = e;
                 goto gt_Error_ArgumentException;
@@ -225,7 +233,7 @@ namespace Xenon.Syntax
             {
                 // ディレクトリーの文字数が、制限数を超えた場合などのエラー。
 
-                sResult_FilePath = "";//ファイルパスとしては使えない文字列。
+                result_Filepath = "";//ファイルパスとしては使えない文字列。
 
                 if (isSafe_TooLong_Path)
                 {
@@ -246,21 +254,20 @@ namespace Xenon.Syntax
             catch (NotSupportedException e)
             {
                 //パスのフォーマットが間違っているなどのエラー。
-                sResult_FilePath = "";//ファイルパスとしては使えない文字列。
+                result_Filepath = "";//ファイルパスとしては使えない文字列。
                 err_Excp = e;
                 goto gt_Error_NotSupportedException;
             }
             catch (Exception e)
             {
                 // それ以外のエラー。
-                sResult_FilePath = "";//ファイルパスとしては使えない文字列。
+                result_Filepath = "";//ファイルパスとしては使えない文字列。
                 err_Excp = e;
                 goto gt_Error_Exception;
             }
 
             goto gt_EndMethod;
             //
-        //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_ArgumentException:
@@ -272,7 +279,7 @@ namespace Xenon.Syntax
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(Environment.NewLine);
                 s.Append("使えないファイルパスです。[");
-                s.Append(sFpath_Src);
+                s.Append(filepath_Source);
                 s.Append("]　：");
 
                 s.Append(err_Excp.Message);
@@ -291,7 +298,7 @@ namespace Xenon.Syntax
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(Environment.NewLine);
-                s.Append("エラー 入力パス=[" + sFpath_Src + "]：(" + err_Excp.GetType().Name + ") ");
+                s.Append("エラー 入力パス=[" + filepath_Source + "]：(" + err_Excp.GetType().Name + ") ");
 
                 s.Append(err_Excp.Message);
                 cur_Conf.ToText_Locationbreadcrumbs(s);
@@ -311,7 +318,7 @@ namespace Xenon.Syntax
                 s.Append(Environment.NewLine);
                 s.Append("ファイルパスが間違っているかもしれません。");
                 s.Newline();
-                s.AppendI(1,"入力パス=[" + sFpath_Src + "]");
+                s.AppendI(1,"入力パス=[" + filepath_Source + "]");
                 s.Newline();
 
                 // ヒント
@@ -331,7 +338,7 @@ namespace Xenon.Syntax
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append(Environment.NewLine);
-                s.Append("エラー 入力パス=[" + sFpath_Src + "]");
+                s.Append("エラー 入力パス=[" + filepath_Source + "]");
                 s.Newline();
 
                 // ヒント
@@ -345,10 +352,9 @@ namespace Xenon.Syntax
         //────────────────────────────────────────
             #endregion
             //
-            //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            return sResult_FilePath;
+            return result_Filepath;
         }
 
         //────────────────────────────────────────
@@ -448,6 +454,9 @@ namespace Xenon.Syntax
             Configurationtree_Node cur_Conf
             )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "IsTooLong_Path", log_Reports);
+
             // フラグ。
             bool bFlagCheckPathTooLong = false;
 
@@ -468,6 +477,7 @@ namespace Xenon.Syntax
         //
         //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return bFlagCheckPathTooLong;
         }
 

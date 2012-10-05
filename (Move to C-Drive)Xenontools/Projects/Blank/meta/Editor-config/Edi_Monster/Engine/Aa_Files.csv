@@ -1,9 +1,9 @@
-NO,ID,EXPL,NAME,TYPE_DATA,FOLDER,FILE,SET_VAR_PATH,ROW_COL_REV,ALL_INT_FIELDS,DATE_BACKUP,COMMA_ENDING,USE,END
+﻿NO,ID,EXPL,NAME,TYPE_DATA,FOLDER,FILE,SET_VAR_PATH,ROW_COL_REV,ALL_INT_FIELDS,DATE_BACKUP,COMMA_ENDING,USE,END
 int,int,string,string,string,string,string,string,bool,bool,bool,bool,string,END
--1,���ʎq�͎g���܂���,���,CSV�t�@�C���P�ɑΉ�����e�[�u�����B,�f�[�^�̎��,�i�t�@�C���p�X�j�ϐ����������B�t�H���_�[�ւ̃p�X���w�肳��Ă���t�@�C���p�X�ϐ��̖��O�B�i�����Ȃ���� .exe �̂���t�H���_�[�j,�i�t�@�C���p�X�jFOLDER��l����̑��΃t�@�C���p�X�i����΃p�X�j,�i�t�@�C���p�X�j�t�@�C���p�X���A�w��̕ϐ��ɃZ�b�g���܂��B,�i�e�[�u���j�s�Ɨ񂪋t�����Ȃ�TRUE�B�󗓂Ȃ�FALSE�B,�i�e�[�u���j�^��`�̃��R�[�h���Ȃ��A�S��int�^�Ȃ�TRUE�A�󗓂Ȃ�FALSE�B,�i�e�[�u���j�����߃o�b�N�A�b�v���s���Ȃ�TRUE�A�󗓂Ȃ�FALSE�B,"�i�e�[�u���j�s�̖������u,�v�ŏI����Ȃ�TRUE�A�󗓂Ȃ�FALSE�B",�i�e�[�u���j�p�r�B�^�u�v�w��Ȃ��B�^�uWriteOnly�v�f�[�^�̓ǎ���s��Ȃ��B���O�o�͐��o�^���Ă��邾���ȂǁB,END
-0,,���C�A�E�g,St:Aa_Forms;,T:TablesForm;,Sp:Forms;,Aa_Forms.csv,,,,,,,END
-1,,�X�^�C���V�[�g�E�e�[�u��,St:Stylesheet;,T:TableStylesheet;,Sp:Engine;,Mde_Stylesheet.csv,,,,,,,END
-2,,�G���[���b�Z�[�W�E�e�[�u��,Ut:Errormessages;,T:TableErrermessages;,Up:CommonProjects;,Mde_Errormessages.csv,,,,,,,END
+-1,識別子は使いません,解説,CSVファイル１つに対応するテーブル名。,データの種類,（ファイルパス）変数名を書く。フォルダーへのパスが指定されているファイルパス変数の名前。（書かなければ .exe のあるフォルダー）,（ファイルパス）FOLDER列値からの相対ファイルパス（か絶対パス）,（ファイルパス）ファイルパスを、指定の変数にセットします。,（テーブル）行と列が逆向きならTRUE。空欄ならFALSE。,（テーブル）型定義のレコードがなく、全部int型ならTRUE、空欄ならFALSE。,（テーブル）日初めバックアップを行うならTRUE、空欄ならFALSE。,"（テーブル）行の末尾を「,」で終えるならTRUE、空欄ならFALSE。",（テーブル）用途。／「」指定なし。／「WriteOnly」データの読取を行わない。ログ出力先を登録しているだけなど。,END
+0,,レイアウト,St:Aa_Forms;,T:TablesForm;,Sp:Forms;,Aa_Forms.csv,,,,,,,END
+1,,スタイルシート・テーブル,St:Stylesheet;,T:TableStylesheet;,Sp:Engine;,Mde_Stylesheet.csv,,,,,,,END
+2,,エラーメッセージ・テーブル,Ut:Errormessages;,T:TableErrermessages;,Up:CommonProjects;,Mde_Errormessages.csv,,,,,,,END
 3,,,Ux:Validators001;,T:CodeValidators;,Sp:Engine;,Cmn_Validators001.xml,,,,,,,END
 4,,,Ux:Functions001;,T:CodeFunctions;,Sp:Engine;,Cmn_Functions001.xml,,,,,,,END
 5,,,Ux:Togethers001;,T:CodeTogethers;,Sp:Engine;,Cmn_Togethers001.xml,,,,,,,END
