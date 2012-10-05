@@ -22,11 +22,11 @@ namespace Xenon.Syntax
         /// <summary>
         /// 未実装の場合。
         /// </summary>
-        /// <param name="parent_Gcav"></param>
+        /// <param name="parent_Conf"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public static List<Expression_Node_String> NoImpl_Expression_GetChildList(
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -52,7 +52,7 @@ namespace Xenon.Syntax
                 sb.Append(Environment.NewLine);
 
                 // ヒント
-                sb.Append(r.Message_Configurationtree(parent_Gcav));
+                sb.Append(r.Message_Configurationtree(parent_Conf));
 
                 r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
@@ -71,10 +71,10 @@ namespace Xenon.Syntax
         /// <summary>
         /// 未実装の場合。
         /// </summary>
-        /// <param name="parent_Gcav"></param>
+        /// <param name="parent_Conf"></param>
         /// <param name="log_Reports"></param>
         static public void NoImpl_Expression_AddChild(
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -101,7 +101,7 @@ namespace Xenon.Syntax
                 sb.Append(Environment.NewLine);
 
                 // ヒント
-                sb.Append(r.Message_Configurationtree(parent_Gcav));
+                sb.Append(r.Message_Configurationtree(parent_Conf));
 
                 r.Message = sb.ToString();
                 log_Reports.EndCreateReport();

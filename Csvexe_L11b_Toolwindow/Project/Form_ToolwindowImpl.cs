@@ -210,13 +210,13 @@ namespace Xenon.Toolwindow
             moAatoolxmlDialog.MemoryAatoolxml = new MemoryAatoolxmlImpl(this.Owner_MemoryApplication);
 
 
-            Configurationtree_Node parent_Gcav = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#Form1_Load", null);
+            Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl("!ハードコーディング_" + this.GetType().Name + "#Form1_Load", null);
 
 
             // ツール設定ファイルへのパスは固定とします。
             Expression_Node_Filepath ec_Fpath_toolcnf;
             {
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09TcDlg_3", parent_Gcav);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L09TcDlg_3", parent_Conf);
                 cf_Fpath.InitPath(
                     ValuesAttr.S_FPATHR_AATOOLXML,
                     pg_Logging);
@@ -309,8 +309,8 @@ namespace Xenon.Toolwindow
             //  ■
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2( Expression_Node_Function45Impl.NAME_FUNCTION, 
-                    parent_Expression_Null, parent_Gcav, this.Owner_MemoryApplication, pg_Logging);
-                expr_Func.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Leaf_StringImpl("変数出力試し", null, parent_Gcav), pg_Logging);
+                    parent_Expression_Null, parent_Conf, this.Owner_MemoryApplication, pg_Logging);
+                expr_Func.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Leaf_StringImpl("変数出力試し", null, parent_Conf), pg_Logging);
             }
 
             //  ■
@@ -318,8 +318,8 @@ namespace Xenon.Toolwindow
             //  ■
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(Expression_Node_Function46Impl.NAME_FUNCTION,
-                        parent_Expression_Null, parent_Gcav, this.Owner_MemoryApplication, pg_Logging);
-                expr_Func.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Leaf_StringImpl("フォームCSV出力試し", null, parent_Gcav), pg_Logging);
+                        parent_Expression_Null, parent_Conf, this.Owner_MemoryApplication, pg_Logging);
+                expr_Func.SetAttribute(Expression_Node_Function28Impl.PM_MESSAGE, new Expression_Leaf_StringImpl("フォームCSV出力試し", null, parent_Conf), pg_Logging);
 
                 this.uctButton2.UsercontroleventhandlerClick += new EventHandler(expr_Func.Execute4_OnOEa);
             }

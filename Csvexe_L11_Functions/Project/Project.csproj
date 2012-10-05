@@ -54,8 +54,8 @@
     <Reference Include="Csvexe_L06_Expr">
       <HintPath>..\..\Csvexe_L06_Expr\Project\bin\Debug\Csvexe_L06_Expr.dll</HintPath>
     </Reference>
-    <Reference Include="Csvexe_L07_GcavToExpr">
-      <HintPath>..\..\Csvexe_L07_GcavToExpr\Project\bin\Debug\Csvexe_L07_GcavToExpr.dll</HintPath>
+    <Reference Include="Csvexe_L07_ConfToExpr">
+      <HintPath>..\..\Csvexe_L07_ConfToExpr\Project\bin\Debug\Csvexe_L07_ConfToExpr.dll</HintPath>
     </Reference>
     <Reference Include="Csvexe_L09_MiddleImpl">
       <HintPath>..\..\Csvexe_L09_MiddleImpl\Project\bin\Debug\Csvexe_L09_MiddleImpl.dll</HintPath>

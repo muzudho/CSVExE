@@ -21,8 +21,8 @@ namespace Xenon.Expr
         //────────────────────────────────────────
 
         public Expressionv_3FListboxValidationImpl(
-            Expression_Node_String parent_Expression, Configurationtree_Node parent_Gcav, MemoryApplication owner_MemoryApplication)
-            : base(parent_Expression, parent_Gcav, owner_MemoryApplication)//"f-listbox-for-items",
+            Expression_Node_String parent_Expression, Configurationtree_Node parent_Conf, MemoryApplication owner_MemoryApplication)
+            : base(parent_Expression, parent_Conf, owner_MemoryApplication)//"f-listbox-for-items",
         {
             this.Owner_MemoryApplication = owner_MemoryApplication;
 

@@ -18,8 +18,8 @@ namespace Xenon.Controls
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public FunctionexecutableAbstract(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
-            : base(parent_Expression,cur_Gcav)
+        public FunctionexecutableAbstract(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+            : base(parent_Expression,cur_Conf)
         {
         }
 

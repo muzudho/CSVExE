@@ -5,7 +5,7 @@ using System.Text;
 
 using Xenon.Syntax;
 using Xenon.Middle;
-using Xenon.XToGcav;
+using Xenon.XmlToConf;
 
 namespace Xenon.MiddleImpl
 {
@@ -78,8 +78,8 @@ namespace Xenon.MiddleImpl
             {
                 // 正常時
 
-                XToConfigurationtree_Together to = new XToConfigurationtree_Together_ConfigImpl();
-                this.Configurationtree_Togetherconfig = to.XToConfigurationtree(sFpatha_rfr, owner_MemoryApplication, log_Reports);
+                XmlToConfigurationtree_Together to = new XmlToConfigurationtree_Together_ConfigImpl();
+                this.Configurationtree_Togetherconfig = to.XmlToConfigurationtree(sFpatha_rfr, owner_MemoryApplication, log_Reports);
             }
 
             //

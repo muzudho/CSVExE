@@ -20,13 +20,13 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public SelectstatementImpl(Expression_Node_String parent_Expr, Configurationtree_Node parent_Gcav)
+        public SelectstatementImpl(Expression_Node_String parent_Expr, Configurationtree_Node parent_Conf)
         {
-            this.parent = parent_Gcav;
+            this.parent = parent_Conf;
             this.List_SName_SelectField = new List<string>();
-            this.Expression_From = new Expression_Node_StringImpl(parent_Expr, parent_Gcav);
-            this.Expression_Into = new Expression_Node_StringImpl(parent_Expr, parent_Gcav);
-            this.Expression_Where_RecordSetLoadFrom = new Expression_Node_StringImpl(parent_Expr, parent_Gcav);
+            this.Expression_From = new Expression_Node_StringImpl(parent_Expr, parent_Conf);
+            this.Expression_Into = new Expression_Node_StringImpl(parent_Expr, parent_Conf);
+            this.Expression_Where_RecordSetLoadFrom = new Expression_Node_StringImpl(parent_Expr, parent_Conf);
             this.EnumWherelogic = EnumLogic.And;//ｗｈｅｒｅのlogic属性のデフォルト。
             this.list_Recordcondition = new List<Recordcondition>();
             this.Required = "";

@@ -25,7 +25,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         Expression_Node_Function Translate(
-            Configurationtree_Node systemFunction_Gcav,
+            Configurationtree_Node systemFunction_Conf,
             bool bRequired,
             Log_Reports log_Reports
         );

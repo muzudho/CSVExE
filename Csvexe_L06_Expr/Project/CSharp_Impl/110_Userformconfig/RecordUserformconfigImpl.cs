@@ -296,7 +296,7 @@ namespace Xenon.Expr
 
             FieldUserformtable fo_Field = this.Dictionary_Field[sName];
 
-            if (EnumTypedb.GcavFilepath != fo_Field.EnumTypedb)
+            if (EnumTypedb.ConfFilepath != fo_Field.EnumTypedb)
             {
                 //型が異なる。
 

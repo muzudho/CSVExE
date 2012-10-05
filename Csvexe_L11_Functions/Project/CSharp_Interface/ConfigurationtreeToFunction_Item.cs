@@ -36,7 +36,7 @@ namespace Xenon.Functions
 
         void Translate_Step1(
             ConfigurationtreeToFunction_Item parentProcesser,
-            Configurationtree_Node action_Gcav,
+            Configurationtree_Node action_Conf,
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
             Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,
@@ -45,7 +45,7 @@ namespace Xenon.Functions
 
         void Translate_Step2(
             ConfigurationtreeToFunction_Item parentProcesser,
-            Configurationtree_Node action_Gcav,
+            Configurationtree_Node action_Conf,
             Expression_Node_Function parent_Ec_Sf,//todo:何これ？
             MemoryApplication owner_MemoryApplication,
             Log_TextIndented_ConfigurationtreeToExpression pg_ParsingLog,

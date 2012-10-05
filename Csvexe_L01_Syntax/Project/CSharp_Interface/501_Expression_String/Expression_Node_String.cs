@@ -116,11 +116,11 @@ namespace Xenon.Syntax
         /// 文字列を、子要素として追加。
         /// </summary>
         /// <param name="sHumaninput"></param>
-        /// <param name="parent_Gcav"></param>
+        /// <param name="parent_Conf"></param>
         /// <param name="log_Reports"></param>
         void AppendTextNode(
             string sHumaninput,
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             );
 

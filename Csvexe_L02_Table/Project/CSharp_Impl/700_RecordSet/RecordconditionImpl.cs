@@ -23,9 +23,9 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="s_ParentNode"></param>
-        private RecordconditionImpl(Configurationtree_Node parent_Gcav)
+        private RecordconditionImpl(Configurationtree_Node parent_Conf)
         {
-            this.parent = parent_Gcav;
+            this.parent = parent_Conf;
 
             this.list_Child = new List<Recordcondition>();
             this.enumLogic = EnumLogic.None;
@@ -54,7 +54,7 @@ namespace Xenon.Table
             out Recordcondition out_RecCond,
             EnumLogic enumLogic,
             string sField,
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -69,7 +69,7 @@ namespace Xenon.Table
             {
                 // 条件式
 
-                RecordconditionImpl rc = new RecordconditionImpl(parent_Gcav);
+                RecordconditionImpl rc = new RecordconditionImpl(parent_Conf);
                 rc.sField = sField;
                 out_RecCond = rc;
                 bSuccessful = true;
@@ -78,7 +78,7 @@ namespace Xenon.Table
             {
                 // グループ
 
-                RecordconditionImpl rc = new RecordconditionImpl(parent_Gcav);
+                RecordconditionImpl rc = new RecordconditionImpl(parent_Conf);
                 rc.sField = "(▲グループにフィールド属性無し103！[" + enumLogic + "])";
                 rc.enumLogic = enumLogic;
                 out_RecCond = rc;
@@ -112,7 +112,7 @@ namespace Xenon.Table
                 s.Append("]");
                 s.Append(Environment.NewLine);
 
-                s.Append(r.Message_Configurationtree(parent_Gcav));
+                s.Append(r.Message_Configurationtree(parent_Conf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

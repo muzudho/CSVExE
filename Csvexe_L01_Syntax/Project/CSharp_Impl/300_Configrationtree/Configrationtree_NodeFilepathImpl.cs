@@ -23,9 +23,9 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        /// <param name="sName_Node"></param>
-        public Configurationtree_NodeFilepathImpl(string sName_Node, Configurationtree_Node parent_Gcav)
-            : base(sName_Node, parent_Gcav)
+        /// <param name="name_Node"></param>
+        public Configurationtree_NodeFilepathImpl(string name_Node, Configurationtree_Node parent_Conf_OrNull)
+            : base(name_Node, parent_Conf_OrNull)
         {
             this.humaninput = "";
             this.directory_Base = "";
@@ -50,7 +50,7 @@ namespace Xenon.Syntax
             if (log_Reports.Successful)
             {
                 // チェック。絶対パスにすることができればOK。
-                Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
+                Utility_Configurationtree_Filepath.ToFilepathabsolute(
                     sFopath_New,
                     sFpath_Newhumaninput,
                     ref bDammyFlagCheckPathTooLong,
@@ -186,7 +186,7 @@ namespace Xenon.Syntax
             if (log_Reports.Successful)
             {
                 // チェック。絶対パスにすることができればOK。
-                Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
+                Utility_Configurationtree_Filepath.ToFilepathabsolute(
                     this.directory_Base,
                     sFpath_Newhumaninput,
                     ref bDammyFlagCheckPathTooLong,

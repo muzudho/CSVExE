@@ -5,8 +5,8 @@ using System.Text;
 
 using Xenon.Syntax;
 using Xenon.Middle;
-using Xenon.XToGcav;
-using Xenon.GcavToExpr;
+using Xenon.XmlToConf;
+using Xenon.ConfToExpr;
 
 namespace Xenon.MiddleImpl
 {
@@ -31,7 +31,7 @@ namespace Xenon.MiddleImpl
         public void Clear(MemoryApplication owner_MemoryApplication)
         {
             this.owner_MemoryApplication = owner_MemoryApplication;
-            this.xToConfigurationtree_V = new XToConfigurationtree_Validator_ConfigImpl();
+            this.xToConfigurationtree_V = new XmlToConfigurationtree_Validator_ConfigImpl();
             this.givechapterandverseToExpression_V = new ConfigurationtreeToExpression_V51_ConfigImpl();
 
             this.givechapterandverse_Validatorsconfig = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_VALIDATORS, new Configurationtree_NodeImpl(this.GetType().Name + "#<init>", null));
@@ -60,7 +60,7 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            this.xToConfigurationtree_V.XToConfigurationtree(
+            this.xToConfigurationtree_V.XmlToConfigurationtree(
                 sFpatha,
                 owner_MemoryApplication,
                 log_Reports
@@ -113,7 +113,7 @@ namespace Xenon.MiddleImpl
         /// <summary>
         /// validation設定ファイルの X → S。
         /// </summary>
-        private XToConfigurationtree_V51_Config xToConfigurationtree_V;
+        private XmlToConfigurationtree_V51_Config xToConfigurationtree_V;
 
         /// <summary>
         /// validation設定ファイルの S → E。

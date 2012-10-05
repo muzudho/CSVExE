@@ -15,25 +15,25 @@ namespace Xenon.Syntax
         #region アクション
         //────────────────────────────────────────
 
-        public static string GetAbsoluteFilePathImpl(
-            string sHumaninput,
-            ref bool bFlagCheckPathTooLong,
-            bool bOkPathTooLong,
+        public static string ToFilepathabsolute(
+            string humaninput,
+            ref bool ref_isTooLong_Path,
+            bool isSafe_TooLong_Path,
             Log_Reports log_Reports,
-            Configurationtree_Node cur_Gcav
+            Configurationtree_Node cur_Conf
             )
         {
             string sResult;
 
             if (log_Reports.Successful)
             {
-                sResult = Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
+                sResult = Utility_Configurationtree_Filepath.ToFilepathabsolute(
                     "",
-                    sHumaninput,
-                    ref bFlagCheckPathTooLong,
-                    bOkPathTooLong,
+                    humaninput,
+                    ref ref_isTooLong_Path,
+                    isSafe_TooLong_Path,
                     log_Reports,//out sErrorMsg,
-                    cur_Gcav
+                    cur_Conf
                     );
             }
             else
@@ -50,10 +50,10 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public static string GetAbsolutefilepathimpl(
-            Configurationtree_NodeFilepath fpath_Gcav,
-            ref bool bFlagCheckPathTooLong,
-            bool bOkPathTooLong,
+        public static string ToFilepathabsolute(
+            Configurationtree_NodeFilepath filepath_Conf,
+            ref bool ref_IsTooLong_Path,
+            bool isSafe_TooLong_Path,
             Log_Reports log_Reports
             )
         {
@@ -61,13 +61,13 @@ namespace Xenon.Syntax
 
             if (log_Reports.Successful)
             {
-                sResult = Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
+                sResult = Utility_Configurationtree_Filepath.ToFilepathabsolute(
                     "",
-                    fpath_Gcav.GetHumaninput(),
-                    ref bFlagCheckPathTooLong,
-                    bOkPathTooLong,
+                    filepath_Conf.GetHumaninput(),
+                    ref ref_IsTooLong_Path,
+                    isSafe_TooLong_Path,
                     log_Reports,//out sErrorMsg,
-                    fpath_Gcav
+                    filepath_Conf
                     );
             }
             else
@@ -85,7 +85,9 @@ namespace Xenon.Syntax
         //────────────────────────────────────────
 
         /// <summary>
-        /// 絶対パスを取得します。
+        /// 「ディレクトリー」と「入力値」の２つを入力すると、「絶対パス」を返します。
+        /// 
+        /// ──────────
         /// 
         /// 未設定の場合は、空文字列を返します。
         /// ※bug:フォルダーパスの場合も空文字列になる？？
@@ -100,19 +102,19 @@ namespace Xenon.Syntax
         /// <param name="humanInputText"></param>
         /// <param name="flagCheckPathTooLong">絶対パスの文字列の長さが、ファイルシステムで使える上限を超えていた場合に真、そうでない場合　偽にセットされます。</param>
         /// <param name="okPathTooLong">絶対パスの文字列の長さが、ファイルシステムで使える上限を超えていた場合に、「正常扱いにするなら」真、「エラー扱いにするなら」偽。</param>
-        /// <param name="cur_Gcav">デバッグ用情報。人間オペレーターが修正するべき箇所などの情報。</param>
+        /// <param name="cur_Conf">デバッグ用情報。人間オペレーターが修正するべき箇所などの情報。</param>
         /// <returns></returns>
-        public static string GetAbsolutefilepathimpl(
-            string sBaseDirectory,
-            string sHumanInput,
-            ref bool bFlagCheckPathTooLong,
-            bool bOkPathTooLong,
+        public static string ToFilepathabsolute(
+            string directory_Base,
+            string humaninput,
+            ref bool ref_IsTooLong_Path,
+            bool isSafe_TooLong_Path,
             Log_Reports log_Reports,
-            Configurationtree_Node cur_Gcav
+            Configurationtree_Node cur_Conf
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "GetAbsolutefilepathimpl", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Configurationtree_Filepath", "ToFilepathabsolute", log_Reports);
             //
             //
 
@@ -136,14 +138,14 @@ namespace Xenon.Syntax
             string sResult_FilePath;//ファイルパス
 
             // フラグのクリアー。
-            bFlagCheckPathTooLong = false;
+            ref_IsTooLong_Path = false;
 
             //
             // 人間がCSVファイルに記述しているファイル・パス。
             //
             // 「絶対パス」「相対パス」のどちらでも指定されます。
             //
-            string sFpath_Src = sHumanInput.Trim();
+            string sFpath_Src = humaninput.Trim();
 
             if ("" == sFpath_Src)
             {
@@ -171,24 +173,24 @@ namespace Xenon.Syntax
 
                 // 「相対パス」に「ベース・ディレクトリー文字列」を連結して、「絶対パス」に変換します。
 
-                if ("" != sBaseDirectory)
+                if ("" != directory_Base)
                 {
                     // 相対パスの相対元となるディレクトリーが設定されていれば。
 
-                    if (!sBaseDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                    if (!directory_Base.EndsWith(Path.DirectorySeparatorChar.ToString()))
                     {
-                        sFpath_Src = sBaseDirectory + Path.DirectorySeparatorChar + sFpath_Src;
+                        sFpath_Src = directory_Base + Path.DirectorySeparatorChar + sFpath_Src;
                     }
                     else
                     {
-                        sFpath_Src = sBaseDirectory + sFpath_Src;
+                        sFpath_Src = directory_Base + sFpath_Src;
                     }
                 }
                 else
                 {
                     // 起動「.exe」のあったパスを、相対の元となるディレクトリーとします。
 
-                    if (!sBaseDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                    if (!directory_Base.EndsWith(Path.DirectorySeparatorChar.ToString()))
                     {
                         sFpath_Src = Application.StartupPath + Path.DirectorySeparatorChar + sFpath_Src;
                     }
@@ -225,7 +227,7 @@ namespace Xenon.Syntax
 
                 sResult_FilePath = "";//ファイルパスとしては使えない文字列。
 
-                if (bOkPathTooLong)
+                if (isSafe_TooLong_Path)
                 {
                     // 正常処理扱いとします。
 
@@ -239,7 +241,7 @@ namespace Xenon.Syntax
                 }
 
 
-                bFlagCheckPathTooLong = true;
+                ref_IsTooLong_Path = true;
             }
             catch (NotSupportedException e)
             {
@@ -274,7 +276,7 @@ namespace Xenon.Syntax
                 s.Append("]　：");
 
                 s.Append(err_Excp.Message);
-                cur_Gcav.ToText_Locationbreadcrumbs(s);
+                cur_Conf.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -292,7 +294,7 @@ namespace Xenon.Syntax
                 s.Append("エラー 入力パス=[" + sFpath_Src + "]：(" + err_Excp.GetType().Name + ") ");
 
                 s.Append(err_Excp.Message);
-                cur_Gcav.ToText_Locationbreadcrumbs(s);
+                cur_Conf.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -314,7 +316,7 @@ namespace Xenon.Syntax
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
-                cur_Gcav.ToText_Locationbreadcrumbs(s);
+                cur_Conf.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -334,7 +336,7 @@ namespace Xenon.Syntax
 
                 // ヒント
                 s.Append(r.Message_SException(err_Excp));
-                cur_Gcav.ToText_Locationbreadcrumbs(s);
+                cur_Conf.ToText_Locationbreadcrumbs(s);
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -363,7 +365,7 @@ namespace Xenon.Syntax
         /// <param name="filePath"></param>
         /// <returns></returns>
         public static bool IsRooted_Path(
-            string sFilepath,
+            string filepath,
             Log_Reports log_Reports
             )
         {
@@ -377,7 +379,7 @@ namespace Xenon.Syntax
             try
             {
                 // 「絶対パス」か、「相対パス」かを判断します。
-                bPathRooted = System.IO.Path.IsPathRooted(sFilepath);
+                bPathRooted = System.IO.Path.IsPathRooted(filepath);
             }
             catch (ArgumentException e)
             {
@@ -399,7 +401,7 @@ namespace Xenon.Syntax
                 r.SetTitle("▲エラー211！", log_Method);
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("エラー 入力パス=[" + sFilepath + "]：(" + err_Excp.GetType().Name + ") ");
+                sb.Append("エラー 入力パス=[" + filepath + "]：(" + err_Excp.GetType().Name + ") ");
                 sb.Append(err_Excp.Message);
 
                 r.Message = sb.ToString();
@@ -417,17 +419,17 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        public static bool IsPathTooLong(
-            string sNewhumaninputfilepath,
+        public static bool IsTooLong_Path(
+            string filepath_Humaninput_New,
             Log_Reports log_Reports,
-            Configurationtree_Node cur_Gcav
+            Configurationtree_Node cur_Conf
             )
         {
-            return Utility_Configurationtree_Filepath.IsPathTooLong(
+            return Utility_Configurationtree_Filepath.IsTooLong_Path(
                 "",
-                sNewhumaninputfilepath,
+                filepath_Humaninput_New,
                 log_Reports,// out sErrorMsg,
-                cur_Gcav
+                cur_Conf
                 );
         }
 
@@ -438,12 +440,12 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="newDirectoryPath">指定するものがない場合は、System.Windows.Forms.StartupPath を入れてください。</param>
         /// <param name="newHumanInputFilePath"></param>
-        /// <param name="cur_Gcav"></param>
-        public static bool IsPathTooLong(
-            string sNewDirectoryPath,
-            string sNewHumanInputFilepath,
+        /// <param name="cur_Conf"></param>
+        public static bool IsTooLong_Path(
+            string folderpath_New,
+            string filepath_Humaninput_New,
             Log_Reports log_Reports,
-            Configurationtree_Node cur_Gcav
+            Configurationtree_Node cur_Conf
             )
         {
             // フラグ。
@@ -452,13 +454,13 @@ namespace Xenon.Syntax
             if (log_Reports.Successful)
             {
                 // チェック。絶対パスにすることができればOK。
-                Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
-                    sNewDirectoryPath,
-                    sNewHumanInputFilepath,
+                Utility_Configurationtree_Filepath.ToFilepathabsolute(
+                    folderpath_New,
+                    filepath_Humaninput_New,
                     ref bFlagCheckPathTooLong,
                     true,//ファイル名の長さが上限超過でも、正常処理扱いとします。
                     log_Reports,// out sErrorMsg,
-                    cur_Gcav
+                    cur_Conf
                     );
             }
 

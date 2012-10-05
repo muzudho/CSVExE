@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using Xenon.Syntax;
 using Xenon.Controls;
 using Xenon.Middle;//MoOpyopyo,FormObjectProperties,OAction
-using Xenon.GcavToExpr;
+using Xenon.ConfToExpr;
 using Xenon.Expr;
 
 namespace Xenon.Functions
@@ -33,7 +33,7 @@ namespace Xenon.Functions
         /// <param name="form"></param>
         public ConfigurationtreeToFunction_ListImpl(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Gcav,
+            Configurationtree_Node cur_Conf,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
@@ -57,7 +57,7 @@ namespace Xenon.Functions
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Node_Function Translate(
-            Configurationtree_Node action_Gcav,
+            Configurationtree_Node action_Conf,
             bool bRequired,
             Log_Reports log_Reports
             )
@@ -68,9 +68,9 @@ namespace Xenon.Functions
             //
 
             string sName_Fnc;
-            if (action_Gcav.Dictionary_Attribute.ContainsKey(PmNames.S_NAME.Name_Pm))
+            if (action_Conf.Dictionary_Attribute.ContainsKey(PmNames.S_NAME.Name_Pm))
             {
-                action_Gcav.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
+                action_Conf.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Fnc, true, log_Reports);
             }
             else
             {
@@ -79,7 +79,7 @@ namespace Xenon.Functions
 
 
             Expression_Node_Function expr_Func = Collection_Function.NewFunction2( sName_Fnc,
-                null, action_Gcav, this.Owner_MemoryApplication, log_Reports);
+                null, action_Conf, this.Owner_MemoryApplication, log_Reports);
 
 
 
@@ -91,7 +91,7 @@ namespace Xenon.Functions
                     pg_ParsingLog.BEnabled = false;
                     expr_Func = ((Expression_Node_FunctionAbstract)expr_Func).Functiontranslatoritem.Translate(
                         sName_Fnc,
-                        action_Gcav,//これは生成時に指定できない？
+                        action_Conf,//これは生成時に指定できない？
                         pg_ParsingLog,
                         this.Owner_MemoryApplication,
                         log_Reports

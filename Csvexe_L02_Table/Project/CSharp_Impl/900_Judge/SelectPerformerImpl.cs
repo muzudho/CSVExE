@@ -28,7 +28,7 @@ namespace Xenon.Table
             out List<DataRow> out_List_DstRow,
             bool bRequired_ExpectedValue,
             DataTable dataTable,
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {

@@ -98,7 +98,7 @@ namespace Xenon.Csvexe
             //
 
             Expression_Node_String parent_Expression_Null = null;
-            Configurationtree_Node cur_Gcav = new Configurationtree_NodeImpl(pg_Method.Fullname, null);
+            Configurationtree_Node cur_Conf = new Configurationtree_NodeImpl(pg_Method.Fullname, null);
 
 
 
@@ -112,7 +112,7 @@ namespace Xenon.Csvexe
             this.memoryCsvEditor = new MemoryApplicationImpl();
             this.MemoryCsvEditor.InitializeBeforeUse(
                 new Mainwnd_FormWrappingImpl(this),
-                new ConfigurationtreeToFunction_ListImpl(parent_Expression_Null, cur_Gcav, this.MemoryCsvEditor, pg_Logging_ThisMethod),
+                new ConfigurationtreeToFunction_ListImpl(parent_Expression_Null, cur_Conf, this.MemoryCsvEditor, pg_Logging_ThisMethod),
                 new Form_ToolwindowImpl(),
                 new MemoryAatoolxmlDialogImpl(this.MemoryCsvEditor),
                 new UsercontrolStyleSetterImpl(),
@@ -135,7 +135,7 @@ namespace Xenon.Csvexe
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
                         Expression_Node_Function_BootCsvEditorExImpl.NAME_FUNCTION,
                         null,
-                        cur_Gcav,
+                        cur_Conf,
                         this.MemoryCsvEditor,
                         pg_Logging_ThisMethod
                         );

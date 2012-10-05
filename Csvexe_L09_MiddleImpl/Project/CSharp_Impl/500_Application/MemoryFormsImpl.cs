@@ -8,9 +8,9 @@ using Xenon.Syntax;//Log_TextIndentedImpl
 using Xenon.Controls;
 using Xenon.Table;//CsvTo_ListImpl
 using Xenon.Middle;
-using Xenon.XToGcav;
+using Xenon.XmlToConf;
 using Xenon.Expr;
-using Xenon.GcavToExpr;
+using Xenon.ConfToExpr;
 
 namespace Xenon.MiddleImpl
 {
@@ -238,7 +238,7 @@ namespace Xenon.MiddleImpl
             // (F) 絶対ファイルパス
             string sFpatha_F;
             {
-                Utility_XToConfigurationtree_Usercontrolconfig to = new Utility_XToConfigurationtree_Usercontrolconfig();
+                Utility_XmlToConfigurationtree_Usercontrolconfig to = new Utility_XmlToConfigurationtree_Usercontrolconfig();
 
                 Expression_Node_FilepathImpl ec_Fpath = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
@@ -280,8 +280,8 @@ namespace Xenon.MiddleImpl
             // X → S
             if (log_Reports.Successful)
             {
-                XToConfigurationtree_C11_Config to = new XToConfigurationtree_C11_ConfigImpl();
-                to.XToConfigurationtree(
+                XmlToConfigurationtree_C11_Config to = new XmlToConfigurationtree_C11_ConfigImpl();
+                to.XmlToConfigurationtree(
                     sName_Control,
                     sFpathH_F,
                     sFpatha_F,
@@ -992,7 +992,7 @@ namespace Xenon.MiddleImpl
             // (Fcnf) 絶対ファイルパス
             string sFpatha_f;
             {
-                Utility_XToConfigurationtree_Usercontrolconfig to = new Utility_XToConfigurationtree_Usercontrolconfig();
+                Utility_XmlToConfigurationtree_Usercontrolconfig to = new Utility_XmlToConfigurationtree_Usercontrolconfig();
 
                 Expression_Node_FilepathImpl e_Fpath = new Expression_Node_FilepathImpl(cf_Fpath_Control);
 
@@ -1010,7 +1010,7 @@ namespace Xenon.MiddleImpl
             //
             if (log_Reports.Successful)
             {
-                Utility_XToConfigurationtree_Usercontrolconfig to1 = new Utility_XToConfigurationtree_Usercontrolconfig();
+                Utility_XmlToConfigurationtree_Usercontrolconfig to1 = new Utility_XmlToConfigurationtree_Usercontrolconfig();
 
                 List<string> sList_ControlName = to1.GetList_NameControl(
                     sName_Control,

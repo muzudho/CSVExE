@@ -16,9 +16,9 @@ namespace Xenon.Syntax
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public Dictionary_Configurationtree_StringImpl(Configurationtree_Node owner_Gcav)
+        public Dictionary_Configurationtree_StringImpl(Configurationtree_Node owner_Conf)
         {
-            this.owner = owner_Gcav;
+            this.owner = owner_Conf;
             this.dictionary_Attribute = new Dictionary<string, string>();
         }
 
@@ -27,7 +27,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// new された直後の内容に戻します。
         /// </summary>
-        public void Clear(Configurationtree_Node owner_Gcav, Log_Reports log_Reports)
+        public void Clear(Configurationtree_Node owner_Conf, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Clear", log_Reports);

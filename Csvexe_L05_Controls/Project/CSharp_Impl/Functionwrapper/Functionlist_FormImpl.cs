@@ -33,7 +33,7 @@ namespace Xenon.Controls
         /// <param nFcName="nActionPerformEnum"></param>
         /// <param nFcName="oWrittenPlace"></param>
         public Functionlist_FormImpl()
-            : base( null/*parent_Expression*/, null/*cur_Gcav*/)
+            : base( null/*parent_Expression*/, null/*cur_Conf*/)
         {
             throw new Exception(Info_Controls.Name_Library + ":" + this.GetType().Name + "#<init>:このコンストラクターは使わないでください。");
         }
@@ -49,7 +49,7 @@ namespace Xenon.Controls
             ConfigurationtreeToExpression_Event sToE_Event,
             MemoryApplication owner_MemoryApplication
             )
-            : base(null/*parent_Expression*/, null/*cur_Gcav*/)
+            : base(null/*parent_Expression*/, null/*cur_Conf*/)
         {
             this.ConfigurationtreeToExpression_Event = sToE_Event;
 

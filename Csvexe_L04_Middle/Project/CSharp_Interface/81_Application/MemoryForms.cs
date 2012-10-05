@@ -186,12 +186,12 @@ namespace Xenon.Middle
         /// <summary>
         /// コントロールに、最新のデータを表示します。
         /// </summary>
-        /// <param name="together_Gcav">トゥゲザーの名前です。</param>
-        /// <param name="togetherConfig_Gcav">トゥゲザー設定です。</param>
+        /// <param name="together_Conf">トゥゲザーの名前です。</param>
+        /// <param name="togetherConfig_Conf">トゥゲザー設定です。</param>
         /// <param name="log_Reports"></param>
         void RefreshDataByTogether(
-            Configurationtree_Node together_Gcav,
-            Configurationtree_Node togetherConfig_Gcav,
+            Configurationtree_Node together_Conf,
+            Configurationtree_Node togetherConfig_Conf,
             Log_Reports log_Reports
             );
 

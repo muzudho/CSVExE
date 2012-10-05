@@ -21,10 +21,10 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_TexttemplateP1pImpl(Expression_Node_String parent_Expr, Configurationtree_Node cur_Gcav)
+        public Expression_TexttemplateP1pImpl(Expression_Node_String parent_Expr, Configurationtree_Node cur_Conf)
         {
             this.parent_Expression = parent_Expr;
-            this.cur_Configurationtree = cur_Gcav;
+            this.cur_Configurationtree = cur_Conf;
 
             this.requestItems = EnumHitcount.Unconstraint;
 
@@ -112,15 +112,15 @@ namespace Xenon.Syntax
         /// 文字列を、子要素として追加。
         /// </summary>
         /// <param name="sHumaninput"></param>
-        /// <param name="parent_Gcav"></param>
+        /// <param name="parent_Conf"></param>
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumaninput,
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
-            Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, parent_Gcav);
+            Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, parent_Conf);
             ec_Atom.SetString(
                 sHumaninput,
                 log_Reports

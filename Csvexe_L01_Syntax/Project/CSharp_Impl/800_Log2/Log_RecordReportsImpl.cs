@@ -65,12 +65,12 @@ namespace Xenon.Syntax
         /// </summary>
         /// <returns></returns>
         public static string ToText_Configurationtree(
-            Configurationtree_Node parent_Gcav
+            Configurationtree_Node parent_Conf
             )
         {
             Log_TextIndented s = new Log_TextIndentedImpl();
 
-            if (null == parent_Gcav)
+            if (null == parent_Conf)
             {
                 s.Append("　　親要素が指定されていません。");
             }
@@ -79,18 +79,18 @@ namespace Xenon.Syntax
                 s.Append("　　設定位置パンくずリスト（問題個所ヒント）：");
                 s.Newline();
                 s.Newline();
-                parent_Gcav.ToText_Locationbreadcrumbs(s);
+                parent_Conf.ToText_Locationbreadcrumbs(s);
                 s.Newline();
                 s.Newline();
 
-                parent_Gcav.ToText_Content(s);
+                parent_Conf.ToText_Content(s);
                 s.Newline();
                 s.Newline();
 
                 s.Append(Log_RecordReportsImpl.ToText_Separator());
 
                 s.Append("　　問題を報告したオブジェクトの型: ");
-                s.Append(parent_Gcav.GetType());
+                s.Append(parent_Conf.GetType());
                 s.Append("　（これはラッパークラスということもあるかも知れません）");
                 s.Newline();
                 s.Newline();

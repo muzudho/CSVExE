@@ -91,10 +91,10 @@ namespace Xenon.Controls
             //
             // 「登録アクション設定」を元に、「アクション」を作成し、実行順に実行。
             //
-            Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Gcav, ref bool bBreak)
+            Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Conf, ref bool bBreak)
             {
                 Expression_Node_Function expr_Func = cct.ControlCommon.Owner_MemoryApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
-                    systemFunction_Gcav, true, log_Reports_ThisMethod);
+                    systemFunction_Conf, true, log_Reports_ThisMethod);
 
                 if (log_Reports_ThisMethod.Successful)
                 {

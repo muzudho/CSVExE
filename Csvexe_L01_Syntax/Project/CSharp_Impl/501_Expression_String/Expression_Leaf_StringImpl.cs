@@ -22,19 +22,19 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_Leaf_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
-            : this("", parent_Expression, cur_Gcav)
+        public Expression_Leaf_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+            : this("", parent_Expression, cur_Conf)
         {
         }
 
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_Leaf_StringImpl(string sHumanInput, Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
+        public Expression_Leaf_StringImpl(string sHumanInput, Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
         {
             this.sHumanInput = sHumanInput;
             this.parent_Expression = parent_Expression;
-            this.cur_Configurationtree = cur_Gcav;
+            this.cur_Configurationtree = cur_Conf;
 
             this.enumHitcount = EnumHitcount.Unconstraint;
             this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
@@ -252,11 +252,11 @@ namespace Xenon.Syntax
         /// 文字列を、子要素として追加。
         /// </summary>
         /// <param name="sHumaninput"></param>
-        /// <param name="parent_Gcav"></param>
+        /// <param name="parent_Conf"></param>
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumaninput,
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {

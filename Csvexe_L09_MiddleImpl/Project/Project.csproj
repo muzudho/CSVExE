@@ -60,13 +60,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Csvexe_L06_Expr\Project\bin\Debug\Csvexe_L06_Expr.dll</HintPath>
     </Reference>
-    <Reference Include="Csvexe_L07_GcavToExpr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Csvexe_L07_GcavToExpr\Project\bin\Debug\Csvexe_L07_GcavToExpr.dll</HintPath>
+    <Reference Include="Csvexe_L07_ConfToExpr">
+      <HintPath>..\..\Csvexe_L07_ConfToExpr\Project\bin\Debug\Csvexe_L07_ConfToExpr.dll</HintPath>
     </Reference>
-    <Reference Include="Csvexe_L08_XToGcav, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Csvexe_L08_XToGcav\Project\bin\Debug\Csvexe_L08_XToGcav.dll</HintPath>
+    <Reference Include="Csvexe_L08_XmlToConf">
+      <HintPath>..\..\Csvexe_L08_XmlToConf\Project\bin\Debug\Csvexe_L08_XmlToConf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

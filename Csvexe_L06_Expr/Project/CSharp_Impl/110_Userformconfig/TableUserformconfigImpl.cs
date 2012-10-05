@@ -20,10 +20,10 @@ namespace Xenon.Expr
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public TableUserformconfigImpl(string sName_Table, Configurationtree_Node cur_Gcav)
+        public TableUserformconfigImpl(string sName_Table, Configurationtree_Node cur_Conf)
         {
             this.name_Table = sName_Table;
-            this.cur_Configurationtree = cur_Gcav;
+            this.cur_Configurationtree = cur_Conf;
 
             this.list_RecordUserformconfig = new List<RecordUserformconfig>();
         }

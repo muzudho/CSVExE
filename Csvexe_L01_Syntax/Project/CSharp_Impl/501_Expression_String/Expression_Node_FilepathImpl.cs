@@ -48,8 +48,8 @@ namespace Xenon.Syntax
         /// コンストラクター。
         /// </summary>
         /// <param name="s_Fpath"></param>
-        public Expression_Node_FilepathImpl(Configurationtree_NodeFilepath fpath_Gcav)
-            :base(null,fpath_Gcav)
+        public Expression_Node_FilepathImpl(Configurationtree_NodeFilepath fpath_Conf)
+            :base(null,fpath_Conf)
         {
         }
 
@@ -139,7 +139,7 @@ namespace Xenon.Syntax
 
                 if (log_Reports.Successful)
                 {
-                    sFpath = Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
+                    sFpath = Utility_Configurationtree_Filepath.ToFilepathabsolute(
                         this.Directory_Base,
                         cf_Fpath.GetHumaninput(),//this.SHumanInput相当
                         ref bCheckPathTooLong, //ファイル名の長さチェックは、もう済んでいるものとして、行いません。
@@ -216,7 +216,7 @@ namespace Xenon.Syntax
                 Configurationtree_NodeFilepath cf_Fpath = ((Configurationtree_NodeFilepath)this.Cur_Configurationtree);
 
                 // チェック。絶対パスにすることができればOK。
-                Utility_Configurationtree_Filepath.GetAbsolutefilepathimpl(
+                Utility_Configurationtree_Filepath.ToFilepathabsolute(
                     sFolderpath_New,
                     cf_Fpath.GetHumaninput(),
                     ref bDammyFlagCheckPathTooLong,

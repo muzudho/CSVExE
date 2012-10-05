@@ -36,7 +36,7 @@ namespace Xenon.Middle
         /// 定型処理。
         /// </summary>
         void P101_LoadAatoolxml(
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             );
 

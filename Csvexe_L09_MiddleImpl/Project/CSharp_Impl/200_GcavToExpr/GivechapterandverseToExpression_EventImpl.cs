@@ -44,13 +44,13 @@ namespace Xenon.MiddleImpl
             //
             //
 
-            this.Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Gcav, ref bool bBreak)
+            this.Configurationtree_Event.List_Child.ForEach(delegate(Configurationtree_Node systemFunction_Conf, ref bool bBreak)
             {
                 Expression_Node_Function expr_Func;
                 if (log_Reports.Successful)
                 {
                     expr_Func = moApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
-                        systemFunction_Gcav,
+                        systemFunction_Conf,
                         true,
                         log_Reports
                         );

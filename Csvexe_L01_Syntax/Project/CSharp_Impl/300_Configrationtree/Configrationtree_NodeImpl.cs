@@ -20,12 +20,12 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        /// <param name="sName"></param>
-        /// <param name="parent_Gcav_OrNull"></param>
-        public Configurationtree_NodeImpl(string sName, Configurationtree_Node parent_Gcav_OrNull)
+        /// <param name="name_Node"></param>
+        /// <param name="parent_Conf_OrNull"></param>
+        public Configurationtree_NodeImpl(string name_Node, Configurationtree_Node parent_Conf_OrNull)
         {
-            this.name = sName;
-            this.parent = parent_Gcav_OrNull;
+            this.name = name_Node;
+            this.parent = parent_Conf_OrNull;
             this.list_Child = new List_Configurationtree_NodeImpl(this);
 
             this.dictionary_Attribute = new Dictionary_Configurationtree_StringImpl(this);
@@ -36,7 +36,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// new された直後の内容に戻します。
         /// </summary>
-        public void Clear( string sName, Configurationtree_Node parent_Gcav_OrNull, Log_Reports log_Reports)
+        public void Clear( string sName, Configurationtree_Node parent_Conf_OrNull, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Clear", log_Reports);
@@ -48,7 +48,7 @@ namespace Xenon.Syntax
             //
             //
             //
-            this.Parent = parent_Gcav_OrNull;
+            this.Parent = parent_Conf_OrNull;
 
 
             //
@@ -189,7 +189,7 @@ namespace Xenon.Syntax
             //
             Configurationtree_Node result;
 
-            Configurationtree_Node err_Parent_Gcav;
+            Configurationtree_Node err_Parent_Conf;
             if (log_Reports.Successful)
             {
                 if (null != this.Parent)
@@ -212,7 +212,7 @@ namespace Xenon.Syntax
                     // 親要素がないとき
 
                     result = null;
-                    err_Parent_Gcav = null;
+                    err_Parent_Conf = null;
                     goto gt_Error_NotFoundParent;
                 }
             }
@@ -249,10 +249,10 @@ namespace Xenon.Syntax
                     s.Append("親要素はヌルです。");
                     s.Newline();
 
-                    if (null != err_Parent_Gcav)
+                    if (null != err_Parent_Conf)
                     {
                         s.Append("親要素ノード名[");
-                        s.Append(err_Parent_Gcav.Name);
+                        s.Append(err_Parent_Conf.Name);
                         s.Append("]");
                         s.Newline();
                     }
@@ -293,12 +293,12 @@ namespace Xenon.Syntax
 
             if (log_Reports.Successful)
             {
-                this.list_Child.ForEach(delegate(Configurationtree_Node child_Gcav, ref bool bBreak)
+                this.list_Child.ForEach(delegate(Configurationtree_Node child_Conf, ref bool bBreak)
                 {
-                    if (sName == child_Gcav.Name)
+                    if (sName == child_Conf.Name)
                     {
                         // ノード名が一致
-                        result.Add(child_Gcav);
+                        result.Add(child_Conf);
                     }
                     else
                     {

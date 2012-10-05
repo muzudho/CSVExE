@@ -30,7 +30,7 @@ namespace Xenon.Functions
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Node_Function ConfigurationtreeToFunction(
-            Configurationtree_Node action_Gcav,
+            Configurationtree_Node action_Conf,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )
@@ -49,7 +49,7 @@ namespace Xenon.Functions
             if (log_Reports.Successful)
             {
                 expr_Func = owner_MemoryApplication.MemoryForms.ConfigurationtreeToFunction.Translate(
-                    action_Gcav,
+                    action_Conf,
                     true,
                     log_Reports
                     );

@@ -20,9 +20,9 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Dictionary_Expression_Node_StringImpl(Configurationtree_Node owner_Gcav)
+        public Dictionary_Expression_Node_StringImpl(Configurationtree_Node owner_Conf)
         {
-            this.Owner_Gcav = owner_Gcav;
+            this.Owner_Conf = owner_Conf;
 
             this.dicExpression_Item = new Dictionary<string, Expression_Node_String>();
         }
@@ -253,11 +253,11 @@ namespace Xenon.Syntax
 
                         // ヒント
 
-                        if (null != this.Owner_Gcav)
+                        if (null != this.Owner_Conf)
                         {
                             s.Append("◆オーナー情報1");
                             s.Newline();
-                            this.Owner_Gcav.ToText_Content(s);
+                            this.Owner_Conf.ToText_Content(s);
                         }
 
                         if (0 < this.dicExpression_Item.Count)
@@ -279,7 +279,7 @@ namespace Xenon.Syntax
                         s.Newline();
                         s.Append("◆オーナー情報2。");
                         s.Newline();
-                        this.owner_Gcav.ToText_Locationbreadcrumbs(s);
+                        this.owner_Conf.ToText_Locationbreadcrumbs(s);
 
 
                         r.Message = s.ToString();
@@ -292,8 +292,8 @@ namespace Xenon.Syntax
                 else
                 {
                     // 該当しないキーを指定され、値を取得できなかったが、エラー報告しない。
-                    Configurationtree_Node parent_Gcav = new Configurationtree_NodeImpl("!ハードコーディング_NStringDictionaryImpl#Get", null);
-                    ec_Result_Out = new Expression_Leaf_StringImpl(null, parent_Gcav);
+                    Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl("!ハードコーディング_NStringDictionaryImpl#Get", null);
+                    ec_Result_Out = new Expression_Leaf_StringImpl(null, parent_Conf);
                     bHit = false;
                 }
             }
@@ -354,20 +354,20 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private Configurationtree_Node owner_Gcav;
+        private Configurationtree_Node owner_Conf;
 
         /// <summary>
         /// このオブジェクトを持つ、オブジェクト。
         /// </summary>
-        public Configurationtree_Node Owner_Gcav
+        public Configurationtree_Node Owner_Conf
         {
             get
             {
-                return owner_Gcav;
+                return owner_Conf;
             }
             set
             {
-                owner_Gcav = value;
+                owner_Conf = value;
             }
         }
 

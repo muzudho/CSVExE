@@ -340,7 +340,7 @@ namespace Xenon.Operating
 
                     // 設定のし直し。
                     // 出力ファイルの絶対パスが長すぎると真。
-                    bool bPathTooLong = Utility_Configurationtree_Filepath.IsPathTooLong(
+                    bool isTooLong_Path = Utility_Configurationtree_Filepath.IsTooLong_Path(
                         sNewRelHPath3,
                         log_Reports,
                         s_ParentNode
@@ -356,7 +356,7 @@ namespace Xenon.Operating
                         goto gt_EndMethod;
                     }
 
-                    if (bPathTooLong)
+                    if (isTooLong_Path)
                     {
 
                         // 強引に短縮。

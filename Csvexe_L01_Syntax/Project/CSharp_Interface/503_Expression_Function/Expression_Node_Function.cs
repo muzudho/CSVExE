@@ -22,13 +22,13 @@ namespace Xenon.Syntax
         /// コンストラクターでは行わなかった初期値の設定を行います。
         /// </summary>
         /// <param name="parent_Expression"></param>
-        /// <param name="cur_Gcav"></param>
+        /// <param name="cur_Conf"></param>
         /// <param name="memoryApplication"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Gcav,
+            Configurationtree_Node cur_Conf,
             object/*MemoryApplication*/ memoryApplication,
             Log_Reports log_Reports
             );

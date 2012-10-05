@@ -26,7 +26,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 型指定は string。インスタンスは Configurationtree_NodeFilepath。
         /// </summary>
-        GcavFilepath,
+        ConfFilepath,
 
         Bool,
 

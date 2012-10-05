@@ -262,13 +262,13 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sName_Fnc"></param>
         /// <param name="parent_Expression"></param>
-        /// <param name="cur_Gcav"></param>
+        /// <param name="cur_Conf"></param>
         /// <param name="owner_MemoryApplication"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public static Expression_Node_Function NewFunction2(
             string sName_Fnc,
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
             //EnumEventhandler enumEventhandler,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
@@ -280,7 +280,7 @@ namespace Xenon.Functions
             {
                 expr_Func = dictionary_Interlibrary[sName_Fnc].NewInstance(
                     parent_Expression,
-                    cur_Gcav, 
+                    cur_Conf, 
                     //enumEventhandler,
                     owner_MemoryApplication,
                     log_Reports

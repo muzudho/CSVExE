@@ -20,14 +20,14 @@ namespace Xenon.Expr
         #region 生成と破棄
         //────────────────────────────────────────
 
-        private Expression_SfcaseImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
-            : base(parent_Expression, cur_Gcav)
+        private Expression_SfcaseImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+            : base(parent_Expression, cur_Conf)
         {
         }
 
-        public static Expression_Node_String Create(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
+        public static Expression_Node_String Create(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
         {
-            return new Expression_SfcaseImpl(parent_Expression, cur_Gcav);
+            return new Expression_SfcaseImpl(parent_Expression, cur_Conf);
         }
 
         //────────────────────────────────────────

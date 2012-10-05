@@ -30,12 +30,12 @@ namespace Xenon.Expr
         /// コンストラクター。
         /// </summary>
         /// <param name="parent_Expression">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
-        /// <param name="cur_Gcav">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
+        /// <param name="cur_Conf">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         public Expression_Node_FunctionImpl(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav, List<string> listS_ArgName)
-            : base(parent_Expression, cur_Gcav)
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf, List<string> listS_ArgName)
+            : base(parent_Expression, cur_Conf)
         {
-            this.dictionary_Expression_Parameter = new Dictionary_Expression_Node_StringImpl(cur_Gcav);
+            this.dictionary_Expression_Parameter = new Dictionary_Expression_Node_StringImpl(cur_Conf);
             this.functionparameterset = new FunctionparametersetImpl();
 
             this.list_NameArgument = listS_ArgName;// new List<string>();
@@ -45,17 +45,17 @@ namespace Xenon.Expr
         /// 込み入った処理が必要なこともあるので、コンストラクターとは分けています。
         /// </summary>
         /// <param name="parent_Expression"></param>
-        /// <param name="cur_Gcav"></param>
+        /// <param name="cur_Conf"></param>
         /// <param name="owner_MemoryApplication"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public virtual Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Gcav,
+            Configurationtree_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports)
         {
-            Expression_Node_FunctionImpl expr_Func = new Expression_Node_FunctionImpl(parent_Expression, cur_Gcav, this.List_NameArgument);
+            Expression_Node_FunctionImpl expr_Func = new Expression_Node_FunctionImpl(parent_Expression, cur_Conf, this.List_NameArgument);
             expr_Func.Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             return expr_Func;
         }

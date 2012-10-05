@@ -697,7 +697,7 @@ namespace Xenon.Layout
                         cf_Fpath_Control.InitPath(sValue, pg_Logging);
                         if (pg_Logging.Successful)
                         {
-                            fo_Record.Set(NamesFld.S_FILE, EnumTypedb.GcavFilepath, cf_Fpath_Control, pg_Logging);
+                            fo_Record.Set(NamesFld.S_FILE, EnumTypedb.ConfFilepath, cf_Fpath_Control, pg_Logging);
                             //fo_Record.Cf_File = cf_Fpath_Control;
                         }
                     }
@@ -707,7 +707,7 @@ namespace Xenon.Layout
                         cf_Fpath_Control.InitPath("", pg_Logging);
                         if (pg_Logging.Successful)
                         {
-                            fo_Record.Set(NamesFld.S_FILE, EnumTypedb.GcavFilepath, cf_Fpath_Control, pg_Logging);
+                            fo_Record.Set(NamesFld.S_FILE, EnumTypedb.ConfFilepath, cf_Fpath_Control, pg_Logging);
                             //fo_Record.Cf_File = cf_Fpath;
                         }
                     }

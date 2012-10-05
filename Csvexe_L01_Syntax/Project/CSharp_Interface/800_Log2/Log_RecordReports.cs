@@ -33,7 +33,7 @@ namespace Xenon.Syntax
         /// </summary>
         /// <returns></returns>
         string Message_Configurationtree(
-            Configurationtree_Node cur_Gcav
+            Configurationtree_Node cur_Conf
             );
 
         /// <summary>

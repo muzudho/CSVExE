@@ -21,11 +21,11 @@ namespace Xenon.Syntax
         /// コンストラクター。
         /// </summary>
         /// <param name="parent_Expression"></param>
-        /// <param name="cur_Gcav">生成時に指定できないものもある。</param>
-        public Expression_Node_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav)
+        /// <param name="cur_Conf">生成時に指定できないものもある。</param>
+        public Expression_Node_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
         {
             this.parent_Expression = parent_Expression;
-            this.cur_Configurationtree = cur_Gcav;
+            this.cur_Configurationtree = cur_Conf;
 
             enumHitcount = EnumHitcount.Unconstraint;
             this.ecList_Child = new List_Expression_Node_StringImpl(this);
@@ -180,11 +180,11 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumanInput,
-            Configurationtree_Node parent_Gcav,
+            Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
-            Expression_Leaf_StringImpl ec_Child = new Expression_Leaf_StringImpl(null, parent_Gcav);
+            Expression_Leaf_StringImpl ec_Child = new Expression_Leaf_StringImpl(null, parent_Conf);
             ec_Child.SetString(sHumanInput, log_Reports);
 
             this.List_Expression_Child.Add(ec_Child, log_Reports);

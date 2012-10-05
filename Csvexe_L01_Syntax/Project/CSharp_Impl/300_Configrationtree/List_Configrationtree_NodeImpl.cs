@@ -20,9 +20,9 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public List_Configurationtree_NodeImpl(Configurationtree_Node owner_Gcav)
+        public List_Configurationtree_NodeImpl(Configurationtree_Node owner_Conf)
         {
-            this.owner = owner_Gcav;
+            this.owner = owner_Conf;
             this.list_Configurationtree_Node = new List<Configurationtree_Node>();
         }
 
@@ -54,9 +54,9 @@ namespace Xenon.Syntax
 
             //
             // 子要素
-            foreach (Configurationtree_Node cur_Gcav in this.list_Configurationtree_Node)
+            foreach (Configurationtree_Node cur_Conf in this.list_Configurationtree_Node)
             {
-                cur_Gcav.ToText_Content(s);
+                cur_Conf.ToText_Content(s);
             }
 
             // 子要素しかありません。
@@ -70,11 +70,11 @@ namespace Xenon.Syntax
         /// 追加。
         /// </summary>
         public void Add(
-            Configurationtree_Node cur_Gcav,
+            Configurationtree_Node cur_Conf,
             Log_Reports log_Reports
             )
         {
-            this.list_Configurationtree_Node.Add(cur_Gcav);
+            this.list_Configurationtree_Node.Add(cur_Conf);
         }
 
         //────────────────────────────────────────
@@ -196,9 +196,9 @@ namespace Xenon.Syntax
         public void ForEach(DELEGATE_Configurationtree_Nodes dlgt1)
         {
             bool bBreak = false;
-            foreach (Configurationtree_Node cur_Gcav in this.list_Configurationtree_Node)
+            foreach (Configurationtree_Node cur_Conf in this.list_Configurationtree_Node)
             {
-                dlgt1(cur_Gcav, ref bBreak);
+                dlgt1(cur_Conf, ref bBreak);
 
                 if (bBreak)
                 {

@@ -21,7 +21,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// new された直後の内容に戻します。
         /// </summary>
-        void Clear(Configurationtree_Node owner_Gcav, Log_Reports log_Reports);
+        void Clear(Configurationtree_Node owner_Conf, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion

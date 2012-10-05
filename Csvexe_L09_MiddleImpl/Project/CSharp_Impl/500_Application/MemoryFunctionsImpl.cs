@@ -6,9 +6,9 @@ using System.Text;
 using System.Xml;
 using Xenon.Syntax;
 using Xenon.Middle;
-using Xenon.XToGcav;
+using Xenon.XmlToConf;
 using Xenon.Expr;
-using Xenon.GcavToExpr;
+using Xenon.ConfToExpr;
 
 namespace Xenon.MiddleImpl
 {
@@ -284,8 +284,8 @@ namespace Xenon.MiddleImpl
                             }
 
                             // XToCf
-                            XToConfigurationtree_C15_Elm xToCf = XToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_COMMON_FUNCTION, log_Reports);
-                            xToCf.XToConfigurationtree(
+                            XmlToConfigurationtree_C15_Elm xToCf = XmlToConfigurationtree_Collection.GetTranslatorByNodeName(NamesNode.S_COMMON_FUNCTION, log_Reports);
+                            xToCf.XmlToConfigurationtree(
                                 x_Cur,
                                 parent_Cf,
                                 this.Owner_MemoryApplication,

@@ -48,7 +48,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Gcav,
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -57,12 +57,12 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function31Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Gcav;
+            f0.Cur_Configurationtree = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Gcav), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
 
-            f0.SetAttribute(Expression_Node_Function31Impl.PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Gcav), log_Reports);
+            f0.SetAttribute(Expression_Node_Function31Impl.PM_NAME_CONTROL, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);

@@ -33,9 +33,9 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sNodeName"></param>
         /// <param name="parent_Ec"></param>
-        /// <param name="cur_Gcav"></param>
+        /// <param name="cur_Conf"></param>
         public Expression_Node_FunctionAbstract(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
-            : base(null/*parent_Expression*/, null/*cur_Gcav*/, listS_ArgName)
+            : base(null/*parent_Expression*/, null/*cur_Conf*/, listS_ArgName)
         {
             this.EnumEventhandler = enumEventhandler;
             this.functiontranslatoritem = functiontranslatoritem;
@@ -43,7 +43,7 @@ namespace Xenon.Functions
 
         public abstract override Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Gcav,
+            Configurationtree_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports);
 
         //────────────────────────────────────────
