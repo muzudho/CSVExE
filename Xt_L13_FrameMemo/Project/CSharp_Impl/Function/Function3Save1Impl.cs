@@ -10,7 +10,7 @@ namespace Xenon.FrameMemo
     /// <summary>
     /// 画像を保存。
     /// </summary>
-    class SubactionSave001
+    class Function3Save1Impl
     {
 
 
@@ -19,16 +19,16 @@ namespace Xenon.FrameMemo
         //────────────────────────────────────────
 
         public void Save(
-            ViewFrame_InfoDisplay infoDisplay,
+            Usercontrolview_Infodisplay infodisplay,
             CheckBox pcchkInfo,
             Usercontrol_FrameMemo uc_FrameMemo
             )
         {
-            if (null != infoDisplay.MoSprite.Bitmap)
+            if (null != infodisplay.MemorySprite.Bitmap)
             {
 
-                Bitmap bm = new SubactionSave001Sub001().CreateSaveImage(
-                    infoDisplay,
+                Bitmap bm = new Function4Save1bImpl().CreateSaveImage(
+                    infodisplay,
                     pcchkInfo,
                     uc_FrameMemo
                     );

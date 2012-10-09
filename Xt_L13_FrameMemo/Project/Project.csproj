@@ -64,12 +64,12 @@
     <Compile Include="CSharp_Impl\CustomcontrolButtonEx.Designer.cs">
       <DependentUpon>CustomcontrolButtonEx.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSharp_Impl\Subaction\Subaction001.cs" />
-    <Compile Include="CSharp_Impl\Subaction\Subaction002.cs" />
-    <Compile Include="CSharp_Impl\Subaction\SubactionSave001.cs" />
-    <Compile Include="CSharp_Impl\Subaction\SubactionSave002.cs" />
-    <Compile Include="CSharp_Impl\Subaction\SubactionSave001Sub001.cs" />
-    <Compile Include="CSharp_Impl\ViewFrame_InfoDisplay.cs" />
+    <Compile Include="CSharp_Impl\Function\Function1DrawimageImpl.cs" />
+    <Compile Include="CSharp_Impl\Function\Function2DrawcropImpl.cs" />
+    <Compile Include="CSharp_Impl\Function\Function3Save1Impl.cs" />
+    <Compile Include="CSharp_Impl\Function\Function5Save2Impl.cs" />
+    <Compile Include="CSharp_Impl\Function\Function4Save1bImpl.cs" />
+    <Compile Include="CSharp_Impl\Usercontrolview_Infodisplay.cs" />
     <Compile Include="CSharp_Impl\Usercontrol_FrameMemo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,14 +113,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="CSharp_Impl\MemorySpriteImpl.cs" />
-    <Compile Include="CSharp_Impl\EnumMousedragmode.cs" />
+    <Compile Include="CSharp_Interface\EnumMousedragmode.cs" />
     <Compile Include="CSharp_Impl\Usercontrol_FrameParam.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CSharp_Impl\Usercontrol_FrameParam.Designer.cs">
       <DependentUpon>Usercontrol_FrameParam.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSharp_Interface\ViewFrame.cs" />
+    <Compile Include="CSharp_Interface\Usercontrolview.cs" />
     <Compile Include="CSharp_Info\Info_FrameMemo.cs" />
   </ItemGroup>
   <ItemGroup />

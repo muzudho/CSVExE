@@ -10,7 +10,7 @@ namespace Xenon.FrameMemo
     /// <summary>
     /// 全フレームの画像を保存。
     /// </summary>
-    class SubactionSave002
+    class Function5Save2Impl
     {
 
 
@@ -19,17 +19,17 @@ namespace Xenon.FrameMemo
         //────────────────────────────────────────
 
         public void Save(
-            ViewFrame_InfoDisplay infoDisplay,
+            Usercontrolview_Infodisplay infodisplay,
             CheckBox pcchkInfo,
             Usercontrol_FrameMemo uc_FrameMemo
             )
         {
-            if (null != infoDisplay.MoSprite.Bitmap)
+            if (null != infodisplay.MemorySprite.Bitmap)
             {
 
                 // 列数と行数。
-                int nCols = (int)infoDisplay.MoSprite.NColCountResult;
-                int nRows = (int)infoDisplay.MoSprite.NRowCountResult;
+                int nCols = (int)infodisplay.MemorySprite.CountcolumnResult;
+                int nRows = (int)infodisplay.MemorySprite.CountrowResult;
 
                 // ファイル名の頭。
                 StringBuilder s1 = new StringBuilder();
@@ -62,10 +62,10 @@ namespace Xenon.FrameMemo
                         System.Console.WriteLine("r" + nRow + " c" + nCol + " nCell" + nCell + "  nRows" + nRows + " nCols" + nCols);
 
 
-                        uc_FrameMemo.Uc_FrameParam.PctxtCropForce.Text = nCell.ToString();
+                        uc_FrameMemo.Usercontrol_FrameParam.PctxtCropForce.Text = nCell.ToString();
 
-                        Bitmap bm = new SubactionSave001Sub001().CreateSaveImage(
-                            infoDisplay,
+                        Bitmap bm = new Function4Save1bImpl().CreateSaveImage(
+                            infodisplay,
                             pcchkInfo,
                             uc_FrameMemo
                             );

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Xenon.FrameMemo
 {
-    public partial class Usercontrol_FrameParam : UserControl, ViewFrame
+    public partial class Usercontrol_FrameParam : UserControl, Usercontrolview
     {
 
 
@@ -33,42 +33,42 @@ namespace Xenon.FrameMemo
         #region アクション
         //────────────────────────────────────────
 
-        public void OnColumnCountResultChanged(float nValue)
+        public void OnChanged_CountcolumnResult(float nValue)
         {
             this.pclblColResult.Text = nValue.ToString();
         }
 
         //────────────────────────────────────────
 
-        public void OnRowCountResultChanged(float nValue)
+        public void OnChanged_CountrowResult(float nValue)
         {
             this.pclblRowResult.Text = nValue.ToString();
         }
 
         //────────────────────────────────────────
 
-        public void OnCellWidthResultChanged(float nValue)
+        public void OnChanged_WidthcellResult(float nValue)
         {
             this.pclblCellWidthResult.Text = nValue.ToString();
         }
 
         //────────────────────────────────────────
 
-        public void OnCellHeightResultChanged(float nValue)
+        public void OnChanged_HeightcellResult(float nValue)
         {
             this.pclblCellHeightResult.Text = nValue.ToString();
         }
 
         //────────────────────────────────────────
 
-        public void OnCropForceChanged(int nValue)
+        public void OnChanged_CropForce(int nValue)
         {
             this.pclblCropResult.Text = nValue.ToString();
         }
 
         //────────────────────────────────────────
 
-        public void OnCropLastResultChanged(int nValue)
+        public void OnChanged_CropLastResult(int nValue)
         {
             this.pclblCropLastResult.Text = nValue.ToString();
         }
@@ -149,10 +149,10 @@ namespace Xenon.FrameMemo
             int nValue;
             int.TryParse(pctxt.Text, out nValue);
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
-            this.MoSprite.NColCntForce = nValue;
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
+            this.MemorySprite.CountcolumnForce = nValue;
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         private void pctxtRow_TextChanged(object sender, EventArgs e)
@@ -162,10 +162,10 @@ namespace Xenon.FrameMemo
             int value = 0;
             int.TryParse(pctxt.Text, out value);
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
-            this.MoSprite.NRowCountForce = value;
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
+            this.MemorySprite.CountrowForce = value;
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         private void pctxtCellWidth_TextChanged(object sender, EventArgs e)
@@ -175,12 +175,12 @@ namespace Xenon.FrameMemo
             int value = 0;
             int.TryParse(pctxt.Text, out value);
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
 
-            this.MoSprite.NCellSizeForce = new SizeF(value, this.MoSprite.NCellSizeForce.Height);
+            this.MemorySprite.SizecellForce = new SizeF(value, this.MemorySprite.SizecellForce.Height);
 
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         private void pctxtCellHeight_TextChanged(object sender, EventArgs e)
@@ -190,12 +190,12 @@ namespace Xenon.FrameMemo
             int value = 0;
             int.TryParse(pctxt.Text, out value);
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
 
-            this.MoSprite.NCellSizeForce = new SizeF(this.MoSprite.NCellSizeForce.Width, value);
+            this.MemorySprite.SizecellForce = new SizeF(this.MemorySprite.SizecellForce.Width, value);
 
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         /// <summary>
@@ -214,10 +214,10 @@ namespace Xenon.FrameMemo
                 nCropForce = 0;
             }
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
-            this.MoSprite.NCropForce = nCropForce;
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
+            this.MemorySprite.FrameCropForce = nCropForce;
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         private void pctxtGridX_TextChanged(object sender, EventArgs e)
@@ -227,13 +227,13 @@ namespace Xenon.FrameMemo
             int value = 0;
             int.TryParse(pctxt.Text, out value);
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
-            this.MoSprite.GridLt = new PointF(
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
+            this.MemorySprite.GridLefttop = new PointF(
                 value,
-                this.MoSprite.GridLt.Y
+                this.MemorySprite.GridLefttop.Y
                 );
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         private void pctxtGridY_TextChanged(object sender, EventArgs e)
@@ -243,13 +243,13 @@ namespace Xenon.FrameMemo
             int value = 0;
             int.TryParse(pctxt.Text, out value);
 
-            this.MoSprite.BAutoInputting = true;//自動入力開始
-            this.MoSprite.GridLt = new PointF(
-                this.MoSprite.GridLt.X,
+            this.MemorySprite.IsAutoinputting = true;//自動入力開始
+            this.MemorySprite.GridLefttop = new PointF(
+                this.MemorySprite.GridLefttop.X,
                 value
                 );
-            this.MoSprite.RefreshViews();// 対応ビューの再描画
-            this.MoSprite.BAutoInputting = false;//自動入力終了
+            this.MemorySprite.RefreshViews();// 対応ビューの再描画
+            this.MemorySprite.IsAutoinputting = false;//自動入力終了
         }
 
         //────────────────────────────────────────
@@ -260,17 +260,17 @@ namespace Xenon.FrameMemo
         #region プロパティー
         //────────────────────────────────────────
 
-        protected MemorySpriteImpl moSprite;
+        protected MemorySpriteImpl memorySprite;
 
-        public MemorySpriteImpl MoSprite
+        public MemorySpriteImpl MemorySprite
         {
             get
             {
-                return moSprite;
+                return memorySprite;
             }
             set
             {
-                moSprite = value;
+                memorySprite = value;
             }
         }
 

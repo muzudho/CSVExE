@@ -71,8 +71,8 @@ namespace Xenon.FrameMemo
                     case Keys.S:
                         {
                             // [Ctrl]+[S]
-                            new SubactionSave001().Save(
-                                this.xyMemoUc1.InfoDisplay,
+                            new Function3Save1Impl().Save(
+                                this.xyMemoUc1.Infodisplay,
                                 this.xyMemoUc1.PcchkInfo,
                                 this.xyMemoUc1
                                 );

@@ -11,7 +11,7 @@ namespace Xenon.FrameMemo
     /// <summary>
     /// width,height,ファイル名等表示です。
     /// </summary>
-    public class ViewFrame_InfoDisplay : ViewFrame
+    public class Usercontrolview_Infodisplay : Usercontrolview
     {
 
 
@@ -22,7 +22,7 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public ViewFrame_InfoDisplay()
+        public Usercontrolview_Infodisplay()
         {
             this.font = new Font("ＭＳ ゴシック", 12, FontStyle.Bold);
 
@@ -42,7 +42,7 @@ namespace Xenon.FrameMemo
                 dy += 16;
             }
 
-            this.sFilePath = "";
+            this.filepath = "";
             this.textBackBrush = new SolidBrush(Color.FromArgb(0x99, 0xff, 0xff, 0xff));
         }
 
@@ -63,7 +63,7 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// セルの横幅。等倍。
         /// </summary>
-        public void OnCellWidthResultChanged(float nValue)
+        public void OnChanged_WidthcellResult(float nValue)
         {
         }
 
@@ -72,7 +72,7 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// セルの縦幅。等倍。
         /// </summary>
-        public void OnCellHeightResultChanged(float nValue)
+        public void OnChanged_HeightcellResult(float nValue)
         {
         }
 
@@ -81,7 +81,7 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 行数。
         /// </summary>
-        public void OnRowCountResultChanged(float nValue)
+        public void OnChanged_CountrowResult(float nValue)
         {
         }
 
@@ -90,7 +90,7 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 列数。
         /// </summary>
-        public void OnColumnCountResultChanged(float nValue)
+        public void OnChanged_CountcolumnResult(float nValue)
         {
         }
 
@@ -99,7 +99,7 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 切抜き位置／１～。0以下、または範囲外指定で全体図。
         /// </summary>
-        public void OnCropForceChanged(int nValue)
+        public void OnChanged_CropForce(int nValue)
         {
         }
 
@@ -108,19 +108,19 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 切抜き位置終値／１～。
         /// </summary>
-        public void OnCropLastResultChanged(int nValue)
+        public void OnChanged_CropLastResult(int nValue)
         {
         }
 
         //────────────────────────────────────────
 
-        public string ToColumnRowString()
+        public string ToString_ColumnRow()
         {
             StringBuilder s = new StringBuilder();
             s.Append("c");
-            s.Append(this.MoSprite.NColCountResult);
+            s.Append(this.MemorySprite.CountcolumnResult);
             s.Append(" r");
-            s.Append(this.MoSprite.NRowCountResult);
+            s.Append(this.MemorySprite.CountrowResult);
             s.Append("（列,行）");
 
             return s.ToString();
@@ -128,13 +128,13 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        public string ToCellSizeString()
+        public string ToString_CellSize()
         {
             StringBuilder s = new StringBuilder();
             s.Append("w");
-            s.Append(this.MoSprite.NCellWidthResult);
+            s.Append(this.MemorySprite.WidthcellResult);
             s.Append(" h");
-            s.Append(this.MoSprite.NCellHeightResult);
+            s.Append(this.MemorySprite.HeightcellResult);
             s.Append(" (セル)");
 
             return s.ToString();
@@ -142,9 +142,9 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        public string ToFrameSizeString()
+        public string ToString_FrameSize()
         {
-            SizeF size = this.MoSprite.GetFrameSize();
+            SizeF size = this.MemorySprite.GetFrameSize();
 
             StringBuilder s = new StringBuilder();
             s.Append("w");
@@ -158,25 +158,25 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        public string ToFileNameString()
+        public string ToString_FileName()
         {
             StringBuilder s = new StringBuilder();
             s.Append("file=");
-            s.Append(System.IO.Path.GetFileName(this.SFilePath));
+            s.Append(System.IO.Path.GetFileName(this.Filepath));
 
             return s.ToString();
         }
 
         //────────────────────────────────────────
 
-        public string ToCropString()
+        public string ToString_Crop()
         {
             StringBuilder s = new StringBuilder();
             s.Append("切抜き=");
-            s.Append(this.MoSprite.NCropForce);
+            s.Append(this.MemorySprite.FrameCropForce);
             s.Append("番目　x");
 
-            PointF cropL = this.MoSprite.GetCropXy();
+            PointF cropL = this.MemorySprite.GetCropXy();
             s.Append(cropL.X);
             s.Append(" y");
             s.Append(cropL.Y);
@@ -186,13 +186,13 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        public string ToGridXyString()
+        public string ToString_GridXy()
         {
             StringBuilder s = new StringBuilder();
             s.Append("x");
-            s.Append(this.MoSprite.GridLt.X);
+            s.Append(this.MemorySprite.GridLefttop.X);
             s.Append(" y");
-            s.Append(this.MoSprite.GridLt.Y);
+            s.Append(this.MemorySprite.GridLefttop.Y);
             s.Append("（グリッド）");
 
             return s.ToString();
@@ -200,13 +200,13 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        public string ToImageSizeString()
+        public string ToString_ImageSize()
         {
             StringBuilder s = new StringBuilder();
             s.Append("w");
-            s.Append(this.MoSprite.NImageSize.Width);
+            s.Append(this.MemorySprite.SizeImage.Width);
             s.Append(" h");
-            s.Append(this.MoSprite.NImageSize.Height);
+            s.Append(this.MemorySprite.SizeImage.Height);
             s.Append(" (画)");
 
             return s.ToString();
@@ -225,13 +225,13 @@ namespace Xenon.FrameMemo
 
             int nIndex = 1;
 
-            if ((this.MoSprite.NRowCountResult != 1 || this.MoSprite.NColCountResult != 1) || this.MoSprite.BCrop)
+            if ((this.MemorySprite.CountrowResult != 1 || this.MemorySprite.CountcolumnResult != 1) || this.MemorySprite.IsCrop)
             {
                 // 1列、1行でなければ [c,r][w,h（個）][w,h（枠）]を表示するので +3 行。
                 // または、切り抜いた時。
 
                 // c,r
-                textArray[nIndex] = this.ToColumnRowString();
+                textArray[nIndex] = this.ToString_ColumnRow();
                 tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
                 if (maxTxtWidth < tmpTxtWidth)
                 {
@@ -240,7 +240,7 @@ namespace Xenon.FrameMemo
                 nIndex++;
 
                 // w,h（個）
-                textArray[nIndex] = this.ToCellSizeString();
+                textArray[nIndex] = this.ToString_CellSize();
                 tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
                 if (maxTxtWidth < tmpTxtWidth)
                 {
@@ -249,7 +249,7 @@ namespace Xenon.FrameMemo
                 nIndex++;
 
                 // w,h（枠）
-                textArray[nIndex] = this.ToFrameSizeString();
+                textArray[nIndex] = this.ToString_FrameSize();
                 tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
                 if (maxTxtWidth < tmpTxtWidth)
                 {
@@ -258,7 +258,7 @@ namespace Xenon.FrameMemo
                 nIndex++;
             }
 
-            textArray[nIndex] = this.ToFileNameString();
+            textArray[nIndex] = this.ToString_FileName();
             tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
             if (maxTxtWidth < tmpTxtWidth)
             {
@@ -266,9 +266,9 @@ namespace Xenon.FrameMemo
             }
             nIndex++;
 
-            if (this.MoSprite.BCrop)
+            if (this.MemorySprite.IsCrop)
             {
-                textArray[nIndex] = this.ToCropString();
+                textArray[nIndex] = this.ToString_Crop();
                 tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
                 if (maxTxtWidth < tmpTxtWidth)
                 {
@@ -277,9 +277,9 @@ namespace Xenon.FrameMemo
                 nIndex++;
             }
 
-            if (this.MoSprite.GridLt.X != 0 || this.MoSprite.GridLt.Y != 0)
+            if (this.MemorySprite.GridLefttop.X != 0 || this.MemorySprite.GridLefttop.Y != 0)
             {
-                textArray[nIndex] = this.ToGridXyString();
+                textArray[nIndex] = this.ToString_GridXy();
                 tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
                 if (maxTxtWidth < tmpTxtWidth)
                 {
@@ -289,7 +289,7 @@ namespace Xenon.FrameMemo
             }
 
             // 画
-            textArray[nIndex] = this.ToImageSizeString();
+            textArray[nIndex] = this.ToString_ImageSize();
             tmpTxtWidth = (int)g.MeasureString(textArray[nIndex], this.Font).Width;
             if (maxTxtWidth < tmpTxtWidth)
             {
@@ -309,7 +309,7 @@ namespace Xenon.FrameMemo
 
 
             // 切抜きの有無。
-            bool bCrop = this.MoSprite.BCrop;
+            bool bCrop = this.MemorySprite.IsCrop;
 
             // 半透明の白色
             {
@@ -326,7 +326,7 @@ namespace Xenon.FrameMemo
 
             int nIndex = 1;
 
-            if ((this.MoSprite.NRowCountResult != 1 || this.MoSprite.NColCountResult != 1) || this.MoSprite.BCrop)
+            if ((this.MemorySprite.CountrowResult != 1 || this.MemorySprite.CountcolumnResult != 1) || this.MemorySprite.IsCrop)
             {
                 // 1列、1行でなければ [c,r][w,h（個）][w,h（枠）]を表示するので +3 行。
                 // または、切り抜いた時。
@@ -475,7 +475,7 @@ namespace Xenon.FrameMemo
             }
 
             // グリッドXY
-            if (this.MoSprite.GridLt.X != 0 || this.MoSprite.GridLt.Y != 0)
+            if (this.MemorySprite.GridLefttop.X != 0 || this.MemorySprite.GridLefttop.Y != 0)
             {
                 string sValue = textArray[nIndex];
 
@@ -577,17 +577,17 @@ namespace Xenon.FrameMemo
         #region プロパティー
         //────────────────────────────────────────
 
-        protected MemorySpriteImpl moSprite;
+        protected MemorySpriteImpl memorySprite;
 
-        public MemorySpriteImpl MoSprite
+        public MemorySpriteImpl MemorySprite
         {
             get
             {
-                return moSprite;
+                return memorySprite;
             }
             set
             {
-                moSprite = value;
+                memorySprite = value;
             }
         }
 
@@ -641,20 +641,20 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        protected string sFilePath;
+        protected string filepath;
 
         /// <summary>
         /// 画像の縦幅。等倍。
         /// </summary>
-        public string SFilePath
+        public string Filepath
         {
             get
             {
-                return sFilePath;
+                return filepath;
             }
             set
             {
-                sFilePath = value;
+                filepath = value;
             }
         }
 
@@ -672,20 +672,20 @@ namespace Xenon.FrameMemo
                 // 文字列行数
                 int infoRows = 2;// [w,h（全）] [file name]
 
-                if ((this.MoSprite.NRowCountResult != 1 || this.MoSprite.NColCountResult != 1) || this.MoSprite.BCrop)
+                if ((this.MemorySprite.CountrowResult != 1 || this.MemorySprite.CountcolumnResult != 1) || this.MemorySprite.IsCrop)
                 {
                     // 1列、1行でなければ [c,r][w,h（個）][w,h（枠）]を表示するので +2 行。
                     // または、切り抜いた時。
                     infoRows += 3;
                 }
 
-                if (this.MoSprite.BCrop)
+                if (this.MemorySprite.IsCrop)
                 {
                     // 切抜き画像サイズ（切抜き1番目、等）を表示するなら +1 行。
                     infoRows++;
                 }
 
-                if (this.MoSprite.GridLt.X != 0 || this.MoSprite.GridLt.Y != 0)
+                if (this.MemorySprite.GridLefttop.X != 0 || this.MemorySprite.GridLefttop.Y != 0)
                 {
                     // グリッドベース座標を表示するなら +1 行。
                     infoRows++;

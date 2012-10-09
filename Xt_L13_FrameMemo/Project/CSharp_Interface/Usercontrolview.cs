@@ -6,9 +6,9 @@ using System.Text;
 namespace Xenon.FrameMemo
 {
     /// <summary>
-    /// (View Of Frame)
+    /// フォームも、引数コントロールも、情報表示コントロールもこれ。
     /// </summary>
-    public interface ViewFrame
+    public interface Usercontrolview
     {
 
 
@@ -19,32 +19,32 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 計算結果の列数。未指定またはエラーなら 0。
         /// </summary>
-        void OnColumnCountResultChanged(float nValue);
+        void OnChanged_CountcolumnResult(float countColumn);
 
         /// <summary>
         /// 計算結果の行数。未指定またはエラーなら 0。
         /// </summary>
-        void OnRowCountResultChanged(float nValue);
+        void OnChanged_CountrowResult(float countRow);
 
         /// <summary>
         /// 計算結果のセルの横幅。等倍。
         /// </summary>
-        void OnCellWidthResultChanged(float nValue);
+        void OnChanged_WidthcellResult(float widthCell);
 
         /// <summary>
         /// 計算結果のセルの縦幅。等倍。
         /// </summary>
-        void OnCellHeightResultChanged(float nValue);
+        void OnChanged_HeightcellResult(float heightCell);
 
         /// <summary>
         /// 指定した[切り抜くフレーム／１～]
         /// </summary>
-        void OnCropForceChanged(int nValue);
+        void OnChanged_CropForce(int frame);
 
         /// <summary>
         /// 計算結果の[切り抜くフレーム終値／１～]
         /// </summary>
-        void OnCropLastResultChanged(int nValue);
+        void OnChanged_CropLastResult(int frame);
 
         void Refresh();
 

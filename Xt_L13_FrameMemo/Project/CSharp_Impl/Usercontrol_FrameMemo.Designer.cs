@@ -210,7 +210,7 @@
             // ucFrameParam
             // 
             this.ucFrameParam.Location = new System.Drawing.Point(112, 44);
-            this.ucFrameParam.MoSprite = null;
+            this.ucFrameParam.MemorySprite = null;
             this.ucFrameParam.Name = "ucFrameParam";
             this.ucFrameParam.Size = new System.Drawing.Size(576, 36);
             this.ucFrameParam.TabIndex = 30;

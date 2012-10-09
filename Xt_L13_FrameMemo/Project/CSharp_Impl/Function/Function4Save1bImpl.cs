@@ -10,7 +10,7 @@ namespace Xenon.FrameMemo
     /// <summary>
     /// 保存する画像の作成。
     /// </summary>
-    class SubactionSave001Sub001
+    class Function4Save1bImpl
     {
 
 
@@ -22,20 +22,20 @@ namespace Xenon.FrameMemo
         /// 保存する画像の作成。
         /// </summary>
         public Bitmap CreateSaveImage(
-            ViewFrame_InfoDisplay infoDisplay,
+            Usercontrolview_Infodisplay infodisplay,
             CheckBox pcchkInfo,
             Usercontrol_FrameMemo uc_FrameMemo
             )
         {
             Bitmap bm;
 
-            if (null != infoDisplay.MoSprite.Bitmap)
+            if (null != infodisplay.MemorySprite.Bitmap)
             {
 
                 // 情報領域
                 int infoHeight;
                 {
-                    int infoRows = infoDisplay.InfoRows;
+                    int infoRows = infodisplay.InfoRows;
                     int nHeightMargin = 8 + 4;
                     int nFontSize = 16;
                     infoHeight = infoRows * nFontSize + nHeightMargin;
@@ -55,7 +55,7 @@ namespace Xenon.FrameMemo
                         //ダミーのGraphicsオブジェクトを取得
                         Graphics dammy_g = Graphics.FromImage(bm);
 
-                        infoSizeF = dammy_g.MeasureString(infoDisplay.ToFileNameString(), infoDisplay.Font);
+                        infoSizeF = dammy_g.MeasureString(infodisplay.ToString_FileName(), infodisplay.Font);
                         // すぐ、Graphicsを廃棄。
                         dammy_g.Dispose();
                         // 横幅を 4px 大きく取る。
@@ -71,15 +71,15 @@ namespace Xenon.FrameMemo
                     // 新規画像サイズ。
                     int w;
                     int h;
-                    if (infoDisplay.MoSprite.BCrop)
+                    if (infodisplay.MemorySprite.IsCrop)
                     {
-                        w = (int)infoDisplay.MoSprite.NCellWidthResult;
-                        h = (int)infoDisplay.MoSprite.NCellHeightResult;
+                        w = (int)infodisplay.MemorySprite.WidthcellResult;
+                        h = (int)infodisplay.MemorySprite.HeightcellResult;
                     }
                     else
                     {
-                        w = infoDisplay.MoSprite.Bitmap.Width;
-                        h = infoDisplay.MoSprite.Bitmap.Height;
+                        w = infodisplay.MemorySprite.Bitmap.Width;
+                        h = infodisplay.MemorySprite.Bitmap.Height;
                     }
 
                     if (pcchkInfo.Checked)
@@ -95,9 +95,9 @@ namespace Xenon.FrameMemo
                     // 横幅の上限（画像の横幅、または画像の横幅が300未満の場合、300）
                     {
                         int maxW;
-                        if (300 <= infoDisplay.MoSprite.Bitmap.Width)
+                        if (300 <= infodisplay.MemorySprite.Bitmap.Width)
                         {
-                            maxW = infoDisplay.MoSprite.Bitmap.Width;
+                            maxW = infodisplay.MemorySprite.Bitmap.Width;
                         }
                         else
                         {

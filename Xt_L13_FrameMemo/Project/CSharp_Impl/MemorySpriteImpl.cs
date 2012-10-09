@@ -20,13 +20,13 @@ namespace Xenon.FrameMemo
         /// </summary>
         public MemorySpriteImpl()
         {
-            this.nCropForce = 0;//指定なし＝全体図
-            this.nCropLast = 1;
+            this.frameCropForce = 0;//指定なし＝全体図
+            this.frameCropLast = 1;
 
-            this.gridLt = new PointF();
-            this.lt = new PointF();
+            this.gridLefttop = new PointF();
+            this.lefttop = new PointF();
 
-            this.voFrameList = new List<ViewFrame>();
+            this.list_Usercontrolview = new List<Usercontrolview>();
         }
 
         //────────────────────────────────────────
@@ -43,27 +43,27 @@ namespace Xenon.FrameMemo
         /// <returns></returns>
         public PointF GetCropXy()
         {
-            float viWidth = (float)this.Bitmap.Width / this.NColCountResult;
-            float viHeight = (float)this.Bitmap.Height / this.NRowCountResult;
+            float viWidth = (float)this.Bitmap.Width / this.CountcolumnResult;
+            float viHeight = (float)this.Bitmap.Height / this.CountrowResult;
 
             float srcX;
-            if (0.0f == this.NColCountResult)
+            if (0.0f == this.CountcolumnResult)
             {
                 srcX = 0.0f;
             }
             else
             {
-                srcX = (this.NCropForce - 1) % (int)this.NColCountResult * viWidth;
+                srcX = (this.FrameCropForce - 1) % (int)this.CountcolumnResult * viWidth;
             }
 
             float srcY;
-            if (0.0f == this.NRowCountResult)
+            if (0.0f == this.CountrowResult)
             {
                 srcY = 0.0f;
             }
             else
             {
-                srcY = (this.NCropForce - 1) / (int)this.NColCountResult * viHeight;
+                srcY = (this.FrameCropForce - 1) / (int)this.CountcolumnResult * viHeight;
             }
 
             return new PointF(srcX, srcY);
@@ -73,7 +73,7 @@ namespace Xenon.FrameMemo
 
         public void RefreshViews()
         {
-            foreach (ViewFrame voFrame in this.VoFrameList)
+            foreach (Usercontrolview voFrame in this.List_Usercontrolview)
             {
                 voFrame.Refresh();
             }
@@ -84,59 +84,59 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 再計算。
         /// </summary>
-        private void CalSize()
+        private void CalculateSize()
         {
             //
             // 横幅と列数
             //
-            if (0 < this.NCellSizeForce.Width && 0 < this.NColCntForce)
+            if (0 < this.SizecellForce.Width && 0 < this.CountcolumnForce)
             {
                 //
                 // 強制横幅、強制列数　共に指定されているとき
                 //
-                this.NCellWidthResult = this.NCellSizeForce.Width;
-                this.NColCountResult = this.NColCntForce;
+                this.WidthcellResult = this.SizecellForce.Width;
+                this.CountcolumnResult = this.CountcolumnForce;
                 if (null == this.Bitmap)
                 {
-                    this.NImageSize = new SizeF(0.0f, this.NImageSize.Height);
+                    this.SizeImage = new SizeF(0.0f, this.SizeImage.Height);
                 }
                 else
                 {
-                    this.NImageSize = new SizeF(this.Bitmap.Width, this.NImageSize.Height);
+                    this.SizeImage = new SizeF(this.Bitmap.Width, this.SizeImage.Height);
                 }
             }
-            else if (0 < this.NCellSizeForce.Width)
+            else if (0 < this.SizecellForce.Width)
             {
                 //
                 // 強制横幅が指定されているとき
                 //
-                this.NCellWidthResult = this.NCellSizeForce.Width;
+                this.WidthcellResult = this.SizecellForce.Width;
                 if (null == this.Bitmap)
                 {
-                    this.NColCountResult = 0.0f;
-                    this.NImageSize = new SizeF(0.0f, this.NImageSize.Height);
+                    this.CountcolumnResult = 0.0f;
+                    this.SizeImage = new SizeF(0.0f, this.SizeImage.Height);
                 }
                 else
                 {
-                    this.NColCountResult = (float)this.Bitmap.Width / this.NCellSizeForce.Width;
-                    this.NImageSize = new SizeF(this.Bitmap.Width, this.NImageSize.Height);
+                    this.CountcolumnResult = (float)this.Bitmap.Width / this.SizecellForce.Width;
+                    this.SizeImage = new SizeF(this.Bitmap.Width, this.SizeImage.Height);
                 }
             }
-            else if (0 < this.NColCntForce)
+            else if (0 < this.CountcolumnForce)
             {
                 //
                 // 強制列数が指定されているとき
                 //
-                this.NColCountResult = this.NColCntForce;
+                this.CountcolumnResult = this.CountcolumnForce;
                 if (null == this.Bitmap)
                 {
-                    this.NCellWidthResult = 0.0f;
-                    this.NImageSize = new SizeF(0.0f, this.NImageSize.Height);
+                    this.WidthcellResult = 0.0f;
+                    this.SizeImage = new SizeF(0.0f, this.SizeImage.Height);
                 }
                 else
                 {
-                    this.NCellWidthResult = (float)this.Bitmap.Width / this.NColCntForce;
-                    this.NImageSize = new SizeF(this.Bitmap.Width, this.NImageSize.Height);
+                    this.WidthcellResult = (float)this.Bitmap.Width / this.CountcolumnForce;
+                    this.SizeImage = new SizeF(this.Bitmap.Width, this.SizeImage.Height);
                 }
             }
             else
@@ -144,16 +144,16 @@ namespace Xenon.FrameMemo
                 //
                 // 強制されていないとき
                 //
-                this.NColCountResult = 1;
+                this.CountcolumnResult = 1;
                 if (null == this.Bitmap)
                 {
-                    this.NCellWidthResult = 0.0f;
-                    this.NImageSize = new SizeF(0.0f, this.NImageSize.Height);
+                    this.WidthcellResult = 0.0f;
+                    this.SizeImage = new SizeF(0.0f, this.SizeImage.Height);
                 }
                 else
                 {
-                    this.NCellWidthResult = (float)this.Bitmap.Width;
-                    this.NImageSize = new SizeF(this.Bitmap.Width, this.NImageSize.Height);
+                    this.WidthcellResult = (float)this.Bitmap.Width;
+                    this.SizeImage = new SizeF(this.Bitmap.Width, this.SizeImage.Height);
                 }
             }
 
@@ -161,54 +161,54 @@ namespace Xenon.FrameMemo
             //
             // 縦幅と行数
             //
-            if (0 < this.NCellSizeForce.Height && 0 < this.NRowCountForce)
+            if (0 < this.SizecellForce.Height && 0 < this.CountrowForce)
             {
                 //
                 // 強制縦幅、強制行数　共に指定されているとき
                 //
-                this.NCellHeightResult = this.NCellSizeForce.Height;
-                this.NRowCountResult = this.NRowCountForce;
+                this.HeightcellResult = this.SizecellForce.Height;
+                this.CountrowResult = this.CountrowForce;
                 if (null == this.Bitmap)
                 {
-                    this.NImageSize = new SizeF(this.NImageSize.Width, 0.0f);
+                    this.SizeImage = new SizeF(this.SizeImage.Width, 0.0f);
                 }
                 else
                 {
-                    this.NImageSize = new SizeF(this.NImageSize.Width, this.Bitmap.Height);
+                    this.SizeImage = new SizeF(this.SizeImage.Width, this.Bitmap.Height);
                 }
             }
-            else if (0 < this.NCellSizeForce.Height)
+            else if (0 < this.SizecellForce.Height)
             {
                 //
                 // 強制縦幅が指定されているとき
                 //
-                this.NCellHeightResult = this.NCellSizeForce.Height;
+                this.HeightcellResult = this.SizecellForce.Height;
                 if (null == this.Bitmap)
                 {
-                    this.NRowCountResult = 0.0f;
-                    this.NImageSize = new SizeF(this.NImageSize.Width, 0.0f);
+                    this.CountrowResult = 0.0f;
+                    this.SizeImage = new SizeF(this.SizeImage.Width, 0.0f);
                 }
                 else
                 {
-                    this.NRowCountResult = (float)this.Bitmap.Height / this.NCellSizeForce.Height;
-                    this.NImageSize = new SizeF(this.NImageSize.Width, this.Bitmap.Height);
+                    this.CountrowResult = (float)this.Bitmap.Height / this.SizecellForce.Height;
+                    this.SizeImage = new SizeF(this.SizeImage.Width, this.Bitmap.Height);
                 }
             }
-            else if (0 < this.NRowCountForce)
+            else if (0 < this.CountrowForce)
             {
                 //
                 // 強制行数が指定されているとき
                 //
-                this.NRowCountResult = this.NRowCountForce;
+                this.CountrowResult = this.CountrowForce;
                 if (null == this.Bitmap)
                 {
-                    this.NCellHeightResult = 0.0f;
-                    this.NImageSize = new SizeF(this.NImageSize.Width, 0.0f);
+                    this.HeightcellResult = 0.0f;
+                    this.SizeImage = new SizeF(this.SizeImage.Width, 0.0f);
                 }
                 else
                 {
-                    this.NCellHeightResult = (float)this.Bitmap.Height / this.NRowCountForce;
-                    this.NImageSize = new SizeF(this.NImageSize.Width, this.Bitmap.Height);
+                    this.HeightcellResult = (float)this.Bitmap.Height / this.CountrowForce;
+                    this.SizeImage = new SizeF(this.SizeImage.Width, this.Bitmap.Height);
                 }
             }
             else
@@ -216,28 +216,28 @@ namespace Xenon.FrameMemo
                 //
                 // 強制されていないとき
                 //
-                this.NRowCountResult = 1;
+                this.CountrowResult = 1;
                 if (null == this.Bitmap)
                 {
-                    this.NCellHeightResult = 0.0f;
-                    this.NImageSize = new SizeF(this.NImageSize.Width, 0.0f);
+                    this.HeightcellResult = 0.0f;
+                    this.SizeImage = new SizeF(this.SizeImage.Width, 0.0f);
                 }
                 else
                 {
-                    this.NCellHeightResult = (float)this.Bitmap.Height;
-                    this.NImageSize = new SizeF(this.NImageSize.Width, this.Bitmap.Height);
+                    this.HeightcellResult = (float)this.Bitmap.Height;
+                    this.SizeImage = new SizeF(this.SizeImage.Width, this.Bitmap.Height);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        private void CalCrop()
+        private void CalculateCrop()
         {
             //切抜き位置の最終番号を計算。
-            this.NCropLast = (int)(this.NRowCountResult * this.NColCountResult);
+            this.FrameCropLast = (int)(this.CountrowResult * this.CountcolumnResult);
 
-            this.bCrop = 0 < this.NCropForce && this.NCropForce <= this.NCropLast;
+            this.isCrop = 0 < this.FrameCropForce && this.FrameCropForce <= this.FrameCropLast;
         }
 
         //────────────────────────────────────────
@@ -250,8 +250,8 @@ namespace Xenon.FrameMemo
         {
             SizeF size;
 
-            float col = this.NColCountResult;
-            float row = this.NRowCountResult;
+            float col = this.CountcolumnResult;
+            float row = this.CountrowResult;
             if (col < 1)
             {
                 col = 1;
@@ -262,8 +262,8 @@ namespace Xenon.FrameMemo
                 row = 1;
             }
 
-            float cw = this.NCellWidthResult;
-            float ch = this.NCellHeightResult;
+            float cw = this.WidthcellResult;
+            float ch = this.HeightcellResult;
 
             size = new SizeF(
                 col * cw,
@@ -297,127 +297,127 @@ namespace Xenon.FrameMemo
                 bitmap = value;
 
                 // 再計算
-                this.CalSize();
+                this.CalculateSize();
             }
         }
 
         //────────────────────────────────────────
 
-        protected PointF gridLt;
+        protected PointF gridLefttop;
 
         /// <summary>
         /// 格子線の原点XY。
         /// 
         /// (left top)
         /// </summary>
-        public PointF GridLt
+        public PointF GridLefttop
         {
             get
             {
-                return gridLt;
+                return gridLefttop;
             }
             set
             {
-                gridLt = value;
+                gridLefttop = value;
             }
         }
 
         //────────────────────────────────────────
 
-        protected PointF lt;
+        protected PointF lefttop;
 
         /// <summary>
         /// スプライトの原点XY。
         /// 
         /// (left top)
         /// </summary>
-        public PointF Lt
+        public PointF Lefttop
         {
             get
             {
-                return lt;
+                return lefttop;
             }
             set
             {
-                lt = value;
+                lefttop = value;
             }
         }
 
         //────────────────────────────────────────
 
-        protected bool bAutoInputting;
+        protected bool isAutoinputting;
 
         /// <summary>
         /// 自動入力中なら真。
         /// </summary>
-        public bool BAutoInputting
+        public bool IsAutoinputting
         {
             get
             {
-                return bAutoInputting;
+                return isAutoinputting;
             }
             set
             {
-                bAutoInputting = value;
+                isAutoinputting = value;
             }
         }
 
         //────────────────────────────────────────
 
-        protected List<ViewFrame> voFrameList;
+        protected List<Usercontrolview> list_Usercontrolview;
 
-        public List<ViewFrame> VoFrameList
+        public List<Usercontrolview> List_Usercontrolview
         {
             get
             {
-                return voFrameList;
+                return list_Usercontrolview;
             }
         }
 
         //────────────────────────────────────────
 
-        protected float nColCntForce;
+        protected float countcolumnForce;
 
         /// <summary>
         /// 指定された列数。未指定またはエラーなら 0。
         /// (Column Count)
         /// </summary>
-        public float NColCntForce
+        public float CountcolumnForce
         {
             get
             {
-                return nColCntForce;
+                return countcolumnForce;
             }
             set
             {
-                nColCntForce = value;
+                countcolumnForce = value;
 
                 // 再計算
-                this.CalSize();
-                this.CalCrop();
+                this.CalculateSize();
+                this.CalculateCrop();
             }
         }
 
         //────────────────────────────────────────
 
-        protected float nRowCountForce;
+        protected float countrowForce;
 
         /// <summary>
         /// 指定された行数。未指定またはエラーなら 0。
         /// </summary>
-        public float NRowCountForce
+        public float CountrowForce
         {
             get
             {
-                return nRowCountForce;
+                return countrowForce;
             }
             set
             {
-                nRowCountForce = value;
+                countrowForce = value;
 
                 // 再計算
-                this.CalSize();
-                this.CalCrop();
+                this.CalculateSize();
+                this.CalculateCrop();
 
                 // 再描画はここでは行わない。
             }
@@ -425,79 +425,79 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        protected float nColCntResult;
+        protected float countcolumnResult;
 
         /// <summary>
         /// 計算結果の列数。未指定またはエラーなら 0。
         /// (Column Count)
         /// </summary>
-        public float NColCountResult
+        public float CountcolumnResult
         {
             get
             {
-                return nColCntResult;
+                return countcolumnResult;
             }
             set
             {
-                nColCntResult = value;
+                countcolumnResult = value;
 
                 // 再計算
-                this.CalCrop();
+                this.CalculateCrop();
 
-                foreach (ViewFrame voFrame in this.VoFrameList)
+                foreach (Usercontrolview voFrame in this.List_Usercontrolview)
                 {
-                    voFrame.OnColumnCountResultChanged(nColCntResult);
+                    voFrame.OnChanged_CountcolumnResult(countcolumnResult);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        protected float nRowCountResult;
+        protected float countrowResult;
 
         /// <summary>
         /// 計算結果の行数。未指定またはエラーなら 0。
         /// </summary>
-        public float NRowCountResult
+        public float CountrowResult
         {
             get
             {
-                return nRowCountResult;
+                return countrowResult;
             }
             set
             {
-                nRowCountResult = value;
+                countrowResult = value;
 
                 // 再計算
-                this.CalCrop();
+                this.CalculateCrop();
 
-                foreach (ViewFrame voFrame in this.VoFrameList)
+                foreach (Usercontrolview voFrame in this.List_Usercontrolview)
                 {
-                    voFrame.OnRowCountResultChanged(nRowCountResult);
+                    voFrame.OnChanged_CountrowResult(countrowResult);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        protected SizeF nCellSizeForce;
+        protected SizeF sizecellForce;
 
         /// <summary>
         /// 利用者が指定したセルの横幅、縦幅。未指定またはエラーなら 0。
         /// </summary>
-        public SizeF NCellSizeForce
+        public SizeF SizecellForce
         {
             get
             {
-                return nCellSizeForce;
+                return sizecellForce;
             }
             set
             {
-                nCellSizeForce = value;
+                sizecellForce = value;
 
                 // 再計算
-                this.CalSize();
-                this.CalCrop();
+                this.CalculateSize();
+                this.CalculateCrop();
 
                 // 再描画はここでは行わない。
             }
@@ -505,139 +505,137 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        protected float nCellWidthResult;
+        protected float widthcellResult;
 
         /// <summary>
         /// 計算結果のセルの横幅。未指定またはエラーなら 0。
         /// </summary>
-        public float NCellWidthResult
+        public float WidthcellResult
         {
             get
             {
-                return nCellWidthResult;
+                return widthcellResult;
             }
             set
             {
-                nCellWidthResult = value;
+                widthcellResult = value;
 
-                foreach (ViewFrame voFrame in this.VoFrameList)
+                foreach (Usercontrolview voFrame in this.List_Usercontrolview)
                 {
-                    voFrame.OnCellWidthResultChanged(nCellWidthResult);
+                    voFrame.OnChanged_WidthcellResult(widthcellResult);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        protected float nCellHeightResult;
+        protected float heightcellResult;
 
         /// <summary>
         /// 計算結果のセルの縦幅。未指定またはエラーなら 0。
         /// </summary>
-        public float NCellHeightResult
+        public float HeightcellResult
         {
             get
             {
-                return nCellHeightResult;
+                return heightcellResult;
             }
             set
             {
-                nCellHeightResult = value;
+                heightcellResult = value;
 
-                foreach (ViewFrame voFrame in this.VoFrameList)
+                foreach (Usercontrolview voFrame in this.List_Usercontrolview)
                 {
-                    voFrame.OnCellHeightResultChanged(nCellHeightResult);
+                    voFrame.OnChanged_HeightcellResult(heightcellResult);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        protected SizeF nImageSize;
+        protected SizeF sizeImage;
 
         /// <summary>
         /// 画像の横幅、縦幅。等倍。
         /// </summary>
-        public SizeF NImageSize
+        public SizeF SizeImage
         {
             get
             {
-                return nImageSize;
+                return sizeImage;
             }
             set
             {
-                nImageSize = value;
+                sizeImage = value;
             }
         }
 
         //────────────────────────────────────────
 
-        protected int nCropForce;
+        protected int frameCropForce;
 
         /// <summary>
         /// 指定した[切り抜くフレーム／１～]
         /// </summary>
-        public int NCropForce
+        public int FrameCropForce
         {
             get
             {
-                return nCropForce;
+                return frameCropForce;
             }
             set
             {
-                nCropForce = value;
+                frameCropForce = value;
 
                 // 再計算
-                this.CalCrop();
+                this.CalculateCrop();
 
-                foreach (ViewFrame voFrame in this.VoFrameList)
+                foreach (Usercontrolview voFrame in this.List_Usercontrolview)
                 {
-                    voFrame.OnCropForceChanged(nCropForce);
+                    voFrame.OnChanged_CropForce(frameCropForce);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        protected int nCropLast;
+        protected int frameCropLast;
 
         /// <summary>
         /// 切り抜くフレーム終値／１～
         /// </summary>
-        public int NCropLast
+        public int FrameCropLast
         {
             get
             {
-                return nCropLast;
+                return frameCropLast;
             }
             set
             {
-                nCropLast = value;
+                frameCropLast = value;
 
-                foreach (ViewFrame voFrame in this.VoFrameList)
+                foreach (Usercontrolview voFrame in this.List_Usercontrolview)
                 {
-                    voFrame.OnCropLastResultChanged(nCropLast);
+                    voFrame.OnChanged_CropLastResult(frameCropLast);
                 }
             }
         }
 
         //────────────────────────────────────────
 
-        protected bool bCrop;
+        protected bool isCrop;
 
         /// <summary>
         /// 切抜きなら真、全体図なら偽。
         /// </summary>
-        public bool BCrop
+        public bool IsCrop
         {
             get
             {
-                return this.bCrop;
+                return this.isCrop;
             }
         }
 
-        //────────────────────────────────────────
-        //────────────────────────────────────────
         //────────────────────────────────────────
         #endregion
 

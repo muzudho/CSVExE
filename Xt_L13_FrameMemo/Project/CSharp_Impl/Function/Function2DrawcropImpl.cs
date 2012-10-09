@@ -10,7 +10,7 @@ namespace Xenon.FrameMemo
     /// <summary>
     /// 切抜きフレームの描画。
     /// </summary>
-    public class Subaction002
+    public class Function2DrawcropImpl
     {
 
 
@@ -22,26 +22,26 @@ namespace Xenon.FrameMemo
         /// 
         /// </summary>
         /// <param name="g"></param>
-        /// <param name="bOnWindow"></param>
-        /// <param name="moSp"></param>
-        /// <param name="bX">ベースX</param>
-        /// <param name="bY">ベースY</param>
+        /// <param name="isOnWindow"></param>
+        /// <param name="memorySprite"></param>
+        /// <param name="xBase">ベースX</param>
+        /// <param name="yBase">ベースY</param>
         /// <param name="scale"></param>
         /// <param name="imgOpaque"></param>
-        /// <param name="bImgGrid"></param>
-        /// <param name="bInfoDisplayVisible"></param>
-        /// <param name="infoDisplay"></param>
+        /// <param name="isImageGrid"></param>
+        /// <param name="isInfodisplayVisible"></param>
+        /// <param name="infodisplay"></param>
         public void Perform(
             Graphics g,
-            bool bOnWindow,
-            MemorySpriteImpl moSp,
-            float bX,
-            float bY,
+            bool isOnWindow,
+            MemorySpriteImpl memorySprite,
+            float xBase,
+            float yBase,
             float scale,
             float imgOpaque,
-            bool bImgGrid,
-            bool bInfoDisplayVisible,
-            ViewFrame_InfoDisplay infoDisplay
+            bool isImageGrid,
+            bool isInfodisplayVisible,
+            Usercontrolview_Infodisplay infodisplay
             )
         {
             // ビットマップ画像の不透明度を指定します。
@@ -62,40 +62,40 @@ namespace Xenon.FrameMemo
             }
             float dstX = 0;
             float dstY = 0;
-            if (bOnWindow)
+            if (isOnWindow)
             {
-                dstX += moSp.Lt.X;
-                dstY += moSp.Lt.Y;
+                dstX += memorySprite.Lefttop.X;
+                dstY += memorySprite.Lefttop.Y;
             }
 
 
             // 表示する画像の横幅、縦幅。
-            float viWidth = (float)moSp.Bitmap.Width / moSp.NColCountResult;
-            float viHeight = (float)moSp.Bitmap.Height / moSp.NRowCountResult;
+            float viWidth = (float)memorySprite.Bitmap.Width / memorySprite.CountcolumnResult;
+            float viHeight = (float)memorySprite.Bitmap.Height / memorySprite.CountrowResult;
 
             // 横幅、縦幅の上限。
-            if (moSp.NCellWidthResult < viWidth)
+            if (memorySprite.WidthcellResult < viWidth)
             {
-                viWidth = moSp.NCellWidthResult;
+                viWidth = memorySprite.WidthcellResult;
             }
 
-            if (moSp.NCellHeightResult < viHeight)
+            if (memorySprite.HeightcellResult < viHeight)
             {
-                viHeight = moSp.NCellHeightResult;
+                viHeight = memorySprite.HeightcellResult;
             }
 
 
 
             // 枠を考慮しない画像サイズ
             Rectangle dstR = new Rectangle(
-                (int)(dstX + bX),
-                (int)(dstY + bY),
+                (int)(dstX + xBase),
+                (int)(dstY + yBase),
                 (int)viWidth,
                 (int)viHeight
                 );
             Rectangle dstRScaled = new Rectangle(
-                (int)(dstX + bX),
-                (int)(dstY + bY),
+                (int)(dstX + xBase),
+                (int)(dstY + yBase),
                 (int)(scale * viWidth),
                 (int)(scale * viHeight)
                 );
@@ -114,17 +114,17 @@ namespace Xenon.FrameMemo
                 (int)(scale * viHeight) - 2 * borderWidth);
 
             // 切り抜く位置。
-            PointF srcL = moSp.GetCropXy();
+            PointF srcL = memorySprite.GetCropXy();
 
-            float gridX = moSp.GridLt.X;
-            float gridY = moSp.GridLt.Y;
+            float gridX = memorySprite.GridLefttop.X;
+            float gridY = memorySprite.GridLefttop.Y;
 
 
 
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;//ドット絵のまま拡縮するように。しかし、この指定だと半ピクセル左上にずれるバグ。
             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;//半ピクセル左上にずれるバグに対応。
             g.DrawImage(
-                moSp.Bitmap,
+                memorySprite.Bitmap,
                 dstRScaled,
                 srcL.X,
                 srcL.Y,
@@ -135,7 +135,7 @@ namespace Xenon.FrameMemo
                 );
 
             // 枠線
-            if (bImgGrid)
+            if (isImageGrid)
             {
                 //
                 // 枠線：影
@@ -166,10 +166,10 @@ namespace Xenon.FrameMemo
             }
 
             // 情報欄の描画
-            if (bInfoDisplayVisible)
+            if (isInfodisplayVisible)
             {
                 int dy;
-                if (bOnWindow)
+                if (isOnWindow)
                 {
                     dy = 100;
                 }
@@ -177,7 +177,7 @@ namespace Xenon.FrameMemo
                 {
                     dy = 4;// 16;
                 }
-                infoDisplay.Paint(g, bOnWindow, dy, scale);
+                infodisplay.Paint(g, isOnWindow, dy, scale);
             }
         }
 

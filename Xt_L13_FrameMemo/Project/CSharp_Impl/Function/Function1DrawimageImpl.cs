@@ -10,7 +10,7 @@ namespace Xenon.FrameMemo
     /// <summary>
     /// 全体図の描画。
     /// </summary>
-    public class Subaction001
+    public class Function1DrawimageImpl
     {
 
 
@@ -19,29 +19,29 @@ namespace Xenon.FrameMemo
         //────────────────────────────────────────
 
         /// <summary>
-        /// 
+        /// 全体図の描画。
         /// </summary>
         /// <param name="g"></param>
-        /// <param name="bOnWindow"></param>
-        /// <param name="moSp"></param>
-        /// <param name="bX">ベースX</param>
-        /// <param name="bY">ベースY</param>
+        /// <param name="isOnWindow"></param>
+        /// <param name="memorySprite"></param>
+        /// <param name="xBase">ベースX</param>
+        /// <param name="yBase">ベースY</param>
         /// <param name="scale"></param>
         /// <param name="imgOpaque"></param>
-        /// <param name="bImgGrid"></param>
-        /// <param name="bInfoDisplayVisible"></param>
+        /// <param name="isImageGrid"></param>
+        /// <param name="isVisible_Infodisplay"></param>
         /// <param name="infoDisplay"></param>
         public void Perform(
             Graphics g,
-            bool bOnWindow,
-            MemorySpriteImpl moSp,
-            float bX,
-            float bY,
+            bool isOnWindow,
+            MemorySpriteImpl memorySprite,
+            float xBase,
+            float yBase,
             float scale,
             float imgOpaque,
-            bool bImgGrid,
-            bool bInfoDisplayVisible,
-            ViewFrame_InfoDisplay infoDisplay
+            bool isImageGrid,
+            bool isVisible_Infodisplay,
+            Usercontrolview_Infodisplay infoDisplay
             )
         {
             // ビットマップ画像の不透明度を指定します。
@@ -62,25 +62,25 @@ namespace Xenon.FrameMemo
             }
             float x = 0;
             float y = 0;
-            if (bOnWindow)
+            if (isOnWindow)
             {
-                x += moSp.Lt.X;
-                y += moSp.Lt.Y;
+                x += memorySprite.Lefttop.X;
+                y += memorySprite.Lefttop.Y;
             }
 
             //
             // 表示画像の長方形（Image rectangle）
             RectangleF dstIrScaled = new RectangleF(
-                x + bX,
-                y + bY,
-                scale * (float)moSp.Bitmap.Width,
-                scale * (float)moSp.Bitmap.Height
+                x + xBase,
+                y + yBase,
+                scale * (float)memorySprite.Bitmap.Width,
+                scale * (float)memorySprite.Bitmap.Height
                 );
             // グリッド枠の長方形（Grid frame rectangle）
             RectangleF dstGrScaled;
             {
-                float col = moSp.NColCountResult;
-                float row = moSp.NRowCountResult;
+                float col = memorySprite.CountcolumnResult;
+                float row = memorySprite.CountrowResult;
                 if (col < 1)
                 {
                     col = 1;
@@ -91,13 +91,13 @@ namespace Xenon.FrameMemo
                     row = 1;
                 }
 
-                float cw = moSp.NCellWidthResult;
-                float ch = moSp.NCellHeightResult;
+                float cw = memorySprite.WidthcellResult;
+                float ch = memorySprite.HeightcellResult;
 
                 //グリッドのベース
                 dstGrScaled = new RectangleF(
-                                scale * moSp.GridLt.X + x + bX,
-                                scale * moSp.GridLt.Y + y + bY,
+                                scale * memorySprite.GridLefttop.X + x + xBase,
+                                scale * memorySprite.GridLefttop.Y + y + yBase,
                                 scale * col * cw,
                                 scale * row * ch
                                 );
@@ -111,18 +111,18 @@ namespace Xenon.FrameMemo
             //
             // 画像描画
             g.DrawImage(
-                moSp.Bitmap,
+                memorySprite.Bitmap,
                 new Rectangle((int)dstIrScaled.X, (int)dstIrScaled.Y, (int)dstIrScaled.Width, (int)dstIrScaled.Height),
                 0,
                 0,
-                moSp.Bitmap.Width,
-                moSp.Bitmap.Height,
+                memorySprite.Bitmap.Width,
+                memorySprite.Bitmap.Height,
                 GraphicsUnit.Pixel,
                 ia
                 );
 
             // 枠線
-            if (bImgGrid)
+            if (isImageGrid)
             {
 
                 //
@@ -147,9 +147,9 @@ namespace Xenon.FrameMemo
 
                 // 格子：横線
                 {
-                    float h2 = infoDisplay.MoSprite.NCellHeightResult * scale;
+                    float h2 = infoDisplay.MemorySprite.HeightcellResult * scale;
 
-                    for (int i = 1; i < infoDisplay.MoSprite.NRowCountResult; i++)
+                    for (int i = 1; i < infoDisplay.MemorySprite.CountrowResult; i++)
                     {
                         g.DrawLine(infoDisplay.GridPen,//Pens.Black,
                             dstGrScaled.X + borderWidth,
@@ -162,9 +162,9 @@ namespace Xenon.FrameMemo
 
                 // 格子：影:縦線
                 {
-                    float w2 = infoDisplay.MoSprite.NCellWidthResult * scale;
+                    float w2 = infoDisplay.MemorySprite.WidthcellResult * scale;
 
-                    for (int i = 1; i < infoDisplay.MoSprite.NColCountResult; i++)
+                    for (int i = 1; i < infoDisplay.MemorySprite.CountcolumnResult; i++)
                     {
                         g.DrawLine(infoDisplay.GridPen,//Pens.Black,
                             (float)i * w2 + dstGrScaled.X,
@@ -191,10 +191,10 @@ namespace Xenon.FrameMemo
             }
 
             // 情報欄の描画
-            if (bInfoDisplayVisible)
+            if (isVisible_Infodisplay)
             {
                 int dy;
-                if (bOnWindow)
+                if (isOnWindow)
                 {
                     dy = 100;
                 }
@@ -202,7 +202,7 @@ namespace Xenon.FrameMemo
                 {
                     dy = 4;// 16;
                 }
-                infoDisplay.Paint(g, bOnWindow, dy, scale);
+                infoDisplay.Paint(g, isOnWindow, dy, scale);
             }
         }
 

@@ -11,7 +11,7 @@ using Xenon.Lib;
 
 namespace Xenon.FrameMemo
 {
-    public partial class Usercontrol_FrameMemo : UserControl, ViewFrame
+    public partial class Usercontrol_FrameMemo : UserControl, Usercontrolview
     {
 
 
@@ -26,17 +26,17 @@ namespace Xenon.FrameMemo
         {
             InitializeComponent();
 
-            this.infoDisplay = new ViewFrame_InfoDisplay();
+            this.infodisplay = new Usercontrolview_Infodisplay();
 
             MemorySpriteImpl moSprite = new MemorySpriteImpl();
-            moSprite.VoFrameList.Add(this.infoDisplay);
-            moSprite.VoFrameList.Add(this.ucFrameParam);
-            moSprite.VoFrameList.Add(this);
-            this.ucFrameParam.MoSprite = moSprite;
-            this.infoDisplay.MoSprite = moSprite;
+            moSprite.List_Usercontrolview.Add(this.infodisplay);
+            moSprite.List_Usercontrolview.Add(this.ucFrameParam);
+            moSprite.List_Usercontrolview.Add(this);
+            this.ucFrameParam.MemorySprite = moSprite;
+            this.infodisplay.MemorySprite = moSprite;
 
 
-            this.mouseDragModeEnum = EnumMousedragmode.NONE;
+            this.enumMousedragmode = EnumMousedragmode.None;
 
             this.pclstMouseDrag.Items.Add("なし");
             this.pclstMouseDrag.Items.Add("画像移動");
@@ -93,37 +93,37 @@ namespace Xenon.FrameMemo
         #region アクション
         //────────────────────────────────────────
 
-        public void OnColumnCountResultChanged(float nValue)
+        public void OnChanged_CountcolumnResult(float nValue)
         {
         }
 
         //────────────────────────────────────────
 
-        public void OnRowCountResultChanged(float nValue)
+        public void OnChanged_CountrowResult(float nValue)
         {
         }
 
         //────────────────────────────────────────
 
-        public void OnCellWidthResultChanged(float nValue)
+        public void OnChanged_WidthcellResult(float nValue)
         {
         }
 
         //────────────────────────────────────────
 
-        public void OnCellHeightResultChanged(float nVlaue)
+        public void OnChanged_HeightcellResult(float nVlaue)
         {
         }
 
         //────────────────────────────────────────
 
-        public void OnCropForceChanged(int nValue)
+        public void OnChanged_CropForce(int nValue)
         {
         }
 
         //────────────────────────────────────────
 
-        public void OnCropLastResultChanged(int nValue)
+        public void OnChanged_CropLastResult(int nValue)
         {
         }
 
@@ -136,7 +136,7 @@ namespace Xenon.FrameMemo
         /// <param name="dy"></param>
         public void MoveActiveSprite(float dx, float dy)
         {
-            if (this.mouseDragModeEnum == EnumMousedragmode.IMG_MOVE)
+            if (this.enumMousedragmode == EnumMousedragmode.Image_Move)
             {
                 //
                 // 画像移動
@@ -151,9 +151,9 @@ namespace Xenon.FrameMemo
         private void MoveImg(float dx, float dy)
         {
             // 背景画像移動
-            this.infoDisplay.MoSprite.Lt = new PointF(
-                this.infoDisplay.MoSprite.Lt.X + dx,
-                this.infoDisplay.MoSprite.Lt.Y + dy
+            this.infodisplay.MemorySprite.Lefttop = new PointF(
+                this.infodisplay.MemorySprite.Lefttop.X + dx,
+                this.infodisplay.MemorySprite.Lefttop.Y + dy
                 );
 
             // 再描画
@@ -178,42 +178,42 @@ namespace Xenon.FrameMemo
             float scale2
             )
         {
-            if (null != this.infoDisplay.MoSprite.Bitmap)
+            if (null != this.infodisplay.MemorySprite.Bitmap)
             {
-                if (this.infoDisplay.MoSprite.BCrop)
+                if (this.infodisplay.MemorySprite.IsCrop)
                 {
                     // 切抜き
 
-                    Subaction002 act2 = new Subaction002();
+                    Function2DrawcropImpl act2 = new Function2DrawcropImpl();
                     act2.Perform(
                         g,
                         bOnWindow,
-                        this.infoDisplay.MoSprite,
+                        this.infodisplay.MemorySprite,
                         baseX,
                         baseY,
                         scale2,
                         this.imgOpaque,
-                        this.bImgGrid,
+                        this.isImageGrid,
                         this.pcchkInfo.Checked,
-                        this.infoDisplay
+                        this.infodisplay
                         );
                 }
                 else
                 {
                     // 全体図
 
-                    Subaction001 act1 = new Subaction001();
+                    Function1DrawimageImpl act1 = new Function1DrawimageImpl();
                     act1.Perform(
                         g,
                         bOnWindow,
-                        this.infoDisplay.MoSprite,
+                        this.infodisplay.MemorySprite,
                         baseX,
                         baseY,
                         scale2,
                         this.imgOpaque,
-                        this.bImgGrid,
+                        this.isImageGrid,
                         this.pcchkInfo.Checked,
-                        this.infoDisplay
+                        this.infodisplay
                         );
                 }
             }
@@ -291,22 +291,22 @@ namespace Xenon.FrameMemo
 
 
 
-                    this.infoDisplay.SFilePath = sFpatha;
+                    this.infodisplay.Filepath = sFpatha;
 
                     this.ucFrameParam.OnImageOpened();
 
-                    this.infoDisplay.MoSprite.BAutoInputting = true;//自動入力開始
+                    this.infodisplay.MemorySprite.IsAutoinputting = true;//自動入力開始
                     // 画像設定
-                    this.infoDisplay.MoSprite.Bitmap = new Bitmap(sFpatha);
+                    this.infodisplay.MemorySprite.Bitmap = new Bitmap(sFpatha);
 
-                    this.infoDisplay.MoSprite.Lt = new Point(//.Lt
-                        this.Width / 2 - this.infoDisplay.MoSprite.Bitmap.Width / 2,
-                        this.Height / 2 - this.infoDisplay.MoSprite.Bitmap.Height / 2
+                    this.infodisplay.MemorySprite.Lefttop = new Point(//.Lt
+                        this.Width / 2 - this.infodisplay.MemorySprite.Bitmap.Width / 2,
+                        this.Height / 2 - this.infodisplay.MemorySprite.Bitmap.Height / 2
                         );
 
                     // フォームを再描画。
                     this.Refresh();
-                    this.infoDisplay.MoSprite.BAutoInputting = false;//自動入力終了
+                    this.infodisplay.MemorySprite.IsAutoinputting = false;//自動入力終了
                 }
                 catch (ArgumentException)
                 {
@@ -328,12 +328,12 @@ namespace Xenon.FrameMemo
 
                     this.ucFrameParam.OnImageClosed();
 
-                    this.infoDisplay.MoSprite.BAutoInputting = true;//自動入力開始
-                    this.infoDisplay.MoSprite.Bitmap = null;
+                    this.infodisplay.MemorySprite.IsAutoinputting = true;//自動入力開始
+                    this.infodisplay.MemorySprite.Bitmap = null;
 
                     // フォームを再描画。
                     this.Refresh();
-                    this.infoDisplay.MoSprite.BAutoInputting = false;//自動入力終了
+                    this.infodisplay.MemorySprite.IsAutoinputting = false;//自動入力終了
                 }
 
             }
@@ -409,7 +409,7 @@ namespace Xenon.FrameMemo
 
 
             // 現在見えている画面上の中心を固定するようにズーム。
-            if (null != this.infoDisplay.MoSprite.Bitmap)
+            if (null != this.infodisplay.MemorySprite.Bitmap)
             {
 
                 //
@@ -418,13 +418,13 @@ namespace Xenon.FrameMemo
                 float multiple = this.scale / this.preScale; //何倍になったか。
 
                 // 画面の中心に位置する、ズームされた画像上の位置（固定点）
-                float imgFixX = (this.Width / 2.0f) - this.infoDisplay.MoSprite.Lt.X;
-                float imgFixY = (this.Height / 2.0f) - this.infoDisplay.MoSprite.Lt.Y;
+                float imgFixX = (this.Width / 2.0f) - this.infodisplay.MemorySprite.Lefttop.X;
+                float imgFixY = (this.Height / 2.0f) - this.infodisplay.MemorySprite.Lefttop.Y;
 
                 // 背景位置
-                this.infoDisplay.MoSprite.Lt = new PointF(//.Lt
-                    this.infoDisplay.MoSprite.Lt.X - (imgFixX * multiple - imgFixX),
-                    this.infoDisplay.MoSprite.Lt.Y - (imgFixY * multiple - imgFixY)
+                this.infodisplay.MemorySprite.Lefttop = new PointF(//.Lt
+                    this.infodisplay.MemorySprite.Lefttop.X - (imgFixX * multiple - imgFixX),
+                    this.infodisplay.MemorySprite.Lefttop.Y - (imgFixY * multiple - imgFixY)
                     );
             }
 
@@ -449,7 +449,7 @@ namespace Xenon.FrameMemo
 
         private void FrameMemoUc_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.mouseDragModeEnum == EnumMousedragmode.IMG_MOVE)
+            if (this.enumMousedragmode == EnumMousedragmode.Image_Move)
             {
                 //
                 // 画像移動
@@ -581,18 +581,18 @@ namespace Xenon.FrameMemo
 
                 if ("画像移動" == sSelectedValue)
                 {
-                    this.mouseDragModeEnum = EnumMousedragmode.IMG_MOVE;
+                    this.enumMousedragmode = EnumMousedragmode.Image_Move;
                 }
                 else
                 {
-                    this.mouseDragModeEnum = EnumMousedragmode.NONE;
+                    this.enumMousedragmode = EnumMousedragmode.None;
                 }
             }
             else
             {
                 // 未選択
 
-                this.mouseDragModeEnum = EnumMousedragmode.NONE;
+                this.enumMousedragmode = EnumMousedragmode.None;
             }
         }
 
@@ -615,22 +615,22 @@ namespace Xenon.FrameMemo
 
                 if ("なし" == sSelectedValue)
                 {
-                    this.bImgGrid = false;
+                    this.isImageGrid = false;
                 }
                 else if ("あり" == sSelectedValue)
                 {
-                    this.bImgGrid = true;
+                    this.isImageGrid = true;
                 }
                 else
                 {
-                    this.bImgGrid = false;
+                    this.isImageGrid = false;
                 }
             }
             else
             {
                 // 未選択
 
-                this.bImgGrid = false;
+                this.isImageGrid = false;
             }
 
             // 再描画
@@ -641,7 +641,7 @@ namespace Xenon.FrameMemo
         {
             CheckBox pcchk = (CheckBox)sender;
 
-            this.bImgGrid = pcchk.Checked;
+            this.isImageGrid = pcchk.Checked;
 
             // 再描画
             this.Refresh();
@@ -673,7 +673,7 @@ namespace Xenon.FrameMemo
                 clr = SystemColors.Control;
             }
 
-            this.infoDisplay.GridPen = new Pen(clr);
+            this.infodisplay.GridPen = new Pen(clr);
 
             // 再描画
             this.Refresh();
@@ -688,8 +688,8 @@ namespace Xenon.FrameMemo
         /// <param name="e"></param>
         private void pcbtnSaveImg_Click(object sender, EventArgs e)
         {
-            new SubactionSave001().Save(
-                this.InfoDisplay,
+            new Function3Save1Impl().Save(
+                this.Infodisplay,
                 this.PcchkInfo,
                 this
                 );
@@ -702,8 +702,8 @@ namespace Xenon.FrameMemo
         /// <param name="e"></param>
         private void ccButtonEx1_Click(object sender, EventArgs e)
         {
-            new SubactionSave002().Save(
-                this.InfoDisplay,
+            new Function5Save2Impl().Save(
+                this.Infodisplay,
                 this.PcchkInfo,
                 this
                 );
@@ -717,7 +717,7 @@ namespace Xenon.FrameMemo
         #region プロパティー
         //────────────────────────────────────────
 
-        protected EnumMousedragmode mouseDragModeEnum;
+        protected EnumMousedragmode enumMousedragmode;
 
         //────────────────────────────────────────
 
@@ -773,20 +773,20 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// 画像のグリッド線の有無。
         /// </summary>
-        protected bool bImgGrid;
+        protected bool isImageGrid;
 
         //────────────────────────────────────────
 
-        protected ViewFrame_InfoDisplay infoDisplay;
+        protected Usercontrolview_Infodisplay infodisplay;
 
         /// <summary>
         /// width,height,ファイル名等表示。
         /// </summary>
-        public ViewFrame_InfoDisplay InfoDisplay
+        public Usercontrolview_Infodisplay Infodisplay
         {
             get
             {
-                return infoDisplay;
+                return infodisplay;
             }
         }
 
@@ -802,7 +802,7 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        public Usercontrol_FrameParam Uc_FrameParam
+        public Usercontrol_FrameParam Usercontrol_FrameParam
         {
             get
             {

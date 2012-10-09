@@ -18,12 +18,12 @@ namespace Xenon.FrameMemo
         #region 用意
         //────────────────────────────────────────
 
-        NONE,
+        None,
 
         /// <summary>
         /// 画像移動
         /// </summary>
-        IMG_MOVE
+        Image_Move
 
         //────────────────────────────────────────
         #endregion
