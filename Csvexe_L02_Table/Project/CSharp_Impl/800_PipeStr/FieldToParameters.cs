@@ -22,7 +22,7 @@ namespace Xenon.Table
 
         public FieldToParameters()
         {
-            this.list_FieldKeies = new List<XenonFieldkey>();
+            this.list_FieldKeies = new List<Fieldkey>();
         }
 
         //────────────────────────────────────────
@@ -36,7 +36,7 @@ namespace Xenon.Table
         /// <summary>
         /// テーブルのフィールドを特定する情報。
         /// </summary>
-        protected List<XenonFieldkey> list_FieldKeies;
+        protected List<Fieldkey> list_FieldKeies;
 
         //────────────────────────────────────────
 
@@ -48,12 +48,12 @@ namespace Xenon.Table
         /// <param name="log_Reports"></param>
         public void AddField(
             string sName_Field,
-            XenonTable value_XenonTable,
+            TableHumaninput value_XenonTable,
             Log_Reports log_Reports
             )
         {
             List<string> sList_FieldName = new CsvTo_ListImpl().Read(sName_Field);
-            List<XenonFielddefinition> list_FieldDef;
+            List<Fielddefinition> list_FieldDef;
 
              bool bHit = value_XenonTable.TryGetFieldDefinitionByName(
                   out list_FieldDef,
@@ -68,10 +68,10 @@ namespace Xenon.Table
             }
 
             int nIx = 0;
-            foreach (XenonFielddefinition o_FldDef in list_FieldDef)
+            foreach (Fielddefinition o_FldDef in list_FieldDef)
             {
                 this.list_FieldKeies.Add(
-                    new XenonFieldkey(sList_FieldName[nIx], o_FldDef.GetTypeString(), o_FldDef.Comment));
+                    new Fieldkey(sList_FieldName[nIx], o_FldDef.GetTypeString(), o_FldDef.Comment));
 
                 nIx++;
             }
@@ -90,23 +90,23 @@ namespace Xenon.Table
         public void Perform(
             ref Builder_TexttemplateP1pImpl ref_FormatString,
             DataRowView dataRowView,
-            XenonTable xenonTable,
+            TableHumaninput xenonTable,
             Log_Reports log_Reports
             )
         {
 
             // TODO IDは「前ゼロ付き文字列」または「int型」なので、念のため一度文字列に変換。
             int nP1pNumber = 1;
-            foreach (XenonFieldkey fieldKey in list_FieldKeies)
+            foreach (Fieldkey fieldKey in list_FieldKeies)
             {
                 //"[" + oTable.Name + "]テーブルの或る行の[" + fieldKey.Name + "]フィールド値。"//valueOTable.SourceFilePath.HumanInputText
 
                 object obj = Utility_Row.GetFieldvalue(
-                    fieldKey.SName,
+                    fieldKey.Name,
                     dataRowView.Row,
                     true,
                     log_Reports,
-                    fieldKey.SDescription
+                    fieldKey.Description
                 );
                 if (!log_Reports.Successful)
                 {
@@ -117,24 +117,24 @@ namespace Xenon.Table
 
                 // 正常時
 
-                if (XenonFielddefinitionImpl.S_STRING == fieldKey.SType)
+                if (FielddefinitionImpl.S_STRING == fieldKey.Name_Type)
                 {
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_StringImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, String_HumaninputImpl.ParseString(obj));
                 }
-                if (XenonFielddefinitionImpl.S_INT == fieldKey.SType)
+                if (FielddefinitionImpl.S_INT == fieldKey.Name_Type)
                 {
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_IntImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, Int_HumaninputImpl.ParseString(obj));
                 }
-                else if (XenonFielddefinitionImpl.S_BOOL == fieldKey.SType)
+                else if (FielddefinitionImpl.S_BOOL == fieldKey.Name_Type)
                 {
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_BoolImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, Bool_HumaninputImpl.ParseString(obj));
                 }
                 else
                 {
                     //
                     // 未定義の型は、string扱い。
                     //
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, XenonValue_StringImpl.ParseString(obj));
+                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, String_HumaninputImpl.ParseString(obj));
                 }
 
                 nP1pNumber++;

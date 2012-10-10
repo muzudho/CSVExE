@@ -65,9 +65,10 @@ namespace Xenon.Expr
 
             //
             // （１）テーブル
-            XenonTable o_Table;
+            TableHumaninput o_Table;
             {
-                o_Table = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt_ToSave.Expression_From, true, log_Reports);
+                o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+                    selectSt_ToSave.Expression_From, true, log_Reports);
 
                 if (null == o_Table)
                 {
@@ -92,7 +93,7 @@ namespace Xenon.Expr
             //
             //
             //
-            XenonFielddefinition keyFldDefinition = null;
+            Fielddefinition keyFldDefinition = null;
             string err_SSelectedFldName = null;
             Exception err_Exception = null;
             Recordcondition err_Recordcondition = null;
@@ -113,7 +114,7 @@ namespace Xenon.Expr
                         sList_KeyFldName.Add(recCond.Name_Field);
                     }
 
-                    List<XenonFielddefinition> oList_keyFldDefinition;
+                    List<Fielddefinition> oList_keyFldDefinition;
                     bool bHit = o_Table.TryGetFieldDefinitionByName(
                          out oList_keyFldDefinition,
                         sList_KeyFldName,
@@ -133,7 +134,7 @@ namespace Xenon.Expr
 
                 //
                 // （３）選択対象のフィールドの定義を調べます。
-                List<XenonFielddefinition> list_SelectedFldDefinition;
+                List<Fielddefinition> list_SelectedFldDefinition;
                 {
                     bool bHit = o_Table.TryGetFieldDefinitionByName(
                         out list_SelectedFldDefinition,
@@ -161,7 +162,7 @@ namespace Xenon.Expr
 
                 List<string> list_FldImpl3 = new List<string>();
 
-                foreach (XenonFielddefinition selectedFldDef in list_SelectedFldDefinition)
+                foreach (Fielddefinition selectedFldDef in list_SelectedFldDefinition)
                 {
                     string sSelectField = selectedFldDef.Name_Trimupper;
 
@@ -190,7 +191,7 @@ namespace Xenon.Expr
                             //    goto gt_Error_EmptyTableName;
                             //}
 
-                            //XenonTable o_Table = this.MoOpyopyo.MemoryTables.GetXenonTableByName(selectSt.Expression_From, true, log_Reports);
+                            //TableHumaninput o_Table = this.MoOpyopyo.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
 
                             //if (null == o_Table)
                             //{
@@ -213,7 +214,7 @@ namespace Xenon.Expr
                             //
                             //
                             string sKeyFieldName;
-                            XenonFielddefinition o_KeyFldDef;
+                            Fielddefinition o_KeyFldDef;
                             string sExpectedValue;
                             P2_ReccondImpl sel2 = new P2_ReccondImpl();
                             sel2.GetFirstAwhrReccond(
@@ -296,22 +297,22 @@ namespace Xenon.Expr
                         //
                         // キー_フィールドの型別に、処理。
                         //
-                        if (keyFldDefinition.Type == typeof(XenonValue_StringImpl))
+                        if (keyFldDefinition.Type == typeof(String_HumaninputImpl))
                         {
                             //
                             // （８－１）キーが string型フィールドなら
 
                             // この行の、選択対象のフィールドの値。
 
-                            foreach (Dictionary<string, XenonValue> record in dst_Rs_toSave.List_Field)
+                            foreach (Dictionary<string, ValueHumaninput> record in dst_Rs_toSave.List_Field)
                             {
                                 //
                                 // 値。
 
-                                XenonValue selectedCellData;
+                                ValueHumaninput selectedCellData;
                                 try
                                 {
-                                    selectedCellData = (XenonValue)record[sSelectField];
+                                    selectedCellData = (ValueHumaninput)record[sSelectField];
                                 }
                                 catch (KeyNotFoundException ex)
                                 {
@@ -333,12 +334,12 @@ namespace Xenon.Expr
                             }
 
                         }
-                        else if (keyFldDefinition.Type == typeof(XenonValue_IntImpl))
+                        else if (keyFldDefinition.Type == typeof(Int_HumaninputImpl))
                         {
                             //
                             // （８－２） キー・フィールドが int型の場合。
 
-                            foreach (Dictionary<string, XenonValue> record in dst_Rs_toSave.List_Field)
+                            foreach (Dictionary<string, ValueHumaninput> record in dst_Rs_toSave.List_Field)
                             {
                                 // この行の、選択対象のフィールドの値。
 
@@ -350,7 +351,7 @@ namespace Xenon.Expr
                                 }
                                 else
                                 {
-                                    XenonValue selectedCellData;
+                                    ValueHumaninput selectedCellData;
                                     try
                                     {
                                         selectedCellData = record[sSelectField];
@@ -381,21 +382,21 @@ namespace Xenon.Expr
                             }
 
                         }
-                        else if (keyFldDefinition.Type == typeof(XenonValue_BoolImpl))
+                        else if (keyFldDefinition.Type == typeof(Bool_HumaninputImpl))
                         {
                             //
                             // （８－３） キーが、bool型フィールド
 
                             //
                             // 値。
-                            foreach (Dictionary<string, XenonValue> record in dst_Rs_toSave.List_Field)
+                            foreach (Dictionary<string, ValueHumaninput> record in dst_Rs_toSave.List_Field)
                             {
 
                                 // この行の、選択対象のフィールドの値。
-                                XenonValue selectedCellData;
+                                ValueHumaninput selectedCellData;
                                 try
                                 {
-                                    selectedCellData = (XenonValue)record[sSelectField];
+                                    selectedCellData = (ValueHumaninput)record[sSelectField];
                                 }
                                 catch (KeyNotFoundException ex)
                                 {
@@ -524,8 +525,8 @@ namespace Xenon.Expr
         /// <param oVariableName="selectedOValue"></param>
         /// <returns></returns>
         private Expression_Node_String GetSelectedFieldValue(
-            XenonFielddefinition selectedFldDefinition,
-            XenonValue selectedOValue,
+            Fielddefinition selectedFldDefinition,
+            ValueHumaninput selectedOValue,
             Configurationtree_Node parent_Cf_Select,
             Log_Reports log_Reports
             )
@@ -537,38 +538,38 @@ namespace Xenon.Expr
 
 
             Expression_Node_String reslt_Expression_SelectedValue;
-            if (selectedFldDefinition.Type == typeof(XenonValue_IntImpl))
+            if (selectedFldDefinition.Type == typeof(Int_HumaninputImpl))
             {
                 StringBuilder s = new StringBuilder();
                 s.Append("IntCellDataフィールド[");
                 s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 
-                string sValue = XenonValue_IntImpl.ParseString(selectedOValue);
+                string sValue = Int_HumaninputImpl.ParseString(selectedOValue);
                 Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
                 ec_Field.SetString(sValue, log_Reports);
                 reslt_Expression_SelectedValue = ec_Field;
             }
-            else if (selectedFldDefinition.Type == typeof(XenonValue_StringImpl))
+            else if (selectedFldDefinition.Type == typeof(String_HumaninputImpl))
             {
                 StringBuilder s = new StringBuilder();
                 s.Append("StringCellDataフィールド[");
                 s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 
-                string sValue = XenonValue_StringImpl.ParseString(selectedOValue);
+                string sValue = String_HumaninputImpl.ParseString(selectedOValue);
                 Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
                 ec_Field.SetString(sValue, log_Reports);
                 reslt_Expression_SelectedValue = ec_Field;
             }
-            else if (selectedFldDefinition.Type == typeof(XenonValue_BoolImpl))
+            else if (selectedFldDefinition.Type == typeof(Bool_HumaninputImpl))
             {
                 StringBuilder s = new StringBuilder();
-                s.Append("XenonValue_Boolフィールド[");
+                s.Append("ValueHumaninput_Boolフィールド[");
                 s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 
-                string sValue = XenonValue_BoolImpl.ParseString(selectedOValue);
+                string sValue = Bool_HumaninputImpl.ParseString(selectedOValue);
                 Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
                 ec_Field.SetString(sValue, log_Reports);
                 reslt_Expression_SelectedValue = ec_Field;

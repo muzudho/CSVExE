@@ -42,7 +42,7 @@ namespace Xenon.Table
         public string Perform(
             string sFormat,
             DataRowView dataRowView,
-            XenonTable xenonTable,
+            TableHumaninput xenonTable,
             Log_Reports log_Reports
             )
         {

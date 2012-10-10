@@ -127,15 +127,15 @@ namespace Xenon.MiddleImpl
             {
                 string strTypedata = ValuesTypeData.S_TABLE_ERRORMESSAGES;
                 Configurationtree_Node cur_Ct = new Configurationtree_NodeImpl(log_Method.Fullname, null);
-                List<XenonTable> tables = this.MemoryTables.GetXenonTableByTypedata(
+                List<TableHumaninput> tables = this.MemoryTables.GetTableHumaninputByTypedata(
                     new Expression_Leaf_StringImpl(strTypedata, null, cur_Ct), true, log_Reports);
 
                 bool hit = false;
-                foreach (XenonTable table in tables)
+                foreach (TableHumaninput table in tables)
                 {
                     foreach (DataRow dataRow in table.DataTable.Rows)
                     {
-                        XenonValue_IntImpl xenonValue_Int = (XenonValue_IntImpl)dataRow["ID"];
+                        Int_HumaninputImpl xenonValue_Int = (Int_HumaninputImpl)dataRow["ID"];
 
                         int valueInt;
                         xenonValue_Int.TryGet(out valueInt);
@@ -148,7 +148,7 @@ namespace Xenon.MiddleImpl
                             Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                             r.SetTitle("Er:" + errorNumber + ";", log_Method);
 
-                            XenonValue_StringImpl xenonValue_String = (XenonValue_StringImpl)dataRow["MESSAGE"];
+                            String_HumaninputImpl xenonValue_String = (String_HumaninputImpl)dataRow["MESSAGE"];
 
                             string valueStr;
                             xenonValue_String.TryGet(out valueStr);

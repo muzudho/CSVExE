@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xenon.Syntax;//IntegerRanges
-using Xenon.Table;//XenonValue_IntImpl
+using Xenon.Table;//Int_HumaninputImpl
 
 namespace Xenon.Operating
 {
@@ -148,7 +148,7 @@ namespace Xenon.Operating
                                             // 優先順位を比較します。
                                             int numberRef;
 
-                                            XenonValue_IntImpl.TryParse(
+                                            Int_HumaninputImpl.TryParse(
                                                 numberObj.Priority,
                                                 out numberRef,
                                                 EnumOperationIfErrorvalue.Error,

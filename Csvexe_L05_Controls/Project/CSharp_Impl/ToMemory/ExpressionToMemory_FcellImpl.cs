@@ -243,10 +243,10 @@ namespace Xenon.Controls
 
             // ──────────
 
-            XenonTable o_Table;
+            TableHumaninput o_Table;
             if (log_Reports.Successful)
             {
-                o_Table = moApplication.MemoryTables.GetXenonTableByName(ec_TableName1, true, log_Reports);
+                o_Table = moApplication.MemoryTables.GetTableHumaninputByName(ec_TableName1, true, log_Reports);
                 // エラー時には、エラーメッセージを出させます。
 
                 if (null == o_Table)
@@ -273,7 +273,7 @@ namespace Xenon.Controls
             string err_SSelectedFldName;
 
             // field=""。
-            XenonFielddefinition o_KeyFldDef;
+            Fielddefinition o_KeyFldDef;
             if (log_Reports.Successful)
             {
                 //
@@ -300,7 +300,7 @@ namespace Xenon.Controls
                     }
                 }
 
-                List<XenonFielddefinition> oList_KeyFldDef;
+                List<Fielddefinition> oList_KeyFldDef;
                 bool bHit = o_Table.TryGetFieldDefinitionByName(
                     out oList_KeyFldDef,
                     sList_KeyFldName,
@@ -320,7 +320,7 @@ namespace Xenon.Controls
             }
 
 
-            List<XenonFielddefinition> oList_SelectedFldDef;
+            List<Fielddefinition> oList_SelectedFldDef;
             if (log_Reports.Successful)
             {
                 // 選択対象のフィールドの定義を調べます。
@@ -421,7 +421,7 @@ namespace Xenon.Controls
                         ToMemory_CellImpl updater = new ToMemory_CellImpl();
 
 
-                        foreach (XenonFielddefinition o_SelectedFldDef in oList_SelectedFldDef)
+                        foreach (Fielddefinition o_SelectedFldDef in oList_SelectedFldDef)
                         {
                             updater.ToMemory_ToSelectedField(
                                 sOutputValue,

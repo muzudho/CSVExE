@@ -73,13 +73,13 @@ namespace Xenon.Operating
 
         //────────────────────────────────────────
 
-        private XenonTable o_Table_Keycnf;
+        private TableHumaninput o_Table_Keycnf;
 
         /// <summary>
         /// CSV形式などのテーブル状に記憶されたキーコンフィグ設定。
         /// 未読込時はヌル。
         /// </summary>
-        public XenonTable O_Table_Keycnf
+        public TableHumaninput O_Table_Keycnf
         {
             get
             {

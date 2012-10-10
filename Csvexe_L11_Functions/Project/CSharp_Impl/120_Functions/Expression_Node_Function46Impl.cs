@@ -431,7 +431,7 @@ namespace Xenon.Functions
             //変数CSVを吐き出したい。（登録されている順序を保って）
             {
                 // 変数ファイルの読取り
-                XenonTable o_Table_Variables;
+                TableHumaninput o_Table_Variables;
                 this.Owner_MemoryApplication.MemoryVariables.TryGetTable_Variables(
                     out o_Table_Variables,
                     Application.StartupPath,
@@ -494,7 +494,7 @@ namespace Xenon.Functions
                         if (o_Table_Variables.DataTable.Columns.Contains(NamesFld.S_NO))
                         {
                             int nValue;
-                            XenonValue_IntImpl.TryParse(row[NamesFld.S_NO], out nValue, EnumOperationIfErrorvalue.Spaces_To_Alt_Value, 0, log_Reports);
+                            Int_HumaninputImpl.TryParse(row[NamesFld.S_NO], out nValue, EnumOperationIfErrorvalue.Spaces_To_Alt_Value, 0, log_Reports);
                             sb.Append(nValue);
                             sb.Append(",");
                         }
@@ -503,7 +503,7 @@ namespace Xenon.Functions
                         if (o_Table_Variables.DataTable.Columns.Contains(NamesFld.S_ID))
                         {
                             int nValue;
-                            XenonValue_IntImpl.TryParse(row[NamesFld.S_ID], out nValue, EnumOperationIfErrorvalue.Spaces_To_Alt_Value, 0, log_Reports);
+                            Int_HumaninputImpl.TryParse(row[NamesFld.S_ID], out nValue, EnumOperationIfErrorvalue.Spaces_To_Alt_Value, 0, log_Reports);
                             sb.Append(nValue);
                             sb.Append(",");
                         }
@@ -511,7 +511,7 @@ namespace Xenon.Functions
                         if (o_Table_Variables.DataTable.Columns.Contains(NamesFld.S_EXPL))
                         {
                             string sValue;
-                            XenonValue_StringImpl.TryParse(row[NamesFld.S_EXPL], out sValue, "", "", log_Method, log_Reports);
+                            String_HumaninputImpl.TryParse(row[NamesFld.S_EXPL], out sValue, "", "", log_Method, log_Reports);
                             sb.Append(sValue);
                             sb.Append(",");
                         }
@@ -520,7 +520,7 @@ namespace Xenon.Functions
                         if (o_Table_Variables.DataTable.Columns.Contains(NamesFld.S_NAME))
                         {
                             string sValue;
-                            XenonValue_StringImpl.TryParse(row[NamesFld.S_NAME], out sValue, "", "", log_Method, log_Reports);
+                            String_HumaninputImpl.TryParse(row[NamesFld.S_NAME], out sValue, "", "", log_Method, log_Reports);
                             sb.Append(sValue);
                             sb.Append(",");
 
@@ -541,7 +541,7 @@ namespace Xenon.Functions
                             string sNamevar_Folder_Src;
                             if (o_Table_Variables.DataTable.Columns.Contains(NamesFld.S_FOLDER))
                             {
-                                XenonValue_StringImpl.TryParse(row[NamesFld.S_FOLDER], out sNamevar_Folder_Src, "", "", log_Method, log_Reports);
+                                String_HumaninputImpl.TryParse(row[NamesFld.S_FOLDER], out sNamevar_Folder_Src, "", "", log_Method, log_Reports);
 
                                 //フォルダーパス
                                 Expression_Node_Filepath ec_Folder = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(new Expression_Leaf_StringImpl(sNamevar_Folder_Src,null,cur_Cf), false, log_Reports);
@@ -576,7 +576,7 @@ namespace Xenon.Functions
                             if (o_Table_Variables.DataTable.Columns.Contains(NamesFld.S_VALUE))
                             {
                                 //string sValue;
-                                //XenonValue_StringImpl.TryParse(row[NamesFld.S_VALUE], out sValue, "", "", log_Method, log_Reports);
+                                //String_HumaninputImpl.TryParse(row[NamesFld.S_VALUE], out sValue, "", "", log_Method, log_Reports);
                                 //sb.Append(sValue);
                                 //sb.Append(",");
 

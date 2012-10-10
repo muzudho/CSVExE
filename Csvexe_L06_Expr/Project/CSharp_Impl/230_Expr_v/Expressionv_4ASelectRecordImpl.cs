@@ -67,7 +67,7 @@ namespace Xenon.Expr
                         goto gt_Error_EmptyTableName;
                     }
 
-                    XenonTable oTable = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
+                    TableHumaninput oTable = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
                         this.Expression_From,//これが空文字列の場合がある？？
                         true,
                         log_Reports
@@ -106,7 +106,7 @@ namespace Xenon.Expr
                         goto gt_Error_EmptyTableName;
                     }
 
-                    XenonTable o_Table = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt_ToSave.Expression_From, true, log_Reports);
+                    TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt_ToSave.Expression_From, true, log_Reports);
 
                     if (null == o_Table)
                     {
@@ -129,7 +129,7 @@ namespace Xenon.Expr
                     //
                     //
                     string sKeyFieldName;
-                    XenonFielddefinition o_KeyFldDef;
+                    Fielddefinition o_KeyFldDef;
                     string sExpectedValue;
                     P2_ReccondImpl sel2 = new P2_ReccondImpl();
                     sel2.GetFirstAwhrReccond(
@@ -211,7 +211,7 @@ namespace Xenon.Expr
                 //        foreach (DataColumn column in record.Table.Columns)
                 //        {
 
-                //            XenonValue oValue = (XenonValue)record[column.ColumnName];
+                //            ValueHumaninput oValue = (ValueHumaninput)record[column.ColumnName];
 
                 //            txt.Append("　★" + column.ColumnName + "＝[" + oValue.Humaninput + "]");
                 //        }
@@ -231,12 +231,12 @@ namespace Xenon.Expr
                 //    txt.Append("　ヒット件数＝[" + recordSet_toSave.O_Items.Count + "]←検索後");
 
                 //    // レコードの内容
-                //    foreach (Dictionary<string, XenonValue> oRecord in recordSet_toSave.O_Items)
+                //    foreach (Dictionary<string, ValueHumaninput> oRecord in recordSet_toSave.O_Items)
                 //    {
                 //        txt.Append("　フィールド数＝[" + oRecord.Count + "]");
                 //        foreach (string sKey in oRecord.Keys)
                 //        {
-                //            XenonValue oValue = oRecord[sKey];
+                //            ValueHumaninput oValue = oRecord[sKey];
                 //            txt.Append("　■" + sKey + "＝[" + oValue.Humaninput + "]");
                 //        }
                 //    }

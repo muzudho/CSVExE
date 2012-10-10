@@ -11,7 +11,7 @@ using System.Drawing;//Color
 using System.Windows.Forms;//Label
 using Xenon.Syntax;
 
-using Xenon.Table;//XenonTable
+using Xenon.Table;//TableHumaninput
 
 namespace Xenon.Operating
 {

@@ -181,14 +181,14 @@ namespace Xenon.Controls
 
                 DataRowView dataRowView = (DataRowView)this.Items[nRow];
 
-                XenonValue o_FldValue = null;//フィールド
+                ValueHumaninput o_FldValue = null;//フィールド
                 {
                     // todo: フィールド値
                     if (dataRowView.DataView.Table.Columns.Contains(sName_KeyFld))
                     {
                         object fldValue = dataRowView.Row[sName_KeyFld];
 
-                        bool bParsedSuccessful = Utility_XenonValue.TryParse(
+                        bool bParsedSuccessful = Utility_HumaninputValue.TryParse(
                             fldValue,
                             out o_FldValue,
                             true,
@@ -213,12 +213,12 @@ namespace Xenon.Controls
                     }
                 }
 
-                XenonValue o_ExpectedValue = null;
+                ValueHumaninput o_ExpectedValue = null;
                 {
                     //
                     // oFldValue と同じ型の CellData を作成。
                     //
-                    o_ExpectedValue = Utility_XenonValue.NewInstance(
+                    o_ExpectedValue = Utility_HumaninputValue.NewInstance(
                         o_FldValue,
                         true,
                         pg_Method.Fullname,
@@ -613,7 +613,7 @@ namespace Xenon.Controls
 
         //────────────────────────────────────────
 
-        private XenonTable xenonTable_Datasource;
+        private TableHumaninput tableHumaninput_Datasource;
 
         /// <summary>
         /// このリストボックスのデータソースを、データテーブルから取っている場合、
@@ -621,15 +621,15 @@ namespace Xenon.Controls
         /// 
         /// Xn_L11_NorenImpl:NorenListboxUtil.cs:NorenListboxUtil.BindTableToDataSourceでsetを使用。
         /// </summary>
-        public XenonTable XenonTable_Datasource
+        public TableHumaninput TableHumaninput_Datasource
         {
             set
             {
-                xenonTable_Datasource = value;
+                tableHumaninput_Datasource = value;
             }
             get
             {
-                return xenonTable_Datasource;
+                return tableHumaninput_Datasource;
             }
         }
 

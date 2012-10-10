@@ -173,7 +173,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                XenonTable xenonTable_Aafilescsv;
+                TableHumaninput xenonTable_Aafilescsv;
                 if (log_Reports.Successful)
                 {
                     xenonTable_Aafilescsv = this.Read_AaFilesCsv(log_Reports);
@@ -193,7 +193,7 @@ namespace Xenon.Functions
                 //
                 if (log_Reports.Successful)
                 {
-                    this.Owner_MemoryApplication.MemoryTables.AddXenonTable(xenonTable_Aafilescsv, log_Reports);
+                    this.Owner_MemoryApplication.MemoryTables.AddTableHumaninput(xenonTable_Aafilescsv, log_Reports);
                 }
 
 
@@ -221,11 +221,11 @@ namespace Xenon.Functions
                 //
                 // TODO:「フォーム一覧テーブル」を更に読取に行く。
                 //
-                if (this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable.ContainsKey(NamesVar.S_ST_AA_FORMS))
+                if (this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput.ContainsKey(NamesVar.S_ST_AA_FORMS))
                 {
                     //
                     // 「フォーム一覧テーブル」
-                    XenonTable o_Table_Aaformscsv = this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable[NamesVar.S_ST_AA_FORMS];
+                    TableHumaninput o_Table_Aaformscsv = this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput[NamesVar.S_ST_AA_FORMS];
 
                     //
                     // 「テーブルに書かれているテーブル」を読取り、登録。
@@ -348,11 +348,11 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private XenonTableformat ReadIndexFormat()
+        private Format_TableHumaninput ReadIndexFormat()
         {
             //
             // テーブル読取り引数。
-            XenonTableformat forIndexTable_format = new XenonTableformatImpl();
+            Format_TableHumaninput forIndexTable_format = new Format_TableHumaninputImpl();
 
             //
             // 「int型ばかりで型が省略されているテーブル」ではない。
@@ -367,16 +367,16 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private XenonTable Read_AaFilesCsv(Log_Reports log_Reports)
+        private TableHumaninput Read_AaFilesCsv(Log_Reports log_Reports)
         {
             //「Aa_Files.csv」を読み取る要求を作成します。
             Request_ReadsTable forAafilescsv_Request = this.CreateReadRequest_AaFilesCsv(log_Reports);
-            XenonTableformat forAafilescsv_Format = this.ReadIndexFormat();
+            Format_TableHumaninput forAafilescsv_Format = this.ReadIndexFormat();
 
             //
             // 「Aa_Files.csv」読取り
-            CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
-            XenonTable xenonTable_Aafilescsv;
+            CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
+            TableHumaninput xenonTable_Aafilescsv;
             if (log_Reports.Successful)
             {
                 // 正常時
@@ -412,7 +412,7 @@ namespace Xenon.Functions
         /// 「Aa_Files.csv」に書かれている「テーブル」と「スクリプト」を読取り、登録します。
         /// </summary>
         private void ReadAndRegisterFiles(
-            XenonTable xenonTable_Aafilescsv,
+            TableHumaninput xenonTable_Aafilescsv,
             Log_Reports log_Reports
             )
         {
@@ -513,10 +513,10 @@ namespace Xenon.Functions
                         // テーブルなら。
                         //
 
-                        XenonTableformat forTable_format = this.Read_RequestPart_Table(
+                        Format_TableHumaninput forTable_format = this.Read_RequestPart_Table(
                             datarow, sFpatha_Aafilescsv, log_Reports);
 
-                        XenonTable oTable;
+                        TableHumaninput oTable;
                         // テーブル読取の実行。（書き出し専用の場合は、登録だけする）
                         oTable = this.ReadTable(
                             requestRead,
@@ -528,7 +528,7 @@ namespace Xenon.Functions
                         if (log_Reports.Successful)
                         {
                             // アプリケーション・モデルに、テーブルを登録
-                            this.Owner_MemoryApplication.MemoryTables.AddXenonTable(
+                            this.Owner_MemoryApplication.MemoryTables.AddTableHumaninput(
                                 oTable,
                                 log_Reports
                                 );
@@ -618,7 +618,7 @@ namespace Xenon.Functions
         /// <returns></returns>
         private Request_ReadsTable CreateReadRequest(
             DataRow dataRow,
-            XenonTable o_Table_Aafiles,
+            TableHumaninput o_Table_Aafiles,
             Log_Reports log_Reports
             )
         {
@@ -660,7 +660,7 @@ namespace Xenon.Functions
             {
                 string sName_Field = NamesFld.S_NAME;
                 string sTableName;
-                if (XenonValue_StringImpl.TryParse(
+                if (String_HumaninputImpl.TryParse(
                     dataRow[sName_Field],
                     out sTableName,
                     o_Table_Aafiles.Name,
@@ -688,7 +688,7 @@ namespace Xenon.Functions
                 string sTableUnit;
                 if (dataRow.Table.Columns.Contains(sName_Field))
                 {
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sName_Field],
                         out sTableUnit,
                         o_Table_Aafiles.Name,
@@ -721,7 +721,7 @@ namespace Xenon.Functions
                 string sValue;
                 if (dataRow.Table.Columns.Contains(sName_Field))
                 {
-                    if (XenonValue_StringImpl.TryParse(
+                    if (String_HumaninputImpl.TryParse(
                         dataRow[sName_Field],
                         out sValue,
                         o_Table_Aafiles.Name,
@@ -773,7 +773,7 @@ namespace Xenon.Functions
                 string sNamevar;
                 if (dataRow.Table.Columns.Contains(sName_Field))
                 {
-                    if (XenonValue_StringImpl.TryParse(
+                    if (String_HumaninputImpl.TryParse(
                         dataRow[sName_Field],
                         out sNamevar,
                         o_Table_Aafiles.Name,
@@ -812,7 +812,7 @@ namespace Xenon.Functions
                 bool bDateBackup;
                 if (dataRow.Table.Columns.Contains(sName_Field))
                 {
-                    bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
+                    bool bParsedSuccessful = Bool_HumaninputImpl.TryParse(
                         dataRow[sName_Field],
                         out bDateBackup,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
@@ -847,7 +847,7 @@ namespace Xenon.Functions
                 string sField;
                 if (dataRow.Table.Columns.Contains(sName_Field))
                 {
-                    bool bParsedSuccessful = XenonValue_StringImpl.TryParse(
+                    bool bParsedSuccessful = String_HumaninputImpl.TryParse(
                         dataRow[sName_Field],
                         out sField,
                         o_Table_Aafiles.Name,
@@ -899,7 +899,7 @@ namespace Xenon.Functions
             string sTableNameToPuts,
             string sFpatha_Aafiles,
             DataRow dataRow,
-            XenonTable o_IndexTable,
+            TableHumaninput o_IndexTable,
             Log_Reports log_Reports
             )
         {
@@ -917,7 +917,7 @@ namespace Xenon.Functions
                 string sNamevarFolder;
                 {
                     string sFieldName2 = NamesFld.S_FOLDER;
-                    if (XenonValue_StringImpl.TryParse(
+                    if (String_HumaninputImpl.TryParse(
                         dataRow[sFieldName2],
                         out sNamevarFolder,
                         o_IndexTable.Name,
@@ -936,7 +936,7 @@ namespace Xenon.Functions
 
                 // テーブルのファイルのパスを取得
                 string sName_Field = NamesFld.S_FILE;
-                if (XenonValue_StringImpl.TryParse(
+                if (String_HumaninputImpl.TryParse(
                     dataRow[sName_Field],
                     out sFpath,
                     o_IndexTable.Name,
@@ -1046,7 +1046,7 @@ namespace Xenon.Functions
         /// <param name="forIndexTable_csvAbsFilePath"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        private XenonTableformat Read_RequestPart_Table(
+        private Format_TableHumaninput Read_RequestPart_Table(
             DataRow datarow,
             string filepath_ForAafilescsv,
             Log_Reports log_Reports
@@ -1054,7 +1054,7 @@ namespace Xenon.Functions
         {
             //
             // 「各テーブル」の引数
-            XenonTableformat forTable_format = new XenonTableformatImpl();
+            Format_TableHumaninput forTable_format = new Format_TableHumaninputImpl();
 
 
             //
@@ -1063,7 +1063,7 @@ namespace Xenon.Functions
             {
                 bool isRowColRev;
 
-                bool isSuccessful_Parsed = XenonValue_BoolImpl.TryParse(
+                bool isSuccessful_Parsed = Bool_HumaninputImpl.TryParse(
                     datarow[NamesFld.S_ROW_COL_REV],
                     out isRowColRev,
                     EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
@@ -1090,7 +1090,7 @@ namespace Xenon.Functions
             {
                 bool isAllIntFields;
 
-                bool isSuccessful_Parsed = XenonValue_BoolImpl.TryParse(
+                bool isSuccessful_Parsed = Bool_HumaninputImpl.TryParse(
                     datarow[NamesFld.S_ALL_INT_FIELDS],
                     out isAllIntFields,
                     EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
@@ -1118,7 +1118,7 @@ namespace Xenon.Functions
                 bool isCommaEnding;
                 if (datarow.Table.Columns.Contains(name_Field))
                 {
-                    bool isSuccessful_Parsed = XenonValue_BoolImpl.TryParse(
+                    bool isSuccessful_Parsed = Bool_HumaninputImpl.TryParse(
                         datarow[name_Field],
                         out isCommaEnding,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
@@ -1164,7 +1164,7 @@ namespace Xenon.Functions
         private MemoryCodefileinfo Read_RequestPart_Script(
             DataRow dataRow,
             string sFpatha_Aafilescsv,
-            XenonTable o_Table_Aafiles,
+            TableHumaninput o_Table_Aafiles,
             Log_Reports log_Reports
             )
         {
@@ -1189,7 +1189,7 @@ namespace Xenon.Functions
             {
                 string sName;
 
-                bool bParsedSuccessful = XenonValue_StringImpl.TryParse(
+                bool bParsedSuccessful = String_HumaninputImpl.TryParse(
                     dataRow[NamesFld.S_NAME],
                     out sName,
                     sFpatha_Aafilescsv,
@@ -1211,7 +1211,7 @@ namespace Xenon.Functions
             {
                 string sTypedata;
 
-                bool bParsedSuccessful = XenonValue_StringImpl.TryParse(
+                bool bParsedSuccessful = String_HumaninputImpl.TryParse(
                     dataRow[NamesFld.S_TYPE_DATA],
                     out sTypedata,
                     sFpatha_Aafilescsv,
@@ -1262,20 +1262,20 @@ namespace Xenon.Functions
         /// <param name="forTable_format"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        private XenonTable ReadTable(
+        private TableHumaninput ReadTable(
             Request_ReadsTable forSubTable_Request_TblReads,
-            XenonTableformat o_TableFormat_ForSubTable_Puts,
+            Format_TableHumaninput o_TableFormat_ForSubTable_Puts,
             Log_Reports log_Reports
             )
         {
-            XenonTable o_Tbl;
+            TableHumaninput o_Tbl;
             if (log_Reports.Successful)
             {
                 // 正常時
 
                 //
                 // テーブル読取り
-                CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
+                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
 
                 // テーブル
                 o_Tbl = reader.Read(
@@ -1324,14 +1324,14 @@ namespace Xenon.Functions
             //
             // 全てのテーブルについて。
             //
-            foreach (XenonTable oTable in this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable.Values)
+            foreach (TableHumaninput oTable in this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput.Values)
             {
                 //
                 // フラグ読取： 日初めのバックアップを取るかどうかどうか。
                 //
                 bool bDateBackupFlag;
 
-                bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
+                bool bParsedSuccessful = Bool_HumaninputImpl.TryParse(
                     oTable.IsDatebackupActivated,// dataRow["DATE_BACKUP"],
                     out bDateBackupFlag,
                     EnumOperationIfErrorvalue.Error,

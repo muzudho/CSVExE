@@ -171,7 +171,7 @@ namespace Xenon.Expr
                 // （１）レコードセットの絞り込み。
                 RecordSet dst_Rs;
                 {
-                    XenonTable o_Tbl = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
+                    TableHumaninput o_Tbl = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
                         selectSt.Expression_From,//これが空文字列の場合がある？？
                         true,
                         log_Reports
@@ -191,7 +191,7 @@ namespace Xenon.Expr
                         goto gt_Error_EmptyTableName;
                     }
 
-                    XenonTable o_Table = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_From, true, log_Reports);
+                    TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
 
                     if (null == o_Table)
                     {
@@ -214,7 +214,7 @@ namespace Xenon.Expr
                     //
                     //
                     string sKeyFieldName;
-                    XenonFielddefinition o_KeyFldDef;
+                    Fielddefinition o_KeyFldDef;
                     string sExpectedValue;
                     P2_ReccondImpl sel2 = new P2_ReccondImpl();
                     sel2.GetFirstAwhrReccond(

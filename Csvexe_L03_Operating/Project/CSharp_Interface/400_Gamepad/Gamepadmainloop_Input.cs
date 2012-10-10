@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Xenon.Table;//XenonTable
+using Xenon.Table;//TableHumaninput
 
 namespace Xenon.Operating
 {
@@ -40,7 +40,7 @@ namespace Xenon.Operating
         /// <summary>
         /// ゲームパッド全部のキーコンフィグを記憶します。
         /// </summary>
-        XenonTable XenonTable_Keyconfig
+        TableHumaninput TableHumaninput_Keyconfig
         {
             get;
             set;

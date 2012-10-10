@@ -122,12 +122,12 @@ namespace Xenon.Functions
 
 
                 // テーブル
-                XenonTable o_Table_Src;
+                TableHumaninput o_Table_Src;
                 {
                     Expression_Node_String ec_ArgTableName;
                     this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function05Impl.PM_NAME_TABLE_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
 
-                    o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
+                    o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
                         ec_ArgTableName,
                         true,
                         log_Reports
@@ -139,7 +139,7 @@ namespace Xenon.Functions
                 //
                 string sCsvText;
                 {
-                    ToCsv_TableCsvImpl toCsv = new ToCsv_TableCsvImpl();
+                    ToCsv_TableHumaninput_Impl toCsv = new ToCsv_TableHumaninput_Impl();
 
                     //
                     // 出力しないフィールド名（英字は、大文字にして入れること）
@@ -149,8 +149,8 @@ namespace Xenon.Functions
                     //
                     // 一時的にプロパティー変更
                     //
-                    bool bOldRowColRev = o_Table_Src.XenonTableformat.IsRowcolumnreverse;
-                    o_Table_Src.XenonTableformat.IsRowcolumnreverse = false;//行と列を、ひっくり返さずに書きだす。
+                    bool bOldRowColRev = o_Table_Src.Format_TableHumaninput.IsRowcolumnreverse;
+                    o_Table_Src.Format_TableHumaninput.IsRowcolumnreverse = false;//行と列を、ひっくり返さずに書きだす。
 
                     sCsvText = toCsv.ToCsvText(o_Table_Src, log_Reports);
                     if (!log_Reports.Successful)
@@ -162,19 +162,19 @@ namespace Xenon.Functions
                     //
                     // 元に戻す。
                     //
-                    o_Table_Src.XenonTableformat.IsRowcolumnreverse = bOldRowColRev;
+                    o_Table_Src.Format_TableHumaninput.IsRowcolumnreverse = bOldRowColRev;
                 }
 
                 //
                 // 書き出し先のテーブル
                 //
-                XenonTable o_Table_Dst;
+                TableHumaninput o_Table_Dst;
                 if (log_Reports.Successful)
                 {
                     Expression_Node_String ec_ArgTableName;
                     this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function05Impl.PM_NAME_TABLE_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
 
-                    o_Table_Dst = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
+                    o_Table_Dst = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
                         ec_ArgTableName,
                         true,
                         log_Reports

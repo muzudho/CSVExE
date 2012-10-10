@@ -33,8 +33,8 @@ namespace Xenon.Middle
         /// テーブルを、コレクションに追加します。
         /// </summary>
         /// <param name="oTable"></param>
-        void AddXenonTable(
-            XenonTable xenonTable,
+        void AddTableHumaninput(
+            TableHumaninput xenonTable,
             Log_Reports log_Reports
             );
 
@@ -44,7 +44,7 @@ namespace Xenon.Middle
         /// <param name="nTableName"></param>
         /// <param name="bRequired">該当しなかった場合に警告表示を行うなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
-        XenonTable GetXenonTableByName(
+        TableHumaninput GetTableHumaninputByName(
             Expression_Node_String ec_NameTable,
             bool bRequired,
             Log_Reports log_Reports
@@ -56,7 +56,7 @@ namespace Xenon.Middle
         /// <param select="nTableName"></param>
         /// <param select="bRequired">該当しなかった場合にエラー扱いなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
-        List<XenonTable> GetXenonTableByFormgroup(
+        List<TableHumaninput> GetTableHumaninputByFormgroup(
             Expression_Node_String ec_Formgroup,
             bool bRequired,
             Log_Reports log_Reports
@@ -68,7 +68,7 @@ namespace Xenon.Middle
         /// <param select="nTableName"></param>
         /// <param select="bRequired">該当しなかった場合にエラー扱いなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
-        List<XenonTable> GetXenonTableByTypedata(
+        List<TableHumaninput> GetTableHumaninputByTypedata(
             Expression_Node_String expr_KeyExpected,
             bool bRequired,
             Log_Reports log_Reports
@@ -85,7 +85,7 @@ namespace Xenon.Middle
         /// <summary>
         /// テーブルの、名前付き一覧。
         /// </summary>
-        Dictionary<string, XenonTable> Dictionary_XenonTable
+        Dictionary<string, TableHumaninput> Dictionary_TableHumaninput
         {
             get;
         }

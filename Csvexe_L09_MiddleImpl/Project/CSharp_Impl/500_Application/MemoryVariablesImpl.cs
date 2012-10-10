@@ -79,7 +79,7 @@ namespace Xenon.MiddleImpl
         //────────────────────────────────────────
 
         public void TryGetTable_Variables(
-            out XenonTable out_xenonTable_Variables,
+            out TableHumaninput out_xenonTable_Variables,
             String filepath_Startup,
             Log_Reports log_Reports
             )
@@ -120,10 +120,10 @@ namespace Xenon.MiddleImpl
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
+                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                XenonTableformat tblFormat_puts = new XenonTableformatImpl();
+                Format_TableHumaninput tblFormat_puts = new Format_TableHumaninputImpl();
                 request_tblReads.Name_PutToTable = NamesVar.S_ST_VARIABLES2;
                 request_tblReads.Expression_Filepath = ec_Fpath_Variables;
 
@@ -158,7 +158,7 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole("「変数登録ファイル」を読込みます。");
             }
 
-            XenonTable xenonTable_Variables;
+            TableHumaninput xenonTable_Variables;
             this.TryGetTable_Variables(
                 out xenonTable_Variables,
                 sFpath_Startup,
@@ -284,7 +284,7 @@ namespace Xenon.MiddleImpl
         /// <param oVariableName="varOTable"></param>
         /// <param oVariableName="log_Reports"></param>
         public void Load(
-            XenonTable o_Table_Var,
+            TableHumaninput o_Table_Var,
             Log_Reports log_Reports
             )
         {
@@ -340,7 +340,7 @@ namespace Xenon.MiddleImpl
                         string sFldName = NamesFld.S_NAME;//フィールド名。
                         if (o_Table_Var.ContainsField(sFldName,true,log_Reports))
                         {
-                            if (XenonValue_StringImpl.TryParse(
+                            if (String_HumaninputImpl.TryParse(
                                 dataRow[sFldName],
                                 out sStringValue,
                                 o_Table_Var.Name,
@@ -369,7 +369,7 @@ namespace Xenon.MiddleImpl
                         string sFldName = NamesFld.S_FOLDER;
                         if (o_Table_Var.ContainsField(sFldName, false, log_Reports))
                         {
-                            if (XenonValue_StringImpl.TryParse(
+                            if (String_HumaninputImpl.TryParse(
                                 dataRow[sFldName],
                                 out sStringValue,
                                 o_Table_Var.Name,
@@ -406,7 +406,7 @@ namespace Xenon.MiddleImpl
                         string sFldName = NamesFld.S_VALUE;//フィールド名。
                         if (o_Table_Var.ContainsField(sFldName, true, log_Reports))
                         {
-                            if (XenonValue_StringImpl.TryParse(
+                            if (String_HumaninputImpl.TryParse(
                                 dataRow[sFldName],
                                 out sStringValue,
                                 o_Table_Var.Name,

@@ -46,13 +46,13 @@ namespace Xenon.Table
                     goto gt_Error_NothingKeyField;
                 }
 
-                XenonValue o_CellValue = (XenonValue)row[sName_KeyField];
+                ValueHumaninput o_CellValue = (ValueHumaninput)row[sName_KeyField];
 
 
                 //
                 // （５）キーが空欄なら、無視します。【文字列型フィールドのみ】
                 //
-                if (XenonValue_StringImpl.IsSpaces(o_CellValue))
+                if (String_HumaninputImpl.IsSpaces(o_CellValue))
                 {
                     bJudge = false;
                     goto gt_EndMethod;
@@ -63,7 +63,7 @@ namespace Xenon.Table
                 // （６）この行の、キー_フィールドの値を取得。
                 //
                 string sKeyValue;
-                bool bParsedSuccessful = XenonValue_StringImpl.TryParse(
+                bool bParsedSuccessful = String_HumaninputImpl.TryParse(
                     o_CellValue,
                     out sKeyValue,
                     parent_Query.ToString(),//TODO:本当はテーブル名がいい。 xenonTable.SName,

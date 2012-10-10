@@ -61,14 +61,14 @@ namespace Xenon.Table
         /// <summary>
         /// リスト・ビューに、テーブルをセットします。
         /// </summary>
-        public void SetDataSourceToListView(XenonTable xenonTable, ListView listView, out string sMessage_Error)
+        public void SetDataSourceToListView(TableHumaninput xenonTable, ListView listView, out string sMessage_Error)
         {
             DataTable dataTable = xenonTable.DataTable;
 
             listView.Clear();
 
             // リスト・ビューにフィールドを追加します。
-            foreach (XenonFielddefinitionImpl fieldDefinition in xenonTable.List_Fielddefinition)
+            foreach (FielddefinitionImpl fieldDefinition in xenonTable.List_Fielddefinition)
             {
                 // 列を追加します。見出しと幅も設定します。
                 Log_TextIndented t = new Log_TextIndentedImpl();
@@ -96,9 +96,9 @@ namespace Xenon.Table
                 {
                     object columnObject = recordFields[nColumnIndex];
 
-                    if (columnObject is XenonValue)
+                    if (columnObject is ValueHumaninput)
                     {
-                        XenonValue cellData = (XenonValue)columnObject;
+                        ValueHumaninput cellData = (ValueHumaninput)columnObject;
 
                         string sFieldValue = cellData.Humaninput;
 

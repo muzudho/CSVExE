@@ -159,7 +159,7 @@ namespace Xenon.Expr
 
 
             // ｆｒｏｍ句のテーブルを読み込みます。
-            XenonTable o_FromTable = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_From, true, log_Reports);
+            TableHumaninput o_FromTable = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
 
             if (!log_Reports.Successful)
             {
@@ -236,7 +236,7 @@ namespace Xenon.Expr
                 else
                 {
                     // 仮。動かないと思う。
-                    //List<XenonFielddefinition> out_O_NewFldDefList_Dammy = new List<XenonFielddefinition>();
+                    //List<Fielddefinition> out_O_NewFldDefList_Dammy = new List<Fielddefinition>();
                     //TableUtil.SelectFieldListList(
                     //    out sFieldListList,
                     //    out out_O_NewFldDefList_Dammy,
@@ -301,9 +301,9 @@ namespace Xenon.Expr
             {
 
                 // into句のテーブルの、情報を読み込みます。
-                XenonTable o_IntoTableInfoOnly;
+                TableHumaninput o_IntoTableInfoOnly;
                 //ystem.Console.WriteLine(Info_E.LibraryName + ":E_FcellImpl#Execute5_Main: into属性が指定されています。e_Into=[" + selectSt.Expression_Into.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
-                o_IntoTableInfoOnly = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_Into, true, log_Reports);
+                o_IntoTableInfoOnly = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_Into, true, log_Reports);
 
                 if (!log_Reports.Successful)
                 {
@@ -314,7 +314,7 @@ namespace Xenon.Expr
 
 
                 // テーブルから、指定の列だけを抽出したサブ・テーブルを作ります。
-                XenonTable o_NewTable = Utility_Table.CreateSubTableBySelect(
+                TableHumaninput o_NewTable = Utility_Table.CreateSubTableBySelect(
                     o_FromTable.Name + "のサブテーブル＜E_FcellImpl.cs＞",
                     selectSt.List_SName_SelectField,
                     o_IntoTableInfoOnly.Expression_Filepath_ConfigStack,
@@ -337,7 +337,7 @@ namespace Xenon.Expr
                 // 作ったテーブルをセット。
                 //
                 // 新規なら追加、既存なら上書き。
-                this.Owner_MemoryApplication.MemoryTables.Dictionary_XenonTable[selectSt.Expression_Into.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)] = o_NewTable;
+                this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput[selectSt.Expression_Into.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)] = o_NewTable;
 
                 if (!log_Reports.Successful)
                 {
@@ -1272,12 +1272,12 @@ namespace Xenon.Expr
                 //    txt.Append("　ヒット件数＝[" + recordSet.O_Items.Count + "]");
 
                 //    // レコードの内容
-                //    foreach (Dictionary<string, XenonValue> oRecord in recordSet.O_Items)
+                //    foreach (Dictionary<string, ValueHumaninput> oRecord in recordSet.O_Items)
                 //    {
                 //        txt.Append("　フィールド数＝[" + oRecord.Count + "]");
                 //        foreach (string sKey in oRecord.Keys)
                 //        {
-                //            XenonValue oValue = oRecord[sKey];
+                //            ValueHumaninput oValue = oRecord[sKey];
                 //            txt.Append("　要素＝[" + sKey + ":"+ oValue.Humaninput + "]");
                 //        }
                 //    }
@@ -1291,7 +1291,7 @@ namespace Xenon.Expr
             {
 
 
-                XenonTable o_Table = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(selectSt.Expression_From, true, log_Reports);
+                TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
                 if (null == o_Table)
                 {
                     // エラー。
@@ -1327,7 +1327,7 @@ namespace Xenon.Expr
                         // 条件が指定されている場合。
 
                         string sKeyFieldName;
-                        XenonFielddefinition o_KeyFldDef;
+                        Fielddefinition o_KeyFldDef;
                         string sExpectedValue;
                         P2_ReccondImpl sel2 = new P2_ReccondImpl();
                         sel2.GetFirstAwhrReccond(

@@ -33,7 +33,7 @@ namespace Xenon.Controls
             string sValue_Output,
             Expression_Node_String ec_Fcell,
             DataRow row,
-            XenonFielddefinition selFldDefinition,//選択したフィールド定義
+            Fielddefinition selFldDefinition,//選択したフィールド定義
             Log_Reports log_Reports
             )
         {
@@ -59,30 +59,30 @@ namespace Xenon.Controls
             string sConfigStack_StringOfCell = sName_SelectedFld;
 
             // 紛らわしいですが、.GetType() と .Type は別物です。
-            if (selFldDefinition.Type == typeof(XenonValue_StringImpl))
+            if (selFldDefinition.Type == typeof(String_HumaninputImpl))
             {
                 //row[this.SelectedFldName] = outputValueStr;
 
 
 
                 // 空欄も自動処理
-                XenonValue_StringImpl cellData = new XenonValue_StringImpl(sConfigStack_StringOfCell);
+                String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack_StringOfCell);
                 cellData.Humaninput = sValue_Output;
 
 
                 row[sName_SelectedFld] = cellData;
             }
-            else if (selFldDefinition.Type == typeof(XenonValue_IntImpl))
+            else if (selFldDefinition.Type == typeof(Int_HumaninputImpl))
             {
                 // 空欄も自動処理
-                XenonValue_IntImpl cellData = new XenonValue_IntImpl(sConfigStack_StringOfCell);
+                Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack_StringOfCell);
                 cellData.Humaninput = sValue_Output;
                 row[sName_SelectedFld] = cellData;
             }
-            else if (selFldDefinition.Type == typeof(XenonValue_BoolImpl))
+            else if (selFldDefinition.Type == typeof(Bool_HumaninputImpl))
             {
                 // 空欄も自動処理
-                XenonValue_BoolImpl cellData = new XenonValue_BoolImpl(sConfigStack_StringOfCell);
+                Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack_StringOfCell);
                 cellData.Humaninput = sValue_Output;
                 row[sName_SelectedFld] = cellData;
 

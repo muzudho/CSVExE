@@ -16,11 +16,11 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public RecordSetImpl(XenonTable xenonTable)
+        public RecordSetImpl(TableHumaninput xenonTable)
         {
             this.xenonTable = xenonTable;
 
-            this.list_Field = new List<Dictionary<string, XenonValue>>();
+            this.list_Field = new List<Dictionary<string, ValueHumaninput>>();
         }
 
         //────────────────────────────────────────
@@ -41,7 +41,7 @@ namespace Xenon.Table
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Add",log_Reports);
 
-            Dictionary<string, XenonValue> record = new Dictionary<string, XenonValue>();
+            Dictionary<string, ValueHumaninput> record = new Dictionary<string, ValueHumaninput>();
 
             int nFieldCount = row.ItemArray.Length;
             for (int nFieldIndex = 0; nFieldIndex < nFieldCount; nFieldIndex++)
@@ -50,7 +50,7 @@ namespace Xenon.Table
                 string sFieldName = xenonTable.List_Fielddefinition[nFieldIndex].Name_Trimupper;
 
                 // 値
-                XenonValue oValue;
+                ValueHumaninput oValue;
                 if (row[nFieldIndex] is DBNull)
                 {
                     //// デバッグ
@@ -74,17 +74,17 @@ namespace Xenon.Table
                         goto gt_EndMethod;
                     }
 
-                    if (type == typeof(XenonValue_StringImpl))
+                    if (type == typeof(String_HumaninputImpl))
                     {
-                        oValue = new XenonValue_StringImpl(sConfigStack);
+                        oValue = new String_HumaninputImpl(sConfigStack);
                     }
-                    else if (type == typeof(XenonValue_IntImpl))
+                    else if (type == typeof(Int_HumaninputImpl))
                     {
-                        oValue = new XenonValue_IntImpl(sConfigStack);
+                        oValue = new Int_HumaninputImpl(sConfigStack);
                     }
-                    else if (type == typeof(XenonValue_BoolImpl))
+                    else if (type == typeof(Bool_HumaninputImpl))
                     {
-                        oValue = new XenonValue_BoolImpl(sConfigStack);
+                        oValue = new Bool_HumaninputImpl(sConfigStack);
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    oValue = (XenonValue)row[nFieldIndex];
+                    oValue = (ValueHumaninput)row[nFieldIndex];
 
                     //// デバッグ
                     //if (true)
@@ -183,9 +183,9 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private List<Dictionary<string, XenonValue>> list_Field;
+        private List<Dictionary<string, ValueHumaninput>> list_Field;
 
-        public List<Dictionary<string, XenonValue>> List_Field
+        public List<Dictionary<string, ValueHumaninput>> List_Field
         {
             get
             {
@@ -199,9 +199,9 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private XenonTable xenonTable;
+        private TableHumaninput xenonTable;
 
-        public XenonTable XenonTable
+        public TableHumaninput XenonTable
         {
             get
             {

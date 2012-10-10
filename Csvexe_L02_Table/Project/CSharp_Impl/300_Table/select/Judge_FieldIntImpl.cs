@@ -46,10 +46,10 @@ namespace Xenon.Table
                     goto gt_Error_DBNull;
                 }
 
-                XenonValue o_CellValue = (XenonValue)obj;
+                ValueHumaninput o_CellValue = (ValueHumaninput)obj;
 
                 // （５）キーが空欄で、検索ヒット必須でなければ、無視します。【int型フィールドの場合】
-                if (XenonValue_IntImpl.IsSpaces(o_CellValue))
+                if (Int_HumaninputImpl.IsSpaces(o_CellValue))
                 {
                     bJudge = false;
                     goto gt_EndMethod;
@@ -59,7 +59,7 @@ namespace Xenon.Table
                 // （６）この行の、キー_フィールドの値を取得。
                 int nKeyValue;
 
-                bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                     o_CellValue,
                     out nKeyValue,
                     EnumOperationIfErrorvalue.Error,

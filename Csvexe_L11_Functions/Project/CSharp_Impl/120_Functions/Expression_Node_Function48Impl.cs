@@ -147,7 +147,7 @@ namespace Xenon.Functions
 
             string error_Filepath_Source;
             int error_RowNumber;
-            XenonTable error_XenonTable;
+            TableHumaninput error_TableHumaninput;
 
             string sName_Fnc;
             this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -199,14 +199,14 @@ namespace Xenon.Functions
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
+                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                XenonTableformat tblFormat_puts = new XenonTableformatImpl();
+                Format_TableHumaninput tblFormat_puts = new Format_TableHumaninputImpl();
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
                 request_tblReads.Expression_Filepath = fileListfile_Expr;
 
-                XenonTable xenonTable = reader.Read(
+                TableHumaninput xenonTable = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,
@@ -222,8 +222,8 @@ namespace Xenon.Functions
                     string filepath_Destination_Cur;
                     if (log_Reports.Successful)
                     {
-                        XenonValue_StringImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
-                        XenonValue_StringImpl.TryParse(row["FILE2"], out filepath_Destination_Cur, "", "", log_Method, log_Reports);
+                        String_HumaninputImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
+                        String_HumaninputImpl.TryParse(row["FILE2"], out filepath_Destination_Cur, "", "", log_Method, log_Reports);
                         //if (log_Method.CanDebug(9))
                         //{
                         log_Method.WriteDebug_ToConsole("コピーしたいfilepath：①[" + filepath_Source_Cur + "]→②[" + filepath_Destination_Cur + "]");
@@ -268,7 +268,7 @@ namespace Xenon.Functions
                             //
                             error_Filepath_Source = filepath_Source_Cur;
                             error_RowNumber = rowNumber;
-                            error_XenonTable = xenonTable;
+                            error_TableHumaninput = xenonTable;
                             goto gt_Error_NoFilesystementry;
                         }
                     }
@@ -294,7 +294,7 @@ namespace Xenon.Functions
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, error_Filepath_Source, log_Reports);//ファイルパス
                 tmpl.SetParameter(2, error_RowNumber.ToString(), log_Reports);//エラーのあった行
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(error_XenonTable), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(error_TableHumaninput), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110030;", tmpl, log_Reports);
             }

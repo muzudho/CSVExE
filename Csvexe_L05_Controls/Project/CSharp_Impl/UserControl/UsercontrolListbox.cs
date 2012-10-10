@@ -1655,10 +1655,10 @@ namespace Xenon.Controls
                         sListValueFld = this.CustomcontrolListbox1.SListValueField;
                     }
 
-                    XenonValue_IntImpl oValue;
+                    Int_HumaninputImpl oValue;
                     try
                     {
-                        oValue = (XenonValue_IntImpl)row.Row[sListValueFld];//決め打ち
+                        oValue = (Int_HumaninputImpl)row.Row[sListValueFld];//決め打ち
                     }
                     catch (Exception ex)
                     {
@@ -1673,7 +1673,7 @@ namespace Xenon.Controls
                     if (log_Reports_ThisMethod.Successful)
                     {
                         int nInt;
-                        if (XenonValue_IntImpl.TryParse(
+                        if (Int_HumaninputImpl.TryParse(
                             oValue,
                             out nInt,
                             EnumOperationIfErrorvalue.Spaces_To_Alt_Value,

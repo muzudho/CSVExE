@@ -85,7 +85,7 @@ namespace Xenon.Layout
                 }
                 else
                 {
-                    sResult = XenonValue_StringImpl.ParseString(fieldObj);
+                    sResult = String_HumaninputImpl.ParseString(fieldObj);
                 }
             }
             else

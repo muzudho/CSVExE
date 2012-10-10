@@ -9,7 +9,7 @@ using System.Data;//DataTable
 using System.Windows.Forms;
 
 using Xenon.Syntax;
-using Xenon.Table;//XenonTable,XenonValue_IntImpl
+using Xenon.Table;//TableHumaninput,Int_HumaninputImpl
 
 namespace Xenon.Operating
 {
@@ -147,14 +147,14 @@ namespace Xenon.Operating
             // テーブルを、上から下に読んでいく。
             // 列の並び順は NO	ID	Expl	PLAYER	BEFORE	AFTER
 
-            if (null != this.XenonTable_Keyconfig)//テーブルの読取が成功していること。
+            if (null != this.TableHumaninput_Keyconfig)//テーブルの読取が成功していること。
             {
-                DataTable dataTable = this.XenonTable_Keyconfig.DataTable;
+                DataTable dataTable = this.TableHumaninput_Keyconfig.DataTable;
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
                     int nPlayer;
-                    XenonValue_IntImpl.TryParse(
+                    Int_HumaninputImpl.TryParse(
                         dataRow.ItemArray[3],
                         out nPlayer,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,
@@ -167,7 +167,7 @@ namespace Xenon.Operating
                         string sBefore;
                         string sAfter;
 
-                        XenonValue_StringImpl.TryParse(
+                        String_HumaninputImpl.TryParse(
                             dataRow.ItemArray[4],
                             out sBefore,
                             "",
@@ -176,7 +176,7 @@ namespace Xenon.Operating
                             log_Reports_ThisMethod
                             );
 
-                        XenonValue_StringImpl.TryParse(
+                        String_HumaninputImpl.TryParse(
                             dataRow.ItemArray[5],
                             out sAfter,
                             "",
@@ -312,12 +312,12 @@ namespace Xenon.Operating
 
         //────────────────────────────────────────
 
-        private XenonTable xenonTable_Keyconfig;
+        private TableHumaninput xenonTable_Keyconfig;
 
         /// <summary>
         /// キー設定を記憶します。
         /// </summary>
-        public XenonTable XenonTable_Keyconfig
+        public TableHumaninput TableHumaninput_Keyconfig
         {
             get
             {

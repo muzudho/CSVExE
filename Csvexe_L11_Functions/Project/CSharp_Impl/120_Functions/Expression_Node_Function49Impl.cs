@@ -208,14 +208,14 @@ namespace Xenon.Functions
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_XenonTableImpl reader = new CsvTo_XenonTableImpl();
+                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                XenonTableformat tblFormat_puts = new XenonTableformatImpl();
+                Format_TableHumaninput tblFormat_puts = new Format_TableHumaninputImpl();
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
                 request_tblReads.Expression_Filepath = pm_FileImportListfile_Expr;
 
-                XenonTable xenonTable = reader.Read(
+                TableHumaninput xenonTable = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,
@@ -230,7 +230,7 @@ namespace Xenon.Functions
                     string filepath_Source_Cur;
                     if (log_Reports.Successful)
                     {
-                        XenonValue_StringImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
+                        String_HumaninputImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
                         //if (log_Method.CanDebug(9))
                         //{
                         //    log_Method.WriteDebug_ToConsole("①filepathCur=[" + filepathCur + "]");

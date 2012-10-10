@@ -46,10 +46,10 @@ namespace Xenon.Expr
         /// <param name="log_Reports"></param>
         public void GetFirstAwhrReccond(
             out string sKeyFieldName,
-            out XenonFielddefinition o_KeyFldDef,
+            out Fielddefinition o_KeyFldDef,
             out string sExpectedValue,
             List<Recordcondition> list_ChildReccond,
-            XenonTable o_Table,
+            TableHumaninput o_Table,
             Log_Reports log_Reports
             )
         {
@@ -81,7 +81,7 @@ namespace Xenon.Expr
                 // 該当なしの場合、ヌルを返す。
                 //o_KeyFldDef;
                 {
-                    List<XenonFielddefinition> o_KeyFldDefList;
+                    List<Fielddefinition> o_KeyFldDefList;
                     bool bHit = o_Table.TryGetFieldDefinitionByName(
                         out o_KeyFldDefList,
                         sList_KeyFldName,

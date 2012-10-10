@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Xenon.Table;//XenonValue_IntImpl
+using Xenon.Table;//Int_HumaninputImpl
 
 namespace Xenon.Operating
 {
@@ -21,7 +21,7 @@ namespace Xenon.Operating
         public GloballistconfigNumberImpl()
         {
             this.sRange = "";
-            this.priority = new XenonValue_IntImpl("!ハードコーディング_MoGlConfigImpl");
+            this.priority = new Int_HumaninputImpl("!ハードコーディング_MoGlConfigImpl");
         }
 
         //────────────────────────────────────────
@@ -51,12 +51,12 @@ namespace Xenon.Operating
 
         //────────────────────────────────────────
 
-        protected XenonValue_IntImpl priority;
+        protected Int_HumaninputImpl priority;
 
         /// <summary>
         /// 優先度。
         /// </summary>
-        public XenonValue_IntImpl Priority
+        public Int_HumaninputImpl Priority
         {
             set
             {

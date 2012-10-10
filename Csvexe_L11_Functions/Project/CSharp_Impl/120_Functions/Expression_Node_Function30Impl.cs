@@ -256,7 +256,7 @@ namespace Xenon.Functions
             //
             //
             //
-            List<XenonTable> oList_Table_Form;//（フォームのセットアップに使う）
+            List<TableHumaninput> oList_Table_Form;//（フォームのセットアップに使う）
             //
             // 「フォーム名（レイアウト_ターゲット名）」を指定。
             if (log_Reports.Successful)
@@ -267,11 +267,11 @@ namespace Xenon.Functions
                 Expression_Node_String ec_ArgFormgroup;
                 this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.PM_NAME_FORM, EnumHitcount.One_Or_Zero, log_Reports);
 
-                oList_Table_Form = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByFormgroup(ec_ArgFormgroup, true, log_Reports);
+                oList_Table_Form = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByFormgroup(ec_ArgFormgroup, true, log_Reports);
             }
             else
             {
-                oList_Table_Form = new List<XenonTable>();
+                oList_Table_Form = new List<TableHumaninput>();
             }
 
 
@@ -434,14 +434,14 @@ namespace Xenon.Functions
             //
             //
             List<string> sList_Name_Control = new List<string>();
-            foreach (XenonTable o_Table_Form in oList_Table_Form)
+            foreach (TableHumaninput o_Table_Form in oList_Table_Form)
             {
                 if (o_Table_Form.DataTable.Columns.Contains(NamesFld.S_NAME))
                 {
                     // 「NAME」フィールドのあるテーブルが本表。無いのは参照表。
                     foreach (DataRow row in o_Table_Form.DataTable.Rows)
                     {
-                        string sName = XenonValue_StringImpl.ParseString(row[NamesFld.S_NAME]);
+                        string sName = String_HumaninputImpl.ParseString(row[NamesFld.S_NAME]);
                         sList_Name_Control.Add(sName.Trim());
                     }
                 }

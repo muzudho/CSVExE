@@ -401,7 +401,7 @@ namespace Xenon.MiddleImpl
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public void SetupFormAndLoadUsercontrolconfigs(
-            List<XenonTable> listO_Table_Form,
+            List<TableHumaninput> listO_Table_Form,
             Expression_Node_Filepath ec_Fopath_Forms,
             Form form,
             Log_Reports log_Reports
@@ -421,7 +421,7 @@ namespace Xenon.MiddleImpl
 
             //
             // （Ｆ１）テーブル毎にレイアウト設定
-            foreach (XenonTable o_Table_Form in listO_Table_Form)
+            foreach (TableHumaninput o_Table_Form in listO_Table_Form)
             {
                 string sTableName = o_Table_Form.Name;
 
@@ -459,7 +459,7 @@ namespace Xenon.MiddleImpl
 
             //
             // （Ｆ２）テーブルユニット毎にレイアウト設定。
-            foreach (XenonTable o_Table_Form in listO_Table_Form)
+            foreach (TableHumaninput o_Table_Form in listO_Table_Form)
             {
                 string sTableUnit = o_Table_Form.Tableunit;
 
@@ -546,7 +546,7 @@ namespace Xenon.MiddleImpl
         /// <returns></returns>
         public void P1_XToMemory_Userformconfig(
             TableUserformconfig fo_Config,
-            XenonTable o_Table_Form,
+            TableHumaninput o_Table_Form,
             Log_Reports log_Reports
             )
         {

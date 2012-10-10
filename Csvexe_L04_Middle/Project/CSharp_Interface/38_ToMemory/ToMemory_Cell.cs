@@ -32,7 +32,7 @@ namespace Xenon.Middle
             string sValue_Output,
             Expression_Node_String expression_Fcell,
             DataRow row,
-            XenonFielddefinition selectedFldDefinition,
+            Fielddefinition selectedFldDefinition,
             Log_Reports log_Reports
             );
 

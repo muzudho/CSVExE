@@ -77,7 +77,7 @@ namespace Xenon.Table
             string sName_KeyField,
             string sValue_Expected,
             bool bRequired_ExpectedValue,
-            XenonFielddefinition xenonFileddef_Key,
+            Fielddefinition xenonFileddef_Key,
             DataTable dataTable,
             Configurationtree_Node parent_Query,
             Log_Reports log_Reports
@@ -102,7 +102,7 @@ namespace Xenon.Table
             {
                 bool bJudge;
 
-                if (xenonFileddef_Key.Type == typeof(XenonValue_StringImpl))
+                if (xenonFileddef_Key.Type == typeof(String_HumaninputImpl))
                 {
                     // string型フィールドなら
 
@@ -116,7 +116,7 @@ namespace Xenon.Table
                         log_Reports
                     );
                 }
-                else if (xenonFileddef_Key.Type == typeof(XenonValue_IntImpl))
+                else if (xenonFileddef_Key.Type == typeof(Int_HumaninputImpl))
                 {
                     // int型フィールドなら
 
@@ -130,7 +130,7 @@ namespace Xenon.Table
                         log_Reports
                     );
                 }
-                else if (xenonFileddef_Key.Type == typeof(XenonValue_BoolImpl))
+                else if (xenonFileddef_Key.Type == typeof(Bool_HumaninputImpl))
                 {
                     // bool型フィールドなら
 

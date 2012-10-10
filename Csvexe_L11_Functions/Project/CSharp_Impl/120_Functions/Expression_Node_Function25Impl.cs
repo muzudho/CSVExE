@@ -217,7 +217,7 @@ namespace Xenon.Functions
                 this.TrySelectAttribute(out sName_Field, Expression_Node_Function25Impl.PM_NAME_FIELD, EnumHitcount.One_Or_Zero, log_Reports);
 
                 //そのフィールドの値。
-                XenonValue_IntImpl cellData = (XenonValue_IntImpl)selectedDataRow[sName_Field];
+                Int_HumaninputImpl cellData = (Int_HumaninputImpl)selectedDataRow[sName_Field];
                 string sValue_Field = cellData.Humaninput.Trim();
                 //.WriteLine(this.GetType().Name + "#: ◆　fieldValue=[" + fieldValue + "]");
 

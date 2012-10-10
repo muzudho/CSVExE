@@ -92,7 +92,7 @@ namespace Xenon.MiddleImpl
             //
             // ID値を取得し、キー値とする。
             int nKey;
-            XenonValue_IntImpl.TryParse(// ※仮。
+            Int_HumaninputImpl.TryParse(// ※仮。
                 dataRowView.Row["ID"],
                 out nKey,
                 EnumOperationIfErrorvalue.Error,

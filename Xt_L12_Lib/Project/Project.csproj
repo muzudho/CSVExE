@@ -41,6 +41,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -51,8 +52,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSharp_Lib\ColorFromName.cs" />
+    <Compile Include="CSharp_Impl\ColorFromName.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory2Operationmode_AbstractImpl.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory2Operationmode_LayerMoveImpl.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory2Operationmode_NormalImpl.cs" />
+    <Compile Include="CSharp_Interface\Partsnum\EnumMousedragmode.cs" />
+    <Compile Include="CSharp_Interface\Partsnum\Memory2Operationmode.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory3FilesetImpl.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory4aPartsnumbersymbolspritesImpl.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory4bSpritePartsnumberImpl.cs" />
+    <Compile Include="CSharp_Impl\Partsnum\Memory1Application_PartsnumputImpl.cs" />
+    <Compile Include="CSharp_Interface\Partsnum\Memory1Application_Partsnumput.cs" />
+    <Compile Include="CSharp_Interface\Partsnum\Memory4bSpritePartsnumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CSharp_Info\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

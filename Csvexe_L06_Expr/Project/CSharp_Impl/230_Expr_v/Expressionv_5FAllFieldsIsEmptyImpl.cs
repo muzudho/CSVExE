@@ -77,7 +77,7 @@ namespace Xenon.Expr
                 recordSet = null;
             }
 
-            XenonValue err_OValue;
+            ValueHumaninput err_OValue;
             string err_SFldName;
             Exception err_Excp;
             string err_SCsv;
@@ -129,7 +129,7 @@ namespace Xenon.Expr
                 foreach (string sFldName in sList)
                 {
                     // bug: argumentException
-                    XenonValue oValue;
+                    ValueHumaninput oValue;
                     try
                     {
                         // レコードセットの１件目だけをとりあえず確認。TODO:
@@ -150,27 +150,27 @@ namespace Xenon.Expr
                     System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: oValue.Humaninput＝[" + oValue.Humaninput + "]");
 
 
-                    if (oValue is XenonValue_IntImpl)
+                    if (oValue is Int_HumaninputImpl)
                     {
-                        XenonValue_IntImpl oInt = (XenonValue_IntImpl)oValue;
+                        Int_HumaninputImpl oInt = (Int_HumaninputImpl)oValue;
 
                         if ("" != oInt.Humaninput)
                         {
                             bAllFldsIsEmpty = false;
                         }
                     }
-                    else if (oValue is XenonValue_StringImpl)
+                    else if (oValue is String_HumaninputImpl)
                     {
-                        XenonValue_StringImpl oString = (XenonValue_StringImpl)oValue;
+                        String_HumaninputImpl oString = (String_HumaninputImpl)oValue;
 
                         if ("" != oString.Humaninput)
                         {
                             bAllFldsIsEmpty = false;
                         }
                     }
-                    else if (oValue is XenonValue_BoolImpl)
+                    else if (oValue is Bool_HumaninputImpl)
                     {
-                        XenonValue_BoolImpl oBool = (XenonValue_BoolImpl)oValue;
+                        Bool_HumaninputImpl oBool = (Bool_HumaninputImpl)oValue;
 
                         if ("" != oBool.Humaninput)
                         {

@@ -137,7 +137,7 @@ namespace Xenon.Functions
                     this.TrySelectAttribute(out ec_ArgTableNameStylesheet, Expression_Node_Function19Impl.PM_NAME_TABLE_STYLESHEET, EnumHitcount.One_Or_Zero, log_Reports);
 
                     // スタイルシート・テーブル
-                    XenonTable o_Table_Stylesheet = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
+                    TableHumaninput o_Table_Stylesheet = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
                         ec_ArgTableNameStylesheet,
                         true,
                         log_Reports

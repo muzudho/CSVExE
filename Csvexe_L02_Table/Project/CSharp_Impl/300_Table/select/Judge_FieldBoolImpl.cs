@@ -38,10 +38,10 @@ namespace Xenon.Table
 
             try
             {
-                XenonValue o_CellValue = (XenonValue)row[sName_KeyField];
+                ValueHumaninput o_CellValue = (ValueHumaninput)row[sName_KeyField];
 
                 // （５）キーが空欄で、検索ヒット必須でなければ、無視します。【bool型フィールドの場合】
-                if (XenonValue_BoolImpl.IsSpaces(o_CellValue))
+                if (Bool_HumaninputImpl.IsSpaces(o_CellValue))
                 {
                     bJudge = false;
                     goto gt_EndMethod;
@@ -54,7 +54,7 @@ namespace Xenon.Table
                 //
                 bool bKeyValue;
 
-                bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
+                bool bParsedSuccessful = Bool_HumaninputImpl.TryParse(
                     o_CellValue,
                     out bKeyValue,
                     EnumOperationIfErrorvalue.Error,

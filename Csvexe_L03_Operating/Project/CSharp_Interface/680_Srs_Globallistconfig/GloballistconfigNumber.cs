@@ -30,7 +30,7 @@ namespace Xenon.Operating
         /// <summary>
         /// 優先度。
         /// </summary>
-        XenonValue_IntImpl Priority
+        Int_HumaninputImpl Priority
         {
             set;
             get;

@@ -44,7 +44,7 @@ namespace Xenon.TablePermutation
         #region アクション
         //────────────────────────────────────────
 
-        public void SetDataSource(XenonTable o_Table, Log_Reports pg_Logging)
+        public void SetDataSource(TableHumaninput o_Table, Log_Reports pg_Logging)
         {
             string sErrorMsg;
             this.xenonTable = o_Table;
@@ -215,7 +215,7 @@ namespace Xenon.TablePermutation
         /// <summary>
         /// データソースとなるテーブル。
         /// </summary>
-        private XenonTable xenonTable;
+        private TableHumaninput xenonTable;
 
         //────────────────────────────────────────
         #endregion

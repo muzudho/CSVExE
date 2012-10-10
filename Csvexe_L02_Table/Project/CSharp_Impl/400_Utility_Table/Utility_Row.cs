@@ -66,10 +66,10 @@ namespace Xenon.Table
         /// <param name="oTable"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public static XenonValue ConfigurationTo_Field(
+        public static ValueHumaninput ConfigurationTo_Field(
             int nIndex_Column,
             string sValue,
-            List<XenonFielddefinition>list_fielddefinition,
+            List<Fielddefinition>list_fielddefinition,
             Log_Reports log_Reports
             )
         {
@@ -94,26 +94,26 @@ namespace Xenon.Table
                 goto gt_Error_Index;
             }
 
-            XenonValue result;
+            ValueHumaninput result;
 
             // 型毎に処理を分けます。
-            if (list_fielddefinition[nIndex_Column].Type == typeof(XenonValue_IntImpl))
+            if (list_fielddefinition[nIndex_Column].Type == typeof(Int_HumaninputImpl))
             {
                 // 空白データも自動処理
-                XenonValue_IntImpl cellData = new XenonValue_IntImpl(sConfigStack);
+                Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack);
                 cellData.Humaninput = sValue;
                 result = cellData;
             }
-            else if (list_fielddefinition[nIndex_Column].Type == typeof(XenonValue_BoolImpl))
+            else if (list_fielddefinition[nIndex_Column].Type == typeof(Bool_HumaninputImpl))
             {
                 // 空白データも自動処理
-                XenonValue_BoolImpl cellData = new XenonValue_BoolImpl(sConfigStack);
+                Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack);
                 cellData.Humaninput = sValue;
                 result = cellData;
             }
             else
             {
-                XenonValue_StringImpl cellData = new XenonValue_StringImpl(sConfigStack);
+                String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack);
                 cellData.Humaninput = sValue;
                 result = cellData;
             }

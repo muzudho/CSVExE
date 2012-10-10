@@ -52,7 +52,7 @@ namespace Xenon.Middle
         //────────────────────────────────────────
 
         void TryGetTable_Variables(
-            out XenonTable out_O_Table_Variables,
+            out TableHumaninput out_O_Table_Variables,
             String sFpath_Startup,
             Log_Reports log_Reports
             );
@@ -71,7 +71,7 @@ namespace Xenon.Middle
         /// <param name="o_Table_Variable"></param>
         /// <param name="log_Reports"></param>
         void Load(
-            XenonTable o_Table_Variable,
+            TableHumaninput o_Table_Variable,
             Log_Reports log_Reports
             );
 

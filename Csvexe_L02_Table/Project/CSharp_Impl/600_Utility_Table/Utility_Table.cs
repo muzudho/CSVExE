@@ -140,13 +140,13 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="sFieldNameList"></param>
         /// <returns></returns>
-        public static XenonTable CreateSubTableBySelect(
+        public static TableHumaninput CreateSubTableBySelect(
             string name_NewTable,
             List<string> list_Src_SNewFieldName,
             Expression_Node_Filepath expr_Fpath_NewTable,
             EnumLogic enumWhereLogic,
             List<Recordcondition> list_Reccond,
-            XenonTable src_XenonTable,
+            TableHumaninput src_XenonTable,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
@@ -159,9 +159,9 @@ namespace Xenon.Table
 
 
 
-            XenonTable o_NewTable = new XenonTableImpl(name_NewTable, expr_Fpath_NewTable);
+            TableHumaninput o_NewTable = new Table_HumaninputImpl(name_NewTable, expr_Fpath_NewTable);
 
-            List<XenonFielddefinition> o_NewFldDefList;
+            List<Fielddefinition> o_NewFldDefList;
             List<List<string>> sFieldListList;
             Utility_Table.SelectFieldListList(
                 out sFieldListList,
@@ -271,11 +271,11 @@ namespace Xenon.Table
         /// <param name="log_Reports"></param>
         public static void SelectFieldListList(
             out List<List<string>> listList_SField_Out,
-            out List<XenonFielddefinition> list_FielddefineNew_Out,
+            out List<Fielddefinition> list_FielddefineNew_Out,
             EnumLogic enumWhereLogic,
             List<string> list_SName_NewField_Src,
             List<Recordcondition> list_Reccond,
-            XenonTable src_XenonTable,
+            TableHumaninput src_XenonTable,
             Log_Reports log_Reports
             )
         {
@@ -290,7 +290,7 @@ namespace Xenon.Table
 
 
 
-            list_FielddefineNew_Out = new List<XenonFielddefinition>();
+            list_FielddefineNew_Out = new List<Fielddefinition>();
             List<int> listN_FieldIndex = new List<int>();
 
             //
@@ -302,7 +302,7 @@ namespace Xenon.Table
 
                 //fieldIndex
                 int nFIx = 0;
-                foreach (XenonFielddefinition o_FldDef in src_XenonTable.List_Fielddefinition)
+                foreach (Fielddefinition o_FldDef in src_XenonTable.List_Fielddefinition)
                 {
                     if (list_SName_NewField_Src.Contains(o_FldDef.Name_Humaninput))
                     {
@@ -348,7 +348,7 @@ namespace Xenon.Table
                         {
                             // TODO:指定のフィールド・インデックスだけをピックアップしたい。
                             int nB = listN_FieldIndex[nA];
-                            XenonValue o_Value = (XenonValue)srcRow[nB];
+                            ValueHumaninput o_Value = (ValueHumaninput)srcRow[nB];
 
                             sList_NewField.Add(o_Value.Humaninput);
                         }
@@ -387,7 +387,7 @@ namespace Xenon.Table
         /// <returns>ロジックの真偽。</returns>
         private static bool ApplyReccond(
             DataRow srcRow,
-            XenonTable xenonTable_Source,
+            TableHumaninput xenonTable_Source,
             EnumLogic parent_EnumLogic,
             List<Recordcondition> list_Reccond,//「E■@ｗｈｅｒｅ」または「E■rec-cond」。子要素を持たないか、子要素に「E■rec-cond」を持つものとする。
             int nCount_Recursive_Debug,
@@ -489,18 +489,18 @@ namespace Xenon.Table
                     }
 
                     int nFieldIx = xenonTable_Source.DataTable.Columns.IndexOf(childReccond.Name_Field);
-                    XenonFielddefinition o_FldDef = xenonTable_Source.List_Fielddefinition[nFieldIx];
-                    XenonValue o_Value = (XenonValue)srcRow[nFieldIx];
+                    Fielddefinition o_FldDef = xenonTable_Source.List_Fielddefinition[nFieldIx];
+                    ValueHumaninput o_Value = (ValueHumaninput)srcRow[nFieldIx];
 
 
                     // 型に合わせて値取得。
-                    if (o_Value is XenonValue_IntImpl)
+                    if (o_Value is Int_HumaninputImpl)
                     {
                         //ystem.Console.WriteLine(InfxenonTable.LibraryName + ":Util_Table.ApplyＷｈｅｒｅ:　intフィールド　[" + sLogic + " " + sField + " " + sOpe + " " + sValue + "]");
 
                         int nFieldInt;
                         {
-                            XenonValue_IntImpl.TryParse(
+                            Int_HumaninputImpl.TryParse(
                                 o_Value,
                                 out nFieldInt,
                                 EnumOperationIfErrorvalue.Spaces_To_Alt_Value,

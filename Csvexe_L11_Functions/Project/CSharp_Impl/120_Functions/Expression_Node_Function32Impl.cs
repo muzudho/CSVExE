@@ -164,7 +164,7 @@ namespace Xenon.Functions
             Expression_Node_String ec_ArgTableName;
             this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function32Impl.PM_NAME_TABLE, EnumHitcount.One_Or_Zero, log_Reports);
 
-            XenonTable o_Table = this.Owner_MemoryApplication.MemoryTables.GetXenonTableByName(
+            TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
                 ec_ArgTableName,
                 true,
                 log_Reports
@@ -185,7 +185,7 @@ namespace Xenon.Functions
                 string sArgFieldName;
                 this.TrySelectAttribute(out sArgFieldName, Expression_Node_Function32Impl.PM_NAME_FIELD, EnumHitcount.One_Or_Zero, log_Reports);
 
-                XenonValue_IntImpl cellData = (XenonValue_IntImpl)selectedDataRow[sArgFieldName];
+                Int_HumaninputImpl cellData = (Int_HumaninputImpl)selectedDataRow[sArgFieldName];
 
                 string sFieldValue = cellData.Humaninput.Trim();
                 //.WriteLine(this.GetType().Name + "#: ◆　fieldValue=[" + fieldValue + "]");

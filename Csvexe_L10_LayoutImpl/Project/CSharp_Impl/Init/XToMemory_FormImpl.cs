@@ -44,7 +44,7 @@ namespace Xenon.Layout
         /// </summary>
         public void LoadUserformconfigFile(
             TableUserformconfig fo_Config_Formgroup,
-            XenonTable o_Table_Form,
+            TableHumaninput o_Table_Form,
             MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
@@ -120,7 +120,7 @@ namespace Xenon.Layout
                         string sFieldName = "NAME_REF";
 
                         pg_Logging.Log_Callstack.Push(pg_Method, "①");
-                        XenonValue_StringImpl.TryParse(
+                        String_HumaninputImpl.TryParse(
                             dataRow[sFieldName],// この連想配列は大文字・小文字を区別しないのが欠点。
                             out sFoundNameRef,
                             o_Table_Form.Name,
@@ -153,7 +153,7 @@ namespace Xenon.Layout
                         }
 
                         pg_Logging.Log_Callstack.Push(pg_Method, "②");
-                        XenonValue_StringImpl.TryParse(
+                        String_HumaninputImpl.TryParse(
                             dataRow[sFieldName],
                             out sFoundName,
                             o_Table_Form.Name,
@@ -403,7 +403,7 @@ namespace Xenon.Layout
         private int Read_Form(
             RecordUserformconfig fo_Record,
             DataRow dataRow,
-            XenonTable o_Table_Form,
+            TableHumaninput o_Table_Form,
             TableUserformconfig fo_Config,
             MemoryApplication memoryApplication,
             Log_Reports pg_Logging
@@ -447,7 +447,7 @@ namespace Xenon.Layout
                     //フィールドが有り、記入もあるとき。
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "③");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 「値が空（-1）」は、空行としてよく使います。
@@ -488,7 +488,7 @@ namespace Xenon.Layout
                     if (bContained)
                     {
                         pg_Logging.Log_Callstack.Push(pg_Method, "④");
-                        bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                        bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                             dataRow[sFieldName],
                             out nIntValue,
                             EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -536,7 +536,7 @@ namespace Xenon.Layout
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑤");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -599,7 +599,7 @@ namespace Xenon.Layout
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑦");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -641,7 +641,7 @@ namespace Xenon.Layout
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑧");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -682,7 +682,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑨");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -735,7 +735,7 @@ namespace Xenon.Layout
                 {
 
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑩");
-                    bool bParseSuccessful = XenonValue_BoolImpl.TryParse(
+                    bool bParseSuccessful = Bool_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out bValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -775,7 +775,7 @@ namespace Xenon.Layout
                 if (bContained)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑪");
-                    bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
+                    bool bParsedSuccessful = Bool_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out bValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -825,7 +825,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑫");
-                    bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
+                    bool bParsedSuccessful = Bool_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out bValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -866,7 +866,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑬");
-                    bool bParsedSuccessful = XenonValue_BoolImpl.TryParse(
+                    bool bParsedSuccessful = Bool_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out bValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -906,7 +906,7 @@ namespace Xenon.Layout
                 if (bContained)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑭");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -957,7 +957,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑮");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -998,7 +998,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑯");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -1038,7 +1038,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑰");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -1078,7 +1078,7 @@ namespace Xenon.Layout
                 if (bContained)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑱");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -1122,7 +1122,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑲");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -1158,7 +1158,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "⑳");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -1194,7 +1194,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２１）");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -1230,7 +1230,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２２）");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -1266,7 +1266,7 @@ namespace Xenon.Layout
                 if (pg_Logging.Successful)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２３）");
-                    bool bParsedSuccessful = XenonValue_IntImpl.TryParse(
+                    bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value,//大したデータではないので、省略すると-1にする。
@@ -1301,7 +1301,7 @@ namespace Xenon.Layout
                 if (bContained)
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２４）");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -1365,7 +1365,7 @@ namespace Xenon.Layout
             bool bNameRefRequired,
             RecordUserformconfig fo_Record,
             DataRow dataRow,
-            XenonTable o_Table_Form,
+            TableHumaninput o_Table_Form,
             Log_Reports pg_Logging
             )
         {
@@ -1419,7 +1419,7 @@ namespace Xenon.Layout
                 if (dataRow.Table.Columns.Contains(sFieldName))
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２５）");
-                    bool bBool = !XenonValue_IntImpl.TryParse(
+                    bool bBool = !Int_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out nIntValue,
                         EnumOperationIfErrorvalue.Spaces_To_Alt_Value, // 空行追加時のエラー抑制のため。
@@ -1473,7 +1473,7 @@ namespace Xenon.Layout
                 if (dataRow.Table.Columns.Contains(sFieldName))
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２６）");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,
@@ -1516,7 +1516,7 @@ namespace Xenon.Layout
                 if (dataRow.Table.Columns.Contains(sFieldName))
                 {
                     pg_Logging.Log_Callstack.Push(pg_Method, "（２７）");
-                    bool bBool = XenonValue_StringImpl.TryParse(
+                    bool bBool = String_HumaninputImpl.TryParse(
                         dataRow[sFieldName],
                         out sValue,
                         o_Table_Form.Name,

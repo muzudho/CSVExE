@@ -26,7 +26,7 @@ namespace Xenon.Operating
         /// <param name="oStyleSheetTable"></param>
         /// <returns></returns>
         public MemoryStyles Translate(
-            XenonTable xenonTable_Stylesheet,
+            TableHumaninput xenonTable_Stylesheet,
             Log_Reports log_Reports
             )
         {
@@ -81,7 +81,7 @@ namespace Xenon.Operating
                     {
                         // 正常時
 
-                        sId = XenonValue_StringImpl.ParseString(obj);//"スタイルシートテーブルパーサーのID"
+                        sId = String_HumaninputImpl.ParseString(obj);//"スタイルシートテーブルパーサーのID"
                     }
                     else
                     {
@@ -112,7 +112,7 @@ namespace Xenon.Operating
                             goto gt_EndMethod;
                         }
 
-                        sStyle = XenonValue_StringImpl.ParseString(obj);//"スタイルシートテーブルパーサーのSTYLE"
+                        sStyle = String_HumaninputImpl.ParseString(obj);//"スタイルシートテーブルパーサーのSTYLE"
                     }
                 }
                 else

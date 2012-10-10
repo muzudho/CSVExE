@@ -236,7 +236,7 @@ namespace Xenon.Operating
                                                     GloballistconfigNumber numberObj = new GloballistconfigNumberImpl();
                                                     numberObj.Text_Range = numberElm.Attributes.GetNamedItem("range").Value;
 
-                                                    XenonValue_IntImpl oPriority = new XenonValue_IntImpl("!ハードコーディング_LoaderOfGlobalListConfigXml");
+                                                    Int_HumaninputImpl oPriority = new Int_HumaninputImpl("!ハードコーディング_LoaderOfGlobalListConfigXml");
                                                     oPriority.Humaninput = numberElm.Attributes.GetNamedItem("priority").Value;
                                                     numberObj.Priority = oPriority;
 

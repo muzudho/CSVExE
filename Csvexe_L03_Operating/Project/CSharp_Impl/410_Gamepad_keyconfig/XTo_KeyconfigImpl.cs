@@ -30,7 +30,7 @@ namespace Xenon.Operating
 
             out_Keycnf = new KeyconfigImpl();
 
-            CsvTo_XenonTableImpl csvTo = new CsvTo_XenonTableImpl();
+            CsvTo_TableHumaninputImpl csvTo = new CsvTo_TableHumaninputImpl();
             Request_ReadsTable oRequest_TableReads = new Request_ReadsTableImpl();
             {
                 Configurationtree_NodeImpl cf_ConfigStack = new Configurationtree_NodeImpl(Info_Operating.Name_Library + ":" + this.GetType().Name + "#<init>:",null);
@@ -50,7 +50,7 @@ namespace Xenon.Operating
                 }
             }
 
-            XenonTableformat o_TableFormat = new XenonTableformatImpl();
+            Format_TableHumaninput o_TableFormat = new Format_TableHumaninputImpl();
             out_Keycnf.O_Table_Keycnf = csvTo.Read(
                 oRequest_TableReads,
                 o_TableFormat,
@@ -74,8 +74,8 @@ namespace Xenon.Operating
                 // プレイヤー番号
                 int nPlayer;
                 {
-                    XenonValue_IntImpl o_Player = (XenonValue_IntImpl)dataRow["PLAYER"];
-                    if (XenonValue_IntImpl.TryParse(
+                    Int_HumaninputImpl o_Player = (Int_HumaninputImpl)dataRow["PLAYER"];
+                    if (Int_HumaninputImpl.TryParse(
                         o_Player,
                         out nPlayer,
                         EnumOperationIfErrorvalue.Error,
@@ -98,9 +98,9 @@ namespace Xenon.Operating
                     string sBefore;
                     string sDebug1 = "";
                     string sDebug2 = "";
-                    XenonValue_StringImpl o_Before = (XenonValue_StringImpl)dataRow["BEFORE"];
+                    String_HumaninputImpl o_Before = (String_HumaninputImpl)dataRow["BEFORE"];
 
-                    if (XenonValue_StringImpl.TryParse(
+                    if (String_HumaninputImpl.TryParse(
                         o_Before,
                         out sBefore,
                         sDebug1,
@@ -170,9 +170,9 @@ namespace Xenon.Operating
                     string sAfter;
                     string sDebug1 = "";
                     string sDebug2 = "";
-                    XenonValue_StringImpl o_Before = (XenonValue_StringImpl)dataRow["AFTER"];
+                    String_HumaninputImpl o_Before = (String_HumaninputImpl)dataRow["AFTER"];
 
-                    if (XenonValue_StringImpl.TryParse(
+                    if (String_HumaninputImpl.TryParse(
                         o_Before,
                         out sAfter,
                         sDebug1,
