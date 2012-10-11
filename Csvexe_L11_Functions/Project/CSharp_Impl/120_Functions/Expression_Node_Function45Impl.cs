@@ -263,7 +263,7 @@ namespace Xenon.Functions
             //変数CSVを吐き出したい。（登録されている順序を保って）
             {
                 // 変数ファイルの読取り
-                TableHumaninput o_Table_Variables;
+                Table_Humaninput o_Table_Variables;
                 this.Owner_MemoryApplication.MemoryVariables.TryGetTable_Variables(
                     out o_Table_Variables,
                     Application.StartupPath,

@@ -25,7 +25,7 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="listView"></param>
         /// <param name="listView"></param>
-        public void CopyTo(ListView listView1, ListView listView2, out string sMessage_Error)
+        public void CopyTo(ListView listView1, ListView listView2, Log_Reports log_Reports)
         {
             // リスト・ビュー2を空にします。
             listView2.Clear();
@@ -51,9 +51,8 @@ namespace Xenon.Table
 
             goto gt_EndMethod;
         //
-        //
         gt_EndMethod:
-            sMessage_Error = "";
+            ;
         }
 
         //────────────────────────────────────────
@@ -61,28 +60,32 @@ namespace Xenon.Table
         /// <summary>
         /// リスト・ビューに、テーブルをセットします。
         /// </summary>
-        public void SetDataSourceToListView(TableHumaninput xenonTable, ListView listView, out string sMessage_Error)
+        public void SetDataSourceToListView(
+            Table_Humaninput xenonTable, ListView listView, Log_Reports log_Reports)
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "SetDataSourceToListView", log_Reports);
+
             DataTable dataTable = xenonTable.DataTable;
 
             listView.Clear();
 
             // リスト・ビューにフィールドを追加します。
-            foreach (FielddefinitionImpl fieldDefinition in xenonTable.List_Fielddefinition)
+            xenonTable.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 // 列を追加します。見出しと幅も設定します。
                 Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append(fieldDefinition.Name_Humaninput);
+                t.Append(fielddefinition.Name_Humaninput);
 
                 if (this.BVisibled_Fieldtype)
                 {
                     // デバッグ用に、フィールドの型もヘッダーに表示する場合。
                     t.Append(":");
-                    t.Append(fieldDefinition.Type.Name);
+                    t.Append(fielddefinition.Type.Name);
                 }
 
                 listView.Columns.Add(t.ToString(), 90);
-            }
+            }, log_Reports);
 
 
             for (int nIndex_Row = 0; nIndex_Row < dataTable.Rows.Count; nIndex_Row++)
@@ -96,11 +99,11 @@ namespace Xenon.Table
                 {
                     object columnObject = recordFields[nColumnIndex];
 
-                    if (columnObject is ValueHumaninput)
+                    if (columnObject is Value_Humaninput)
                     {
-                        ValueHumaninput cellData = (ValueHumaninput)columnObject;
+                        Value_Humaninput cellData = (Value_Humaninput)columnObject;
 
-                        string sFieldValue = cellData.Humaninput;
+                        string sFieldValue = cellData.Text;
 
                         // レコードを作成します。
                         if (0 == nColumnIndex)
@@ -134,29 +137,38 @@ namespace Xenon.Table
                 }
             }
 
-            sMessage_Error = "";
             goto gt_EndMethod;
         //
         //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_DBNull:
+            if (log_Reports.CanCreateReport)
             {
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー201！(" + Info_Table.Name_Library + ")");
-                t.Newline();
-                t.Append("列が未設定（DBNull）。テーブル名=[" + xenonTable.Name + "]");
-                sMessage_Error = t.ToString();
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー201！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Newline();
+                s.Append("列が未設定（DBNull）。テーブル名=[" + xenonTable.Name + "]");
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_UnknownType:
+            if (log_Reports.CanCreateReport)
             {
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー291！(" + Info_Table.Name_Library + ")");
-                t.Newline();
-                t.Append("未定義の型の列。テーブル名=[" + xenonTable.Name + "]");
-                sMessage_Error = t.ToString();
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー202！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Newline();
+                s.Append("未定義の型の列。テーブル名=[" + xenonTable.Name + "]");
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -164,6 +176,7 @@ namespace Xenon.Table
         //
         //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return;
         }
 

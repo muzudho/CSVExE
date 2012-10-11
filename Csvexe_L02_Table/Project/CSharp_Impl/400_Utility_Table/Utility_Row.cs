@@ -66,10 +66,10 @@ namespace Xenon.Table
         /// <param name="oTable"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        public static ValueHumaninput ConfigurationTo_Field(
+        public static Value_Humaninput ConfigurationTo_Field(
             int nIndex_Column,
             string sValue,
-            List<Fielddefinition>list_fielddefinition,
+            RecordFielddefinition recordFielddefinition,
             Log_Reports log_Reports
             )
         {
@@ -86,7 +86,7 @@ namespace Xenon.Table
             string sConfigStack;
             try
             {
-                sConfigStack = list_fielddefinition[nIndex_Column].Name_Humaninput;
+                sConfigStack = recordFielddefinition.ValueAt(nIndex_Column).Name_Humaninput;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -94,27 +94,27 @@ namespace Xenon.Table
                 goto gt_Error_Index;
             }
 
-            ValueHumaninput result;
+            Value_Humaninput result;
 
             // 型毎に処理を分けます。
-            if (list_fielddefinition[nIndex_Column].Type == typeof(Int_HumaninputImpl))
+            if (recordFielddefinition.ValueAt(nIndex_Column).Type == typeof(Int_HumaninputImpl))
             {
                 // 空白データも自動処理
                 Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack);
-                cellData.Humaninput = sValue;
+                cellData.Text = sValue;
                 result = cellData;
             }
-            else if (list_fielddefinition[nIndex_Column].Type == typeof(Bool_HumaninputImpl))
+            else if (recordFielddefinition.ValueAt(nIndex_Column).Type == typeof(Bool_HumaninputImpl))
             {
                 // 空白データも自動処理
                 Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack);
-                cellData.Humaninput = sValue;
+                cellData.Text = sValue;
                 result = cellData;
             }
             else
             {
                 String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack);
-                cellData.Humaninput = sValue;
+                cellData.Text = sValue;
                 result = cellData;
             }
 
@@ -134,7 +134,7 @@ namespace Xenon.Table
 
                 t.Append("列インデックス[" + nIndex_Column + "]（0スタート）が指定されましたが、");
                 t.Newline();
-                t.Append("列は[" + list_fielddefinition.Count + "]個しかありません。（列定義リストは、絞りこまれている場合もあります）");
+                t.Append("列は[" + recordFielddefinition.Count + "]個しかありません。（列定義リストは、絞りこまれている場合もあります）");
                 t.Newline();
 
                 // ヒント

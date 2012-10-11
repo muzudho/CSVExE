@@ -1,14 +1,24 @@
 ﻿using System;
-using System.Data;//DataTable,DataRow
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Xenon.Syntax;//ManualFilePath,WarningReports
+using Xenon.Syntax;
 
 
 namespace Xenon.Table
 {
+
+
+
+    #region 用意
+    //────────────────────────────────────────
+
+    public delegate void DELEGATE_Records( Record_Humaninput record, ref bool isBreak, Log_Reports log_Reports);
+
+    //────────────────────────────────────────
+    #endregion
 
 
 
@@ -18,7 +28,7 @@ namespace Xenon.Table
     /// 
     /// フィールドの型定義と、0～複数件のレコードを持ちます。
     /// </summary>
-    public interface TableHumaninput : Configurationtree_Node
+    public interface Table_Humaninput : Configurationtree_Node
     {
 
 
@@ -29,9 +39,9 @@ namespace Xenon.Table
         /// <summary>
         /// 設定された型リストで、テーブルの構造を作成します。
         /// </summary>
-        /// <param name="list_XenonFielddefinition"></param>
+        /// <param name="recordFielddefinition"></param>
         /// <param name="log_Reports"></param>
-        void CreateTable(List<Fielddefinition> list_XenonFielddefinition, Log_Reports log_Reports);
+        void CreateTable(RecordFielddefinition recordFielddefinition, Log_Reports log_Reports);
 
         /// <summary>
         /// レコードを追加します。
@@ -44,19 +54,17 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="sErrorMsg"></param>
         /// <returns></returns>
-        DataRow CreateNewRecord(
-            out string sErrorMsg
-            );
+        DataRow CreateNewRecord( Log_Reports log_Reports );
 
         /// <summary>
         /// 行データを渡すことで、テーブル内容を追加します。
         /// テーブルの型定義と、データを渡します。
         /// </summary>
         /// <param name="rows"></param>
-        /// <param name="list_XenonFielddefinition"></param>
+        /// <param name="recordFielddefinition"></param>
         /// <param name="log_Reports"></param>
         void AddRecordList(
-            List<List<string>> rows, List<Fielddefinition> list_XenonFielddefinition, Log_Reports log_Reports);
+            List<List<string>> rows, RecordFielddefinition recordFielddefinition, Log_Reports log_Reports);
 
         /// <summary>
         /// NOフィールドを 0からの連番に振りなおします。
@@ -96,14 +104,14 @@ namespace Xenon.Table
         /// 
         /// フィールド名の英字大文字、小文字は無視します。
         /// </summary>
-        /// <param name="list_XenonFielddefinition"></param>
-        /// <param name="sList_ExpectedFieldName"></param>
+        /// <param name="out_RecordFielddefinition"></param>
+        /// <param name="list_NameField_Expected"></param>
         /// <param name="bRequired">該当なしの時に例外を投げるなら真。</param>
         /// <param name="log_Reports"></param>
         /// <returns>該当無しがあれば偽。</returns>
         bool TryGetFieldDefinitionByName(
-            out List<Fielddefinition> list_XenonFielddefinition,
-            List<string> sList_ExpectedFieldName,
+            out RecordFielddefinition out_RecordFielddefinition,
+            List<string> list_NameField_Expected,
             bool bRequired,
             Log_Reports log_Reports
             );
@@ -147,11 +155,14 @@ namespace Xenon.Table
             Log_Reports log_Reports
             );
 
+        //────────────────────────────────────────
+
         /// <summary>
-        /// フィールドの型のデバッグ情報です。
+        /// 上３行を読み飛ばします。
         /// </summary>
-        /// <returns></returns>
-        string DebugFields();
+        /// <param name="delegate_Records"></param>
+        /// <param name="log_Reports"></param>
+        void ForEach_Datapart(DELEGATE_Records delegate_Records, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion
@@ -183,7 +194,7 @@ namespace Xenon.Table
             get;
         }
 
-        List<Fielddefinition> List_Fielddefinition
+        RecordFielddefinition RecordFielddefinition
         {
             get;
         }
@@ -238,7 +249,7 @@ namespace Xenon.Table
         /// <summary>
         /// テーブルの内容保存方法などの設定。
         /// </summary>
-        Format_TableHumaninput Format_TableHumaninput
+        Format_Table_Humaninput Format_Table_Humaninput
         {
             get;
             set;

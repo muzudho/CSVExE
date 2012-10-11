@@ -31,7 +31,7 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        List<Dictionary<string, ValueHumaninput>> List_Field
+        List<Dictionary<string, Value_Humaninput>> List_Field
         {
             get;
             set;

@@ -252,7 +252,7 @@ namespace Xenon.Controls
             //
             // DataRowをセットしましたが、取り出されるのは DataRowViewになるようです。
             DataRowView dataRowView = (DataRowView)cctLst.Items[nCurIx];
-            TableHumaninput o_Table = cctLst.TableHumaninput_Datasource;
+            Table_Humaninput o_Table = cctLst.Table_Humaninput_Datasource;
 
             if (null == o_Table)
             {

@@ -256,7 +256,7 @@ namespace Xenon.Functions
             //
             //
             //
-            List<TableHumaninput> oList_Table_Form;//（フォームのセットアップに使う）
+            List<Table_Humaninput> oList_Table_Form;//（フォームのセットアップに使う）
             //
             // 「フォーム名（レイアウト_ターゲット名）」を指定。
             if (log_Reports.Successful)
@@ -267,11 +267,11 @@ namespace Xenon.Functions
                 Expression_Node_String ec_ArgFormgroup;
                 this.TrySelectAttribute(out ec_ArgFormgroup, Expression_Node_Function30Impl.PM_NAME_FORM, EnumHitcount.One_Or_Zero, log_Reports);
 
-                oList_Table_Form = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByFormgroup(ec_ArgFormgroup, true, log_Reports);
+                oList_Table_Form = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByFormgroup(ec_ArgFormgroup, true, log_Reports);
             }
             else
             {
-                oList_Table_Form = new List<TableHumaninput>();
+                oList_Table_Form = new List<Table_Humaninput>();
             }
 
 
@@ -434,7 +434,7 @@ namespace Xenon.Functions
             //
             //
             List<string> sList_Name_Control = new List<string>();
-            foreach (TableHumaninput o_Table_Form in oList_Table_Form)
+            foreach (Table_Humaninput o_Table_Form in oList_Table_Form)
             {
                 if (o_Table_Form.DataTable.Columns.Contains(NamesFld.S_NAME))
                 {

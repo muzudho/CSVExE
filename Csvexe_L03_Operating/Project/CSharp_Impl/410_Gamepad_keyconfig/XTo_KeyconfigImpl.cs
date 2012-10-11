@@ -30,7 +30,7 @@ namespace Xenon.Operating
 
             out_Keycnf = new KeyconfigImpl();
 
-            CsvTo_TableHumaninputImpl csvTo = new CsvTo_TableHumaninputImpl();
+            CsvTo_Table_HumaninputImpl csvTo = new CsvTo_Table_HumaninputImpl();
             Request_ReadsTable oRequest_TableReads = new Request_ReadsTableImpl();
             {
                 Configurationtree_NodeImpl cf_ConfigStack = new Configurationtree_NodeImpl(Info_Operating.Name_Library + ":" + this.GetType().Name + "#<init>:",null);
@@ -50,7 +50,7 @@ namespace Xenon.Operating
                 }
             }
 
-            Format_TableHumaninput o_TableFormat = new Format_TableHumaninputImpl();
+            Format_Table_Humaninput o_TableFormat = new Format_Table_HumaninputImpl();
             out_Keycnf.O_Table_Keycnf = csvTo.Read(
                 oRequest_TableReads,
                 o_TableFormat,

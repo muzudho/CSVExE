@@ -147,7 +147,7 @@ namespace Xenon.Functions
 
             string error_Filepath_Source;
             int error_RowNumber;
-            TableHumaninput error_TableHumaninput;
+            Table_Humaninput error_Table_Humaninput;
 
             string sName_Fnc;
             this.TrySelectAttribute(out sName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -199,14 +199,14 @@ namespace Xenon.Functions
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
+                CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                Format_TableHumaninput tblFormat_puts = new Format_TableHumaninputImpl();
+                Format_Table_Humaninput tblFormat_puts = new Format_Table_HumaninputImpl();
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
                 request_tblReads.Expression_Filepath = fileListfile_Expr;
 
-                TableHumaninput xenonTable = reader.Read(
+                Table_Humaninput xenonTable = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,
@@ -268,7 +268,7 @@ namespace Xenon.Functions
                             //
                             error_Filepath_Source = filepath_Source_Cur;
                             error_RowNumber = rowNumber;
-                            error_TableHumaninput = xenonTable;
+                            error_Table_Humaninput = xenonTable;
                             goto gt_Error_NoFilesystementry;
                         }
                     }
@@ -294,7 +294,7 @@ namespace Xenon.Functions
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, error_Filepath_Source, log_Reports);//ファイルパス
                 tmpl.SetParameter(2, error_RowNumber.ToString(), log_Reports);//エラーのあった行
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(error_TableHumaninput), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(error_Table_Humaninput), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110030;", tmpl, log_Reports);
             }

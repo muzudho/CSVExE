@@ -159,7 +159,7 @@ namespace Xenon.Expr
 
 
             // ｆｒｏｍ句のテーブルを読み込みます。
-            TableHumaninput o_FromTable = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
+            Table_Humaninput o_FromTable = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(selectSt.Expression_From, true, log_Reports);
 
             if (!log_Reports.Successful)
             {
@@ -301,9 +301,9 @@ namespace Xenon.Expr
             {
 
                 // into句のテーブルの、情報を読み込みます。
-                TableHumaninput o_IntoTableInfoOnly;
+                Table_Humaninput o_IntoTableInfoOnly;
                 //ystem.Console.WriteLine(Info_E.LibraryName + ":E_FcellImpl#Execute5_Main: into属性が指定されています。e_Into=[" + selectSt.Expression_Into.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
-                o_IntoTableInfoOnly = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_Into, true, log_Reports);
+                o_IntoTableInfoOnly = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(selectSt.Expression_Into, true, log_Reports);
 
                 if (!log_Reports.Successful)
                 {
@@ -314,7 +314,7 @@ namespace Xenon.Expr
 
 
                 // テーブルから、指定の列だけを抽出したサブ・テーブルを作ります。
-                TableHumaninput o_NewTable = Utility_Table.CreateSubTableBySelect(
+                Table_Humaninput o_NewTable = Utility_Table.CreateSubTableBySelect(
                     o_FromTable.Name + "のサブテーブル＜E_FcellImpl.cs＞",
                     selectSt.List_SName_SelectField,
                     o_IntoTableInfoOnly.Expression_Filepath_ConfigStack,
@@ -337,7 +337,7 @@ namespace Xenon.Expr
                 // 作ったテーブルをセット。
                 //
                 // 新規なら追加、既存なら上書き。
-                this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput[selectSt.Expression_Into.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)] = o_NewTable;
+                this.Owner_MemoryApplication.MemoryTables.Dictionary_Table_Humaninput[selectSt.Expression_Into.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)] = o_NewTable;
 
                 if (!log_Reports.Successful)
                 {
@@ -1184,9 +1184,9 @@ namespace Xenon.Expr
         /// <param name="log_Reports"></param>
         /// <returns>該当がなければヌル。</returns>
         private RecordSet E_Execute_P2_Select(
-            bool bExists_Awhr,
+            bool isExists_Awhr,
             Selectstatement selectSt,
-            Configurationtree_Node parent_Cf_Query,
+            Configurationtree_Node parent_Conf_Query,
             Log_Reports log_Reports
             )
         {
@@ -1201,14 +1201,8 @@ namespace Xenon.Expr
 
 
 
-
-
-
             bool bLoad = false;
 
-            //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute: （＜f-cell＞開始１０）");
-
-            //
             // 一時記憶から、レコードセットのロードをするか否か。
             {
                 {
@@ -1234,9 +1228,6 @@ namespace Xenon.Expr
             // レコードセットの取得。
             if (bLoad)
             {
-                //ystem.Console.WriteLine(Info_E.LibraryName + ":" + this.GetType().Name + "#E_Execute: （２０＿＜f-cell＞）【一時記憶から取得】");
-
-                //
                 // 一時記憶からロード。
                 P1_RecordSetLoader sel1 = new P1_RecordSetLoader(this.Owner_MemoryApplication);
                 reslt_Rs = sel1.P1_Load(
@@ -1272,12 +1263,12 @@ namespace Xenon.Expr
                 //    txt.Append("　ヒット件数＝[" + recordSet.O_Items.Count + "]");
 
                 //    // レコードの内容
-                //    foreach (Dictionary<string, ValueHumaninput> oRecord in recordSet.O_Items)
+                //    foreach (Dictionary<string, Value_Humaninput> oRecord in recordSet.O_Items)
                 //    {
                 //        txt.Append("　フィールド数＝[" + oRecord.Count + "]");
                 //        foreach (string sKey in oRecord.Keys)
                 //        {
-                //            ValueHumaninput oValue = oRecord[sKey];
+                //            Value_Humaninput oValue = oRecord[sKey];
                 //            txt.Append("　要素＝[" + sKey + ":"+ oValue.Humaninput + "]");
                 //        }
                 //    }
@@ -1289,25 +1280,21 @@ namespace Xenon.Expr
             }
             else
             {
-
-
-                TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
-                if (null == o_Table)
+                Table_Humaninput tableH = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(selectSt.Expression_From, true, log_Reports);
+                if (null == tableH)
                 {
                     // エラー。
                     reslt_Rs = null;
                     goto gt_Error_NullTable;
                 }
                 // レコードセットを用意。
-                reslt_Rs = new RecordSetImpl(o_Table);
+                reslt_Rs = new RecordSetImpl(tableH);
 
 
-                bool bExpectedValueRequired;
+                bool isRequired_ExpectedValue;
                 {
-                    bool parseSuccessful = bool.TryParse(selectSt.Required, out bExpectedValueRequired);
+                    bool parseSuccessful = bool.TryParse(selectSt.Required, out isRequired_ExpectedValue);
                 }
-
-
 
 
                 //
@@ -1316,42 +1303,41 @@ namespace Xenon.Expr
                     List<DataRow> dst_Row = new List<DataRow>();
 
                     //
-                    //
-                    //
                     // 条件
-                    //
-                    //
                     //
                     if (0 < selectSt.List_Recordcondition.Count)
                     {
                         // 条件が指定されている場合。
 
-                        string sKeyFieldName;
-                        Fielddefinition o_KeyFldDef;
-                        string sExpectedValue;
+                        string name_KeyField;
+                        Fielddefinition fielddefinition_Key;
+                        string value_Expected;
                         P2_ReccondImpl sel2 = new P2_ReccondImpl();
                         sel2.GetFirstAwhrReccond(
-                            out sKeyFieldName,
-                            out o_KeyFldDef,
-                            out sExpectedValue,
+                            out name_KeyField,
+                            out fielddefinition_Key,
+                            out value_Expected,
                             selectSt.List_Recordcondition,
-                            o_Table,
+                            tableH,
                             log_Reports
                             );
 
-                        // TODO:セル型でない場合、キーフィールド名がないこともある。
+                        if (log_Reports.Successful)
+                        {
+                            // TODO:セル型でない場合、キーフィールド名がないこともある。
 
-                        SelectPerformerImpl sp = new SelectPerformerImpl();
-                        sp.Select(
-                            out dst_Row,
-                            sKeyFieldName,
-                            sExpectedValue,
-                            bExpectedValueRequired,
-                            o_KeyFldDef,
-                            o_Table.DataTable,
-                            parent_Cf_Query,
-                            log_Reports
-                            );
+                            SelectPerformerImpl sp = new SelectPerformerImpl();
+                            sp.Select(
+                                out dst_Row,
+                                name_KeyField,
+                                value_Expected,
+                                isRequired_ExpectedValue,
+                                fielddefinition_Key,
+                                tableH.DataTable,
+                                parent_Conf_Query,
+                                log_Reports
+                                );
+                        }
                     }
                     else
                     {
@@ -1360,16 +1346,18 @@ namespace Xenon.Expr
                         SelectPerformerImpl sp = new SelectPerformerImpl();
                         sp.Select(
                             out dst_Row,
-                            bExpectedValueRequired,
-                            o_Table.DataTable,
-                            parent_Cf_Query,
+                            isRequired_ExpectedValue,
+                            tableH.DataTable,
+                            parent_Conf_Query,
                             log_Reports
                             );
                     }
 
+                    if (log_Reports.Successful)
+                    {
+                        reslt_Rs.AddList(dst_Row, log_Reports);
+                    }
 
-
-                    reslt_Rs.AddList(dst_Row, log_Reports);
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。
@@ -1387,7 +1375,7 @@ namespace Xenon.Expr
         gt_Error_NullTable:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Conf_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6019;", tmpl, log_Reports);
             }

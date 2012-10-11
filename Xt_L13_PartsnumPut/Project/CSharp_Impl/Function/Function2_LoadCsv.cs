@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 
 using System.Drawing;
+using Xenon.Syntax;
+using Xenon.Table;
 using Xenon.Lib;
 
 namespace Xenon.PartsnumPut
@@ -39,14 +41,20 @@ namespace Xenon.PartsnumPut
 
         public void Perfrom()
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            log_Method.BeginMethod( Info_PartsnumPut.Name_Library, this, "Perform", log_Reports_ThisMethod);
+
+
             this.out_Errormessage = "";
-            this.out_ListArraystring_Table = new List<string[]>();
+            this.out_Table_Humaninput = new Table_HumaninputImpl("名無し", null, new Configurationtree_NodeImpl(log_Method.Fullname, null));
+
 
             // CSV読取
-            string sCsv;
+            string text_Csv;
             try
             {
-                sCsv = System.IO.File.ReadAllText(this.In_Filepathabsolute, Encoding.Default);
+                text_Csv = System.IO.File.ReadAllText(this.In_Filepathabsolute, Encoding.Default);
             }
             catch (Exception e)
             {
@@ -55,35 +63,21 @@ namespace Xenon.PartsnumPut
                 goto gt_EndMethod;
             }
 
+            Request_ReadsTable request = new Request_ReadsTableImpl();
+            Format_Table_Humaninput format = new Format_Table_HumaninputImpl();
 
-            //
-            // テーブル作成
-            //
-
-            System.IO.StringReader reader = new System.IO.StringReader(sCsv);
-
-            // CSVを解析して、テーブル形式で格納。
-            {
-                int rowIndex = 0;
-                while (-1 < reader.Peek())
-                {
-                    string line = reader.ReadLine();
-
-                    //
-                    // 配列の返却値を、ダイレクトに渡します。
-                    //
-                    this.Out_ListArraystring_Table.Add(line.Split(','));
-
-                    rowIndex++;
-                }
-            }
-
-            // ストリームを閉じます。
-            reader.Close();
-
+            CsvTo_Table_HumaninputImpl trans = new CsvTo_Table_HumaninputImpl();
+            this.out_Table_Humaninput = trans.Read(
+                text_Csv,
+                request,
+                format,
+                log_Reports_ThisMethod
+                );
+                
             goto gt_EndMethod;
         //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports_ThisMethod);
             return;
         }
 
@@ -114,13 +108,13 @@ namespace Xenon.PartsnumPut
 
         //────────────────────────────────────────
 
-        protected List<string[]> out_ListArraystring_Table;
+        protected Table_Humaninput out_Table_Humaninput;
 
-        public List<string[]> Out_ListArraystring_Table
+        public Table_Humaninput Out_Table_Humaninput
         {
             get
             {
-                return out_ListArraystring_Table;
+                return this.out_Table_Humaninput;
             }
         }
 

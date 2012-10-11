@@ -173,7 +173,7 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                TableHumaninput xenonTable_Aafilescsv;
+                Table_Humaninput xenonTable_Aafilescsv;
                 if (log_Reports.Successful)
                 {
                     xenonTable_Aafilescsv = this.Read_AaFilesCsv(log_Reports);
@@ -193,7 +193,7 @@ namespace Xenon.Functions
                 //
                 if (log_Reports.Successful)
                 {
-                    this.Owner_MemoryApplication.MemoryTables.AddTableHumaninput(xenonTable_Aafilescsv, log_Reports);
+                    this.Owner_MemoryApplication.MemoryTables.AddTable_Humaninput(xenonTable_Aafilescsv, log_Reports);
                 }
 
 
@@ -221,11 +221,11 @@ namespace Xenon.Functions
                 //
                 // TODO:「フォーム一覧テーブル」を更に読取に行く。
                 //
-                if (this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput.ContainsKey(NamesVar.S_ST_AA_FORMS))
+                if (this.Owner_MemoryApplication.MemoryTables.Dictionary_Table_Humaninput.ContainsKey(NamesVar.S_ST_AA_FORMS))
                 {
                     //
                     // 「フォーム一覧テーブル」
-                    TableHumaninput o_Table_Aaformscsv = this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput[NamesVar.S_ST_AA_FORMS];
+                    Table_Humaninput o_Table_Aaformscsv = this.Owner_MemoryApplication.MemoryTables.Dictionary_Table_Humaninput[NamesVar.S_ST_AA_FORMS];
 
                     //
                     // 「テーブルに書かれているテーブル」を読取り、登録。
@@ -348,11 +348,11 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private Format_TableHumaninput ReadIndexFormat()
+        private Format_Table_Humaninput ReadIndexFormat()
         {
             //
             // テーブル読取り引数。
-            Format_TableHumaninput forIndexTable_format = new Format_TableHumaninputImpl();
+            Format_Table_Humaninput forIndexTable_format = new Format_Table_HumaninputImpl();
 
             //
             // 「int型ばかりで型が省略されているテーブル」ではない。
@@ -367,16 +367,16 @@ namespace Xenon.Functions
 
         //────────────────────────────────────────
 
-        private TableHumaninput Read_AaFilesCsv(Log_Reports log_Reports)
+        private Table_Humaninput Read_AaFilesCsv(Log_Reports log_Reports)
         {
             //「Aa_Files.csv」を読み取る要求を作成します。
             Request_ReadsTable forAafilescsv_Request = this.CreateReadRequest_AaFilesCsv(log_Reports);
-            Format_TableHumaninput forAafilescsv_Format = this.ReadIndexFormat();
+            Format_Table_Humaninput forAafilescsv_Format = this.ReadIndexFormat();
 
             //
             // 「Aa_Files.csv」読取り
-            CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
-            TableHumaninput xenonTable_Aafilescsv;
+            CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
+            Table_Humaninput xenonTable_Aafilescsv;
             if (log_Reports.Successful)
             {
                 // 正常時
@@ -412,7 +412,7 @@ namespace Xenon.Functions
         /// 「Aa_Files.csv」に書かれている「テーブル」と「スクリプト」を読取り、登録します。
         /// </summary>
         private void ReadAndRegisterFiles(
-            TableHumaninput xenonTable_Aafilescsv,
+            Table_Humaninput xenonTable_Aafilescsv,
             Log_Reports log_Reports
             )
         {
@@ -513,10 +513,10 @@ namespace Xenon.Functions
                         // テーブルなら。
                         //
 
-                        Format_TableHumaninput forTable_format = this.Read_RequestPart_Table(
+                        Format_Table_Humaninput forTable_format = this.Read_RequestPart_Table(
                             datarow, sFpatha_Aafilescsv, log_Reports);
 
-                        TableHumaninput oTable;
+                        Table_Humaninput oTable;
                         // テーブル読取の実行。（書き出し専用の場合は、登録だけする）
                         oTable = this.ReadTable(
                             requestRead,
@@ -528,7 +528,7 @@ namespace Xenon.Functions
                         if (log_Reports.Successful)
                         {
                             // アプリケーション・モデルに、テーブルを登録
-                            this.Owner_MemoryApplication.MemoryTables.AddTableHumaninput(
+                            this.Owner_MemoryApplication.MemoryTables.AddTable_Humaninput(
                                 oTable,
                                 log_Reports
                                 );
@@ -618,7 +618,7 @@ namespace Xenon.Functions
         /// <returns></returns>
         private Request_ReadsTable CreateReadRequest(
             DataRow dataRow,
-            TableHumaninput o_Table_Aafiles,
+            Table_Humaninput o_Table_Aafiles,
             Log_Reports log_Reports
             )
         {
@@ -899,7 +899,7 @@ namespace Xenon.Functions
             string sTableNameToPuts,
             string sFpatha_Aafiles,
             DataRow dataRow,
-            TableHumaninput o_IndexTable,
+            Table_Humaninput o_IndexTable,
             Log_Reports log_Reports
             )
         {
@@ -1046,7 +1046,7 @@ namespace Xenon.Functions
         /// <param name="forIndexTable_csvAbsFilePath"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        private Format_TableHumaninput Read_RequestPart_Table(
+        private Format_Table_Humaninput Read_RequestPart_Table(
             DataRow datarow,
             string filepath_ForAafilescsv,
             Log_Reports log_Reports
@@ -1054,7 +1054,7 @@ namespace Xenon.Functions
         {
             //
             // 「各テーブル」の引数
-            Format_TableHumaninput forTable_format = new Format_TableHumaninputImpl();
+            Format_Table_Humaninput forTable_format = new Format_Table_HumaninputImpl();
 
 
             //
@@ -1164,7 +1164,7 @@ namespace Xenon.Functions
         private MemoryCodefileinfo Read_RequestPart_Script(
             DataRow dataRow,
             string sFpatha_Aafilescsv,
-            TableHumaninput o_Table_Aafiles,
+            Table_Humaninput o_Table_Aafiles,
             Log_Reports log_Reports
             )
         {
@@ -1262,20 +1262,20 @@ namespace Xenon.Functions
         /// <param name="forTable_format"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        private TableHumaninput ReadTable(
+        private Table_Humaninput ReadTable(
             Request_ReadsTable forSubTable_Request_TblReads,
-            Format_TableHumaninput o_TableFormat_ForSubTable_Puts,
+            Format_Table_Humaninput o_TableFormat_ForSubTable_Puts,
             Log_Reports log_Reports
             )
         {
-            TableHumaninput o_Tbl;
+            Table_Humaninput o_Tbl;
             if (log_Reports.Successful)
             {
                 // 正常時
 
                 //
                 // テーブル読取り
-                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
+                CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
 
                 // テーブル
                 o_Tbl = reader.Read(
@@ -1324,7 +1324,7 @@ namespace Xenon.Functions
             //
             // 全てのテーブルについて。
             //
-            foreach (TableHumaninput oTable in this.Owner_MemoryApplication.MemoryTables.Dictionary_TableHumaninput.Values)
+            foreach (Table_Humaninput oTable in this.Owner_MemoryApplication.MemoryTables.Dictionary_Table_Humaninput.Values)
             {
                 //
                 // フラグ読取： 日初めのバックアップを取るかどうかどうか。

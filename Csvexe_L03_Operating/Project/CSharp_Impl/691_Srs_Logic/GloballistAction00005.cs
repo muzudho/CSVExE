@@ -62,7 +62,7 @@ namespace Xenon.Operating
                             ResultOfGloballistconfigElementSearchImpl resultItem = new ResultOfGloballistconfigElementSearchImpl();
                             resultItem.Name_Type = variable.Name_Type;
                             resultItem.Text_NumberRange = numberObj.Text_Range;
-                            resultItem.Priority = numberObj.Priority.Humaninput;
+                            resultItem.Priority = numberObj.Priority.Text;
 
                             resultList.Add(resultItem);
                         }

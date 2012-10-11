@@ -44,7 +44,7 @@ namespace Xenon.Layout
         /// </summary>
         public void LoadUserformconfigFile(
             TableUserformconfig fo_Config_Formgroup,
-            TableHumaninput o_Table_Form,
+            Table_Humaninput o_Table_Form,
             MemoryApplication memoryApplication,
             Log_Reports pg_Logging
             )
@@ -403,7 +403,7 @@ namespace Xenon.Layout
         private int Read_Form(
             RecordUserformconfig fo_Record,
             DataRow dataRow,
-            TableHumaninput o_Table_Form,
+            Table_Humaninput o_Table_Form,
             TableUserformconfig fo_Config,
             MemoryApplication memoryApplication,
             Log_Reports pg_Logging
@@ -1365,7 +1365,7 @@ namespace Xenon.Layout
             bool bNameRefRequired,
             RecordUserformconfig fo_Record,
             DataRow dataRow,
-            TableHumaninput o_Table_Form,
+            Table_Humaninput o_Table_Form,
             Log_Reports pg_Logging
             )
         {

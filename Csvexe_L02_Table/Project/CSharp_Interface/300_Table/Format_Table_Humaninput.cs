@@ -10,7 +10,7 @@ namespace Xenon.Table
     /// テーブルの行列が逆になっているなどの、設定。
     /// (table format)
     /// </summary>
-    public interface Format_TableHumaninput
+    public interface Format_Table_Humaninput
     {
 
 

@@ -59,7 +59,7 @@ namespace Xenon.Operating
                     {
                         XmlElement numElm = doc.CreateElement("number");
                         numElm.SetAttribute("range", num.Text_Range);
-                        numElm.SetAttribute("priority", num.Priority.Humaninput);
+                        numElm.SetAttribute("priority", num.Priority.Text);
                         varElm.AppendChild(numElm);
                     }
                 }

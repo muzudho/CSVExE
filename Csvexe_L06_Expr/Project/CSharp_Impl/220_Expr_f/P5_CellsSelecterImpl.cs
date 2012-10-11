@@ -65,9 +65,9 @@ namespace Xenon.Expr
 
             //
             // （１）テーブル
-            TableHumaninput o_Table;
+            Table_Humaninput o_Table;
             {
-                o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+                o_Table = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(
                     selectSt_ToSave.Expression_From, true, log_Reports);
 
                 if (null == o_Table)
@@ -114,9 +114,9 @@ namespace Xenon.Expr
                         sList_KeyFldName.Add(recCond.Name_Field);
                     }
 
-                    List<Fielddefinition> oList_keyFldDefinition;
+                    RecordFielddefinition recordFielddefinition;
                     bool bHit = o_Table.TryGetFieldDefinitionByName(
-                         out oList_keyFldDefinition,
+                         out recordFielddefinition,
                         sList_KeyFldName,
                         false,
                         log_Reports
@@ -127,17 +127,17 @@ namespace Xenon.Expr
                         goto gt_EndMethod;
                     }
 
-                    keyFldDefinition = oList_keyFldDefinition[0];
+                    keyFldDefinition = recordFielddefinition.ValueAt(0);
                 }
 
 
 
                 //
                 // （３）選択対象のフィールドの定義を調べます。
-                List<Fielddefinition> list_SelectedFldDefinition;
+                RecordFielddefinition recordFieldDefinition_Selected;
                 {
                     bool bHit = o_Table.TryGetFieldDefinitionByName(
-                        out list_SelectedFldDefinition,
+                        out recordFieldDefinition_Selected,
                         selectSt_ToSave.List_SName_SelectField,
                         true,
                         log_Reports
@@ -162,15 +162,16 @@ namespace Xenon.Expr
 
                 List<string> list_FldImpl3 = new List<string>();
 
-                foreach (Fielddefinition selectedFldDef in list_SelectedFldDefinition)
+                recordFieldDefinition_Selected.ForEach(delegate(Fielddefinition fielddefinition_Selected,ref bool isBreak2,Log_Reports log_Reports2)
                 {
-                    string sSelectField = selectedFldDef.Name_Trimupper;
+                    string sSelectField = fielddefinition_Selected.Name_Trimupper;
 
                     //
                     // （５）
-                    if (null == selectedFldDef)
+                    if (null == fielddefinition_Selected)
                     {
                         // エラー。
+                        isBreak2 = true;
                         goto gt_Error_NullSelectedFldDefinition;
                     }
 
@@ -179,157 +180,99 @@ namespace Xenon.Expr
 
                     //
                     // （７）
-                    //if (null == p3_Selectstatement.RecordList || p3_Selectstatement.RecordList.Count < 1)
                     if (null == dst_Rs_toSave || dst_Rs_toSave.List_Field.Count < 1)
                     {
+                        bool bExpectedValueRequired;
                         {
-                            //// テーブル名。
-                            //if ("" == selectSt.Expression_From.E_Execute(log_Reports).Trim())
-                            //{
-                            //    //
-                            //    // エラー。
-                            //    goto gt_Error_EmptyTableName;
-                            //}
-
-                            //TableHumaninput o_Table = this.MoOpyopyo.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
-
-                            //if (null == o_Table)
-                            //{
-                            //    goto gt_Error_NullTable;
-                            //}
-
-
-
-                            bool bExpectedValueRequired;
-                            {
-                                bool parseSuccessful = bool.TryParse(selectSt_ToSave.Required, out bExpectedValueRequired);
-                            }
-
-
-                            //
-                            //
-                            //
-                            // 条件
-                            //
-                            //
-                            //
-                            string sKeyFieldName;
-                            Fielddefinition o_KeyFldDef;
-                            string sExpectedValue;
-                            P2_ReccondImpl sel2 = new P2_ReccondImpl();
-                            sel2.GetFirstAwhrReccond(
-                                out sKeyFieldName,
-                                out o_KeyFldDef,
-                                out sExpectedValue,
-                                selectSt_ToSave.List_Recordcondition,
-                                o_Table,
-                                log_Reports
-                                );
-                            List<DataRow> dst_Row = new List<DataRow>();
-
-                            SelectPerformerImpl sp = new SelectPerformerImpl();
-                            sp.Select(
-                                out dst_Row,
-                                sKeyFieldName,
-                                sExpectedValue,
-                                bExpectedValueRequired,
-                                o_KeyFldDef,
-                                o_Table.DataTable,
-                                parent_Cf_Query,
-                                log_Reports
-                                );
-
-
-
-                            dst_Rs_toSave.AddList(dst_Row, log_Reports);
-                            if (!log_Reports.Successful)
-                            {
-                                // 既エラー。
-                                goto gt_EndMethod;
-                            }
+                            bool parseSuccessful = bool.TryParse(selectSt_ToSave.Required, out bExpectedValueRequired);
                         }
 
+                        //
+                        // 条件
+                        //
+                        string name_KeyField;
+                        Fielddefinition fielddefinition_Key;
+                        string value_Expected;
+                        P2_ReccondImpl sel2 = new P2_ReccondImpl();
+                        sel2.GetFirstAwhrReccond(
+                            out name_KeyField,
+                            out fielddefinition_Key,
+                            out value_Expected,
+                            selectSt_ToSave.List_Recordcondition,
+                            o_Table,
+                            log_Reports
+                            );
+                        List<DataRow> dst_Row = new List<DataRow>();
+
+                        SelectPerformerImpl sp = new SelectPerformerImpl();
+                        sp.Select(
+                            out dst_Row,
+                            name_KeyField,
+                            value_Expected,
+                            bExpectedValueRequired,
+                            fielddefinition_Key,
+                            o_Table.DataTable,
+                            parent_Cf_Query,
+                            log_Reports
+                            );
+
+                        dst_Rs_toSave.AddList(dst_Row, log_Reports);
+                        if (!log_Reports.Successful)
+                        {
+                            // 既エラー。
+                            isBreak2 = true;
+                            goto gt_EndInnermethod;
+                        }
 
                         if (null == dst_Rs_toSave)
                         {
-                            //
                             // （７－２） 
 
-                            //if (null != log_Reports)//無限ループ防止
-                            //{
-                            //
-                            // エラー。
+                            isBreak2 = true;
                             goto gt_Error_UndefinedPrimitiveType;
-                            //}
-
-                            ////
-                            //// 非エラー中断。
-                            //goto gt_EndMethod;
                         }
-
-                        //ystem.Console.WriteLine(Info_N.LibraryName + ":" + this.GetType().Name + "#P5_Select: ＜f-cell選択（３７１）＞　RecordSet_toSave .O_Items.Count＝[" + RecordSet_toSave.O_Items.Count + "]");
-
-                        //P4_RecordSetSaverImpl sel4 = new P4_RecordSetSaverImpl(moOpyopyo);
-                        //sel4.P4_Save(
-                        //    RecordSet_toSave,
-                        //    RecordSetSaveTo_or_null,
-                        //    log_Reports
-                        //    );
-
                     }
                     else
                     {
                         // レコードセットは、一時記憶から取得済み。
-                        //ystem.Console.WriteLine(Info_N.LibraryName + ":" + this.GetType().Name + "#P5_Select: ＜f-cell選択（３７５）＞　【レコードセットは、一時記憶から取得済み】");
                     }
 
 
-                    //
                     // （８）
                     if (log_Reports.Successful)
                     {
-                        //// debug:
-                        //if (false)
-                        //{
-                        //    ystem.Console.WriteLine(Info_N.LibraryName + ":" + this.GetType().Name + "#P5_Select: ＜f-cell選択（３８０）＞　selectedFldNameStr＝[" + selectedFldNameStr + "]　RecordSet_toSave.O_Items.Count＝[" + RecordSet_toSave.O_Items.Count + "]");
-                        //}
-
-                        //
                         // キー_フィールドの型別に、処理。
-                        //
                         if (keyFldDefinition.Type == typeof(String_HumaninputImpl))
                         {
-                            //
                             // （８－１）キーが string型フィールドなら
 
                             // この行の、選択対象のフィールドの値。
 
-                            foreach (Dictionary<string, ValueHumaninput> record in dst_Rs_toSave.List_Field)
+                            foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
                             {
-                                //
                                 // 値。
 
-                                ValueHumaninput selectedCellData;
+                                Value_Humaninput selectedCellData;
                                 try
                                 {
-                                    selectedCellData = (ValueHumaninput)record[sSelectField];
+                                    selectedCellData = (Value_Humaninput)record[sSelectField];
                                 }
                                 catch (KeyNotFoundException ex)
                                 {
                                     selectedCellData = null;
                                     err_SSelectedFldName = sSelectField;
                                     err_Exception = ex;
+                                    isBreak2 = true;
                                     goto gt_Error_NotFoundFld;
                                 }
 
                                 Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
-                                    selectedFldDef,
+                                    fielddefinition_Selected,
                                     selectedCellData,
                                     parent_Cf_Query,
                                     log_Reports
                                     );
 
-                                //TODO:e_SelectedValue.SetValidation(...);
                                 list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                             }
 
@@ -339,19 +282,17 @@ namespace Xenon.Expr
                             //
                             // （８－２） キー・フィールドが int型の場合。
 
-                            foreach (Dictionary<string, ValueHumaninput> record in dst_Rs_toSave.List_Field)
+                            foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
                             {
                                 // この行の、選択対象のフィールドの値。
 
                                 if (null != log_Reports && !log_Reports.Successful)//無限ループ防止
                                 {
-                                    //
                                     // エラー発生時は無視。
-                                    //
                                 }
                                 else
                                 {
-                                    ValueHumaninput selectedCellData;
+                                    Value_Humaninput selectedCellData;
                                     try
                                     {
                                         selectedCellData = record[sSelectField];
@@ -361,64 +302,55 @@ namespace Xenon.Expr
                                         selectedCellData = null;
                                         err_SSelectedFldName = sSelectField;
                                         err_Exception = ex;
+                                        isBreak2 = true;
                                         goto gt_Error_NotFoundFld;
                                     }
 
                                     {
-                                        //ystem.Console.WriteLine(Info_N.LibraryName + ":" + this.GetType().Name + "#P5_Select: ＜f-cell選択（８－２b）＞");
-
                                         // 値。
                                         Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
-                                            selectedFldDef,
+                                            fielddefinition_Selected,
                                             selectedCellData,
                                             parent_Cf_Query,
                                             log_Reports
                                             );
 
-                                        //TODO:e_SelectedValue.SetValidation(...);
                                         list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                                     }
                                 }
                             }
-
                         }
                         else if (keyFldDefinition.Type == typeof(Bool_HumaninputImpl))
                         {
-                            //
                             // （８－３） キーが、bool型フィールド
 
-                            //
                             // 値。
-                            foreach (Dictionary<string, ValueHumaninput> record in dst_Rs_toSave.List_Field)
+                            foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
                             {
-
                                 // この行の、選択対象のフィールドの値。
-                                ValueHumaninput selectedCellData;
+                                Value_Humaninput selectedCellData;
                                 try
                                 {
-                                    selectedCellData = (ValueHumaninput)record[sSelectField];
+                                    selectedCellData = (Value_Humaninput)record[sSelectField];
                                 }
                                 catch (KeyNotFoundException ex)
                                 {
                                     selectedCellData = null;
                                     err_SSelectedFldName = sSelectField;
                                     err_Exception = ex;
+                                    isBreak2 = true;
                                     goto gt_Error_NotFoundFld;
                                 }
 
                                 Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
-                                    selectedFldDef,
+                                    fielddefinition_Selected,
                                     selectedCellData,
                                     parent_Cf_Query,
                                     log_Reports
                                     );
 
-                                //TODO:e_SelectedValue.SetValidation(...);
                                 list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
-                                //                                fldListImpl3.Add(e_SelectedValue);
                             }
-
-
                         }
                         else
                         {
@@ -432,31 +364,67 @@ namespace Xenon.Expr
                             {
                                 //
                                 // エラー。
+                                isBreak2 = true;
                                 goto gt_Error_UndefinedPrimitiveType;
                             }
 
                             //
                             // 非エラー中断。
-                            goto gt_EndMethod;
+                            isBreak2 = true;
+                            goto gt_EndInnermethod;
                         }
 
                     }
 
-                }//select列１つ
+                    goto gt_EndInnermethod;
+                //
+                    #region 異常系
+                //────────────────────────────────────────
+                gt_Error_NullSelectedFldDefinition:
+                    {
+                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                        tmpl.SetParameter(1, o_Table.Name, log_Reports);//テーブル名
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+
+                        this.Owner_MemoryApplication.CreateErrorReport("Er:6026;", tmpl, log_Reports);
+                    }
+                goto gt_EndInnermethod;
+                //────────────────────────────────────────
+                gt_Error_UndefinedPrimitiveType:
+                    {
+                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                        tmpl.SetParameter(1, keyFldDefinition.Type.ToString(), log_Reports);//キー・フィールド定義型名
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+
+                        this.Owner_MemoryApplication.CreateErrorReport("Er:6027;", tmpl, log_Reports);
+                    }
+                goto gt_EndInnermethod;
+                //────────────────────────────────────────
+                gt_Error_NotFoundFld:
+                    {
+                        Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                        tmpl.SetParameter(1, err_SSelectedFldName, log_Reports);//選択フィールド名
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                        tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Exception(err_Exception), log_Reports);//例外メッセージ
+
+                        this.Owner_MemoryApplication.CreateErrorReport("Er:6028;", tmpl, log_Reports);
+                    }
+                goto gt_EndInnermethod;
+                //────────────────────────────────────────
+                    #endregion
+                    //
+                gt_EndInnermethod:
+                    ;
+                }, log_Reports);//select列１つ
 
                 if (0 < list_FldImpl3.Count)
                 {
                     // フィールドがあれば追加。
                     reslt_sFieldListList.Add(list_FldImpl3);
                 }
-
-
             }
 
-
-
             goto gt_EndMethod;
-        //
         //
             #region 異常系
         //────────────────────────────────────────
@@ -477,39 +445,7 @@ namespace Xenon.Expr
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
-        gt_Error_NullSelectedFldDefinition:
-            {
-                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, o_Table.Name, log_Reports);//テーブル名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
-
-                this.Owner_MemoryApplication.CreateErrorReport("Er:6026;", tmpl, log_Reports);
-            }
-            goto gt_EndMethod;
-        //────────────────────────────────────────
-        gt_Error_UndefinedPrimitiveType:
-            {
-                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, keyFldDefinition.Type.ToString(), log_Reports);//キー・フィールド定義型名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
-
-                this.Owner_MemoryApplication.CreateErrorReport("Er:6027;", tmpl, log_Reports);
-            }
-            goto gt_EndMethod;
-        //────────────────────────────────────────
-        gt_Error_NotFoundFld:
-            {
-                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, err_SSelectedFldName, log_Reports);//選択フィールド名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Exception(err_Exception), log_Reports);//例外メッセージ
-
-                this.Owner_MemoryApplication.CreateErrorReport("Er:6028;", tmpl, log_Reports);
-            }
-            goto gt_EndMethod;
-        //────────────────────────────────────────
             #endregion
-        //
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
@@ -526,7 +462,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         private Expression_Node_String GetSelectedFieldValue(
             Fielddefinition selectedFldDefinition,
-            ValueHumaninput selectedOValue,
+            Value_Humaninput selectedOValue,
             Configurationtree_Node parent_Cf_Select,
             Log_Reports log_Reports
             )
@@ -565,7 +501,7 @@ namespace Xenon.Expr
             else if (selectedFldDefinition.Type == typeof(Bool_HumaninputImpl))
             {
                 StringBuilder s = new StringBuilder();
-                s.Append("ValueHumaninput_Boolフィールド[");
+                s.Append("Value_Humaninput_Boolフィールド[");
                 s.Append(selectedFldDefinition.Name_Humaninput);
                 s.Append("]から取得");
 

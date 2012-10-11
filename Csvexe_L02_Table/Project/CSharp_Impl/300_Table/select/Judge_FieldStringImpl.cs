@@ -46,7 +46,7 @@ namespace Xenon.Table
                     goto gt_Error_NothingKeyField;
                 }
 
-                ValueHumaninput o_CellValue = (ValueHumaninput)row[sName_KeyField];
+                Value_Humaninput o_CellValue = (Value_Humaninput)row[sName_KeyField];
 
 
                 //

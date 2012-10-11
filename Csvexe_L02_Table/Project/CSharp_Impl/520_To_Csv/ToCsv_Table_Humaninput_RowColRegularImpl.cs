@@ -11,7 +11,7 @@ namespace Xenon.Table
 {
 
 
-    public class ToCsv_TableHumaninput_RowColRegularImpl
+    public class ToCsv_Table_Humaninput_RowColRegularImpl
     {
 
 
@@ -34,7 +34,7 @@ namespace Xenon.Table
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public ToCsv_TableHumaninput_RowColRegularImpl()
+        public ToCsv_Table_Humaninput_RowColRegularImpl()
         {
             this.exceptedFields = new ExceptedFields();
         }
@@ -48,7 +48,7 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         public string ToCsvText(
-            TableHumaninput hiTable,
+            Table_Humaninput hiTable,
             Log_Reports log_Reports
             )
         {
@@ -57,7 +57,7 @@ namespace Xenon.Table
 
             Log_TextIndented log_ReportsResult = new Log_TextIndentedImpl();
 
-            List<Fielddefinition> err_OList_FldDef;
+            RecordFielddefinition error_RecordFielddefinition;
             Exception err_E;
             int err_NColIndex;
             Fielddefinition err_FldDef;
@@ -72,41 +72,40 @@ namespace Xenon.Table
             // フィールド名をカンマ区切りで出力します。最後にENDを付加します。
 
             // フィールド定義部
-            List<Fielddefinition> oList_FldDef = hiTable.List_Fielddefinition;
-            if (oList_FldDef.Count < 1)
+            if (hiTable.RecordFielddefinition.Count < 1)
             {
                 //エラー。
-                err_OList_FldDef = oList_FldDef;
+                error_RecordFielddefinition = hiTable.RecordFielddefinition;
                 goto gt_Error_FieldZero;
             }
 
 
             // フィールド定義部：名前
-            foreach (Fielddefinition o_FldDef in oList_FldDef)
+            hiTable.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak, Log_Reports log_Reports2)
             {
-                if (this.ExceptedFields.TryExceptedField(o_FldDef.Name_Trimupper))
+                if (this.ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                 {
                     // 出力しないフィールドの場合、無視します。
                 }
                 else
                 {
-                    log_ReportsResult.Append(ce.EscapeCell(o_FldDef.Name_Humaninput));
+                    log_ReportsResult.Append(ce.EscapeCell(fielddefinition.Name_Humaninput));
                     log_ReportsResult.Append(",");
                 }
-            }
-            log_ReportsResult.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_END);
+            }, log_Reports);
+            log_ReportsResult.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
             log_ReportsResult.Append(Environment.NewLine);//改行
 
             // フィールド定義部：型
-            foreach (FielddefinitionImpl o_FldDef in oList_FldDef)
+            hiTable.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak, Log_Reports log_Reports2)
             {
-                if (this.ExceptedFields.TryExceptedField(o_FldDef.Name_Trimupper))
+                if (this.ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                 {
                     // 出力しないフィールドの場合、無視します。
                 }
                 else
                 {
-                    Type type = o_FldDef.Type;
+                    Type type = fielddefinition.Type;
 
                     if (type == typeof(String_HumaninputImpl))
                     {
@@ -130,24 +129,24 @@ namespace Xenon.Table
                     }
                     log_ReportsResult.Append(",");
                 }
-            }
-            log_ReportsResult.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_END);
+            }, log_Reports);
+            log_ReportsResult.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
             log_ReportsResult.Append(Environment.NewLine);//改行
 
             // フィールド定義部：コメント
-            foreach (FielddefinitionImpl o_FldDef in oList_FldDef)
+            hiTable.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak, Log_Reports log_Reports2)
             {
-                if (this.ExceptedFields.TryExceptedField(o_FldDef.Name_Trimupper))
+                if (this.ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                 {
                     // 出力しないフィールドの場合、無視します。
                 }
                 else
                 {
-                    log_ReportsResult.Append(ce.EscapeCell(o_FldDef.Comment));
+                    log_ReportsResult.Append(ce.EscapeCell(fielddefinition.Comment));
                     log_ReportsResult.Append(",");
                 }
-            }
-            log_ReportsResult.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_END);
+            }, log_Reports);
+            log_ReportsResult.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
             log_ReportsResult.Append(Environment.NewLine);//改行
 
             // 0行目から数えて3行目以降はデータ・テーブル部。
@@ -171,13 +170,13 @@ namespace Xenon.Table
                     Fielddefinition fieldDefinition;
                     try
                     {
-                        fieldDefinition = oList_FldDef[nColIndex];
+                        fieldDefinition = hiTable.RecordFielddefinition.ValueAt(nColIndex);
                     }
                     catch (Exception e)
                     {
                         // エラー。
                         err_E = e;
-                        err_OList_FldDef = oList_FldDef;
+                        error_RecordFielddefinition = hiTable.RecordFielddefinition;
                         err_NColIndex = nColIndex;
                         goto gt_Error_OutOfIndex;
                     }
@@ -213,10 +212,10 @@ namespace Xenon.Table
                         log_ReportsResult.Append(',');
                     }
                 }
-                log_ReportsResult.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_END);
+                log_ReportsResult.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
                 log_ReportsResult.Append(Environment.NewLine);//改行
             }
-            log_ReportsResult.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_EOF);
+            log_ReportsResult.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_EOF);
             // 最後に一応、改行を付けておきます。
             log_ReportsResult.Append(Environment.NewLine);//改行
 
@@ -233,8 +232,8 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
-                s.Append("（プログラム内部エラー）テーブルの列定義が０件です。 o_FldDefList.Count[");
-                s.Append(err_OList_FldDef.Count);
+                s.Append("（プログラム内部エラー）テーブルの列定義が０件です。 error_RecordFielddefinition.Count[");
+                s.Append(error_RecordFielddefinition.Count);
                 s.Append("] テーブル名＝[");
                 s.Append(hiTable.Name);
                 s.Append("]");
@@ -257,8 +256,8 @@ namespace Xenon.Table
 
                 s.Append("（プログラム内部エラー）err_NColIndex=[");
                 s.Append(err_NColIndex);
-                s.Append("] o_FldDefList.Count[");
-                s.Append(err_OList_FldDef.Count);
+                s.Append("] error_RecordFielddefinition.Count[");
+                s.Append(error_RecordFielddefinition.Count);
                 s.Append("]");
                 s.Newline();
 

@@ -9,7 +9,7 @@ using Xenon.Syntax;
 
 namespace Xenon.Table
 {
-    public class CsvTo_TableHumaninput_RegularImpl
+    public class CsvTo_Table_Humaninput_RegularImpl
     {
 
 
@@ -39,21 +39,21 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="csvText"></param>
         /// <returns>列名情報も含むテーブル。列の型は文字列型とします。</returns>
-        public TableHumaninput Read(
+        public Table_Humaninput Read(
             string string_Csv,
             Request_ReadsTable forTable_request,
-            Format_TableHumaninput forTable_puts,
+            Format_Table_Humaninput forTable_puts,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Read(1)",log_Reports);
 
-            TableHumaninput xenonTable = new Table_HumaninputImpl(forTable_request.Name_PutToTable,forTable_request.Expression_Filepath);
+            Table_Humaninput xenonTable = new Table_HumaninputImpl(forTable_request.Name_PutToTable, forTable_request.Expression_Filepath, forTable_request.Expression_Filepath.Cur_Configurationtree );
             xenonTable.Tableunit = forTable_request.Tableunit;
             xenonTable.Typedata = forTable_request.Typedata;
             xenonTable.IsDatebackupActivated = forTable_request.IsDatebackupActivated;
-            xenonTable.Format_TableHumaninput = forTable_puts;
+            xenonTable.Format_Table_Humaninput = forTable_puts;
 
 
             Exception err_Excp;
@@ -66,7 +66,7 @@ namespace Xenon.Table
             //
             // （※NO,ID,EXPL,NAME など、フィールドの定義を持つテーブル）
             //
-            List<Fielddefinition> list_FldDef = new List<Fielddefinition>();
+            RecordFielddefinition recordFielddefinition = new RecordFielddefinitionImpl();
 
             //
             // データ・テーブル部
@@ -106,7 +106,7 @@ namespace Xenon.Table
 
                             // トリム＆大文字
                             string sCellValueTU = sColumnName.Trim().ToUpper();
-                            if (ToCsv_TableHumaninput_RowColRegularImpl.S_END == sCellValueTU)
+                            if (ToCsv_Table_Humaninput_RowColRegularImpl.S_END == sCellValueTU)
                             {
                                 // 列名に ”ＥＮＤ” がある場合、その手前までの列が有効データです。
                                 // ”ＥＮＤ” 以降の列は無視します。
@@ -115,7 +115,7 @@ namespace Xenon.Table
 
                             // テーブルのフィールドを追加します。型の既定値は文字列型とします。
                             FielddefinitionImpl fieldDef = new FielddefinitionImpl(sColumnName, typeof(String_HumaninputImpl));
-                            list_FldDef.Add(fieldDef);
+                            recordFielddefinition.Add(fieldDef);
                             nDataColumnsCount++;
                         }
 
@@ -147,16 +147,16 @@ namespace Xenon.Table
                             // TODO int型とboolean型にも対応したい。
                             if (FielddefinitionImpl.S_STRING.Equals(sFieldTypeNameLower))
                             {
-                                list_FldDef[nColumnIx].Type = typeof(String_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(String_HumaninputImpl);
                             }
                             else if (FielddefinitionImpl.S_INT.Equals(sFieldTypeNameLower))
                             {
-                                list_FldDef[nColumnIx].Type = typeof(Int_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(Int_HumaninputImpl);
                             }
                             else if (FielddefinitionImpl.S_BOOL.Equals(sFieldTypeNameLower))
                             {
                                 // 2009-11-11修正：SRS仕様では「bool」が正しい。「boolean」は間違い。
-                                list_FldDef[nColumnIx].Type = typeof(Bool_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(Bool_HumaninputImpl);
                             }
                             else
                             {
@@ -164,7 +164,7 @@ namespace Xenon.Table
 
                                 // TODO:警告を出すか？
 
-                                list_FldDef[nColumnIx].Type = typeof(String_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(String_HumaninputImpl);
                             }
                         }
 
@@ -189,7 +189,7 @@ namespace Xenon.Table
 
                             string comment_Field = fields_Cur[column];//todo:bug:境界線エラーをキャッチしてない。
 
-                            list_FldDef[column].Comment = comment_Field;
+                            recordFielddefinition.ValueAt(column).Comment = comment_Field;
                         }
 
                         // 2行目は、テーブルのデータとしては持ちません。
@@ -209,7 +209,7 @@ namespace Xenon.Table
                         //ystem.Console.WriteLine(InfxenonTable.LibraryName + ":" + this.GetType().Name + "#UnescapeToList: sFields[0]=[" + sFields[0] + "] sLine=[" + sLine + "]");
 
                         string sCellValueTrimUpper = fields_Cur[0].Trim().ToUpper();
-                        if (ToCsv_TableHumaninput_RowColRegularImpl.S_EOF == sCellValueTrimUpper)
+                        if (ToCsv_Table_Humaninput_RowColRegularImpl.S_EOF == sCellValueTrimUpper)
                         {
                             goto reading_end;
                         }
@@ -233,12 +233,12 @@ namespace Xenon.Table
 
                             sValue = fields_Cur[nColumnIx];
 
-                            if (list_FldDef.Count <= nColumnIx)
+                            if (recordFielddefinition.Count <= nColumnIx)
                             {
                                 // 0行目で数えた列数より多い場合。
 
                                 // テーブルのフィールドを追加します。型は文字列型とします。名前は空文字列です。
-                                list_FldDef.Add(new FielddefinitionImpl("", typeof(String_HumaninputImpl)));
+                                recordFielddefinition.Add(new FielddefinitionImpl("", typeof(String_HumaninputImpl)));
                             }
 
                             sList_Column.Add(sValue);
@@ -263,11 +263,11 @@ namespace Xenon.Table
 
 
             // テーブルのフィールド定義。
-            xenonTable.CreateTable(list_FldDef,log_Reports);
+            xenonTable.CreateTable(recordFielddefinition,log_Reports);
             if(log_Reports.Successful)
             {
                 // データ本体のセット。
-                xenonTable.AddRecordList(dataTableRows, list_FldDef, log_Reports);
+                xenonTable.AddRecordList(dataTableRows, recordFielddefinition, log_Reports);
             }
 
             goto gt_EndMethod;

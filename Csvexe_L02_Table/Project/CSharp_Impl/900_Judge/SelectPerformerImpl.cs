@@ -20,13 +20,13 @@ namespace Xenon.Table
         /// 無条件で、全てのレコードを返す。
         /// </summary>
         /// <param name="dst_Row"></param>
-        /// <param name="bRequired_ExpectedValue"></param>
+        /// <param name="isRequired_ExpectedValue"></param>
         /// <param name="dataTable"></param>
         /// <param name="s_ParentNode_query"></param>
         /// <param name="log_Reports"></param>
         public void Select(
             out List<DataRow> out_List_DstRow,
-            bool bRequired_ExpectedValue,
+            bool isRequired_ExpectedValue,
             DataTable dataTable,
             Configurationtree_Node parent_Conf,
             Log_Reports log_Reports
@@ -65,19 +65,19 @@ namespace Xenon.Table
         /// 「フィールド名＝値」という条件１つで検索。該当するレコード０～Ｎ件を返す。
         /// </summary>
         /// <param name="dst_Row"></param>
-        /// <param name="sName_KeyField"></param>
-        /// <param name="sValue_Expected"></param>
-        /// <param name="bRequired_ExpectedValue"></param>
-        /// <param name="xenonFileddef_Key"></param>
+        /// <param name="name_KeyField"></param>
+        /// <param name="value_Expected"></param>
+        /// <param name="isRequired_ExpectedValue"></param>
+        /// <param name="fielddefinition_Key"></param>
         /// <param name="dataTable"></param>
         /// <param name="s_ParentNode_query"></param>
         /// <param name="log_Reports"></param>
         public void Select(
             out List<DataRow> out_List_DstRow,
-            string sName_KeyField,
-            string sValue_Expected,
-            bool bRequired_ExpectedValue,
-            Fielddefinition xenonFileddef_Key,
+            string name_KeyField,
+            string value_Expected,
+            bool isRequired_ExpectedValue,
+            Fielddefinition fielddefinition_Key,
             DataTable dataTable,
             Configurationtree_Node parent_Query,
             Log_Reports log_Reports
@@ -102,43 +102,43 @@ namespace Xenon.Table
             {
                 bool bJudge;
 
-                if (xenonFileddef_Key.Type == typeof(String_HumaninputImpl))
+                if (fielddefinition_Key.Type == typeof(String_HumaninputImpl))
                 {
                     // string型フィールドなら
 
                     judgeS.Judge(
                         out bJudge,
-                        sName_KeyField,
-                        sValue_Expected,
-                        bRequired_ExpectedValue,
+                        name_KeyField,
+                        value_Expected,
+                        isRequired_ExpectedValue,
                         row,
                         parent_Query,
                         log_Reports
                     );
                 }
-                else if (xenonFileddef_Key.Type == typeof(Int_HumaninputImpl))
+                else if (fielddefinition_Key.Type == typeof(Int_HumaninputImpl))
                 {
                     // int型フィールドなら
 
                     judgeI.Judge(
                         out bJudge,
-                        sName_KeyField,
-                        sValue_Expected,
-                        bRequired_ExpectedValue,
+                        name_KeyField,
+                        value_Expected,
+                        isRequired_ExpectedValue,
                         row,
                         parent_Query,
                         log_Reports
                     );
                 }
-                else if (xenonFileddef_Key.Type == typeof(Bool_HumaninputImpl))
+                else if (fielddefinition_Key.Type == typeof(Bool_HumaninputImpl))
                 {
                     // bool型フィールドなら
 
                     judgeB.Judge(
                         out bJudge,
-                        sName_KeyField,
-                        sValue_Expected,
-                        bRequired_ExpectedValue,
+                        name_KeyField,
+                        value_Expected,
+                        isRequired_ExpectedValue,
                         row,
                         parent_Query,
                         log_Reports
@@ -183,7 +183,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
 
                 s.AppendI(1, "keyFldDefinition.Type=[");
-                s.Append(xenonFileddef_Key.Type);
+                s.Append(fielddefinition_Key.Type);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);

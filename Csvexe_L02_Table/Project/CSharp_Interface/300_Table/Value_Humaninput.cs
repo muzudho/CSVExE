@@ -12,7 +12,7 @@ namespace Xenon.Table
     /// セル値。型付き。
     /// (Value)
     /// </summary>
-    public interface ValueHumaninput : Configurationtree_Node
+    public interface Value_Humaninput : Configurationtree_Node
     {
 
 
@@ -32,9 +32,8 @@ namespace Xenon.Table
 
         /// <summary>
         /// 入力データそのままの形。
-        /// (human input text)
         /// </summary>
-        string Humaninput
+        string Text
         {
             get;
             set;

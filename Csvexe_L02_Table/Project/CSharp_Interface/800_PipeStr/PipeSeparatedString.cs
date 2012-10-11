@@ -38,7 +38,7 @@ namespace Xenon.Table
         string Perform(
             string sFormat,
             DataRowView dataRowView,
-            TableHumaninput xenonTable,
+            Table_Humaninput xenonTable,
             Log_Reports log_Reports
             );
 

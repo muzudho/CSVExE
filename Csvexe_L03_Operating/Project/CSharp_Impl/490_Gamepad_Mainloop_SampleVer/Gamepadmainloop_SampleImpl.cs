@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Forms;//Application
 
 using Xenon.Syntax;
-using Xenon.Table;//TableHumaninput
+using Xenon.Table;//Table_Humaninput
 
 namespace Xenon.Operating
 {
@@ -92,7 +92,7 @@ namespace Xenon.Operating
                         log_Reports_Load
                         );
 
-                    this.Input.TableHumaninput_Keyconfig = keycnf.O_Table_Keycnf;
+                    this.Input.Table_Humaninput_Keyconfig = keycnf.O_Table_Keycnf;
                 }
 
                 // キー設定(1P)

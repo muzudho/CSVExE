@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Data;
 using System.Drawing;
+using Xenon.Syntax;
+using Xenon.Table;
 using Xenon.Lib;
 
 namespace Xenon.PartsnumPut
@@ -43,15 +46,20 @@ namespace Xenon.PartsnumPut
 
         public void Perform()
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            log_Method.BeginMethod(Info_PartsnumPut.Name_Library, this, "Perform", log_Reports_ThisMethod);
 
             this.In_UsercontrolCanvas.ClearNumSps(true);
+            log_Method.WriteDebug_ToConsole("Performを実行しました。");
 
 
             //
             // テーブル読取
             //
-            Dictionary<string, int> dictionary_NameField = new Dictionary<string, int>();
+            //Dictionary<string, int> dictionary_NameField = new Dictionary<string, int>();
 
+            //欲しい列が何番目にあるかを調べます。
             int row = 0;
             // 「NO」、「DISPLAY」、「LAYER」「X」「Y」「FONT_SIZE」「COLOR_BG」（「END」）の8フィールドがある。
             int indexColumn_Display = -1;
@@ -65,96 +73,46 @@ namespace Xenon.PartsnumPut
             int indexColumn_FontSizePt = -1;
             int indexColumn_ColorBg = -1;
             int indexColumn_BackColor = -1;
-            foreach (string[] record in this.in_ListArraystring_Table)
+            //this.in_Table_Humaninput.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
+            //{
+            //},log_Reports_ThisMethod);
+
+            // 列のindex。該当がなければ-1。
+            indexColumn_Display = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("DISPLAY");
+            indexColumn_Text = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("TEXT");
+            indexColumn_Layer = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("LAYER");
+            indexColumn_X = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("X");
+            indexColumn_XLt = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("X_LT");
+            indexColumn_Y = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("Y");
+            indexColumn_YLt = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("Y_LT");
+            indexColumn_FontSize = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("FONT_SIZE");
+            indexColumn_FontSizePt = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("FONT_SIZE_PT");
+            indexColumn_ColorBg = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("COLOR_BG");
+            indexColumn_BackColor = this.in_Table_Humaninput.RecordFielddefinition.ColumnIndexOf_Trimupper("BACK_COLOR");
+
+            this.in_Table_Humaninput.ForEach_Datapart(delegate(Record_Humaninput recordH, ref bool isBreak1, Log_Reports log_Reports1)
             {
-                //欲しい列が何番目にあるかを調べます。
-                if (row == 0)
-                {
-                    // 上１行は「列名」。
-                    int cur_IndexColumn = 0;
-                    foreach (string sName in record)
-                    {
-                        string sNameUpper = sName.Trim().ToUpper();
-                        if (!dictionary_NameField.ContainsKey(sNameUpper))
-                        {
-                            dictionary_NameField.Add(sNameUpper, cur_IndexColumn);
-                            //ystem.Console.WriteLine(sNameUpper + "=" + nColIx);
-                        }
-                        else
-                        {
-                            // TODO:エラー
-                        }
+                //log_Method.WriteDebug_ToConsole("row=[" + row + "] recordH.ToString_DebugDump()=[" + recordH.ToString_DebugDump() + "]");
 
-                        cur_IndexColumn++;
-                    }
+                //if (row == 0)
+                //{
+                //    // 上１行は「列名」。
 
-                    if (!dictionary_NameField.TryGetValue("DISPLAY", out indexColumn_Display))
-                    {
-                        indexColumn_Display = -1;
-                    }
+                //    //log_Method.WriteDebug_ToConsole("indexColumn_BackColor=[" + indexColumn_BackColor + "] recordH.ToString_DebugDump()=[" + recordH.ToString_DebugDump()+ "]");
 
-                    if (!dictionary_NameField.TryGetValue("TEXT", out indexColumn_Text))
-                    {
-                        indexColumn_Text = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("LAYER", out indexColumn_Layer))
-                    {
-                        indexColumn_Layer = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("X", out indexColumn_X))
-                    {
-                        indexColumn_X = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("X_LT", out indexColumn_XLt))
-                    {
-                        indexColumn_XLt = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("Y", out indexColumn_Y))
-                    {
-                        indexColumn_Y = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("Y_LT", out indexColumn_YLt))
-                    {
-                        indexColumn_YLt = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("FONT_SIZE", out indexColumn_FontSize))
-                    {
-                        indexColumn_FontSize = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("FONT_SIZE_PT", out indexColumn_FontSizePt))
-                    {
-                        indexColumn_FontSizePt = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("COLOR_BG", out indexColumn_ColorBg))
-                    {
-                        indexColumn_ColorBg = -1;
-                    }
-
-                    if (!dictionary_NameField.TryGetValue("BACK_COLOR", out indexColumn_BackColor))
-                    {
-                        indexColumn_BackColor = -1;
-                    }
-
-                    goto loop_last;
-                }
-                else if (row < 3)
-                {
-                    // 上３行(row=0,1,2)は「列名」「型」「解説」として無視。
-                    goto loop_last;
-                }
+                //    goto gt_LastLoop;
+                //}
+                //else if (row < 3)
+                //{
+                //    // 上３行(row=0,1,2)は「列名」「型」「解説」として無視。
+                //    goto gt_LastLoop;
+                //}
 
                 // 左端に EOF が入っていれば終了。
-                if ("EOF" == record[0].Trim())
+                if ("EOF" == recordH.ValueAt(0).Text.Trim())
                 {
-                    break;
+                    isBreak1 = true;
+                    goto gt_LastLoop;
                 }
 
                 Memory4bSpritePartsnumberImpl memSpriteNum = new Memory4bSpritePartsnumberImpl();
@@ -164,12 +122,12 @@ namespace Xenon.PartsnumPut
                 {
                     if (0 <= indexColumn_Text)
                     {
-                        memSpriteNum.Text = record[indexColumn_Text];
+                        memSpriteNum.Text = recordH.ValueAt(indexColumn_Text).Text;
                     }
                     else if (0 <= indexColumn_Display)
                     {
                         //旧仕様
-                        memSpriteNum.Text = record[indexColumn_Display];
+                        memSpriteNum.Text = recordH.ValueAt(indexColumn_Display).Text;
                     }
                 }
 
@@ -177,7 +135,7 @@ namespace Xenon.PartsnumPut
                 if (0 <= indexColumn_Layer)
                 {
                     int nLayer = 0;
-                    int.TryParse(record[indexColumn_Layer], out nLayer);
+                    int.TryParse(recordH.ValueAt(indexColumn_Layer).Text, out nLayer);
                     memSpriteNum.Number_Layer = nLayer;
                 }
 
@@ -188,11 +146,11 @@ namespace Xenon.PartsnumPut
                     {
                         if (0 <= indexColumn_XLt)
                         {
-                            int.TryParse(record[indexColumn_XLt], out x);
+                            int.TryParse(recordH.ValueAt(indexColumn_XLt).Text, out x);
                         }
                         else if (0 <= indexColumn_X)
                         {
-                            int.TryParse(record[indexColumn_X], out x);
+                            int.TryParse(recordH.ValueAt(indexColumn_X).Text, out x);
                         }
                     }
 
@@ -201,11 +159,11 @@ namespace Xenon.PartsnumPut
                     {
                         if (0 <= indexColumn_YLt)
                         {
-                            int.TryParse(record[indexColumn_YLt], out y);
+                            int.TryParse(recordH.ValueAt(indexColumn_YLt).Text, out y);
                         }
                         else if (0 <= indexColumn_Y)
                         {
-                            int.TryParse(record[indexColumn_Y], out y);
+                            int.TryParse(recordH.ValueAt(indexColumn_Y).Text, out y);
                         }
                     }
 
@@ -218,7 +176,7 @@ namespace Xenon.PartsnumPut
                     int fontsize = -1;
                     if (0 <= indexColumn_FontSizePt)
                     {
-                        if (int.TryParse(record[indexColumn_FontSizePt], out fontsize))
+                        if (int.TryParse(recordH.ValueAt(indexColumn_FontSizePt).Text, out fontsize))
                         {
                             fontsize = -1;
                         }
@@ -226,7 +184,7 @@ namespace Xenon.PartsnumPut
                     else if (0 <= indexColumn_FontSize)
                     {
                         //旧仕様
-                        if (int.TryParse(record[indexColumn_FontSize], out fontsize))
+                        if (int.TryParse(recordH.ValueAt(indexColumn_FontSize).Text, out fontsize))
                         {
                             fontsize = -1;
                         }
@@ -243,12 +201,12 @@ namespace Xenon.PartsnumPut
                     string name_Color = "";
                     if (0 <= indexColumn_BackColor)
                     {
-                        name_Color = record[indexColumn_BackColor];
+                        name_Color = recordH.ValueAt(indexColumn_BackColor).Text;
                     }
                     else if (0 <= indexColumn_ColorBg)
                     {
                         //旧仕様
-                        name_Color = record[indexColumn_ColorBg];
+                        name_Color = recordH.ValueAt(indexColumn_ColorBg).Text;
                     }
 
                     switch (name_Color)
@@ -266,21 +224,22 @@ namespace Xenon.PartsnumPut
                 this.In_UsercontrolCanvas.AddNumSp(memSpriteNum, true);
 
                 //
-            //
-            loop_last://continueを使わない。
+            gt_LastLoop://continueを使わない。
 
                 row++;
-            }
+            }, log_Reports_ThisMethod);
 
             this.In_UsercontrolCanvas.After_AddSpriteList();
 
             // フォームを再描画。
             this.In_UsercontrolCanvas.Refresh();
 
+            //
             goto gt_EndMethod;
         //
         gt_EndMethod:
-            ;
+            log_Method.EndMethod(log_Reports_ThisMethod);
+            return;
         }
 
         //────────────────────────────────────────
@@ -310,13 +269,13 @@ namespace Xenon.PartsnumPut
 
         //────────────────────────────────────────
 
-        protected List<string[]> in_ListArraystring_Table;
+        protected Table_Humaninput in_Table_Humaninput;
 
-        public List<string[]> In_ListArraystring_Table
+        public Table_Humaninput In_Table_Humaninput
         {
             set
             {
-                this.in_ListArraystring_Table = value;
+                this.in_Table_Humaninput = value;
             }
         }
 

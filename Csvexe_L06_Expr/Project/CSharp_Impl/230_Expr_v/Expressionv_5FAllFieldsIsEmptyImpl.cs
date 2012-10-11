@@ -77,7 +77,7 @@ namespace Xenon.Expr
                 recordSet = null;
             }
 
-            ValueHumaninput err_OValue;
+            Value_Humaninput err_OValue;
             string err_SFldName;
             Exception err_Excp;
             string err_SCsv;
@@ -129,7 +129,7 @@ namespace Xenon.Expr
                 foreach (string sFldName in sList)
                 {
                     // bug: argumentException
-                    ValueHumaninput oValue;
+                    Value_Humaninput oValue;
                     try
                     {
                         // レコードセットの１件目だけをとりあえず確認。TODO:
@@ -147,14 +147,14 @@ namespace Xenon.Expr
 
 
                     // #デバッグ中
-                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: oValue.Humaninput＝[" + oValue.Humaninput + "]");
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute: oValue.Text＝[" + oValue.Text + "]");
 
 
                     if (oValue is Int_HumaninputImpl)
                     {
                         Int_HumaninputImpl oInt = (Int_HumaninputImpl)oValue;
 
-                        if ("" != oInt.Humaninput)
+                        if ("" != oInt.Text)
                         {
                             bAllFldsIsEmpty = false;
                         }
@@ -163,7 +163,7 @@ namespace Xenon.Expr
                     {
                         String_HumaninputImpl oString = (String_HumaninputImpl)oValue;
 
-                        if ("" != oString.Humaninput)
+                        if ("" != oString.Text)
                         {
                             bAllFldsIsEmpty = false;
                         }
@@ -172,7 +172,7 @@ namespace Xenon.Expr
                     {
                         Bool_HumaninputImpl oBool = (Bool_HumaninputImpl)oValue;
 
-                        if ("" != oBool.Humaninput)
+                        if ("" != oBool.Text)
                         {
                             bAllFldsIsEmpty = false;
                         }

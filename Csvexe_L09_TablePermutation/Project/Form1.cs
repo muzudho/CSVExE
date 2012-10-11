@@ -18,7 +18,7 @@ namespace Xenon.TablePermutation
     /// TablePermutationForm tablePermutationForm = new TablePermutationForm();
     /// 
     /// DefaultTable regionTable = this.MonsterRegionEditorModel.OpyopyoModel.GetTableById("RegionTable",true);
-    /// tablePermutationForm.SetDataSource(regionTable, pg_Logging);
+    /// tablePermutationForm.SetDataSource(regionTable, log_Reports);
     ///
     /// // モーダル・ダイアログボックスとしてフォームを開きます。
     /// tablePermutationForm.ShowDialog(this);
@@ -44,44 +44,28 @@ namespace Xenon.TablePermutation
         #region アクション
         //────────────────────────────────────────
 
-        public void SetDataSource(TableHumaninput o_Table, Log_Reports pg_Logging)
+        public void SetDataSource(Table_Humaninput o_Table, Log_Reports log_Reports)
         {
-            string sErrorMsg;
             this.xenonTable = o_Table;
 
             Utility_TableviewImpl u_tblView = new Utility_TableviewImpl();
             u_tblView.BVisibled_Fieldtype = true;
 
             u_tblView.SetDataSourceToListView(
-                o_Table, this.listView1, out sErrorMsg);
-            if ("" != sErrorMsg)
+                o_Table, this.listView1, log_Reports);
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
-                if (pg_Logging.CanCreateReport)
-                {
-                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                    r.Message = sErrorMsg;
-                    pg_Logging.EndCreateReport();
-                }
                 goto gt_EndMethod;
             }
 
-            u_tblView.CopyTo(this.listView1, this.listView2, out sErrorMsg);
-            if ("" != sErrorMsg)
+            u_tblView.CopyTo(this.listView1, this.listView2, log_Reports);
+            if (!log_Reports.Successful)
             {
                 // 既エラー。
-                if (pg_Logging.CanCreateReport)
-                {
-                    Log_RecordReports r = pg_Logging.BeginCreateReport(EnumReport.Error);
-                    r.Message = sErrorMsg;
-                    pg_Logging.EndCreateReport();
-                }
                 goto gt_EndMethod;
             }
 
-            //
-        //
-        //
         //
         gt_EndMethod:
             return;
@@ -215,7 +199,7 @@ namespace Xenon.TablePermutation
         /// <summary>
         /// データソースとなるテーブル。
         /// </summary>
-        private TableHumaninput xenonTable;
+        private Table_Humaninput xenonTable;
 
         //────────────────────────────────────────
         #endregion

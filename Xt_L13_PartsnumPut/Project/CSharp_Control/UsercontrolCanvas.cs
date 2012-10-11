@@ -7,6 +7,8 @@ using System.Text;
 
 using System.Drawing;//Graphics
 using System.Windows.Forms;
+using Xenon.Syntax;
+using Xenon.Table;
 using Xenon.Lib;
 
 namespace Xenon.PartsnumPut
@@ -435,13 +437,13 @@ namespace Xenon.PartsnumPut
 
                 // CSVファイルが開かれた。
 
-                List<string[]> listArraystring_Table;
+                //List<string[]> listArraystring_Table;
+                Table_Humaninput tableH;
 
                 //関数2
                 {
                     Function2_LoadCsv f2 = new Function2_LoadCsv();
                     f2.In_Filepathabsolute = this.Owner_MemoryApplication.Filepath_Csv;
-                    //f2.In_ListMemorynumber = this.Owner_MemoryApplication.List_VisiblePartsnumbersprite;
                     f2.Perfrom();
 
                     if ("" != f2.Out_Errormessage)
@@ -461,16 +463,15 @@ namespace Xenon.PartsnumPut
                         this.pclstLayer.SelectedIndex = 0;
                     }
 
-                    listArraystring_Table = f2.Out_ListArraystring_Table;
+                    tableH = f2.Out_Table_Humaninput;
                 }
 
                 //関数3
                 {
                     Function3_LoadCsv2 f3 = new Function3_LoadCsv2();
                     f3.In_UsercontrolCanvas = this;
-                    f3.In_ListArraystring_Table = listArraystring_Table;
+                    f3.In_Table_Humaninput = tableH;
                     f3.Perform();
-
                 }
             }
 
@@ -1082,7 +1083,10 @@ namespace Xenon.PartsnumPut
 
             // HTMLをリロード。
             Form1 form1 = (Form1)this.ParentForm;
-            form1.UcDetailWindow.UsercontrolDetailbrowser1.ReloadHtml(this.Owner_MemoryApplication);
+            if (null != form1.UcDetailWindow)
+            {
+                form1.UcDetailWindow.UsercontrolDetailbrowser1.ReloadHtml(this.Owner_MemoryApplication);
+            }
         }
 
         private void pcrdiDisplay1_CheckedChanged(object sender, EventArgs e)
@@ -1097,7 +1101,10 @@ namespace Xenon.PartsnumPut
 
             // HTMLをリロード。
             Form1 form1 = (Form1)this.ParentForm;
-            form1.UcDetailWindow.UsercontrolDetailbrowser1.ReloadHtml(this.Owner_MemoryApplication);
+            if (null != form1.UcDetailWindow)
+            {
+                form1.UcDetailWindow.UsercontrolDetailbrowser1.ReloadHtml(this.Owner_MemoryApplication);
+            }
         }
 
         private void pcrdiDisplay2_CheckedChanged(object sender, EventArgs e)
@@ -1110,7 +1117,10 @@ namespace Xenon.PartsnumPut
 
             // HTMLをリロード。
             Form1 form1 = (Form1)this.ParentForm;
-            form1.UcDetailWindow.UsercontrolDetailbrowser1.ReloadHtml(this.Owner_MemoryApplication);
+            if (null != form1.UcDetailWindow)
+            {
+                form1.UcDetailWindow.UsercontrolDetailbrowser1.ReloadHtml(this.Owner_MemoryApplication);
+            }
         }
 
         //────────────────────────────────────────

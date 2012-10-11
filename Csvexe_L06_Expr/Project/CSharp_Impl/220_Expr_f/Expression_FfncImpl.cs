@@ -191,7 +191,7 @@ namespace Xenon.Expr
         //    }
         //    else
         //    {
-        //        TableHumaninput o_Table = owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From,true,log_Reports);
+        //        Table_Humaninput o_Table = owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(selectSt.Expression_From,true,log_Reports);
         //        if (null == o_Table)
         //        {
         //            // エラー。

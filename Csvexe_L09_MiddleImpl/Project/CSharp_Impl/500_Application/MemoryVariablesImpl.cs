@@ -79,7 +79,7 @@ namespace Xenon.MiddleImpl
         //────────────────────────────────────────
 
         public void TryGetTable_Variables(
-            out TableHumaninput out_xenonTable_Variables,
+            out Table_Humaninput out_xenonTable_Variables,
             String filepath_Startup,
             Log_Reports log_Reports
             )
@@ -120,10 +120,10 @@ namespace Xenon.MiddleImpl
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
+                CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                Format_TableHumaninput tblFormat_puts = new Format_TableHumaninputImpl();
+                Format_Table_Humaninput tblFormat_puts = new Format_Table_HumaninputImpl();
                 request_tblReads.Name_PutToTable = NamesVar.S_ST_VARIABLES2;
                 request_tblReads.Expression_Filepath = ec_Fpath_Variables;
 
@@ -158,7 +158,7 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole("「変数登録ファイル」を読込みます。");
             }
 
-            TableHumaninput xenonTable_Variables;
+            Table_Humaninput xenonTable_Variables;
             this.TryGetTable_Variables(
                 out xenonTable_Variables,
                 sFpath_Startup,
@@ -284,7 +284,7 @@ namespace Xenon.MiddleImpl
         /// <param oVariableName="varOTable"></param>
         /// <param oVariableName="log_Reports"></param>
         public void Load(
-            TableHumaninput o_Table_Var,
+            Table_Humaninput o_Table_Var,
             Log_Reports log_Reports
             )
         {

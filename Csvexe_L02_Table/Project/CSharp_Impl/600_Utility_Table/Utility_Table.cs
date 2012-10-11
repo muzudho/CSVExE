@@ -140,13 +140,13 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="sFieldNameList"></param>
         /// <returns></returns>
-        public static TableHumaninput CreateSubTableBySelect(
+        public static Table_Humaninput CreateSubTableBySelect(
             string name_NewTable,
             List<string> list_Src_SNewFieldName,
             Expression_Node_Filepath expr_Fpath_NewTable,
             EnumLogic enumWhereLogic,
             List<Recordcondition> list_Reccond,
-            TableHumaninput src_XenonTable,
+            Table_Humaninput src_XenonTable,
             Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
@@ -159,13 +159,13 @@ namespace Xenon.Table
 
 
 
-            TableHumaninput o_NewTable = new Table_HumaninputImpl(name_NewTable, expr_Fpath_NewTable);
+            Table_Humaninput tableH_New = new Table_HumaninputImpl(name_NewTable, expr_Fpath_NewTable, expr_Fpath_NewTable.Cur_Configurationtree);
 
-            List<Fielddefinition> o_NewFldDefList;
+            RecordFielddefinition recordFielddefinigion_New;
             List<List<string>> sFieldListList;
             Utility_Table.SelectFieldListList(
                 out sFieldListList,
-                out o_NewFldDefList,
+                out recordFielddefinigion_New,
                 enumWhereLogic,
                 list_Src_SNewFieldName,
                 list_Reccond,
@@ -179,14 +179,14 @@ namespace Xenon.Table
             //
             // 新しいテーブルを作成します。（列定義の追加）
             //
-            o_NewTable.CreateTable(o_NewFldDefList, log_Reports);
+            tableH_New.CreateTable(recordFielddefinigion_New, log_Reports);
 
-            if (o_NewTable.DataTable.Columns.Count < 1)
+            if (tableH_New.DataTable.Columns.Count < 1)
             {
                 // エラー。
                 goto gt_Error_ZeroField;
             }
-            else if (o_NewTable.List_Fielddefinition.Count < 1)
+            else if (tableH_New.RecordFielddefinition.Count < 1)
             {
                 // エラー。
                 goto gt_Error_ZeroFieldDef;
@@ -197,7 +197,7 @@ namespace Xenon.Table
             // 不要なレコードを除去して絞り込んだ後で、
             // レコード追加。
             {
-                o_NewTable.AddRecordList(sFieldListList, o_NewFldDefList, log_Reports);
+                tableH_New.AddRecordList(sFieldListList, recordFielddefinigion_New, log_Reports);
             }
 
 
@@ -215,7 +215,7 @@ namespace Xenon.Table
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　フィールドが０件のテーブルを作ることはできません。newFldDefList=[");
-                t.Append(o_NewFldDefList.Count);
+                t.Append(recordFielddefinigion_New.Count);
                 t.Append("]");
 
                 t.Newline();
@@ -237,7 +237,7 @@ namespace Xenon.Table
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
                 t.Append("　フィールド定義が０件のテーブルを作ることはできません。o_NewTable.FieldDefinitions.Count=[");
-                t.Append(o_NewTable.List_Fielddefinition.Count);
+                t.Append(tableH_New.RecordFielddefinition.Count);
                 t.Append("]");
 
                 t.Newline();
@@ -255,7 +255,7 @@ namespace Xenon.Table
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            return o_NewTable;
+            return tableH_New;
         }
 
         //────────────────────────────────────────
@@ -267,15 +267,15 @@ namespace Xenon.Table
         /// <param name="out_O_NewFldDefList"></param>
         /// <param name="src_sNewFieldNameList"></param>
         /// <param name="e_Where"></param>
-        /// <param name="src_XenonTable"></param>
+        /// <param name="tableH_Source"></param>
         /// <param name="log_Reports"></param>
         public static void SelectFieldListList(
             out List<List<string>> listList_SField_Out,
-            out List<Fielddefinition> list_FielddefineNew_Out,
+            out RecordFielddefinition out_RecordFielddefinition_New,
             EnumLogic enumWhereLogic,
             List<string> list_SName_NewField_Src,
             List<Recordcondition> list_Reccond,
-            TableHumaninput src_XenonTable,
+            Table_Humaninput tableH_Source,
             Log_Reports log_Reports
             )
         {
@@ -283,15 +283,9 @@ namespace Xenon.Table
             log_Method.BeginMethod(Info_Table.Name_Library, "Util_Table", "SelectFieldListList",log_Reports);
 
             //
-            //
-            //
-            //
 
-
-
-
-            list_FielddefineNew_Out = new List<Fielddefinition>();
-            List<int> listN_FieldIndex = new List<int>();
+            RecordFielddefinition recordFielddefinition_New = new RecordFielddefinitionImpl();
+            List<int> list_indexField = new List<int>();
 
             //
             // 新しい、列定義リストを作成します。
@@ -302,17 +296,17 @@ namespace Xenon.Table
 
                 //fieldIndex
                 int nFIx = 0;
-                foreach (Fielddefinition o_FldDef in src_XenonTable.List_Fielddefinition)
+                tableH_Source.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak, Log_Reports log_Reports2)
                 {
-                    if (list_SName_NewField_Src.Contains(o_FldDef.Name_Humaninput))
+                    if (list_SName_NewField_Src.Contains(fielddefinition.Name_Humaninput))
                     {
                         // 選出されたフィールドだけでリストを作ります。
-                        list_FielddefineNew_Out.Add(o_FldDef);
-                        listN_FieldIndex.Add(nFIx);
+                        recordFielddefinition_New.Add(fielddefinition);
+                        list_indexField.Add(nFIx);
                     }
 
                     nFIx++;
-                }
+                }, log_Reports);
             }
 
 
@@ -323,8 +317,8 @@ namespace Xenon.Table
             listList_SField_Out = new List<List<string>>();
             //
             {
-                int nEndover = listN_FieldIndex.Count;
-                foreach (DataRow srcRow in src_XenonTable.DataTable.Rows)
+                int nEndover = list_indexField.Count;
+                foreach (DataRow srcRow in tableH_Source.DataTable.Rows)
                 {
                     List<string> sList_NewField = new List<string>();
 
@@ -339,7 +333,7 @@ namespace Xenon.Table
                     {
                         enumWhereLogic = EnumLogic.And;
                     }
-                    bool bHit = Utility_Table.ApplyReccond(srcRow, src_XenonTable, enumWhereLogic, list_Reccond, 0, log_Reports);
+                    bool bHit = Utility_Table.ApplyReccond(srcRow, tableH_Source, enumWhereLogic, list_Reccond, 0, log_Reports);
                     //ystem.Console.WriteLine(InfxenonTable.LibraryName + ":Util_Table.SelectFieldListList: (結果) [" + bHit + "]");
 
                     if (bHit)
@@ -347,10 +341,10 @@ namespace Xenon.Table
                         for (int nA = 0; nA < nEndover; nA++)
                         {
                             // TODO:指定のフィールド・インデックスだけをピックアップしたい。
-                            int nB = listN_FieldIndex[nA];
-                            ValueHumaninput o_Value = (ValueHumaninput)srcRow[nB];
+                            int nB = list_indexField[nA];
+                            Value_Humaninput o_Value = (Value_Humaninput)srcRow[nB];
 
-                            sList_NewField.Add(o_Value.Humaninput);
+                            sList_NewField.Add(o_Value.Text);
                         }
 
                         listList_SField_Out.Add(sList_NewField);
@@ -369,6 +363,7 @@ namespace Xenon.Table
             //
             //
         gt_EndMethod:
+            out_RecordFielddefinition_New = recordFielddefinition_New;
             log_Method.EndMethod(log_Reports);
         }
 
@@ -380,14 +375,14 @@ namespace Xenon.Table
         /// 該当しないレコードは除去していきます。
         /// </summary>
         /// <param name="srcRow"></param>
-        /// <param name="xenonTable_Source"></param>
+        /// <param name="tableH_Source"></param>
         /// <param name="groupLogic"></param>
         /// <param name="reccondList"></param>
         /// <param name="log_Reports"></param>
         /// <returns>ロジックの真偽。</returns>
         private static bool ApplyReccond(
             DataRow srcRow,
-            TableHumaninput xenonTable_Source,
+            Table_Humaninput tableH_Source,
             EnumLogic parent_EnumLogic,
             List<Recordcondition> list_Reccond,//「E■@ｗｈｅｒｅ」または「E■rec-cond」。子要素を持たないか、子要素に「E■rec-cond」を持つものとする。
             int nCount_Recursive_Debug,
@@ -434,7 +429,7 @@ namespace Xenon.Table
                 {
                     // andグループ、orグループなら。
 
-                    bool bChildHit = Utility_Table.ApplyReccond(srcRow, xenonTable_Source, childReccond.EnumLogic, childReccond.List_Child, nCount_Recursive_Debug + 1, log_Reports);
+                    bool bChildHit = Utility_Table.ApplyReccond(srcRow, tableH_Source, childReccond.EnumLogic, childReccond.List_Child, nCount_Recursive_Debug + 1, log_Reports);
 
                     if (EnumLogic.And == parent_EnumLogic)
                     {
@@ -481,16 +476,16 @@ namespace Xenon.Table
 
 
                     // このレコードについて判定。
-                    if (!xenonTable_Source.DataTable.Columns.Contains(childReccond.Name_Field))
+                    if (!tableH_Source.DataTable.Columns.Contains(childReccond.Name_Field))
                     {
                         // エラー
                         err_SField = childReccond.Name_Field;
                         goto gt_Error_MissField;
                     }
 
-                    int nFieldIx = xenonTable_Source.DataTable.Columns.IndexOf(childReccond.Name_Field);
-                    Fielddefinition o_FldDef = xenonTable_Source.List_Fielddefinition[nFieldIx];
-                    ValueHumaninput o_Value = (ValueHumaninput)srcRow[nFieldIx];
+                    int nFieldIx = tableH_Source.DataTable.Columns.IndexOf(childReccond.Name_Field);
+                    Fielddefinition o_FldDef = tableH_Source.RecordFielddefinition.ValueAt(nFieldIx);
+                    Value_Humaninput o_Value = (Value_Humaninput)srcRow[nFieldIx];
 
 
                     // 型に合わせて値取得。

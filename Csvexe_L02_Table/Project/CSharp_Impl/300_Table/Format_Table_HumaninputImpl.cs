@@ -9,7 +9,7 @@ namespace Xenon.Table
     /// <summary>
     /// テーブルの内容保存方法などの設定。
     /// </summary>
-    public class Format_TableHumaninputImpl : Format_TableHumaninput
+    public class Format_Table_HumaninputImpl : Format_Table_Humaninput
     {
 
 

@@ -109,7 +109,7 @@ namespace Xenon.Middle
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         void SetupFormAndLoadUsercontrolconfigs(
-            List<TableHumaninput> listO_Table_Form,
+            List<Table_Humaninput> listO_Table_Form,
             Expression_Node_Filepath ec_Fopath_Forms,
             Form form,
             Log_Reports log_Reports
@@ -117,7 +117,7 @@ namespace Xenon.Middle
 
         void P1_XToMemory_Userformconfig(
             TableUserformconfig fo_Config,
-            TableHumaninput xenonTable_Form,
+            Table_Humaninput xenonTable_Form,
             Log_Reports log_Reports
             );
 

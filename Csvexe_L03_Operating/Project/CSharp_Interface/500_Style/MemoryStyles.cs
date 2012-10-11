@@ -31,7 +31,7 @@ namespace Xenon.Operating
         /// </summary>
         /// <param name="o_Table_StyleSheet"></param>
         /// <param name="log_Reports"></param>
-        void Clear(TableHumaninput xenonTable_Stylesheet, Log_Reports log_Reports);
+        void Clear(Table_Humaninput xenonTable_Stylesheet, Log_Reports log_Reports);
 
         //────────────────────────────────────────
         #endregion

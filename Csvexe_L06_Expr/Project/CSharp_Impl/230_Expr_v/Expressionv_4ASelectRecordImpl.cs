@@ -67,7 +67,7 @@ namespace Xenon.Expr
                         goto gt_Error_EmptyTableName;
                     }
 
-                    TableHumaninput oTable = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+                    Table_Humaninput oTable = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(
                         this.Expression_From,//これが空文字列の場合がある？？
                         true,
                         log_Reports
@@ -106,7 +106,7 @@ namespace Xenon.Expr
                         goto gt_Error_EmptyTableName;
                     }
 
-                    TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt_ToSave.Expression_From, true, log_Reports);
+                    Table_Humaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(selectSt_ToSave.Expression_From, true, log_Reports);
 
                     if (null == o_Table)
                     {
@@ -128,14 +128,14 @@ namespace Xenon.Expr
                     //
                     //
                     //
-                    string sKeyFieldName;
-                    Fielddefinition o_KeyFldDef;
-                    string sExpectedValue;
+                    string name_KeyField;
+                    Fielddefinition fielddefinition_Key;
+                    string value_Expected;
                     P2_ReccondImpl sel2 = new P2_ReccondImpl();
                     sel2.GetFirstAwhrReccond(
-                        out sKeyFieldName,
-                        out o_KeyFldDef,
-                        out sExpectedValue,
+                        out name_KeyField,
+                        out fielddefinition_Key,
+                        out value_Expected,
                         selectSt_ToSave.List_Recordcondition,
                         o_Table,
                         log_Reports
@@ -145,10 +145,10 @@ namespace Xenon.Expr
                     SelectPerformerImpl sp = new SelectPerformerImpl();
                     sp.Select(
                         out dst_Row,
-                        sKeyFieldName,
-                        sExpectedValue,
+                        name_KeyField,
+                        value_Expected,
                         bExpectedValueRequired,
-                        o_KeyFldDef,
+                        fielddefinition_Key,
                         o_Table.DataTable,
                         parent_Cf_Query,
                         log_Reports
@@ -211,7 +211,7 @@ namespace Xenon.Expr
                 //        foreach (DataColumn column in record.Table.Columns)
                 //        {
 
-                //            ValueHumaninput oValue = (ValueHumaninput)record[column.ColumnName];
+                //            Value_Humaninput oValue = (Value_Humaninput)record[column.ColumnName];
 
                 //            txt.Append("　★" + column.ColumnName + "＝[" + oValue.Humaninput + "]");
                 //        }
@@ -231,12 +231,12 @@ namespace Xenon.Expr
                 //    txt.Append("　ヒット件数＝[" + recordSet_toSave.O_Items.Count + "]←検索後");
 
                 //    // レコードの内容
-                //    foreach (Dictionary<string, ValueHumaninput> oRecord in recordSet_toSave.O_Items)
+                //    foreach (Dictionary<string, Value_Humaninput> oRecord in recordSet_toSave.O_Items)
                 //    {
                 //        txt.Append("　フィールド数＝[" + oRecord.Count + "]");
                 //        foreach (string sKey in oRecord.Keys)
                 //        {
-                //            ValueHumaninput oValue = oRecord[sKey];
+                //            Value_Humaninput oValue = oRecord[sKey];
                 //            txt.Append("　■" + sKey + "＝[" + oValue.Humaninput + "]");
                 //        }
                 //    }

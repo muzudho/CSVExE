@@ -208,14 +208,14 @@ namespace Xenon.Functions
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_TableHumaninputImpl reader = new CsvTo_TableHumaninputImpl();
+                CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
 
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                Format_TableHumaninput tblFormat_puts = new Format_TableHumaninputImpl();
+                Format_Table_Humaninput tblFormat_puts = new Format_Table_HumaninputImpl();
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
                 request_tblReads.Expression_Filepath = pm_FileImportListfile_Expr;
 
-                TableHumaninput xenonTable = reader.Read(
+                Table_Humaninput xenonTable = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,

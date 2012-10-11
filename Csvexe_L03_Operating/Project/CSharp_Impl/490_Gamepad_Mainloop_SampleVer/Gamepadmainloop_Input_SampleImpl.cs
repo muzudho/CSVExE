@@ -9,7 +9,7 @@ using System.Data;//DataTable
 using System.Windows.Forms;
 
 using Xenon.Syntax;
-using Xenon.Table;//TableHumaninput,Int_HumaninputImpl
+using Xenon.Table;//Table_Humaninput,Int_HumaninputImpl
 
 namespace Xenon.Operating
 {
@@ -147,9 +147,9 @@ namespace Xenon.Operating
             // テーブルを、上から下に読んでいく。
             // 列の並び順は NO	ID	Expl	PLAYER	BEFORE	AFTER
 
-            if (null != this.TableHumaninput_Keyconfig)//テーブルの読取が成功していること。
+            if (null != this.Table_Humaninput_Keyconfig)//テーブルの読取が成功していること。
             {
-                DataTable dataTable = this.TableHumaninput_Keyconfig.DataTable;
+                DataTable dataTable = this.Table_Humaninput_Keyconfig.DataTable;
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -312,12 +312,12 @@ namespace Xenon.Operating
 
         //────────────────────────────────────────
 
-        private TableHumaninput xenonTable_Keyconfig;
+        private Table_Humaninput xenonTable_Keyconfig;
 
         /// <summary>
         /// キー設定を記憶します。
         /// </summary>
-        public TableHumaninput TableHumaninput_Keyconfig
+        public Table_Humaninput Table_Humaninput_Keyconfig
         {
             get
             {

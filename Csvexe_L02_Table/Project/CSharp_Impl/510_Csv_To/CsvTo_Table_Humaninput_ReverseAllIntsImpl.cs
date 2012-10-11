@@ -10,7 +10,7 @@ using Xenon.Syntax;//WarningReports, HumanInputFilePath
 
 namespace Xenon.Table
 {
-    public class CsvTo_TableHumaninput_ReverseAllIntsImpl
+    public class CsvTo_Table_Humaninput_ReverseAllIntsImpl
     {
 
 
@@ -27,10 +27,10 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="csvText"></param>
         /// <returns>列名情報も含むテーブル。</returns>
-        public TableHumaninput Read(
+        public Table_Humaninput Read(
             string string_Csv,
             Request_ReadsTable forTable_Request,
-            Format_TableHumaninput forTable_Format,
+            Format_Table_Humaninput forTable_Format,
             Log_Reports log_Reports
             )
         {
@@ -43,11 +43,11 @@ namespace Xenon.Table
             //
             CsvEscapeImpl ce = new CsvEscapeImpl();
 
-            TableHumaninput xenonTable = new Table_HumaninputImpl(forTable_Request.Name_PutToTable, forTable_Request.Expression_Filepath);
+            Table_Humaninput xenonTable = new Table_HumaninputImpl(forTable_Request.Name_PutToTable, forTable_Request.Expression_Filepath, forTable_Request.Expression_Filepath.Cur_Configurationtree);
             xenonTable.Tableunit = forTable_Request.Tableunit;
             xenonTable.Typedata = forTable_Request.Typedata;
             xenonTable.IsDatebackupActivated = forTable_Request.IsDatebackupActivated;
-            xenonTable.Format_TableHumaninput = forTable_Format;
+            xenonTable.Format_Table_Humaninput = forTable_Format;
 
 
             //
@@ -71,7 +71,7 @@ namespace Xenon.Table
                     int nColumnIndex = 0;
                     foreach (string sToken in sFields)
                     {
-                        if (nColumnIndex == 0 && ToCsv_TableHumaninput_RowColRegularImpl.S_END == sToken.Trim().ToUpper())
+                        if (nColumnIndex == 0 && ToCsv_Table_Humaninput_RowColRegularImpl.S_END == sToken.Trim().ToUpper())
                         {
                             // 1列目にENDがある場合、その手前までの列が有効データです。
                             // END以降の行は無視します。
@@ -100,7 +100,7 @@ namespace Xenon.Table
             //
             // （※NO,ID,EXPL,NAME など、フィールドの定義を持つテーブル）
             //
-            List<Fielddefinition> list_FldDef = new List<Fielddefinition>();
+            RecordFielddefinition recordFielddefinition = new RecordFielddefinitionImpl();
 
             //
             // データ・テーブル部
@@ -130,7 +130,7 @@ namespace Xenon.Table
 
                         // テーブルのフィールドを追加します。型の既定値は文字列型とします。
                         fieldDefinition = new FielddefinitionImpl(sFieldName, typeof(String_HumaninputImpl));
-                        list_FldDef.Add(fieldDefinition);
+                        recordFielddefinition.Add(fieldDefinition);
 
                         //
                         // フィールドの型は、intに固定です。
@@ -163,7 +163,7 @@ namespace Xenon.Table
                             //
                             // 「EOF」というトークンが出てくるまで。
                             //
-                            if(ToCsv_TableHumaninput_RowColRegularImpl.S_EOF==sToken.Trim().ToUpper())
+                            if(ToCsv_Table_Humaninput_RowColRegularImpl.S_EOF==sToken.Trim().ToUpper())
                             {
                                 goto column_end;
                             }
@@ -214,10 +214,10 @@ namespace Xenon.Table
             //essageBox.Show("CSV読取終わり1 rows.Count=[" + rows.Count + "]", "TableCsvLibデバッグ");
 
             // テーブル作成。テーブルのフィールド型定義と、データ本体をセットします。
-            xenonTable.CreateTable(list_FldDef,log_Reports);
+            xenonTable.CreateTable(recordFielddefinition,log_Reports);
             if( log_Reports.Successful)
             {
-                xenonTable.AddRecordList(rows, list_FldDef, log_Reports);
+                xenonTable.AddRecordList(rows, recordFielddefinition, log_Reports);
                 //essageBox.Show("CSV読取後のテーブル作成終わり", "TableCsvLibデバッグ");
             }
 

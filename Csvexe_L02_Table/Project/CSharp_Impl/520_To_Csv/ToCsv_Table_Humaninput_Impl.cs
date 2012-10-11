@@ -10,7 +10,7 @@ using Xenon.Syntax;//WarningReports
 
 namespace Xenon.Table
 {
-    public class ToCsv_TableHumaninput_Impl
+    public class ToCsv_Table_Humaninput_Impl
     {
 
 
@@ -21,7 +21,7 @@ namespace Xenon.Table
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public ToCsv_TableHumaninput_Impl()
+        public ToCsv_Table_Humaninput_Impl()
         {
             this.exceptedFields = new ExceptedFields();
         }
@@ -57,19 +57,19 @@ namespace Xenon.Table
         /// <param name="csvText"></param>
         /// <returns>列名情報も含むテーブル。列の型は文字列型とします。</returns>
         public string ToCsvText(
-            TableHumaninput hiTable,
+            Table_Humaninput hiTable,
             Log_Reports log_Reports
             )
         {
             string sResult;
 
-            if (hiTable.Format_TableHumaninput.IsRowcolumnreverse)
+            if (hiTable.Format_Table_Humaninput.IsRowcolumnreverse)
             {
                 //
                 // 行と列が逆になっているテーブル
                 //
 
-                ToCsv_TableHumaninput_RowColReversedImpl toCsv_RowColReversed = new ToCsv_TableHumaninput_RowColReversedImpl();
+                ToCsv_Table_Humaninput_RowColReversedImpl toCsv_RowColReversed = new ToCsv_Table_Humaninput_RowColReversedImpl();
                 toCsv_RowColReversed.O_ExceptedFields = this.ExceptedFields;
 
                 sResult = toCsv_RowColReversed.ToCsvText(hiTable, log_Reports);
@@ -81,7 +81,7 @@ namespace Xenon.Table
             }
             else
             {
-                ToCsv_TableHumaninput_RowColRegularImpl toCsv_Normal = new ToCsv_TableHumaninput_RowColRegularImpl();
+                ToCsv_Table_Humaninput_RowColRegularImpl toCsv_Normal = new ToCsv_Table_Humaninput_RowColRegularImpl();
                 toCsv_Normal.ExceptedFields = this.ExceptedFields;
 
                 sResult = toCsv_Normal.ToCsvText(hiTable, log_Reports);

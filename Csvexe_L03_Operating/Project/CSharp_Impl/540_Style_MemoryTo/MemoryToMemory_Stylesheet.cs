@@ -26,7 +26,7 @@ namespace Xenon.Operating
         /// <param name="oStyleSheetTable"></param>
         /// <returns></returns>
         public MemoryStyles Translate(
-            TableHumaninput xenonTable_Stylesheet,
+            Table_Humaninput xenonTable_Stylesheet,
             Log_Reports log_Reports
             )
         {

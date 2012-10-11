@@ -16,11 +16,11 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public RecordSetImpl(TableHumaninput xenonTable)
+        public RecordSetImpl(Table_Humaninput xenonTable)
         {
             this.xenonTable = xenonTable;
 
-            this.list_Field = new List<Dictionary<string, ValueHumaninput>>();
+            this.list_Field = new List<Dictionary<string, Value_Humaninput>>();
         }
 
         //────────────────────────────────────────
@@ -41,16 +41,16 @@ namespace Xenon.Table
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Add",log_Reports);
 
-            Dictionary<string, ValueHumaninput> record = new Dictionary<string, ValueHumaninput>();
+            Dictionary<string, Value_Humaninput> record = new Dictionary<string, Value_Humaninput>();
 
             int nFieldCount = row.ItemArray.Length;
             for (int nFieldIndex = 0; nFieldIndex < nFieldCount; nFieldIndex++)
             {
                 // フィールド名
-                string sFieldName = xenonTable.List_Fielddefinition[nFieldIndex].Name_Trimupper;
+                string sFieldName = xenonTable.RecordFielddefinition.ValueAt(nFieldIndex).Name_Trimupper;
 
                 // 値
-                ValueHumaninput oValue;
+                Value_Humaninput oValue;
                 if (row[nFieldIndex] is DBNull)
                 {
                     //// デバッグ
@@ -64,7 +64,7 @@ namespace Xenon.Table
                     //    ystem.Console.WriteLine(txt.ToString());
                     //}
 
-                    Type type = xenonTable.List_Fielddefinition[nFieldIndex].Type;
+                    Type type = xenonTable.RecordFielddefinition.ValueAt(nFieldIndex).Type;
 
                     String sConfigStack = xenonTable.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint, log_Reports);
@@ -95,7 +95,7 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    oValue = (ValueHumaninput)row[nFieldIndex];
+                    oValue = (Value_Humaninput)row[nFieldIndex];
 
                     //// デバッグ
                     //if (true)
@@ -183,9 +183,9 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private List<Dictionary<string, ValueHumaninput>> list_Field;
+        private List<Dictionary<string, Value_Humaninput>> list_Field;
 
-        public List<Dictionary<string, ValueHumaninput>> List_Field
+        public List<Dictionary<string, Value_Humaninput>> List_Field
         {
             get
             {
@@ -199,9 +199,9 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private TableHumaninput xenonTable;
+        private Table_Humaninput xenonTable;
 
-        public TableHumaninput XenonTable
+        public Table_Humaninput XenonTable
         {
             get
             {

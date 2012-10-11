@@ -121,12 +121,12 @@ namespace Xenon.Functions
 
 
                 // テーブル
-                TableHumaninput o_Table_Src;
+                Table_Humaninput o_Table_Src;
                 {
                     Expression_Node_String ec_ArgTableName;
                     this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function06Impl.PM_NAME_TABLE_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
 
-                    o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+                    o_Table_Src = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(
                         ec_ArgTableName,
                         true,
                         log_Reports

@@ -47,7 +47,7 @@ namespace Xenon.Functions
             }
 
 
-            TableHumaninput o_Table = owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+            Table_Humaninput o_Table = owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(
                 ec_TableName,
                 true,
                 log_Reports
@@ -87,7 +87,7 @@ namespace Xenon.Functions
                 // ↑ 0.2秒ぐらいかかる処理。
                 uctLst.ControlCommon.BAutomaticinputting = false;
 
-                uctLst.CustomcontrolListbox1.TableHumaninput_Datasource = o_Table;
+                uctLst.CustomcontrolListbox1.Table_Humaninput_Datasource = o_Table;
             }
             else
             {

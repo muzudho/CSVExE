@@ -40,7 +40,7 @@ namespace Xenon.Operating
         /// </summary>
         /// <param name="o_Table_StyleSheet"></param>
         /// <param name="log_Reports"></param>
-        public void Clear(TableHumaninput xenonTable_Stylesheet, Log_Reports log_Reports)
+        public void Clear(Table_Humaninput xenonTable_Stylesheet, Log_Reports log_Reports)
         {
             Log_Method pg_Method = new Log_MethodImpl();
             pg_Method.BeginMethod(Info_Operating.Name_Library, this, "Clear",log_Reports);

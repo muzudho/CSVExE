@@ -13,7 +13,7 @@ namespace Xenon.Table
     //
     // 行と列が逆になっているテーブル。
     //
-    public class ToCsv_TableHumaninput_RowColReversedImpl
+    public class ToCsv_Table_Humaninput_RowColReversedImpl
     {
 
 
@@ -24,7 +24,7 @@ namespace Xenon.Table
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public ToCsv_TableHumaninput_RowColReversedImpl()
+        public ToCsv_Table_Humaninput_RowColReversedImpl()
         {
             this.o_ExceptedFields = new ExceptedFields();
         }
@@ -44,7 +44,7 @@ namespace Xenon.Table
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public string ToCsvText(
-            TableHumaninput table,
+            Table_Humaninput table,
             Log_Reports log_Reports
             )
         {
@@ -127,7 +127,7 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         private List<List<string>> ToModel(
-            TableHumaninput table,
+            Table_Humaninput table,
             Log_Reports log_Reports
             )
         {
@@ -142,7 +142,7 @@ namespace Xenon.Table
             // フィールド名をカンマ区切りで出力します。最後にENDを付加します。
 
             // フィールド定義部
-            List<Fielddefinition> list_FieldDefinition = table.List_Fielddefinition;
+            //List<Fielddefinition> list_FieldDefinition = table.List_Fielddefinition;
 
             // データ・テーブル部
             DataTable dataTable = table.DataTable;
@@ -152,12 +152,12 @@ namespace Xenon.Table
 
 
             // 「END,END,END...」行を除く、行数。
-            int nHorizontalCountExceptEnd = list_FieldDefinition.Count;
+            int nHorizontalCountExceptEnd = table.RecordFielddefinition.Count;
             //essageBox.Show("「END,END,END...」行を除く、行数=[" + horizontalCountExceptEnd + "]", this.GetType().Name + "#Textize_rowColReversed: (Table)");
 
 
 
-            bool bAllIntFields = table.Format_TableHumaninput.IsAllintfieldsActivated;
+            bool bAllIntFields = table.Format_Table_Humaninput.IsAllintfieldsActivated;
 
             DataRow dataRow;
 
@@ -175,19 +175,19 @@ namespace Xenon.Table
             //
             {
                 List<string> sList_FieldNameRow = new List<string>();
-                for (int nC = 0; nC < list_FieldDefinition.Count; nC++)
-                {
-                    Fielddefinition fieldDefinition = list_FieldDefinition[nC];
 
-                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
+                table.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
+                {
+                    if (this.O_ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
                     else
                     {
-                        sList_FieldNameRow.Add(fieldDefinition.Name_Humaninput);
+                        sList_FieldNameRow.Add(fielddefinition.Name_Humaninput);
                     }
-                }
+                }, log_Reports);
+
                 rsltTable.Add(sList_FieldNameRow);
             }
 
@@ -209,18 +209,16 @@ namespace Xenon.Table
                 //
 
                 List<string> sList_FieldTypeRow = new List<string>();
-                for (int nC = 0; nC < list_FieldDefinition.Count; nC++)
-                {
-                    Fielddefinition fieldDefinition = list_FieldDefinition[nC];
 
-                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
+                table.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
+                {
+                    if (this.O_ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
                     else
                     {
-                        fieldType = fieldDefinition.Type;
-                        //fieldTypeNumber = fieldDefinition.TypeNumber;
+                        fieldType = fielddefinition.Type;
 
                         //
                         // string＞int＞bool の順でデータ数が多いことが多い？
@@ -243,11 +241,10 @@ namespace Xenon.Table
 
                             // 未定義の型があった場合、そのまま出力します。
                             // C#のメッセージになるかと思います。
-                            sList_FieldTypeRow.Add(fieldDefinition.Type.ToString());
+                            sList_FieldTypeRow.Add(fielddefinition.Type.ToString());
                         }
                     }
-
-                }
+                }, log_Reports);
             }
 
 
@@ -257,19 +254,17 @@ namespace Xenon.Table
             //
             {
                 List<string> sList_FieldNameRow = new List<string>();
-                for (int nC = 0; nC < list_FieldDefinition.Count; nC++)
+                table.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
                 {
-                    Fielddefinition fieldDefinition = list_FieldDefinition[nC];
-
-                    if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
+                    if (this.O_ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
                     else
                     {
-                        sList_FieldNameRow.Add(fieldDefinition.Comment);
+                        sList_FieldNameRow.Add(fielddefinition.Comment);
                     }
-                }
+                }, log_Reports);
                 rsltTable.Add(sList_FieldNameRow);
             }
 
@@ -290,13 +285,12 @@ namespace Xenon.Table
 
 
                     List<string> sList_DtRow = new List<string>();
-                    for (int nC = 0; nC < list_FieldDefinition.Count; nC++)
+                    int indexColumn = 0;
+                    table.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
                     {
-                        Fielddefinition fieldDefinition = list_FieldDefinition[nC];
-                        fieldType = fieldDefinition.Type;
-                        //fieldTypeNumber = fieldDefinition.TypeNumber;
+                        fieldType = fielddefinition.Type;
 
-                        if (this.O_ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
+                        if (this.O_ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                         {
                             // 出力しないフィールドの場合、無視します。
                         }
@@ -308,61 +302,65 @@ namespace Xenon.Table
                             if (fieldType == typeof(String_HumaninputImpl))//0 == fieldTypeNumber
                             {
                                 // （８）string型セルデータ書出し
-                                sCellValue = String_HumaninputImpl.ParseString(recordFields[nC]);
+                                sCellValue = String_HumaninputImpl.ParseString(recordFields[indexColumn]);
 
                             }
                             else if (fieldType == typeof(Int_HumaninputImpl))//1 == fieldTypeNumber
                             {
                                 // （９）int型セルデータ書出し
-                                sCellValue = Int_HumaninputImpl.ParseString(recordFields[nC]);
+                                sCellValue = Int_HumaninputImpl.ParseString(recordFields[indexColumn]);
                             }
                             else if (fieldType == typeof(Bool_HumaninputImpl))//2 == fieldTypeNumber
                             {
                                 // （１０）bool型セルデータ書出し
-                                sCellValue = Bool_HumaninputImpl.ParseString(recordFields[nC]);
+                                sCellValue = Bool_HumaninputImpl.ParseString(recordFields[indexColumn]);
                             }
                             else
                             {
                                 // （１１）エラー
-                                err_FldDef = fieldDefinition;
+                                err_FldDef = fielddefinition;
+                                isBreak2 = true;
                                 goto gt_Error_UndefinedFieldType;
                             }
 
                             sList_DtRow.Add(sCellValue);
                         }
-                    }
+
+                        goto gt_EndInnermethod;
+                        //
+                        #region 異常系
+                    //────────────────────────────────────────
+                    gt_Error_UndefinedFieldType:
+                        if (log_Reports.CanCreateReport)
+                        {
+                            Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー455！", log_Method);
+
+                            Log_TextIndented s = new Log_TextIndentedImpl();
+
+                            s.Append("（プログラム内部エラー）未定義のフィールド型=[");
+                            s.Append(err_FldDef.Type.ToString());
+                            s.Append("]");
+                            s.Newline();
+
+                            // ヒント
+
+                            r.Message = s.ToString();
+                            log_Reports.EndCreateReport();
+                        }
+                    goto gt_EndInnermethod;
+                        //────────────────────────────────────────
+                        #endregion
+                        //
+                    gt_EndInnermethod:
+                        indexColumn++;
+                    }, log_Reports);
 
                     rsltTable.Add(sList_DtRow);
                 }
             }
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        gt_Error_UndefinedFieldType:
-            if (log_Reports.CanCreateReport)
-            {
-                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー455！", log_Method);
-
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("（プログラム内部エラー）未定義のフィールド型=[");
-                s.Append(err_FldDef.Type.ToString());
-                s.Append("]");
-                s.Newline();
-
-                // ヒント
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
-            }
-            goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
@@ -372,10 +370,10 @@ namespace Xenon.Table
 
         private string ToText(
             List<List<string>> rsltTable,
-            TableHumaninput table
+            Table_Humaninput table
             )
         {
-            bool bCommaEnding = table.Format_TableHumaninput.IsCommaending;
+            bool bCommaEnding = table.Format_Table_Humaninput.IsCommaending;
 
 
             //
@@ -418,7 +416,7 @@ namespace Xenon.Table
                 if (0 == nL)
                 {
                     sb_Result.Append(",");
-                    sb_Result.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_EOF);
+                    sb_Result.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_EOF);
                 }
 
                 if (bCommaEnding)
@@ -439,11 +437,11 @@ namespace Xenon.Table
                 // 行数と同じ数の1個手前まで。
                 for (int nC = 0; nC < rsltTable.Count - 1; nC++)
                 {
-                    sb_Result.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_END);
+                    sb_Result.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
                     sb_Result.Append(",");
                 }
                 // 行数と同じ数に。
-                sb_Result.Append(ToCsv_TableHumaninput_RowColRegularImpl.S_END);
+                sb_Result.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
 
                 // EOF列には END は付けません。
 

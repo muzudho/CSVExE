@@ -218,7 +218,7 @@ namespace Xenon.Functions
 
                 //そのフィールドの値。
                 Int_HumaninputImpl cellData = (Int_HumaninputImpl)selectedDataRow[sName_Field];
-                string sValue_Field = cellData.Humaninput.Trim();
+                string sValue_Field = cellData.Text.Trim();
                 //.WriteLine(this.GetType().Name + "#: ◆　fieldValue=[" + fieldValue + "]");
 
                 //変数名。

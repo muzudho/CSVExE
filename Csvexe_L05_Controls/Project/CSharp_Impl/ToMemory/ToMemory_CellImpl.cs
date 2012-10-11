@@ -63,12 +63,9 @@ namespace Xenon.Controls
             {
                 //row[this.SelectedFldName] = outputValueStr;
 
-
-
                 // 空欄も自動処理
                 String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack_StringOfCell);
-                cellData.Humaninput = sValue_Output;
-
+                cellData.Text = sValue_Output;
 
                 row[sName_SelectedFld] = cellData;
             }
@@ -76,14 +73,14 @@ namespace Xenon.Controls
             {
                 // 空欄も自動処理
                 Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack_StringOfCell);
-                cellData.Humaninput = sValue_Output;
+                cellData.Text = sValue_Output;
                 row[sName_SelectedFld] = cellData;
             }
             else if (selFldDefinition.Type == typeof(Bool_HumaninputImpl))
             {
                 // 空欄も自動処理
                 Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack_StringOfCell);
-                cellData.Humaninput = sValue_Output;
+                cellData.Text = sValue_Output;
                 row[sName_SelectedFld] = cellData;
 
                 //if ("" == outputValueStr.Trim())

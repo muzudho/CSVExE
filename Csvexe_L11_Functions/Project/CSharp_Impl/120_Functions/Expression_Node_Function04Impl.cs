@@ -203,7 +203,7 @@ namespace Xenon.Functions
 
             foreach (string sTableName in sList_TableName)
             {
-                TableHumaninput o_Table;
+                Table_Humaninput o_Table;
                 if (log_Reports.Successful)
                 {
                     Expression_Node_String ec_ArgTableName;
@@ -217,7 +217,7 @@ namespace Xenon.Functions
                         );
 
                     // テーブル
-                    o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+                    o_Table = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(
                         ec_TableName,
                         true,
                         log_Reports
@@ -231,7 +231,7 @@ namespace Xenon.Functions
                 string sCsvText;
                 if (log_Reports.Successful)
                 {
-                    ToCsv_TableHumaninput_Impl textizer = new ToCsv_TableHumaninput_Impl();
+                    ToCsv_Table_Humaninput_Impl textizer = new ToCsv_Table_Humaninput_Impl();
                     sCsvText = textizer.ToCsvText(o_Table, log_Reports);
                     if (!log_Reports.Successful)
                     {

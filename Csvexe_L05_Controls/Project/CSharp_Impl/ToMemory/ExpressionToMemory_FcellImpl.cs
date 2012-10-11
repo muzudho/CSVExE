@@ -243,10 +243,10 @@ namespace Xenon.Controls
 
             // ──────────
 
-            TableHumaninput o_Table;
+            Table_Humaninput o_Table;
             if (log_Reports.Successful)
             {
-                o_Table = moApplication.MemoryTables.GetTableHumaninputByName(ec_TableName1, true, log_Reports);
+                o_Table = moApplication.MemoryTables.GetTable_HumaninputByName(ec_TableName1, true, log_Reports);
                 // エラー時には、エラーメッセージを出させます。
 
                 if (null == o_Table)
@@ -300,9 +300,9 @@ namespace Xenon.Controls
                     }
                 }
 
-                List<Fielddefinition> oList_KeyFldDef;
+                RecordFielddefinition recordFielddefinition;
                 bool bHit = o_Table.TryGetFieldDefinitionByName(
-                    out oList_KeyFldDef,
+                    out recordFielddefinition,
                     sList_KeyFldName,
                     true,
                     log_Reports
@@ -312,7 +312,7 @@ namespace Xenon.Controls
                     goto gt_EndMethod;
                 }
 
-                o_KeyFldDef = oList_KeyFldDef[0];
+                o_KeyFldDef = recordFielddefinition.ValueAt(0);
             }
             else
             {
@@ -320,7 +320,7 @@ namespace Xenon.Controls
             }
 
 
-            List<Fielddefinition> oList_SelectedFldDef;
+            RecordFielddefinition recordFielddefinition_Selected;
             if (log_Reports.Successful)
             {
                 // 選択対象のフィールドの定義を調べます。
@@ -347,7 +347,7 @@ namespace Xenon.Controls
                 }
 
                 bool bHit = o_Table.TryGetFieldDefinitionByName(
-                    out oList_SelectedFldDef,
+                    out recordFielddefinition_Selected,
                     sList_SelectedFldName,
                     false,
                     log_Reports
@@ -359,7 +359,7 @@ namespace Xenon.Controls
             }
             else
             {
-                oList_SelectedFldDef = null;
+                recordFielddefinition_Selected = null;
             }
 
 
@@ -378,7 +378,7 @@ namespace Xenon.Controls
 
             if (log_Reports.Successful)
             {
-                if (oList_SelectedFldDef.Count < 1)
+                if (recordFielddefinition_Selected.Count < 1)
                 {
                     //
                     // エラー中断。
@@ -420,23 +420,20 @@ namespace Xenon.Controls
                     {
                         ToMemory_CellImpl updater = new ToMemory_CellImpl();
 
-
-                        foreach (Fielddefinition o_SelectedFldDef in oList_SelectedFldDef)
+                        recordFielddefinition_Selected.ForEach(delegate(Fielddefinition fielddefinition_Selected, ref bool isBreak2, Log_Reports log_Reports2)
                         {
                             updater.ToMemory_ToSelectedField(
                                 sOutputValue,
                                 ec_SfCell,
                                 row,
-                                o_SelectedFldDef,
+                                fielddefinition_Selected,
                                 log_Reports
                                 );
-                        }
+                        }, log_Reports);
                     }
-
                 }
                 else
                 {
-                    //
                     // エラー。
                     goto gt_Error_NotFoundRecord;
                 }

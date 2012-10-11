@@ -15,14 +15,14 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public static ValueHumaninput NewInstance(
+        public static Value_Humaninput NewInstance(
             object value,
             bool bRequired,
             string sConfigStack,
             out string sMessage_Error
             )
         {
-            ValueHumaninput result;
+            Value_Humaninput result;
 
             if(value is String_HumaninputImpl)
             {
@@ -84,7 +84,7 @@ namespace Xenon.Table
 
         public static bool TryParse(
             object value,
-            out ValueHumaninput cellData,
+            out Value_Humaninput cellData,
             bool bRequired,
             out string sMessage_Error
             )
@@ -100,7 +100,7 @@ namespace Xenon.Table
                 (value is Bool_HumaninputImpl)
                 )
             {
-                cellData = (ValueHumaninput)value;
+                cellData = (Value_Humaninput)value;
 
                 bResult = true;
             }

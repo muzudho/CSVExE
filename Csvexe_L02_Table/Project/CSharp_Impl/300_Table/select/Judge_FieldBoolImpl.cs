@@ -38,7 +38,7 @@ namespace Xenon.Table
 
             try
             {
-                ValueHumaninput o_CellValue = (ValueHumaninput)row[sName_KeyField];
+                Value_Humaninput o_CellValue = (Value_Humaninput)row[sName_KeyField];
 
                 // （５）キーが空欄で、検索ヒット必須でなければ、無視します。【bool型フィールドの場合】
                 if (Bool_HumaninputImpl.IsSpaces(o_CellValue))

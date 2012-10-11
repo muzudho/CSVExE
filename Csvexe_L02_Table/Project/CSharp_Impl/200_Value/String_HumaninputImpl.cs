@@ -44,7 +44,7 @@ namespace Xenon.Table
             txt.Append("クラス");
 
             txt.AppendI(1, "humanInputString=[");
-            txt.Append(this.Humaninput);
+            txt.Append(this.Text);
             txt.Append("]");
 
             txt.AppendI(0, ">");
@@ -58,19 +58,19 @@ namespace Xenon.Table
 
         public bool TryGet(out string sResult)
         {
-            sResult = this.Humaninput;
+            sResult = this.Text;
             return true;
         }
 
         public string GetString()
         {
-            return this.Humaninput;
+            return this.Text;
         }
 
         public void SetString(string sValue)
         {
-            this.Humaninput = sValue;
-            bSpaced = ("" == this.Humaninput.Trim());
+            this.Text = sValue;
+            bSpaced = ("" == this.Text.Trim());
         }
 
         //────────────────────────────────────────
@@ -99,11 +99,11 @@ namespace Xenon.Table
             }
             else if (data is String_HumaninputImpl)
             {
-                sResult = ((String_HumaninputImpl)data).Humaninput;
+                sResult = ((String_HumaninputImpl)data).Text;
             }
             else if (data is Int_HumaninputImpl)
             {
-                sResult = ((Int_HumaninputImpl)data).Humaninput;
+                sResult = ((Int_HumaninputImpl)data).Text;
             }
             else
             {
@@ -131,7 +131,7 @@ namespace Xenon.Table
             {
                 Log_TextIndented t = new Log_TextIndentedImpl();
                 t.Append("指定の引数の値[");
-                t.Append(((ValueHumaninput)data).Humaninput);
+                t.Append(((Value_Humaninput)data).Text);
                 t.Append("]を、文字列型として読み取ろうとしましたが、");
                 t.Append(Environment.NewLine);
                 t.Append("string型、またはint型のどちらでもありませんでした。");
@@ -180,7 +180,7 @@ namespace Xenon.Table
                 // エラー
                 goto gt_Error_Null;
             }
-            else if (!(data is ValueHumaninput))
+            else if (!(data is Value_Humaninput))
             {
                 //
                 // エラー
@@ -267,7 +267,7 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定の引数の値[");
-                s.Append(((ValueHumaninput)data).Humaninput);
+                s.Append(((Value_Humaninput)data).Text);
                 s.Append("]は、StringCellData型ではありませんでした。");
 
                 s.Append(Environment.NewLine);
@@ -314,14 +314,14 @@ namespace Xenon.Table
             if (null != stringCellData)
             {
                 // 文字列の比較。
-                return this.Humaninput == stringCellData.Humaninput;
+                return this.Text == stringCellData.Text;
             }
 
             string str = obj as string;
             if (null != str)
             {
                 // 文字列の比較。
-                return this.Humaninput == str;
+                return this.Text == str;
             }
 
             return false;
@@ -336,7 +336,7 @@ namespace Xenon.Table
                 return ((String_HumaninputImpl)data).bSpaced;
             }
 
-            throw new System.ArgumentException("指定の引数の値[" + ((ValueHumaninput)data).Humaninput + "]は、string型ではありませんでした。");
+            throw new System.ArgumentException("指定の引数の値[" + ((Value_Humaninput)data).Text + "]は、string型ではありませんでした。");
         }
 
         //────────────────────────────────────────
@@ -350,7 +350,7 @@ namespace Xenon.Table
         /// <summary>
         /// 入力データそのままの形。
         /// </summary>
-        public override string Humaninput
+        public override string Text
         {
             set
             {
@@ -374,7 +374,7 @@ namespace Xenon.Table
 
         public override int GetHashCode()
         {
-            return this.Humaninput.GetHashCode();
+            return this.Text.GetHashCode();
         }
 
         //────────────────────────────────────────

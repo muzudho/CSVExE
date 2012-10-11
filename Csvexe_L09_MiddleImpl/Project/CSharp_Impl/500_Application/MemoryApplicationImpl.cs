@@ -127,11 +127,11 @@ namespace Xenon.MiddleImpl
             {
                 string strTypedata = ValuesTypeData.S_TABLE_ERRORMESSAGES;
                 Configurationtree_Node cur_Ct = new Configurationtree_NodeImpl(log_Method.Fullname, null);
-                List<TableHumaninput> tables = this.MemoryTables.GetTableHumaninputByTypedata(
+                List<Table_Humaninput> tables = this.MemoryTables.GetTable_HumaninputByTypedata(
                     new Expression_Leaf_StringImpl(strTypedata, null, cur_Ct), true, log_Reports);
 
                 bool hit = false;
-                foreach (TableHumaninput table in tables)
+                foreach (Table_Humaninput table in tables)
                 {
                     foreach (DataRow dataRow in table.DataTable.Rows)
                     {

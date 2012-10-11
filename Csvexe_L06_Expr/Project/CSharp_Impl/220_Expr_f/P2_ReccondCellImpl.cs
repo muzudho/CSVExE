@@ -38,18 +38,18 @@ namespace Xenon.Expr
         /// 条件に合うものを一気に集めてくる形になっているが、
         /// SelectedRecords に機能を持たせるか？
         /// </summary>
-        /// <param name="sKeyFieldName"></param>
-        /// <param name="o_KeyFldDef"></param>
-        /// <param name="sExpectedValue"></param>
+        /// <param name="out_Name_KeyField"></param>
+        /// <param name="out_FielddefinitionKey2"></param>
+        /// <param name="out_Value_Expected"></param>
         /// <param name="childReccondList"></param>
-        /// <param name="o_Table"></param>
+        /// <param name="tableH"></param>
         /// <param name="log_Reports"></param>
         public void GetFirstAwhrReccond(
-            out string sKeyFieldName,
-            out Fielddefinition o_KeyFldDef,
-            out string sExpectedValue,
+            out string out_Name_KeyField,
+            out Fielddefinition out_FielddefinitionKey2,
+            out string out_Value_Expected,
             List<Recordcondition> list_ChildReccond,
-            TableHumaninput o_Table,
+            Table_Humaninput tableH,
             Log_Reports log_Reports
             )
         {
@@ -69,47 +69,43 @@ namespace Xenon.Expr
                 //
                 // 検索のキーとなるフィールドの定義を調べます。
 
-                List<string> sList_KeyFldName;
+                List<string> list_Name_KeyFld;
                 {
                     // 要素数１個
-                    sList_KeyFldName = new List<string>();
-                    sList_KeyFldName.Add(recCond_First.Name_Field);
+                    list_Name_KeyFld = new List<string>();
+                    list_Name_KeyFld.Add(recCond_First.Name_Field);
                 }
 
 
 
                 // 該当なしの場合、ヌルを返す。
-                //o_KeyFldDef;
+                RecordFielddefinition recordFielddefinition;
+                bool bHit = tableH.TryGetFieldDefinitionByName(
+                    out recordFielddefinition,
+                    list_Name_KeyFld,
+                    true,// 必須指定。
+                    log_Reports
+                    );
+                if (!log_Reports.Successful || !bHit)
                 {
-                    List<Fielddefinition> o_KeyFldDefList;
-                    bool bHit = o_Table.TryGetFieldDefinitionByName(
-                        out o_KeyFldDefList,
-                        sList_KeyFldName,
-                        true,// 必須指定。
-                        log_Reports
-                        );
-                    if (!log_Reports.Successful || !bHit)
-                    {
-                        // エラー
-                        sKeyFieldName = "";
-                        o_KeyFldDef = null;
-                        sExpectedValue = "";
-                        goto gt_EndMethod;
-                    }
-
-                    o_KeyFldDef = o_KeyFldDefList[0];
+                    // エラー
+                    out_Name_KeyField = "";
+                    out_FielddefinitionKey2 = null;
+                    out_Value_Expected = "";
+                    goto gt_EndMethod;
                 }
 
-
-
-                sKeyFieldName = recCond_First.Name_Field;
-                sExpectedValue = recCond_First.Value;
+                //正常
+                out_FielddefinitionKey2 = recordFielddefinition.ValueAt(0);
+                out_Name_KeyField = recCond_First.Name_Field;
+                out_Value_Expected = recCond_First.Value;
             }
             else
             {
-                sKeyFieldName = "";
-                o_KeyFldDef = null;
-                sExpectedValue = "";
+                //正常
+                out_Name_KeyField = "";
+                out_FielddefinitionKey2 = null;
+                out_Value_Expected = "";
             }
 
             goto gt_EndMethod;

@@ -37,13 +37,13 @@ namespace Xenon.MiddleImpl
         public void Clear(MemoryApplication owner_MemoryApplication)
         {
             this.owner_MemoryApplication = owner_MemoryApplication;
-            if (null == this.dictionary_TableHumaninput)
+            if (null == this.dictionary_Table_Humaninput)
             {
-                this.dictionary_TableHumaninput = new Dictionary<string, TableHumaninput>();
+                this.dictionary_Table_Humaninput = new Dictionary<string, Table_Humaninput>();
             }
             else
             {
-                this.dictionary_TableHumaninput.Clear();
+                this.dictionary_Table_Humaninput.Clear();
             }
         }
 
@@ -61,25 +61,25 @@ namespace Xenon.MiddleImpl
         /// <param select="nTableName"></param>
         /// <param select="bRequired">該当しなかった場合に警告表示を行うなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
-        public TableHumaninput GetTableHumaninputByName(
+        public Table_Humaninput GetTable_HumaninputByName(
             Expression_Node_String ec_TableName,
             bool bRequired,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetTableHumaninputByName",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetTable_HumaninputByName",log_Reports);
 
             //
             //
             //
             //
 
-            TableHumaninput o_Table;
+            Table_Humaninput o_Table;
             string sTableName = ec_TableName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports); ;
-            if (this.dictionary_TableHumaninput.ContainsKey(sTableName))
+            if (this.dictionary_Table_Humaninput.ContainsKey(sTableName))
             {
-                o_Table = this.dictionary_TableHumaninput[sTableName];
+                o_Table = this.dictionary_Table_Humaninput[sTableName];
             }
             else
             {
@@ -136,18 +136,18 @@ namespace Xenon.MiddleImpl
         /// <param select="nTableName"></param>
         /// <param select="bRequired">該当しなかった場合にエラー扱いなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
-        public List<TableHumaninput> GetTableHumaninputByFormgroup(
+        public List<Table_Humaninput> GetTable_HumaninputByFormgroup(
             Expression_Node_String expr_KeyExpected,
             bool bRequired,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetTableHumaninputByFormgroup",log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetTable_HumaninputByFormgroup",log_Reports);
             //
             //
 
-            List<TableHumaninput> list_ResltTable = new List<TableHumaninput>();
+            List<Table_Humaninput> list_ResltTable = new List<Table_Humaninput>();
 
             if (null==expr_KeyExpected)
             {
@@ -157,7 +157,7 @@ namespace Xenon.MiddleImpl
             try
             {
                 string str_KeyExpected = expr_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-                foreach (TableHumaninput xenonTable in this.dictionary_TableHumaninput.Values)
+                foreach (Table_Humaninput xenonTable in this.dictionary_Table_Humaninput.Values)
                 {
                     if (null!=xenonTable.Tableunit &&
                         str_KeyExpected == xenonTable.Tableunit)
@@ -218,18 +218,18 @@ namespace Xenon.MiddleImpl
         /// <param select="nTableName"></param>
         /// <param select="bRequired">該当しなかった場合にエラー扱いなら真。</param>
         /// <returns>該当しなかった場合はヌルを返します。</returns>
-        public List<TableHumaninput> GetTableHumaninputByTypedata(
+        public List<Table_Humaninput> GetTable_HumaninputByTypedata(
             Expression_Node_String expr_KeyExpected,
             bool bRequired,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetTableHumaninputByTypedata", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "GetTable_HumaninputByTypedata", log_Reports);
             //
             //
 
-            List<TableHumaninput> list_ResltTable = new List<TableHumaninput>();
+            List<Table_Humaninput> list_ResltTable = new List<Table_Humaninput>();
             string str_KeyExpected = "";
 
             if (null == expr_KeyExpected)
@@ -245,7 +245,7 @@ namespace Xenon.MiddleImpl
             try
             {
                 str_KeyExpected = expr_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-                foreach (TableHumaninput xenonTable in this.dictionary_TableHumaninput.Values)
+                foreach (Table_Humaninput xenonTable in this.dictionary_Table_Humaninput.Values)
                 {
                     if (null != xenonTable.Typedata &&
                         str_KeyExpected == xenonTable.Typedata)
@@ -330,13 +330,13 @@ namespace Xenon.MiddleImpl
         /// テーブルを、コレクションに追加します。
         /// </summary>
         /// <param select="oTable"></param>
-        public void AddTableHumaninput(
-            TableHumaninput o_Table,
+        public void AddTable_Humaninput(
+            Table_Humaninput o_Table,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "AddTableHumaninput", log_Reports);
+            log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "AddTable_Humaninput", log_Reports);
 
             string sTableName_Trimed = o_Table.Name_Table.Trim();
 
@@ -348,9 +348,9 @@ namespace Xenon.MiddleImpl
 
             if (log_Reports.Successful)
             {
-                if (!this.Dictionary_TableHumaninput.ContainsKey(sTableName_Trimed))
+                if (!this.Dictionary_Table_Humaninput.ContainsKey(sTableName_Trimed))
                 {
-                    this.dictionary_TableHumaninput[sTableName_Trimed] = o_Table;
+                    this.dictionary_Table_Humaninput[sTableName_Trimed] = o_Table;
                 }
                 else
                 {
@@ -447,16 +447,16 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private Dictionary<string, TableHumaninput> dictionary_TableHumaninput;
+        private Dictionary<string, Table_Humaninput> dictionary_Table_Humaninput;
 
         /// <summary>
         /// ユーザー定義テーブルの、名前付き一覧。
         /// </summary>
-        public Dictionary<string, TableHumaninput> Dictionary_TableHumaninput
+        public Dictionary<string, Table_Humaninput> Dictionary_Table_Humaninput
         {
             get
             {
-                return this.dictionary_TableHumaninput;
+                return this.dictionary_Table_Humaninput;
             }
         }
 

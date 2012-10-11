@@ -46,7 +46,7 @@ namespace Xenon.Table
                     goto gt_Error_DBNull;
                 }
 
-                ValueHumaninput o_CellValue = (ValueHumaninput)obj;
+                Value_Humaninput o_CellValue = (Value_Humaninput)obj;
 
                 // （５）キーが空欄で、検索ヒット必須でなければ、無視します。【int型フィールドの場合】
                 if (Int_HumaninputImpl.IsSpaces(o_CellValue))

@@ -16,7 +16,7 @@ namespace Xenon.Table
     /// 
     /// 他の Readメソッドの説明文参照。
     /// </summary>
-    public class CsvTo_TableHumaninputImpl
+    public class CsvTo_Table_HumaninputImpl
     {
 
 
@@ -43,9 +43,9 @@ namespace Xenon.Table
         /// <param name="isRequired">テーブルが無かった場合、エラーとするなら真。</param>
         /// <param name="out_sErrorMsg"></param>
         /// <returns></returns>
-        public TableHumaninput Read(
+        public Table_Humaninput Read(
             Request_ReadsTable request_ReadsTable,
-            Format_TableHumaninput xenonTableFormat_puts,
+            Format_Table_Humaninput xenonTableFormat_puts,
             bool isRequired,
             Log_Reports log_Reports
             )
@@ -55,7 +55,7 @@ namespace Xenon.Table
 
 
 
-            TableHumaninput xenonTable_Result;
+            Table_Humaninput xenonTable_Result;
 
             string filepathabsolute_Csv = request_ReadsTable.Expression_Filepath.Execute4_OnExpressionString(
                 EnumHitcount.Unconstraint, log_Reports);
@@ -70,7 +70,7 @@ namespace Xenon.Table
 
             // CSVテキスト
             Exception error_Excp;
-            if (CsvTo_TableHumaninputImpl.S_WRITE_ONLY!=request_ReadsTable.Use)
+            if (CsvTo_Table_HumaninputImpl.S_WRITE_ONLY!=request_ReadsTable.Use)
             {
                 // 書き出し専用でなければ。
                 // ファイル読取を実行します。
@@ -315,15 +315,15 @@ namespace Xenon.Table
         /// <param name="xenonTableFormat_puts"></param>
         /// <param name="out_SErrorMsg"></param>
         /// <returns></returns>
-        public TableHumaninput Read(
+        public Table_Humaninput Read(
             string string_Csv,
             Request_ReadsTable request_ReadsTable,
-            Format_TableHumaninput xenonTableFormat_puts,
+            Format_Table_Humaninput xenonTableFormat_puts,
             Log_Reports log_Reports
             )
         {
 
-            TableHumaninput result;
+            Table_Humaninput result;
 
             if (xenonTableFormat_puts.IsRowcolumnreverse)
             {
@@ -337,9 +337,9 @@ namespace Xenon.Table
                     // 型定義のレコードがなく、全てのフィールドがint型のCSVテーブルを読み込みます。
                     //
 
-                    CsvTo_TableHumaninput_ReverseAllIntsImpl csvTo = new CsvTo_TableHumaninput_ReverseAllIntsImpl();
+                    CsvTo_Table_Humaninput_ReverseAllIntsImpl csvTo = new CsvTo_Table_Humaninput_ReverseAllIntsImpl();
 
-                    TableHumaninput xenonTable = csvTo.Read(
+                    Table_Humaninput xenonTable = csvTo.Read(
                         string_Csv,
                         request_ReadsTable,
                         xenonTableFormat_puts,
@@ -356,9 +356,9 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    CsvTo_TableHumaninput_ReverseImpl csvTo = new CsvTo_TableHumaninput_ReverseImpl();
+                    CsvTo_Table_Humaninput_ReverseImpl csvTo = new CsvTo_Table_Humaninput_ReverseImpl();
 
-                    TableHumaninput xenonTable = csvTo.Read(
+                    Table_Humaninput xenonTable = csvTo.Read(
                         string_Csv,
                         request_ReadsTable,
                         xenonTableFormat_puts,
@@ -380,9 +380,9 @@ namespace Xenon.Table
                 //
                 // 縦、横そのままのCSVテーブルを読み込みます。
                 //
-                CsvTo_TableHumaninput_RegularImpl csvTo = new CsvTo_TableHumaninput_RegularImpl();
+                CsvTo_Table_Humaninput_RegularImpl csvTo = new CsvTo_Table_Humaninput_RegularImpl();
 
-                TableHumaninput xenonTable = csvTo.Read(
+                Table_Humaninput xenonTable = csvTo.Read(
                     string_Csv,
                     request_ReadsTable,
                     xenonTableFormat_puts,

@@ -25,7 +25,7 @@ namespace Xenon.Middle
         ///
         /// </summary>
         void Perform(
-            List<TableHumaninput> oList_Table_Form,
+            List<Table_Humaninput> oList_Table_Form,
             Expression_Node_Filepath ec_Fopath_Forms,
             Configurationtree_Node thisAction_Conf,
             Form form,

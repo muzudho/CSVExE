@@ -43,21 +43,21 @@ namespace Xenon.Table
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sName_Field"></param>
-        /// <param name="value_XenonTable"></param>
+        /// <param name="namelist_Field"></param>
+        /// <param name="value_TableH"></param>
         /// <param name="log_Reports"></param>
         public void AddField(
-            string sName_Field,
-            TableHumaninput value_XenonTable,
+            string namelist_Field,
+            Table_Humaninput value_TableH,
             Log_Reports log_Reports
             )
         {
-            List<string> sList_FieldName = new CsvTo_ListImpl().Read(sName_Field);
-            List<Fielddefinition> list_FieldDef;
+            List<string> list_NameField = new CsvTo_ListImpl().Read(namelist_Field);
+            RecordFielddefinition recordFielddefinition;
 
-             bool bHit = value_XenonTable.TryGetFieldDefinitionByName(
-                  out list_FieldDef,
-                sList_FieldName,
+             bool bHit = value_TableH.TryGetFieldDefinitionByName(
+                out recordFielddefinition,
+                list_NameField,
                 true,
                 log_Reports
                 );
@@ -68,13 +68,13 @@ namespace Xenon.Table
             }
 
             int nIx = 0;
-            foreach (Fielddefinition o_FldDef in list_FieldDef)
+            recordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 this.list_FieldKeies.Add(
-                    new Fieldkey(sList_FieldName[nIx], o_FldDef.GetTypeString(), o_FldDef.Comment));
+                    new Fieldkey(list_NameField[nIx], fielddefinition.GetTypeString(), fielddefinition.Comment));
 
                 nIx++;
-            }
+            }, log_Reports);
 
 
             //
@@ -90,7 +90,7 @@ namespace Xenon.Table
         public void Perform(
             ref Builder_TexttemplateP1pImpl ref_FormatString,
             DataRowView dataRowView,
-            TableHumaninput xenonTable,
+            Table_Humaninput xenonTable,
             Log_Reports log_Reports
             )
         {

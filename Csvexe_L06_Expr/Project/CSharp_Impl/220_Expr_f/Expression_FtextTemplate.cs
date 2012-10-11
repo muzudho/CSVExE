@@ -171,7 +171,7 @@ namespace Xenon.Expr
                 // （１）レコードセットの絞り込み。
                 RecordSet dst_Rs;
                 {
-                    TableHumaninput o_Tbl = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(
+                    Table_Humaninput o_Tbl = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(
                         selectSt.Expression_From,//これが空文字列の場合がある？？
                         true,
                         log_Reports
@@ -191,7 +191,7 @@ namespace Xenon.Expr
                         goto gt_Error_EmptyTableName;
                     }
 
-                    TableHumaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTableHumaninputByName(selectSt.Expression_From, true, log_Reports);
+                    Table_Humaninput o_Table = this.Owner_MemoryApplication.MemoryTables.GetTable_HumaninputByName(selectSt.Expression_From, true, log_Reports);
 
                     if (null == o_Table)
                     {
@@ -200,9 +200,9 @@ namespace Xenon.Expr
 
 
 
-                    bool bExpectedValueRequired;
+                    bool isRequired_ExpectedValue;
                     {
-                        bool parseSuccessful = bool.TryParse(selectSt.Required, out bExpectedValueRequired);
+                        bool parseSuccessful = bool.TryParse(selectSt.Required, out isRequired_ExpectedValue);
                     }
 
 
@@ -213,35 +213,41 @@ namespace Xenon.Expr
                     //
                     //
                     //
-                    string sKeyFieldName;
-                    Fielddefinition o_KeyFldDef;
-                    string sExpectedValue;
+                    string name_KeyField;
+                    Fielddefinition fielddefinition_Key;
+                    string value_Expected;
                     P2_ReccondImpl sel2 = new P2_ReccondImpl();
                     sel2.GetFirstAwhrReccond(
-                        out sKeyFieldName,
-                        out o_KeyFldDef,
-                        out sExpectedValue,
+                        out name_KeyField,
+                        out fielddefinition_Key,
+                        out value_Expected,
                         selectSt.List_Recordcondition,
                         o_Table,
                         log_Reports
                         );
+
                     List<DataRow> dst_Row = new List<DataRow>();
 
-                    SelectPerformerImpl sp = new SelectPerformerImpl();
-                    sp.Select(
-                        out dst_Row,
-                        sKeyFieldName,
-                        sExpectedValue,
-                        bExpectedValueRequired,
-                        o_KeyFldDef,
-                        o_Table.DataTable,
-                        parent_Configurationtree_Node_Query,
-                        log_Reports
-                        );
+                    if (log_Reports.Successful)
+                    {
+                        SelectPerformerImpl sp = new SelectPerformerImpl();
+                        sp.Select(
+                            out dst_Row,
+                            name_KeyField,
+                            value_Expected,
+                            isRequired_ExpectedValue,
+                            fielddefinition_Key,
+                            o_Table.DataTable,
+                            parent_Configurationtree_Node_Query,
+                            log_Reports
+                            );
+                    }
 
+                    if (log_Reports.Successful)
+                    {
+                        dst_Rs.AddList(dst_Row, log_Reports);
+                    }
 
-
-                    dst_Rs.AddList(dst_Row, log_Reports);
                     if (!log_Reports.Successful)
                     {
                         // 既エラー。

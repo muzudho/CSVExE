@@ -181,7 +181,7 @@ namespace Xenon.Controls
 
                 DataRowView dataRowView = (DataRowView)this.Items[nRow];
 
-                ValueHumaninput o_FldValue = null;//フィールド
+                Value_Humaninput o_FldValue = null;//フィールド
                 {
                     // todo: フィールド値
                     if (dataRowView.DataView.Table.Columns.Contains(sName_KeyFld))
@@ -213,7 +213,7 @@ namespace Xenon.Controls
                     }
                 }
 
-                ValueHumaninput o_ExpectedValue = null;
+                Value_Humaninput o_ExpectedValue = null;
                 {
                     //
                     // oFldValue と同じ型の CellData を作成。
@@ -235,7 +235,7 @@ namespace Xenon.Controls
                         goto gt_EndMethod;
                     }
 
-                    o_ExpectedValue.Humaninput = ec_ExpectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    o_ExpectedValue.Text = ec_ExpectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 }
 
                 if (log_Reports.Successful)
@@ -613,7 +613,7 @@ namespace Xenon.Controls
 
         //────────────────────────────────────────
 
-        private TableHumaninput tableHumaninput_Datasource;
+        private Table_Humaninput tableHumaninput_Datasource;
 
         /// <summary>
         /// このリストボックスのデータソースを、データテーブルから取っている場合、
@@ -621,7 +621,7 @@ namespace Xenon.Controls
         /// 
         /// Xn_L11_NorenImpl:NorenListboxUtil.cs:NorenListboxUtil.BindTableToDataSourceでsetを使用。
         /// </summary>
-        public TableHumaninput TableHumaninput_Datasource
+        public Table_Humaninput Table_Humaninput_Datasource
         {
             set
             {

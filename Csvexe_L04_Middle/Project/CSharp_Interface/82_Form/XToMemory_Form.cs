@@ -26,7 +26,7 @@ namespace Xenon.Middle
         /// </summary>
         void LoadUserformconfigFile(
             TableUserformconfig ufoConfig,
-            TableHumaninput xenonTable_Form,
+            Table_Humaninput xenonTable_Form,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             );

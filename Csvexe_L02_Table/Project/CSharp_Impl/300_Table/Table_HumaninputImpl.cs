@@ -15,7 +15,7 @@ namespace Xenon.Table
     /// 
     /// フィールドの型定義と、0～複数件のレコードを持ちます。
     /// </summary>
-    public class Table_HumaninputImpl : Configurationtree_NodeImpl, TableHumaninput
+    public class Table_HumaninputImpl : Configurationtree_NodeImpl, Table_Humaninput
     {
 
 
@@ -27,15 +27,14 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="e_Fpath_ConfigStack"></param>
-        public Table_HumaninputImpl(string name_Table, Expression_Node_Filepath ec_Fpath_ConfigStack)
-            : base(name_Table, ec_Fpath_ConfigStack.Cur_Configurationtree)//"ノード名未指定"
+        public Table_HumaninputImpl(string name_Table, Expression_Node_Filepath ec_Fpath_ConfigStack, Configurationtree_Node cur_Conf)
+            : base(name_Table, cur_Conf)//"ノード名未指定"
         {
             this.expression_Filepath_ConfigStack = ec_Fpath_ConfigStack;
 
             this.dataTable = new DataTable();
             this.name_Table = name_Table;
-            this.xenonTableFormat = new Format_TableHumaninputImpl();
-            this.list_Fielddefinition = new List<Fielddefinition>();
+            this.format_Table_Humaninput = new Format_Table_HumaninputImpl();
         }
 
         //────────────────────────────────────────
@@ -43,7 +42,7 @@ namespace Xenon.Table
         /// <summary>
         /// 設定された型リストで、テーブルの構造を作成します。
         /// </summary>
-        public void CreateTable(List<Fielddefinition> list_NewFielddef, Log_Reports log_Reports)
+        public void CreateTable(RecordFielddefinition recordFielddefinition_New, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_Table.Name_Library, this, "CreateTable",log_Reports);
@@ -51,51 +50,53 @@ namespace Xenon.Table
             //
 
             this.dataTable.Clear();
-            this.list_Fielddefinition = list_NewFielddef;
+            this.recordFielddefinition_ = recordFielddefinition_New;
 
             Exception error_Excp;
-            foreach (FielddefinitionImpl newFielddef in list_NewFielddef)
+            recordFielddefinition_New.ForEach(delegate(Fielddefinition fielddefinition_New, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 // 列の型を決めます。
                 try
                 {
-                    this.dataTable.Columns.Add(newFielddef.Name_Trimupper, newFielddef.Type);
+                    this.dataTable.Columns.Add(fielddefinition_New.Name_Trimupper, fielddefinition_New.Type);
                 }
                 catch (DuplicateNameException e)
                 {
                     error_Excp = e;
                     goto gt_Error_Duplicated;
                 }
-            }
 
+                goto gt_EndInnermethod;
+                //
+                #region 異常系
+            //────────────────────────────────────────
+            gt_Error_Duplicated:
+                if (log_Reports.CanCreateReport)
+                {
+                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                    r.SetTitle("▲エラー111！", log_Method);
+
+                    Log_TextIndented s = new Log_TextIndentedImpl();
+
+                    s.Append("列の名前が重複しています。");
+                    s.Append(error_Excp.Message);
+                    s.Append(Environment.NewLine);
+                    s.Append("テーブル名＝[");
+                    s.Append(this.dataTable.TableName);
+                    s.Append("]");
+
+                    r.Message = s.ToString();
+                    log_Reports.EndCreateReport();
+                }
+            goto gt_EndInnermethod;
+            //────────────────────────────────────────
+                #endregion
+            //
+            gt_EndInnermethod:
+                ;
+            }, log_Reports);
 
             goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        gt_Error_Duplicated:
-            if (log_Reports.CanCreateReport)
-            {
-                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                r.SetTitle("▲エラー111！", log_Method);
-
-                Log_TextIndented s = new Log_TextIndentedImpl();
-
-                s.Append("列の名前が重複しています。");
-                s.Append(error_Excp.Message);
-                s.Append(Environment.NewLine);
-                s.Append("テーブル名＝[");
-                s.Append(this.dataTable.TableName);
-                s.Append("]");
-
-                r.Message = s.ToString();
-                log_Reports.EndCreateReport();
-            }
-            goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
@@ -153,8 +154,10 @@ namespace Xenon.Table
         /// 空行を作成します。
         /// </summary>
         /// <returns></returns>
-        public DataRow CreateNewRecord(out string sErrorMsg)
+        public DataRow CreateNewRecord( Log_Reports log_Reports)
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "CreateNewRecord", log_Reports);
 
             // 新しいレコードを1つ作ります。
             DataRow newDataRow = this.DataTable.NewRow();
@@ -163,8 +166,7 @@ namespace Xenon.Table
             // ひとまず、全ての列に有効なインスタンスを設定します。
 
             int nColumnIndex = 0;
-            sErrorMsg = "";
-            foreach (FielddefinitionImpl o_FldDef in this.List_Fielddefinition)
+            this.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 // 列の型を調べます。
 
@@ -173,7 +175,7 @@ namespace Xenon.Table
                 // セルのソースヒント名
                 //
                 string sSourceHintNameOfCell;
-                if ("" == o_FldDef.Name_Trimupper)
+                if ("" == fielddefinition.Name_Trimupper)
                 {
                     // 名無しフィールド
 
@@ -186,16 +188,16 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    sSourceHintNameOfCell = o_FldDef.Name_Humaninput;
+                    sSourceHintNameOfCell = fielddefinition.Name_Humaninput;
                 }
 
-                if (o_FldDef.Type == typeof(String_HumaninputImpl))
+                if (fielddefinition.Type == typeof(String_HumaninputImpl))
                 {
 
                     String_HumaninputImpl stringCellData = new String_HumaninputImpl(sSourceHintNameOfCell);
-                    stringCellData.Humaninput = "";
+                    stringCellData.Text = "";
 
-                    if ("" == o_FldDef.Name_Trimupper)
+                    if ("" == fielddefinition.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -203,15 +205,15 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.Name_Trimupper] = stringCellData;
+                        newDataRow[fielddefinition.Name_Trimupper] = stringCellData;
                     }
                 }
-                else if (o_FldDef.Type == typeof(Int_HumaninputImpl))
+                else if (fielddefinition.Type == typeof(Int_HumaninputImpl))
                 {
                     Int_HumaninputImpl intCellData = new Int_HumaninputImpl(sSourceHintNameOfCell);
-                    intCellData.Humaninput = "";
+                    intCellData.Text = "";
 
-                    if ("" == o_FldDef.Name_Trimupper)
+                    if ("" == fielddefinition.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -219,15 +221,15 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.Name_Trimupper] = intCellData;
+                        newDataRow[fielddefinition.Name_Trimupper] = intCellData;
                     }
                 }
-                else if (o_FldDef.Type == typeof(Bool_HumaninputImpl))
+                else if (fielddefinition.Type == typeof(Bool_HumaninputImpl))
                 {
                     Bool_HumaninputImpl boolCellData = new Bool_HumaninputImpl(sSourceHintNameOfCell);
-                    boolCellData.Humaninput = "";
+                    boolCellData.Text = "";
 
-                    if ("" == o_FldDef.Name_Trimupper)
+                    if ("" == fielddefinition.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -235,22 +237,31 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.Name_Trimupper] = boolCellData;
+                        newDataRow[fielddefinition.Name_Trimupper] = boolCellData;
                     }
                 }
                 else
                 {
-                    Log_TextIndented t = new Log_TextIndentedImpl();
-                    t.Append("▲エラー431！(" + Info_Table.Name_Library + ")");
-                    t.Newline();
-                    t.Append("この列は、未定義の型です。[" + o_FldDef.Type.Name + "]");
-                    sErrorMsg = t.ToString();
+                    // 正常（警告は出したい）
+
+                    if (log_Reports.CanCreateReport)
+                    {
+                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Warning);
+                        r.SetTitle("▲エラー431！", log_Method);
+
+                        Log_TextIndented s = new Log_TextIndentedImpl();
+                        s.Newline();
+                        s.Append("この列は、未定義の型です。[" + fielddefinition.Type.Name + "]");
+                        r.Message = s.ToString();
+
+                        log_Reports.EndCreateReport();
+                    }
 
                     // 文字列型を入れる。
                     String_HumaninputImpl stringCellData = new String_HumaninputImpl(sSourceHintNameOfCell);
-                    stringCellData.Humaninput = "";
+                    stringCellData.Text = "";
 
-                    if ("" == o_FldDef.Name_Trimupper)
+                    if ("" == fielddefinition.Name_Trimupper)
                     {
                         // 名無しフィールド
                         // フィールド名がないので、インデックスで指定します。
@@ -258,20 +269,18 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        newDataRow[o_FldDef.Name_Trimupper] = stringCellData;
+                        newDataRow[fielddefinition.Name_Trimupper] = stringCellData;
                     }
+
                 }
 
                 nColumnIndex++;
-            }
+            }, log_Reports);
 
             goto gt_EndMethod;
-
-            //
-        //
-        //
         //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return newDataRow;
         }
 
@@ -286,7 +295,7 @@ namespace Xenon.Table
         /// <param name="fldDefList">列定義は絞りこまれている場合もあります。</param>
         /// <param name="d_Logging_OrNull"></param>
         public void AddRecordList(
-            List<List<string>> rows, List<Fielddefinition> list_fielddef, Log_Reports log_Reports)
+            List<List<string>> rows, RecordFielddefinition recordFielddefinition, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_Table.Name_Library, this, "AddRecordList",log_Reports);
@@ -313,13 +322,13 @@ namespace Xenon.Table
 
                 // TODO:これで合ってる？　入力テーブルの行数と、列定義の列数、小さい方に合わせます。（2012-02-11/仕様変更）
                 int nEndover;
-                if (sList_Column.Count < list_fielddef.Count)
+                if (sList_Column.Count < recordFielddefinition.Count)
                 {
                     nEndover = sList_Column.Count;
                 }
                 else
                 {
-                    nEndover = list_fielddef.Count;
+                    nEndover = recordFielddefinition.Count;
                 }
 
                 // 行の列数ではなく、列定義の列数でループを回します。
@@ -331,13 +340,13 @@ namespace Xenon.Table
                 //for (int nCIx = 0; nCIx < sRow.Count; nCIx++)
                 {
                     // 引き渡されたデータを、行オブジェクトにセット
-                    string sColumnName_TrimUpper = list_fielddef[nCIx].Name_Trimupper;
+                    string sColumnName_TrimUpper = recordFielddefinition.ValueAt(nCIx).Name_Trimupper;
                     if ("" == sColumnName_TrimUpper)
                     {
                         // 列定義になく、データ領域に溢れていたので追加された列か、
                         // 列名なしの列。
 
-                        if (list_fielddef.Count <= nCIx)
+                        if (recordFielddefinition.Count <= nCIx)
                         {
                             // フィールドを追加。
                             // 列名：　空文字列
@@ -363,7 +372,7 @@ namespace Xenon.Table
                         // 列名がないので、列インデックスで指定して、データを追加。
                         // 値の型：OValue_StringImpl
                         String_HumaninputImpl o_StringCellData = new String_HumaninputImpl(sSourceHintNameOfCell);
-                        o_StringCellData.Humaninput = sList_Column[nCIx];
+                        o_StringCellData.Text = sList_Column[nCIx];
                         dataRow[nCIx] = o_StringCellData;
                     }
                     else
@@ -377,10 +386,10 @@ namespace Xenon.Table
                             goto gt_Error_ColumnIndexOver;
                         }
                         // 値を格納。
-                        ValueHumaninput o_Value = Utility_Row.ConfigurationTo_Field(//TODO:
+                        Value_Humaninput o_Value = Utility_Row.ConfigurationTo_Field(//TODO:
                             nCIx,
                             sList_Column[nCIx],
-                            list_fielddef,
+                            recordFielddefinition,
                             log_Reports
                             );
 
@@ -423,7 +432,7 @@ namespace Xenon.Table
                 s.Append("] 指定した列インデックス=[");
                 s.Append(err_NCIx);
                 s.Append("] フィールド定義の個数=[");
-                s.Append(list_fielddef.Count);
+                s.Append(recordFielddefinition.Count);
                 s.Append("]");
                 s.Newline();
 
@@ -439,29 +448,10 @@ namespace Xenon.Table
 
                 s.Append("──────────────────────────────定義に存在する列名");
                 s.Newline();
-                foreach (FielddefinitionImpl o_FldDef in list_fielddef)
-                {
-                    s.Append("定義列名＝[" + o_FldDef.Name_Humaninput + "]");
-                    s.Newline();
-                }
+                s.Append("定義列名＝[" + recordFielddefinition.ToString_DebugDump() + "]");
+                s.Newline();
                 s.Append("──────────────────────────────");
                 s.Newline();
-
-                //s.Append("──────────────────────────────実データ");
-                //s.Newline();
-                //foreach (List<string> fields in rows)
-                //{
-                //    foreach (string sCell in fields)
-                //    {
-                //        s.Append("この行の最初の１個[");
-                //        s.Append(sCell);
-                //        s.Append("]");
-                //        break;
-                //    }
-                //    s.Newline();
-                //}
-                //s.Append("──────────────────────────────");
-                //s.Newline();
 
                 // ヒント
 
@@ -493,11 +483,8 @@ namespace Xenon.Table
 
                 s.Append("──────────────────────────────定義に存在する列名");
                 s.Newline();
-                foreach (FielddefinitionImpl o_FldDef in list_fielddef)
-                {
-                    s.Append("定義列名＝[" + o_FldDef.Name_Humaninput + "]");
-                    s.Newline();
-                }
+                s.Append("定義列名＝[" + recordFielddefinition.ToString_DebugDump() + "]");
+                s.Newline();
                 s.Append("──────────────────────────────");
                 s.Newline();
 
@@ -713,8 +700,8 @@ namespace Xenon.Table
         /// <param name="isRequired">該当なしの時に例外を投げるなら真。</param>
         /// <returns>該当なし、エラーの場合偽。</returns>
         public bool TryGetFieldDefinitionByName(
-            out List<Fielddefinition> list_Fielddef,
-            List<string> list_NameExpectedField,
+            out RecordFielddefinition out_RecordFielddefinition3,
+            List<string> list_NameField_Expected,
             bool isRequired,
             Log_Reports log_Reports
             )
@@ -722,73 +709,78 @@ namespace Xenon.Table
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Table.Name_Library, this, "TryGetFieldDefinitionByName",log_Reports);
 
-            bool bResult = true;
-            list_Fielddef = new List<Fielddefinition>();
+            bool isResult = true;
+            RecordFielddefinition recordFielddefinition1 = new RecordFielddefinitionImpl();
 
-            if (list_NameExpectedField.Count < 1)
+            if (list_NameField_Expected.Count < 1)
             {
                 // エラー。
                 goto gt_Error_ParamNothingField;
             }
 
 
-            string err_SExpectedFieldName;
-            int nCount = 0;
-            foreach (string sExpectedFieldName in list_NameExpectedField)
+            string error_NameField_Expected;
+            int count = 0;
+            foreach (string nameField_Expected in list_NameField_Expected)
             {
                 //
                 // TODO:現状、「ID,NAME」などのカンマ区切りに対応できていない？
                 //
 
-                string sExpectedFieldNameUpper = sExpectedFieldName.ToUpper();
+                string name_Field_ExpectedUpper = nameField_Expected.ToUpper();
 
-                foreach (FielddefinitionImpl fieldDefinition in this.List_Fielddefinition)
+                bool isHit2 = false;
+                this.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition,ref bool isBreak2, Log_Reports log_Reports2)
                 {
-                    if (fieldDefinition.Name_Trimupper == sExpectedFieldNameUpper)
+                    if (fielddefinition.Name_Trimupper == name_Field_ExpectedUpper)
                     {
-                        list_Fielddef.Add(fieldDefinition);
-                        nCount++;
+                        //ヒット
+                        isHit2 = true;
+                        recordFielddefinition1.Add(fielddefinition);
+                        count++;
+                        isBreak2 = true;
                         goto gt_NextField;
                     }
-                }
 
+                gt_NextField:
+                    ;
+                }, log_Reports);
 
-                // 一致するものが無かった場合。
-                list_Fielddef.Add(null);
-                bResult = false;
-
-                if (isRequired)
+                if (!isHit2)
                 {
-                    //
-                    // エラー。
-                    err_SExpectedFieldName = sExpectedFieldName;
-                    goto gt_Error_NothingField;
+                    // 一致するものが無かった場合。
+                    recordFielddefinition1.Add(new FielddefinitionImpl("<null>", typeof(String_HumaninputImpl)));//桁合わせ。
+                    isResult = false;
+
+                    if (isRequired)
+                    {
+                        // エラー。
+                        error_NameField_Expected = nameField_Expected;
+                        goto gt_Error_NothingField1;
+                    }
+
+                    // 正常
+                    goto gt_EndMethod;
                 }
-
-                // 正常
-                goto gt_EndMethod;
-
-            gt_NextField:
-                ;
             }
             // 正常
 
-            if (nCount < 1)
+            if (count < 1)
             {
-                bResult = false;
+                isResult = false;
 
                 if (isRequired)
                 {
                     // エラー。
                     StringBuilder s = new StringBuilder();
-                    foreach (string sFld in list_NameExpectedField)
+                    foreach (string sFld in list_NameField_Expected)
                     {
                         s.Append("[");
                         s.Append(sFld);
                         s.Append("]");
                     }
-                    err_SExpectedFieldName = s.ToString();
-                    goto gt_Error_NothingField;
+                    error_NameField_Expected = s.ToString();
+                    goto gt_Error_NothingField2;
                 }
 
             }
@@ -801,7 +793,7 @@ namespace Xenon.Table
         //────────────────────────────────────────
         gt_Error_ParamNothingField:
             {
-                bResult = false;
+                isResult = false;
 
                 if (log_Reports.CanCreateReport)
                 {
@@ -812,7 +804,7 @@ namespace Xenon.Table
                     s.Append("[");
                     s.Append(this.Name);
                     s.Append("]テーブルの列定義を調べようとしましたが、列名が指定されていません。sExpectedFieldNameList.Count＝[");
-                    s.Append(list_NameExpectedField.Count);
+                    s.Append(list_NameField_Expected.Count);
                     s.Append("]");
 
                     // ヒント
@@ -823,28 +815,63 @@ namespace Xenon.Table
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
-        gt_Error_NothingField:
+        gt_Error_NothingField1:
+            isResult = false;
+            if (log_Reports.CanCreateReport)
             {
-                bResult = false;
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー131！", log_Method);
 
-                if (log_Reports.CanCreateReport)
-                {
-                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー122！", log_Method);
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("[");
+                s.Append(this.Name);
+                s.Append("]テーブルに、[");
 
-                    Log_TextIndented s = new Log_TextIndentedImpl();
-                    s.Append("[");
-                    s.Append(this.Name);
-                    s.Append("]テーブルに、[");
+                s.Append(error_NameField_Expected);
+                s.Append("]フィールドは存在しませんでした。");
+                s.Newline();
+                s.Newline();
 
-                    s.Append(err_SExpectedFieldName);
-                    s.Append("]フィールドは存在しませんでした。");
+                // ヒント
+                s.Append("──────────定義されている列のリスト");
+                s.Newline();
+                s.Append(recordFielddefinition1.ToString_DebugDump());
+                s.Newline();
+                s.Append("──────────");
+                s.Newline();
 
-                    // ヒント
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+        gt_Error_NothingField2:
+            isResult = false;
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー132！", log_Method);
 
-                    r.Message = s.ToString();
-                    log_Reports.EndCreateReport();
-                }
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("[");
+                s.Append(this.Name);
+                s.Append("]テーブルに、[");
+
+                s.Append(error_NameField_Expected);
+                s.Append("]フィールドは存在しませんでした。");
+                s.Newline();
+                s.Newline();
+
+                // ヒント
+                s.Append("──────────定義されている列のリスト");
+                s.Newline();
+                s.Append(recordFielddefinition1.ToString_DebugDump());
+                s.Newline();
+                s.Append("──────────");
+                s.Newline();
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
@@ -852,8 +879,9 @@ namespace Xenon.Table
         //
         //
         gt_EndMethod:
+            out_RecordFielddefinition3 = recordFielddefinition1;
             log_Method.EndMethod(log_Reports);
-            return bResult;
+            return isResult;
         }
 
         //────────────────────────────────────────
@@ -916,7 +944,7 @@ namespace Xenon.Table
                     {
                         // NO列があれば
 
-                        ValueHumaninput cellData = (ValueHumaninput)dataRow["NO"];
+                        Value_Humaninput cellData = (Value_Humaninput)dataRow["NO"];
 
                         if (cellData is Int_HumaninputImpl)
                         {
@@ -1058,7 +1086,7 @@ namespace Xenon.Table
                 foreach (DataRow dataRow in this.DataTable.Rows)
                 {
 
-                    ValueHumaninput cellData = (ValueHumaninput)dataRow[name_Field];
+                    Value_Humaninput cellData = (Value_Humaninput)dataRow[name_Field];
 
                     if (cellData is Int_HumaninputImpl)
                     {
@@ -1223,7 +1251,7 @@ namespace Xenon.Table
                 foreach (DataRow dataRow in this.DataTable.Rows)
                 {
 
-                    ValueHumaninput cellData = (ValueHumaninput)dataRow[name_Field];
+                    Value_Humaninput cellData = (Value_Humaninput)dataRow[name_Field];
 
                     if (cellData is String_HumaninputImpl)
                     {
@@ -1323,24 +1351,19 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        /// <summary>
-        /// フィールドの型のデバッグ情報です。
-        /// </summary>
-        /// <returns></returns>
-        public string DebugFields()
+        public void ForEach_Datapart(DELEGATE_Records delegate_Records, Log_Reports log_Reports )
         {
-            Log_TextIndented t = new Log_TextIndentedImpl();
+            bool isBreak = false;
 
-            foreach (FielddefinitionImpl fieldDefinition in list_Fielddefinition)
+            foreach (DataRow dataRow in this.DataTable.Rows)
             {
-                t.Append("[");
-                t.Append(fieldDefinition.Name_Humaninput);
-                t.Append(":");
-                t.Append(fieldDefinition.Type);
-                t.Append("]");
-            }
+                delegate_Records( new Record_HumaninputImpl( dataRow), ref isBreak, log_Reports);
 
-            return t.ToString();
+                if (isBreak)
+                {
+                    break;
+                }
+            }
         }
 
         //────────────────────────────────────────
@@ -1420,35 +1443,32 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private List<Fielddefinition> list_Fielddefinition;
+        private RecordFielddefinition recordFielddefinition_;
 
-        /// <summary>
-        /// フィールドの型定義。
-        /// </summary>
-        public List<Fielddefinition> List_Fielddefinition
+        public RecordFielddefinition RecordFielddefinition
         {
             get
             {
-                return list_Fielddefinition;
+                return this.recordFielddefinition_;
             }
         }
 
         //────────────────────────────────────────
 
-        private Format_TableHumaninput xenonTableFormat;
+        private Format_Table_Humaninput format_Table_Humaninput;
 
         /// <summary>
         /// テーブルの内容保存方法などの設定。
         /// </summary>
-        public Format_TableHumaninput Format_TableHumaninput
+        public Format_Table_Humaninput Format_Table_Humaninput
         {
             get
             {
-                return xenonTableFormat;
+                return format_Table_Humaninput;
             }
             set
             {
-                xenonTableFormat = value;
+                format_Table_Humaninput = value;
             }
         }
 

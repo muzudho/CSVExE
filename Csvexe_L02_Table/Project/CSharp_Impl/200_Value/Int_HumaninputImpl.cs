@@ -44,7 +44,7 @@ namespace Xenon.Table
             txt.Append("クラス");
 
             txt.AppendI(1, "humanInputString=[");
-            txt.Append(this.Humaninput);
+            txt.Append(this.Text);
             txt.Append("]");
 
             txt.AppendI(0, ">");
@@ -67,7 +67,7 @@ namespace Xenon.Table
             }
             else
             {
-                if (int.TryParse(this.Humaninput, out this.nValue_Int))
+                if (int.TryParse(this.Text, out this.nValue_Int))
                 {
                     nResult = this.nValue_Int;
                     bSuccess = true;
@@ -88,7 +88,7 @@ namespace Xenon.Table
         {
             if (data is Int_HumaninputImpl)
             {
-                return ((Int_HumaninputImpl)data).Humaninput;
+                return ((Int_HumaninputImpl)data).Text;
             }
 
             //
@@ -208,7 +208,7 @@ namespace Xenon.Table
                 bResult = false;
                 goto gt_Error_Null;
             }
-            else if (!(data is ValueHumaninput))
+            else if (!(data is Value_Humaninput))
             {
                 // エラー
                 nValue_Out = 0;//ゴミ値
@@ -239,7 +239,7 @@ namespace Xenon.Table
                 s.Append("　altValue引数には、int型の値を指定してください。");
                 s.Append(Environment.NewLine);
                 s.Append("　　intセル値=[");
-                s.Append(err_IntCellData.Humaninput);
+                s.Append(err_IntCellData.Text);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -266,7 +266,7 @@ namespace Xenon.Table
                 s.Append("　セルに、int型の値を入れてください。空欄にしないでください。");
                 s.Append(Environment.NewLine);
                 s.Append("　　intセル値=[");
-                s.Append(err_IntCellData.Humaninput);
+                s.Append(err_IntCellData.Text);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -291,7 +291,7 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("　int型に変換できませんでした。[");
-                s.Append(err_IntCellData.Humaninput);
+                s.Append(err_IntCellData.Text);
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -350,7 +350,7 @@ namespace Xenon.Table
 
                 Log_TextIndentedImpl s = new Log_TextIndentedImpl();
                 s.Append("　指定の引数の値[");
-                s.Append(((ValueHumaninput)data).Humaninput);
+                s.Append(((Value_Humaninput)data).Text);
                 s.Append("]は、IntCellData型ではありませんでした。");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
@@ -406,7 +406,7 @@ namespace Xenon.Table
                 {
                     // どちらか片方でも非数値なら、文字列で判定
 
-                    return this.Humaninput == intCellData.Humaninput;
+                    return this.Text == intCellData.Text;
                 }
             }
 
@@ -442,7 +442,7 @@ namespace Xenon.Table
                 return ((Int_HumaninputImpl)data).bSpaced;
             }
 
-            throw new System.ArgumentException("指定の引数の値[" + ((ValueHumaninput)data).Humaninput + "]は、int型ではありませんでした。");
+            throw new System.ArgumentException("指定の引数の値[" + ((Value_Humaninput)data).Text + "]は、int型ではありませんでした。");
         }
 
         //────────────────────────────────────────
@@ -467,7 +467,7 @@ namespace Xenon.Table
             nValue_Int = nValue;
             bSpaced = false;
             isValidated = true;
-            this.Humaninput = nValue_Int.ToString();
+            this.Text = nValue_Int.ToString();
         }
 
         //────────────────────────────────────────        
@@ -475,7 +475,7 @@ namespace Xenon.Table
         /// <summary>
         /// 入力データそのままの形。
         /// </summary>
-        public override string Humaninput
+        public override string Text
         {
             set
             {
@@ -508,7 +508,7 @@ namespace Xenon.Table
 
         public override int GetHashCode()
         {
-            return this.Humaninput.GetHashCode();
+            return this.Text.GetHashCode();
         }
 
         //────────────────────────────────────────

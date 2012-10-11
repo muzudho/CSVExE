@@ -7,7 +7,7 @@ using Xenon.Syntax;
 
 namespace Xenon.Table
 {
-    abstract public class AbstractValue_HumaninputImpl : Configurationtree_NodeImpl, ValueHumaninput
+    abstract public class AbstractValue_HumaninputImpl : Configurationtree_NodeImpl, Value_Humaninput
     {
 
 
@@ -52,7 +52,7 @@ namespace Xenon.Table
         /// <summary>
         /// 入力データそのままの形。
         /// </summary>
-        public virtual string Humaninput
+        public virtual string Text
         {
             get
             {

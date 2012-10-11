@@ -237,7 +237,7 @@ namespace Xenon.Operating
                                                     numberObj.Text_Range = numberElm.Attributes.GetNamedItem("range").Value;
 
                                                     Int_HumaninputImpl oPriority = new Int_HumaninputImpl("!ハードコーディング_LoaderOfGlobalListConfigXml");
-                                                    oPriority.Humaninput = numberElm.Attributes.GetNamedItem("priority").Value;
+                                                    oPriority.Text = numberElm.Attributes.GetNamedItem("priority").Value;
                                                     numberObj.Priority = oPriority;
 
                                                     // 変数の連想配列に、変数番号オブジェクトを追加
