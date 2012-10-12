@@ -166,6 +166,200 @@ namespace Xenon.Syntax
         /// 
         /// </summary>
         /// <param name="e_Result">検索結果。</param>
+        /// <param name="name"></param>
+        /// <param name="bRequired"></param>
+        /// <param name="hits"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns>検索結果が1件以上あれば真。</returns>
+        public bool TrySelect(
+            out Expression_Node_String out_Result_Expr,
+            string name,
+            EnumHitcount hits,
+            Log_Reports log_Reports//bug:ヌルのことがある？
+            )
+        {
+            Log_Method log_Method = new Log_MethodImpl();
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TrySelect", log_Reports);
+            //
+
+            bool isHit;
+
+            if (this.dicExpression_Item.ContainsKey(name))
+            {
+                // ヒット。
+                out_Result_Expr = this.dicExpression_Item[name];
+                isHit = true;
+            }
+            else
+            {
+                // 一致なし。
+                isHit = false;
+
+                if (Utility_Hitcount.IsError_IfNoHit(hits,log_Reports))
+                {
+                    //エラーにする。
+                    out_Result_Expr = null;
+                    goto gt_Error_NotFoundOne;
+                }
+                else
+                {
+                    // 該当しないキーを指定され、値を取得できなかったが、エラー報告しない。
+                    Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl("!ハードコーディング_NStringDictionaryImpl#Get", null);
+                    out_Result_Expr = new Expression_Leaf_StringImpl(null, parent_Conf);
+                }
+            }
+
+            goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_NotFoundOne:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー141！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("指定された名前[");
+                s.Append(name);
+                s.Append("]は、“EDic(連想配列)”の中にありませんでした。");
+                s.Newline();
+
+                s.Append("┌────────┐キー一覧（個数＝[");
+                s.Append(this.dicExpression_Item.Count);
+                s.Append("]）");
+                s.Newline();
+                foreach (string sKey in this.dicExpression_Item.Keys)
+                {
+                    s.Append("[");
+                    s.Append(sKey);
+                    s.Append("]");
+                    s.Newline();
+                }
+                s.Append("└────────┘");
+                s.Newline();
+
+                // ヒント
+
+                if (null != this.Owner_Conf)
+                {
+                    s.Append("◆オーナー情報1");
+                    s.Newline();
+                    this.Owner_Conf.ToText_Content(s);
+                }
+
+                if (0 < this.dicExpression_Item.Count)
+                {
+                    foreach (Expression_Node_String e_Item in this.dicExpression_Item.Values)
+                    {
+                        Expression_Node_String e_Parent = e_Item.Parent_Expression;
+                        if (null!=e_Parent)//親要素が設定されていないことがある。
+                        {
+                            // 最初の１個。
+                            s.Append("◆最初の要素の親の情報。");
+                            s.Newline();
+                            e_Parent.ToText_Snapshot(s);
+                        }
+                        break;
+                    }
+                }
+
+                //
+                // オーナーの情報。
+                if (null != this.owner_Conf)//オーナー要素が設定されていないことがある。
+                {
+                    s.Newline();
+                    s.Newline();
+                    s.Append("◆オーナー情報2。");
+                    s.Newline();
+                    this.owner_Conf.ToText_Locationbreadcrumbs(s);
+                }
+
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
+        //
+        gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
+            return isHit;
+        }
+
+        public bool TrySelect(
+            out string out_Result,
+            string name,
+            EnumHitcount hits,
+            Log_Reports log_Reports
+            )
+        {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TrySelect", log_Reports);
+
+            bool isResult;
+            Expression_Node_String string_Expr;
+
+            bool isSuccessful = this.TrySelect(out string_Expr, name, hits, log_Reports);
+            if (isSuccessful)
+            {
+                out_Result = string_Expr.Execute4_OnExpressionString(hits, log_Reports);
+                isResult = true;
+            }
+            else
+            {
+                out_Result = "";
+                isResult = false;
+            }
+
+            //switch (hits)
+            //{
+            //    case EnumHitcount.One:
+            //        {
+            //            if (!isResult)
+            //            {
+            //                //エラー
+            //                goto gt_Error_NotFoundOne;
+            //            }
+            //        }
+            //        break;
+            //    //todo:他の制約も。
+            //}
+
+            goto gt_EndMethod;
+        //
+        //    #region 異常系
+        ////────────────────────────────────────────
+        //gt_Error_NotFoundOne:
+        //    if (log_Reports.CanCreateReport)
+        //    {
+        //        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+        //        r.SetTitle("▲エラー211！", log_Method);
+
+        //        StringBuilder s = new StringBuilder();
+        //        s.Append("必ず、１件を取得する指定でしたが、１件も存在しませんでした。キー=[");
+        //        s.Append(name);
+        //        s.Append("]");
+
+        //        // ヒント
+
+        //        r.Message = s.ToString();
+        //        log_Reports.EndCreateReport();
+        //    }
+        //    goto gt_EndMethod;
+        ////────────────────────────────────────────
+        //    #endregion
+        //
+        gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
+            return isResult;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e_Result">検索結果。</param>
         /// <param name="name_Attribute"></param>
         /// <param name="bRequired"></param>
         /// <param name="hits"></param>
@@ -183,163 +377,55 @@ namespace Xenon.Syntax
 
 
             string value;
-            bool result = this.TrySelect(out value, name_Attribute, hits, log_Reports);
+            bool isResult = this.TrySelect(out value, name_Attribute, hits, log_Reports);
 
 
             Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
             filepath_Conf.InitPath(value, log_Reports);
 
-
             out_Fliepath_Expr = new Expression_Node_FilepathImpl(filepath_Conf);
 
-
-            goto gt_EndMethod;
-
-        gt_EndMethod:
-            log_Method.EndMethod(log_Reports);
-            return result;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e_Result">検索結果。</param>
-        /// <param name="sName"></param>
-        /// <param name="bRequired"></param>
-        /// <param name="hits"></param>
-        /// <param name="log_Reports"></param>
-        /// <returns>検索結果が1件以上あれば真。</returns>
-        public bool TrySelect(
-            out Expression_Node_String ec_Result_Out,
-            string sName,
-            EnumHitcount hits,
-            Log_Reports log_Reports//bug:ヌルのことがある？
-            )
-        {
-            Log_Method log_Method = new Log_MethodImpl();
-            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "TrySelect", log_Reports);
-
-            //
-            //
-            //
-            //
-            bool bHit;
-
-            if (this.dicExpression_Item.ContainsKey(sName))
-            {
-                // ヒット。
-                ec_Result_Out = this.dicExpression_Item[sName];
-                bHit = true;
-            }
-            else
-            {
-                // 一致なし。
-
-                if (Utility_Hitcount.IsRequired(hits,log_Reports))
-                {
-                    if (log_Reports.CanCreateReport)
-                    {
-                        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                        r.SetTitle("▲エラー141！", log_Method);
-
-                        Log_TextIndented s = new Log_TextIndentedImpl();
-                        s.Append("指定された名前[");
-                        s.Append(sName);
-                        s.Append("]は、“EDic(連想配列)”の中にありませんでした。");
-                        s.Newline();
-
-                        s.Append("┌────────┐キー一覧（個数＝[");
-                        s.Append(this.dicExpression_Item.Count);
-                        s.Append("]）");
-                        s.Newline();
-                        foreach (string sKey in this.dicExpression_Item.Keys)
-                        {
-                            s.Append("[");
-                            s.Append(sKey);
-                            s.Append("]");
-                            s.Newline();
-                        }
-                        s.Append("└────────┘");
-                        s.Newline();
-
-                        // ヒント
-
-                        if (null != this.Owner_Conf)
-                        {
-                            s.Append("◆オーナー情報1");
-                            s.Newline();
-                            this.Owner_Conf.ToText_Content(s);
-                        }
-
-                        if (0 < this.dicExpression_Item.Count)
-                        {
-                            foreach (Expression_Node_String e_Item in this.dicExpression_Item.Values)
-                            {
-                                // 最初の１個。
-                                s.Append("◆最初の要素の親の情報。");
-                                s.Newline();
-                                Expression_Node_String e_Parent = e_Item.Parent_Expression;
-                                e_Parent.ToText_Snapshot(s);
-                                break;
-                            }
-                        }
-
-                        //
-                        // オーナーの情報。
-                        s.Newline();
-                        s.Newline();
-                        s.Append("◆オーナー情報2。");
-                        s.Newline();
-                        this.owner_Conf.ToText_Locationbreadcrumbs(s);
-
-
-                        r.Message = s.ToString();
-                        log_Reports.EndCreateReport();
-                    }
-
-                    ec_Result_Out = null;
-                    bHit = false;
-                }
-                else
-                {
-                    // 該当しないキーを指定され、値を取得できなかったが、エラー報告しない。
-                    Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl("!ハードコーディング_NStringDictionaryImpl#Get", null);
-                    ec_Result_Out = new Expression_Leaf_StringImpl(null, parent_Conf);
-                    bHit = false;
-                }
-            }
+            //switch (hits)
+            //{
+            //    case EnumHitcount.One:
+            //        {
+            //            if (!isResult)
+            //            {
+            //                //エラー
+            //                goto gt_Error_NotFoundOne;
+            //            }
+            //        }
+            //        break;
+            //    //todo:他の制約も。
+            //}
 
             goto gt_EndMethod;
         //
+        //    #region 異常系
+        ////────────────────────────────────────────
+        //gt_Error_NotFoundOne:
+        //    if (log_Reports.CanCreateReport)
+        //    {
+        //        Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+        //        r.SetTitle("▲エラー281！", log_Method);
+
+        //        StringBuilder s = new StringBuilder();
+        //        s.Append("必ず、１件を取得する指定でしたが、１件も存在しませんでした。キー=[");
+        //        s.Append(name_Attribute);
+        //        s.Append("]");
+
+        //        // ヒント
+
+        //        r.Message = s.ToString();
+        //        log_Reports.EndCreateReport();
+        //    }
+        //    goto gt_EndMethod;
+        ////────────────────────────────────────────
+        //    #endregion
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            return bHit;
-        }
-
-        public bool TrySelect(
-            out string sResult,
-            string sName,
-            EnumHitcount request,//todo:正しい使い方を。
-            Log_Reports log_Reports
-            )
-        {
-            bool bResult;
-            Expression_Node_String ec_String;
-
-            bool bSuccessful = this.TrySelect(out ec_String, sName, request, log_Reports);
-            if (bSuccessful)
-            {
-                sResult = ec_String.Execute4_OnExpressionString(request, log_Reports);
-                bResult = true;
-            }
-            else
-            {
-                sResult = "";
-                bResult = false;
-            }
-
-            return bResult;
+            return isResult;
         }
 
         //────────────────────────────────────────

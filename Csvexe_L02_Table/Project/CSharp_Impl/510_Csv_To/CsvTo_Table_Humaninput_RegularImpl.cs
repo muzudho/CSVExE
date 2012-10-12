@@ -14,6 +14,19 @@ namespace Xenon.Table
 
 
 
+        #region 生成と破棄
+        //────────────────────────────────────────
+
+        public CsvTo_Table_Humaninput_RegularImpl()
+        {
+            this.charSeparator = ',';
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
         #region アクション
         //────────────────────────────────────────
 
@@ -88,8 +101,7 @@ namespace Xenon.Table
                 {
                     string sLine = reader.ReadLine();
 
-                    fields_Cur = ce.UnescapeRecordToFieldList(sLine,',').ToArray();
-                    //sFields = sLine.Split(',');
+                    fields_Cur = ce.UnescapeRecordToFieldList(sLine, this.charSeparator).ToArray();
 
 
                     if (0 == nRowIndex)
@@ -355,6 +367,31 @@ namespace Xenon.Table
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
             return xenonTable;
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+        #region プロパティー
+        //────────────────────────────────────────
+
+        private char charSeparator;
+
+        /// <summary>
+        /// 区切り文字。初期値は「,」
+        /// </summary>
+        public char CharSeparator
+        {
+            get
+            {
+                return charSeparator;
+            }
+            set
+            {
+                charSeparator = value;
+            }
         }
 
         //────────────────────────────────────────

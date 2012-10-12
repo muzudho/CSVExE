@@ -47,7 +47,7 @@ namespace Xenon.Csvexe
             pg_Method.BeginMethod(Info_CSVEditorImpl.Name_Library, this, "NewInstance",pg_Logging);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorExImpl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorExImpl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
             f0.Cur_Configurationtree = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;

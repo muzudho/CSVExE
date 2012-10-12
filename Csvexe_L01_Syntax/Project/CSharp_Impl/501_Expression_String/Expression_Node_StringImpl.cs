@@ -296,7 +296,6 @@ namespace Xenon.Syntax
 
             goto gt_EndMethod;
         //
-        //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_NotFoundOne:
@@ -316,7 +315,7 @@ namespace Xenon.Syntax
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
-
+        //────────────────────────────────────────
         gt_Error_UndefinedEnum:
             if (log_Reports.CanCreateReport)
             {
@@ -336,7 +335,6 @@ namespace Xenon.Syntax
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
-        //
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);

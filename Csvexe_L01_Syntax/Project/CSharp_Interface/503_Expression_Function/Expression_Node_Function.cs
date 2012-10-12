@@ -38,15 +38,42 @@ namespace Xenon.Syntax
 
 
 
-        #region プロパティー
+
+        #region アクション
         //────────────────────────────────────────
 
-        List<string> List_NameArgument
-        {
-            get;
-            set;
-        }
+        /// <summary>
+        /// エラーレポート用です。
+        /// 引数の名前をリストします。
+        /// </summary>
+        /// <param name="name_Argument"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns></returns>
+        string ToString_ListNameargumentDefinition_ForReport();
 
+        //────────────────────────────────────────
+        #endregion
+
+
+
+        #region 判定
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// エラーチェック用です。
+        /// 引数の名前が、その関数の引数リスト定義に含まれているかどうかを判定します。
+        /// </summary>
+        /// <param name="name_Argument"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns></returns>
+        bool ContainsName_ArgumentDefinition( string name_Argument, Log_Reports log_Reports );
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+        #region プロパティー
         //────────────────────────────────────────
 
         /// <summary>

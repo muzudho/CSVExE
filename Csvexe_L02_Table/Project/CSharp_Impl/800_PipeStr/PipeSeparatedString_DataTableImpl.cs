@@ -62,7 +62,7 @@ namespace Xenon.Table
 
 
             CsvTo_DataTableImpl reader = new CsvTo_DataTableImpl();
-            reader.ChSeparator = '|';
+            reader.CharSeparator = '|';
             DataTable scriptParameters = reader.Read(
                 sFormat
                 );

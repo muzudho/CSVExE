@@ -8,35 +8,42 @@ namespace Xenon.Syntax
     public class Utility_Hitcount
     {
 
-        public static bool IsRequired(EnumHitcount hits, Log_Reports log_Reports)
+        /// <summary>
+        /// ヒットした件数がなかったとき、エラーになるか否か。
+        /// </summary>
+        /// <param name="hits"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns></returns>
+        public static bool IsError_IfNoHit(EnumHitcount hits, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
-            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Hitcount", "IsRequired", log_Reports);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, "Utility_Hitcount", "IsError_IfNoHit", log_Reports);
 
             bool result;
 
             switch(hits)
             {
                 case EnumHitcount.Exists:
-                    result = true;
+                    result = true;//エラーになる。
                     break;
                 case EnumHitcount.First_Exist:
-                    result = true;
+                    result = true;//エラーになる。
                     break;
                 case EnumHitcount.First_Exist_Or_Zero:
-                    result = false;
+                    result = false;//セーフ。
                     break;
                 case EnumHitcount.One:
-                    result = true;//複数件あっても、構わず通す。
+                    result = true;//エラーになる。
                     break;
                 case EnumHitcount.One_Or_Zero:
-                    result = false;//複数件あっても、構わず通す。
+                    result = false;//セーフ。
                     break;
                 case EnumHitcount.Unconstraint:
-                    result = false;
+                    result = false;//セーフ。
                     break;
                 default:
                     //エラー
+                    result = true;//意味が変わるが、エラーにする。
                     goto gt_Error_Default;
             }
 
@@ -46,7 +53,6 @@ namespace Xenon.Syntax
         //────────────────────────────────────────
         gt_Error_Default:
             {
-                result = false;
                 if (log_Reports.CanCreateReport)
                 {
                     Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);

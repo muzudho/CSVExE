@@ -56,7 +56,7 @@ namespace Xenon.Functions
                 string sName_Attr;
                 s_Arg.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Attr, true, log_Reports);
 
-                if (cur_Expr_Func.List_NameArgument.Contains(sName_Attr))
+                if (cur_Expr_Func.ContainsName_ArgumentDefinition(sName_Attr,log_Reports))
                 {
                     //
                     // 自解析
@@ -85,14 +85,7 @@ namespace Xenon.Functions
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, err_sName_Attr, log_Reports);//引数名
-
-                    StringBuilder s1 = new StringBuilder();
-                    foreach (string sLine in cur_Expr_Func.List_NameArgument)
-                    {
-                        s1.Append(sLine);
-                        s1.Append(System.Environment.NewLine);
-                    }
-                    tmpl.SetParameter(2, s1.ToString(), log_Reports);//引数名リスト
+                    tmpl.SetParameter(2, cur_Expr_Func.ToString_ListNameargumentDefinition_ForReport(), log_Reports);//引数名リスト
 
                     owner_MemoryApplication.CreateErrorReport("Er:110001;", tmpl, log_Reports);
                 }

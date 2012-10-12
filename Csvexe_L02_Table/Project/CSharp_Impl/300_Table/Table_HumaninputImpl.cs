@@ -35,6 +35,7 @@ namespace Xenon.Table
             this.dataTable = new DataTable();
             this.name_Table = name_Table;
             this.format_Table_Humaninput = new Format_Table_HumaninputImpl();
+            this.recordFielddefinition_ = new RecordFielddefinitionImpl();//暫定
         }
 
         //────────────────────────────────────────
@@ -222,7 +223,10 @@ namespace Xenon.Table
             this.RecordFielddefinition.Insert(columnIndex, fielddefinition_New);
 
             // データ部テーブルの最後尾に、ダミーの列を１個追加します。
-            this.DataTable.Columns.Add("<ADD>", fielddefinition_New.ToType_Field());
+            this.DataTable.Columns.Add(
+                fielddefinition_New.Name_Humaninput,// "<ADD>",//フィールド名はダミー。被らない名前が好ましい。
+                fielddefinition_New.ToType_Field()
+                );
             this.ForEach_Datapart(delegate(Record_Humaninput recordH, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 // todo:型もチェンジしてる？

@@ -217,6 +217,10 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function48Impl.PM_FIELDSOURCE_IMPORTLISTFILE);
+                list_Param.Add(Expression_Node_Function48Impl.PM_FIELDDESTINATION_IMPORTLISTFILE);
+                list_Param.Add(Expression_Node_Function48Impl.PM_ENCODING_FILEIMPORT);
+                list_Param.Add(Expression_Node_Function48Impl.PM_ENCODING_FILEEXPORT);
                 Collection_Function.SetFunction(Expression_Node_Function48Impl.NAME_FUNCTION, new Expression_Node_Function48Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
@@ -224,10 +228,14 @@ namespace Xenon.Functions
                 list_Param.Add(Expression_Node_Function49Impl.PM_FILE_IMPORT_LISTFILE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FIELD_IMPORT_LISTFILE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FILTER_EXTENSION_IMPORT);
+
                 list_Param.Add(Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FIELD_EXPORT_LISTFILE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_TYPEFIELD_EXPORT_LISTFILE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE);
+
+                list_Param.Add(Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEBEFORE_NAMEFILEEXPORT);
+                list_Param.Add(Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEAFTER_NAMEFILEEXPORT);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FOLDER_SOURCE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FOLDER_DESTINATION);
                 list_Param.Add(Expression_Node_Function49Impl.PM_POPUP);

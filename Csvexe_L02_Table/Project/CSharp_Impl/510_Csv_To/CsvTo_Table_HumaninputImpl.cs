@@ -31,6 +31,22 @@ namespace Xenon.Table
 
 
 
+
+
+        #region 生成と破棄
+        //────────────────────────────────────────
+
+        public CsvTo_Table_HumaninputImpl()
+        {
+            this.charSeparator = ',';
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+
         #region アクション
         //────────────────────────────────────────
 
@@ -338,6 +354,7 @@ namespace Xenon.Table
                     //
 
                     CsvTo_Table_Humaninput_ReverseAllIntsImpl csvTo = new CsvTo_Table_Humaninput_ReverseAllIntsImpl();
+                    csvTo.CharSeparator = this.CharSeparator;
 
                     Table_Humaninput xenonTable = csvTo.Read(
                         string_Csv,
@@ -357,6 +374,7 @@ namespace Xenon.Table
                 else
                 {
                     CsvTo_Table_Humaninput_ReverseImpl csvTo = new CsvTo_Table_Humaninput_ReverseImpl();
+                    csvTo.CharSeparator = this.CharSeparator;
 
                     Table_Humaninput xenonTable = csvTo.Read(
                         string_Csv,
@@ -381,6 +399,7 @@ namespace Xenon.Table
                 // 縦、横そのままのCSVテーブルを読み込みます。
                 //
                 CsvTo_Table_Humaninput_RegularImpl csvTo = new CsvTo_Table_Humaninput_RegularImpl();
+                csvTo.CharSeparator = this.CharSeparator;
 
                 Table_Humaninput xenonTable = csvTo.Read(
                     string_Csv,
@@ -412,6 +431,30 @@ namespace Xenon.Table
         //────────────────────────────────────────
         #endregion
 
+
+
+        #region プロパティー
+        //────────────────────────────────────────
+
+        private char charSeparator;
+
+        /// <summary>
+        /// 区切り文字。初期値は「,」
+        /// </summary>
+        public char CharSeparator
+        {
+            get
+            {
+                return charSeparator;
+            }
+            set
+            {
+                charSeparator = value;
+            }
+        }
+
+        //────────────────────────────────────────
+        #endregion
 
 
     }

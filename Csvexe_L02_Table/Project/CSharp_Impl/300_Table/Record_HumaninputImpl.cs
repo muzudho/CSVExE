@@ -21,6 +21,11 @@ namespace Xenon.Table
             this.dataRow = dataRow;
         }
 
+        public Record_HumaninputImpl(Table_Humaninput owner_TableH)
+        {
+            this.dataRow = owner_TableH.DataTable.NewRow();
+        }
+
         //────────────────────────────────────────
         #endregion
 

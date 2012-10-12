@@ -24,7 +24,7 @@ namespace Xenon.Table
         /// </summary>
         public CsvTo_ListImpl()
         {
-            this.chSeparator = ',';
+            this.charSeparator = ',';
         }
 
         //────────────────────────────────────────
@@ -68,8 +68,7 @@ namespace Xenon.Table
                         //
                         // 「空行、スペースだけの行」ではない場合。
 
-                        //fields = sLine.Split(this.SeparatorChar);//','
-                        fields = ce.UnescapeRecordToFieldList(sLine, this.ChSeparator).ToArray();
+                        fields = ce.UnescapeRecordToFieldList(sLine, this.CharSeparator).ToArray();
 
                         //essageBox.Show("ttbwIndex=[" + ttbwIndex + "]行目ループ", "デバッグ2");
 
@@ -101,20 +100,20 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private char chSeparator;
+        private char charSeparator;
 
         /// <summary>
         /// 区切り文字。初期値は「,」
         /// </summary>
-        public char ChSeparator
+        public char CharSeparator
         {
             get
             {
-                return chSeparator;
+                return charSeparator;
             }
             set
             {
-                chSeparator = value;
+                charSeparator = value;
             }
         }
 

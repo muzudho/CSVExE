@@ -40,8 +40,10 @@ namespace Xenon.Functions
         /// 表示文章。
         /// </summary>
         public static readonly string PM_FILE_IMPORT_LISTFILE = "Pm:file-import-listfile;";
-        //public static readonly string PM_FOLDER_SOURCE = "Pm:folder-source;";
-        //public static readonly string PM_FOLDER_DESTINATION = "Pm:folder-destination;";
+        public static readonly string PM_FIELDSOURCE_IMPORTLISTFILE = "Pm:fieldsource-importlistfile;";
+        public static readonly string PM_FIELDDESTINATION_IMPORTLISTFILE = "Pm:fielddestination-exportlistfile;";
+        public static readonly string PM_ENCODING_FILEIMPORT = "Pm:encoding-fileimport;";
+        public static readonly string PM_ENCODING_FILEEXPORT = "Pm:encoding-fileexport;";
 
         //────────────────────────────────────────
         #endregion
@@ -57,23 +59,26 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configurationtree_Node my_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function48Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function48Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configurationtree = my_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
-            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
+            f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, my_Conf), log_Reports);
 
-            f0.SetAttribute(Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
-            //f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
-            //f0.SetAttribute(Expression_Node_Function48Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_ENCODING_FILEIMPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function48Impl.PM_ENCODING_FILEEXPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            //↓TODO:未記入判定にひっかからなくなるので、初期値は書かない。
+            //f0.SetAttribute(Expression_Node_Function48Impl.PM_FIELDSOURCE_IMPORTLISTFILE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
+            //f0.SetAttribute(Expression_Node_Function48Impl.PM_FIELDDESTINATION_IMPORTLISTFILE, new Expression_Node_StringImpl(this, cur_Conf), log_Reports);
 
             //
             log_Method.EndMethod(log_Reports);
@@ -158,27 +163,43 @@ namespace Xenon.Functions
                 log_Method.Log_Stopwatch.Begin();
             }
 
+
+            Expression_Node_Filepath pm_FileImportListfile_Expr;
+            this.TrySelectAttribute_ExpressionFilepath(out pm_FileImportListfile_Expr, Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_FieldsourceImportlistfile_Expr;
+            this.TrySelectAttribute(out pm_FieldsourceImportlistfile_Expr, Expression_Node_Function48Impl.PM_FIELDSOURCE_IMPORTLISTFILE, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_FielddestinationImportlistfile_Expr;
+            this.TrySelectAttribute(out pm_FielddestinationImportlistfile_Expr, Expression_Node_Function48Impl.PM_FIELDDESTINATION_IMPORTLISTFILE, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_EncodingFileimport_Expr;
+            this.TrySelectAttribute(out pm_EncodingFileimport_Expr, Expression_Node_Function48Impl.PM_ENCODING_FILEIMPORT, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_EncodingFileexport_Expr;
+            this.TrySelectAttribute(out pm_EncodingFileexport_Expr, Expression_Node_Function48Impl.PM_ENCODING_FILEEXPORT, EnumHitcount.One, log_Reports);
+
+
             //
             // メッセージボックスの表示。
-            StringBuilder sb = new StringBuilder();
-            sb.Append(log_Method.Fullname);
-            sb.Append(":");
-            sb.Append(Environment.NewLine);
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(log_Method.Fullname);
+                sb.Append(":");
+                sb.Append(Environment.NewLine);
 
-            string sPmFileListfile;
-            this.TrySelectAttribute(out sPmFileListfile, Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
+                sb.Append(
+                    "\n" +
+                    "file-listfile = " + pm_FileImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n" +
+                    "fieldsource-importlistfile = " + pm_FieldsourceImportlistfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n" +
+                    "fielddestination-importlistfile = " + pm_FielddestinationImportlistfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n" +
+                    "encoding-fileimport=[" + pm_EncodingFileimport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "encoding-fileexport=[" + pm_EncodingFileexport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    ""
+                    );
 
-            Configurationtree_NodeFilepath fileListfile_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
-            fileListfile_Conf.InitPath(sPmFileListfile, log_Reports);
-
-            Expression_Node_Filepath fileListfile_Expr = new Expression_Node_FilepathImpl(fileListfile_Conf);
-
-            sb.Append(
-                "\n" +
-                "file-listfile = " + fileListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports) + "\n\n"
-                );
-
-            MessageBox.Show(sb.ToString(), "デバッグ表示");
+                MessageBox.Show(sb.ToString(), "デバッグ表示");
+            }
 
 
             // CSVファイル読取り
@@ -192,7 +213,7 @@ namespace Xenon.Functions
                 Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
                 Format_Table_Humaninput tblFormat_puts = new Format_Table_HumaninputImpl();
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
-                request_tblReads.Expression_Filepath = fileListfile_Expr;
+                request_tblReads.Expression_Filepath = pm_FileImportListfile_Expr;
 
                 Table_Humaninput tableH = reader.Read(
                     request_tblReads,
@@ -210,11 +231,16 @@ namespace Xenon.Functions
                     string filepath_Destination_Cur;
                     if (log_Reports.Successful)
                     {
-                        String_HumaninputImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
-                        String_HumaninputImpl.TryParse(row["FILE2"], out filepath_Destination_Cur, "", "", log_Method, log_Reports);
+                        //"FILE"
+                        string field1 = pm_FieldsourceImportlistfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports);
+                        //"FILE2"
+                        string field2 = pm_FielddestinationImportlistfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+
+                        String_HumaninputImpl.TryParse(row[field1], out filepath_Source_Cur, "", "", log_Method, log_Reports);
+                        String_HumaninputImpl.TryParse(row[field2], out filepath_Destination_Cur, "", "", log_Method, log_Reports);
                         //if (log_Method.CanDebug(9))
                         //{
-                        log_Method.WriteDebug_ToConsole("コピーしたいfilepath：①[" + filepath_Source_Cur + "]→②[" + filepath_Destination_Cur + "]");
+                        //log_Method.WriteDebug_ToConsole("コピーしたいfilepath：①[" + filepath_Source_Cur + "]→②[" + filepath_Destination_Cur + "]");
                         //}
                     }
                     else
@@ -250,6 +276,53 @@ namespace Xenon.Functions
                             //第一引数で示されたファイルを、第二引数で示されたファイル位置にコピー。
                             //第3項にtrueを指定することにより、上書きを許可
                             System.IO.File.Copy(filepath_Source_Cur, filepath_Destination_Cur, true);
+
+
+
+                            //エンコーディングを変換する
+                            {
+                                Encoding encodingSrc;
+                                {
+                                    string nameEncodingSrc = pm_EncodingFileimport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                                    if ("" != nameEncodingSrc)
+                                    {
+                                        encodingSrc = Encoding.GetEncoding(nameEncodingSrc);
+                                    }
+                                    else
+                                    {
+                                        encodingSrc = null;
+                                    }
+                                }
+
+                                Encoding encodingDst;
+                                {
+                                    string nameEncodingDst = pm_EncodingFileexport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                                    if ("" != nameEncodingDst)
+                                    {
+                                        encodingDst = Encoding.GetEncoding(nameEncodingDst);
+                                    }
+                                    else
+                                    {
+                                        encodingDst = Global.ENCODING_CSV;
+                                    }
+                                }
+
+                                if (null != encodingSrc && (encodingSrc != encodingDst))
+                                {
+                                    //エンコーディング変換を行う。
+                                    log_Method.WriteDebug_ToConsole("エンコーディング変換[" + encodingSrc.EncodingName + "]→[" + encodingDst.EncodingName + "]");
+
+                                    string textAll = System.IO.File.ReadAllText(filepath_Source_Cur);
+
+                                    byte[] temp1 = encodingSrc.GetBytes(textAll);
+                                    byte[] temp2 = System.Text.Encoding.Convert(encodingSrc, encodingDst, temp1);
+                                    textAll = encodingDst.GetString(temp2);
+
+                                    System.IO.File.WriteAllText(filepath_Destination_Cur, textAll);
+                                }
+                            }
+
+
                         }
                         else
                         {

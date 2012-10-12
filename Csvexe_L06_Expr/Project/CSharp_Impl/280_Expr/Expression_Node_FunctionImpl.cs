@@ -32,13 +32,13 @@ namespace Xenon.Expr
         /// <param name="parent_Expression">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         /// <param name="cur_Conf">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         public Expression_Node_FunctionImpl(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf, List<string> listS_ArgName)
+            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf, List<string> list_NameArgumentInitializer)
             : base(parent_Expression, cur_Conf)
         {
             this.dictionary_Expression_Parameter = new Dictionary_Expression_Node_StringImpl(cur_Conf);
             this.functionparameterset = new FunctionparametersetImpl();
 
-            this.list_NameArgument = listS_ArgName;// new List<string>();
+            this.list_NameArgumentInitializer = list_NameArgumentInitializer;// new List<string>();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Xenon.Expr
             object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports)
         {
-            Expression_Node_FunctionImpl expr_Func = new Expression_Node_FunctionImpl(parent_Expression, cur_Conf, this.List_NameArgument);
+            Expression_Node_FunctionImpl expr_Func = new Expression_Node_FunctionImpl(parent_Expression, cur_Conf, this.List_NameArgumentInitializer);
             expr_Func.Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             return expr_Func;
         }
@@ -82,7 +82,6 @@ namespace Xenon.Expr
             Log_Reports log_Reports_Master = new Log_ReportsImpl(log_Method);
             log_Method.BeginMethod(Info_Expr.Name_Library, this, "Execute4_OnDnD", log_Reports_Master);
             //
-            //
 
 
             // イベントハンドラー引数の設定
@@ -94,15 +93,6 @@ namespace Xenon.Expr
 
             this.Execute5_Main(log_Reports_Master);
 
-            //if (!log_Reports_Master.Successful)
-            //{
-            //    // 異常時
-            //    Info_Functions.WriteErrorLog(
-            //        log_Method,//this.GetType().Name, log_Method.SMethodName,
-            //        this.MemoryApplication, log_Reports_Master);
-            //}
-
-            //
             //
             log_Method.EndMethod(log_Reports_Master);
             log_Reports_Master.EndLogging(log_Method);
@@ -331,14 +321,6 @@ namespace Xenon.Expr
 
             this.Execute5_Main(log_Reports_Master);
 
-            //if (!log_Reports_Master.Successful)
-            //{
-            //    // 異常時
-            //    Info_Functions.WriteErrorLog(
-            //        log_Method,//this.GetType().Name, log_Method.SMethodName,
-            //        this.MemoryApplication, log_Reports_Master);
-            //}
-
             log_Method.EndMethod(log_Reports_Master);
         }
 
@@ -380,14 +362,6 @@ namespace Xenon.Expr
             );
 
             this.Execute5_Main(log_Reports_Master);
-
-            //if (!log_Reports_Master.Successful)
-            //{
-            //    // 異常時
-            //    Info_Functions.WriteErrorLog(
-            //        log_Method,//this.GetType().Name, log_Method.SMethodName,
-            //        this.MemoryApplication, log_Reports_Master);
-            //}
 
             log_Method.EndMethod(log_Reports_Master);
             log_Reports_Master.EndLogging(log_Method);
@@ -485,14 +459,6 @@ namespace Xenon.Expr
 
             this.Execute5_Main(log_Reports_Master);
 
-            //if (!log_Reports_Master.Successful)
-            //{
-            //    // 異常時
-            //    Info_Functions.WriteErrorLog(
-            //        log_Method,//this.GetType().Name, sMethodNameWithSharp,
-            //        this.MemoryApplication, log_Reports_Master);
-            //}
-
             log_Method.EndMethod(log_Reports_Master);
         }
 
@@ -587,14 +553,6 @@ namespace Xenon.Expr
 
             this.Execute5_Main(log_Reports_Master);
 
-            //if (!log_Reports_Master.Successful)
-            //{
-            //    // エラー
-            //    Info_Functions.WriteErrorLog(
-            //        log_Method,//this.GetType().Name, sMethodNameWithSharp,
-            //        this.MemoryApplication, log_Reports_Master);
-            //}
-
             log_Method.EndMethod(log_Reports_Master);
         }
 
@@ -654,102 +612,68 @@ namespace Xenon.Expr
         }
 
         //────────────────────────────────────────
+
+        /// <summary>
+        /// エラーレポート用です。
+        /// 引数の名前をリストします。
+        /// </summary>
+        /// <param name="name_Argument"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns></returns>
+        public string ToString_ListNameargumentDefinition_ForReport()
+        {
+            StringBuilder s = new StringBuilder();
+            foreach (string sLine in this.List_NameArgumentInitializer)
+            {
+                s.Append(sLine);
+                s.Append(System.Environment.NewLine);
+            }
+
+            return s.ToString();
+        }
+
+        //────────────────────────────────────────
         #endregion
 
 
 
-        //#region アクション
-        ////────────────────────────────────────────
+        #region 判定
+        //────────────────────────────────────────
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public virtual string Execute5_Main(Log_Reports log_Reports)
-        //{
-        //    Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
-        //    log_Method.SetPath(Info_Functions.Name_Library, this, "Execute5_Main");
-        //    log_Method.BeginMethod(log_Reports);
-        //    //
-        //    //
+        /// <summary>
+        /// エラーチェック用です。
+        /// 引数の名前が、その関数の引数リスト定義に含まれているかどうかを判定します。
+        /// </summary>
+        /// <param name="name_Argument"></param>
+        /// <param name="log_Reports"></param>
+        /// <returns></returns>
+        public bool ContainsName_ArgumentDefinition(string name_Argument, Log_Reports log_Reports)
+        {
+            return this.List_NameArgumentInitializer.Contains(name_Argument);
+        }
 
-        //    string sResult;
+        //────────────────────────────────────────
+        #endregion
 
-        //    sResult = this.Function.Execute5_Main(log_Reports);
-        //    // エラー
-
-        //    //
-        //    //
-        //    //
-        //    //
-
-        //    //EnumEventhandler.O_GFEA
-        //    //NActionAbstract#Perform_DnD
-        //    // ドラッグ＆ドロップ　アクション実行。
-
-        //    //EnumEventhandler.O_DEA_P_S_S_WR
-        //    //NActionAbstract#Perform_ImgDrop
-        //    // 画像ドロップ　アクション実行。
-
-        //    //EnumEventhandler.O_DEA_P_S_B_WR
-        //    // 画像ドロップ　アクション実行。
-        //    //NActionAbstract#Perform_ImgDropB
-
-        //    //this.E_SystemAction.EnumEventhandler == EnumEventhandler.O_Lr
-        //    // リストボックス用アクション実行。
-        //    //NActionAbstract#Perform_LstBox
-
-        //    //this.E_SystemAction.EnumEventhandler == EnumEventhandler.O_KEA
-        //    // キー　アクション実行。
-        //    //NActionAbstract#Perform_Key
-
-        //    //EnumEventhandler.O_MEA
-        //    // マウス　アクション実行。
-        //    //NActionAbstract#Perform_Mouse
-
-        //    //EnumEventhandler.O_Ea
-        //    // アクション実行。
-        //    //NActionAbstract#Perform_OEa
-
-        //    // EnumEventhandler.TP_B_WR_RHN
-        //    // プロジェクトの読取アクション実行。
-        //    // #Perform_PrjSelected
-
-        //    // EnumEventhandler.O_QCDEA
-        //    // ドラッグ＆ドロップ用アクション実行。
-        //    //NActionAbstract#Perform_QueryContinueDragEventArgs
-
-        //    //EnumEventhandler.O_Lr
-        //    // エラー
-        //    //NActionAbstract#Perform_WrRhn
-
-
-        //    //
-        //    //
-        //    //
-        //    //
-
-        //    log_Method.EndMethod(log_Reports);
-        //    return sResult;
-        //}
-
-        ////────────────────────────────────────────
-        //#endregion
 
 
         #region プロパティー
         //────────────────────────────────────────
 
-        private List<string> list_NameArgument;
+        private List<string> list_NameArgumentInitializer;
 
-        public List<string> List_NameArgument
+        /// <summary>
+        /// 引数の初期値の指定。
+        /// </summary>
+        protected List<string> List_NameArgumentInitializer
         {
             get
             {
-                return this.list_NameArgument;
+                return this.list_NameArgumentInitializer;
             }
             set
             {
-                this.list_NameArgument = value;
+                this.list_NameArgumentInitializer = value;
             }
         }
 

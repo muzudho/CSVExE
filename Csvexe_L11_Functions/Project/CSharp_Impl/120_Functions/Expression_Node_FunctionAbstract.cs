@@ -34,8 +34,8 @@ namespace Xenon.Functions
         /// <param name="sNodeName"></param>
         /// <param name="parent_Ec"></param>
         /// <param name="cur_Conf"></param>
-        public Expression_Node_FunctionAbstract(EnumEventhandler enumEventhandler, List<string> listS_ArgName, ConfigurationtreeToFunction_Item functiontranslatoritem)
-            : base(null/*parent_Expression*/, null/*cur_Conf*/, listS_ArgName)
+        public Expression_Node_FunctionAbstract(EnumEventhandler enumEventhandler, List<string> list_NameArgument, ConfigurationtreeToFunction_Item functiontranslatoritem)
+            : base(null/*parent_Expression*/, null/*cur_Conf*/, list_NameArgument)
         {
             this.EnumEventhandler = enumEventhandler;
             this.functiontranslatoritem = functiontranslatoritem;

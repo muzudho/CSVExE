@@ -24,7 +24,7 @@ namespace Xenon.Table
         /// </summary>
         public CsvTo_ListArrayImpl()
         {
-            this.chSeparator = ',';
+            this.charSeparator = ',';
         }
 
         //────────────────────────────────────────
@@ -64,7 +64,7 @@ namespace Xenon.Table
                     //
                     // 配列の返却値を、ダイレクトに渡します。
                     //
-                    string[] sFields = ce.UnescapeRecordToFieldList(sLine, this.ChSeparator).ToArray();
+                    string[] sFields = ce.UnescapeRecordToFieldList(sLine, this.CharSeparator).ToArray();
                     list_ArrayString.Add(sFields);
 
                     nRowIndex++;
@@ -85,20 +85,20 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private char chSeparator;
+        private char charSeparator;
 
         /// <summary>
         /// 区切り文字。初期値は「,」
         /// </summary>
-        public char ChSeparator
+        public char CharSeparator
         {
             get
             {
-                return chSeparator;
+                return charSeparator;
             }
             set
             {
-                chSeparator = value;
+                charSeparator = value;
             }
         }
 

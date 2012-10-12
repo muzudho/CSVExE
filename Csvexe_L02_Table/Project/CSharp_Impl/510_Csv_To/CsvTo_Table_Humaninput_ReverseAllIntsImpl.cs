@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using Xenon.Syntax;//WarningReports, HumanInputFilePath
+using Xenon.Syntax;
 
 
 
@@ -12,6 +12,19 @@ namespace Xenon.Table
 {
     public class CsvTo_Table_Humaninput_ReverseAllIntsImpl
     {
+
+
+
+        #region 生成と破棄
+        //────────────────────────────────────────
+
+        public CsvTo_Table_Humaninput_ReverseAllIntsImpl()
+        {
+            this.charSeparator = ',';
+        }
+
+        //────────────────────────────────────────
+        #endregion
 
 
 
@@ -66,7 +79,7 @@ namespace Xenon.Table
                     string sLine = reader.ReadLine();
                     List<string> tokens = new List<string>();
 
-                    sFields = ce.UnescapeRecordToFieldList(sLine, ',').ToArray();
+                    sFields = ce.UnescapeRecordToFieldList(sLine, this.charSeparator).ToArray();
 
                     int nColumnIndex = 0;
                     foreach (string sToken in sFields)
@@ -222,6 +235,31 @@ namespace Xenon.Table
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
             return xenonTable;
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+        #region プロパティー
+        //────────────────────────────────────────
+
+        private char charSeparator;
+
+        /// <summary>
+        /// 区切り文字。初期値は「,」
+        /// </summary>
+        public char CharSeparator
+        {
+            get
+            {
+                return charSeparator;
+            }
+            set
+            {
+                charSeparator = value;
+            }
         }
 
         //────────────────────────────────────────

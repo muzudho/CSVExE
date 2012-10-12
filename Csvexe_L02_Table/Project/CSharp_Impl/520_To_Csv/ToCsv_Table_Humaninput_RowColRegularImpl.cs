@@ -37,6 +37,7 @@ namespace Xenon.Table
         public ToCsv_Table_Humaninput_RowColRegularImpl()
         {
             this.exceptedFields = new ExceptedFields();
+            this.charSeparator = ',';
         }
 
         //────────────────────────────────────────
@@ -221,7 +222,7 @@ namespace Xenon.Table
                         }
 
                         log_ReportsResult.Append(ce.EscapeCell(value_Cell));
-                        log_ReportsResult.Append(',');
+                        log_ReportsResult.Append(this.charSeparator);
                     }
                 }
                 log_ReportsResult.Append(ToCsv_Table_Humaninput_RowColRegularImpl.S_END);
@@ -363,6 +364,25 @@ namespace Xenon.Table
             set
             {
                 exceptedFields = value;
+            }
+        }
+
+        //────────────────────────────────────────
+
+        private char charSeparator;
+
+        /// <summary>
+        /// 区切り文字。初期値は「,」
+        /// </summary>
+        public char CharSeparator
+        {
+            get
+            {
+                return charSeparator;
+            }
+            set
+            {
+                charSeparator = value;
             }
         }
 

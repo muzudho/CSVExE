@@ -25,7 +25,7 @@ namespace Xenon.Table
         /// </summary>
         public CsvTo_DataTableImpl()
         {
-            this.chSeparator = ',';
+            this.charSeparator = ',';
         }
 
         //────────────────────────────────────────
@@ -59,7 +59,7 @@ namespace Xenon.Table
             int index_Row = 0;
             string[] array_Field;
             DataRow datarow;
-            CsvEscapeImpl ce = new CsvEscapeImpl();
+            CsvEscapeImpl csvescape = new CsvEscapeImpl();
 
             if (-1 < reader.Peek())
             {
@@ -70,22 +70,21 @@ namespace Xenon.Table
                 //
 
                 // 読み取った返却値を、変数に入れ直さずにスプリット。
-                array_Field = ce.UnescapeRecordToFieldList(reader.ReadLine(), this.ChSeparator).ToArray();
-                //                sFieldArray = reader.ReadLine().Split(this.SeparatorChar);//','
+                array_Field = csvescape.UnescapeRecordToFieldList(reader.ReadLine(), this.CharSeparator).ToArray();
 
                 // 行を作成します。
                 datarow = dataTable.NewRow();
 
-                int nColumnIndex1 = 0;
-                while (nColumnIndex1 < array_Field.Length)
+                int indexColumn = 0;
+                while (indexColumn < array_Field.Length)
                 {
                     // 列情報を追加します。 型は文字列型とします。
-                    dataTable.Columns.Add(array_Field[nColumnIndex1], typeof(string));
+                    dataTable.Columns.Add(array_Field[indexColumn], typeof(string));
 
                     // データとしても早速格納します。
-                    datarow[nColumnIndex1] = array_Field[nColumnIndex1];
+                    datarow[indexColumn] = array_Field[indexColumn];
 
-                    nColumnIndex1++;
+                    indexColumn++;
                 }
 
                 dataTable.Rows.Add(datarow);
@@ -101,7 +100,7 @@ namespace Xenon.Table
                     // 1行ずつ読み取ります。
 
                     // 読み取った返却値を、変数に入れ直さずにスプリット。
-                    array_Field = reader.ReadLine().Split(this.ChSeparator);//','
+                    array_Field = reader.ReadLine().Split(this.CharSeparator);
 
                     // 行を作成します。
                     datarow = dataTable.NewRow();
@@ -109,9 +108,9 @@ namespace Xenon.Table
                     //
                     // 追加する列数
                     //
-                    object[] o_RecordFieldArray = datarow.ItemArray;//ItemArrayは1回の呼び出しが重い。
-                    int nAddsColumns = array_Field.Length - o_RecordFieldArray.Length;
-                    for (int nCount = 0; nCount < nAddsColumns; nCount++)
+                    object[] itemArray = datarow.ItemArray;//ItemArrayは1回の呼び出しが重い。
+                    int count_AddsColumns = array_Field.Length - itemArray.Length;
+                    for (int count = 0; count < count_AddsColumns; count++)
                     {
                         // 0行目で数えた列数より多い場合。
 
@@ -120,11 +119,11 @@ namespace Xenon.Table
                         dataTable.Columns.Add("", typeof(string));
                     }
 
-                    int nColumnIndex3 = 0;
-                    while (nColumnIndex3 < array_Field.Length)
+                    int indexColumn3 = 0;
+                    while (indexColumn3 < array_Field.Length)
                     {
-                        datarow[nColumnIndex3] = array_Field[nColumnIndex3];
-                        nColumnIndex3++;
+                        datarow[indexColumn3] = array_Field[indexColumn3];
+                        indexColumn3++;
                     }
 
                     dataTable.Rows.Add(datarow);
@@ -148,20 +147,20 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private char chSeparator;
+        private char charSeparator;
 
         /// <summary>
         /// 区切り文字。初期値は「,」
         /// </summary>
-        public char ChSeparator
+        public char CharSeparator
         {
             get
             {
-                return chSeparator;
+                return charSeparator;
             }
             set
             {
-                chSeparator = value;
+                charSeparator = value;
             }
         }
 

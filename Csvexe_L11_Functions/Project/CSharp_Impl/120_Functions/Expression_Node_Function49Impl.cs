@@ -48,6 +48,9 @@ namespace Xenon.Functions
         public static readonly string PM_TYPEFIELD_EXPORT_LISTFILE = "Pm:typefield-export-listfile;";
         public static readonly string PM_COMMENTFIELD_EXPORT_LISTFILE = "Pm:commentfield-export-listfile;";
 
+        public static readonly string PM_REGULAREXPRESSION_REPLACEBEFORE_NAMEFILEEXPORT = "Pm:regularexpression-replacebefore-namefileexport;";
+        public static readonly string PM_REGULAREXPRESSION_REPLACEAFTER_NAMEFILEEXPORT = "Pm:regularexpression-replaceafter-namefileexport;";
+
         public static readonly string PM_FOLDER_SOURCE = "Pm:folder-source;";
         public static readonly string PM_FOLDER_DESTINATION = "Pm:folder-destination;";
         public static readonly string PM_POPUP = "Pm:popup;";
@@ -78,7 +81,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
             //
 
-            Expression_Node_Function f0 = new Expression_Node_Function49Impl(this.EnumEventhandler,this.List_NameArgument,this.Functiontranslatoritem);
+            Expression_Node_Function f0 = new Expression_Node_Function49Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expr;
             f0.Cur_Configurationtree = my_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
@@ -88,10 +91,15 @@ namespace Xenon.Functions
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FILE_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FIELD_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FILTER_EXTENSION_IMPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_TYPEFIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+
+            //f0.SetAttribute(Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEBEFORE_NAMEFILEEXPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            //f0.SetAttribute(Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEAFTER_NAMEFILEEXPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_POPUP, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
@@ -189,6 +197,7 @@ namespace Xenon.Functions
             Expression_Node_String pm_FilterExtensionImport_Expr;
             this.TrySelectAttribute(out pm_FilterExtensionImport_Expr, Expression_Node_Function49Impl.PM_FILTER_EXTENSION_IMPORT, EnumHitcount.One, log_Reports);
 
+
             Expression_Node_Filepath pm_FileExportListfile_Expr;
             this.TrySelectAttribute_ExpressionFilepath(out pm_FileExportListfile_Expr, Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
 
@@ -201,6 +210,14 @@ namespace Xenon.Functions
             Expression_Node_String pm_CommentfieldExportListfile_Expr;
             this.TrySelectAttribute(out pm_CommentfieldExportListfile_Expr, Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE, EnumHitcount.One, log_Reports);
 
+
+            Expression_Node_String pm_RegularexpressionReplacebeforeNamefileexport_Expr;
+            this.TrySelectAttribute(out pm_RegularexpressionReplacebeforeNamefileexport_Expr, Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEBEFORE_NAMEFILEEXPORT, EnumHitcount.One_Or_Zero, log_Reports);
+
+            Expression_Node_String pm_RegularexpressionReplaceafterNamefileexport_Expr;
+            this.TrySelectAttribute(out pm_RegularexpressionReplaceafterNamefileexport_Expr, Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEAFTER_NAMEFILEEXPORT, EnumHitcount.One_Or_Zero, log_Reports);
+
+            
             Expression_Node_Filepath pm_FolderSource_Expr;
             this.TrySelectAttribute_ExpressionFilepath(out pm_FolderSource_Expr, Expression_Node_Function49Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
 
@@ -227,10 +244,15 @@ namespace Xenon.Functions
                     "file-import-listfile=[" + pm_FileImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "field-import-listfile=[" + pm_FieldImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "filter-extension-import=[" + pm_FilterExtensionImport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+
                     "file-export-listfile=[" + pm_FileExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "field-export-listfile=[" + pm_FieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "typefield-export-listfile=[" + pm_TypefieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "commentfield-export-listfile=[" + pm_CommentfieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+
+                    "regularexpression-replacebefore-namefileexport=[" + pm_RegularexpressionReplacebeforeNamefileexport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "regularexpression-replaceafter-namefileexport=[" + pm_RegularexpressionReplaceafterNamefileexport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+
                     "folder-source=[" + pm_FolderSource_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "folder-destination=[" + pm_FolderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
                     "pm_Popup=[" + pm_Popup + "]\n\n"
@@ -263,7 +285,7 @@ namespace Xenon.Functions
             }
 
 
-            // CSVファイル読取り
+            // 「ファイル・リスト」CSVファイル読取り
             Table_Humaninput tableH;
             if (log_Reports.Successful)
             {
@@ -304,6 +326,9 @@ namespace Xenon.Functions
                 index_FieldNew = -1;
             }
 
+
+            string regularexpression_Replacebefore_Namefileexport = pm_RegularexpressionReplacebeforeNamefileexport_Expr.Execute4_OnExpressionString(Syntax.EnumHitcount.Unconstraint, log_Reports);
+            string regularexpression_Replaceafter_Namefileexport = pm_RegularexpressionReplaceafterNamefileexport_Expr.Execute4_OnExpressionString(Syntax.EnumHitcount.Unconstraint, log_Reports);
             string name_FieldSource = pm_FieldImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);// "FILE"
             if (log_Reports.Successful)
             {
@@ -374,7 +399,7 @@ namespace Xenon.Functions
                     }
 
                     //
-                    //拡張子を確認したい。
+                    //ソース側の拡張子を確認したい。
                     //
                     string extension;
                     string filterExtension = pm_FilterExtensionImport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports);
@@ -386,11 +411,25 @@ namespace Xenon.Functions
                     {
                         //フィルターに含まれる
 
+                        //出力側のファイルパス
+                        Value_Humaninput valueH_New = new String_HumaninputImpl(log_Method.Fullname);
+                        valueH_New.Text = fileDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+
+                        //ファイル名を正規表現で置換をするか否か
+                        if("" != regularexpression_Replacebefore_Namefileexport)
+                        {
+                            //ファイル名を正規表現で置換します。
+                            //TextBox1内の郵便番号っぽい文字列の"-"を削除して、【】で囲む
+                            valueH_New.Text = System.Text.RegularExpressions.Regex.Replace(
+                                valueH_New.Text,
+                                regularexpression_Replacebefore_Namefileexport,
+                                regularexpression_Replaceafter_Namefileexport
+                                );
+                        }
+
                         //
                         // レコードの追加列に値セット。
                         //
-                        Value_Humaninput valueH_New = new String_HumaninputImpl(log_Method.Fullname);
-                        valueH_New.Text = fileDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                         recordH.SetValueAt(index_FieldNew, valueH_New, log_Reports);
                     }
                     else
@@ -417,6 +456,7 @@ namespace Xenon.Functions
 
                 try
                 {
+
                     System.IO.File.WriteAllText(
                         filepath_Export,
                         text_Csv,

@@ -58,7 +58,7 @@
     <Compile Include="CSharp_Impl\200_Log1\Log_MethodImpl.cs" />
     <Compile Include="CSharp_Impl\300_Configrationtree\Dictionary_Configrationtree_StringImpl.cs" />
     <Compile Include="CSharp_Impl\200_Log1\Log_RecordCallstackImpl.cs" />
-    <Compile Include="CSharp_Impl\900_Utility_Expression\Utility_Expression_Node_String.cs" />
+    <Compile Include="CSharp_Impl\900_Utility\Utility_Expression_Node_String.cs" />
     <Compile Include="CSharp_Interface\300_Configrationtree\PmName.cs" />
     <Compile Include="CSharp_Interface\503_Expression_Function\ConfigurationtreeToFunction.cs" />
     <Compile Include="CSharp_Interface\503_Expression_Function\Expression_Node_Function.cs" />
@@ -118,7 +118,7 @@
     <Content Include="CSharp_Impl\501_Expression_String\%40説明501.txt" />
     <Content Include="CSharp_Impl\502_Expression_P1p\%40説明502.txt" />
     <Content Include="CSharp_Impl\800_Log2\%40説明.txt" />
-    <Content Include="CSharp_Impl\900_Utility_Expression\%40説明.txt" />
+    <Content Include="CSharp_Impl\900_Utility\%40説明.txt" />
     <Content Include="CSharp_Info\ソースコード整理状況.txt" />
   </ItemGroup>
   <ItemGroup />
