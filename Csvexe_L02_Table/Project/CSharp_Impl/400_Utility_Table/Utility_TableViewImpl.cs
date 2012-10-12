@@ -74,44 +74,44 @@ namespace Xenon.Table
             xenonTable.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 // 列を追加します。見出しと幅も設定します。
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append(fielddefinition.Name_Humaninput);
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append(fielddefinition.Name_Humaninput);
 
-                if (this.BVisibled_Fieldtype)
+                if (this.IsVisibled_Fieldtype)
                 {
                     // デバッグ用に、フィールドの型もヘッダーに表示する場合。
-                    t.Append(":");
-                    t.Append(fielddefinition.Type.Name);
+                    s.Append(":");
+                    s.Append(fielddefinition.ToString_Type());
                 }
 
-                listView.Columns.Add(t.ToString(), 90);
+                listView.Columns.Add(s.ToString(), 90);
             }, log_Reports);
 
 
-            for (int nIndex_Row = 0; nIndex_Row < dataTable.Rows.Count; nIndex_Row++)
+            for (int index_Row = 0; index_Row < dataTable.Rows.Count; index_Row++)
             {
-                DataRow row = dataTable.Rows[nIndex_Row];
+                DataRow row = dataTable.Rows[index_Row];
 
                 ListViewItem item = null;
 
                 object[] recordFields = row.ItemArray;//ItemArrayは1回の呼び出しが重い。
-                for (int nColumnIndex = 0; nColumnIndex < recordFields.Length; nColumnIndex++)
+                for (int indexColumn = 0; indexColumn < recordFields.Length; indexColumn++)
                 {
-                    object columnObject = recordFields[nColumnIndex];
+                    object columnObject = recordFields[indexColumn];
 
                     if (columnObject is Value_Humaninput)
                     {
-                        Value_Humaninput cellData = (Value_Humaninput)columnObject;
+                        Value_Humaninput valueH = (Value_Humaninput)columnObject;
 
-                        string sFieldValue = cellData.Text;
+                        string valueField = valueH.Text;
 
                         // レコードを作成します。
-                        if (0 == nColumnIndex)
+                        if (0 == indexColumn)
                         {
                             // 最初の列の場合は、行追加になります。
 
                             // 文字列を追加。
-                            item = new ListViewItem(sFieldValue);
+                            item = new ListViewItem(valueField);
                             listView.Items.Add(item);
                         }
                         else
@@ -119,7 +119,7 @@ namespace Xenon.Table
                             // 最初の列より後ろは、列追加になります。
 
                             // 文字列を追加。
-                            item.SubItems.Add(sFieldValue);
+                            item.SubItems.Add(valueField);
                         }
                     }
                     else if (columnObject is DBNull)
@@ -188,20 +188,20 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private bool bVisibled_Fieldtype;
+        private bool isVisibled_Fieldtype;
 
         /// <summary>
         /// デバッグ用に、フィールドの型もヘッダーに表示するなら真。
         /// </summary>
-        public bool BVisibled_Fieldtype
+        public bool IsVisibled_Fieldtype
         {
             set
             {
-                bVisibled_Fieldtype = value;
+                isVisibled_Fieldtype = value;
             }
             get
             {
-                return bVisibled_Fieldtype;
+                return isVisibled_Fieldtype;
             }
         }
 

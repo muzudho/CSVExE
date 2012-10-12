@@ -64,8 +64,6 @@ namespace Xenon.Table
                     //    ystem.Console.WriteLine(txt.ToString());
                     //}
 
-                    Type type = xenonTable.RecordFielddefinition.ValueAt(nFieldIndex).Type;
-
                     String sConfigStack = xenonTable.Expression_Filepath_ConfigStack.Execute4_OnExpressionString(
                         EnumHitcount.Unconstraint, log_Reports);
                     if (!log_Reports.Successful)
@@ -74,23 +72,21 @@ namespace Xenon.Table
                         goto gt_EndMethod;
                     }
 
-                    if (type == typeof(String_HumaninputImpl))
+                    EnumTypeFielddefinition typeField = xenonTable.RecordFielddefinition.ValueAt(nFieldIndex).Type_Field;
+                    switch (typeField)
                     {
-                        oValue = new String_HumaninputImpl(sConfigStack);
-                    }
-                    else if (type == typeof(Int_HumaninputImpl))
-                    {
-                        oValue = new Int_HumaninputImpl(sConfigStack);
-                    }
-                    else if (type == typeof(Bool_HumaninputImpl))
-                    {
-                        oValue = new Bool_HumaninputImpl(sConfigStack);
-                    }
-                    else
-                    {
-                        //
-                        // エラー。
-                        goto gt_Error_UndefinedType;
+                        case EnumTypeFielddefinition.String:
+                            oValue = new String_HumaninputImpl(sConfigStack);
+                            break;
+                        case EnumTypeFielddefinition.Int:
+                            oValue = new Int_HumaninputImpl(sConfigStack);
+                            break;
+                        case EnumTypeFielddefinition.Bool:
+                            oValue = new Bool_HumaninputImpl(sConfigStack);
+                            break;
+                        default:
+                            // エラー。
+                            goto gt_Error_UndefinedType;
                     }
                 }
                 else

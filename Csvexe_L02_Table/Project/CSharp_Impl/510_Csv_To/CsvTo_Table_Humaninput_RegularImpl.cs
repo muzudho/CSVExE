@@ -114,7 +114,7 @@ namespace Xenon.Table
                             }
 
                             // テーブルのフィールドを追加します。型の既定値は文字列型とします。
-                            FielddefinitionImpl fieldDef = new FielddefinitionImpl(sColumnName, typeof(String_HumaninputImpl));
+                            FielddefinitionImpl fieldDef = new FielddefinitionImpl(sColumnName, EnumTypeFielddefinition.String);
                             recordFielddefinition.Add(fieldDef);
                             nDataColumnsCount++;
                         }
@@ -130,10 +130,10 @@ namespace Xenon.Table
 
                         for (int nColumnIx = 0; nColumnIx < nDataColumnsCount; nColumnIx++)
                         {
-                            string sFieldTypeNameLower;
+                            string name_FieldType_Lower;
                             try
                             {
-                                sFieldTypeNameLower = fields_Cur[nColumnIx].ToLower();
+                                name_FieldType_Lower = fields_Cur[nColumnIx].ToLower();
                             }
                             catch (IndexOutOfRangeException e)
                             {
@@ -145,18 +145,18 @@ namespace Xenon.Table
 
                             // テーブルのフィールドを追加します。型の既定値は文字列型とします。
                             // TODO int型とboolean型にも対応したい。
-                            if (FielddefinitionImpl.S_STRING.Equals(sFieldTypeNameLower))
+                            if (FielddefinitionImpl.S_STRING.Equals(name_FieldType_Lower))
                             {
-                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(String_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type_Field = EnumTypeFielddefinition.String;
                             }
-                            else if (FielddefinitionImpl.S_INT.Equals(sFieldTypeNameLower))
+                            else if (FielddefinitionImpl.S_INT.Equals(name_FieldType_Lower))
                             {
-                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(Int_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type_Field = EnumTypeFielddefinition.Int;
                             }
-                            else if (FielddefinitionImpl.S_BOOL.Equals(sFieldTypeNameLower))
+                            else if (FielddefinitionImpl.S_BOOL.Equals(name_FieldType_Lower))
                             {
                                 // 2009-11-11修正：SRS仕様では「bool」が正しい。「boolean」は間違い。
-                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(Bool_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type_Field = EnumTypeFielddefinition.Bool;
                             }
                             else
                             {
@@ -164,7 +164,7 @@ namespace Xenon.Table
 
                                 // TODO:警告を出すか？
 
-                                recordFielddefinition.ValueAt(nColumnIx).Type = typeof(String_HumaninputImpl);
+                                recordFielddefinition.ValueAt(nColumnIx).Type_Field = EnumTypeFielddefinition.String;
                             }
                         }
 
@@ -238,7 +238,7 @@ namespace Xenon.Table
                                 // 0行目で数えた列数より多い場合。
 
                                 // テーブルのフィールドを追加します。型は文字列型とします。名前は空文字列です。
-                                recordFielddefinition.Add(new FielddefinitionImpl("", typeof(String_HumaninputImpl)));
+                                recordFielddefinition.Add(new FielddefinitionImpl("", EnumTypeFielddefinition.String));
                             }
 
                             sList_Column.Add(sValue);

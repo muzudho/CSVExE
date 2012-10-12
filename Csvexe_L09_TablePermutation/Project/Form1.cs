@@ -46,10 +46,10 @@ namespace Xenon.TablePermutation
 
         public void SetDataSource(Table_Humaninput o_Table, Log_Reports log_Reports)
         {
-            this.xenonTable = o_Table;
+            this.table_Humaninput = o_Table;
 
             Utility_TableviewImpl u_tblView = new Utility_TableviewImpl();
-            u_tblView.BVisibled_Fieldtype = true;
+            u_tblView.IsVisibled_Fieldtype = true;
 
             u_tblView.SetDataSourceToListView(
                 o_Table, this.listView1, log_Reports);
@@ -108,7 +108,7 @@ namespace Xenon.TablePermutation
             //
             //
 
-            if (null == this.xenonTable)
+            if (null == this.table_Humaninput)
             {
                 goto gt_Error_NullTable;
             }
@@ -139,11 +139,11 @@ namespace Xenon.TablePermutation
                 }
 
 
-                this.xenonTable.MoveItemsBefore(sourceIndices, nDestinationIndex);
+                this.table_Humaninput.MoveItemsBefore(sourceIndices, nDestinationIndex);
 
 
                 // データ・テーブルをもとに、リストビューを準備します。
-                this.SetDataSource(this.xenonTable, d_Logging_Event);
+                this.SetDataSource(this.table_Humaninput, d_Logging_Event);
             }
             else
             {
@@ -199,7 +199,7 @@ namespace Xenon.TablePermutation
         /// <summary>
         /// データソースとなるテーブル。
         /// </summary>
-        private Table_Humaninput xenonTable;
+        private Table_Humaninput table_Humaninput;
 
         //────────────────────────────────────────
         #endregion

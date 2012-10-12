@@ -18,10 +18,10 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         public void Judge(
-            out bool bJudge,
-            string sName_KeyField,
-            string sValue_Expected,
-            bool bRequired_ExpectedValue,//使ってない。
+            out bool isJudge,
+            string name_KeyField,
+            string value_Expected,
+            bool isRequired_ExpectedValue,//使ってない。
             DataRow row,
             Configurationtree_Node parent_Query,
             Log_Reports log_Reports
@@ -31,30 +31,26 @@ namespace Xenon.Table
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Judge",log_Reports);
 
             //
-            //
-            //
-            //
-
 
             try
             {
                 // 無い列名を指定した場合。
-                if (!row.Table.Columns.Contains(sName_KeyField))
+                if (!row.Table.Columns.Contains(name_KeyField))
                 {
                     // エラー
-                    bJudge = false;
+                    isJudge = false;
                     goto gt_Error_NothingKeyField;
                 }
 
-                Value_Humaninput o_CellValue = (Value_Humaninput)row[sName_KeyField];
+                Value_Humaninput valueH = (Value_Humaninput)row[name_KeyField];
 
 
                 //
                 // （５）キーが空欄なら、無視します。【文字列型フィールドのみ】
                 //
-                if (String_HumaninputImpl.IsSpaces(o_CellValue))
+                if (String_HumaninputImpl.IsSpaces(valueH))
                 {
-                    bJudge = false;
+                    isJudge = false;
                     goto gt_EndMethod;
                 }
 
@@ -62,25 +58,25 @@ namespace Xenon.Table
                 //
                 // （６）この行の、キー_フィールドの値を取得。
                 //
-                string sKeyValue;
-                bool bParsedSuccessful = String_HumaninputImpl.TryParse(
-                    o_CellValue,
-                    out sKeyValue,
+                string keyValue;
+                bool isParsedSuccessful = String_HumaninputImpl.TryParse(
+                    valueH,
+                    out keyValue,
                     parent_Query.ToString(),//TODO:本当はテーブル名がいい。 xenonTable.SName,
-                    sName_KeyField,
+                    name_KeyField,
                     log_Method,
                     log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー
-                    bJudge = false;
+                    isJudge = false;
                     goto gt_EndMethod;
                 }
 
-                if (!bParsedSuccessful)
+                if (!isParsedSuccessful)
                 {
                     // エラー
-                    bJudge = false;
+                    isJudge = false;
                     if (log_Reports.CanCreateReport)
                     {
                         Log_RecordReports d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
@@ -94,19 +90,19 @@ namespace Xenon.Table
 
 
                 // （８）該当行をレコードセットに追加。
-                if (sKeyValue == sValue_Expected)
+                if (keyValue == value_Expected)
                 {
-                    bJudge = true;
+                    isJudge = true;
                 }
                 else
                 {
-                    bJudge = false;
+                    isJudge = false;
                 }
             }
             catch (RowNotInTableException)
             {
                 // （９）指定行がなかった場合は、スルー。
-                bJudge = false;
+                isJudge = false;
 
                 //
                 // 指定の行は、テーブルの中にありませんでした。
@@ -129,7 +125,7 @@ namespace Xenon.Table
                 r.SetTitle("▲エラー611！", log_Method);
 
                 StringBuilder s = new StringBuilder();
-                s.Append("無い列名が指定されました。 sKeyFieldName=[" + sName_KeyField + "]");
+                s.Append("無い列名が指定されました。 sKeyFieldName=[" + name_KeyField + "]");
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }

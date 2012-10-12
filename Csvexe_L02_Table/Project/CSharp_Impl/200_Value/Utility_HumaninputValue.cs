@@ -17,60 +17,68 @@ namespace Xenon.Table
 
         public static Value_Humaninput NewInstance(
             object value,
-            bool bRequired,
-            string sConfigStack,
-            out string sMessage_Error
+            bool isRequired,
+            string nodeConfigtree,
+            Log_Reports log_Reports
             )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Utility_HumaninputValue", "NewInstance", log_Reports);
+
             Value_Humaninput result;
 
             if(value is String_HumaninputImpl)
             {
-                sMessage_Error = "";
-                result = new String_HumaninputImpl(sConfigStack);
+                result = new String_HumaninputImpl(nodeConfigtree);
             }
             else if(value is Int_HumaninputImpl)
             {
-                sMessage_Error = "";
-                result = new Int_HumaninputImpl(sConfigStack);
+                result = new Int_HumaninputImpl(nodeConfigtree);
             }
             else if(value is Bool_HumaninputImpl)
             {
-                sMessage_Error = "";
-                result = new Bool_HumaninputImpl(sConfigStack);
+                result = new Bool_HumaninputImpl(nodeConfigtree);
             }
             else
             {
-                if (bRequired)
-                {
-                    Log_TextIndented t = new Log_TextIndentedImpl();
-                    t.Append("▲エラー292！（" + Info_Table.Name_Library + "）");
-                    t.Newline();
-                    t.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
-                    t.Newline();
-
-                    t.Append("指定された値のクラス=[");
-                    t.Append(value.GetType().Name);
-                    t.Append("]");
-
-                    sMessage_Error = t.ToString();
-                }
-                else
-                {
-                    sMessage_Error = "";
-                }
-
                 result = null;
-                goto gt_EndMethod;
+
+                if (isRequired)
+                {
+                    //エラー
+                    goto gt_Error_AnotherType;
+                }
             }
 
             goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_AnotherType:
+            if(log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー292！", log_Method);
 
-            //
-            //
-            //
-            //
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("▲エラー201！（" + Info_Table.Name_Library + "）");
+                s.Newline();
+                s.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
+                s.Newline();
+
+                s.Append("指定された値のクラス=[");
+                s.Append(value.GetType().Name);
+                s.Append("]");
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
+        //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return result;
         }
 
@@ -84,69 +92,62 @@ namespace Xenon.Table
 
         public static bool TryParse(
             object value,
-            out Value_Humaninput cellData,
-            bool bRequired,
-            out string sMessage_Error
+            out Value_Humaninput out_ValueH,
+            bool isRequired,
+            Log_Reports log_Reports
             )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Table.Name_Library, "Utility_HumaninputValue", "TryParse", log_Reports);
 
             bool bResult;
 
-            if(
-                (value is String_HumaninputImpl)
-                ||
-                (value is Int_HumaninputImpl)
-                ||
-                (value is Bool_HumaninputImpl)
-                )
+            if (value is Value_Humaninput)
             {
-                cellData = (Value_Humaninput)value;
+                out_ValueH = (Value_Humaninput)value;
 
                 bResult = true;
             }
             else
             {
-                cellData = null;
+                out_ValueH = null;
                 bResult = false;
 
-                if (bRequired)
+                if (isRequired)
                 {
                     goto gt_Error_AnotherType;
-                }
-                else
-                {
-                    sMessage_Error = "";
                 }
 
                 goto gt_EndMethod;
             }
 
-            sMessage_Error = "";
             goto gt_EndMethod;
-        //
         //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_AnotherType:
+            if (log_Reports.CanCreateReport)
             {
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("▲エラー201！（" + Info_Table.Name_Library + "）");
-                t.Newline();
-                t.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
-                t.Newline();
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー201！", log_Method);
 
-                t.Append("指定された値のクラス=[");
-                t.Append(value.GetType().Name);
-                t.Append("]");
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("string,int,boolセルデータクラス以外のオブジェクトが指定されました。");
+                s.Newline();
 
-                sMessage_Error = t.ToString();
+                s.Append("指定された値のクラス=[");
+                s.Append(value.GetType().Name);
+                s.Append("]");
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
         //
-        //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return bResult;
         }
         //────────────────────────────────────────

@@ -167,27 +167,15 @@ namespace Xenon.Functions
 
             string sPmFileListfile;
             this.TrySelectAttribute(out sPmFileListfile, Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
-            //string sPmFolderSource;
-            //this.TrySelectAttribute(out sPmFolderSource, Expression_Node_Function48Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
-            //string sPmFolderDestination;
-            //this.TrySelectAttribute(out sPmFolderDestination, Expression_Node_Function48Impl.PM_FOLDER_DESTINATION, EnumHitcount.One_Or_Zero, log_Reports);
 
             Configurationtree_NodeFilepath fileListfile_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
             fileListfile_Conf.InitPath(sPmFileListfile, log_Reports);
-            //Configurationtree_NodeFilepath folderSource_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
-            //folderSource_Conf.InitPath(sPmFolderSource,log_Reports);
-            //Configurationtree_NodeFilepath folderDestination_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
-            //folderDestination_Conf.InitPath(sPmFolderDestination, log_Reports);
 
             Expression_Node_Filepath fileListfile_Expr = new Expression_Node_FilepathImpl(fileListfile_Conf);
-            //Expression_Node_Filepath folderSource_Expr = new Expression_Node_FilepathImpl(folderSource_Conf);//頭をカットするのに使う。
-            //Expression_Node_Filepath folderDestination_Expr = new Expression_Node_FilepathImpl(folderDestination_Conf);
 
             sb.Append(
                 "\n" +
                 "file-listfile = " + fileListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports) + "\n\n"
-                //"folder-source = " + folderSource_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n" +
-                //"folder-destination = " + folderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "\n\n"
                 );
 
             MessageBox.Show(sb.ToString(), "デバッグ表示");
@@ -206,7 +194,7 @@ namespace Xenon.Functions
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
                 request_tblReads.Expression_Filepath = fileListfile_Expr;
 
-                Table_Humaninput xenonTable = reader.Read(
+                Table_Humaninput tableH = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,
@@ -214,7 +202,7 @@ namespace Xenon.Functions
                     );
 
                 int rowNumber = 1;
-                foreach (DataRow row in xenonTable.DataTable.Rows)
+                foreach (DataRow row in tableH.DataTable.Rows)
                 {
 
                     //記述されているファイルパス
@@ -238,6 +226,7 @@ namespace Xenon.Functions
                     //
                     // ファイルのコピー（上書き）
                     //
+                    if ("" != filepath_Source_Cur && "" != filepath_Destination_Cur)
                     {
                         //フォルダーのコピー方法は別。
                         if (System.IO.Directory.Exists(filepath_Source_Cur))
@@ -268,7 +257,7 @@ namespace Xenon.Functions
                             //
                             error_Filepath_Source = filepath_Source_Cur;
                             error_RowNumber = rowNumber;
-                            error_Table_Humaninput = xenonTable;
+                            error_Table_Humaninput = tableH;
                             goto gt_Error_NoFilesystementry;
                         }
                     }

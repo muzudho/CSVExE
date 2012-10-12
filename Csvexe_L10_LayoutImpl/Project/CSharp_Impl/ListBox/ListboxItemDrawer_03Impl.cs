@@ -61,7 +61,7 @@ namespace Xenon.Layout
             DataRowView row = (DataRowView)cctLst.Items[nCurIx];
 
             // スタイルのNAME値が入っている。
-            object fieldObj = Utility_Row.GetFieldvalue(
+            Value_Humaninput valueH = Utility_Row.GetFieldvalue(
                 NamesFld.S_EXPL_SS,
                 row.Row,
                 false,//該当なしも可
@@ -79,13 +79,13 @@ namespace Xenon.Layout
             {
                 // 正常時
 
-                if (null == fieldObj)
+                if (null == valueH)
                 {
                     sResult = "";
                 }
                 else
                 {
-                    sResult = String_HumaninputImpl.ParseString(fieldObj);
+                    sResult = ((Value_Humaninput)valueH).Text;
                 }
             }
             else

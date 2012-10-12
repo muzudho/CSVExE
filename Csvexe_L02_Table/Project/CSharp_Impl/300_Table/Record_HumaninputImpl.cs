@@ -28,6 +28,38 @@ namespace Xenon.Table
 
         #region アクション
         //────────────────────────────────────────
+        //
+        // テーブル改造
+        //
+
+        /// <summary>
+        /// 指定のフィールドから左を、全て右に１列分ずらします。一番右の列は無くなります。
+        /// 開いた列には null が入ります。
+        /// </summary>
+        /// <param name="columnIndex"></param>
+        public void Insert(int columnIndex, Value_Humaninput valueH, Log_Reports log_Reports)
+        {
+            object[] itemArray = this.DataRow.ItemArray;//ItemArrayを取得する処理は重い。
+            int length = itemArray.Length;
+            int index_Destination = length - 1;
+
+            //右から順に左へ。
+            for (int index_Source = index_Destination - 1; columnIndex <= index_Source; index_Source-- )
+            {
+                //上書きコピー
+                itemArray[index_Source + 1] = itemArray[index_Source];
+
+                //todo:型チェンジは？　値を移動したら型も一緒に移動している。
+            }
+
+            //挿入するはずの列は空に。
+            itemArray[columnIndex] = valueH;
+        }
+
+        //────────────────────────────────────────
+        //
+        //
+        //
 
         public void ForEach(DELEGATE_Fields delegate_Fields, Log_Reports log_Reports)
         {
@@ -54,6 +86,36 @@ namespace Xenon.Table
         public Value_Humaninput ValueAt(int index)
         {
             return (Value_Humaninput)this.DataRow[index];
+        }
+
+        /// <summary>
+        /// 配列の要素を取得します。
+        /// </summary>
+        /// <param name="name_Field"></param>
+        /// <returns></returns>
+        public Value_Humaninput ValueAt(string name_Field)
+        {
+            return (Value_Humaninput)this.DataRow[name_Field];
+        }
+
+        /// <summary>
+        /// 配列の要素を取得します。
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public void SetValueAt(int index, Value_Humaninput valueH, Log_Reports log_Reports)
+        {
+            this.DataRow[index] = valueH;
+        }
+
+        /// <summary>
+        /// 配列の要素を取得します。
+        /// </summary>
+        /// <param name="name_Field"></param>
+        /// <returns></returns>
+        public void SetValueAt(string name_Field, Value_Humaninput valueH, Log_Reports log_Reports)
+        {
+            this.DataRow[name_Field] = valueH;
         }
 
         //────────────────────────────────────────
@@ -115,6 +177,18 @@ namespace Xenon.Table
         }
 
         //────────────────────────────────────────
+
+        public void AddTo(Table_Humaninput tableH)
+        {
+            tableH.DataTable.Rows.Add(this.DataRow);
+        }
+
+        public void RemoveFrom(Table_Humaninput tableH)
+        {
+            tableH.DataTable.Rows.Remove(this.DataRow);
+        }
+
+        //────────────────────────────────────────
         #endregion
 
 
@@ -124,7 +198,7 @@ namespace Xenon.Table
 
         private DataRow dataRow;
 
-        public DataRow DataRow
+        private DataRow DataRow
         {
             get
             {

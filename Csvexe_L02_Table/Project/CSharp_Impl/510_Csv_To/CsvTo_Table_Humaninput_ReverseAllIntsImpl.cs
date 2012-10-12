@@ -128,14 +128,9 @@ namespace Xenon.Table
                         //
                         string sFieldName = sToken;//.Trim().ToUpper();
 
-                        // テーブルのフィールドを追加します。型の既定値は文字列型とします。
-                        fieldDefinition = new FielddefinitionImpl(sFieldName, typeof(String_HumaninputImpl));
+                        // テーブルのフィールドを追加します。フィールドの型は、intに固定です。
+                        fieldDefinition = new FielddefinitionImpl(sFieldName, EnumTypeFielddefinition.Int);
                         recordFielddefinition.Add(fieldDefinition);
-
-                        //
-                        // フィールドの型は、intに固定です。
-                        //
-                        fieldDefinition.Type = typeof(Int_HumaninputImpl);
                     }
                     else if(1==nColumnIndex)
                     {

@@ -58,89 +58,62 @@ namespace Xenon.Controls
 
             string sConfigStack_StringOfCell = sName_SelectedFld;
 
-            // 紛らわしいですが、.GetType() と .Type は別物です。
-            if (selFldDefinition.Type == typeof(String_HumaninputImpl))
+            switch (selFldDefinition.Type_Field)
             {
-                //row[this.SelectedFldName] = outputValueStr;
+                case EnumTypeFielddefinition.String:
+                    {
+                        // 空欄も自動処理
+                        String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack_StringOfCell);
+                        cellData.Text = sValue_Output;
 
-                // 空欄も自動処理
-                String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack_StringOfCell);
-                cellData.Text = sValue_Output;
+                        row[sName_SelectedFld] = cellData;
+                    }
+                    break;
+                case EnumTypeFielddefinition.Int:
+                    {
+                        // 空欄も自動処理
+                        Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack_StringOfCell);
+                        cellData.Text = sValue_Output;
+                        row[sName_SelectedFld] = cellData;
+                    }
+                    break;
+                case EnumTypeFielddefinition.Bool:
+                    {
+                        // 空欄も自動処理
+                        Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack_StringOfCell);
+                        cellData.Text = sValue_Output;
+                        row[sName_SelectedFld] = cellData;
+                    }
+                    break;
+                default:
+                    {
+                        if (log_Reports.CanCreateReport)
+                        {
+                            Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                            r.SetTitle("▲エラー398！", pg_Method);
 
-                row[sName_SelectedFld] = cellData;
-            }
-            else if (selFldDefinition.Type == typeof(Int_HumaninputImpl))
-            {
-                // 空欄も自動処理
-                Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack_StringOfCell);
-                cellData.Text = sValue_Output;
-                row[sName_SelectedFld] = cellData;
-            }
-            else if (selFldDefinition.Type == typeof(Bool_HumaninputImpl))
-            {
-                // 空欄も自動処理
-                Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack_StringOfCell);
-                cellData.Text = sValue_Output;
-                row[sName_SelectedFld] = cellData;
+                            StringBuilder t = new StringBuilder();
 
-                //if ("" == outputValueStr.Trim())
-                //{
-                //    // 空欄なら
-                //    row[this.SelectedFldName] = CellDataTarget.ALT_EMPTY_INT;// TODO int型のフィールドに空欄を入れるには？
-                //}
-                //else
-                //{
-                //    try
-                //    {
-                //        row[this.SelectedFldName] = outputValueStr;
-                //    }
-                //    catch (ArgumentException)
-                //    {
-                //        // 数値型のフィールドに文字を入れようとしたときなど。
+                            t.Append("予期しない、フィールドの型です。");
+                            t.Append(Environment.NewLine);
+                            t.Append("selFldDefinition.Type=[");
+                            t.Append(selFldDefinition.ToString_Type());
+                            t.Append("]");
+                            t.Append(Environment.NewLine);
+                            t.Append(Environment.NewLine);
 
-                //        // エラー中断。
-                //        WarningReport dr = new WarningReport();
-                //        dr.STitle = "▲エラー1213！（"+Info_Forms.LibraryName+"）";
-                //        dr.Message = "数値型のフィールドに文字[" + outputValueStr + "]を入れようとしました。";
-                //        log_Reports.Add(dr);
-                //        return;
-                //    }
-                //}
-            }
-            else
-            {
-                if (log_Reports.CanCreateReport)
-                {
-                    Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                    r.SetTitle("▲エラー398！", pg_Method);
+                            // ヒント
+                            t.Append(r.Message_Configurationtree(ec_Fcell.Cur_Configurationtree));
 
-                    StringBuilder t = new StringBuilder();
-
-                    t.Append("予期しない、フィールドの型です。");
-                    t.Append(Environment.NewLine);
-                    t.Append("selFldDefinition.Type=[");
-                    t.Append(selFldDefinition.Type);
-                    t.Append("]");
-                    t.Append(Environment.NewLine);
-                    t.Append(Environment.NewLine);
-
-                    // ヒント
-                    t.Append(r.Message_Configurationtree(ec_Fcell.Cur_Configurationtree));
-
-                    r.Message = t.ToString();
-                    log_Reports.EndCreateReport();
-                }
+                            r.Message = t.ToString();
+                            log_Reports.EndCreateReport();
+                        }
+                    }
+                    break;
             }
 
-
-            //
-            //
-            //
             //
             pg_Method.EndMethod(log_Reports);
-
-            //essageBox.Show("アップデートデータ【終了】 outputValueStr=[" + outputValueStr + "]", "(FormsImpl)" + this.GetType().NFcName + "#:");
-            //.WriteLine(this.GetType().NFcName + "#: 【終了】アップデート完了。");
         }
 
         //────────────────────────────────────────

@@ -163,11 +163,6 @@ namespace Xenon.Table
 
             string sCellValue;
 
-            // フィールドの型を数字で表したとき。
-            // -1:エラー、0:string、1:int、2:bool。
-            //int fieldTypeNumber;
-            Type fieldType;
-
 
 
             //
@@ -218,31 +213,35 @@ namespace Xenon.Table
                     }
                     else
                     {
-                        fieldType = fielddefinition.Type;
 
-                        //
-                        // string＞int＞bool の順でデータ数が多いことが多い？
-                        //
-                        if (fieldType == typeof(String_HumaninputImpl))//0 == fieldTypeNumber
+                        switch(fielddefinition.Type_Field)
                         {
-                            sList_FieldTypeRow.Add(FielddefinitionImpl.S_STRING);
-                        }
-                        else if (fieldType == typeof(Int_HumaninputImpl))//1 == fieldTypeNumber
-                        {
-                            sList_FieldTypeRow.Add(FielddefinitionImpl.S_INT);
-                        }
-                        else if (fieldType == typeof(Bool_HumaninputImpl))//2 == fieldTypeNumber
-                        {
-                            sList_FieldTypeRow.Add(FielddefinitionImpl.S_BOOL);
-                        }
-                        else
-                        {
-                            // TODO エラー対応。
+                            case EnumTypeFielddefinition.String:
+                                {
+                                    sList_FieldTypeRow.Add(FielddefinitionImpl.S_STRING);
+                                }
+                                break;
+                            case EnumTypeFielddefinition.Int:
+                                {
+                                    sList_FieldTypeRow.Add(FielddefinitionImpl.S_INT);
+                                }
+                                break;
+                            case EnumTypeFielddefinition.Bool:
+                                {
+                                    sList_FieldTypeRow.Add(FielddefinitionImpl.S_BOOL);
+                                }
+                                break;
+                            default:
+                                {
+                                    // TODO エラー対応。
 
-                            // 未定義の型があった場合、そのまま出力します。
-                            // C#のメッセージになるかと思います。
-                            sList_FieldTypeRow.Add(fielddefinition.Type.ToString());
+                                    // 未定義の型があった場合、そのまま出力します。
+                                    // C#のメッセージになるかと思います。
+                                    sList_FieldTypeRow.Add(fielddefinition.ToString_Type());
+                                }
+                                break;
                         }
+
                     }
                 }, log_Reports);
             }
@@ -280,7 +279,7 @@ namespace Xenon.Table
                 for (int nR = 0; nR < nDataCount; nR++)
                 {
                     dataRow = dataTable.Rows[nR];
-                    object[] recordFields = dataRow.ItemArray;//ItemArrayは1回の呼び出しが重い。
+                    object[] itemArray = dataRow.ItemArray;//ItemArrayは1回の呼び出しが重い。
 
 
 
@@ -288,32 +287,16 @@ namespace Xenon.Table
                     int indexColumn = 0;
                     table.RecordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
                     {
-                        fieldType = fielddefinition.Type;
-
                         if (this.O_ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                         {
                             // 出力しないフィールドの場合、無視します。
                         }
                         else
                         {
-                            //
-                            // string＞int＞bool の順でデータ数が多いことが多い？
-                            //
-                            if (fieldType == typeof(String_HumaninputImpl))//0 == fieldTypeNumber
-                            {
-                                // （８）string型セルデータ書出し
-                                sCellValue = String_HumaninputImpl.ParseString(recordFields[indexColumn]);
 
-                            }
-                            else if (fieldType == typeof(Int_HumaninputImpl))//1 == fieldTypeNumber
+                            if (itemArray[indexColumn] is Value_Humaninput)
                             {
-                                // （９）int型セルデータ書出し
-                                sCellValue = Int_HumaninputImpl.ParseString(recordFields[indexColumn]);
-                            }
-                            else if (fieldType == typeof(Bool_HumaninputImpl))//2 == fieldTypeNumber
-                            {
-                                // （１０）bool型セルデータ書出し
-                                sCellValue = Bool_HumaninputImpl.ParseString(recordFields[indexColumn]);
+                                sCellValue = ((Value_Humaninput)itemArray[indexColumn]).Text;
                             }
                             else
                             {
@@ -339,7 +322,7 @@ namespace Xenon.Table
                             Log_TextIndented s = new Log_TextIndentedImpl();
 
                             s.Append("（プログラム内部エラー）未定義のフィールド型=[");
-                            s.Append(err_FldDef.Type.ToString());
+                            s.Append(err_FldDef.ToString_Type());
                             s.Append("]");
                             s.Newline();
 

@@ -35,6 +35,9 @@ namespace Xenon.Table
 
         #region アクション
         //────────────────────────────────────────
+        //
+        // テーブル作成
+        //
 
         /// <summary>
         /// 設定された型リストで、テーブルの構造を作成します。
@@ -44,17 +47,43 @@ namespace Xenon.Table
         void CreateTable(RecordFielddefinition recordFielddefinition, Log_Reports log_Reports);
 
         /// <summary>
+        /// NOフィールドを 0からの連番に振りなおします。
+        /// 
+        /// NOフィールド値は、プログラム中で主キーとして使うことがあるので、
+        /// 変更するのであれば、ファイルを読み込んだ直後にするものとします。
+        /// </summary>
+        void RenumberingNoField();
+
+        /// <summary>
+        /// 「END」フィールドの左に、新しいフィールドを追加します。
+        /// 同名の列が既に追加されている場合は無視されます。
+        /// </summary>
+        /// <param name="fielddefinition_New"></param>
+        /// <param name="isRequired">追加に失敗したときエラーにするなら真。ただし、既に同名の列が追加されている場合は除く。</param>
+        /// <param name="log_Reports"></param>
+        /// <returns>追加に成功した場合、真を返します。</returns>
+        bool AddField( Fielddefinition fielddefinition_New, bool isRequired, Log_Reports log_Reports);
+
+        /// <summary>
+        /// フィールドを追加します。
+        /// 同名の列が既に追加されている場合は無視されます。
+        /// </summary>
+        /// <param name="fielddefinition_New"></param>
+        /// <param name="isRequired">追加に失敗したときエラーにするなら真。ただし、既に同名の列が追加されている場合は除く。</param>
+        /// <param name="log_Reports"></param>
+        /// <returns>追加に成功した場合、真を返します。</returns>
+        bool InsertField(int columnIndex, Fielddefinition fielddefinition_New, bool isRequired, Log_Reports log_Reports);
+
+        //────────────────────────────────────────
+        //
+        // レコード編集
+        //
+
+        /// <summary>
         /// レコードを追加します。
         /// </summary>
         /// <param name="record"></param>
-        void AddRecord(DataRow record);
-
-        /// <summary>
-        /// 空レコードを作成します。
-        /// </summary>
-        /// <param name="sErrorMsg"></param>
-        /// <returns></returns>
-        DataRow CreateNewRecord( Log_Reports log_Reports );
+        void AddRecord(Record_Humaninput record);
 
         /// <summary>
         /// 行データを渡すことで、テーブル内容を追加します。
@@ -67,18 +96,17 @@ namespace Xenon.Table
             List<List<string>> rows, RecordFielddefinition recordFielddefinition, Log_Reports log_Reports);
 
         /// <summary>
-        /// NOフィールドを 0からの連番に振りなおします。
-        /// 
-        /// NOフィールド値は、プログラム中で主キーとして使うことがあるので、
-        /// 変更するのであれば、ファイルを読み込んだ直後にするものとします。
+        /// 空レコードを作成します。
         /// </summary>
-        void RenumberingNoField();
+        /// <param name="sErrorMsg"></param>
+        /// <returns></returns>
+        Record_Humaninput CreateNewRecord(Log_Reports log_Reports);
 
         /// <summary>
         /// 行の削除。
         /// </summary>
         /// <param name="dataRow"></param>
-        void Remove(DataRow dataRow);
+        void Remove(Record_Humaninput dataRow);
 
         /// <summary>
         /// 指定したレコードの並び順を１つ上に上げます。
@@ -98,6 +126,11 @@ namespace Xenon.Table
         /// <param name="nSourceIndices">移動待ち要素のリスト。インデックスの昇順に並んでいる必要があります。</param>
         /// <param name="nDestinationIndex"></param>
         void MoveItemsBefore(int[] nSourceIndices, int nDestinationIndex);
+
+        //────────────────────────────────────────
+        //
+        // 取得
+        //
 
         /// <summary>
         /// フィールドの定義を取得します。
@@ -124,7 +157,7 @@ namespace Xenon.Table
         /// <param name="hits"></param>
         /// <param name="log_Reports"></param>
         /// <returns>一致しなければヌル。</returns>
-        List<DataRow> SelectByString(
+        List<Record_Humaninput> SelectByString(
             string sFieldName,
             String_HumaninputImpl sExpectedStringParam,
             EnumHitcount hits,
@@ -137,7 +170,7 @@ namespace Xenon.Table
         /// <param name="exceptedNo"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        DataRow SelectByNo(
+        Record_Humaninput SelectByNo(
             Int_HumaninputImpl exceptedNo,
             Log_Reports log_Reports
             );
@@ -149,7 +182,7 @@ namespace Xenon.Table
         /// <param name="expectedInt"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
-        DataRow SelectByInt(
+        Record_Humaninput SelectByInt(
             string sName_Field,
             Int_HumaninputImpl expectedInt,
             Log_Reports log_Reports
@@ -158,6 +191,7 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         /// <summary>
+        /// データパートのレコード。
         /// 上３行を読み飛ばします。
         /// </summary>
         /// <param name="delegate_Records"></param>

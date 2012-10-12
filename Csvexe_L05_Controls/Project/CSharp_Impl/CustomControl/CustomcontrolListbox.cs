@@ -111,60 +111,9 @@ namespace Xenon.Controls
             Log_Method pg_Method = new Log_MethodImpl();
             pg_Method.BeginMethod(Info_Controls.Name_Library, this, "SelectItem",log_Reports);
             //
-            //
-            string sErrorMsg;
 
 
             string sName_KeyFld = ec_KeyFieldName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-
-            //if(null==this.O_DsrcTable)
-            //{
-            //    // エラー
-            //    Log_RecordReports r = log_Reports.NewReport(EnumReport.Error);
-            //    r.SetTitle( "▲エラー344！", this.GetType().Name, Info_Forms.LibraryName );
-
-            //    Log_TextIndented s = new Log_TextIndentedImpl();
-
-            //    s.Append("リストボックスに データソース・テーブルが設定されていませんでした。");
-            //    s.Newline();
-            //    s.Append("リストボックスに テーブルを関連付ける前に、リストボックスにアクセスしましたか？");
-            //    s.Newline();
-            //    s.Append("またはそれ以外の理由。");
-            //    s.Newline();
-
-            //    //
-            //    // 実行経路ヒント
-            //    //
-            //    s.Append(r.Message_SCallStack(log_Reports));
-
-            //    r.Message = s.ToString();
-
-            //    goto gt_EndMethod;
-            //}
-            //else if (!this.O_DsrcTable.DataTable.Columns.Contains(sKeyFldName))
-            //{
-            //    // エラー
-            //    Log_RecordReports r = log_Reports.NewReport(EnumReport.Error);
-            //    r.STitle = "▲エラー343！（" + Info_Forms.LibraryName + "）";
-
-            //    Log_TextIndented s = new Log_TextIndentedImpl();
-
-            //    s.Append("指定のキーフィールド[");
-            //    s.Append(sKeyFldName);
-            //    s.Append("]は存在しませんでした。");
-            //    s.Newline();
-
-            //    //
-            //    // 実行経路ヒント
-            //    //
-            //    s.Append(r.Message_SCallStack(log_Reports));
-
-            //    r.Message = s.ToString();
-
-            //    goto gt_EndMethod;
-            //}
-
-
 
             bool bMatched = false;
 
@@ -192,16 +141,10 @@ namespace Xenon.Controls
                             fldValue,
                             out o_FldValue,
                             true,
-                            out sErrorMsg
+                            log_Reports
                             );
-                        if ("" != sErrorMsg)
+                        if (!log_Reports.Successful)
                         {
-                            if (log_Reports.CanCreateReport)
-                            {
-                                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                                r.Message = sErrorMsg;
-                                log_Reports.EndCreateReport();
-                            }
                             goto gt_EndMethod;
                         }
                     }
@@ -222,16 +165,10 @@ namespace Xenon.Controls
                         o_FldValue,
                         true,
                         pg_Method.Fullname,
-                        out sErrorMsg
+                        log_Reports
                         );
-                    if ("" != sErrorMsg)
+                    if (!log_Reports.Successful)
                     {
-                        if (log_Reports.CanCreateReport)
-                        {
-                            Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
-                            r.Message = sErrorMsg;
-                            log_Reports.EndCreateReport();
-                        }
                         goto gt_EndMethod;
                     }
 

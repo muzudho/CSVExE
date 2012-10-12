@@ -25,8 +25,8 @@ namespace Xenon.Table
         /// </summary>
         public Request_ReadsTableImpl()
         {
-            this.sName_PutToTable = "";
-            this.sUse = "";
+            this.name_PutToTable = "";
+            this.use = "";
 
             {
                 Configurationtree_Node s_ParentNode = new Configurationtree_NodeImpl("!ハードコーディング_Request_TableReadsImpl#<init>", null);
@@ -43,7 +43,7 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private string sName_PutToTable;
+        private string name_PutToTable;
 
         /// <summary>
         /// テーブルに付けたい名前。
@@ -52,17 +52,17 @@ namespace Xenon.Table
         {
             get
             {
-                return sName_PutToTable;
+                return name_PutToTable;
             }
             set
             {
-                sName_PutToTable = value;
+                name_PutToTable = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sTableunit;
+        private string tableunit;
 
         /// <summary>
         /// テーブル_ユニット名。
@@ -71,17 +71,17 @@ namespace Xenon.Table
         {
             get
             {
-                return sTableunit;
+                return tableunit;
             }
             set
             {
-                sTableunit = value;
+                tableunit = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sTypedata;
+        private string typedata;
 
         /// <summary>
         /// 「TYPE_DATA」フィールド値。
@@ -91,11 +91,11 @@ namespace Xenon.Table
         {
             get
             {
-                return sTypedata;
+                return typedata;
             }
             set
             {
-                sTypedata = value;
+                typedata = value;
             }
         }
 
@@ -120,7 +120,7 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private bool bDatebackup;
+        private bool isDatebackupActivated;
 
         /// <summary>
         /// 「日別バックアップ」するなら真。
@@ -129,17 +129,17 @@ namespace Xenon.Table
         {
             get
             {
-                return bDatebackup;
+                return isDatebackupActivated;
             }
             set
             {
-                bDatebackup = value;
+                isDatebackupActivated = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sUse;
+        private string use;
 
         /// <summary>
         /// 用途。／「」指定なし。／「WriteOnly」データの読取を行わない。ログ出力先を登録しているだけなど。
@@ -148,11 +148,11 @@ namespace Xenon.Table
         {
             get
             {
-                return sUse;
+                return use;
             }
             set
             {
-                sUse = value;
+                use = value;
             }
         }
 

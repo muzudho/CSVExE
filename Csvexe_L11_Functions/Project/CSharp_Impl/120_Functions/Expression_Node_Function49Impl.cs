@@ -37,10 +37,17 @@ namespace Xenon.Functions
         //
 
         /// <summary>
-        /// 表示文章。
+        /// このファイルの指定フィールドにあるファイルパスを、この関数は読み込みます。
         /// </summary>
         public static readonly string PM_FILE_IMPORT_LISTFILE = "Pm:file-import-listfile;";
+        public static readonly string PM_FIELD_IMPORT_LISTFILE = "Pm:field-import-listfile;";
+        public static readonly string PM_FILTER_EXTENSION_IMPORT = "Pm:filter-extension-import;";
+
         public static readonly string PM_FILE_EXPORT_LISTFILE = "Pm:file-export-listfile;";
+        public static readonly string PM_FIELD_EXPORT_LISTFILE = "Pm:field-export-listfile;";
+        public static readonly string PM_TYPEFIELD_EXPORT_LISTFILE = "Pm:typefield-export-listfile;";
+        public static readonly string PM_COMMENTFIELD_EXPORT_LISTFILE = "Pm:commentfield-export-listfile;";
+
         public static readonly string PM_FOLDER_SOURCE = "Pm:folder-source;";
         public static readonly string PM_FOLDER_DESTINATION = "Pm:folder-destination;";
         public static readonly string PM_POPUP = "Pm:popup;";
@@ -79,7 +86,12 @@ namespace Xenon.Functions
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, my_Conf), log_Reports);
 
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FILE_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function49Impl.PM_FIELD_IMPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function49Impl.PM_FILTER_EXTENSION_IMPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function49Impl.PM_FIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function49Impl.PM_TYPEFIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
+            f0.SetAttribute(Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_POPUP, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
@@ -163,19 +175,31 @@ namespace Xenon.Functions
                 log_Method.Log_Stopwatch.Begin();
             }
 
-            //
-            // メッセージボックスの表示。
-            Log_TextIndented str_Messagebox = new Log_TextIndentedImpl();
-            str_Messagebox.Append(log_Method.Fullname);
-            str_Messagebox.Append(":");
-            str_Messagebox.Append(Environment.NewLine);
+
+            Exception error_Exception;
+            string error_Filepath_Export;
 
 
             Expression_Node_Filepath pm_FileImportListfile_Expr;
             this.TrySelectAttribute_ExpressionFilepath(out pm_FileImportListfile_Expr, Expression_Node_Function49Impl.PM_FILE_IMPORT_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
 
+            Expression_Node_String pm_FieldImportListfile_Expr;
+            this.TrySelectAttribute(out pm_FieldImportListfile_Expr, Expression_Node_Function49Impl.PM_FIELD_IMPORT_LISTFILE, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_FilterExtensionImport_Expr;
+            this.TrySelectAttribute(out pm_FilterExtensionImport_Expr, Expression_Node_Function49Impl.PM_FILTER_EXTENSION_IMPORT, EnumHitcount.One, log_Reports);
+
             Expression_Node_Filepath pm_FileExportListfile_Expr;
             this.TrySelectAttribute_ExpressionFilepath(out pm_FileExportListfile_Expr, Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE, EnumHitcount.One_Or_Zero, log_Reports);
+
+            Expression_Node_String pm_FieldExportListfile_Expr;
+            this.TrySelectAttribute(out pm_FieldExportListfile_Expr, Expression_Node_Function49Impl.PM_FIELD_EXPORT_LISTFILE, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_TypefieldExportListfile_Expr;
+            this.TrySelectAttribute(out pm_TypefieldExportListfile_Expr, Expression_Node_Function49Impl.PM_TYPEFIELD_EXPORT_LISTFILE, EnumHitcount.One, log_Reports);
+
+            Expression_Node_String pm_CommentfieldExportListfile_Expr;
+            this.TrySelectAttribute(out pm_CommentfieldExportListfile_Expr, Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE, EnumHitcount.One, log_Reports);
 
             Expression_Node_Filepath pm_FolderSource_Expr;
             this.TrySelectAttribute_ExpressionFilepath(out pm_FolderSource_Expr, Expression_Node_Function49Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
@@ -188,53 +212,115 @@ namespace Xenon.Functions
             this.TrySelectAttribute(out pm_Popup, Expression_Node_Function49Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
             pm_Popup = pm_Popup.Trim();
 
-            this.Dictionary_Expression_Attribute.ToText_Debug(str_Messagebox, log_Reports);
 
-            str_Messagebox.Append(
-                "file-import-listfile=[" + pm_FileImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports) + "]\n\n" +
-                "file-export-listfile=[" + pm_FileExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
-                "folder-source=[" + pm_FolderSource_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
-                "folder-destination=[" + pm_FolderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
-                "pm_Popup=[" + pm_Popup + "]\n\n"
-                );
+            
+            // メッセージボックスの表示。
+            {
+                Log_TextIndented str_Messagebox = new Log_TextIndentedImpl();
+                str_Messagebox.Append(log_Method.Fullname);
+                str_Messagebox.Append(":");
+                str_Messagebox.Append(Environment.NewLine);
 
-            MessageBox.Show(str_Messagebox.ToString(), "デバッグ表示");
+                this.Dictionary_Expression_Attribute.ToText_Debug(str_Messagebox, log_Reports);
+
+                str_Messagebox.Append(
+                    "file-import-listfile=[" + pm_FileImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "field-import-listfile=[" + pm_FieldImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "filter-extension-import=[" + pm_FilterExtensionImport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "file-export-listfile=[" + pm_FileExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "field-export-listfile=[" + pm_FieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "typefield-export-listfile=[" + pm_TypefieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "commentfield-export-listfile=[" + pm_CommentfieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "folder-source=[" + pm_FolderSource_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "folder-destination=[" + pm_FolderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]\n\n" +
+                    "pm_Popup=[" + pm_Popup + "]\n\n"
+                    );
+
+                MessageBox.Show(str_Messagebox.ToString(), "デバッグ表示");
+            }
+
+            //書出し先ファイルパス。
+            string filepath_Export = "";
+            try
+            {
+                filepath_Export = pm_FileExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+
+                if ("" == filepath_Export)
+                {
+                    //エラー
+                    error_Exception = null;
+                    error_Filepath_Export = filepath_Export;
+                    goto gt_Error_FilepathExport;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //エラー
+                error_Exception = ex;
+                error_Filepath_Export = filepath_Export;
+                goto gt_Error_FilepathExport;
+            }
 
 
             // CSVファイル読取り
-            List<string[]> list_StringArray = new List<string[]>();
+            Table_Humaninput tableH;
+            if (log_Reports.Successful)
+            {
+                CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
+
+                Request_ReadsTable request_Reads = new Request_ReadsTableImpl();
+                Format_Table_Humaninput tblFormat_puts = new Format_Table_HumaninputImpl();
+                request_Reads.Name_PutToTable = log_Method.Fullname;//暫定
+                request_Reads.Expression_Filepath = pm_FileImportListfile_Expr;
+
+                tableH = reader.Read(
+                    request_Reads,
+                    tblFormat_puts,
+                    true,
+                    log_Reports
+                    );
+            }
+            else
+            {
+                tableH = null;
+            }
+
+            // CSVに列追加。
+            string name_FieldNew;
+            int index_FieldNew;
+            if (log_Reports.Successful)
+            {
+                name_FieldNew = pm_FieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                string name_Typefield = pm_TypefieldExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                Fielddefinition fielddefinition_New = new FielddefinitionImpl(name_FieldNew, FielddefinitionImpl.TypefieldFromString(name_Typefield, true, log_Reports));
+                fielddefinition_New.Comment = pm_CommentfieldExportListfile_Expr.Execute4_OnExpressionString(Syntax.EnumHitcount.Unconstraint, log_Reports);
+                tableH.AddField(fielddefinition_New, true, log_Reports);
+
+                index_FieldNew = tableH.RecordFielddefinition.ColumnIndexOf_Trimupper(name_FieldNew);
+            }
+            else
+            {
+                index_FieldNew = -1;
+            }
+
+            string name_FieldSource = pm_FieldImportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);// "FILE"
             if (log_Reports.Successful)
             {
                 //
                 // CSVソースファイル読取
                 //
-                CsvTo_Table_HumaninputImpl reader = new CsvTo_Table_HumaninputImpl();
-
-                Request_ReadsTable request_tblReads = new Request_ReadsTableImpl();
-                Format_Table_Humaninput tblFormat_puts = new Format_Table_HumaninputImpl();
-                request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
-                request_tblReads.Expression_Filepath = pm_FileImportListfile_Expr;
-
-                Table_Humaninput xenonTable = reader.Read(
-                    request_tblReads,
-                    tblFormat_puts,
-                    true,
-                    log_Reports
-                    );
 
                 int rowNumber = 1;
-                foreach (DataRow row in xenonTable.DataTable.Rows)
+                tableH.ForEach_Datapart(delegate(Record_Humaninput recordH, ref bool isBreak2, Log_Reports log_Reports2)
                 {
-
                     //記述されているファイルパス
                     string filepath_Source_Cur;
                     if (log_Reports.Successful)
                     {
-                        String_HumaninputImpl.TryParse(row["FILE"], out filepath_Source_Cur, "", "", log_Method, log_Reports);
-                        //if (log_Method.CanDebug(9))
-                        //{
-                        //    log_Method.WriteDebug_ToConsole("①filepathCur=[" + filepathCur + "]");
-                        //}
+                        String_HumaninputImpl.TryParse(
+                            recordH.ValueAt(name_FieldSource),
+                            out filepath_Source_Cur, "", "", log_Method, log_Reports);
                     }
                     else
                     {
@@ -246,12 +332,6 @@ namespace Xenon.Functions
                     {
                         filepathCur_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
                         filepathCur_Conf.InitPath(filepath_Source_Cur, log_Reports);
-                        //if (log_Method.CanDebug(9))
-                        //{
-                        //    Log_TextIndented s = new Log_TextIndentedImpl();
-                        //    filepathCur_Conf.ToText_Content(s);
-                        //    log_Method.WriteDebug_ToConsole("②filepathCur_Conf=[" + s.ToString() + "]");
-                        //}
                     }
                     else
                     {
@@ -262,10 +342,6 @@ namespace Xenon.Functions
                     if (log_Reports.Successful)
                     {
                         filepathCur_Expr = new Expression_Node_FilepathImpl(filepathCur_Conf);
-                        //if (log_Method.CanDebug(9))
-                        //{
-                        //    log_Method.WriteDebug_ToConsole("③filepathCur_Expr=[" + filepathCur_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
-                        //}
                     }
                     else
                     {
@@ -273,84 +349,77 @@ namespace Xenon.Functions
                     }
 
                     //頭をカットする
-                    string filepath_Destination_New;
-                    //Expression_Node_Filepath filepathCrop;
+                    Expression_Node_Filepath fileDestination_Expr;
                     if (log_Reports.Successful)
                     {
-                        filepathCur_Expr.TryCutFolderpath(out filepath_Destination_New, pm_FolderSource_Expr, true, log_Reports);
-                        //if (log_Method.CanDebug(9))
-                        //{
-                        //    log_Method.WriteDebug_ToConsole("④filepathCrop.Humaninput =[" + filepathCrop.Humaninput + "]");
-                        //    log_Method.WriteDebug_ToConsole("④filepathCrop.Execute4_～=[" + filepathCrop.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
-                        //}
-
-                        //if (log_Method.CanDebug(9))
-                        //{
-                        //    log_Method.WriteDebug_ToConsole("filepathCrop=[" + filepathCrop + "]");
-                        //}
+                        string filepath_Destination_New1;
+                        filepathCur_Expr.TryCutFolderpath(out filepath_Destination_New1, pm_FolderSource_Expr, true, log_Reports);
 
                         //転送先パスの作成
                         Configurationtree_NodeFilepath fileDestination_Conf = new Configurationtree_NodeFilepathImpl(log_Method.Fullname, null);
-                        fileDestination_Conf.InitPath(pm_FolderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports), filepath_Destination_New, log_Reports);
+                        fileDestination_Conf.InitPath(pm_FolderDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), filepath_Destination_New1, log_Reports);
 
-                        Expression_Node_Filepath fileDestination_Expr = new Expression_Node_FilepathImpl(fileDestination_Conf);
-                        filepath_Destination_New = fileDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        fileDestination_Expr = new Expression_Node_FilepathImpl(fileDestination_Conf);
                     }
                     else
                     {
-                        filepath_Destination_New = "";
+                        fileDestination_Expr = null;
                     }
-
-                    //if (log_Method.CanDebug(1))
-                    //{
-                    //    log_Method.WriteDebug_ToConsole("コピーしたい：　filepath_Source_Cur=[" + filepath_Source_Cur + "] → filepath_New=[" + filepath_Destination_New + "]");
-                    //}
 
                     if (!log_Reports.Successful)
                     {
                         //エラー
-                        break;
+                        isBreak2 = true;
+                        goto gt_EndInnermethod;
                     }
 
-                    list_StringArray.Add(new string[] { filepath_Source_Cur, filepath_Destination_New });
+                    //
+                    //拡張子を確認したい。
+                    //
+                    string extension;
+                    string filterExtension = pm_FilterExtensionImport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports);
+                    List<string> list_FilterExtension = new CsvTo_ListImpl().Read(filterExtension);
+                    fileDestination_Expr.TryGetExtension(out extension,log_Reports);
+                    //log_Method.WriteDebug_ToConsole("拡張子=[" + extension + "](要素数=" + list_FilterExtension.Count + ") フィルター=[" + filterExtension + "] 含まれる？=[" + list_FilterExtension.Contains(extension) + "]");
 
+                    if (list_FilterExtension.Contains(extension))
+                    {
+                        //フィルターに含まれる
+
+                        //
+                        // レコードの追加列に値セット。
+                        //
+                        Value_Humaninput valueH_New = new String_HumaninputImpl(log_Method.Fullname);
+                        valueH_New.Text = fileDestination_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                        recordH.SetValueAt(index_FieldNew, valueH_New, log_Reports);
+                    }
+                    else
+                    {
+                    }
+
+
+                    //
+                gt_EndInnermethod:
                     rowNumber++;
-                }
+                }, log_Reports);
+            }
+
+            //自動連番を振ります。
+            if (log_Reports.Successful)
+            {
+                tableH.RenumberingNoField();
             }
 
             //CSVファイルの書出し
             if (log_Reports.Successful)
             {
-                StringBuilder s2 = new StringBuilder();
-                s2.Append("NO,FILE,FILE2,END");
-                s2.Append(Environment.NewLine);
-                s2.Append("int,string,string,END");
-                s2.Append(Environment.NewLine);
-                s2.Append("-1,ファイルパス,ファイルパス2,END");
-                s2.Append(Environment.NewLine);
-                int n = 0;
-                foreach (string[] row in list_StringArray)
-                {
-                    //連番
-                    s2.Append(n);
-                    s2.Append(",");
-                    s2.Append(row[0]);
-                    s2.Append(",");
-                    s2.Append(row[1]);
-                    s2.Append(",END");
-                    s2.Append(Environment.NewLine);
-                    n++;
-                }
-                s2.Append("EOF,,,");
-                s2.Append(Environment.NewLine);
-
-                //System.Console.WriteLine(s2.ToString());
+                string text_Csv = new ToCsv_Table_Humaninput_Impl().ToCsvText(tableH, log_Reports);
 
                 try
                 {
                     System.IO.File.WriteAllText(
-                        pm_FileExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint,log_Reports),
-                        s2.ToString(),
+                        filepath_Export,
+                        text_Csv,
                         Global.ENCODING_CSV
                         );
 
@@ -361,7 +430,7 @@ namespace Xenon.Functions
                         s.Append("ファイルに書き込みました。");
                         s.Newline();
                         s.Append("[");
-                        s.Append(pm_FileExportListfile_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                        s.Append(filepath_Export);
                         s.Append("]");
                         s.Newline();
                         s.Newline();
@@ -371,18 +440,39 @@ namespace Xenon.Functions
                 }
                 catch (Exception ex)
                 {
-                    // 異常時は必ずポップアップが出る。
-                    MessageBox.Show(
-                        ex.Message,
-                        "▲エラー201！(" + log_Method.Fullname + ")#Write"
-                        );
+                    //エラー
+                    error_Exception = ex;
+                    error_Filepath_Export = filepath_Export;
+                    goto gt_Error_Exception;
                 }
-
-
             }
 
 
             goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_FilepathExport:
+            {
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Exception(error_Exception), log_Reports);//例外メッセージ
+                tmpl.SetParameter(2, error_Filepath_Export, log_Reports);//出力先ファイルパス
+
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110031;", tmpl, log_Reports);
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+        gt_Error_Exception:
+            {
+                Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Exception(error_Exception), log_Reports);//例外メッセージ
+                tmpl.SetParameter(2, error_Filepath_Export, log_Reports);//出力先ファイルパス
+
+                this.Owner_MemoryApplication.CreateErrorReport("Er:110032;", tmpl, log_Reports);
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);

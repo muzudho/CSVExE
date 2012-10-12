@@ -241,73 +241,34 @@ namespace Xenon.Expr
                     // （８）
                     if (log_Reports.Successful)
                     {
+
                         // キー_フィールドの型別に、処理。
-                        if (keyFldDefinition.Type == typeof(String_HumaninputImpl))
+                        switch (keyFldDefinition.Type_Field)
                         {
-                            // （８－１）キーが string型フィールドなら
-
-                            // この行の、選択対象のフィールドの値。
-
-                            foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
-                            {
-                                // 値。
-
-                                Value_Humaninput selectedCellData;
-                                try
+                            case EnumTypeFielddefinition.String:
                                 {
-                                    selectedCellData = (Value_Humaninput)record[sSelectField];
-                                }
-                                catch (KeyNotFoundException ex)
-                                {
-                                    selectedCellData = null;
-                                    err_SSelectedFldName = sSelectField;
-                                    err_Exception = ex;
-                                    isBreak2 = true;
-                                    goto gt_Error_NotFoundFld;
-                                }
+                                    // （８－１）キーが string型フィールドなら
 
-                                Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
-                                    fielddefinition_Selected,
-                                    selectedCellData,
-                                    parent_Cf_Query,
-                                    log_Reports
-                                    );
+                                    // この行の、選択対象のフィールドの値。
 
-                                list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
-                            }
-
-                        }
-                        else if (keyFldDefinition.Type == typeof(Int_HumaninputImpl))
-                        {
-                            //
-                            // （８－２） キー・フィールドが int型の場合。
-
-                            foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
-                            {
-                                // この行の、選択対象のフィールドの値。
-
-                                if (null != log_Reports && !log_Reports.Successful)//無限ループ防止
-                                {
-                                    // エラー発生時は無視。
-                                }
-                                else
-                                {
-                                    Value_Humaninput selectedCellData;
-                                    try
-                                    {
-                                        selectedCellData = record[sSelectField];
-                                    }
-                                    catch (KeyNotFoundException ex)
-                                    {
-                                        selectedCellData = null;
-                                        err_SSelectedFldName = sSelectField;
-                                        err_Exception = ex;
-                                        isBreak2 = true;
-                                        goto gt_Error_NotFoundFld;
-                                    }
-
+                                    foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
                                     {
                                         // 値。
+
+                                        Value_Humaninput selectedCellData;
+                                        try
+                                        {
+                                            selectedCellData = (Value_Humaninput)record[sSelectField];
+                                        }
+                                        catch (KeyNotFoundException ex)
+                                        {
+                                            selectedCellData = null;
+                                            err_SSelectedFldName = sSelectField;
+                                            err_Exception = ex;
+                                            isBreak2 = true;
+                                            goto gt_Error_NotFoundFld;
+                                        }
+
                                         Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
                                             fielddefinition_Selected,
                                             selectedCellData,
@@ -318,60 +279,106 @@ namespace Xenon.Expr
                                         list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                                     }
                                 }
-                            }
-                        }
-                        else if (keyFldDefinition.Type == typeof(Bool_HumaninputImpl))
-                        {
-                            // （８－３） キーが、bool型フィールド
+                                break;
+                            case EnumTypeFielddefinition.Int:
+                                {
+                                    //
+                                    // （８－２） キー・フィールドが int型の場合。
 
-                            // 値。
-                            foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
-                            {
-                                // この行の、選択対象のフィールドの値。
-                                Value_Humaninput selectedCellData;
-                                try
-                                {
-                                    selectedCellData = (Value_Humaninput)record[sSelectField];
+                                    foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
+                                    {
+                                        // この行の、選択対象のフィールドの値。
+
+                                        if (null != log_Reports && !log_Reports.Successful)//無限ループ防止
+                                        {
+                                            // エラー発生時は無視。
+                                        }
+                                        else
+                                        {
+                                            Value_Humaninput selectedCellData;
+                                            try
+                                            {
+                                                selectedCellData = record[sSelectField];
+                                            }
+                                            catch (KeyNotFoundException ex)
+                                            {
+                                                selectedCellData = null;
+                                                err_SSelectedFldName = sSelectField;
+                                                err_Exception = ex;
+                                                isBreak2 = true;
+                                                goto gt_Error_NotFoundFld;
+                                            }
+
+                                            {
+                                                // 値。
+                                                Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
+                                                    fielddefinition_Selected,
+                                                    selectedCellData,
+                                                    parent_Cf_Query,
+                                                    log_Reports
+                                                    );
+
+                                                list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                                            }
+                                        }
+                                    }
                                 }
-                                catch (KeyNotFoundException ex)
+                                break;
+                            case EnumTypeFielddefinition.Bool:
                                 {
-                                    selectedCellData = null;
-                                    err_SSelectedFldName = sSelectField;
-                                    err_Exception = ex;
+                                    // （８－３） キーが、bool型フィールド
+
+                                    // 値。
+                                    foreach (Dictionary<string, Value_Humaninput> record in dst_Rs_toSave.List_Field)
+                                    {
+                                        // この行の、選択対象のフィールドの値。
+                                        Value_Humaninput selectedCellData;
+                                        try
+                                        {
+                                            selectedCellData = (Value_Humaninput)record[sSelectField];
+                                        }
+                                        catch (KeyNotFoundException ex)
+                                        {
+                                            selectedCellData = null;
+                                            err_SSelectedFldName = sSelectField;
+                                            err_Exception = ex;
+                                            isBreak2 = true;
+                                            goto gt_Error_NotFoundFld;
+                                        }
+
+                                        Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
+                                            fielddefinition_Selected,
+                                            selectedCellData,
+                                            parent_Cf_Query,
+                                            log_Reports
+                                            );
+
+                                        list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
+                                    }
+                                }
+                                break;
+                            default:
+                                {
+                                    //
+                                    // （８－４） 
+
+                                    //
+                                    // 既にエラー対策済み。
+
+                                    if (null != log_Reports)//無限ループ防止
+                                    {
+                                        //
+                                        // エラー。
+                                        isBreak2 = true;
+                                        goto gt_Error_UndefinedPrimitiveType;
+                                    }
+
+                                    //
+                                    // 非エラー中断。
                                     isBreak2 = true;
-                                    goto gt_Error_NotFoundFld;
+                                    goto gt_EndInnermethod;
                                 }
-
-                                Expression_Node_String ec_SelectedValue = this.GetSelectedFieldValue(
-                                    fielddefinition_Selected,
-                                    selectedCellData,
-                                    parent_Cf_Query,
-                                    log_Reports
-                                    );
-
-                                list_FldImpl3.Add(ec_SelectedValue.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
-                            }
-                        }
-                        else
-                        {
-                            //
-                            // （８－４） 
-
-                            //
-                            // 既にエラー対策済み。
-
-                            if (null != log_Reports)//無限ループ防止
-                            {
-                                //
-                                // エラー。
-                                isBreak2 = true;
-                                goto gt_Error_UndefinedPrimitiveType;
-                            }
-
-                            //
-                            // 非エラー中断。
-                            isBreak2 = true;
-                            goto gt_EndInnermethod;
+                                break;
                         }
 
                     }
@@ -393,7 +400,7 @@ namespace Xenon.Expr
                 gt_Error_UndefinedPrimitiveType:
                     {
                         Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                        tmpl.SetParameter(1, keyFldDefinition.Type.ToString(), log_Reports);//キー・フィールド定義型名
+                        tmpl.SetParameter(1, keyFldDefinition.ToString_Type(), log_Reports);//キー・フィールド定義型名
                         tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                         this.Owner_MemoryApplication.CreateErrorReport("Er:6027;", tmpl, log_Reports);
@@ -462,7 +469,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         private Expression_Node_String GetSelectedFieldValue(
             Fielddefinition selectedFldDefinition,
-            Value_Humaninput selectedOValue,
+            Value_Humaninput valueH_Selected,
             Configurationtree_Node parent_Cf_Select,
             Log_Reports log_Reports
             )
@@ -474,47 +481,53 @@ namespace Xenon.Expr
 
 
             Expression_Node_String reslt_Expression_SelectedValue;
-            if (selectedFldDefinition.Type == typeof(Int_HumaninputImpl))
-            {
-                StringBuilder s = new StringBuilder();
-                s.Append("IntCellDataフィールド[");
-                s.Append(selectedFldDefinition.Name_Humaninput);
-                s.Append("]から取得");
 
-                string sValue = Int_HumaninputImpl.ParseString(selectedOValue);
-                Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
-                ec_Field.SetString(sValue, log_Reports);
-                reslt_Expression_SelectedValue = ec_Field;
-            }
-            else if (selectedFldDefinition.Type == typeof(String_HumaninputImpl))
+            switch (selectedFldDefinition.Type_Field)
             {
-                StringBuilder s = new StringBuilder();
-                s.Append("StringCellDataフィールド[");
-                s.Append(selectedFldDefinition.Name_Humaninput);
-                s.Append("]から取得");
+                case EnumTypeFielddefinition.String:
+                    {
+                        StringBuilder s = new StringBuilder();
+                        s.Append("StringCellDataフィールド[");
+                        s.Append(selectedFldDefinition.Name_Humaninput);
+                        s.Append("]から取得");
 
-                string sValue = String_HumaninputImpl.ParseString(selectedOValue);
-                Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
-                ec_Field.SetString(sValue, log_Reports);
-                reslt_Expression_SelectedValue = ec_Field;
-            }
-            else if (selectedFldDefinition.Type == typeof(Bool_HumaninputImpl))
-            {
-                StringBuilder s = new StringBuilder();
-                s.Append("Value_Humaninput_Boolフィールド[");
-                s.Append(selectedFldDefinition.Name_Humaninput);
-                s.Append("]から取得");
+                        string sValue = ((Value_Humaninput)valueH_Selected).Text;
+                        Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
+                        ec_Field.SetString(sValue, log_Reports);
+                        reslt_Expression_SelectedValue = ec_Field;
+                    }
+                    break;
+                case EnumTypeFielddefinition.Int:
+                    {
+                        StringBuilder s = new StringBuilder();
+                        s.Append("IntCellDataフィールド[");
+                        s.Append(selectedFldDefinition.Name_Humaninput);
+                        s.Append("]から取得");
 
-                string sValue = Bool_HumaninputImpl.ParseString(selectedOValue);
-                Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
-                ec_Field.SetString(sValue, log_Reports);
-                reslt_Expression_SelectedValue = ec_Field;
-            }
-            else
-            {
-                reslt_Expression_SelectedValue = null;
-                goto gt_Error_NotSupportedType;
-                //throw new System.ApplicationException();
+                        string sValue = ((Value_Humaninput)valueH_Selected).Text;
+                        Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
+                        ec_Field.SetString(sValue, log_Reports);
+                        reslt_Expression_SelectedValue = ec_Field;
+                    }
+                    break;
+                case EnumTypeFielddefinition.Bool:
+                    {
+                        StringBuilder s = new StringBuilder();
+                        s.Append("Value_Humaninput_Boolフィールド[");
+                        s.Append(selectedFldDefinition.Name_Humaninput);
+                        s.Append("]から取得");
+
+                        string sValue = ((Value_Humaninput)valueH_Selected).Text;
+                        Expression_Leaf_String ec_Field = new Expression_Leaf_StringImpl(null, parent_Cf_Select);
+                        ec_Field.SetString(sValue, log_Reports);
+                        reslt_Expression_SelectedValue = ec_Field;
+                    }
+                    break;
+                default:
+                    {
+                        reslt_Expression_SelectedValue = null;
+                        goto gt_Error_NotSupportedType;
+                    }
             }
 
             goto gt_EndMethod;
@@ -525,7 +538,7 @@ namespace Xenon.Expr
         gt_Error_NotSupportedType:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, selectedFldDefinition.GetTypeString(), log_Reports);//選択したフィールド定義の型名
+                tmpl.SetParameter(1, selectedFldDefinition.ToString_Type(), log_Reports);//選択したフィールド定義の型名
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6029;", tmpl, log_Reports);
             }

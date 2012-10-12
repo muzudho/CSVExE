@@ -30,6 +30,8 @@ namespace Xenon.Table
 
         void Add(Fielddefinition fielddefinition);
 
+        void Insert(int indexColumn, Fielddefinition fielddefinition);
+
         Fielddefinition ValueAt(int index);
 
         //────────────────────────────────────────
@@ -62,16 +64,6 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         int Count
-        {
-            get;
-        }
-
-        //────────────────────────────────────────
-
-        /// <summary>
-        /// フィールドの型定義。
-        /// </summary>
-        List<Fielddefinition> List_Fielddefinition
         {
             get;
         }

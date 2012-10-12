@@ -38,6 +38,11 @@ namespace Xenon.Table
             this.List_Fielddefinition.Add(fielddefinition);
         }
 
+        public void Insert(int indexColumn, Fielddefinition fielddefinition)
+        {
+            this.List_Fielddefinition.Insert(indexColumn, fielddefinition);
+        }
+
         public void ForEach(DELEGATE_Fielddefinitions delegate_Fielddefinitions, Log_Reports log_Reports)
         {
             bool isBreak = false;
@@ -78,7 +83,7 @@ namespace Xenon.Table
                 s.Append("](");
                 s.Append(fielddefinition.Name_Humaninput);
                 s.Append(":");
-                s.Append(fielddefinition.Type);
+                s.Append(fielddefinition.ToString_Type());
                 s.Append(")");
 
                 cur_IndexColumn++;
@@ -139,7 +144,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドの型定義。
         /// </summary>
-        public List<Fielddefinition> List_Fielddefinition
+        private List<Fielddefinition> List_Fielddefinition
         {
             get
             {

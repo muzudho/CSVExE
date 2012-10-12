@@ -53,12 +53,12 @@ namespace Xenon.Operating
                 {
                     // 正常時
 
-                    object obj;
+                    Value_Humaninput valueH;
                     if (log_Reports.Successful)
                     {
                         // 正常時
 
-                        obj = Utility_Row.GetFieldvalue(
+                        valueH = Utility_Row.GetFieldvalue(
                             "NAME",
                             dataRow,
                             true,
@@ -74,14 +74,14 @@ namespace Xenon.Operating
                     }
                     else
                     {
-                        obj = null;
+                        valueH = null;
                     }
 
                     if (log_Reports.Successful)
                     {
                         // 正常時
 
-                        sId = String_HumaninputImpl.ParseString(obj);//"スタイルシートテーブルパーサーのID"
+                        sId = ((Value_Humaninput)valueH).Text;//"スタイルシートテーブルパーサーのID"
                     }
                     else
                     {
@@ -98,22 +98,20 @@ namespace Xenon.Operating
                 {
                     // 正常時
 
+                    Value_Humaninput valueH = Utility_Row.GetFieldvalue(
+                        "STYLE",
+                        dataRow,
+                        true,
+                        log_Reports,
+                        "スタイルシートテーブル（STYLE検索時）"
+                        );
+                    if (!log_Reports.Successful)
                     {
-                        object obj = Utility_Row.GetFieldvalue(
-                            "STYLE",
-                            dataRow,
-                            true,
-                            log_Reports,
-                            "スタイルシートテーブル（STYLE検索時）"
-                            );
-                        if (!log_Reports.Successful)
-                        {
-                            // 既エラー。
-                            goto gt_EndMethod;
-                        }
-
-                        sStyle = String_HumaninputImpl.ParseString(obj);//"スタイルシートテーブルパーサーのSTYLE"
+                        // 既エラー。
+                        goto gt_EndMethod;
                     }
+
+                    sStyle = ((Value_Humaninput)valueH).Text;//"スタイルシートテーブルパーサーのSTYLE"
                 }
                 else
                 {

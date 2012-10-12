@@ -28,6 +28,20 @@ namespace Xenon.Table
 
         #region アクション
         //────────────────────────────────────────
+        //
+        // テーブル改造
+        //
+
+        /// <summary>
+        /// 指定のフィールドから左を、全て右に１列分ずらします。一番右の列は無くなります。
+        /// </summary>
+        /// <param name="columnIndex"></param>
+        void Insert(int columnIndex, Value_Humaninput valueH, Log_Reports log_Reports);
+
+        //────────────────────────────────────────
+        //
+        //
+        //
 
         void ForEach(DELEGATE_Fields delegate_Fields, Log_Reports log_Reports);
 
@@ -39,6 +53,25 @@ namespace Xenon.Table
         /// <param name="index"></param>
         /// <returns></returns>
         Value_Humaninput ValueAt(int index);
+
+        /// <summary>
+        /// 配列の要素を取得します。
+        /// </summary>
+        /// <param name="name_Field"></param>
+        /// <returns></returns>
+        Value_Humaninput ValueAt(string name_Field);
+
+        /// <summary>
+        /// 配列の要素を取得します。
+        /// </summary>
+        /// <param name="index"></param>
+        void SetValueAt(int index, Value_Humaninput valueH, Log_Reports log_Reports );
+
+        /// <summary>
+        /// 配列の要素を取得します。
+        /// </summary>
+        /// <param name="name_Field"></param>
+        void SetValueAt(string name_Field, Value_Humaninput valueH, Log_Reports log_Reports );
 
         //────────────────────────────────────────
 
@@ -58,6 +91,12 @@ namespace Xenon.Table
         string ToString_DebugDump();
 
         //────────────────────────────────────────
+
+        void AddTo(Table_Humaninput tableH);
+
+        void RemoveFrom(Table_Humaninput tableH);
+
+        //────────────────────────────────────────
         #endregion
 
 
@@ -65,10 +104,10 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        DataRow DataRow
-        {
-            get;
-        }
+        //DataRow DataRow
+        //{
+        //    get;
+        //}
 
         //────────────────────────────────────────
         #endregion

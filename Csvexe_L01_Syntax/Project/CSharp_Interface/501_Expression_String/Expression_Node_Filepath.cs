@@ -81,6 +81,15 @@ namespace Xenon.Syntax
             );
 
         //────────────────────────────────────────
+
+        /// <summary>
+        /// 拡張子を取得します。「.」は含みません。
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <param name="log_Reports"></param>
+        void TryGetExtension(out string extension, Log_Reports log_Reports);
+
+        //────────────────────────────────────────
         #endregion
 
 

@@ -434,15 +434,16 @@ namespace Xenon.Functions
             //
             //
             List<string> sList_Name_Control = new List<string>();
-            foreach (Table_Humaninput o_Table_Form in oList_Table_Form)
+            foreach (Table_Humaninput tableH_Form in oList_Table_Form)
             {
-                if (o_Table_Form.DataTable.Columns.Contains(NamesFld.S_NAME))
+                if (tableH_Form.DataTable.Columns.Contains(NamesFld.S_NAME))
                 {
                     // 「NAME」フィールドのあるテーブルが本表。無いのは参照表。
-                    foreach (DataRow row in o_Table_Form.DataTable.Rows)
+
+                    foreach (DataRow row in tableH_Form.DataTable.Rows)
                     {
-                        string sName = String_HumaninputImpl.ParseString(row[NamesFld.S_NAME]);
-                        sList_Name_Control.Add(sName.Trim());
+                        string name_Control = ((Value_Humaninput)row[NamesFld.S_NAME]).Text;
+                        sList_Name_Control.Add(name_Control.Trim());
                     }
                 }
             }

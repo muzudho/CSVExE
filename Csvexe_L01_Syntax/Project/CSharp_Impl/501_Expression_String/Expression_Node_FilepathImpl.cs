@@ -360,6 +360,28 @@ namespace Xenon.Syntax
         }
 
         //────────────────────────────────────────
+
+        /// <summary>
+        /// 拡張子を取得します。「.」は含みません。
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <param name="log_Reports"></param>
+        public void TryGetExtension(out string extension, Log_Reports log_Reports)
+        {
+            string filepathabsolute = this.Execute4_OnExpressionString(Syntax.EnumHitcount.Unconstraint, log_Reports);
+
+            int index_Dot = filepathabsolute.LastIndexOf('.');
+            if (-1 != index_Dot)
+            {
+                extension = filepathabsolute.Substring(index_Dot+1);
+            }
+            else
+            {
+                extension = "";
+            }
+        }
+
+        //────────────────────────────────────────
         #endregion
 
 

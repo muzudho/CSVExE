@@ -84,47 +84,47 @@ namespace Xenon.Table
 
         //────────────────────────────────────────        
 
-        static public string ParseString(object data)
-        {
-            if (data is Int_HumaninputImpl)
-            {
-                return ((Int_HumaninputImpl)data).Text;
-            }
+        //static public string ParseString(object data)
+        //{
+        //    if (data is Int_HumaninputImpl)
+        //    {
+        //        return ((Int_HumaninputImpl)data).Text;
+        //    }
 
-            //
-            // 以下、エラー対応。
-            //
-            // DBNull でここをよく通る。
-            //
-            //
-            //if (false)
-            //{
-            //    Log_TextIndented t = new Log_TextIndentedImpl();
+        //    //
+        //    // 以下、エラー対応。
+        //    //
+        //    // DBNull でここをよく通る。
+        //    //
+        //    //
+        //    //if (false)
+        //    //{
+        //    //    Log_TextIndented t = new Log_TextIndentedImpl();
 
-            //    if (data is DBNull)
-            //    {
-            //        t.Append("int型の値が必要なところでしたが、値が存在しませんでした。（DBNull）");
-            //        t.Append(Environment.NewLine);
-            //    }
-            //    else
-            //    {
-            //        t.Append("指定の引数の値[");
-            //        t.Append(((O_Value)data).SHumanInput);
-            //        t.Append("]は、int型ではありませんでした。");
-            //        t.Append(Environment.NewLine);
-            //    }
+        //    //    if (data is DBNull)
+        //    //    {
+        //    //        t.Append("int型の値が必要なところでしたが、値が存在しませんでした。（DBNull）");
+        //    //        t.Append(Environment.NewLine);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        t.Append("指定の引数の値[");
+        //    //        t.Append(((O_Value)data).SHumanInput);
+        //    //        t.Append("]は、int型ではありませんでした。");
+        //    //        t.Append(Environment.NewLine);
+        //    //    }
 
-            //    //.WriteLine("OValue_IntImpl.GetString: エラーメッセージ＝" + dt.ToString());
-            //    throw new System.ArgumentException(t.ToString());
-            //}
+        //    //    //.WriteLine("OValue_IntImpl.GetString: エラーメッセージ＝" + dt.ToString());
+        //    //    throw new System.ArgumentException(t.ToString());
+        //    //}
 
-            //
-            //
-            //
-            //
+        //    //
+        //    //
+        //    //
+        //    //
 
-            return "";
-        }
+        //    return "";
+        //}
 
         //────────────────────────────────────────
 
@@ -500,7 +500,7 @@ namespace Xenon.Table
                     }
                 }
 
-                this.humaninput = value;
+                this.text = value;
             }
         }
 

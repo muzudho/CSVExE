@@ -148,7 +148,7 @@ namespace Xenon.Table
                         string sFieldName = sToken;//.Trim().ToUpper();
 
                         // テーブルのフィールドを追加します。型の既定値は文字列型とします。
-                        fieldDefinition = new FielddefinitionImpl(sFieldName, typeof(String_HumaninputImpl));
+                        fieldDefinition = new FielddefinitionImpl(sFieldName, EnumTypeFielddefinition.String);
                         recordFielddefinition.Add(fieldDefinition);
                     }
                     else if(1==nColumnIndex)
@@ -163,15 +163,15 @@ namespace Xenon.Table
                         // TODO int型とboolean型にも対応したい。
                         if (FielddefinitionImpl.S_STRING.Equals(sFieldTypeNameLower))
                         {
-                            fieldDefinition.Type = typeof(String_HumaninputImpl);
+                            fieldDefinition.Type_Field = EnumTypeFielddefinition.String;
                         }
                         else if (FielddefinitionImpl.S_INT.Equals(sFieldTypeNameLower))
                         {
-                            fieldDefinition.Type = typeof(Int_HumaninputImpl);
+                            fieldDefinition.Type_Field = EnumTypeFielddefinition.Int;
                         }
                         else if (FielddefinitionImpl.S_BOOL.Equals(sFieldTypeNameLower))
                         {
-                            fieldDefinition.Type = typeof(Bool_HumaninputImpl);
+                            fieldDefinition.Type_Field = EnumTypeFielddefinition.Bool;
                         }
                         else
                         {
@@ -222,7 +222,7 @@ namespace Xenon.Table
 
                             MessageBox.Show(sWarning, "▲警告！（L02）");
 
-                            fieldDefinition.Type = typeof(String_HumaninputImpl);
+                            fieldDefinition.Type_Field = EnumTypeFielddefinition.String;
                         }
                     }
                     else if(2==nColumnIndex)

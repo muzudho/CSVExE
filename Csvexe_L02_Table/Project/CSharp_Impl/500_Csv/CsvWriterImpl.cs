@@ -17,25 +17,25 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         public void Write(
-            string sText_Csv,
-            string sFpatha,//絶対ファイルパス
-            bool bSuccessfulDialogPopup
+            string text_Csv,
+            string filepathabsolute,//絶対ファイルパス
+            bool isSuccessfulDialogPopup
             )
         {
 
 
             try
             {
-                System.IO.File.WriteAllText(sFpatha, sText_Csv, Global.ENCODING_CSV);
+                System.IO.File.WriteAllText(filepathabsolute, text_Csv, Global.ENCODING_CSV);
 
-                if (bSuccessfulDialogPopup)
+                if (isSuccessfulDialogPopup)
                 {
                     Log_TextIndented s = new Log_TextIndentedImpl();
 
                     s.Append("ファイルに書き込みました。");
                     s.Append(Environment.NewLine);
                     s.Append("[");
-                    s.Append(sFpatha);
+                    s.Append(filepathabsolute);
                     s.Append("]");
 
                     MessageBox.Show(s.ToString(), "▲実行結果！（L02）");

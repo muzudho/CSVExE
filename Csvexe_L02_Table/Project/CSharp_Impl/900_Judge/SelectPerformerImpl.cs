@@ -102,53 +102,56 @@ namespace Xenon.Table
             {
                 bool bJudge;
 
-                if (fielddefinition_Key.Type == typeof(String_HumaninputImpl))
+                switch (fielddefinition_Key.Type_Field)
                 {
-                    // string型フィールドなら
-
-                    judgeS.Judge(
-                        out bJudge,
-                        name_KeyField,
-                        value_Expected,
-                        isRequired_ExpectedValue,
-                        row,
-                        parent_Query,
-                        log_Reports
-                    );
-                }
-                else if (fielddefinition_Key.Type == typeof(Int_HumaninputImpl))
-                {
-                    // int型フィールドなら
-
-                    judgeI.Judge(
-                        out bJudge,
-                        name_KeyField,
-                        value_Expected,
-                        isRequired_ExpectedValue,
-                        row,
-                        parent_Query,
-                        log_Reports
-                    );
-                }
-                else if (fielddefinition_Key.Type == typeof(Bool_HumaninputImpl))
-                {
-                    // bool型フィールドなら
-
-                    judgeB.Judge(
-                        out bJudge,
-                        name_KeyField,
-                        value_Expected,
-                        isRequired_ExpectedValue,
-                        row,
-                        parent_Query,
-                        log_Reports
-                    );
-                }
-                else
-                {
-                    //
-                    // エラー。
-                    goto gt_Error_UndefinedClass;
+                    case EnumTypeFielddefinition.String:
+                        {
+                            // string型フィールドなら
+                            judgeS.Judge(
+                                out bJudge,
+                                name_KeyField,
+                                value_Expected,
+                                isRequired_ExpectedValue,
+                                row,
+                                parent_Query,
+                                log_Reports
+                            );
+                        }
+                        break;
+                    case EnumTypeFielddefinition.Int:
+                        {
+                            // int型フィールドなら
+                            judgeI.Judge(
+                                out bJudge,
+                                name_KeyField,
+                                value_Expected,
+                                isRequired_ExpectedValue,
+                                row,
+                                parent_Query,
+                                log_Reports
+                            );
+                        }
+                        break;
+                    case EnumTypeFielddefinition.Bool:
+                        {
+                            // bool型フィールドなら
+                            judgeB.Judge(
+                                out bJudge,
+                                name_KeyField,
+                                value_Expected,
+                                isRequired_ExpectedValue,
+                                row,
+                                parent_Query,
+                                log_Reports
+                            );
+                        }
+                        break;
+                    default:
+                        {
+                            // エラー。
+                            goto gt_Error_UndefinedClass;
+                        }
+                        break;
                 }
 
                 if (!log_Reports.Successful)
@@ -183,7 +186,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
 
                 s.AppendI(1, "keyFldDefinition.Type=[");
-                s.Append(fielddefinition_Key.Type);
+                s.Append(fielddefinition_Key.ToString_Type());
                 s.Append("]");
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);

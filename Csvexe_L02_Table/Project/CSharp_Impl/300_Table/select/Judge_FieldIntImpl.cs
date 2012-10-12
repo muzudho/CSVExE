@@ -18,10 +18,10 @@ namespace Xenon.Table
         //────────────────────────────────────────
 
         public void Judge(
-            out bool bJudge,
-            string sName_KeyField,
-            string sValue_Expected,
-            bool bRequired_ExpectedValue,
+            out bool isJudge,
+            string name_KeyField,
+            string value_Expected,
+            bool isRequired_ExpectedValue,
             DataRow row,
             Configurationtree_Node parent_Query,
             Log_Reports log_Reports
@@ -31,37 +31,33 @@ namespace Xenon.Table
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Judge",log_Reports);
 
             //
-            //
-            //
-            //
-
 
             try
             {
-                object obj = row[sName_KeyField];
+                object obj = row[name_KeyField];
 
                 if (obj is DBNull)
                 {
-                    bJudge = false;
+                    isJudge = false;
                     goto gt_Error_DBNull;
                 }
 
-                Value_Humaninput o_CellValue = (Value_Humaninput)obj;
+                Value_Humaninput valueH = (Value_Humaninput)obj;
 
                 // （５）キーが空欄で、検索ヒット必須でなければ、無視します。【int型フィールドの場合】
-                if (Int_HumaninputImpl.IsSpaces(o_CellValue))
+                if (Int_HumaninputImpl.IsSpaces(valueH))
                 {
-                    bJudge = false;
+                    isJudge = false;
                     goto gt_EndMethod;
                 }
 
 
                 // （６）この行の、キー_フィールドの値を取得。
-                int nKeyValue;
+                int keyValue;
 
                 bool bParsedSuccessful = Int_HumaninputImpl.TryParse(
-                    o_CellValue,
-                    out nKeyValue,
+                    valueH,
+                    out keyValue,
                     EnumOperationIfErrorvalue.Error,
                     null,
                     log_Reports
@@ -71,7 +67,7 @@ namespace Xenon.Table
                 {
                     if (!bParsedSuccessful)
                     {
-                        bJudge = false;
+                        isJudge = false;
                         if (log_Reports.CanCreateReport)
                         {
                             Log_RecordReports d_Report = log_Reports.BeginCreateReport(EnumReport.Error);
@@ -86,14 +82,14 @@ namespace Xenon.Table
 
 
                 // （７）キー値をint型に変換します。
-                int nExpectedValue;
+                int expectedValue;
                 if (log_Reports.Successful)
                 {
-                    bool bParseSuccessful2 = int.TryParse(sValue_Expected, out nExpectedValue);
+                    bool bParseSuccessful2 = int.TryParse(value_Expected, out expectedValue);
                     if (!bParseSuccessful2)
                     {
-                        bJudge = false;
-                        if (bRequired_ExpectedValue)
+                        isJudge = false;
+                        if (isRequired_ExpectedValue)
                         {
                             goto gt_Error_Parse;
                         }
@@ -103,7 +99,7 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    nExpectedValue = 0;
+                    expectedValue = 0;
                 }
 
 
@@ -111,27 +107,27 @@ namespace Xenon.Table
                 if (log_Reports.Successful)
                 {
                     // （８）該当行をレコードセットに追加。
-                    if (nKeyValue == nExpectedValue)
+                    if (keyValue == expectedValue)
                     {
                         //
                         // 該当行なら。
-                        bJudge = true;
+                        isJudge = true;
                     }
                     else
                     {
-                        bJudge = false;
+                        isJudge = false;
                     }
                 }
                 else
                 {
-                    bJudge = false;
+                    isJudge = false;
                 }
 
             }
             catch (RowNotInTableException)
             {
                 // （９）指定行がなかった場合は、スルー。
-                bJudge = false;
+                isJudge = false;
 
                 //
                 // 指定の行は、テーブルの中にありませんでした。
@@ -155,7 +151,7 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("検索キーに指定した[");
-                s.Append(sName_KeyField);
+                s.Append(name_KeyField);
                 s.Append("]というフィールドは無いです。");
                 s.Newline();
 
@@ -188,7 +184,7 @@ namespace Xenon.Table
                 s.Newline();
 
                 s.AppendI(1, "sExpectedValue=[");
-                s.Append(sValue_Expected);
+                s.Append(value_Expected);
                 s.Append("]");
                 s.Newline();
                 s.Newline();

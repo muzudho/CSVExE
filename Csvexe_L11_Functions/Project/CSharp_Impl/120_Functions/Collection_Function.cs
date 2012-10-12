@@ -209,6 +209,7 @@ namespace Xenon.Functions
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function47Impl.PM_FOLDER_SOURCE);
                 list_Param.Add(Expression_Node_Function47Impl.PM_FILE_EXPORT);
+                list_Param.Add(Expression_Node_Function47Impl.PM_FIELD_EXPORT);
                 list_Param.Add(Expression_Node_Function47Impl.PM_FILTER);
                 list_Param.Add(Expression_Node_Function47Impl.PM_POPUP);
                 Collection_Function.SetFunction(Expression_Node_Function47Impl.NAME_FUNCTION, new Expression_Node_Function47Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
@@ -216,14 +217,17 @@ namespace Xenon.Functions
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function48Impl.PM_FILE_IMPORT_LISTFILE);
-                //list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_SOURCE);
-                //list_Param.Add(Expression_Node_Function48Impl.PM_FOLDER_DESTINATION);
                 Collection_Function.SetFunction(Expression_Node_Function48Impl.NAME_FUNCTION, new Expression_Node_Function48Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
             {
                 List<string> list_Param = new List<string>();
                 list_Param.Add(Expression_Node_Function49Impl.PM_FILE_IMPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_FIELD_IMPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_FILTER_EXTENSION_IMPORT);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FILE_EXPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_FIELD_EXPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_TYPEFIELD_EXPORT_LISTFILE);
+                list_Param.Add(Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FOLDER_SOURCE);
                 list_Param.Add(Expression_Node_Function49Impl.PM_FOLDER_DESTINATION);
                 list_Param.Add(Expression_Node_Function49Impl.PM_POPUP);
@@ -315,7 +319,6 @@ namespace Xenon.Functions
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
-        //
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);

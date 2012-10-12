@@ -58,9 +58,11 @@ namespace Xenon.Table
             Log_TextIndented log_ReportsResult = new Log_TextIndentedImpl();
 
             RecordFielddefinition error_RecordFielddefinition;
-            Exception err_E;
-            int err_NColIndex;
-            Fielddefinition err_FldDef;
+            Exception err_Excep;
+            int error_IndexColumn;
+            Fielddefinition error_Fielddefinition;
+            object error_Item;
+
             if (null == hiTable)
             {
                 // エラー
@@ -105,28 +107,34 @@ namespace Xenon.Table
                 }
                 else
                 {
-                    Type type = fielddefinition.Type;
+                    switch(fielddefinition.Type_Field)
+                    {
+                        case EnumTypeFielddefinition.String:
+                            {
+                                log_ReportsResult.Append(FielddefinitionImpl.S_STRING);
+                            }
+                            break;
+                        case EnumTypeFielddefinition.Int:
+                            {
+                                log_ReportsResult.Append(FielddefinitionImpl.S_INT);
+                            }
+                            break;
+                        case EnumTypeFielddefinition.Bool:
+                            {
+                                log_ReportsResult.Append(FielddefinitionImpl.S_BOOL);
+                            }
+                            break;
+                        default:
+                            {
+                                // TODO エラー対応。
 
-                    if (type == typeof(String_HumaninputImpl))
-                    {
-                        log_ReportsResult.Append(FielddefinitionImpl.S_STRING);
+                                // 未定義の型があった場合、そのまま出力します。
+                                // C#のメッセージになるかと思います。
+                                log_ReportsResult.Append(fielddefinition.ToString_Type());
+                            }
+                            break;
                     }
-                    else if (type == typeof(Int_HumaninputImpl))
-                    {
-                        log_ReportsResult.Append(FielddefinitionImpl.S_INT);
-                    }
-                    else if (type == typeof(Bool_HumaninputImpl))
-                    {
-                        log_ReportsResult.Append(FielddefinitionImpl.S_BOOL);
-                    }
-                    else
-                    {
-                        // TODO エラー対応。
 
-                        // 未定義の型があった場合、そのまま出力します。
-                        // C#のメッセージになるかと思います。
-                        log_ReportsResult.Append(type.ToString());
-                    }
                     log_ReportsResult.Append(",");
                 }
             }, log_Reports);
@@ -162,53 +170,57 @@ namespace Xenon.Table
                 //
                 // 各フィールドについて
                 //
-                object[] recordFldArray = dataRow.ItemArray;// ItemArrayは1回の呼び出しが重い。
-                for (int nColIndex = 0; nColIndex < recordFldArray.Length; nColIndex++)
+                object[] itemArray = dataRow.ItemArray;// ItemArrayは1回の呼び出しが重い。
+                for (int indexColumn = 0; indexColumn < itemArray.Length; indexColumn++)
                 {
 
                     // TODO:範囲 リストサイズが0の時がある←プログラムミス？
-                    Fielddefinition fieldDefinition;
+                    Fielddefinition fielddefinition;
                     try
                     {
-                        fieldDefinition = hiTable.RecordFielddefinition.ValueAt(nColIndex);
+                        fielddefinition = hiTable.RecordFielddefinition.ValueAt(indexColumn);
                     }
                     catch (Exception e)
                     {
                         // エラー。
-                        err_E = e;
+                        err_Excep = e;
                         error_RecordFielddefinition = hiTable.RecordFielddefinition;
-                        err_NColIndex = nColIndex;
+                        error_IndexColumn = indexColumn;
                         goto gt_Error_OutOfIndex;
                     }
 
-                    if (this.ExceptedFields.TryExceptedField(fieldDefinition.Name_Trimupper))
+                    if (this.ExceptedFields.TryExceptedField(fielddefinition.Name_Trimupper))
                     {
                         // 出力しないフィールドの場合、無視します。
                     }
                     else
                     {
-                        string sCellValue;
-                        if (fieldDefinition.Type == typeof(String_HumaninputImpl))
+                        string value_Cell;
+                        object item = itemArray[indexColumn];
+
+                        if (item is Value_Humaninput)
                         {
-                            sCellValue = String_HumaninputImpl.ParseString(recordFldArray[nColIndex]);
+                            value_Cell = ((Value_Humaninput)item).Text;
                         }
-                        else if (fieldDefinition.Type == typeof(Int_HumaninputImpl))
+                        else if (item is string)
                         {
-                            sCellValue = Int_HumaninputImpl.ParseString(recordFldArray[nColIndex]);
+                            //フィールド定義部など。
+                            value_Cell = (string)item;
                         }
-                        else if (fieldDefinition.Type == typeof(Bool_HumaninputImpl))
+                        else if (item is DBNull)
                         {
-                            sCellValue = Bool_HumaninputImpl.ParseString(recordFldArray[nColIndex]);
+                            //空欄。
+                            value_Cell = "";
                         }
                         else
                         {
                             // エラー
-                            err_FldDef = fieldDefinition;
+                            error_Item = item;
+                            error_Fielddefinition = fielddefinition;
                             goto gt_Error_UndefinedFieldType;
                         }
 
-
-                        log_ReportsResult.Append(ce.EscapeCell(sCellValue));
+                        log_ReportsResult.Append(ce.EscapeCell(value_Cell));
                         log_ReportsResult.Append(',');
                     }
                 }
@@ -255,14 +267,14 @@ namespace Xenon.Table
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
                 s.Append("（プログラム内部エラー）err_NColIndex=[");
-                s.Append(err_NColIndex);
+                s.Append(error_IndexColumn);
                 s.Append("] error_RecordFielddefinition.Count[");
                 s.Append(error_RecordFielddefinition.Count);
                 s.Append("]");
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_SException(err_E));
+                s.Append(r.Message_SException(err_Excep));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -277,9 +289,23 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
 
-                s.Append("（プログラム内部エラー）未定義のフィールド型=[");
-                s.Append(err_FldDef.Type.ToString());
+                s.Append("（プログラム内部エラー）CSVを出力しようとしたとき、未定義のフィールド型=[");
+                s.Append(error_Fielddefinition.ToString_Type());
+                s.Append("]がありました。");
+                s.Newline();
+
+                s.Append("型名=[");
+                s.Append(error_Item.GetType().Name);
                 s.Append("]");
+                s.Newline();
+
+                s.Append("型は[");
+                s.Append(typeof(String_HumaninputImpl));
+                s.Append("],[");
+                s.Append(typeof(Int_HumaninputImpl));
+                s.Append("],[");
+                s.Append(typeof(Bool_HumaninputImpl));
+                s.Append("]が使えます。");
                 s.Newline();
 
                 // ヒント

@@ -15,11 +15,11 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────        
 
-        public AbstractValue_HumaninputImpl(string sConfigStack)
-            : base("ノード名未指定", new Configurationtree_NodeImpl(sConfigStack, null))
+        public AbstractValue_HumaninputImpl(string nodeConfigtree)
+            : base(nodeConfigtree, null)//"ノード名未指定",new Configurationtree_NodeImpl(nodeConfigtree, null)
         {
             this.bSpaced = true;
-            this.humaninput = "";
+            this.text = "";
         }
 
         //────────────────────────────────────────        
@@ -47,7 +47,7 @@ namespace Xenon.Table
         /// 入力データそのままの形。
         /// ・派生クラスでセット使用。
         /// </summary>
-        protected string humaninput;
+        protected string text;
 
         /// <summary>
         /// 入力データそのままの形。
@@ -56,7 +56,7 @@ namespace Xenon.Table
         {
             get
             {
-                return humaninput;
+                return text;
             }
             set
             {
@@ -70,7 +70,7 @@ namespace Xenon.Table
                 }
 
                 isValidated = true;
-                this.humaninput = value;
+                this.text = value;
             }
         }
 

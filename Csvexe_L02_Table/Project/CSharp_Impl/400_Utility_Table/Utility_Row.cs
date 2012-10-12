@@ -9,43 +9,6 @@ using Xenon.Syntax;
 
 namespace Xenon.Table
 {
-    ///// <summary>
-    ///// 大文字・小文字を無視する文字列比較。
-    ///// </summary>
-    ///// <typeparam name="T"></typeparam>
-    //class IgnoreCaseComparer<T> : IEqualityComparer<T>
-    //{
-    //    public bool Equals(T x, T y)
-    //    {
-    //        if (x is string && y is string)
-    //        {
-    //            string xStr = x as string;
-    //            string yStr = y as string;
-
-    //            if(null!=xStr && null!=yStr)
-    //            {
-    //                return xStr.ToLower().Equals(yStr.ToLower());
-    //            }
-    //            else
-    //            {
-    //                return x.Equals(y);
-    //            }
-
-    //            //// 大文字・小文字を無視する文字列比較。
-    //            //return xStr.Equals(yStr, StringComparison.OrdinalIgnoreCase);
-    //        }
-    //        else
-    //        {
-    //            return x.Equals(y);
-    //        }
-    //    }
-
-    //    public int GetHashCode(T obj)
-    //    {
-    //        return obj.GetHashCode();
-    //    }
-
-    //}
 
     /// <summary>
     /// 行ユーティリティー
@@ -62,31 +25,27 @@ namespace Xenon.Table
         /// O_TableImpl#AddRecordListで使います。
         /// </summary>
         /// <param name="columnIndex"></param>
-        /// <param name="sValue"></param>
+        /// <param name="value"></param>
         /// <param name="oTable"></param>
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public static Value_Humaninput ConfigurationTo_Field(
-            int nIndex_Column,
-            string sValue,
+            int index_Column,
+            string value,
             RecordFielddefinition recordFielddefinition,
             Log_Reports log_Reports
             )
         {
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_Table.Name_Library, "Utility_Row", "ConfigurationTo_Field", log_Reports);
-
-            //
-            //
-            //
             //
 
             //
             // セルのソースヒント名
-            string sConfigStack;
+            string nodeConfigtree;
             try
             {
-                sConfigStack = recordFielddefinition.ValueAt(nIndex_Column).Name_Humaninput;
+                nodeConfigtree = recordFielddefinition.ValueAt(index_Column).Name_Humaninput;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -97,25 +56,31 @@ namespace Xenon.Table
             Value_Humaninput result;
 
             // 型毎に処理を分けます。
-            if (recordFielddefinition.ValueAt(nIndex_Column).Type == typeof(Int_HumaninputImpl))
+            switch (recordFielddefinition.ValueAt(index_Column).Type_Field)
             {
-                // 空白データも自動処理
-                Int_HumaninputImpl cellData = new Int_HumaninputImpl(sConfigStack);
-                cellData.Text = sValue;
-                result = cellData;
-            }
-            else if (recordFielddefinition.ValueAt(nIndex_Column).Type == typeof(Bool_HumaninputImpl))
-            {
-                // 空白データも自動処理
-                Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(sConfigStack);
-                cellData.Text = sValue;
-                result = cellData;
-            }
-            else
-            {
-                String_HumaninputImpl cellData = new String_HumaninputImpl(sConfigStack);
-                cellData.Text = sValue;
-                result = cellData;
+                case EnumTypeFielddefinition.Int:
+                    {
+                        // 空白データも自動処理
+                        Int_HumaninputImpl cellData = new Int_HumaninputImpl(nodeConfigtree);
+                        cellData.Text = value;
+                        result = cellData;
+                    }
+                    break;
+                case EnumTypeFielddefinition.Bool:
+                    {
+                        // 空白データも自動処理
+                        Bool_HumaninputImpl cellData = new Bool_HumaninputImpl(nodeConfigtree);
+                        cellData.Text = value;
+                        result = cellData;
+                    }
+                    break;
+                default:
+                    {
+                        String_HumaninputImpl cellData = new String_HumaninputImpl(nodeConfigtree);
+                        cellData.Text = value;
+                        result = cellData;
+                    }
+                    break;
             }
 
             goto gt_EndMethod;
@@ -132,7 +97,7 @@ namespace Xenon.Table
 
                 Log_TextIndented t = new Log_TextIndentedImpl();
 
-                t.Append("列インデックス[" + nIndex_Column + "]（0スタート）が指定されましたが、");
+                t.Append("列インデックス[" + index_Column + "]（0スタート）が指定されましたが、");
                 t.Newline();
                 t.Append("列は[" + recordFielddefinition.Count + "]個しかありません。（列定義リストは、絞りこまれている場合もあります）");
                 t.Newline();
@@ -162,28 +127,28 @@ namespace Xenon.Table
         /// <param name="log_Reports"></param>
         /// <param name="dataSourceHintName"></param>
         /// <returns></returns>
-        public static object GetFieldvalue(
-            string sName_Field,
+        public static Value_Humaninput GetFieldvalue(
+            string name_Field,
             DataRow row,
-            bool bNoHitIsError,
+            bool isNoHitIsError,
             Log_Reports log_Reports,
-            string sHintname_DataSource
+            string nodeConfigtree_Datasource
             )
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Table.Name_Library, "Utility_Row", "GetFieldvalue", log_Reports);
 
-            object objResult;
+            Value_Humaninput result;
 
             // ArgumentException予防
-            if (!row.Table.Columns.Contains(sName_Field))
+            if (!row.Table.Columns.Contains(name_Field))
             {
                 // 該当なしの場合
 
-                objResult = null;
+                result = null;
 
 
-                if (bNoHitIsError)
+                if (isNoHitIsError)
                 {
                     // 指定のフィールドが、該当なしの場合エラーになる設定なら
                     goto gt_Error_NotFoundField;
@@ -198,16 +163,16 @@ namespace Xenon.Table
             try
             {
                 // bug: 列名には、大文字・小文字の区別はないようです。
-                objResult = row[sName_Field];
+                result = (Value_Humaninput)row[name_Field];
             }
             catch (Exception e)
             {
-                objResult = null;
+                result = null;
                 err_Excp = e;
                 goto gt_Error_Exception;
             }
 
-            if (bNoHitIsError && null==objResult)
+            if (isNoHitIsError && null==result)
             {
                 goto gt_Error_Null;
             }
@@ -227,9 +192,9 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定のフィールド[");
-                s.Append(sName_Field);
+                s.Append(name_Field);
                 s.Append("]は、データソース[");
-                s.Append(sHintname_DataSource);
+                s.Append(nodeConfigtree_Datasource);
                 s.Append("]にはありませんでした。");
                 s.Append(Environment.NewLine);
 
@@ -257,7 +222,7 @@ namespace Xenon.Table
 
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 s.Append("指定のフィールド[");
-                s.Append(sName_Field);
+                s.Append(name_Field);
                 s.Append("]の読取りに失敗しました。");
                 s.Append(Environment.NewLine);
 
@@ -267,7 +232,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
 
                 s.Append("データソースヒント名：");
-                s.Append(sHintname_DataSource);
+                s.Append(nodeConfigtree_Datasource);
                 s.Append(Environment.NewLine);
 
                 s.Append("メッセージ：");
@@ -288,11 +253,11 @@ namespace Xenon.Table
                 s.Append("▲エラー4101！(" + Info_Table.Name_Library + ")");
                 s.Newline();
                 s.Append("指定のフィールド[");
-                s.Append(sName_Field);
+                s.Append(name_Field);
                 s.Append("]は、ヌルでした。");
                 s.Append(Environment.NewLine);
                 s.Append("データソースヒント名：");
-                s.Append(sHintname_DataSource);
+                s.Append(nodeConfigtree_Datasource);
                 s.Append(Environment.NewLine);
 
                 s.Append("テーブル名＝[");
@@ -310,7 +275,7 @@ namespace Xenon.Table
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            return objResult;
+            return result;
         }
 
         //────────────────────────────────────────

@@ -419,34 +419,34 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        static public string ParseString(object data)
-        {
-            string sResult;
+        //static public string ParseString(object data)
+        //{
+        //    string sResult;
 
-            if (data is Bool_HumaninputImpl)
-            {
-                sResult = ((Bool_HumaninputImpl)data).Text;
-                goto gt_EndMethod;
-            }
+        //    if (data is Bool_HumaninputImpl)
+        //    {
+        //        sResult = ((Bool_HumaninputImpl)data).Text;
+        //        goto gt_EndMethod;
+        //    }
 
-            //
-            // エラー
-            //
-            Log_TextIndented t = new Log_TextIndentedImpl();
-            t.Append("指定の引数の値[");
-            t.Append(((Value_Humaninput)data).Text);
-            t.Append("]は、bool型ではありませんでした。");
-            t.Append(Environment.NewLine);
+        //    //
+        //    // エラー
+        //    //
+        //    Log_TextIndented t = new Log_TextIndentedImpl();
+        //    t.Append("指定の引数の値[");
+        //    t.Append(((Value_Humaninput)data).Text);
+        //    t.Append("]は、bool型ではありませんでした。");
+        //    t.Append(Environment.NewLine);
 
-            throw new System.ArgumentException(t.ToString());
+        //    throw new System.ArgumentException(t.ToString());
 
-            //
-        //
-        //
-        //
-        gt_EndMethod:
-            return sResult;
-        }
+        //    //
+        ////
+        ////
+        ////
+        //gt_EndMethod:
+        //    return sResult;
+        //}
 
         //────────────────────────────────────────
 
@@ -457,7 +457,7 @@ namespace Xenon.Table
         {
             get
             {
-                return this.humaninput;
+                return this.text;
             }
             set
             {
@@ -473,7 +473,7 @@ namespace Xenon.Table
                     isValidated = bool.TryParse(value, out bValue_Bool);
                 }
 
-                this.humaninput = value;
+                this.text = value;
             }
         }
 

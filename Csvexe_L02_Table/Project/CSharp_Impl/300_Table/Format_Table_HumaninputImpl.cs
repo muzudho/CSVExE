@@ -17,7 +17,7 @@ namespace Xenon.Table
         #region プロパティー
         //────────────────────────────────────────
 
-        private bool bRowColRev;
+        private bool isRowColRev;
 
         /// <summary>
         /// 行と列がひっくり返っている（左から右へレコードが並んでいる）なら真。
@@ -28,17 +28,17 @@ namespace Xenon.Table
         {
             get
             {
-                return bRowColRev;
+                return isRowColRev;
             }
             set
             {
-                bRowColRev = value;
+                isRowColRev = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bAllIntFields;
+        private bool isAllIntFields;
 
         /// <summary>
         /// 型定義のレコード（intやboolやstringが書いてあるところ）がなく、全フィールドがint型のテーブルの場合、真。
@@ -47,17 +47,17 @@ namespace Xenon.Table
         {
             get
             {
-                return bAllIntFields;
+                return isAllIntFields;
             }
             set
             {
-                bAllIntFields = value;
+                isAllIntFields = value;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bCommaEnding;
+        private bool isCommaEnding;
 
         /// <summary>
         /// 行の末尾を「,」で終える場合、真。
@@ -66,11 +66,11 @@ namespace Xenon.Table
         {
             get
             {
-                return bCommaEnding;
+                return isCommaEnding;
             }
             set
             {
-                bCommaEnding = value;
+                isCommaEnding = value;
             }
         }
 

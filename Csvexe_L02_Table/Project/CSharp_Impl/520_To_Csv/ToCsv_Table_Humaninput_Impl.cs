@@ -57,13 +57,13 @@ namespace Xenon.Table
         /// <param name="csvText"></param>
         /// <returns>列名情報も含むテーブル。列の型は文字列型とします。</returns>
         public string ToCsvText(
-            Table_Humaninput hiTable,
+            Table_Humaninput tableH,
             Log_Reports log_Reports
             )
         {
             string sResult;
 
-            if (hiTable.Format_Table_Humaninput.IsRowcolumnreverse)
+            if (tableH.Format_Table_Humaninput.IsRowcolumnreverse)
             {
                 //
                 // 行と列が逆になっているテーブル
@@ -72,7 +72,7 @@ namespace Xenon.Table
                 ToCsv_Table_Humaninput_RowColReversedImpl toCsv_RowColReversed = new ToCsv_Table_Humaninput_RowColReversedImpl();
                 toCsv_RowColReversed.O_ExceptedFields = this.ExceptedFields;
 
-                sResult = toCsv_RowColReversed.ToCsvText(hiTable, log_Reports);
+                sResult = toCsv_RowColReversed.ToCsvText(tableH, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー
@@ -84,7 +84,7 @@ namespace Xenon.Table
                 ToCsv_Table_Humaninput_RowColRegularImpl toCsv_Normal = new ToCsv_Table_Humaninput_RowColRegularImpl();
                 toCsv_Normal.ExceptedFields = this.ExceptedFields;
 
-                sResult = toCsv_Normal.ToCsvText(hiTable, log_Reports);
+                sResult = toCsv_Normal.ToCsvText(tableH, log_Reports);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー

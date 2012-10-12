@@ -83,6 +83,7 @@
     <Compile Include="CSharp_Impl\800_PipeStr\Fieldkey.cs" />
     <Compile Include="CSharp_Impl\900_Judge\SelectPerformerImpl.cs" />
     <Compile Include="CSharp_Info\Info_Table.cs" />
+    <Compile Include="CSharp_Interface\100_Masterdata\EnumTypeFielddefinition.cs" />
     <Compile Include="CSharp_Interface\300_Table\Fielddefinition.cs" />
     <Compile Include="CSharp_Interface\300_Table\RecordFielddefinition.cs" />
     <Compile Include="CSharp_Interface\300_Table\Record_Humaninput.cs" />

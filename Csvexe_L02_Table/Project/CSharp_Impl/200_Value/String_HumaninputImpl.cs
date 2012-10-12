@@ -20,8 +20,8 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="sourceHintName"></param>
-        public String_HumaninputImpl(String sConfigStack)
-            : base(sConfigStack)
+        public String_HumaninputImpl(String nodeConfigtree)
+            : base(nodeConfigtree)
         {
 
         }
@@ -56,9 +56,9 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        public bool TryGet(out string sResult)
+        public bool TryGet(out string result)
         {
-            sResult = this.Text;
+            result = this.Text;
             return true;
         }
 
@@ -67,87 +67,10 @@ namespace Xenon.Table
             return this.Text;
         }
 
-        public void SetString(string sValue)
+        public void SetString(string value)
         {
-            this.Text = sValue;
+            this.Text = value;
             bSpaced = ("" == this.Text.Trim());
-        }
-
-        //────────────────────────────────────────
-
-        /// <summary>
-        /// 文字列セルとして、データを読み取ります。
-        /// 
-        /// int型セル→文字列セルという融通は行います。
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        static public string ParseString(object data)
-        {
-            string sResult;
-
-            if (null == data)
-            {
-                // エラー
-                goto gt_Error_Null;
-            }
-
-            if (data is DBNull)
-            {
-                // 空欄。【追加 2011-04-11】
-                sResult = "";
-            }
-            else if (data is String_HumaninputImpl)
-            {
-                sResult = ((String_HumaninputImpl)data).Text;
-            }
-            else if (data is Int_HumaninputImpl)
-            {
-                sResult = ((Int_HumaninputImpl)data).Text;
-            }
-            else
-            {
-                // エラー
-                goto gt_Error_UndefinedData;
-            }
-
-            goto gt_EndMethod;
-        //
-        //
-            #region 異常系
-        //────────────────────────────────────────
-        gt_Error_Null:
-            {
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("指定のセル値はヌルでした。文字列型として読み取ろうとしましたが、");
-                t.Append(Environment.NewLine);
-                t.Append("string型、またはint型のどちらでもありませんでした。");
-                t.Append(Environment.NewLine);
-
-                throw new System.ArgumentException(t.ToString());
-            }
-        //────────────────────────────────────────
-        gt_Error_UndefinedData:
-            {
-                Log_TextIndented t = new Log_TextIndentedImpl();
-                t.Append("指定の引数の値[");
-                t.Append(((Value_Humaninput)data).Text);
-                t.Append("]を、文字列型として読み取ろうとしましたが、");
-                t.Append(Environment.NewLine);
-                t.Append("string型、またはint型のどちらでもありませんでした。");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(data.GetType().Name);
-                t.Append("]型でした。");
-                throw new System.ArgumentException(t.ToString());
-            }
-            //goto gt_EndMethod;
-        //────────────────────────────────────────
-            #endregion
-        //
-        //
-        gt_EndMethod:
-            return sResult;
         }
 
         //────────────────────────────────────────
@@ -310,11 +233,11 @@ namespace Xenon.Table
             }
 
             // 型が違えば偽です。
-            String_HumaninputImpl stringCellData = obj as String_HumaninputImpl;
-            if (null != stringCellData)
+            String_HumaninputImpl stringH = obj as String_HumaninputImpl;
+            if (null != stringH)
             {
                 // 文字列の比較。
-                return this.Text == stringCellData.Text;
+                return this.Text == stringH.Text;
             }
 
             string str = obj as string;
@@ -366,7 +289,7 @@ namespace Xenon.Table
                 // 常に真。
                 isValidated = true;
 
-                this.humaninput = value;
+                this.text = value;
             }
         }
 

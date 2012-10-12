@@ -48,6 +48,11 @@ namespace Xenon.Functions
         public const string PM_FILE_EXPORT = "Pm:file-export;";
 
         /// <summary>
+        /// 出力先フィールド。
+        /// </summary>
+        public const string PM_FIELD_EXPORT = "Pm:field-export;";
+
+        /// <summary>
         /// 「File」「Folder」「Both」のいずれか。無指定なら「Both」扱い。
         /// </summary>
         public const string PM_FILTER = "Pm:filter;";
@@ -174,26 +179,25 @@ namespace Xenon.Functions
 
             //ScriptVariableフォルダー
             string sFolder_Scriptvariable;
-            {
-                this.TrySelectAttribute(out sFolder_Scriptvariable, Expression_Node_Function47Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
-            }
+            this.TrySelectAttribute(out sFolder_Scriptvariable, Expression_Node_Function47Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
+
             //書出し先ファイル
-            Expression_Node_String expr_Variablefile_Export;
-            {
-                this.TrySelectAttribute(out expr_Variablefile_Export, Expression_Node_Function47Impl.PM_FILE_EXPORT, EnumHitcount.One_Or_Zero, log_Reports);
-            }
+            Expression_Node_String fileExport_Expr;
+            this.TrySelectAttribute(out fileExport_Expr, Expression_Node_Function47Impl.PM_FILE_EXPORT, EnumHitcount.One_Or_Zero, log_Reports);
+
+            //書出し先フィールド
+            Expression_Node_String fieldExport_Expr;
+            this.TrySelectAttribute(out fieldExport_Expr, Expression_Node_Function47Impl.PM_FIELD_EXPORT, EnumHitcount.One, log_Reports);
+
             //フィルター指定
             string sFilter;
-            {
-                this.TrySelectAttribute(out sFilter, Expression_Node_Function47Impl.PM_FILTER, EnumHitcount.One_Or_Zero, log_Reports);
-                sFilter = sFilter.Trim();
-            }
+            this.TrySelectAttribute(out sFilter, Expression_Node_Function47Impl.PM_FILTER, EnumHitcount.One_Or_Zero, log_Reports);
+            sFilter = sFilter.Trim();
+
             //ポップアップ指定
             string str_Popup;
-            {
-                this.TrySelectAttribute(out str_Popup, Expression_Node_Function47Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
-                str_Popup = str_Popup.Trim();
-            }
+            this.TrySelectAttribute(out str_Popup, Expression_Node_Function47Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
+            str_Popup = str_Popup.Trim();
 
             {
                 string[] array_Filesystementry;
@@ -221,7 +225,10 @@ namespace Xenon.Functions
                 // 検索結果をCSVテーブルの形にして出力。
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("NO,FILE,END");
+                sb.Append("NO,");
+                sb.Append(fieldExport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));// "FILE"
+                sb.Append(",END");
+                
                 sb.Append(Environment.NewLine);
                 sb.Append("int,string,END");
                 sb.Append(Environment.NewLine);
@@ -246,7 +253,7 @@ namespace Xenon.Functions
 
                 try
                 {
-                    string sFile_Export2 = expr_Variablefile_Export.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
+                    string sFile_Export2 = fileExport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                     System.IO.File.WriteAllText(
                         sFile_Export2,
                         sb.ToString(),

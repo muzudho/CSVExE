@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Xenon.Syntax;
+
 namespace Xenon.Table
 {
 
@@ -18,11 +20,21 @@ namespace Xenon.Table
         #region アクション
         //────────────────────────────────────────
 
+        Value_Humaninput NewField(string nodeConfigtree, Log_Reports log_Reports);
+
+        //────────────────────────────────────────
+
         /// <summary>
         /// string,int,boolを返します。未該当の時は空文字列を返します。
         /// </summary>
         /// <returns></returns>
-        string GetTypeString();
+        string ToString_Type();
+
+        /// <summary>
+        /// セルの型を返します。未該当の時はヌルを返します。
+        /// </summary>
+        /// <returns></returns>
+        Type ToType_Field();
 
         //────────────────────────────────────────
         #endregion
@@ -52,7 +64,7 @@ namespace Xenon.Table
         /// <summary>
         /// フィールドの型。
         /// </summary>
-        Type Type
+        EnumTypeFielddefinition Type_Field
         {
             get;
             set;

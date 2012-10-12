@@ -71,7 +71,7 @@ namespace Xenon.Table
             recordFielddefinition.ForEach(delegate(Fielddefinition fielddefinition, ref bool isBreak2, Log_Reports log_Reports2)
             {
                 this.list_FieldKeies.Add(
-                    new Fieldkey(list_NameField[nIx], fielddefinition.GetTypeString(), fielddefinition.Comment));
+                    new Fieldkey(list_NameField[nIx], fielddefinition.ToString_Type(), fielddefinition.Comment));
 
                 nIx++;
             }, log_Reports);
@@ -94,6 +94,8 @@ namespace Xenon.Table
             Log_Reports log_Reports
             )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "Perform", log_Reports);
 
             // TODO IDは「前ゼロ付き文字列」または「int型」なので、念のため一度文字列に変換。
             int nP1pNumber = 1;
@@ -101,7 +103,7 @@ namespace Xenon.Table
             {
                 //"[" + oTable.Name + "]テーブルの或る行の[" + fieldKey.Name + "]フィールド値。"//valueOTable.SourceFilePath.HumanInputText
 
-                object obj = Utility_Row.GetFieldvalue(
+                Value_Humaninput valueH = Utility_Row.GetFieldvalue(
                     fieldKey.Name,
                     dataRowView.Row,
                     true,
@@ -116,25 +118,42 @@ namespace Xenon.Table
 
 
                 // 正常時
-
-                if (FielddefinitionImpl.S_STRING == fieldKey.Name_Type)
+                EnumTypeFielddefinition typeFd = FielddefinitionImpl.TypefieldFromString(fieldKey.Name_Type, true, log_Reports);
+                switch (typeFd)
                 {
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, String_HumaninputImpl.ParseString(obj));
-                }
-                if (FielddefinitionImpl.S_INT == fieldKey.Name_Type)
-                {
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, Int_HumaninputImpl.ParseString(obj));
-                }
-                else if (FielddefinitionImpl.S_BOOL == fieldKey.Name_Type)
-                {
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, Bool_HumaninputImpl.ParseString(obj));
-                }
-                else
-                {
-                    //
-                    // 未定義の型は、string扱い。
-                    //
-                    ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(nP1pNumber, String_HumaninputImpl.ParseString(obj));
+                    case EnumTypeFielddefinition.String:
+                        {
+                            ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(
+                                nP1pNumber,
+                                valueH.Text// String_HumaninputImpl.ParseString(valueH)
+                                );
+                        }
+                        break;
+                    case EnumTypeFielddefinition.Int:
+                        {
+                            ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(
+                                nP1pNumber,
+                                valueH.Text// Int_HumaninputImpl.ParseString(valueH)
+                                );
+                        }
+                        break;
+                    case EnumTypeFielddefinition.Bool:
+                        {
+                            ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(
+                                nP1pNumber,
+                                valueH.Text// Bool_HumaninputImpl.ParseString(valueH)
+                                );
+                        }
+                        break;
+                    default:
+                        {
+                            // 未定義の型は、string扱い。
+                            ref_FormatString.Dictionary_NumberAndValue_Parameter.Add(
+                                nP1pNumber,
+                                valueH.Text// String_HumaninputImpl.ParseString(valueH)
+                                );
+                        }
+                        break;
                 }
 
                 nP1pNumber++;
@@ -142,12 +161,9 @@ namespace Xenon.Table
 
             // 正常
             goto gt_EndMethod;
-
-            //
-            //
-            //
             //
         gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
             return;
         }
 
