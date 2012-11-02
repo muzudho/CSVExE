@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0536FB15-5272-499B-96F9-DCDAAE2B12B4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xenon.PartsnumPut</RootNamespace>
+    <AssemblyName>Xt_L13_PartsnumPut</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csvexe_L01_Syntax">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\Csvexe_L01_Syntax\Project\bin\Debug\Csvexe_L01_Syntax.dll</HintPath>
+    </Reference>
+    <Reference Include="Csvexe_L02_Table">
+      <HintPath>..\..\..\..\Visual Studio 2012\Projects\Csvexe_L02_Table\Project\bin\Debug\Csvexe_L02_Table.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xt_L12_Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Xt_L12_Lib\Project\bin\Debug\Xt_L12_Lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CSharp_Control\UsercontrolExplainPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolExplainPanel.Designer.cs">
+      <DependentUpon>UsercontrolExplainPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolExplainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolExplainWindow.Designer.cs">
+      <DependentUpon>UsercontrolExplainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolDetailbrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolDetailbrowser.Designer.cs">
+      <DependentUpon>UsercontrolDetailbrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Control\Form2Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\Form2Detail.Designer.cs">
+      <DependentUpon>Form2Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolListfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolListfile.Designer.cs">
+      <DependentUpon>UsercontrolListfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Control\CustomcontrolButtonEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\CustomcontrolButtonEx.Designer.cs">
+      <DependentUpon>CustomcontrolButtonEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\Function\Function2_LoadCsv.cs" />
+    <Compile Include="CSharp_Control\UsercontrolCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp_Control\UsercontrolCanvas.Designer.cs">
+      <DependentUpon>UsercontrolCanvas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharp_Impl\Function\Function3_LoadCsv2.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CSharp_Control\UsercontrolDetailbrowser.resx">
+      <DependentUpon>UsercontrolDetailbrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Control\Form2Detail.resx">
+      <DependentUpon>Form2Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Control\UsercontrolCanvas.resx">
+      <DependentUpon>UsercontrolCanvas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Control\UsercontrolExplainPanel.resx">
+      <DependentUpon>UsercontrolExplainPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Control\UsercontrolExplainWindow.resx">
+      <DependentUpon>UsercontrolExplainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSharp_Control\UsercontrolListfile.resx">
+      <DependentUpon>UsercontrolListfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="CSharp_Info\Info_PartsnumPut.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows インストーラ 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CSharp_Interface\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
