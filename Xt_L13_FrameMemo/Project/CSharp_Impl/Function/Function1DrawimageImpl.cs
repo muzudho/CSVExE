@@ -225,8 +225,8 @@ namespace Xenon.FrameMemo
 
                         g.DrawString(text, partnumberconf.Font, partnumberconf.Brush,
                             new PointF(
-                                column * memorySprite.WidthcellResult + leftSprite + memorySprite.WidthcellResult / 2 - stringSize.Width/2,
-                                row * memorySprite.HeightcellResult + topSprite + memorySprite.HeightcellResult / 2 - stringSize.Height/2
+                                column * memorySprite.WidthcellResult + leftSprite + memorySprite.WidthcellResult / 2 - stringSize.Width/2 + xBase,
+                                row * memorySprite.HeightcellResult + topSprite + memorySprite.HeightcellResult / 2 - stringSize.Height/2 + yBase
                                 ));
                     }
                 }
