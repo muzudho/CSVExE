@@ -92,7 +92,7 @@ namespace Xenon.Expr
             else
             {
                 // ＜ａｒｇ＞一覧
-                Dictionary_Expression_Node_String ecDic_Argument = new Dictionary_Expression_Node_StringImpl(ec_CommonFunction.Cur_Configurationtree);
+                Dictionary_Expression_Node_String ecDic_Argument = new Dictionary_Expression_Node_StringImpl(ec_CommonFunction.Cur_Configuration);
                 this.Dictionary_Expression_Attribute.ForEach(delegate(string sAttrName, Expression_Node_String e_Attr, ref bool bBreak)
                 {
                     if (log_Reports.Successful)

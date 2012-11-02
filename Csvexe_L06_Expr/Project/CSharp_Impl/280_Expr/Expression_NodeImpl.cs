@@ -25,8 +25,8 @@ namespace Xenon.Expr
         /// コンストラクター。
         /// </summary>
         /// <param oVariableName="moOpyopyo"></param>
-        public Expression_NodeImpl(Expression_Node_String e_ParentNode, Configurationtree_Node s_ParentNode, MemoryApplication owner_MemoryApplication)
-            : base(e_ParentNode, s_ParentNode)
+        public Expression_NodeImpl(Expression_Node_String e_ParentNode, Configuration_Node parent_Conf, MemoryApplication owner_MemoryApplication)
+            : base(e_ParentNode, parent_Conf)
         {
             this.owner_MemoryApplication = owner_MemoryApplication;
         }

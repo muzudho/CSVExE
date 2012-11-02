@@ -27,7 +27,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// 計測終了。
         /// </summary>
-        void End();
+        void End(Log_Reports log_reports);
 
         //────────────────────────────────────────
         #endregion

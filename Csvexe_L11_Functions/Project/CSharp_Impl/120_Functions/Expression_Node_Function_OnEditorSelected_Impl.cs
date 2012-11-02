@@ -55,7 +55,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -64,7 +64,7 @@ namespace Xenon.Functions
 
             Expression_Node_FunctionAbstract f0 = new Expression_Node_Function_OnEditorSelected_Impl(this.EnumEventhandler, this.List_NameArgumentInitializer, this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -123,13 +123,7 @@ namespace Xenon.Functions
 
 
 
-            string sConfigStack_EventOrigin = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:プロジェクト選択時＞";
-            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_EventOrigin, null);
-            //
-            //（）ダミー・イベントモニターの作成。
-            EventMonitor eventMonitor_Dammy = new EventMonitorImpl(null, cf_ThisMethod);
-
-
+            Configurationtree_Node conf_ThisMethod = new Configurationtree_NodeImpl(log_Method.Fullname, null);
 
 
             if (this.EnumEventhandler == EnumEventhandler.Editor_B_Lr)
@@ -174,7 +168,7 @@ namespace Xenon.Functions
                     log_Method.WriteDebug_ToConsole("（６）まず、きれいさっぱり　プロジェクトをクリアーします。（切替用）");
                 }
                 // todo:イベントハンドラーを外してから、フォームを外すこと。リストボックスが誤挙動を起こしている。
-                this.On_P06_ClearProject(this.Functionparameterset.Sender, eventMonitor_Dammy, log_Reports);
+                this.On_P06_ClearProject(this.Functionparameterset.Sender, log_Reports);
 
 
 
@@ -369,7 +363,7 @@ namespace Xenon.Functions
                     //
                     //mainWndの作成より先に設定する必要がある。ステータスバーを出す、出さないについて。
                     {
-                        Expression_Leaf_StringImpl ec_Varname = new Expression_Leaf_StringImpl(this, this.Cur_Configurationtree.Parent);
+                        Expression_Leaf_StringImpl ec_Varname = new Expression_Leaf_StringImpl(this, this.Cur_Configuration.Parent);
                         ec_Varname.SetString(NamesVar.S_SS_DEBUGMODE_PROGRAMMER, log_Reports);
                         string sValue = this.Owner_MemoryApplication.MemoryVariables.GetStringByVariablename(ec_Varname, false, log_Reports);
                         if (ValuesAttr.S_ON == sValue)
@@ -402,7 +396,7 @@ namespace Xenon.Functions
                         log_Method.WriteDebug_ToConsole("（１１）フォーム・デバッグモードのON/OFF。");
                     }
                     //
-                    Expression_Leaf_StringImpl ec_Varname = new Expression_Leaf_StringImpl(this, this.Cur_Configurationtree.Parent);
+                    Expression_Leaf_StringImpl ec_Varname = new Expression_Leaf_StringImpl(this, this.Cur_Configuration.Parent);
                     ec_Varname.SetString(NamesVar.S_SS_DEBUGMODE_FORM, log_Reports);
                     string sValue = this.Owner_MemoryApplication.MemoryVariables.GetStringByVariablename(ec_Varname, false, log_Reports);
                     if (ValuesAttr.S_ON == sValue)
@@ -440,11 +434,11 @@ namespace Xenon.Functions
                         // 正常時
 
                         Expression_Node_Function function_Expr = Collection_Function.NewFunction2(
-                                Expression_Node_Function22Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
+                                Expression_Node_Function22Impl.NAME_FUNCTION, this, this.Cur_Configuration,
                                 this.Owner_MemoryApplication, log_Reports);
 
                         // 実行
-                        function_Expr.Execute4_OnLr(this.Functionparameterset.Sender, eventMonitor_Dammy, sConfigStack_EventOrigin, log_Reports);
+                        function_Expr.Execute4_OnLr(this.Functionparameterset.Sender, log_Reports);
 
                         // 実行後
                         ecList_Fpath_BackupRequest = ((Expression_Node_Function22Impl)function_Expr).List_Expression_Filepath_BackupRequest_Out;
@@ -512,19 +506,17 @@ namespace Xenon.Functions
                 if (log_Reports.Successful)
                 {
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                        Expression_Node_Function19Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
+                        Expression_Node_Function19Impl.NAME_FUNCTION, this, this.Cur_Configuration,
                         this.Owner_MemoryApplication, log_Reports);
 
-                    Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, cf_ThisMethod);
-                    ec_Str.AppendTextNode(NamesVar.S_ST_STYLESHEET, this.Cur_Configurationtree, log_Reports);
+                    Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, conf_ThisMethod);
+                    ec_Str.AppendTextNode(NamesVar.S_ST_STYLESHEET, this.Cur_Configuration, log_Reports);
 
                     expr_Func.SetAttribute(Expression_Node_Function19Impl.PM_NAME_TABLE_STYLESHEET, ec_Str, log_Reports);
 
 
                     expr_Func.Execute4_OnLr(
                         this.Functionparameterset.Sender,
-                        eventMonitor_Dammy,
-                        sConfigStack_EventOrigin,
                         log_Reports
                         );
                 }
@@ -543,8 +535,6 @@ namespace Xenon.Functions
                     ec_Fpath_AaEditorXml,
                     ec_Fopath_Editor,
                     (MemoryAatoolxml_Editor)this.Functionparameterset.SelectedProjectElement_Configurationtree,
-                    eventMonitor_Dammy,
-                    sConfigStack_EventOrigin,
                     log_Reports);
 
                 //（１７ｂ）今日の分のバックアップを取ります。
@@ -553,7 +543,7 @@ namespace Xenon.Functions
                     log_Method.WriteDebug_ToConsole("（１７ｂ）今日の分のバックアップを取ります。");
                 }
                 //
-                this.On_P17b_DateBackup(ecList_Fpath_BackupRequest, this.Functionparameterset.Sender, eventMonitor_Dammy, sConfigStack_EventOrigin, log_Reports);
+                this.On_P17b_DateBackup(ecList_Fpath_BackupRequest, this.Functionparameterset.Sender, log_Reports);
 
 
                 //（１７ｃ）「新規ウィンドウを開く」前にしておく独自実装をするタイミング。
@@ -568,8 +558,6 @@ namespace Xenon.Functions
                     ec_Fpath_AaEditorXml,
                     ec_Fopath_Editor,
                     (MemoryAatoolxml_Editor)this.Functionparameterset.SelectedProjectElement_Configurationtree,
-                    eventMonitor_Dammy,
-                    sConfigStack_EventOrigin,
                     log_Reports);
 
 
@@ -582,7 +570,7 @@ namespace Xenon.Functions
                 {
 
                     Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                            Expression_Node_Function30Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
+                            Expression_Node_Function30Impl.NAME_FUNCTION, this, this.Cur_Configuration,
                             this.Owner_MemoryApplication, log_Reports);
 
                     {
@@ -591,10 +579,10 @@ namespace Xenon.Functions
                         {
                             Expression_Node_StringImpl ec_FormStart;
                             {
-                                Expression_FvarImpl ec_Fvar = new Expression_FvarImpl(this, this.Cur_Configurationtree, this.Owner_MemoryApplication);
-                                ec_Fvar.AppendTextNode(NamesVar.S_SS_FORM_START, this.Cur_Configurationtree, log_Reports);
+                                Expression_FvarImpl ec_Fvar = new Expression_FvarImpl(this, this.Cur_Configuration, this.Owner_MemoryApplication);
+                                ec_Fvar.AppendTextNode(NamesVar.S_SS_FORM_START, this.Cur_Configuration, log_Reports);
 
-                                ec_FormStart = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
+                                ec_FormStart = new Expression_Node_StringImpl(this, this.Cur_Configuration);
                                 ec_FormStart.List_Expression_Child.Add(ec_Fvar, log_Reports);
                             }
                             ((Expression_Node_Function30Impl)expr_Func).SetAttribute(Expression_Node_Function30Impl.PM_NAME_FORM, ec_FormStart, log_Reports);
@@ -604,14 +592,12 @@ namespace Xenon.Functions
                         ((Expression_Node_Function30Impl)expr_Func).In_Subroutine_Function30_2 = this.In_Subroutine_Function30_2_OrNull;
                         ((Expression_Node_Function30Impl)expr_Func).SetAttribute(
                             Expression_Node_Function30Impl.PM_NAME_TOGETHER,
-                            new Expression_Leaf_StringImpl(NamesStg.S_STG_BEGIN_APPLICATION, null, cf_ThisMethod), log_Reports);
+                            new Expression_Leaf_StringImpl(NamesStg.S_STG_BEGIN_APPLICATION, null, conf_ThisMethod), log_Reports);
                     }
 
 
                     expr_Func.Execute4_OnLr(
                         this.Functionparameterset.Sender,
-                        eventMonitor_Dammy,
-                        sConfigStack_EventOrigin,
                         log_Reports
                         );
                 }
@@ -627,7 +613,6 @@ namespace Xenon.Functions
                     this.Functionparameterset.Sender,
                     (MemoryAatoolxml_Editor)this.Functionparameterset.SelectedProjectElement_Configurationtree,
                     this.Functionparameterset.IsProjectValid,
-                    sConfigStack_EventOrigin,
                     log_Reports);
 
 
@@ -645,7 +630,7 @@ namespace Xenon.Functions
                         Log_TextIndented s = new Log_TextIndentedImpl();
                         s.Append("[" + sKey + "]");
                         s.Newline();
-                        fcUc.ControlCommon.Expression_Control.Cur_Configurationtree.ToText_Content(s);
+                        fcUc.ControlCommon.Expression_Control.Cur_Configuration.ToText_Content(s);
                         log_Method.WriteInfo_ToConsole(s.ToString());
                     });
                     log_Method.WriteInfo_ToConsole("└──────────┘");
@@ -656,7 +641,7 @@ namespace Xenon.Functions
                         Log_TextIndented s = new Log_TextIndentedImpl();
                         s.Append("[" + sKey + "]");
                         s.Newline();
-                        ec_CommonFunction.Cur_Configurationtree.ToText_Content(s);
+                        ec_CommonFunction.Cur_Configuration.ToText_Content(s);
                         log_Method.WriteInfo_ToConsole(s.ToString());
                     });
                     log_Method.WriteInfo_ToConsole("└──────────┘");
@@ -726,7 +711,6 @@ namespace Xenon.Functions
         /// </summary>
         protected virtual void On_P06_ClearProject(
             object sender,
-            EventMonitor eventMonitor,
             Log_Reports log_Reports)
         {
             //
@@ -804,7 +788,7 @@ namespace Xenon.Functions
             }
 
             //
-            out_moAaeditorxml_Editor = new MemoryAaeditorxml_EditorImpl(ec_Fpath_AaEditorXml.Cur_Configurationtree);
+            out_moAaeditorxml_Editor = new MemoryAaeditorxml_EditorImpl(ec_Fpath_AaEditorXml.Cur_Configuration);
             if (log_Reports.Successful)
             {
                 out_moAaeditorxml_Editor.LoadFile_Aaxml(
@@ -838,19 +822,16 @@ namespace Xenon.Functions
         /// <param name="e_FpathList_BackupRequest"></param>
         /// <param name="sender"></param>
         /// <param name="eventMonitor_Dammy"></param>
-        /// <param name="sConfigStack_EventOrigin"></param>
         /// <param name="log_Reports"></param>
         protected virtual void On_P17b_DateBackup(
             List<Expression_Node_Filepath> listExpression_Filepath_BackupRequest,
             object sender,
-            EventMonitor eventMonitor_Dammy,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports)
         {
             if (log_Reports.Successful)
             {
                 Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                        Expression_Node_Function44Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
+                        Expression_Node_Function44Impl.NAME_FUNCTION, this, this.Cur_Configuration,
                         this.Owner_MemoryApplication, log_Reports);
 
                 {
@@ -859,8 +840,6 @@ namespace Xenon.Functions
 
                 expr_Func.Execute4_OnLr(
                     sender,
-                    eventMonitor_Dammy,
-                    sConfigStack_EventOrigin,
                     log_Reports
                     );
             }
@@ -872,7 +851,6 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventMonitor_Dammy"></param>
-        /// <param name="sConfigStack_EventOrigin"></param>
         /// <param name="log_Reports"></param>
         protected virtual void On_P17a_PreviousBackup(
             object sender,
@@ -880,8 +858,6 @@ namespace Xenon.Functions
             Expression_Node_Filepath ec_Fpath_AaEditorXml,
             Expression_Node_Filepath ec_Fopath_Editor,
             MemoryAatoolxml_Editor moAatoolxml_SelectedEditor,
-            EventMonitor eventMonitor_Dammy,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports)
         {
             //
@@ -943,7 +919,7 @@ namespace Xenon.Functions
                 XenonNameImpl o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_BACKUP_FOLDER, new Configurationtree_NodeImpl("!ハードコーディング_ExAction00022#", null));
 
                 // 変数名。
-                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, o_Name_Variable.Cur_Configurationtree);
+                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, o_Name_Variable.Cur_Configuration);
                 ec_Atom.SetString(
                     o_Name_Variable.SValue,
                     log_Reports
@@ -1055,7 +1031,6 @@ namespace Xenon.Functions
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventMonitor_Dammy"></param>
-        /// <param name="sConfigStack_EventOrigin"></param>
         /// <param name="log_Reports"></param>
         protected virtual void On_P17c_PreviousOpenWindow(
             object sender,
@@ -1063,8 +1038,6 @@ namespace Xenon.Functions
             Expression_Node_Filepath ec_Fpath_AaEditorXml,
             Expression_Node_Filepath ec_Fopath_Editor,
             MemoryAatoolxml_Editor moAatoolxml_SelectedEditor,
-            EventMonitor eventMonitor_Dammy,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports)
         {
         }
@@ -1073,7 +1046,6 @@ namespace Xenon.Functions
             object sender,
             MemoryAatoolxml_Editor moAatoolxml_SelectedEditor,
             bool bProjectValid,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             )
         {
@@ -1164,7 +1136,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sArgName, log_Reports);//引数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(ec_Fpath.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(ec_Fpath.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110006;", tmpl, log_Reports);
             }

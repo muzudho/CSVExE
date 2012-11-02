@@ -140,7 +140,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         void AppendTextNode(
             string sHumaninput,
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             );
 
@@ -190,7 +190,7 @@ namespace Xenon.Syntax
         /// 
         /// コンストラクターだけではなく、タイミングを遅らせて、後付けで設定されることもあります。
         /// </summary>
-        Configurationtree_Node Cur_Configurationtree
+        Configuration_Node Cur_Configuration
         {
             get;
             set;

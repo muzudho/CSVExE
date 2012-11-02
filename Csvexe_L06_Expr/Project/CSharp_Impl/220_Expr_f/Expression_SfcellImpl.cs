@@ -118,7 +118,7 @@ namespace Xenon.Expr
                     out bOneCellSelectCondition,
                     out selectSt,
                     out bExists_Awhr,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                     );
             }
@@ -185,7 +185,7 @@ namespace Xenon.Expr
                 recordSet = this.E_Execute_P2_Select(
                     bExists_Awhr,
                     selectSt,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                     );
 
@@ -211,7 +211,7 @@ namespace Xenon.Expr
                     recordSet,
                     selectSt,
                     null,//eＷｈｅｒｅ_recordSetSaveTo,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                     );
 
@@ -358,7 +358,7 @@ namespace Xenon.Expr
             sResult = "＜「E■ｆ－ｃｅｌｌ」エラー１９２：該当レコードなし＞";
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6012;", tmpl, log_Reports);
             }
@@ -368,7 +368,7 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sFieldListList.Count.ToString(), log_Reports);//行数
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6013;", tmpl, log_Reports);
             }
@@ -431,7 +431,7 @@ namespace Xenon.Expr
                 bool bRead_Value = false;
                 bool bRead_Description = false;
 
-                if (NamesNode.S_FNC == ec_Reccond_Src.Cur_Configurationtree.Name)
+                if (NamesNode.S_FNC == ec_Reccond_Src.Cur_Configuration.Name)
                 {
                     string sFncName;
                     ec_Reccond_Src.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
@@ -508,9 +508,9 @@ namespace Xenon.Expr
                                 //
                                 //
                                 if (
-                                    NamesNode.S_F_STR == ec_Child.Cur_Configurationtree.Name ||
-                                    NamesNode.S_F_VAR == ec_Child.Cur_Configurationtree.Name ||
-                                    NamesNode.S_FNC == ec_Child.Cur_Configurationtree.Name
+                                    NamesNode.S_F_STR == ec_Child.Cur_Configuration.Name ||
+                                    NamesNode.S_F_VAR == ec_Child.Cur_Configuration.Name ||
+                                    NamesNode.S_FNC == ec_Child.Cur_Configuration.Name
                                     )
                                 {
                                     sValue = ec_Child.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
@@ -520,7 +520,7 @@ namespace Xenon.Expr
                                 else
                                 {
                                     // #エラー？ todo:未定義の子要素。
-                                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の未定義の子要素=[" + ec_Child.Cur_Configurationtree.Name + "]");
+                                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」の未定義の子要素=[" + ec_Child.Cur_Configuration.Name + "]");
                                 }
                             }
                         );
@@ -534,7 +534,7 @@ namespace Xenon.Expr
                 else
                 {
                     // #エラー todo:エラー
-                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」でも、「E■ｒｅｃ－ｃｏｎｄ」でもなかった。　未定義の子要素＜" + ec_Reccond_Src.Cur_Configurationtree.Name + "＞。");
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#Execute_ParseChildReccndList: 「E■ｆｎｃ」でも、「E■ｒｅｃ－ｃｏｎｄ」でもなかった。　未定義の子要素＜" + ec_Reccond_Src.Cur_Configuration.Name + "＞。");
                 }
 
 
@@ -557,7 +557,7 @@ namespace Xenon.Expr
                             out dst_Recordcondition,//作られるオブジェクト
                             enumLogic,//andとかorとか。
                             "",//フィールドID指定なし。
-                            this.Cur_Configurationtree.Parent,
+                            this.Cur_Configuration.Parent,
                             log_Reports
                             );
 
@@ -581,7 +581,7 @@ namespace Xenon.Expr
                 bool bSuccessful2 = false;
                 if (bRead_Field)
                 {
-                    bSuccessful2 = RecordconditionImpl.TryBuild(out dst_Recordcondition, EnumLogic.None, sField, this.Cur_Configurationtree.Parent, log_Reports);
+                    bSuccessful2 = RecordconditionImpl.TryBuild(out dst_Recordcondition, EnumLogic.None, sField, this.Cur_Configuration.Parent, log_Reports);
                 }
 
 
@@ -684,7 +684,7 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_SOpe, log_Reports);//演算子
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6014;", tmpl, log_Reports);
             }
@@ -709,7 +709,7 @@ namespace Xenon.Expr
             out bool bOneCellSelectCondition_Out,//「フィールド名　＝　値」の形のみ true。 エラー時もfalse。
             out Selectstatement selectSt,
             out bool bExists_Awhr_Out,//＠ｗｈｅｒｅの有無を返します。エラー時はfalse。
-            Configurationtree_Node cf_Fcell,//「S■ｆ－ｃｅｌｌ」。
+            Configuration_Node cf_Fcell,//「S■ｆ－ｃｅｌｌ」。
             Log_Reports log_Reports
             )
         {
@@ -769,7 +769,7 @@ namespace Xenon.Expr
                     string sValue;
                     e_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
 
-                    if (NamesNode.S_FNC == e_Child.Cur_Configurationtree.Name &&
+                    if (NamesNode.S_FNC == e_Child.Cur_Configuration.Name &&
                         NamesFnc.S_WHERE == sValue)
                     {
                         ec_Awhr1_Src = e_Child;// Expression_Node_StringImpl である必要がある。E_String_AtomImplではダメ。
@@ -798,7 +798,7 @@ namespace Xenon.Expr
                         Expression_Leaf_StringImpl ec_Leaf = (Expression_Leaf_StringImpl)ec_Awhr1_Src;
                         tmpl.SetParameter(1, ec_Leaf.List_Expression_Child.Count.ToString(), log_Reports);//子要素の数
 
-                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                         this.Owner_MemoryApplication.CreateErrorReport("Er:6015;", tmpl, log_Reports);
                     }
@@ -1024,7 +1024,7 @@ namespace Xenon.Expr
                     // 「E■＠ｗｈｅｒｅ」条件が無い場合。
 
                     // #警告。正常。
-                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute_P1_SelectSt: 条件がないタイプ（ｗｈｅｒｅを持たない）です。親ノード=" + this.Cur_Configurationtree.Parent);
+                    System.Console.WriteLine(Info_Expr.Name_Library + ":" + this.GetType().Name + "#E_Execute_P1_SelectSt: 条件がないタイプ（ｗｈｅｒｅを持たない）です。親ノード=" + this.Cur_Configuration.Parent);
                 }
             }
 
@@ -1109,7 +1109,7 @@ namespace Xenon.Expr
         gt_Error_ExistsFcellChild:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, this.Cur_Configurationtree.Name, log_Reports);//設定ノード名
+                tmpl.SetParameter(1, this.Cur_Configuration.Name, log_Reports);//設定ノード名
 
                 List<Expression_Node_String> e_List = this.List_Expression_Child.SelectList(EnumHitcount.Unconstraint, log_Reports);
                 tmpl.SetParameter(2, e_List.Count.ToString(), log_Reports);//子要素の数
@@ -1117,12 +1117,12 @@ namespace Xenon.Expr
                 Log_TextIndented s = new Log_TextIndentedImpl();
                 foreach (Expression_Node_String ec_Child in e_List)
                 {
-                    s.Append("Expr[" + ec_Child.Cur_Configurationtree.Name + "]");
+                    s.Append("Expr[" + ec_Child.Cur_Configuration.Name + "]");
                     s.Newline();
                 }
                 tmpl.SetParameter(3, s.ToString(), log_Reports);//要素のリスト
 
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6016;", tmpl, log_Reports);
             }
@@ -1138,7 +1138,7 @@ namespace Xenon.Expr
                 Log_TextIndented s1 = new Log_TextIndentedImpl();
                 this.Dictionary_Expression_Attribute.ForEach(delegate(string sName3, Expression_Node_String e_Attr3, ref bool bBreak)
                 {
-                    s1.Append("Attribute[" + sName3 + "]=Expr[" + e_Attr3.Cur_Configurationtree.Name + "]　値＝[" + e_Attr3.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
+                    s1.Append("Attribute[" + sName3 + "]=Expr[" + e_Attr3.Cur_Configuration.Name + "]　値＝[" + e_Attr3.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                     s1.Newline();
                 });
                 tmpl.SetParameter(4, s1.ToString(), log_Reports);//属性リスト
@@ -1148,12 +1148,12 @@ namespace Xenon.Expr
                 Log_TextIndented s2 = new Log_TextIndentedImpl();
                 this.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                 {
-                    s2.Append("子　[" + e_Child.Cur_Configurationtree.Name + "]＝[" + e_Child.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
+                    s2.Append("子　[" + e_Child.Cur_Configuration.Name + "]＝[" + e_Child.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports) + "]");
                     s2.Newline();
                 });
                 tmpl.SetParameter(6, s2.ToString(), log_Reports);//子要素リスト
 
-                tmpl.SetParameter(7, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(7, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6017;", tmpl, log_Reports);
             }
@@ -1162,7 +1162,7 @@ namespace Xenon.Expr
         gt_Error_EmptyTableName:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(cf_Fcell), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(cf_Fcell), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6018;", tmpl, log_Reports);
             }
@@ -1186,7 +1186,7 @@ namespace Xenon.Expr
         private RecordSet E_Execute_P2_Select(
             bool isExists_Awhr,
             Selectstatement selectSt,
-            Configurationtree_Node parent_Conf_Query,
+            Configuration_Node parent_Conf_Query,
             Log_Reports log_Reports
             )
         {
@@ -1232,7 +1232,7 @@ namespace Xenon.Expr
                 P1_RecordSetLoader sel1 = new P1_RecordSetLoader(this.Owner_MemoryApplication);
                 reslt_Rs = sel1.P1_Load(
                     selectSt.Expression_Where_RecordSetLoadFrom,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                     );
 
@@ -1375,7 +1375,7 @@ namespace Xenon.Expr
         gt_Error_NullTable:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Conf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(parent_Conf_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6019;", tmpl, log_Reports);
             }

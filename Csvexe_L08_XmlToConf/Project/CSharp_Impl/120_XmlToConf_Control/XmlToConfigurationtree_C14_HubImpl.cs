@@ -117,7 +117,7 @@ namespace Xenon.XmlToConf
                 }
                 tmpl.SetParameter(3, s1.ToString(), log_Reports);//要素リスト
 
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configuration(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8033;", tmpl, log_Reports);
             }
@@ -127,7 +127,7 @@ namespace Xenon.XmlToConf
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_XElm.Name, log_Reports);//要素名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(cur_Cf), log_Reports);//設定位置パンくずリスト
                 tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 memoryApplication.CreateErrorReport("Er:8034;", tmpl, log_Reports);

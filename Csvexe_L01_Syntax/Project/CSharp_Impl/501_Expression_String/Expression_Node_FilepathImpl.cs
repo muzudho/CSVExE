@@ -178,9 +178,9 @@ namespace Xenon.Syntax
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Syntax.Name_Library, this, "SetHumaninput", log_Reports);
 
-            if (this.Cur_Configurationtree is Configurationtree_NodeFilepath)
+            if (this.Cur_Configuration is Configurationtree_NodeFilepath)
             {
-                ((Configurationtree_NodeFilepath)this.Cur_Configurationtree).SetHumaninput(
+                ((Configurationtree_NodeFilepath)this.Cur_Configuration).SetHumaninput(
                 filepath_Humaninput_New,
                 log_Reports
                 );
@@ -195,7 +195,7 @@ namespace Xenon.Syntax
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append(Environment.NewLine);
-                    s.Append("#SetSHumanInput:型が違います。[" + this.Cur_Configurationtree.GetType().Name + "]");
+                    s.Append("#SetSHumanInput:型が違います。[" + this.Cur_Configuration.GetType().Name + "]");
 
                     r.Message = s.ToString();
                     log_Reports.EndCreateReport();
@@ -232,9 +232,9 @@ namespace Xenon.Syntax
             // 絶対パスにして返します。
 
             string sFpath;
-            if (this.Cur_Configurationtree is Configurationtree_NodeFilepath)
+            if (this.Cur_Configuration is Configurationtree_NodeFilepath)
             {
-                Configurationtree_NodeFilepath cf_Fpath = (Configurationtree_NodeFilepath)this.Cur_Configurationtree;
+                Configurationtree_NodeFilepath cf_Fpath = (Configurationtree_NodeFilepath)this.Cur_Configuration;
 
                 bool bCheckPathTooLong = false;
 
@@ -246,7 +246,7 @@ namespace Xenon.Syntax
                         ref bCheckPathTooLong, //ファイル名の長さチェックは、もう済んでいるものとして、行いません。
                         false,//ファイル名の長さが上限超過ならエラー
                         log_Reports,//out sErrorMsg,
-                        this.Cur_Configurationtree
+                        this.Cur_Configuration
                         );
                 }
                 else
@@ -265,7 +265,7 @@ namespace Xenon.Syntax
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append(Environment.NewLine);
-                    s.Append("#GetSAbsoluteFilePath:型が違います。[" + this.Cur_Configurationtree.GetType().Name + "]");
+                    s.Append("#GetSAbsoluteFilePath:型が違います。[" + this.Cur_Configuration.GetType().Name + "]");
 
                     r.Message = s.ToString();
                     log_Reports.EndCreateReport();
@@ -312,9 +312,9 @@ namespace Xenon.Syntax
             // ダミー・フラグ。使いません。
             bool bDammyFlagCheckPathTooLong = false;
 
-            if (this.Cur_Configurationtree is Configurationtree_NodeFilepath)
+            if (this.Cur_Configuration is Configurationtree_NodeFilepath)
             {
-                Configurationtree_NodeFilepath cf_Fpath = ((Configurationtree_NodeFilepath)this.Cur_Configurationtree);
+                Configurationtree_NodeFilepath cf_Fpath = ((Configurationtree_NodeFilepath)this.Cur_Configuration);
 
                 // チェック。絶対パスにすることができればOK。
                 Utility_Configurationtree_Filepath.ToFilepathabsolute(
@@ -323,7 +323,7 @@ namespace Xenon.Syntax
                     ref bDammyFlagCheckPathTooLong,
                     false,//ファイル名の長さが上限超過ならエラー
                     log_Reports,//out sErrorMsg,
-                    this.Cur_Configurationtree
+                    this.Cur_Configuration
                     );
                 if (!log_Reports.Successful)
                 {
@@ -343,7 +343,7 @@ namespace Xenon.Syntax
 
                     Log_TextIndented s = new Log_TextIndentedImpl();
                     s.Append(Environment.NewLine);
-                    s.Append("#GetSAbsoluteFilePath:型が違います。[" + this.Cur_Configurationtree.GetType().Name + "]");
+                    s.Append("#GetSAbsoluteFilePath:型が違います。[" + this.Cur_Configuration.GetType().Name + "]");
 
                     r.Message = s.ToString();
                     log_Reports.EndCreateReport();
@@ -363,6 +363,9 @@ namespace Xenon.Syntax
 
         /// <summary>
         /// 拡張子を取得します。「.」は含みません。
+        /// 
+        /// ※１ステップでできない。→「System.IO.Path.GetExtensionを使った方がいいのでは。（「.」を含む）」
+        /// 
         /// </summary>
         /// <param name="extension"></param>
         /// <param name="log_Reports"></param>
@@ -373,12 +376,66 @@ namespace Xenon.Syntax
             int index_Dot = filepathabsolute.LastIndexOf('.');
             if (-1 != index_Dot)
             {
-                extension = filepathabsolute.Substring(index_Dot+1);
+                extension = filepathabsolute.Substring(index_Dot + 1);
             }
             else
             {
                 extension = "";
             }
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// ファイル名の頭と末尾に文字列を付けることができます。
+        /// </summary>
+        /// <param name="prefix">ファイル名の頭に付ける文字列。</param>
+        /// <param name="suffix">ファイル名の末尾に付ける文字列。</param>
+        public Expression_Node_Filepath Rename_Append(string prefix, string suffix, Log_Reports log_Reports)
+        {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Syntax.Name_Library, this, "Rename_Append", log_Reports);
+
+            Expression_Node_Filepath result;
+
+            string absolute = this.Execute4_OnExpressionString(Syntax.EnumHitcount.Unconstraint, log_Reports);
+            if ("" == absolute)
+            {
+                result = null;
+                goto gt_Error_Empty;
+            }
+
+            string directory = Path.GetDirectoryName(absolute);
+            string filename = Path.GetFileNameWithoutExtension(absolute);
+            string extension = Path.GetExtension(absolute);//拡張子の「.」を含む。
+            absolute = Path.Combine(directory, prefix + filename + suffix + extension);
+            Configurationtree_NodeFilepath config = new Configurationtree_NodeFilepathImpl("<rename>", null);
+            config.InitPath(absolute, log_Reports);
+            result = new Expression_Node_FilepathImpl(config);
+
+            goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_Empty:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー931！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("ファイルパスが空文字列でした。");
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
+        //
+        gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
+            return result;
         }
 
         //────────────────────────────────────────
@@ -399,14 +456,14 @@ namespace Xenon.Syntax
             {
                 string sResult;
 
-                if (this.Cur_Configurationtree is Configurationtree_NodeFilepath)
+                if (this.Cur_Configuration is Configurationtree_NodeFilepath)
                 {
-                    sResult = ((Configurationtree_NodeFilepath)this.Cur_Configurationtree).Directory_Base;
+                    sResult = ((Configurationtree_NodeFilepath)this.Cur_Configuration).Directory_Base;
                 }
                 else
                 {
                     // エラー。
-                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#SBaseDirectory:型が違います。[" + this.Cur_Configurationtree.GetType().Name + "]＞";
+                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#SBaseDirectory:型が違います。[" + this.Cur_Configuration.GetType().Name + "]＞";
                 }
 
                 return sResult;
@@ -429,14 +486,14 @@ namespace Xenon.Syntax
             {
                 string sResult;
 
-                if (this.Cur_Configurationtree is Configurationtree_NodeFilepath)
+                if (this.Cur_Configuration is Configurationtree_NodeFilepath)
                 {
-                    sResult = ((Configurationtree_NodeFilepath)this.Cur_Configurationtree).GetHumaninput();
+                    sResult = ((Configurationtree_NodeFilepath)this.Cur_Configuration).GetHumaninput();
                 }
                 else
                 {
                     // エラー。
-                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#GetString:型が違います。[" + this.Cur_Configurationtree.GetType().Name + "]＞";
+                    sResult = "＜" + Info_Syntax.Name_Library + ":" + this.GetType().Name + "#GetString:型が違います。[" + this.Cur_Configuration.GetType().Name + "]＞";
                 }
 
                 return sResult;

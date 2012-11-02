@@ -150,11 +150,11 @@ namespace Xenon.ConfToExpr
             {
                 string parent_SName_Fnc;
                 parent_Ec.TrySelectAttribute(out parent_SName_Fnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
-                log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 親＜[" + parent_Ec.Cur_Configurationtree.Name + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”　＞");
+                log_Method.WriteDebug_ToConsole(" ☆☆☆☆☆☆☆☆ 親＜[" + parent_Ec.Cur_Configuration.Name + "]　ｎａｍｅ＝”[" + parent_SName_Fnc + "]”　＞");
 
                 string sName_MyFnc;
                 cur_Ec.TrySelectAttribute(out sName_MyFnc, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
-                log_Method.WriteDebug_ToConsole( " ☆☆☆☆☆☆☆☆ 自＜[" + cur_Ec.Cur_Configurationtree.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”　＞");
+                log_Method.WriteDebug_ToConsole(" ☆☆☆☆☆☆☆☆ 自＜[" + cur_Ec.Cur_Configuration.Name + "]　ｎａｍｅ＝”[" + sName_MyFnc + "]”　＞");
             }
 
 

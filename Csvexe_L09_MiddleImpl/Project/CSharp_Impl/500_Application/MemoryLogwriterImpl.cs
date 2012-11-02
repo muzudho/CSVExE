@@ -29,15 +29,11 @@ namespace Xenon.MiddleImpl
             string sRunningHintName
                 )
         {
-
             Log_Method log_Method = new Log_MethodImpl(0);
             // メタ。
             Log_Reports log_Reports_Meta = new Log_ReportsImpl(log_Method);
             log_Method.BeginMethod(Info_MiddleImpl.Name_Library, this, "WriteErrorLog",log_Reports_Meta);
 
-            //
-            //
-            //
             //
 
             //
@@ -57,7 +53,7 @@ namespace Xenon.MiddleImpl
                 XenonName o_Name_Variable = new XenonNameImpl(NamesVar.S_SP_LOGS, new Configurationtree_NodeImpl("!ハードコーディング_MoOpyopyoImpl#WriteLog", null));
 
                 // 変数名。
-                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, o_Name_Variable.Cur_Configurationtree);
+                Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(null, o_Name_Variable.Cur_Configuration);
                 ec_Atom.SetString(
                     o_Name_Variable.SValue,
                     log_Reports_Meta
@@ -83,14 +79,6 @@ namespace Xenon.MiddleImpl
             //
             string err_SFpatha;
             {
-                //this.WriteErrorLog2(
-                //    sOutput,
-                //    ec_Fpath,
-                //    log_Reports_Meta,
-                //    sRunningHintName_NotUse
-                //    );
-
-
                 string sFpatha;
 
                 if (log_Reports_Meta.Successful)
@@ -140,24 +128,24 @@ namespace Xenon.MiddleImpl
                         System.IO.File.WriteAllText(sFpatha, sOutput, Global.ENCODING_LOG);
 
                         //#正常な、エラー出力
-                        StringBuilder sb = new StringBuilder();
-                        sb.Append("エラーが発生しました！");
-                        sb.Append(Environment.NewLine);
-                        sb.Append(Environment.NewLine);
-                        sb.Append("アプリケーションは正常に動作していない可能性があります。");
-                        sb.Append(Environment.NewLine);
-                        sb.Append(Environment.NewLine);
-                        sb.Append("エラーログを書き出しました。");
-                        sb.Append(Environment.NewLine);
-                        sb.Append("[");
-                        sb.Append(sFpatha);
-                        sb.Append("]");
-                        sb.Append(Environment.NewLine);
-                        sb.Append(Environment.NewLine);
-                        sb.Append("このアプリケーションの開発者にエラーログをお知らせください。");
+                        StringBuilder s0 = new StringBuilder();
+                        s0.Append("エラーが発生しました！");
+                        s0.Append(Environment.NewLine);
+                        s0.Append(Environment.NewLine);
+                        s0.Append("アプリケーションは正常に動作していない可能性があります。");
+                        s0.Append(Environment.NewLine);
+                        s0.Append(Environment.NewLine);
+                        s0.Append("エラーログを書き出しました。");
+                        s0.Append(Environment.NewLine);
+                        s0.Append("[");
+                        s0.Append(sFpatha);
+                        s0.Append("]");
+                        s0.Append(Environment.NewLine);
+                        s0.Append(Environment.NewLine);
+                        s0.Append("このアプリケーションの開発者にエラーログをお知らせください。");
 
                         MessageBox.Show(
-                            sb.ToString(),
+                            s0.ToString(),
                             "▲エラーが発生しました！ " + Info_MiddleImpl.Name_Library + ":" + this.GetType().Name + "#WriteErrorLog");
                     }
                     catch (Exception)
@@ -180,43 +168,43 @@ namespace Xenon.MiddleImpl
         //────────────────────────────────────────
         gt_Error_CanNotWriteErrorLog:
             {
-                StringBuilder s = new StringBuilder();
+                StringBuilder s0 = new StringBuilder();
 
-                s.Append("▲312！エラーが発生しましたが、エラーログを出力できませんでした。（");
-                s.Append(Info_MiddleImpl.Name_Library);
-                s.Append("）　ファイルパス＝[");
-                s.Append(err_SFpatha);
-                s.Append("]");
+                s0.Append("▲312！エラーが発生しましたが、エラーログを出力できませんでした。（");
+                s0.Append(Info_MiddleImpl.Name_Library);
+                s0.Append("）　ファイルパス＝[");
+                s0.Append(err_SFpatha);
+                s0.Append("]");
 
-                MessageBox.Show(sOutput, s.ToString());
+                MessageBox.Show(sOutput, s0.ToString());
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
         gt_Error_MetaNotSuccessful:
             {
-                Log_TextIndented s = new Log_TextIndentedImpl();
-                s.Append("エラーが発生しましたが、エラーログを出力できませんでした。");
-                s.Newline();
-                s.Newline();
+                Log_TextIndented s0 = new Log_TextIndentedImpl();
+                s0.Append("エラーが発生しましたが、エラーログを出力できませんでした。");
+                s0.Newline();
+                s0.Newline();
 
-                s.Append("もしかして？");
-                s.Newline();
+                s0.Append("もしかして？");
+                s0.Newline();
 
-                s.Append("　・設定ファイルの「エラーログの書出し先」を読み込む前に、エラーが出てしまった？");
-                s.Newline();
-                s.Append("　・「ログファイル書き出し先」は指定されていますか？");
-                s.Newline();
-                s.Newline();
+                s0.Append("　・設定ファイルの「エラーログの書出し先」を読み込む前に、エラーが出てしまった？");
+                s0.Newline();
+                s0.Append("　・「ログファイル書き出し先」は指定されていますか？");
+                s0.Newline();
+                s0.Newline();
 
-                s.Append("実行箇所ヒント：");
-                s.Newline();
-                s.Append("　・");
-                s.Append(sRunningHintName);
-                s.Newline();
-                s.Newline();
+                s0.Append("実行箇所ヒント：");
+                s0.Newline();
+                s0.Append("　・");
+                s0.Append(sRunningHintName);
+                s0.Newline();
+                s0.Newline();
 
                 MessageBox.Show(
-                    s.ToString(), //sOutput,
+                    s0.ToString(), //sOutput,
                     "▲エラー！【Er:101;】（" + log_Method.Fullname + "）");
             }
             goto gt_EndMethod;

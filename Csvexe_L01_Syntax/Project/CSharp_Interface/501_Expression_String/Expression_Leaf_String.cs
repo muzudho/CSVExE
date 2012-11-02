@@ -25,7 +25,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         Expression_Leaf_String NewInstance(
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             );
 

@@ -201,7 +201,7 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_OValue.GetType().Name, log_Reports);//値の型名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6032;", tmpl, log_Reports);
             }
@@ -211,7 +211,7 @@ namespace Xenon.Expr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_Ev11.GetType().Name, log_Reports);//クラス名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6033;", tmpl, log_Reports);
             }
@@ -244,7 +244,7 @@ namespace Xenon.Expr
                 }
                 tmpl.SetParameter(4, s1.ToString(), log_Reports);//指定されたフィールド名の文字列
 
-                tmpl.SetParameter(5, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(5, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
                 tmpl.SetParameter(6, Log_RecordReportsImpl.ToText_Exception(err_Excp), log_Reports);//例外メッセージ
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6034;", tmpl, log_Reports);

@@ -94,7 +94,7 @@ namespace Xenon.Middle
         /// <summary>
         /// 利用者に、修正箇所を伝える情報。
         /// </summary>
-        Configurationtree_Node Cur_Configurationtree
+        Configuration_Node Cur_Configuration
         {
             get;
             set;

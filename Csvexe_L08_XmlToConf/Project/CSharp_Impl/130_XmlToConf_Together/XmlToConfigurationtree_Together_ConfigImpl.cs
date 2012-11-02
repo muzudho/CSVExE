@@ -136,7 +136,7 @@ namespace Xenon.XmlToConf
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(sTg_Cnf));
+                t.Append(r.Message_Configuration(sTg_Cnf));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -160,7 +160,7 @@ namespace Xenon.XmlToConf
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(sTg_Cnf));
+                t.Append(r.Message_Configuration(sTg_Cnf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();
@@ -185,7 +185,7 @@ namespace Xenon.XmlToConf
                 t.Append("ex.GetType().Name=[" + err_Excp.GetType().Name + "]");
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(sTg_Cnf));
+                t.Append(r.Message_Configuration(sTg_Cnf));
                 t.Append(r.Message_SException(err_Excp));
 
                 r.Message = t.ToString();

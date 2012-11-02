@@ -46,13 +46,12 @@ namespace Xenon.Syntax
             this.MilliSeconds_Start = this.stopwatch.ElapsedMilliseconds;
         }
 
-        public void End()
+        public void End(Log_Reports log_reports)
         {
             if (this.IsRunning)
             {
                 Log_Method log_Method = new Log_MethodImpl(0);
-                Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
-                log_Method.BeginMethod(Info_Syntax.Name_Library, this, "End", log_Reports_ThisMethod);
+                log_Method.BeginMethod(Info_Syntax.Name_Library, this, "End", log_reports);
 
                 this.MilliSeconds_End = stopwatch.ElapsedMilliseconds;
 
@@ -67,8 +66,7 @@ namespace Xenon.Syntax
                 sb.Append(Environment.NewLine);
 
                 log_Method.WriteInfo_ToConsole(sb.ToString());
-                log_Method.EndMethod(log_Reports_ThisMethod);
-                log_Reports_ThisMethod.EndLogging(log_Method);
+                log_Method.EndMethod(log_reports);
             }
         }
 
@@ -89,11 +87,16 @@ namespace Xenon.Syntax
                 sb.Append(this.Owner_Log_Method.Fullname);
                 sb.Append(":");
 
-                sb.Append(this.message);
+                sb.Append(this.Message);
 
-                sb.Append(" 処理時間=[");
+
+                TimeSpan ts = new TimeSpan(0, 0, 0, 0, (int)nMilliSeconds);  // 値を TimeSpan 型へ変換する
+
+                sb.Append(String.Format("　処理時間[{0}Days {1:D2}:{2:D2}.{3:D2}'{4:D3}]", ts.Days, ts.Hours, ts.Minutes, ts.Seconds, nMilliSeconds%1000 ));
+                sb.Append("　(");
                 sb.Append(nMilliSeconds);
-                sb.Append("]ミリ秒。");
+                sb.Append(")ミリ秒");
+
             }
             else
             {
@@ -104,7 +107,7 @@ namespace Xenon.Syntax
                 sb.Append(this.Owner_Log_Method.Fullname);
                 sb.Append(":");
 
-                sb.Append(this.message);
+                sb.Append(this.Message);
 
                 sb.Append(" 未起動。");
             }

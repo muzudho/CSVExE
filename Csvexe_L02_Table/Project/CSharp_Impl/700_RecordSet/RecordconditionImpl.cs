@@ -23,7 +23,7 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="s_ParentNode"></param>
-        private RecordconditionImpl(Configurationtree_Node parent_Conf)
+        private RecordconditionImpl(Configuration_Node parent_Conf)
         {
             this.parent = parent_Conf;
 
@@ -54,7 +54,7 @@ namespace Xenon.Table
             out Recordcondition out_RecCond,
             EnumLogic enumLogic,
             string sField,
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -112,7 +112,7 @@ namespace Xenon.Table
                 s.Append("]");
                 s.Append(Environment.NewLine);
 
-                s.Append(r.Message_Configurationtree(parent_Conf));
+                s.Append(r.Message_Configuration(parent_Conf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -293,12 +293,12 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private Configurationtree_Node parent;
+        private Configuration_Node parent;
 
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        public Configurationtree_Node Parent
+        public Configuration_Node Parent
         {
             get
             {

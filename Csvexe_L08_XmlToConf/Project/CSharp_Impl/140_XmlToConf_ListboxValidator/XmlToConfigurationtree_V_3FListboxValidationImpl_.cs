@@ -81,15 +81,20 @@ namespace Xenon.XmlToConf
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
             log_Method.BeginMethod(Info_XmlToConf.Name_Library, this, "Parse_ChildNodes",log_Reports);
             //
-            //
 
             XmlElement err_XADisplay = null;
 
             Usercontrol uct = null;
             if (log_Reports.Successful)
             {
-                Configurationtree_Node cf_Control= cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1,true,log_Reports);
-                uct = Utility_XmlToConfigurationtree_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
+                Configuration_Node cf_Control = cur_Cf.GetParentByNodename(
+                    NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
+
+                if (log_Reports.Successful)
+                {
+                    uct = Utility_XmlToConfigurationtree_NodeImpl.GetUsercontrol(
+                        (Configurationtree_Node)cf_Control, memoryApplication, log_Reports);
+                }
             }
 
             if (log_Reports.Successful)
@@ -155,7 +160,6 @@ namespace Xenon.XmlToConf
 
             goto gt_EndMethod;
         //
-        //
             #region 異常系
         //────────────────────────────────────────
         gt_Error_UndefinedChild11:
@@ -164,24 +168,40 @@ namespace Xenon.XmlToConf
                 Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
                 r.SetTitle("▲エラー385！", log_Method);
 
-                StringBuilder t = new StringBuilder();
-                t.Append("＜ｆ－ｌｉｓｔ－ｂｏｘ－ｖａｌｉｄａｔｉｏｎ＞要素に、＜ａ－ｄｉｓｐｌａｙ＞＜a-select-record＞要素以外の要素");
-                t.Append(Environment.NewLine);
-                t.Append("[");
-                t.Append(err_XADisplay.Name);
-                t.Append("]が含まれていました。");
-                t.Append(Environment.NewLine);
-                t.Append(Environment.NewLine);
+                StringBuilder s = new StringBuilder();
+                s.Append("＜ｆ－ｌｉｓｔ－ｂｏｘ－ｖａｌｉｄａｔｉｏｎ＞要素に、＜ａ－ｄｉｓｐｌａｙ＞＜a-select-record＞要素以外の要素");
+                s.Append(Environment.NewLine);
+                s.Append("[");
+                s.Append(err_XADisplay.Name);
+                s.Append("]が含まれていました。");
+                s.Append(Environment.NewLine);
+                s.Append(Environment.NewLine);
 
                 // ヒント
 
-                r.Message = t.ToString();
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+        gt_Error_UndefinedClass:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー386！", log_Method);
+
+                StringBuilder s = new StringBuilder();
+                s.Append("なんらかのエラー。");
+                s.Append(Environment.NewLine);
+
+                // ヒント
+
+                r.Message = s.ToString();
                 log_Reports.EndCreateReport();
             }
             goto gt_EndMethod;
         //────────────────────────────────────────
             #endregion
-        //
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
@@ -192,14 +212,48 @@ namespace Xenon.XmlToConf
         protected override void LinkToParent(
             Configurationtree_Node cur_Cf, Configurationtree_Node parent_Cf, MemoryApplication memoryApplication, Log_Reports log_Reports)
         {
+            Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);
+            log_Method.BeginMethod(Info_XmlToConf.Name_Library, this, "LinkToParent", log_Reports);
+
             Usercontrol uct = null;
             if (log_Reports.Successful)
             {
-                Configurationtree_Node cf_Control = cur_Cf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                uct = Utility_XmlToConfigurationtree_NodeImpl.GetUsercontrol(cf_Control, memoryApplication, log_Reports);
+                Configuration_Node cf_Control = cur_Cf.GetParentByNodename(
+                    NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
+
+                if (log_Reports.Successful)
+                {
+                    uct = Utility_XmlToConfigurationtree_NodeImpl.GetUsercontrol(
+                        (Configurationtree_Node)cf_Control, memoryApplication, log_Reports);
+                }
             }
 
             uct.ControlCommon.Configurationtree_Control.List_Child.Add(cur_Cf, log_Reports);
+            goto gt_EndMethod;
+        //
+            #region 異常系
+        //────────────────────────────────────────
+        gt_Error_UndefinedClass:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー386！", log_Method);
+
+                StringBuilder s = new StringBuilder();
+                s.Append("なんらかのエラー。");
+                s.Append(Environment.NewLine);
+
+                // ヒント
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+            #endregion
+        //
+        gt_EndMethod:
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

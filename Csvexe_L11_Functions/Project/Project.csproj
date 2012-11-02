@@ -83,6 +83,8 @@
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function47Impl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function48Impl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function49Impl.cs" />
+    <Compile Include="CSharp_Impl\201_Filesystemrunner\FilesystemreportImpl.cs" />
+    <Compile Include="CSharp_Impl\201_Filesystemrunner\FilesystemrunnerImpl.cs" />
     <Compile Include="CSharp_Impl\900_Utility\Utility_Listbox.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function25Impl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_FunctionAbstract.cs" />
@@ -115,11 +117,12 @@
     <Compile Include="CSharp_Impl\120_Functions\Collection_Function.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function_OnEditorSelected_Impl.cs" />
     <Compile Include="CSharp_Impl\120_Functions\Expression_Node_Function_BootCsvEditorImpl.cs" />
-    <Compile Include="CSharp_Impl\130_Executer\EventMonitorImpl.cs" />
     <Compile Include="CSharp_Impl\130_Executer\Executer3_FunctionImpl.cs" />
     <Compile Include="CSharp_Impl\130_Executer\Executer1_UsercontrolAndEventImpl.cs" />
     <Compile Include="CSharp_Impl\130_Executer\Executer2_EventImpl.cs" />
     <Compile Include="CSharp_Impl\110_GcavToFunc\ConfigurationtreeToFunction_ListImpl.cs" />
+    <Compile Include="CSharp_Interface\201_Filesystemrunner\Filesystemreport.cs" />
+    <Compile Include="CSharp_Interface\201_Filesystemrunner\Filesystemrunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp_Impl\110_GcavToFunc\ConfigurationtreeToFunction00_ItemImpl.cs" />
     <Compile Include="CSharp_Impl\900_Utility\Utility_Textformat.cs" />
@@ -132,6 +135,7 @@
     <Content Include="CSharp_Impl\130_Executer\%40これは、フォーム_コンポーネントのイベントアクション実行機能。.txt" />
     <Content Include="CSharp_Info\ソースコード整理状況.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

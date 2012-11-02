@@ -104,7 +104,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(sToE_Event.Configurationtree_Event));
+                t.Append(r.Message_Configuration(sToE_Event.Configurationtree_Event));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

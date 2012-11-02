@@ -97,7 +97,7 @@ namespace Xenon.MiddleImpl
             //
             log_Reports.Log_Callstack.Push(log_Method, "①");
             Expression_Node_Filepath ec_Fpath_Variables = this.Owner_MemoryApplication.MemoryVariables.GetExpressionfilepathByVariablename(
-                new Expression_Leaf_StringImpl(xenonName_Variable.SValue, null, xenonName_Variable.Cur_Configurationtree),
+                new Expression_Leaf_StringImpl(xenonName_Variable.SValue, null, xenonName_Variable.Cur_Configuration),
                 false,//必須ではありません。未該当であればヌルを返します。
                 log_Reports
                 );
@@ -319,7 +319,7 @@ namespace Xenon.MiddleImpl
             string err_SName;
             if (log_Reports.Successful)
             {
-                this.parent_Variablesconfig_Configurationtree = new Configurationtree_NodeImpl(NamesNode.S_VARIABLE_CONFIG, o_Table_Var.Expression_Filepath_ConfigStack.Cur_Configurationtree);
+                this.parent_Variablesconfig_Configurationtree = new Configurationtree_NodeImpl(NamesNode.S_VARIABLE_CONFIG, o_Table_Var.Expression_Filepath_ConfigStack.Cur_Configuration);
                 if (!log_Reports.Successful)
                 {
                     // 既エラー。
@@ -845,7 +845,7 @@ namespace Xenon.MiddleImpl
                 t.Append("　問題箇所ヒント：");
                 t.Append(Environment.NewLine);
                 t.Append("　　");
-                o_Name_Variable.Cur_Configurationtree.ToText_Locationbreadcrumbs(t);
+                o_Name_Variable.Cur_Configuration.ToText_Locationbreadcrumbs(t);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
@@ -985,12 +985,12 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 t.Append("　問題箇所ヒント：");
-                ec_VariableName.Cur_Configurationtree.Parent.ToText_Locationbreadcrumbs(t);
+                ec_VariableName.Cur_Configuration.Parent.ToText_Locationbreadcrumbs(t);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
                 t.Append("　実行経路ヒント：");
-                ec_VariableName.Cur_Configurationtree.Parent.ToText_Locationbreadcrumbs(t);
+                ec_VariableName.Cur_Configuration.Parent.ToText_Locationbreadcrumbs(t);
                 t.Append(Environment.NewLine);
                 t.Append(Environment.NewLine);
 
@@ -1117,8 +1117,8 @@ namespace Xenon.MiddleImpl
 
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_Name_Variable.Cur_Configurationtree));
-                //s.Append(r.Message_Configurationtree(ec_Name_Variable.Cur_Configurationtree.Parent));
+                s.Append(r.Message_Configuration(ec_Name_Variable.Cur_Configuration));
+                //s.Append(r.Message_Configuration(ec_Name_Variable.Cur_Configurationtree.Parent));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

@@ -71,7 +71,7 @@ namespace Xenon.Expr
                 //
                 // 子ノード名、子ファンク名
                 //
-                string sChildNodeName = ec_Child.Cur_Configurationtree.Name;
+                string sChildNodeName = ec_Child.Cur_Configuration.Name;
 
                 string sChildFncName = "";
                 {

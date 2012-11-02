@@ -53,7 +53,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -62,7 +62,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function20Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -125,10 +125,6 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
-
-
-
 
                 List<Usercontrol> ucFcList;
                 if (log_Reports.Successful)
@@ -190,9 +186,10 @@ namespace Xenon.Functions
 
 
 
-                        Configurationtree_Node owner_Configurationtree_Control;
+                        Configuration_Node owner_Configurationtree_Control;
                         {
-                            owner_Configurationtree_Control = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                            owner_Configurationtree_Control = this.Cur_Configuration.GetParentByNodename(
+                                NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
                         }
 
                         //
@@ -200,7 +197,8 @@ namespace Xenon.Functions
                         // ＜ｄａｔａ　ｔａｒｇｅｔ＝”ｌｉｓｔ－ｂｏｘ”＞
                         // 　　　　＜ａｒｇ５　ｎａｍｅ＝”ｔａｂｌｅＮａｍｅ”　ｖａｌｕｅ＝”☆”＞
                         //
-                        List<Configurationtree_Node> cfList_Data = owner_Configurationtree_Control.GetChildrenByNodename(NamesNode.S_DATA, false, log_Reports);
+                        List<Configurationtree_Node> cfList_Data = ((Configurationtree_Node)owner_Configurationtree_Control).GetChildrenByNodename(
+                            NamesNode.S_DATA, false, log_Reports);
                         foreach (Configurationtree_Node cf_Data in cfList_Data)
                         {
                             string sAccess;
@@ -277,15 +275,6 @@ namespace Xenon.Functions
                         );
                     //↑この中で時間かかってる。
                 }
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
 
             goto gt_EndMethod;

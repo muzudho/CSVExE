@@ -47,12 +47,12 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function21Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -90,8 +90,7 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Kea)
             {
-                string sConfigStack_EventOrigin = "＜" + log_Method.Fullname + ":＞";
-                Configurationtree_Node cf_WrittenPlace_ThisMethod = new Configurationtree_NodeImpl(sConfigStack_EventOrigin, null);
+                Configurationtree_Node conf_ThisMethod = new Configurationtree_NodeImpl(log_Method.Fullname, null);
 
                 Keys keys = this.Functionparameterset.KeyEventArgs.KeyCode;
 
@@ -109,19 +108,20 @@ namespace Xenon.Functions
                         //OWrittenPlace oWrittenPlace = new OWrittenPlaceImpl(this.OWrittenPlace.WrittenPlace + "!ハードコーディング_NAction21#(10)");
 
                         Expression_Node_Function expr_Func = Collection_Function.NewFunction2(
-                                Expression_Node_Function11Impl.NAME_FUNCTION, this, this.Cur_Configurationtree,
+                                Expression_Node_Function11Impl.NAME_FUNCTION,
+                                this,
+                                this.Cur_Configuration,
                                 this.Owner_MemoryApplication, log_Reports);
 
-                        Configurationtree_Node cf_Event;
+                        Configuration_Node cf_Event;
                         {
-                            cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                            cf_Event = this.Cur_Configuration.GetParentByNodename(
+                                NamesNode.S_EVENT, EnumConfiguration.Unknown, false, log_Reports);
                         }
 
 
                         expr_Func.Execute4_OnLr(
                             this.Functionparameterset.Sender,
-                            new EventMonitorImpl(cf_Event, cf_WrittenPlace_ThisMethod),//ダミー
-                            sConfigStack_EventOrigin,
                             log_Reports
                             );
 

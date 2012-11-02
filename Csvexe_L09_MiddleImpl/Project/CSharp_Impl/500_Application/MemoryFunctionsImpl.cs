@@ -205,7 +205,7 @@ namespace Xenon.MiddleImpl
                 log_Method.WriteDebug_ToConsole(" ユーザー定義関数設定ファイルの読み取り。");
             }
 
-            Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, filepath_Userfunctionconfig_Expr.Cur_Configurationtree);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
+            Configurationtree_Node parent_Conf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_FUNCTIONS, filepath_Userfunctionconfig_Expr.Cur_Configuration);//Info_OpyopyoImpl.LibraryName + ":" + this.GetType().Name + ".LoadFile_Fnc"
             Expression_Node_String userfunctionconfig_Expr = new Expression_Node_StringImpl(null, parent_Conf);
 
             string filepathabsolute = filepath_Userfunctionconfig_Expr.Execute4_OnExpressionString(
@@ -385,7 +385,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
                 s.Append(Environment.NewLine);
 
-                s.Append(Log_RecordReportsImpl.ToText_Configurationtree(filepath_Userfunctionconfig_Expr.Cur_Configurationtree));
+                s.Append(Log_RecordReportsImpl.ToText_Configuration(filepath_Userfunctionconfig_Expr.Cur_Configuration));
 
                 // ヒント
 

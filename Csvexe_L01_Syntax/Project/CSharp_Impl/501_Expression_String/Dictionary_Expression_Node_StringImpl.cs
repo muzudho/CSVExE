@@ -20,7 +20,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Dictionary_Expression_Node_StringImpl(Configurationtree_Node owner_Conf)
+        public Dictionary_Expression_Node_StringImpl(Configuration_Node owner_Conf)
         {
             this.Owner_Conf = owner_Conf;
 
@@ -476,12 +476,12 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private Configurationtree_Node owner_Conf;
+        private Configuration_Node owner_Conf;
 
         /// <summary>
         /// このオブジェクトを持つ、オブジェクト。
         /// </summary>
-        public Configurationtree_Node Owner_Conf
+        public Configuration_Node Owner_Conf
         {
             get
             {

@@ -320,46 +320,6 @@ namespace Xenon.Syntax
         }
 
         //────────────────────────────────────────
-
-        private object eventMonitor;//EventMonitor
-
-        /// <summary>
-        /// イベントハンドラー引数。
-        /// Perform_WrRhn_Main で利用。
-        /// </summary>
-        public object EventMonitor//EventMonitor
-        {
-            get
-            {
-                return eventMonitor;
-            }
-            set
-            {
-                eventMonitor = value;
-            }
-        }
-
-        //────────────────────────────────────────
-
-        private string sNode_EventOrigin;
-
-        /// <summary>
-        /// イベントハンドラー引数。
-        /// Perform_WrRhn_Main で利用。
-        /// </summary>
-        public string Node_EventOrigin
-        {
-            get
-            {
-                return sNode_EventOrigin;
-            }
-            set
-            {
-                sNode_EventOrigin = value;
-            }
-        }
-
-        //────────────────────────────────────────
         #endregion
 
 

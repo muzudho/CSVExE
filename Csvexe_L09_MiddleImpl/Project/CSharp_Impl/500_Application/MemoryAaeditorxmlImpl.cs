@@ -113,7 +113,7 @@ namespace Xenon.MiddleImpl
 
                 string sNamevar = NamesVar.S_SP_ENGINE;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE;
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configuration);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -130,7 +130,7 @@ namespace Xenon.MiddleImpl
             {
                 string sNamevar = NamesVar.S_SP_FORMS;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_FORMS;
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configuration);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -147,7 +147,7 @@ namespace Xenon.MiddleImpl
             {
                 string sNamevar = NamesVar.S_SP_LOGS;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_LOGS;
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configuration);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -164,7 +164,7 @@ namespace Xenon.MiddleImpl
             {
                 string sNamevar = NamesVar.S_SP_FILES;
                 string sValue = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_ENGINE + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_FILES_CSV;
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configurationtree);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("L09自動類推", ec_Fopath_Editor.Cur_Configuration);
                 cf_Fpath.InitPath(sValue, log_Reports);
                 this.Owner_MemoryApplication.MemoryVariables.PutFilepath(
                     sNamevar,
@@ -319,7 +319,7 @@ namespace Xenon.MiddleImpl
                 // 「エディター・フォルダー」パス　→　「@Editor.xml ファイルパス」へ変換。
                 string sFpath_EditorXml = sFopath_Editor + System.IO.Path.DirectorySeparatorChar + NamesFile.S_AA_EDITOR_XML;
 
-                this.cur_Configurationtree = new Configurationtree_NodeImpl("(L09Mid読取)",ec_Fopath_Editor.Cur_Configurationtree);
+                this.cur_Configurationtree = new Configurationtree_NodeImpl("(L09Mid読取)", ec_Fopath_Editor.Cur_Configuration);
             }
 
             goto gt_EndMethod;

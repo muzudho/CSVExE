@@ -50,7 +50,7 @@ namespace Xenon.Expr
             RecordSet dst_Rs_toSave,
             Selectstatement selectSt_ToSave,
             Expressionv_4ASelectRecord ecv_selRec_OrNull,//ｗｈｅｒｅ
-            Configurationtree_Node parent_Cf_Query,//this
+            Configuration_Node parent_Cf_Query,//this
             Log_Reports log_Reports
             )
         {
@@ -391,7 +391,7 @@ namespace Xenon.Expr
                     {
                         Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                         tmpl.SetParameter(1, o_Table.Name, log_Reports);//テーブル名
-                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                         this.Owner_MemoryApplication.CreateErrorReport("Er:6026;", tmpl, log_Reports);
                     }
@@ -401,7 +401,7 @@ namespace Xenon.Expr
                     {
                         Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                         tmpl.SetParameter(1, keyFldDefinition.ToString_Type(), log_Reports);//キー・フィールド定義型名
-                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                         this.Owner_MemoryApplication.CreateErrorReport("Er:6027;", tmpl, log_Reports);
                     }
@@ -411,7 +411,7 @@ namespace Xenon.Expr
                     {
                         Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                         tmpl.SetParameter(1, err_SSelectedFldName, log_Reports);//選択フィールド名
-                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                        tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
                         tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Exception(err_Exception), log_Reports);//例外メッセージ
 
                         this.Owner_MemoryApplication.CreateErrorReport("Er:6028;", tmpl, log_Reports);
@@ -446,7 +446,7 @@ namespace Xenon.Expr
         gt_Error_NullKeyFldDefinition:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(parent_Cf_Query), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6025;", tmpl, log_Reports);
             }
@@ -470,7 +470,7 @@ namespace Xenon.Expr
         private Expression_Node_String GetSelectedFieldValue(
             Fielddefinition selectedFldDefinition,
             Value_Humaninput valueH_Selected,
-            Configurationtree_Node parent_Cf_Select,
+            Configuration_Node parent_Cf_Select,
             Log_Reports log_Reports
             )
         {

@@ -107,7 +107,7 @@ namespace Xenon.XmlToConf
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(parent_Cf));
+                s.Append(r.Message_Configuration(parent_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -230,16 +230,34 @@ namespace Xenon.XmlToConf
                 // value属性の指定がなければ、このコントロールの名前を入れておく。
                 if (!cur_Cf.Dictionary_Attribute.ContainsKey(PmNames.S_VALUE.Name_Pm))
                 {
-                    Configurationtree_Node parent_Cf = cur_Cf.Parent;
-
                     Configurationtree_Node owner_Configurationtree_Control;
-                    if (NamesNode.S_CONTROL1 == parent_Cf.Name)
+                    if (!(cur_Cf.Parent is Configurationtree_Node))
                     {
-                        owner_Configurationtree_Control = parent_Cf;
+                        //todo:エラーか？
+                        owner_Configurationtree_Control = null;
+                        goto gt_Error_UndefinedClass;
                     }
                     else
                     {
-                        owner_Configurationtree_Control = parent_Cf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        Configurationtree_Node parent_Cf = (Configurationtree_Node)cur_Cf.Parent;
+
+                        if (NamesNode.S_CONTROL1 == parent_Cf.Name)
+                        {
+                            owner_Configurationtree_Control = parent_Cf;
+                        }
+                        else
+                        {
+                            Configuration_Node parent2 = parent_Cf.GetParentByNodename(
+                                NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
+                            if (log_Reports.Successful)
+                            {
+                                owner_Configurationtree_Control = (Configurationtree_Node)parent2;
+                            }
+                            else
+                            {
+                                owner_Configurationtree_Control = null;
+                            }
+                        }
                     }
 
                     if (null != owner_Configurationtree_Control)
@@ -336,7 +354,7 @@ namespace Xenon.XmlToConf
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                s.Append(r.Message_Configuration(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -356,7 +374,26 @@ namespace Xenon.XmlToConf
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                s.Append(r.Message_Configuration(cur_Cf));
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+        //────────────────────────────────────────
+        gt_Error_UndefinedClass:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー341！", log_Method);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+
+                s.Append("何らかのエラー。");
+                s.Newline();
+
+                // ヒント
+                s.Append(r.Message_Configuration(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -449,7 +486,7 @@ namespace Xenon.XmlToConf
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                s.Append(r.Message_Configuration(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -466,7 +503,7 @@ namespace Xenon.XmlToConf
                 s.Append("func系要素の下に、＜ａ－ｗｈｅｒｅ＞要素がありませんでした。");
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                s.Append(r.Message_Configuration(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -485,7 +522,7 @@ namespace Xenon.XmlToConf
                 s.Append("]つありました。＜ａ－ｗｈｅｒｅ＞要素は、<f-cell>要素の中に1つまでしか書いてはいけません。");
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                s.Append(r.Message_Configuration(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -589,7 +626,7 @@ namespace Xenon.XmlToConf
                         s.Newline();
 
                         // ヒント
-                        s.Append(r.Message_Configurationtree(parent_Cf));
+                        s.Append(r.Message_Configuration(parent_Cf));
 
                         r.Message = s.ToString();
                         log_Reports.EndCreateReport();
@@ -688,7 +725,7 @@ namespace Xenon.XmlToConf
                         s.Newline();
 
                         // ヒント
-                        s.Append(r.Message_Configurationtree(parent_Cf));
+                        s.Append(r.Message_Configuration(parent_Cf));
 
                         r.Message = s.ToString();
                         log_Reports.EndCreateReport();
@@ -725,7 +762,7 @@ namespace Xenon.XmlToConf
                         s.Newline();
 
                         // ヒント
-                        s.Append(r.Message_Configurationtree(parent_Cf));
+                        s.Append(r.Message_Configuration(parent_Cf));
 
                         r.Message = s.ToString();
                         log_Reports.EndCreateReport();
@@ -776,7 +813,7 @@ namespace Xenon.XmlToConf
                         s.Newline();
 
                         // ヒント
-                        s.Append(r.Message_Configurationtree(parent_Cf));
+                        s.Append(r.Message_Configuration(parent_Cf));
 
                         r.Message = s.ToString();
                         log_Reports.EndCreateReport();
@@ -813,7 +850,7 @@ namespace Xenon.XmlToConf
                         s.Newline();
 
                         // ヒント
-                        s.Append(r.Message_Configurationtree(parent_Cf));
+                        s.Append(r.Message_Configuration(parent_Cf));
 
                         r.Message = s.ToString();
                         log_Reports.EndCreateReport();

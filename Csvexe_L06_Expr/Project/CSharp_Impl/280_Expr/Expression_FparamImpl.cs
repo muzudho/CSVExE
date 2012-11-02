@@ -90,7 +90,7 @@ namespace Xenon.Expr
                     Log_TextIndented s1 = new Log_TextIndentedImpl();
                     ec_CommonFunction.Dictionary_Expression_Parameter.ToText_Debug(s1, log_Reports);
 
-                    sResult = "＜Xn_L05_E:E_FParamImpl#Execute5_Main ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Configurationtree.Name + "” 引数不該当＞s1=" + s1.ToString();
+                    sResult = "＜Xn_L05_E:E_FParamImpl#Execute5_Main ｆ－ｐａｒａｍ開発中 call=\"" + sCall + "\" e_Functionノード名＝”" + ec_CommonFunction.Cur_Configuration.Name + "” 引数不該当＞s1=" + s1.ToString();
                 }
 
             }

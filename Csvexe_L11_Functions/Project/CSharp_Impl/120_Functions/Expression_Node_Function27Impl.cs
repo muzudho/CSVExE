@@ -48,7 +48,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -57,7 +57,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function27Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -92,9 +92,6 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
-
-
                 if (this.Functionparameterset.Sender is Customcontrol)
                 {
                     Customcontrol ccFc = (Customcontrol)this.Functionparameterset.Sender;
@@ -110,15 +107,6 @@ namespace Xenon.Functions
 
 
                 this.Execute6_Sub(log_Reports);
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -172,7 +160,7 @@ namespace Xenon.Functions
             {
                 log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                     );
 
@@ -323,7 +311,7 @@ namespace Xenon.Functions
             {
                 log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                 );
 
@@ -391,7 +379,7 @@ namespace Xenon.Functions
             {
                 log_Method.Log_Stopwatch.Message = Utility_Textformat.Format_StopwatchComment(
                     this,
-                    this.Cur_Configurationtree,
+                    this.Cur_Configuration,
                     log_Reports
                 );
 
@@ -403,13 +391,15 @@ namespace Xenon.Functions
             string sFncName0;
             this.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
-            if (null != this.Cur_Configurationtree)
+            if (null != this.Cur_Configuration)
             {
-                Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                Configuration_Node cf_Event = this.Cur_Configuration.GetParentByNodename(
+                    NamesNode.S_EVENT, EnumConfiguration.Tree, false, log_Reports);
 
                 if (null != cf_Event)
                 {
-                    Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                    Configuration_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(
+                        NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
                     if (null != owner_Configurationtree_Control)
                     {
                         //
@@ -417,8 +407,8 @@ namespace Xenon.Functions
                         //
                         this.Execute3b_ByNoName_1Fcnf(
                             out cf_TgTogether,
-                            owner_Configurationtree_Control,
-                            cf_Event,
+                            (Configurationtree_Node)owner_Configurationtree_Control,
+                            (Configurationtree_Node)cf_Event,
                             log_Reports);
 
                         if (null == cf_TgTogether)
@@ -429,8 +419,8 @@ namespace Xenon.Functions
                             //
                             this.Execute3b_ByNoName_2Frfr(
                                 out cf_TgTogether,
-                                owner_Configurationtree_Control,
-                                cf_Event,
+                                (Configurationtree_Node)owner_Configurationtree_Control,
+                                (Configurationtree_Node)cf_Event,
                                 log_Reports
                                 );
                         }
@@ -484,7 +474,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sFncName0, log_Reports);//関数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110012;", tmpl, log_Reports);
             }
@@ -494,7 +484,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sFncName0, log_Reports);//関数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110013;", tmpl, log_Reports);
             }
@@ -504,7 +494,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sFncName0, log_Reports);//関数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110014;", tmpl, log_Reports);
             }
@@ -668,8 +658,8 @@ namespace Xenon.Functions
             sIn.Append("/");
             sIn.Append(sEventName);
 
-            Configurationtree_Node sTg_TogetherIn = new Configurationtree_NodeImpl(NamesNode.S_TOGETHER_IN, this.Cur_Configurationtree);
-            sTg_TogetherIn.Dictionary_Attribute.Add(PmNames.S_VALUE.Name_Pm, sIn.ToString(), this.Cur_Configurationtree, false, log_Reports);
+            Configurationtree_Node sTg_TogetherIn = new Configurationtree_NodeImpl(NamesNode.S_TOGETHER_IN, this.Cur_Configuration);
+            sTg_TogetherIn.Dictionary_Attribute.Add(PmNames.S_VALUE.Name_Pm, sIn.ToString(), this.Cur_Configuration, false, log_Reports);
 
 
             //

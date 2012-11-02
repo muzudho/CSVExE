@@ -90,7 +90,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Append("呼出SClassName    [" + log_Method.Name_Class + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Class + "]");
                 s.Newline();
-                s.Append("BStatic       [" + log_Method.Static + "]　：　[" + err_Log_RecordCallstack.Log_Method.Static + "]");
+                s.Append("BStatic       [" + log_Method.IsStatic + "]　：　[" + err_Log_RecordCallstack.Log_Method.IsStatic + "]");
                 s.Newline();
                 s.Append("SMethodName   [" + log_Method.Name_Method + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Method + "]");
                 s.Newline();
@@ -113,7 +113,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Append("呼出SClassName    [" + log_Method.Name_Class + "]");
                 s.Newline();
-                s.Append("BStatic       [" + log_Method.Static + "]");
+                s.Append("BStatic       [" + log_Method.IsStatic + "]");
                 s.Newline();
                 s.Append("SMethodName   [" + log_Method.Name_Method + "]");
                 s.Newline();
@@ -167,7 +167,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Append("呼出SClassName    [" + log__Method.Name_Class + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Class + "]");
                 s.Newline();
-                s.Append("BStatic       [" + log__Method.Static + "]　：　[" + err_Log_RecordCallstack.Log_Method.Static + "]");
+                s.Append("BStatic       [" + log__Method.IsStatic + "]　：　[" + err_Log_RecordCallstack.Log_Method.IsStatic + "]");
                 s.Newline();
                 s.Append("SMethodName   [" + log__Method.Name_Method + "]　：　[" + err_Log_RecordCallstack.Log_Method.Name_Method + "]");
                 s.Newline();
@@ -190,7 +190,7 @@ namespace Xenon.Syntax
                 s.Newline();
                 s.Append("呼出SClassName    [" + log__Method.Name_Class + "]");
                 s.Newline();
-                s.Append("BStatic       [" + log__Method.Static + "]");
+                s.Append("BStatic       [" + log__Method.IsStatic + "]");
                 s.Newline();
                 s.Append("SMethodName   [" + log__Method.Name_Method + "]");
                 s.Newline();

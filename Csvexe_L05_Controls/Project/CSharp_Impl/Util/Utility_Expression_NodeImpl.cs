@@ -272,7 +272,7 @@ namespace Xenon.Controls
                     bool bHit = e_Item2.TrySelectAttribute(out sAttrNameValue, sPmName, EnumHitcount.One_Or_Zero, log_Reports);
 
                     s.AppendI(1, "・「E■[");
-                    s.Append(e_Item2.Cur_Configurationtree.Name);
+                    s.Append(e_Item2.Cur_Configuration.Name);
                     s.Append("]　ｎａｍｅ＝”[");
                     s.Append(sAttrNameValue);
                     s.Append("]　値＝”[");

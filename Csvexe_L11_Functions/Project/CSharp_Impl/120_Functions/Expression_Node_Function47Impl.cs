@@ -15,8 +15,6 @@ namespace Xenon.Functions
 
     /// <summary>
     /// [使い方]
-    /// Form1など必ず最初に読み込まれるファイルで #RegisterFunctions を呼び出して関数登録をしてください。
-    /// 
     /// フォルダーの中のファイル、フォルダーを一覧したCSVファイルを作成します。
     /// </summary>
     public class Expression_Node_Function47Impl : Expression_Node_FunctionAbstract
@@ -58,13 +56,15 @@ namespace Xenon.Functions
         public const string PM_FILTER = "Pm:filter;";
 
         /// <summary>
+        /// 「Yes」「No」「Ignore（または無指定）」のいずれか。サブフォルダーも検索する場合「Yes」。
+        /// </summary>
+        public const string PM_IS_SEARCH_SUBFOLDER = "Pm:is-search-subfolder;";
+
+        /// <summary>
         /// ポップアップの有無。「block」なら出ない。
         /// </summary>
         public const string PM_POPUP = "Pm:popup;";
 
-        public const string S_FILE = "File";
-        public const string S_FOLDER = "Folder";
-        public const string S_BOTH = "Both";
         public const string S_BLOCK = "block";
 
         //────────────────────────────────────────
@@ -81,7 +81,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -90,7 +90,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function47Impl(this.EnumEventhandler, this.List_NameArgumentInitializer, this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -125,25 +125,9 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + "＞";
-
-
                 this.Execute6_Sub(
                     log_Reports
                     );
-
-
-                //
-                //
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -178,8 +162,8 @@ namespace Xenon.Functions
 
 
             //ScriptVariableフォルダー
-            string sFolder_Scriptvariable;
-            this.TrySelectAttribute(out sFolder_Scriptvariable, Expression_Node_Function47Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
+            string pm_Folder_Source;
+            this.TrySelectAttribute(out pm_Folder_Source, Expression_Node_Function47Impl.PM_FOLDER_SOURCE, EnumHitcount.One_Or_Zero, log_Reports);
 
             //書出し先ファイル
             Expression_Node_String fileExport_Expr;
@@ -190,65 +174,62 @@ namespace Xenon.Functions
             this.TrySelectAttribute(out fieldExport_Expr, Expression_Node_Function47Impl.PM_FIELD_EXPORT, EnumHitcount.One, log_Reports);
 
             //フィルター指定
-            string sFilter;
-            this.TrySelectAttribute(out sFilter, Expression_Node_Function47Impl.PM_FILTER, EnumHitcount.One_Or_Zero, log_Reports);
-            sFilter = sFilter.Trim();
+            string pm_Filter;
+            this.TrySelectAttribute(out pm_Filter, Expression_Node_Function47Impl.PM_FILTER, EnumHitcount.One_Or_Zero, log_Reports);
+            pm_Filter = pm_Filter.Trim();
+
+            //サブフォルダー検索
+            string pm_Is_Search_Subfolder;
+            this.TrySelectAttribute(out pm_Is_Search_Subfolder, Expression_Node_Function47Impl.PM_IS_SEARCH_SUBFOLDER, EnumHitcount.One_Or_Zero, log_Reports);
 
             //ポップアップ指定
             string str_Popup;
             this.TrySelectAttribute(out str_Popup, Expression_Node_Function47Impl.PM_POPUP, EnumHitcount.One_Or_Zero, log_Reports);
             str_Popup = str_Popup.Trim();
 
+
+            //ディレクトリー階層を走査したい。
+            Filesystemreport filesystemreporter = new FilesystemreportImpl();
+            if(log_Reports.Successful)
             {
-                string[] array_Filesystementry;
+                Filesystemrunner runner = new FilesystemrunnerImpl();
+                //log_Method.WriteDebug_ToConsole("初回 pm_Folder_Source=[" + pm_Folder_Source + "] pm_Filter=[" + pm_Filter + "] pm_Is_Search_Subfolder=[" + pm_Is_Search_Subfolder + "]");
+                runner.Run(
+                    filesystemreporter,
+                    pm_Folder_Source,
+                    pm_Filter,
+                    pm_Is_Search_Subfolder,
+                    log_Reports
+                    );
+            }
 
-                switch (sFilter)
-                {
-                    case S_FILE:
-                        {
-                            array_Filesystementry = Directory.GetFiles(sFolder_Scriptvariable);
-                        }
-                        break;
-                    case S_FOLDER:
-                        {
-                            array_Filesystementry = Directory.GetDirectories(sFolder_Scriptvariable);
-                        }
-                        break;
-                    default:
-                        {
-                            array_Filesystementry = Directory.GetFileSystemEntries(sFolder_Scriptvariable);
-                        }
-                        break;
-                }
-
-
-                // 検索結果をCSVテーブルの形にして出力。
-
+            // 検索結果をCSVテーブルの形にして出力。
+            if (log_Reports.Successful)
+            {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("NO,");
                 sb.Append(fieldExport_Expr.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));// "FILE"
                 sb.Append(",END");
-                
+
                 sb.Append(Environment.NewLine);
                 sb.Append("int,string,END");
                 sb.Append(Environment.NewLine);
                 sb.Append("-1,ファイルパス,END");
                 sb.Append(Environment.NewLine);
-                int n = 0;
-                foreach (string sFilesystementry in array_Filesystementry)
+
+                int field_No = 0;
+                filesystemreporter.ForEach(delegate(string filesystementry, ref bool isBreak2, Log_Reports log_Reports2)
                 {
                     //連番
-                    sb.Append(n);
+                    sb.Append(field_No);
                     sb.Append(",");
-                    sb.Append(sFilesystementry);
+                    sb.Append(filesystementry);
                     sb.Append(",END");
                     sb.Append(Environment.NewLine);
-                    n++;
-                }
+                    field_No++;
+                }, log_Reports);
                 sb.Append("EOF,,");
                 sb.Append(Environment.NewLine);
-
-                //System.Console.WriteLine(sb.ToString());
 
 
                 try
@@ -275,7 +256,7 @@ namespace Xenon.Functions
                         s.Append("検索した場所：");
                         s.Newline();
                         s.Append("[");
-                        s.Append(sFolder_Scriptvariable);
+                        s.Append(pm_Folder_Source);
                         s.Append("]");
                         s.Newline();
                         s.Newline();
@@ -283,7 +264,7 @@ namespace Xenon.Functions
                         s.Append("検索オプション（Pm:filter;）：");
                         s.Newline();
                         s.Append("[");
-                        s.Append(sFilter);
+                        s.Append(pm_Filter);
                         s.Append("]");
                         s.Newline();
 

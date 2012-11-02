@@ -79,7 +79,6 @@ namespace Xenon.Functions
         public void Execute3_Function(
             Expression_Node_Function expr_Func,
             object sender,
-            EventMonitorImpl eventMonitor,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
         )
@@ -95,8 +94,6 @@ namespace Xenon.Functions
             //
             //
             //
-            string sConfigStack_EventOrigin = "＜" + log_Method.Fullname + ":＞";
-
             string sFncName;
             expr_Func.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
@@ -119,8 +116,6 @@ namespace Xenon.Functions
                             {
                                 expr_Func.Execute4_OnLr(
                                     sender,
-                                    eventMonitor,
-                                    sConfigStack_EventOrigin,
                                     log_Reports
                                     );
                             }
@@ -131,8 +126,6 @@ namespace Xenon.Functions
                                 // 変換 OEa → WrRhn。
                                 expr_Func.Execute4_OnLr(
                                     sender,
-                                    eventMonitor,
-                                    sConfigStack_EventOrigin,
                                     log_Reports
                                     );
                             }
@@ -152,7 +145,6 @@ namespace Xenon.Functions
                 //
                 // アクションしていない、アクションは終了したという判断。
                 //
-                eventMonitor.BNowactionworking = false;
             }
 
 
@@ -163,7 +155,6 @@ namespace Xenon.Functions
         //────────────────────────────────────────
         gt_Error_NotSupportedEnum:
             // アクションしていない、アクションは終了したという判断。
-            eventMonitor.BNowactionworking = false;
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sFncName, log_Reports);//関数名

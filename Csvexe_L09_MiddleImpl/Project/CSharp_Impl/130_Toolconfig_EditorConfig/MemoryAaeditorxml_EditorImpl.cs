@@ -24,7 +24,7 @@ namespace Xenon.MiddleImpl
         /// コンストラクター。
         /// </summary>
         /// <param name="parent_Cf">親ソース。</param>
-        public MemoryAaeditorxml_EditorImpl(Configurationtree_Node parent_Cf)
+        public MemoryAaeditorxml_EditorImpl(Configuration_Node parent_Cf)
             : base(parent_Cf)
         {
             this.name_Editor = "";
@@ -37,7 +37,7 @@ namespace Xenon.MiddleImpl
         /// </summary>
         public override void Clear()
         {
-            this.parent_Configurationtree = null;
+            this.parent = null;
 
             this.name_Editor = "";
             this.dictionary_Fsetvar_Configurationtree = new Dictionary_Fsetvar_ConfigurationtreeImpl();

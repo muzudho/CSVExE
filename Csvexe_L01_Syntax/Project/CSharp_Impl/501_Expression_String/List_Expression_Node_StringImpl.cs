@@ -56,7 +56,7 @@ namespace Xenon.Syntax
 
             foreach (Expression_Node_String ec_Item in this.listExpression_Item)
             {
-                ec_Item.Cur_Configurationtree.ToText_Content(txt);
+                ec_Item.Cur_Configuration.ToText_Content(txt);
             }
 
             txt.Append("</" + this.GetType().Name + "クラス>");

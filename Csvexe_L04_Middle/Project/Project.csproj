@@ -112,7 +112,6 @@
     <Compile Include="CSharp_Interface\91_CustomControl\ControlCommon.cs" />
     <Compile Include="CSharp_Interface\38_ToMemory\ToMemory_Cell.cs" />
     <Compile Include="CSharp_Interface\92_Eventhandler\Remover_AllEventhandlers.cs" />
-    <Compile Include="CSharp_Interface\35_Expression\EventMonitor.cs" />
     <Compile Include="CSharp_Interface\20_Userformtable\TableUserformconfig.cs" />
     <Compile Include="CSharp_Interface\81_Application\MemoryBrushes.cs" />
     <Compile Include="CSharp_Interface\81_Application\MemoryForms.cs" />

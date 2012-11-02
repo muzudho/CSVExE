@@ -72,10 +72,11 @@ namespace Xenon.Table
             //
             //
             //
-            CsvEscapeImpl ce = new CsvEscapeImpl();
+            CsvLineParserImpl csvParser = new CsvLineParserImpl();
 
 
-            Table_Humaninput xenonTable = new Table_HumaninputImpl(forTable_Request.Name_PutToTable, forTable_Request.Expression_Filepath, forTable_Request.Expression_Filepath.Cur_Configurationtree );
+            Table_Humaninput xenonTable = new Table_HumaninputImpl(
+                forTable_Request.Name_PutToTable, forTable_Request.Expression_Filepath, forTable_Request.Expression_Filepath.Cur_Configuration );
             xenonTable.Tableunit = forTable_Request.Tableunit;
             xenonTable.Typedata = forTable_Request.Typedata;
             xenonTable.IsDatebackupActivated = forTable_Request.IsDatebackupActivated;
@@ -98,7 +99,7 @@ namespace Xenon.Table
                     List<string> tokens = new List<string>();
 
                     string[] sFields;
-                    sFields = ce.UnescapeRecordToFieldList(sLine, this.charSeparator).ToArray();
+                    sFields = csvParser.UnescapeLineToFieldList(sLine, this.charSeparator).ToArray();
 
                     int nColumnIndex = 0;
                     foreach (string sToken in sFields)

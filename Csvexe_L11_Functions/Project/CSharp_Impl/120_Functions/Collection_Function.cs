@@ -211,6 +211,7 @@ namespace Xenon.Functions
                 list_Param.Add(Expression_Node_Function47Impl.PM_FILE_EXPORT);
                 list_Param.Add(Expression_Node_Function47Impl.PM_FIELD_EXPORT);
                 list_Param.Add(Expression_Node_Function47Impl.PM_FILTER);
+                list_Param.Add(Expression_Node_Function47Impl.PM_IS_SEARCH_SUBFOLDER);
                 list_Param.Add(Expression_Node_Function47Impl.PM_POPUP);
                 Collection_Function.SetFunction(Expression_Node_Function47Impl.NAME_FUNCTION, new Expression_Node_Function47Impl(EnumEventhandler.O_Lr, list_Param, trans00), log_Reports_ThisMethod);
             }
@@ -289,7 +290,7 @@ namespace Xenon.Functions
         /// <returns></returns>
         public static Expression_Node_Function NewFunction2(
             string sName_Fnc,
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0, Log_ReportsImpl.BDebugmode_Static);

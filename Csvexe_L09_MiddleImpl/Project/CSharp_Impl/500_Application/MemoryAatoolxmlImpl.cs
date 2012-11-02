@@ -38,7 +38,7 @@ namespace Xenon.MiddleImpl
         public void Clear(MemoryApplication owner_MemoryApplication)
         {
             this.owner_MemoryApplication = owner_MemoryApplication;
-            this.cur_Configurationtree = new Configurationtree_NodeImpl("<clear>", null);
+            this.cur_Configuration = new Configurationtree_NodeImpl("<clear>", null);
             this.Name_DefaultEditor = "";
 
             if (null == this.dictionary_Editor)
@@ -182,7 +182,7 @@ namespace Xenon.MiddleImpl
                                 //
                                 // エディター要素
                                 //
-                                MemoryAatoolxml_Editor aatool_Editor = new MemoryAatoolxml_EditorImpl(this.cur_Configurationtree);
+                                MemoryAatoolxml_Editor aatool_Editor = new MemoryAatoolxml_EditorImpl(this.cur_Configuration);
 
                                 //
                                 // エディター要素
@@ -213,7 +213,7 @@ namespace Xenon.MiddleImpl
                                     if (XmlNodeType.Element == xNode_Fsetvar.NodeType)
                                     {
                                         //＜ｆ－ｓｅｔ－ｖａｒ＞要素
-                                        Configurationtree_Node cf_Fsetvar = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, ec_Fpath_Aatoolxml.Cur_Configurationtree);
+                                        Configurationtree_Node cf_Fsetvar = new Configurationtree_NodeImpl(NamesNode.S_F_SET_VAR, ec_Fpath_Aatoolxml.Cur_Configuration);
 
                                         //＜ｆ－ｓｅｔ－ｖａｒ＞要素
                                         XmlElement xFsetvar = (XmlElement)xNode_Fsetvar;
@@ -251,7 +251,7 @@ namespace Xenon.MiddleImpl
 
             if (log_Reports.Successful)
             {
-                this.cur_Configurationtree = ec_Fpath_Aatoolxml.Cur_Configurationtree;
+                this.cur_Configuration = ec_Fpath_Aatoolxml.Cur_Configuration;
             }
 
             goto gt_EndMethod;
@@ -571,22 +571,22 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        private Configurationtree_Node cur_Configurationtree;
+        private Configuration_Node cur_Configuration;
 
         /// <summary>
         /// 利用者に、修正箇所を伝える情報。
         /// 
         /// 基本的に、LoadFileを使ったときに引数に入れられるファイルパスが入る。
         /// </summary>
-        public Configurationtree_Node Cur_Configurationtree
+        public Configuration_Node Cur_Configuration
         {
             get
             {
-                return cur_Configurationtree;
+                return cur_Configuration;
             }
             set
             {
-                cur_Configurationtree = value;
+                cur_Configuration = value;
             }
         }
 

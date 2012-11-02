@@ -72,7 +72,7 @@ namespace Xenon.ConfToExpr
             //
             // 親ノード名、親ファンク名
             //
-            string parent_SName_Node = parent_Expr.Cur_Configurationtree.Name;
+            string parent_SName_Node = parent_Expr.Cur_Configuration.Name;
             string parent_SName_Fnc = "";
             {
                 EnumHitcount enumHitcount;
@@ -180,7 +180,7 @@ namespace Xenon.ConfToExpr
         gt_Error_NullNFAelem:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(parent_Expr.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(parent_Expr.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7010;", tmpl, log_Reports);
             }
@@ -204,14 +204,14 @@ namespace Xenon.ConfToExpr
                 //設定親ノード名
                 if (null != parent_Expr)
                 {
-                    tmpl.SetParameter(5, parent_Expr.Cur_Configurationtree.Name, log_Reports);
+                    tmpl.SetParameter(5, parent_Expr.Cur_Configuration.Name, log_Reports);
                 }
                 else
                 {
                     tmpl.SetParameter(5, "ヌル", log_Reports);
                 }
 
-                tmpl.SetParameter(6, Log_RecordReportsImpl.ToText_Configurationtree(err_Configurationtree_Node2), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(6, Log_RecordReportsImpl.ToText_Configuration(err_Configurationtree_Node2), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7011;", tmpl, log_Reports);
             }

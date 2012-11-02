@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Text.RegularExpressions;
 using System.Data;
 using System.Windows.Forms;
 using Xenon.Syntax;
@@ -74,8 +75,10 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expr, Configurationtree_Node my_Conf,
-            object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
+            Expression_Node_String parent_Expr,
+            Configuration_Node my_Conf,
+            object/*MemoryApplication*/ owner_MemoryApplication,
+            Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "NewInstance",log_Reports);
@@ -83,7 +86,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function49Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expr;
-            f0.Cur_Configurationtree = my_Conf;
+            f0.Cur_Configuration = my_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, my_Conf), log_Reports);
@@ -96,9 +99,6 @@ namespace Xenon.Functions
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_TYPEFIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_COMMENTFIELD_EXPORT_LISTFILE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
-
-            //f0.SetAttribute(Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEBEFORE_NAMEFILEEXPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
-            //f0.SetAttribute(Expression_Node_Function49Impl.PM_REGULAREXPRESSION_REPLACEAFTER_NAMEFILEEXPORT, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
 
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FOLDER_DESTINATION, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
             f0.SetAttribute(Expression_Node_Function49Impl.PM_FOLDER_SOURCE, new Expression_Node_StringImpl(this, my_Conf), log_Reports);
@@ -132,25 +132,9 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + "＞";
-
-
                 this.Execute6_Sub(
                     log_Reports
                     );
-
-
-                //
-                //
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -352,6 +336,12 @@ namespace Xenon.Functions
                         filepath_Source_Cur = "";
                     }
 
+                    if ("" == filepath_Source_Cur)
+                    {
+                        //空欄なら無視。
+                        goto gt_EndInnermethod;
+                    }
+
                     Configurationtree_NodeFilepath filepathCur_Conf;
                     if (log_Reports.Successful)
                     {
@@ -418,13 +408,23 @@ namespace Xenon.Functions
                         //ファイル名を正規表現で置換をするか否か
                         if("" != regularexpression_Replacebefore_Namefileexport)
                         {
-                            //ファイル名を正規表現で置換します。
-                            //TextBox1内の郵便番号っぽい文字列の"-"を削除して、【】で囲む
-                            valueH_New.Text = System.Text.RegularExpressions.Regex.Replace(
-                                valueH_New.Text,
-                                regularexpression_Replacebefore_Namefileexport,
-                                regularexpression_Replaceafter_Namefileexport
-                                );
+                            Match m1 = Regex.Match(valueH_New.Text, regularexpression_Replacebefore_Namefileexport);
+                            if (m1.Success)
+                            {
+                                //ファイルパスを正規表現で置換します。
+                                valueH_New.Text = System.Text.RegularExpressions.Regex.Replace(
+                                    valueH_New.Text,
+                                    regularexpression_Replacebefore_Namefileexport,
+                                    regularexpression_Replaceafter_Namefileexport
+                                    );
+                            }
+                            else
+                            {
+                                //【2012-10-24 追加】
+                                //置換が指定されているのに置換ができなかった場合は、空文字列に変換します。
+                                valueH_New.Text = "";
+                            }
+
                         }
 
                         //

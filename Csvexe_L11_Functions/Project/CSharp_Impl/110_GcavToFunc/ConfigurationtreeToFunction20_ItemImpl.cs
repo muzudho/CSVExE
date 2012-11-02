@@ -50,13 +50,15 @@ namespace Xenon.Functions
             {
                 // 引数 listboxFcName が指定されていない場合は、その記述が書かれているコントロールの名前を入れる。
 
-                Configurationtree_Node cf_Event = action_Conf.GetParentByNodename(NamesNode.S_EVENT, true, log_Reports);
+                Configuration_Node cf_Event = action_Conf.GetParentByNodename(
+                    NamesNode.S_EVENT, EnumConfiguration.Unknown, true, log_Reports);
                 if (log_Reports.Successful)
                 {
-                    Configurationtree_Node parent_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                    Configuration_Node parent_Configurationtree_Control = cf_Event.GetParentByNodename(
+                        NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
 
                     string sName_Usercontrol;
-                    parent_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
+                    ((Configurationtree_Node)parent_Configurationtree_Control).Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
                     ec_ArgListboxName.AppendTextNode(sName_Usercontrol, action_Conf, log_Reports);
                 }
             }

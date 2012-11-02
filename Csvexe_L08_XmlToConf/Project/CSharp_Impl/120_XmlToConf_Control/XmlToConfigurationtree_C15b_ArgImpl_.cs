@@ -269,7 +269,7 @@ namespace Xenon.XmlToConf
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(parent_Cf));
+                t.Append(r.Message_Configuration(parent_Cf));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -294,7 +294,7 @@ namespace Xenon.XmlToConf
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(parent_Cf));
+                s.Append(r.Message_Configuration(parent_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -380,7 +380,7 @@ namespace Xenon.XmlToConf
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(cur_Cf));
+                s.Append(r.Message_Configuration(cur_Cf));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

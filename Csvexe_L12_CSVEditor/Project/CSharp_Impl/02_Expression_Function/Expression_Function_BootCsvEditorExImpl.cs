@@ -40,7 +40,7 @@ namespace Xenon.Csvexe
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object owner_MemoryApplication, Log_Reports pg_Logging)
         {
             Log_Method pg_Method = new Log_MethodImpl(0);
@@ -49,7 +49,7 @@ namespace Xenon.Csvexe
 
             Expression_Node_Function f0 = new Expression_Node_Function_BootCsvEditorExImpl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.Dictionary_Expression_Attribute.Set(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), pg_Logging);

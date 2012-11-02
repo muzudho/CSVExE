@@ -30,7 +30,7 @@ namespace Xenon.Syntax
 
             this.dictionary_P1p = new Dictionary<int, string>();
             this.list_Expression_Child = new List_Expression_Node_StringImpl(this);//使いません。
-            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
+            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configuration);
         }
 
         //────────────────────────────────────────
@@ -54,7 +54,7 @@ namespace Xenon.Syntax
             s.Increment();
 
             s.Append("「E■[");
-            s.Append(this.Cur_Configurationtree.Name);
+            s.Append(this.Cur_Configuration.Name);
             s.Append("]　");
             s.Append(this.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
             s.Append("」");
@@ -88,7 +88,7 @@ namespace Xenon.Syntax
             )
         {
             // 使いません。
-            Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(sName, this.Cur_Configurationtree);
+            Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(sName, this.Cur_Configuration);
             filepath_Conf.InitPath("", log_Reports);
             ec_Result_Out = new Expression_Node_FilepathImpl(filepath_Conf);
             return false;
@@ -111,7 +111,7 @@ namespace Xenon.Syntax
             )
         {
             // 使いません。
-            ec_Result_Out = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
+            ec_Result_Out = new Expression_Node_StringImpl(this, this.Cur_Configuration);
             return false;
         }
 
@@ -137,7 +137,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumaninput,
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -305,7 +305,7 @@ namespace Xenon.Syntax
                 t.Append("このメソッド " + log_Method.Fullname + " は使わないでください。");
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(this.Cur_Configuration));
 
                 r.Message = t.ToString();
 
@@ -345,7 +345,7 @@ namespace Xenon.Syntax
                 t.Append("このメソッド " + log_Method.Fullname + " は使わないでください。");
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(this.Cur_Configuration));
 
                 r.Message = t.ToString();
 
@@ -451,12 +451,12 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        private Configurationtree_Node cur_Configurationtree;
+        private Configuration_Node cur_Configurationtree;
 
         /// <summary>
         /// 設定場所のヒント。
         /// </summary>
-        public Configurationtree_Node Cur_Configurationtree
+        public Configuration_Node Cur_Configuration
         {
             get
             {

@@ -88,7 +88,7 @@ namespace Xenon.Middle
         /// <summary>
         /// メンテナンス要素。
         /// </summary>
-        Configurationtree_Node Parent
+        Configuration_Node Parent
         {
             get;
         }

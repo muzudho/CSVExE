@@ -53,7 +53,6 @@ namespace Xenon.Functions
             Expression_Node_String ec_FcName,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             )
         {
@@ -63,9 +62,6 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_Usercontrol", log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
-
-
 
             Usercontrol ucFc = null;
 
@@ -89,7 +85,6 @@ namespace Xenon.Functions
                     ucFc,
                     o_Name_Event,
                     owner_MemoryApplication,
-                    sConfigStack_EventOrigin,
                     log_Reports
                     );
             }
@@ -126,7 +121,6 @@ namespace Xenon.Functions
             string sFcNameStarts,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             )
         {
@@ -134,7 +128,6 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_UsercontrolNameStartsWith", log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
 
             Dictionary<string, Usercontrol> dic = owner_MemoryApplication.MemoryForms.ItemsStartsWith(
                 sFcNameStarts,
@@ -150,7 +143,6 @@ namespace Xenon.Functions
                         ucFc,
                         o_Name_Event,
                         owner_MemoryApplication,
-                        sConfigStack_EventOrigin,
                         log_Reports
                         );
                 }
@@ -190,7 +182,6 @@ namespace Xenon.Functions
             object sender,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             )
         {
@@ -198,9 +189,7 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute1_AllUsercontrols", log_Reports);
             //
             //
-            string sConfigStack = "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
-            sConfigStack_EventOrigin += sConfigStack;
-            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(sConfigStack, null);
+            Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl(log_Method.Fullname, null);
 
 
             foreach (string sName_Usercontrol in sFcNameList)
@@ -231,7 +220,6 @@ namespace Xenon.Functions
                         ucFc,
                         o_Name_Event,
                         owner_MemoryApplication,
-                        sConfigStack_EventOrigin,
                         log_Reports
                         );
                 }
@@ -262,7 +250,6 @@ namespace Xenon.Functions
             Usercontrol ucFc,
             XenonName o_Name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             )
         {
@@ -271,7 +258,6 @@ namespace Xenon.Functions
             //
             //
             string sFcName2 = ucFc.ControlCommon.Expression_Name_Control.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-            sConfigStack_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:" + o_Name_Event.SValue + "＞";
 
 
             if (null == ucFc.ControlCommon.Configurationtree_Control)
@@ -339,7 +325,6 @@ namespace Xenon.Functions
             string name_ExpectedUsercontrol,
             string sEventName,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             )
         {
@@ -347,8 +332,6 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute2", log_Reports);
             //
             //
-            sConfigStack_EventOrigin += "＜" + log_Method.Fullname + ":" + sEventName + "＞";
-
 
             Usercontrol foundUsercontrol = null;
 

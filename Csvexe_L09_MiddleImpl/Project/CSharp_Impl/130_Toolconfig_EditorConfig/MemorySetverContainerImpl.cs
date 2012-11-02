@@ -25,9 +25,9 @@ namespace Xenon.MiddleImpl
         /// コンストラクター。
         /// </summary>
         /// <param name="parent_Cf">親設定。</param>
-        public MemorySetverContainerImpl(Configurationtree_Node parent_Cf)
+        public MemorySetverContainerImpl(Configuration_Node parent_Cf)
         {
-            this.parent_Configurationtree = parent_Cf;
+            this.parent = parent_Cf;
             this.dictionary_Fsetvar_Configurationtree = new Dictionary_Fsetvar_ConfigurationtreeImpl();
         }
 
@@ -124,7 +124,7 @@ namespace Xenon.MiddleImpl
                                 )
                             {
                                 // ファイルパスの場合
-                                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("name-var=[" + sNamevar + "]", ec_Fpath_Aaxml.Cur_Configurationtree);
+                                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("name-var=[" + sNamevar + "]", ec_Fpath_Aaxml.Cur_Configuration);
                                 cf_Fpath.InitPath(
                                     sValue,
                                     log_Reports
@@ -205,7 +205,7 @@ namespace Xenon.MiddleImpl
                 s.Append("エディター設定ファイルが見つかりません。：" + err_Excp.Message);
 
                 //ヒント
-                s.Append(r.Message_Configurationtree(ec_Fpath_Aaxml.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_Fpath_Aaxml.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -343,7 +343,7 @@ namespace Xenon.MiddleImpl
                 s.Newline();
 
                 s.Append("　・設定ファイル情報:");
-                s.Append(r.Message_Configurationtree(this.Parent));
+                s.Append(r.Message_Configuration(this.Parent));
                 s.Newline();
                 s.Newline();
 
@@ -412,7 +412,7 @@ namespace Xenon.MiddleImpl
 
         //────────────────────────────────────────
 
-        protected Configurationtree_Node parent_Configurationtree;
+        protected Configuration_Node parent;
 
         /// <summary>
         /// 親要素。
@@ -423,11 +423,11 @@ namespace Xenon.MiddleImpl
         /// Clearしたらヌルになる。
         /// 親要素がない場合もヌルになる。
         /// </summary>
-        public Configurationtree_Node Parent
+        public Configuration_Node Parent
         {
             get
             {
-                return parent_Configurationtree;
+                return parent;
             }
         }
 

@@ -53,7 +53,7 @@ namespace Xenon.Table
             List<string> list_String = new List<string>();
 
             System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
-            CsvEscapeImpl ce = new CsvEscapeImpl();
+            CsvLineParserImpl csvParser = new CsvLineParserImpl();
 
             // CSVを解析して、テーブル形式で格納。
             {
@@ -68,7 +68,7 @@ namespace Xenon.Table
                         //
                         // 「空行、スペースだけの行」ではない場合。
 
-                        fields = ce.UnescapeRecordToFieldList(sLine, this.CharSeparator).ToArray();
+                        fields = csvParser.UnescapeLineToFieldList(sLine, this.CharSeparator).ToArray();
 
                         //essageBox.Show("ttbwIndex=[" + ttbwIndex + "]行目ループ", "デバッグ2");
 

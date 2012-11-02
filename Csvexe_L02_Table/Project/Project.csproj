@@ -43,6 +43,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -69,11 +70,11 @@
     <Compile Include="CSharp_Impl\510_Csv_To\CsvTo_ListImpl.cs" />
     <Compile Include="CSharp_Impl\300_Table\Request_ReadsTableImpl.cs" />
     <Compile Include="CSharp_Impl\510_Csv_To\CsvTo_ListArrayImpl.cs" />
-    <Compile Include="CSharp_Impl\500_Csv\CsvEscapeImpl.cs" />
+    <Compile Include="CSharp_Impl\500_CsvParser\CsvLineParserImpl.cs" />
     <Compile Include="CSharp_Impl\520_To_Csv\ExceptedFieldsImpl.cs" />
     <Compile Include="CSharp_Impl\520_To_Csv\ToCsv_Table_Humaninput_RowColRegularImpl.cs" />
     <Compile Include="CSharp_Impl\520_To_Csv\ToCsv_Table_Humaninput_RowColReversedImpl.cs" />
-    <Compile Include="CSharp_Impl\500_Csv\CsvWriterImpl.cs" />
+    <Compile Include="CSharp_Impl\500_CsvParser\CsvWriterImpl.cs" />
     <Compile Include="CSharp_Impl\600_Utility_Table\Utility_Table.cs" />
     <Compile Include="CSharp_Impl\700_RecordSet\RecordconditionImpl.cs" />
     <Compile Include="CSharp_Impl\700_RecordSet\RecordSetImpl.cs" />
@@ -94,6 +95,12 @@
     <Compile Include="CSharp_Impl\200_Value\String_HumaninputImpl.cs" />
     <Compile Include="CSharp_Impl\400_Utility_Table\Utility_TableViewImpl.cs" />
     <Compile Include="CSharp_Impl\300_Table\Table_HumaninputImpl.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp_Impl\300_Table\FielddefinitionImpl.cs" />
     <Compile Include="CSharp_Impl\510_Csv_To\CsvTo_DataTableImpl.cs" />
@@ -113,13 +120,18 @@
     <Content Include="CSharp_Impl\200_Value\%40文字列や空白を持つint型とかが欲しくて独自実装した手入力セルの型。.txt" />
     <Content Include="CSharp_Impl\%40テーブルの使い方.txt" />
     <Content Include="CSharp_Impl\400_Utility_Table\%40これは、テーブル・ユーティリティー.txt" />
-    <Content Include="CSharp_Impl\500_Csv\%40これは、CSV読書.txt" />
+    <Content Include="CSharp_Impl\500_CsvParser\%40これは、CSV読書.txt" />
     <Content Include="CSharp_Impl\800_PipeStr\%40これは、パイプ区切り文字列.txt" />
     <Content Include="CSharp_Impl\800_PipeStr\%40例：％1％：％2％｜ID｜NAME.txt" />
     <Content Include="CSharp_Info\ソースコード整理状況.txt" />
     <Content Include="CSharp_Interface\500_Csv\%40これは、CSV読書.txt" />
     <Content Include="CSharp_Interface\800_PipeStr\%40これは、パイプ区切り文字列.txt" />
     <Content Include="CSharp_Interface\800_PipeStr\%40例：％1％：％2％｜ID｜NAME.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

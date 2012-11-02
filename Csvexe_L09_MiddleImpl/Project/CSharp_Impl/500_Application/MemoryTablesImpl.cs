@@ -115,7 +115,7 @@ namespace Xenon.MiddleImpl
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_TableName.Cur_Configurationtree.Parent));
+                s.Append(r.Message_Configuration(ec_TableName.Cur_Configuration.Parent));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -197,7 +197,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(expr_KeyExpected.Cur_Configurationtree.Parent));
+                t.Append(r.Message_Configuration(expr_KeyExpected.Cur_Configuration.Parent));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -286,7 +286,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(expr_KeyExpected.Cur_Configurationtree.Parent));
+                t.Append(r.Message_Configuration(expr_KeyExpected.Cur_Configuration.Parent));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -309,7 +309,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(expr_KeyExpected.Cur_Configurationtree.Parent));
+                t.Append(r.Message_Configuration(expr_KeyExpected.Cur_Configuration.Parent));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -406,7 +406,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(o_Table));
+                t.Append(r.Message_Configuration(o_Table));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

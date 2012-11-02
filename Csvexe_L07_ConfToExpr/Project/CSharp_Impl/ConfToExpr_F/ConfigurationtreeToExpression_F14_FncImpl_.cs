@@ -77,7 +77,7 @@ namespace Xenon.ConfToExpr
                 {
                     goto gt_EndMethod;
                 }
-                else if (NamesNode.S_FNC == parent_Ec.Cur_Configurationtree.Name && "" == parent_SName_Fnc)
+                else if (NamesNode.S_FNC == parent_Ec.Cur_Configuration.Name && "" == parent_SName_Fnc)
                 {
                     //
                     // エラー。親要素が、ｎａｍｅ属性を持たない「E■ｆｎｃ」だった。
@@ -279,9 +279,9 @@ namespace Xenon.ConfToExpr
                     || NamesFnc.S_TEXT_TEMPLATE == sName_MyFnc//テンプレート
                     || NamesFnc.S_SWITCH == sName_MyFnc//スイッチ文
                     || (NamesNode.S_FNC == cur_Cf.Name && NamesFnc.S_VALUE_CONTROL == sName_MyFnc)//todo:
-                    || (NamesNode.S_FNC == parent_Ec.Cur_Configurationtree.Name)
+                    || (NamesNode.S_FNC == parent_Ec.Cur_Configuration.Name)
                     || (NamesFnc.S_CELL == sName_MyFnc || NamesFnc.S_TEXT_TEMPLATE == sName_MyFnc)
-                    || ( sName_MyFnc == NamesFnc.S_REC_COND && NamesNode.S_FNC == parent_Ec.Cur_Configurationtree.Name && NamesFnc.S_WHERE == parent_SName_Fnc)//親が＜ｒｅｃ－ｃｏｎｄ＞で、自＜ｆｎｃ　ｎａｍｅ＝”Ｓｆ：Ｗｈｅｒｅ；”＞要素
+                    || (sName_MyFnc == NamesFnc.S_REC_COND && NamesNode.S_FNC == parent_Ec.Cur_Configuration.Name && NamesFnc.S_WHERE == parent_SName_Fnc)//親が＜ｒｅｃ－ｃｏｎｄ＞で、自＜ｆｎｃ　ｎａｍｅ＝”Ｓｆ：Ｗｈｅｒｅ；”＞要素
                     )
                 {                    
                     parent_Ec.List_Expression_Child.Add(cur_Ec, log_Reports);
@@ -315,7 +315,7 @@ namespace Xenon.ConfToExpr
                     cur_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            log_Method.WriteDebug_ToConsole( "「S■" + e_Child.Cur_Configurationtree.Name + "」");
+                            log_Method.WriteDebug_ToConsole("「S■" + e_Child.Cur_Configuration.Name + "」");
                         });
 
                     log_Method.WriteDebug_ToConsole( "（２２） └────┘");
@@ -374,7 +374,7 @@ namespace Xenon.ConfToExpr
                     cur_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            s2.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                            s2.Append("子「S■" + e_Child.Cur_Configuration.Name + "」\n");
                         });
                     tmpl.SetParameter(6, s2.ToString(), log_Reports);
 
@@ -393,7 +393,7 @@ namespace Xenon.ConfToExpr
 
                 if (null != parent_Ec)
                 {
-                    tmpl.SetParameter(9, parent_Ec.Cur_Configurationtree.Name, log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(9, parent_Ec.Cur_Configuration.Name, log_Reports);//実際の親Expression要素ノード名
                     tmpl.SetParameter(10, parent_SName_Fnc, log_Reports);//実際の親Expression要素関数名
                     tmpl.SetParameter(11, parent_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//Expression属性の数
 
@@ -411,7 +411,7 @@ namespace Xenon.ConfToExpr
                     parent_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            s4.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                            s4.Append("子「S■" + e_Child.Cur_Configuration.Name + "」\n");
                         });
                     tmpl.SetParameter(14, s4.ToString(), log_Reports);//子Expression要素リスト
 
@@ -426,7 +426,7 @@ namespace Xenon.ConfToExpr
                     tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
                 }
 
-                tmpl.SetParameter(15, Log_RecordReportsImpl.ToText_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(15, Log_RecordReportsImpl.ToText_Configuration(parent_Ec.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7021;", tmpl, log_Reports);
             }
@@ -458,7 +458,7 @@ namespace Xenon.ConfToExpr
                     cur_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            s2.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                            s2.Append("子「S■" + e_Child.Cur_Configuration.Name + "」\n");
                         });
                     tmpl.SetParameter(6, s2.ToString(), log_Reports);
 
@@ -477,7 +477,7 @@ namespace Xenon.ConfToExpr
 
                 if (null != parent_Ec)
                 {
-                    tmpl.SetParameter(9, parent_Ec.Cur_Configurationtree.Name, log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(9, parent_Ec.Cur_Configuration.Name, log_Reports);//実際の親Expression要素ノード名
                     tmpl.SetParameter(10, parent_SName_Fnc, log_Reports);//実際の親Expression要素関数名
                     tmpl.SetParameter(11, parent_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//Expression属性の数
 
@@ -495,7 +495,7 @@ namespace Xenon.ConfToExpr
                     parent_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            s4.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                            s4.Append("子「S■" + e_Child.Cur_Configuration.Name + "」\n");
                         });
                     tmpl.SetParameter(14, s4.ToString(), log_Reports);//子Expression要素リスト
 
@@ -510,7 +510,7 @@ namespace Xenon.ConfToExpr
                     tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
                 }
 
-                tmpl.SetParameter(15, Log_RecordReportsImpl.ToText_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(15, Log_RecordReportsImpl.ToText_Configuration(parent_Ec.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7022;", tmpl, log_Reports);
             }
@@ -542,7 +542,7 @@ namespace Xenon.ConfToExpr
                     cur_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            s2.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                            s2.Append("子「S■" + e_Child.Cur_Configuration.Name + "」\n");
                         });
                     tmpl.SetParameter(6, s2.ToString(), log_Reports);
 
@@ -561,7 +561,7 @@ namespace Xenon.ConfToExpr
 
                 if (null != parent_Ec)
                 {
-                    tmpl.SetParameter(9, parent_Ec.Cur_Configurationtree.Name, log_Reports);//実際の親Expression要素ノード名
+                    tmpl.SetParameter(9, parent_Ec.Cur_Configuration.Name, log_Reports);//実際の親Expression要素ノード名
                     tmpl.SetParameter(10, parent_SName_Fnc, log_Reports);//実際の親Expression要素関数名
                     tmpl.SetParameter(11, parent_Ec.Dictionary_Expression_Attribute.Count.ToString(), log_Reports);//Expression属性の数
 
@@ -579,7 +579,7 @@ namespace Xenon.ConfToExpr
                     parent_Ec.List_Expression_Child.ForEach(
                         delegate(Expression_Node_String e_Child, ref bool bRemove, ref bool bBreak)
                         {
-                            s4.Append("子「S■" + e_Child.Cur_Configurationtree.Name + "」\n");
+                            s4.Append("子「S■" + e_Child.Cur_Configuration.Name + "」\n");
                         });
                     tmpl.SetParameter(14, s4.ToString(), log_Reports);//子Expression要素リスト
 
@@ -594,7 +594,7 @@ namespace Xenon.ConfToExpr
                     tmpl.SetParameter(14, "ヌル", log_Reports);//子Expression要素リスト
                 }
 
-                tmpl.SetParameter(15, Log_RecordReportsImpl.ToText_Configurationtree(parent_Ec.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(15, Log_RecordReportsImpl.ToText_Configuration(parent_Ec.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7023;", tmpl, log_Reports);
             }
@@ -603,7 +603,7 @@ namespace Xenon.ConfToExpr
         gt_Error_NullParent:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7004;", tmpl, log_Reports);
             }
@@ -667,7 +667,7 @@ namespace Xenon.ConfToExpr
                         bool bNormalize = false;
                         if(
                             // 親が「E■ｆｎｃ」
-                            NamesNode.S_FNC==cur_Ec.Cur_Configurationtree.Name &&
+                            NamesNode.S_FNC == cur_Ec.Cur_Configuration.Name &&
                             NamesFnc.S_CELL == sName_MyFnc
                             )
                         {
@@ -706,7 +706,7 @@ namespace Xenon.ConfToExpr
                                     s_Child.Dictionary_Attribute.TryGetValue(PmNames.S_VALUE, out sValue, true, log_Reports);
 
                                     // 「E■ａｒｇ１」は作らずに、親要素の属性として追加。
-                                    Expression_Node_String e_Value = new Expression_Leaf_StringImpl(sValue, cur_Ec, cur_Ec.Cur_Configurationtree);
+                                    Expression_Node_String e_Value = new Expression_Leaf_StringImpl(sValue, cur_Ec, cur_Ec.Cur_Configuration);
                                     cur_Ec.SetAttribute(sName_ChildFnc, e_Value, log_Reports);
                                 }
                             });
@@ -875,7 +875,7 @@ namespace Xenon.ConfToExpr
                         });
                     tmpl.SetParameter(6, s2.ToString(), log_Reports);
 
-                    tmpl.SetParameter(7, Log_RecordReportsImpl.ToText_Configurationtree(cur_Cf), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(7, Log_RecordReportsImpl.ToText_Configuration(cur_Cf), log_Reports);//設定位置パンくずリスト
 
                     memoryApplication.CreateErrorReport("Er:7005;", tmpl, log_Reports);
                 }
@@ -917,7 +917,7 @@ namespace Xenon.ConfToExpr
             // データ_ソース、データ_ターゲット、＜ｆｎｃ　＞の子要素。
 
 
-            string sName_OwnerNode = owner_Ec.Cur_Configurationtree.Name;
+            string sName_OwnerNode = owner_Ec.Cur_Configuration.Name;
             string sName_OwnerFnc = "";
             {
                 EnumHitcount enumHitcount;
@@ -995,7 +995,7 @@ namespace Xenon.ConfToExpr
                             Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                             tmpl.SetParameter(1, err_CfAttr.Name, log_Reports);//設定ノード名
                             tmpl.SetParameter(2, err_CfAttr.GetType().Name, log_Reports);//ノードのクラス名
-                            tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(err_CfAttr), log_Reports);//設定位置パンくずリスト
+                            tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configuration(err_CfAttr), log_Reports);//設定位置パンくずリスト
 
                             memoryApplication.CreateErrorReport("Er:7006;", tmpl, log_Reports);
                         }
@@ -1037,7 +1037,7 @@ namespace Xenon.ConfToExpr
             // データ_ソース、データ_ターゲット、＜ｆｎｃ　＞の子要素。
 
 
-            string sName_OwnerNode = owner_Ec.Cur_Configurationtree.Name;
+            string sName_OwnerNode = owner_Ec.Cur_Configuration.Name;
             string sName_OwnerFnc = "";
             {
                 EnumHitcount enumHitcount;
@@ -1234,7 +1234,7 @@ namespace Xenon.ConfToExpr
                 {
                     Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                     tmpl.SetParameter(1, cur_Cf.Name, log_Reports);//設定ノード名
-                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(cf_Child), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(cf_Child), log_Reports);//設定位置パンくずリスト
 
                     memoryApplication.CreateErrorReport("Er:7007;", tmpl, log_Reports);
                 }
@@ -1248,7 +1248,7 @@ namespace Xenon.ConfToExpr
                     tmpl.SetParameter(3, err_Cf_AtElm.GetType().Name, log_Reports);//関数のクラス名
                     tmpl.SetParameter(4, sName_OwnerNode, log_Reports);//親設定ノード名
                     tmpl.SetParameter(5, sName_OwnerFnc, log_Reports);//親設定関数名
-                    tmpl.SetParameter(6, Log_RecordReportsImpl.ToText_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(6, Log_RecordReportsImpl.ToText_Configuration(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
                     tmpl.SetParameter(7, Log_RecordReportsImpl.ToText_Exception(err_E), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:7008;", tmpl, log_Reports);
@@ -1262,7 +1262,7 @@ namespace Xenon.ConfToExpr
                     tmpl.SetParameter(2, err_Cf_AtElm.GetType().Name, log_Reports);//設定ノードのクラス名
                     tmpl.SetParameter(3, sName_OwnerNode, log_Reports);//親設定ノード名
                     tmpl.SetParameter(4, sName_OwnerFnc, log_Reports);//親設定関数名
-                    tmpl.SetParameter(5, Log_RecordReportsImpl.ToText_Configurationtree(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
+                    tmpl.SetParameter(5, Log_RecordReportsImpl.ToText_Configuration(err_Cf_AtElm), log_Reports);//設定位置パンくずリスト
                     tmpl.SetParameter(6, Log_RecordReportsImpl.ToText_Exception(err_E), log_Reports);//例外メッセージ
 
                     memoryApplication.CreateErrorReport("Er:7009;", tmpl, log_Reports);

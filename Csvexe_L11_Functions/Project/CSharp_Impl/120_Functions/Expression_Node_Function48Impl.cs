@@ -59,7 +59,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node my_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node my_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -68,7 +68,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function48Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = my_Conf;
+            f0.Cur_Configuration = my_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, my_Conf), log_Reports);
@@ -108,25 +108,9 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
-
-
                 this.Execute6_Sub(
                     log_Reports
                     );
-
-
-                //
-                //
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -203,6 +187,7 @@ namespace Xenon.Functions
 
 
             // CSVファイル読取り
+            Table_Humaninput tableH;
             if (log_Reports.Successful)
             {
                 //
@@ -215,12 +200,20 @@ namespace Xenon.Functions
                 request_tblReads.Name_PutToTable = log_Method.Fullname;//暫定
                 request_tblReads.Expression_Filepath = pm_FileImportListfile_Expr;
 
-                Table_Humaninput tableH = reader.Read(
+                tableH = reader.Read(
                     request_tblReads,
                     tblFormat_puts,
                     true,
                     log_Reports
                     );
+            }
+            else
+            {
+                tableH = null;
+            }
+
+            if (log_Reports.Successful)
+            {
 
                 int rowNumber = 1;
                 foreach (DataRow row in tableH.DataTable.Rows)
@@ -272,6 +265,19 @@ namespace Xenon.Functions
                         else if (System.IO.File.Exists(filepath_Source_Cur))
                         {
                             //ファイル
+
+
+                            //コピー先フォルダが存在しない場合、フォルダを作成
+                            string nameFolderDestination = System.IO.Path.GetDirectoryName(filepath_Destination_Cur);
+                            if (!System.IO.Directory.Exists(nameFolderDestination))
+                            {
+                                // フォルダ作成
+                                System.IO.Directory.CreateDirectory(nameFolderDestination);
+
+                                //TODO:作成したフォルダに、フォルダの属性を複写
+                                //System.IO.File.SetAttributes(nameFolderDestination, System.IO.File.GetAttributes(Source_Folder_Name));
+                            }
+
 
                             //第一引数で示されたファイルを、第二引数で示されたファイル位置にコピー。
                             //第3項にtrueを指定することにより、上書きを許可
@@ -356,7 +362,7 @@ namespace Xenon.Functions
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, error_Filepath_Source, log_Reports);//ファイルパス
                 tmpl.SetParameter(2, error_RowNumber.ToString(), log_Reports);//エラーのあった行
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(error_Table_Humaninput), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configuration(error_Table_Humaninput), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110030;", tmpl, log_Reports);
             }

@@ -103,7 +103,8 @@ namespace Xenon.Controls
                             t.Append(Environment.NewLine);
 
                             // ヒント
-                            t.Append(r.Message_Configurationtree(ec_Fcell.Cur_Configurationtree));
+                            t.Append(r.Message_Configuration(
+                                ec_Fcell.Cur_Configuration));
 
                             r.Message = t.ToString();
                             log_Reports.EndCreateReport();

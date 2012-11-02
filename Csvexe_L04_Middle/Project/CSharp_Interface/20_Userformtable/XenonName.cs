@@ -28,7 +28,7 @@ namespace Xenon.Middle
             get;
         }
 
-        Configurationtree_Node Cur_Configurationtree
+        Configuration_Node Cur_Configuration
         {
             get;
         }

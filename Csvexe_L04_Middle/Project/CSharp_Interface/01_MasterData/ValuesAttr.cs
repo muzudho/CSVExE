@@ -83,12 +83,18 @@ namespace Xenon.Middle
         //────────────────────────────────────────
         //
         // 三値ブール
-        //      On,Off,""
-        //
+        //      旧型：On,Off,""
+        //      新型：Yes,No,Ignore
 
         public const string S_ON = "On";
 
         public const string S_OFF = "Off";
+
+        public const string S_YES = "Yes";
+
+        public const string S_NO = "No";
+
+        public const string S_IGNORE = "Ignore";
 
         //────────────────────────────────────────
         //
@@ -209,7 +215,7 @@ namespace Xenon.Middle
                 s.Newline();
 
                 //ヒント
-                s.Append(r.Message_Configurationtree(gcav_Codefile));
+                s.Append(r.Message_Configuration(gcav_Codefile));
 
                 r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
@@ -236,7 +242,7 @@ namespace Xenon.Middle
                 s.Newline();
 
                 //ヒント
-                s.Append(r.Message_Configurationtree(gcav_Codefile));
+                s.Append(r.Message_Configuration(gcav_Codefile));
 
                 r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();
@@ -268,7 +274,7 @@ namespace Xenon.Middle
                 s.Newline();
 
                 //ヒント
-                s.Append(r.Message_Configurationtree(gcav_Codefile));
+                s.Append(r.Message_Configuration(gcav_Codefile));
 
                 r.Message = s.ToString();
                 pg_Loggin.EndCreateReport();

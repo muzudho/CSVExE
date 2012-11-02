@@ -43,7 +43,6 @@ namespace Xenon.Functions
             log_Method.BeginMethod(Info_Functions.Name_Library, this, "Execute2_Event", log_Reports);
 
             Configurationtree_Node cf_ThisMethod = new Configurationtree_NodeImpl("＜" + log_Method.Fullname + ":＞", null);
-            EventMonitorImpl eventMonitor = new EventMonitorImpl(event_Conf, cf_ThisMethod);
 
             if (log_Reports.CanStopwatch)
             {
@@ -54,8 +53,9 @@ namespace Xenon.Functions
 
                     string sName_Control;
                     {
-                        Configurationtree_Node owner_Configurationtree_Control = event_Conf.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
-                        owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
+                        Configuration_Node owner_Configurationtree_Control = event_Conf.GetParentByNodename(
+                            NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
+                        ((Configurationtree_Node)owner_Configurationtree_Control).Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Control, false, log_Reports);
                     }
 
                     string sEventName;
@@ -118,8 +118,6 @@ namespace Xenon.Functions
 
             event_Conf.List_Child.ForEach(delegate(Configurationtree_Node s_Action, ref bool bBreak)
             {
-                eventMonitor.BNowactionworking = true;
-
                 Executer3_FunctionImpl exe2 = new Executer3_FunctionImpl();
 
                 // イベントハンドラーの作成
@@ -133,21 +131,17 @@ namespace Xenon.Functions
                 exe2.Execute3_Function(
                     expr_Func,
                     sender,
-                    eventMonitor,
                     owner_MemoryApplication,
                     log_Reports
                     );
 
-                while (eventMonitor.BNowactionworking)
-                {
-                    // 他の待機スレッドに、実行順番を譲る。
-                    //TODO: System.Threading.Thread.Sleep(0);
-                }
+                // 他の待機スレッドに、実行順番を譲る。
+                //TODO: System.Threading.Thread.Sleep(0);
 
-                if (Log_ReportsImpl.BDebugmode_Static)
-                {
-                    //.WriteLine(this.GetType().Name + "#:\n│\n│\n│\n│");
-                }
+                //if (Log_ReportsImpl.BDebugmode_Static)
+                //{
+                //    //.WriteLine(this.GetType().Name + "#:\n│\n│\n│\n│");
+                //}
             });
 
 

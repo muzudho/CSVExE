@@ -27,7 +27,11 @@ namespace Xenon.Table
         /// コンストラクター。
         /// </summary>
         /// <param name="e_Fpath_ConfigStack"></param>
-        public Table_HumaninputImpl(string name_Table, Expression_Node_Filepath filepath_Nodeconfigtree_Expr, Configurationtree_Node cur_Conf)
+        public Table_HumaninputImpl(
+            string name_Table,
+            Expression_Node_Filepath filepath_Nodeconfigtree_Expr,
+            Configuration_Node cur_Conf
+            )
             : base(name_Table, cur_Conf)//"ノード名未指定"
         {
             this.expression_Filepath_ConfigStack = filepath_Nodeconfigtree_Expr;
@@ -311,7 +315,7 @@ namespace Xenon.Table
             s.Append(log_Method.Fullname);
             s.Append(Environment.NewLine);
 
-            this.Expression_Filepath_ConfigStack.Cur_Configurationtree.ToText_Content(s);
+            this.Expression_Filepath_ConfigStack.Cur_Configuration.ToText_Content(s);
 
             s.AppendI(0, "[/プログラム]");
             s.Append(log_Method.Fullname);
@@ -341,7 +345,7 @@ namespace Xenon.Table
         /// 空行を作成します。
         /// </summary>
         /// <returns></returns>
-        public Record_Humaninput CreateNewRecord(Log_Reports log_Reports)
+        public Record_Humaninput CreateNewRecord(string config, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
             log_Method.BeginMethod(Info_Table.Name_Library, this, "CreateNewRecord", log_Reports);
@@ -470,7 +474,7 @@ namespace Xenon.Table
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            return new Record_HumaninputImpl( newDataRow);
+        return new Record_HumaninputImpl(config, newDataRow, this);
         }
 
         /// <summary>
@@ -1125,7 +1129,7 @@ namespace Xenon.Table
                                     if (nExpectedNo == int_No)
                                     {
                                         // 一致すれば。
-                                        result = new Record_HumaninputImpl( dataRow);
+                                        result = new Record_HumaninputImpl( int_No.ToString(), dataRow, this);
                                         goto gt_EndMethod;
                                     }
                                 }
@@ -1267,7 +1271,7 @@ namespace Xenon.Table
                                 if (int_Expected == int_Exists)
                                 {
                                     // 一致すれば。
-                                    result = new Record_HumaninputImpl( dataRow);
+                                    result = new Record_HumaninputImpl( log_Method.Fullname, dataRow, this);
                                     // 正常
                                     goto gt_EndMethod;
                                 }
@@ -1410,7 +1414,7 @@ namespace Xenon.Table
                                 if (string_Expected == exists)
                                 {
                                     // 一致すれば。
-                                    list_Result.Add(new Record_HumaninputImpl(dataRow));
+                                    list_Result.Add(new Record_HumaninputImpl( log_Method.Fullname, dataRow, this));
 
                                     if (hits == EnumHitcount.First_Exist)
                                     {
@@ -1479,17 +1483,24 @@ namespace Xenon.Table
 
         public void ForEach_Datapart(DELEGATE_Records delegate_Records, Log_Reports log_Reports )
         {
+            Log_Method log_Method = new Log_MethodImpl(0);
+            log_Method.BeginMethod(Info_Table.Name_Library, this, "ForEach_Datapart", log_Reports);
+            //
+
             bool isBreak = false;
 
             foreach (DataRow dataRow in this.DataTable.Rows)
             {
-                delegate_Records( new Record_HumaninputImpl( dataRow), ref isBreak, log_Reports);
+                delegate_Records(new Record_HumaninputImpl( "レコードをForEach("+log_Method.Fullname+")。ソース不明。", dataRow, this), ref isBreak, log_Reports);
 
                 if (isBreak)
                 {
                     break;
                 }
             }
+
+            //
+            log_Method.EndMethod(log_Reports);
         }
 
         //────────────────────────────────────────

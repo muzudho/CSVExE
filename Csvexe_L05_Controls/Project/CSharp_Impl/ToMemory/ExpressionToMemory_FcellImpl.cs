@@ -104,19 +104,19 @@ namespace Xenon.Controls
                     string sValue;
                     ec_Child.TrySelectAttribute(out sValue, PmNames.S_NAME.Name_Pm, EnumHitcount.One, log_Reports);
 
-                    if (NamesNode.S_FNC == ec_Child.Cur_Configurationtree.Name &&
+                    if (NamesNode.S_FNC == ec_Child.Cur_Configuration.Name &&
                         NamesFnc.S_WHERE == sValue)
                     {
                         ec_Where = ec_Child;
 
                         if (pg_Method.CanDebug(2))
                         {
-                            pg_Method.WriteDebug_ToConsole("子「E■[" + ec_Child.Cur_Configurationtree.Name + "]」。子要素数=[" + ec_Where.List_Expression_Child.Count + "]");
+                            pg_Method.WriteDebug_ToConsole("子「E■[" + ec_Child.Cur_Configuration.Name + "]」。子要素数=[" + ec_Where.List_Expression_Child.Count + "]");
                         }
 
                         ec_Where.List_Expression_Child.ForEach(delegate(Expression_Node_String e_Item, ref bool bRemove2, ref bool bBreak2)
                         {
-                            if (NamesNode.S_FNC == e_Item.Cur_Configurationtree.Name)
+                            if (NamesNode.S_FNC == e_Item.Cur_Configuration.Name)
                             {
                                 Expression_Node_String ec_Field;
                                 bool bHit3 = e_Item.TrySelectAttribute(out ec_Field, PmNames.S_FIELD.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
@@ -147,7 +147,7 @@ namespace Xenon.Controls
                     {
                         if (pg_Method.CanDebug(2))
                         {
-                            pg_Method.WriteDebug_ToConsole( "（無視）　 子「E■[" + ec_Child.Cur_Configurationtree.Name + "]」。");
+                            pg_Method.WriteDebug_ToConsole( "（無視）　 子「E■[" + ec_Child.Cur_Configuration.Name + "]」。");
                         }
                     }
                 });
@@ -395,7 +395,7 @@ namespace Xenon.Controls
 
                 string sKeyFieldName = ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                 string sExpectedValue = ec_KeyExpected.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
-                Configurationtree_Node cf_WrittenPlace_Query = ec_SfCell.Cur_Configurationtree;
+                Configuration_Node cf_WrittenPlace_Query = ec_SfCell.Cur_Configuration;
 
                 SelectPerformerImpl sp = new SelectPerformerImpl();
                 sp.Select(
@@ -455,7 +455,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
                 if (null != ec_SfCell)
                 {
                     ec_SfCell.ToText_Snapshot(s);
@@ -488,7 +488,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -516,7 +516,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -544,7 +544,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -572,7 +572,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -600,7 +600,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -627,7 +627,7 @@ namespace Xenon.Controls
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();
@@ -646,7 +646,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
 
                 t.Append("「E■[");
-                t.Append(ec_KeyFldName1.Cur_Configurationtree.Name);
+                t.Append(ec_KeyFldName1.Cur_Configuration.Name);
                 t.Append("]」、キーフィールド名=[");
                 t.Append(ec_KeyFldName1.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports));
                 t.Append("]");
@@ -654,7 +654,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -678,7 +678,7 @@ namespace Xenon.Controls
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -737,7 +737,7 @@ namespace Xenon.Controls
 
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(ec_SfCell.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(ec_SfCell.Cur_Configuration));
 
                 r.Message = s.ToString();
 

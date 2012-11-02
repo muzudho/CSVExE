@@ -18,7 +18,10 @@ namespace Xenon.Controls
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public FunctionexecutableAbstract(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+        public FunctionexecutableAbstract(
+            Expression_Node_String parent_Expression,
+            Configuration_Node cur_Conf
+            )
             : base(parent_Expression,cur_Conf)
         {
         }
@@ -159,12 +162,10 @@ namespace Xenon.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventMonitor"></param>
-        /// <param name="log_Reports"></param>
+        /// <param name="prm_Log_Reports"></param>
         public abstract void Execute4_OnLr(
             object prm_Sender,
-            object prm_EventMonitor,//EventMonitor
-            string prm_SNode_EventOrigin,
-            Log_Reports prm_D_LoggingBuffer
+            Log_Reports prm_Log_Reports
         );
 
         //────────────────────────────────────────

@@ -138,8 +138,6 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         void Execute4_OnLr(
             object sender,
-            object eventMonitor,
-            string parent_SNode_EventOrigin,
             Log_Reports log_Reports
         );
 

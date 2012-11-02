@@ -28,7 +28,7 @@ namespace Xenon.Syntax
         /// <returns></returns>
         Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Conf,
+            Configuration_Node cur_Conf,
             object/*MemoryApplication*/ memoryApplication,
             Log_Reports log_Reports
             );

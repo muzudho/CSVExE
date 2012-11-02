@@ -137,7 +137,7 @@ namespace Xenon.Table
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        Configurationtree_Node Parent
+        Configuration_Node Parent
         {
             get;
         }

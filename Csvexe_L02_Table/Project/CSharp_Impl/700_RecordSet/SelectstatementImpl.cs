@@ -20,7 +20,7 @@ namespace Xenon.Table
         #region 生成と破棄
         //────────────────────────────────────────
 
-        public SelectstatementImpl(Expression_Node_String parent_Expr, Configurationtree_Node parent_Conf)
+        public SelectstatementImpl(Expression_Node_String parent_Expr, Configuration_Node parent_Conf)
         {
             this.parent = parent_Conf;
             this.List_SName_SelectField = new List<string>();
@@ -245,12 +245,12 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
-        private Configurationtree_Node parent;
+        private Configuration_Node parent;
 
         /// <summary>
         /// 問題箇所ヒント。
         /// </summary>
-        public Configurationtree_Node Parent
+        public Configuration_Node Parent
         {
             get
             {

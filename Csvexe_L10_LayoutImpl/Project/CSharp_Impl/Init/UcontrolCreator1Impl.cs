@@ -194,7 +194,7 @@ namespace Xenon.Layout
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
@@ -220,7 +220,7 @@ namespace Xenon.Layout
 
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
+                s.Append(r.Message_Configuration(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
 
                 r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
@@ -248,7 +248,7 @@ namespace Xenon.Layout
                 t.Append("]は未定義のコントロールの型です。");
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(fo_Record.Parent_TableUserformconfig.Cur_Configurationtree));
 
                 r.Message = t.ToString();
                 pg_Logging.EndCreateReport();

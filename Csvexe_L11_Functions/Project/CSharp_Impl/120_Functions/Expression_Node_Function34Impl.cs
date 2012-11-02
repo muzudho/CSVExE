@@ -59,7 +59,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -68,7 +68,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function34Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -113,25 +113,10 @@ namespace Xenon.Functions
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname+":＞";
-
-
                 this.Execute6_Sub(
                     this.Functionparameterset.Sender,
                     log_Reports
                     );
-
-                //
-                //
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
 
             //
@@ -220,7 +205,7 @@ namespace Xenon.Functions
                 this.Owner_MemoryApplication.MemoryVariables.SetVariable(
                     new XenonNameImpl(
                         ec_ArgVarName.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
-                        ec_ArgVarName.Cur_Configurationtree
+                        ec_ArgVarName.Cur_Configuration
                         ),
                     ec_ArgValue,
                     true,
@@ -236,7 +221,7 @@ namespace Xenon.Functions
         gt_Error_NullArgVarName:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110017;", tmpl, log_Reports);
             }
@@ -245,7 +230,7 @@ namespace Xenon.Functions
         gt_Error_NullArgValue:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110018;", tmpl, log_Reports);
             }

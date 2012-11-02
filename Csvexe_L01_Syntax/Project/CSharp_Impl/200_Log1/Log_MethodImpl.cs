@@ -15,31 +15,31 @@ namespace Xenon.Syntax
 
         public Log_MethodImpl()
         {
-            this.debugLevel_Method = 0;
-            this.debugMode_Master = false;
-            this.sName_Library = "";
-            this.sName_Class = "";
-            this.sName_Method = "";
+            this.level_DebugMethod = 0;
+            this.mode_DebugMaster = false;
+            this.name_Library = "";
+            this.name_Class = "";
+            this.name_Method = "";
             this.log_Stopwatch = new Log_StopwatchImpl(this);
         }
 
         public Log_MethodImpl(int nDebugLevel_Method)
         {
-            this.debugLevel_Method = nDebugLevel_Method;
-            this.debugMode_Master = true;
-            this.sName_Library = "";
-            this.sName_Class = "";
-            this.sName_Method = "";
+            this.level_DebugMethod = nDebugLevel_Method;
+            this.mode_DebugMaster = true;
+            this.name_Library = "";
+            this.name_Class = "";
+            this.name_Method = "";
             this.log_Stopwatch = new Log_StopwatchImpl(this);
         }
 
         public Log_MethodImpl(int nLevel_MethodDebug, bool bDebugMode_Master)
         {
-            this.debugLevel_Method = nLevel_MethodDebug;
-            this.debugMode_Master = bDebugMode_Master;
-            this.sName_Library = "";
-            this.sName_Class = "";
-            this.sName_Method = "";
+            this.level_DebugMethod = nLevel_MethodDebug;
+            this.mode_DebugMaster = bDebugMode_Master;
+            this.name_Library = "";
+            this.name_Class = "";
+            this.name_Method = "";
             this.log_Stopwatch = new Log_StopwatchImpl(this);
         }
 
@@ -54,19 +54,19 @@ namespace Xenon.Syntax
         [Obsolete("ライブラリ名、クラス名、メソッド名も同時にセットするBeginMethodを使うこと。")]
         public void SetPath(string sName_Library, object thisClass, string sName_Method)
         {
-            this.sName_Library = sName_Library;
-            this.sName_Class = thisClass.GetType().Name;
-            this.bStatic = false;
-            this.sName_Method = sName_Method;
+            this.name_Library = sName_Library;
+            this.name_Class = thisClass.GetType().Name;
+            this.isStatic = false;
+            this.name_Method = sName_Method;
         }
 
         [Obsolete("ライブラリ名、クラス名、メソッド名も同時にセットするBeginMethodを使うこと。")]
         public void SetPath(string sName_Library, string sName_StaticClass, string sName_Method)
         {
-            this.sName_Library = sName_Library;
-            this.sName_Class = sName_StaticClass;
-            this.bStatic = true;
-            this.sName_Method = sName_Method;
+            this.name_Library = sName_Library;
+            this.name_Class = sName_StaticClass;
+            this.isStatic = true;
+            this.name_Method = sName_Method;
         }
 
         //────────────────────────────────────────
@@ -115,10 +115,10 @@ namespace Xenon.Syntax
 
         public void BeginMethod(string sName_Library, object thisClass, string sName_Method, Log_Reports log_Reports)
         {
-            this.sName_Library = sName_Library;
-            this.sName_Class = thisClass.GetType().Name;
-            this.bStatic = false;
-            this.sName_Method = sName_Method;
+            this.name_Library = sName_Library;
+            this.name_Class = thisClass.GetType().Name;
+            this.isStatic = false;
+            this.name_Method = sName_Method;
 
             // デバッグを行うなら、コールスタックにこのメソッドパスを追加。
             if (Log_ReportsImpl.BDebugmode_Static)
@@ -129,10 +129,10 @@ namespace Xenon.Syntax
 
         public void BeginMethod(string sName_Library, string sName_StaticClass, string sName_Method, Log_Reports log_Reports)
         {
-            this.sName_Library = sName_Library;
-            this.sName_Class = sName_StaticClass;
-            this.bStatic = true;
-            this.sName_Method = sName_Method;
+            this.name_Library = sName_Library;
+            this.name_Class = sName_StaticClass;
+            this.isStatic = true;
+            this.name_Method = sName_Method;
 
             // デバッグを行うなら、コールスタックにこのメソッドパスを追加。
             if (Log_ReportsImpl.BDebugmode_Static)
@@ -155,10 +155,10 @@ namespace Xenon.Syntax
 
         public void BeginMethod(string sName_Library, object thisClass, string sName_Method, out Log_Reports log_Reports)
         {
-            this.sName_Library = sName_Library;
-            this.sName_Class = thisClass.GetType().Name;
-            this.bStatic = false;
-            this.sName_Method = sName_Method;
+            this.name_Library = sName_Library;
+            this.name_Class = thisClass.GetType().Name;
+            this.isStatic = false;
+            this.name_Method = sName_Method;
 
             log_Reports = new Log_ReportsImpl(this);
 
@@ -171,10 +171,10 @@ namespace Xenon.Syntax
 
         public void BeginMethod(string sName_Library, string sName_StaticClass, string sName_Method, out Log_Reports log_Reports)
         {
-            this.sName_Library = sName_Library;
-            this.sName_Class = sName_StaticClass;
-            this.bStatic = true;
-            this.sName_Method = sName_Method;
+            this.name_Library = sName_Library;
+            this.name_Class = sName_StaticClass;
+            this.isStatic = true;
+            this.name_Method = sName_Method;
 
             log_Reports = new Log_ReportsImpl(this);
 
@@ -191,7 +191,7 @@ namespace Xenon.Syntax
             {
                 if (this.Log_Stopwatch.IsRunning && log_Reports.CanStopwatch)
                 {
-                    this.Log_Stopwatch.End();
+                    this.Log_Stopwatch.End(log_Reports);
                 }
 
                 log_Reports.Log_Callstack.Pop(this);
@@ -213,7 +213,7 @@ namespace Xenon.Syntax
             if(
                 log_Method.Name_Library == this.Name_Library &&
                 log_Method.Name_Class == this.Name_Class &&
-                log_Method.Static == this.Static &&
+                log_Method.IsStatic == this.IsStatic &&
                 log_Method.Name_Method == this.Name_Method
                 )
             {
@@ -247,7 +247,7 @@ namespace Xenon.Syntax
         {
             bool bDebugMode;
 
-            if (this.debugMode_Master && nDebugLevel_Codeblock <= this.debugLevel_Method)
+            if (this.mode_DebugMaster && nDebugLevel_Codeblock <= this.level_DebugMethod)
             {
                 bDebugMode = true;
             }
@@ -263,7 +263,7 @@ namespace Xenon.Syntax
         {
             bool bInfoMode;
 
-            if (this.debugMode_Master)
+            if (this.mode_DebugMaster)
             {
                 bInfoMode = true;
             }
@@ -292,7 +292,7 @@ namespace Xenon.Syntax
                 sb.Append(this.Name_Library);
                 sb.Append(":");
                 sb.Append(this.Name_Class);
-                if (this.Static)
+                if (this.IsStatic)
                 {
                     sb.Append(".");
                 }
@@ -308,8 +308,26 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
 
-        private int debugLevel_Method;
-        private bool debugMode_Master;
+        private int level_DebugMethod;
+
+        /// <summary>
+        /// メソッド内での、デバッグ出力をする閾値。
+        /// </summary>
+        public int Level_DebugMethod
+        {
+            get
+            {
+                return this.level_DebugMethod;
+            }
+            set
+            {
+                this.level_DebugMethod = value;
+            }
+        }
+
+        //────────────────────────────────────────
+
+        private bool mode_DebugMaster;
 
         //────────────────────────────────────────
 
@@ -332,49 +350,49 @@ namespace Xenon.Syntax
 
         //────────────────────────────────────────
         
-        private string sName_Library;
+        private string name_Library;
 
         public string Name_Library
         {
             get
             {
-                return sName_Library;
+                return name_Library;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sName_Class;
+        private string name_Class;
 
         public string Name_Class
         {
             get
             {
-                return sName_Class;
+                return name_Class;
             }
         }
 
         //────────────────────────────────────────
 
-        private bool bStatic;
+        private bool isStatic;
 
-        public bool Static
+        public bool IsStatic
         {
             get
             {
-                return bStatic;
+                return isStatic;
             }
         }
 
         //────────────────────────────────────────
 
-        private string sName_Method;
+        private string name_Method;
 
         public string Name_Method
         {
             get
             {
-                return sName_Method;
+                return name_Method;
             }
         }
 

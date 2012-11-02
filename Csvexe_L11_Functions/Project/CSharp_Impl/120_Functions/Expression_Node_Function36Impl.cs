@@ -49,7 +49,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -58,7 +58,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function36Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -112,24 +112,9 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
-
-
                 this.Execute6_Sub(
                     log_Reports
                     );
-
-                //
-                //
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -202,23 +187,25 @@ namespace Xenon.Functions
                     // コントロールの名前を取得。
                     //
 
-                    Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                    Configuration_Node cf_Event = this.Cur_Configuration.GetParentByNodename(
+                        NamesNode.S_EVENT, EnumConfiguration.Unknown, false, log_Reports);
 
                     if (null != cf_Event)
                     {
-                        Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        Configuration_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(
+                            NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
 
                         if (null != owner_Configurationtree_Control)
                         {
                             string sName;
-                            bool bHit = owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
+                            bool bHit = ((Configurationtree_Node)owner_Configurationtree_Control).Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName, false, log_Reports);
 
                             if (bHit)
                             {
-                                Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
+                                Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Configuration);
                                 ec_Str.AppendTextNode(
                                     sName,
-                                    this.Cur_Configurationtree,
+                                    this.Cur_Configuration,
                                     log_Reports
                                     );
 
@@ -253,10 +240,10 @@ namespace Xenon.Functions
                     foreach (string sFcName2 in sList_FcName_Prm)
                     {
                         // コントロール名。
-                        Expression_Node_StringImpl ec_FcName4 = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
+                        Expression_Node_StringImpl ec_FcName4 = new Expression_Node_StringImpl(this, this.Cur_Configuration);
                         ec_FcName4.AppendTextNode(
                             sFcName2,
-                            this.Cur_Configurationtree,
+                            this.Cur_Configuration,
                             log_Reports
                             );
 

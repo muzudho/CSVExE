@@ -22,7 +22,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_Leaf_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+        public Expression_Leaf_StringImpl(Expression_Node_String parent_Expression, Configuration_Node cur_Conf)
             : this("", parent_Expression, cur_Conf)
         {
         }
@@ -30,14 +30,14 @@ namespace Xenon.Syntax
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Expression_Leaf_StringImpl(string sHumanInput, Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+        public Expression_Leaf_StringImpl(string sHumanInput, Expression_Node_String parent_Expression, Configuration_Node cur_Conf)
         {
             this.sHumanInput = sHumanInput;
             this.parent_Expression = parent_Expression;
-            this.cur_Configurationtree = cur_Conf;
+            this.cur_Configuration = cur_Conf;
 
             this.enumHitcount = EnumHitcount.Unconstraint;
-            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
+            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configuration);
         }
 
         //────────────────────────────────────────
@@ -48,7 +48,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         /// <returns></returns>
         public Expression_Leaf_String NewInstance(
-            Configurationtree_Node parent_Expression,
+            Configuration_Node parent_Expression,
             Log_Reports log_Reports
             )
         {
@@ -94,7 +94,7 @@ namespace Xenon.Syntax
             s.Increment();
 
             s.AppendI(0,"葉「E■[");
-            s.Append(this.Cur_Configurationtree.Name);
+            s.Append(this.Cur_Configuration.Name);
             s.Append("]　");
             s.Append(this.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports_ForSnapshot));
             s.Append("」");
@@ -155,7 +155,7 @@ namespace Xenon.Syntax
                 t.Append("このメソッド " + this.GetType().Name + "#AddChildN は使わないでください。");
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(this.Cur_Configuration));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();
@@ -197,7 +197,7 @@ namespace Xenon.Syntax
                 t.Append("このメソッド " + this.GetType().Name + "#GetChildNList は使わないんでください。");
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(this.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(this.Cur_Configuration));
 
                 r.Message = t.ToString();
 
@@ -230,7 +230,7 @@ namespace Xenon.Syntax
             )
         {
             // 使いません。
-            Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(sName, this.Cur_Configurationtree);
+            Configurationtree_NodeFilepath filepath_Conf = new Configurationtree_NodeFilepathImpl(sName, this.Cur_Configuration);
             filepath_Conf.InitPath("", log_Reports);
             ec_Result_Out = new Expression_Node_FilepathImpl(filepath_Conf);
             return false;
@@ -279,7 +279,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumaninput,
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -419,20 +419,20 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        private Configurationtree_Node cur_Configurationtree;
+        private Configuration_Node cur_Configuration;
 
         /// <summary>
         /// 設定場所のヒント。
         /// </summary>
-        public Configurationtree_Node Cur_Configurationtree
+        public Configuration_Node Cur_Configuration
         {
             get
             {
-                return this.cur_Configurationtree;
+                return this.cur_Configuration;
             }
             set
             {
-                this.cur_Configurationtree = value;
+                this.cur_Configuration = value;
             }
         }
 

@@ -58,7 +58,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -67,7 +67,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function22Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -142,9 +142,6 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
-
-
 
                 //
                 // 「バックアップ対象のファイルのパス一覧」の変数準備。
@@ -236,20 +233,6 @@ namespace Xenon.Functions
                         this.ReadAndRegisterFiles(o_Table_Aaformscsv, log_Reports);
                     }
                 }
-
-
-
-                //
-                //
-
-                //
-                //
-                //
-                // 必ずフラグをオフにします。
-                //
-                //
-                //
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
 
             goto gt_EndMethod;
@@ -261,7 +244,7 @@ namespace Xenon.Functions
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, PmNames.S_NAME_TABLE.Name_Pm, log_Reports);//引数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110008;", tmpl, log_Reports);
             }
@@ -588,7 +571,7 @@ namespace Xenon.Functions
                 tmpl.SetParameter(3, ValuesTypeData.Message_Allitems(), log_Reports);//TYPE_DATAフィールドに設定できる値のリスト
 
                 Configurationtree_Node cf = new Configurationtree_NodeImpl("データ部" + err_NRow + "行", xenonTable_Aafilescsv.Parent);
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cf), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configuration(cf), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110011;", tmpl, log_Reports);
             }
@@ -1024,7 +1007,7 @@ namespace Xenon.Functions
         gt_Error_NullFolder:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:110009;", tmpl, log_Reports);
             }

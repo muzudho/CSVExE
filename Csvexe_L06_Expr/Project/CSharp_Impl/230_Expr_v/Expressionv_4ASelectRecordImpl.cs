@@ -78,12 +78,18 @@ namespace Xenon.Expr
                     // 要求の作成。
                     {
                         // ＜ｓｔａｒｔｕｐ－ｓｐｅｃｉａｌ－ｒｕｌｅ＞の中で使う子要素。
-                        selectSt_ToSave = new SelectstatementImpl(this, this.Cur_Configurationtree);
+                        selectSt_ToSave = new SelectstatementImpl(this, this.Cur_Configuration);
                         {
                             Recordcondition recCond1;// = new RecordconditionImpl(s_ParentNode);
 
                             // TODO: logic要素がある版も要るはず。
-                            bool bSuccessful = RecordconditionImpl.TryBuild(out recCond1, EnumLogic.None, this.Expression_Field.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports), this.Cur_Configurationtree.Parent, log_Reports);
+                            bool bSuccessful = RecordconditionImpl.TryBuild(
+                                out recCond1,
+                                EnumLogic.None,
+                                this.Expression_Field.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports),
+                                this.Cur_Configuration.Parent,
+                                log_Reports
+                                );
                             recCond1.Value = this.Expression_LookupVal.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports);
                             selectSt_ToSave.List_Recordcondition.Add(recCond1);
                         }
@@ -96,7 +102,8 @@ namespace Xenon.Expr
                 //
                 // レコードの検索。
                 {
-                    Configurationtree_Node parent_Cf_Query = this.Cur_Configurationtree.Parent;
+                    //Configurationtree_Node
+                    Configuration_Node parent_Cf_Query = this.Cur_Configuration.Parent;
 
                     // テーブル名。
                     if ("" == selectSt_ToSave.Expression_From.Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports).Trim())
@@ -268,7 +275,7 @@ namespace Xenon.Expr
         gt_Error_EmptyTableName:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration.Parent), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6030;", tmpl, log_Reports);
             }
@@ -277,7 +284,7 @@ namespace Xenon.Expr
         gt_Error_NullTable:
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
-                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configurationtree(this.Cur_Configurationtree.Parent), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(1, Log_RecordReportsImpl.ToText_Configuration(this.Cur_Configuration.Parent), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6031;", tmpl, log_Reports);
             }

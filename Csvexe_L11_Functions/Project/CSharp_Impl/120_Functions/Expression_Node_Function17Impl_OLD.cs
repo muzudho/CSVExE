@@ -64,7 +64,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -73,7 +73,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function17Impl_OLD(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -137,9 +137,6 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
-
-
                 Expression_Node_String e_ArgFilePath;
                 this.TrySelectAttribute(out e_ArgFilePath, Expression_Node_Function17Impl_OLD.PM_FILEPATH, EnumHitcount.One_Or_Zero, log_Reports);
 
@@ -226,15 +223,6 @@ namespace Xenon.Functions
         //
         //
         gt_EndMethod:
-            //
-            //
-            //
-            // 必ずフラグをオフにします。
-            //
-            //
-            //
-            ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
-
             log_Method.EndMethod(log_Reports);
             return "";
         }

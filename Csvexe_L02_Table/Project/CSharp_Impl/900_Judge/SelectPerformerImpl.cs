@@ -28,7 +28,7 @@ namespace Xenon.Table
             out List<DataRow> out_List_DstRow,
             bool isRequired_ExpectedValue,
             DataTable dataTable,
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -79,7 +79,7 @@ namespace Xenon.Table
             bool isRequired_ExpectedValue,
             Fielddefinition fielddefinition_Key,
             DataTable dataTable,
-            Configurationtree_Node parent_Query,
+            Configuration_Node parent_Query,
             Log_Reports log_Reports
             )
         {
@@ -192,7 +192,7 @@ namespace Xenon.Table
                 s.Append(Environment.NewLine);
 
                 // ヒント
-                s.AppendI(1, r.Message_Configurationtree(parent_Query));
+                s.AppendI(1, r.Message_Configuration(parent_Query));
 
                 s.AppendI(0, "</NFuncCellUpdaterImplクラス>");
 

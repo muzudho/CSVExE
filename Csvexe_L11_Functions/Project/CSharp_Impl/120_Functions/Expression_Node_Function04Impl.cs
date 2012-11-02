@@ -64,7 +64,7 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl(0);
@@ -73,7 +73,7 @@ namespace Xenon.Functions
 
             Expression_Node_Function f0 = new Expression_Node_Function04Impl(this.EnumEventhandler, this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期値
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -136,11 +136,7 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + log_Method.Fullname + ":＞";
-
                 this.Execute6_Sub(log_Reports);
-
-                ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             }
             else if (this.EnumEventhandler == EnumEventhandler.O_Ea)
             {
@@ -209,10 +205,10 @@ namespace Xenon.Functions
                     Expression_Node_String ec_ArgTableName;
                     this.TrySelectAttribute(out ec_ArgTableName, Expression_Node_Function04Impl.PM_NAME_TABLE, EnumHitcount.One_Or_Zero, log_Reports);
 
-                    Expression_Node_StringImpl ec_TableName = new Expression_Node_StringImpl(this, ec_ArgTableName.Cur_Configurationtree);
+                    Expression_Node_StringImpl ec_TableName = new Expression_Node_StringImpl(this, ec_ArgTableName.Cur_Configuration);
                     ec_TableName.AppendTextNode(
                         sTableName,
-                        this.Cur_Configurationtree,
+                        this.Cur_Configuration,
                         log_Reports
                         );
 

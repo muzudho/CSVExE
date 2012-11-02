@@ -8,22 +8,26 @@ using Xenon.Syntax;
 
 namespace Xenon.Table
 {
-    public class Record_HumaninputImpl : Record_Humaninput
+    public class Record_HumaninputImpl : Configuration_NodeImpl, Record_Humaninput
     {
 
 
 
-        #region 用意
+        #region 生成と破棄
         //────────────────────────────────────────
 
-        public Record_HumaninputImpl(DataRow dataRow)
+        public Record_HumaninputImpl(string config, DataRow dataRow, Configuration_Node parent_ConfigurationNode)
+            : base(config, parent_ConfigurationNode)
         {
             this.dataRow = dataRow;
+            //this.configuration_Node = configuration_Node;
         }
 
-        public Record_HumaninputImpl(Table_Humaninput owner_TableH)
+        public Record_HumaninputImpl(string config, Table_Humaninput owner_TableH)
+            : base(config, owner_TableH)
         {
             this.dataRow = owner_TableH.DataTable.NewRow();
+            //this.configuration_Node = owner_TableH;
         }
 
         //────────────────────────────────────────
@@ -101,6 +105,35 @@ namespace Xenon.Table
         public Value_Humaninput ValueAt(string name_Field)
         {
             return (Value_Humaninput)this.DataRow[name_Field];
+        }
+
+        /// <summary>
+        /// 配列の要素をテキストとして取得します。
+        /// </summary>
+        /// <param name="name_Field"></param>
+        /// <returns></returns>
+        public string TextAt(string name_Field)
+        {
+            string text;
+
+            if (!this.DataRow.Table.Columns.Contains(name_Field))
+            {
+                text = "";
+            }
+            else
+            {
+                Value_Humaninput valueH = (Value_Humaninput)this.DataRow[name_Field];
+                if (null != valueH)
+                {
+                    text = valueH.Text;
+                }
+                else
+                {
+                    text = "";
+                }
+            }
+
+            return text;
         }
 
         /// <summary>
@@ -183,6 +216,29 @@ namespace Xenon.Table
 
         //────────────────────────────────────────
 
+        public override void ToText_Content(Log_TextIndented s)
+        {
+            s.Increment();
+
+            int cur_IndexColumn = 0;
+            foreach (object obj in this.DataRow.ItemArray)
+            {
+                Value_Humaninput valueH = (Value_Humaninput)obj;
+
+                s.Append("[");
+                s.Append(cur_IndexColumn);
+                s.Append(":");
+                s.Append(valueH.Text);
+                s.Append("]");
+
+                cur_IndexColumn++;
+            }
+
+            s.Decrement();
+        }
+
+        //────────────────────────────────────────
+
         public void AddTo(Table_Humaninput tableH)
         {
             tableH.DataTable.Rows.Add(this.DataRow);
@@ -199,6 +255,25 @@ namespace Xenon.Table
 
 
         #region プロパティー
+        ////────────────────────────────────────────
+
+        //private Configuration_Node configuration_Node;
+
+        ///// <summary>
+        ///// テーブルのコンフィグ記述場所情報。
+        ///// </summary>
+        //public Configuration_Node Configuration_Node
+        //{
+        //    get
+        //    {
+        //        return this.configuration_Node;
+        //    }
+        //    set
+        //    {
+        //        this.configuration_Node = value;
+        //    }
+        //}
+
         //────────────────────────────────────────
 
         private DataRow dataRow;

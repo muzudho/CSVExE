@@ -59,7 +59,7 @@ namespace Xenon.Table
             int index_Row = 0;
             string[] array_Field;
             DataRow datarow;
-            CsvEscapeImpl csvescape = new CsvEscapeImpl();
+            CsvLineParserImpl csvParser = new CsvLineParserImpl();
 
             if (-1 < reader.Peek())
             {
@@ -70,7 +70,7 @@ namespace Xenon.Table
                 //
 
                 // 読み取った返却値を、変数に入れ直さずにスプリット。
-                array_Field = csvescape.UnescapeRecordToFieldList(reader.ReadLine(), this.CharSeparator).ToArray();
+                array_Field = csvParser.UnescapeLineToFieldList(reader.ReadLine(), this.CharSeparator).ToArray();
 
                 // 行を作成します。
                 datarow = dataTable.NewRow();

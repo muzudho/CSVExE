@@ -45,12 +45,12 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function35Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -107,8 +107,6 @@ namespace Xenon.Functions
                 //
                 //
                 //
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
-
 
                 //
                 // このNAction29を含んでいるｃｏｎｔｒｏｌ要素から
@@ -122,22 +120,24 @@ namespace Xenon.Functions
                 {
                     // 正常時
 
-                    Configurationtree_Node cf_Event = this.Cur_Configurationtree.GetParentByNodename(NamesNode.S_EVENT, false, log_Reports);
+                    Configuration_Node cf_Event = this.Cur_Configuration.GetParentByNodename(
+                        NamesNode.S_EVENT, EnumConfiguration.Unknown, false, log_Reports);
 
                     if (null != cf_Event)
                     {
-                        Configurationtree_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(NamesNode.S_CONTROL1, true, log_Reports);
+                        Configuration_Node owner_Configurationtree_Control = cf_Event.GetParentByNodename(
+                            NamesNode.S_CONTROL1, EnumConfiguration.Tree, true, log_Reports);
 
                         if (null != owner_Configurationtree_Control)
                         {
                             string sName_Usercontrol;
-                            owner_Configurationtree_Control.Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
+                            ((Configurationtree_Node)owner_Configurationtree_Control).Dictionary_Attribute.TryGetValue(PmNames.S_NAME, out sName_Usercontrol, true, log_Reports);
 
 
-                            Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Configurationtree);
+                            Expression_Node_StringImpl ec_Str = new Expression_Node_StringImpl(this, this.Cur_Configuration);
                             ec_Str.AppendTextNode(
                                 sName_Usercontrol,
-                                this.Cur_Configurationtree,
+                                this.Cur_Configuration,
                                 log_Reports
                                 );
 
@@ -217,7 +217,7 @@ namespace Xenon.Functions
                         ec_Child.TrySelectAttribute(out sFncName, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
 
                         if (
-                            NamesNode.S_FNC == ec_Child.Cur_Configurationtree.Name &&
+                            NamesNode.S_FNC == ec_Child.Cur_Configuration.Name &&
                             NamesFnc.S_LISTBOX_LABELS == sFncName
                             )
                         {
@@ -374,7 +374,7 @@ namespace Xenon.Functions
                             tmpl.SetParameter(3, s1.ToString(), log_Reports);//データターゲットの変数の中身
 
                             Log_TextIndented s2 = new Log_TextIndentedImpl();
-                            err_Ec_DataTarget.Cur_Configurationtree.ToText_Content(s2);
+                            err_Ec_DataTarget.Cur_Configuration.ToText_Content(s2);
                             tmpl.SetParameter(4, s2.ToString(), log_Reports);//データターゲットの設定の中身
 
                             this.Owner_MemoryApplication.CreateErrorReport("Er:110021;", tmpl, log_Reports);
@@ -387,7 +387,7 @@ namespace Xenon.Functions
                         {
                             Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                             tmpl.SetParameter(1, errorRule.GetType().Name, log_Reports);//要素のクラス名
-                            tmpl.SetParameter(2, ec_Child.Cur_Configurationtree.Name, log_Reports);//設定の子要素のノード名
+                            tmpl.SetParameter(2, ec_Child.Cur_Configuration.Name, log_Reports);//設定の子要素のノード名
                             tmpl.SetParameter(3, sFncName, log_Reports);//設定の子要素の関数名
 
                             this.Owner_MemoryApplication.CreateErrorReport("Er:110022;", tmpl, log_Reports);
@@ -456,8 +456,6 @@ namespace Xenon.Functions
         //
         gt_EndMethod:
             log_Method.EndMethod(log_Reports);
-            // 必ずフラグをオフにします。
-            ((EventMonitor)this.Functionparameterset.EventMonitor).BNowactionworking = false;
             return "";
         }
 

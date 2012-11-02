@@ -62,7 +62,8 @@ namespace Xenon.Table
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_Table.Name_Library, this, "Read(1)",log_Reports);
 
-            Table_Humaninput xenonTable = new Table_HumaninputImpl(forTable_request.Name_PutToTable, forTable_request.Expression_Filepath, forTable_request.Expression_Filepath.Cur_Configurationtree );
+            Table_Humaninput xenonTable = new Table_HumaninputImpl(
+                forTable_request.Name_PutToTable, forTable_request.Expression_Filepath, forTable_request.Expression_Filepath.Cur_Configuration );
             xenonTable.Tableunit = forTable_request.Tableunit;
             xenonTable.Typedata = forTable_request.Typedata;
             xenonTable.IsDatebackupActivated = forTable_request.IsDatebackupActivated;
@@ -88,7 +89,7 @@ namespace Xenon.Table
 
             // CSVテキストを読み込み、型とデータのバッファーを作成します。
             System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
-            CsvEscapeImpl ce = new CsvEscapeImpl();
+            CsvLineParserImpl csvParser = new CsvLineParserImpl();
 
             // CSVを解析して、テーブル形式で格納。
             {
@@ -99,9 +100,9 @@ namespace Xenon.Table
                 string[] fields_Cur;
                 while (-1 < reader.Peek())
                 {
-                    string sLine = reader.ReadLine();
+                    string line = reader.ReadLine();
 
-                    fields_Cur = ce.UnescapeRecordToFieldList(sLine, this.charSeparator).ToArray();
+                    fields_Cur = csvParser.UnescapeLineToFieldList(line, this.charSeparator).ToArray();
 
 
                     if (0 == nRowIndex)
@@ -324,7 +325,7 @@ namespace Xenon.Table
 
                 //
                 // ヒント
-                s.Append(Log_RecordReportsImpl.ToText_Configurationtree(xenonTable));
+                s.Append(Log_RecordReportsImpl.ToText_Configuration(xenonTable));
 
                 r.Message = s.ToString();
                 log_Reports.EndCreateReport();

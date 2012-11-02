@@ -20,8 +20,8 @@ namespace Xenon.Table
     #endregion
 
 
-    
-    public interface Record_Humaninput
+
+    public interface Record_Humaninput : Configuration_Node
     {
 
 
@@ -60,6 +60,13 @@ namespace Xenon.Table
         /// <param name="name_Field"></param>
         /// <returns></returns>
         Value_Humaninput ValueAt(string name_Field);
+        
+        /// <summary>
+        /// 配列の要素をテキストとして取得します。
+        /// </summary>
+        /// <param name="name_Field"></param>
+        /// <returns></returns>
+        string TextAt(string name_Field);
 
         /// <summary>
         /// 配列の要素を取得します。
@@ -101,16 +108,20 @@ namespace Xenon.Table
 
 
 
-        #region プロパティー
-        //────────────────────────────────────────
+        //#region プロパティー
+        ////────────────────────────────────────────
 
-        //DataRow DataRow
+        ///// <summary>
+        ///// テーブルのコンフィグ記述場所情報。
+        ///// </summary>
+        //Configuration_Node Configuration_Node
         //{
         //    get;
+        //    set;
         //}
 
-        //────────────────────────────────────────
-        #endregion
+        ////────────────────────────────────────────
+        //#endregion
 
 
 

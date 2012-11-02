@@ -52,7 +52,7 @@ namespace Xenon.Syntax
                 sb.Append(Environment.NewLine);
 
                 // ヒント
-                sb.Append(r.Message_Configurationtree(parent_Conf));
+                sb.Append(r.Message_Configuration(parent_Conf));
 
                 r.Message = sb.ToString();
                 log_Reports.EndCreateReport();
@@ -101,7 +101,7 @@ namespace Xenon.Syntax
                 sb.Append(Environment.NewLine);
 
                 // ヒント
-                sb.Append(r.Message_Configurationtree(parent_Conf));
+                sb.Append(r.Message_Configuration(parent_Conf));
 
                 r.Message = sb.ToString();
                 log_Reports.EndCreateReport();

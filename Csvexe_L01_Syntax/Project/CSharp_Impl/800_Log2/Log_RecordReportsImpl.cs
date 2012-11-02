@@ -64,8 +64,8 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public static string ToText_Configurationtree(
-            Configurationtree_Node parent_Conf
+        public static string ToText_Configuration(
+            Configuration_Node parent_Conf
             )
         {
             Log_TextIndented s = new Log_TextIndentedImpl();
@@ -104,11 +104,11 @@ namespace Xenon.Syntax
         /// 警告メッセージの定型文を作ります。
         /// </summary>
         /// <returns></returns>
-        public string Message_Configurationtree(
-            Configurationtree_Node parent_Cnf
+        public string Message_Configuration(
+            Configuration_Node parent_Cnf
             )
         {
-            return Log_RecordReportsImpl.ToText_Configurationtree(parent_Cnf);
+            return Log_RecordReportsImpl.ToText_Configuration(parent_Cnf);
         }
 
         //────────────────────────────────────────
@@ -123,7 +123,7 @@ namespace Xenon.Syntax
 
             sb.Append(this.Message_SSeparator());
 
-            sb.Append("　　実行パス・パンくずリスト（プログラマー向けヒント）：");
+            sb.Append("　　実行パス・パンくずリスト（プログラマー向けヒント）Log_RecordReportsImpl：");
             sb.Append(Environment.NewLine);
             sb.Append("　　　");
 

@@ -785,8 +785,6 @@ namespace Xenon.Controls
         /// <param nFcName="log_Reports"></param>
         public override void Execute4_OnLr(
             object sender,
-            object eventMonitor,//EventMonitor
-            string sWrittenPlace_EventOrigin,
             Log_Reports log_Reports
         )
         {
@@ -848,8 +846,6 @@ namespace Xenon.Controls
                     //
                     expr_Func.Execute4_OnLr(
                         sender,
-                        eventMonitor,
-                        sWrittenPlace_EventOrigin,
                         log_Reports
                         );
                 }

@@ -273,7 +273,7 @@ namespace Xenon.MiddleImpl
             }
 
 
-            Configurationtree_Node Usercontrolconfig_Conf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_CONTROLS, filepath_Uf_Expr.Cur_Configurationtree);
+            Configurationtree_Node Usercontrolconfig_Conf = new Configurationtree_NodeImpl(NamesNode.S_CODEFILE_CONTROLS, filepath_Uf_Expr.Cur_Configuration);
 
 
             //
@@ -437,7 +437,7 @@ namespace Xenon.MiddleImpl
                         o_Table_Form.Name,
                         new Configurationtree_NodeImpl(
                             NamesNode.S_FORM_CONFIG,
-                            o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
+                            o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configuration//Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                         ));
                     if (!log_Reports.Successful)
                     {
@@ -474,7 +474,7 @@ namespace Xenon.MiddleImpl
                     fo_Config_ByGroup = new TableUserformconfigImpl(
                         o_Table_Form.Name,
                         new Configurationtree_NodeImpl(NamesNode.S_FORM_CONFIG,
-                        o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configurationtree//Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
+                        o_Table_Form.Expression_Filepath_ConfigStack.Cur_Configuration//Execute4_OnExpressionString(EnumHitcount.Unconstraint, log_Reports)
                         ));
                     if (!log_Reports.Successful)
                     {
@@ -1347,7 +1347,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(ec_FcName.Cur_Configurationtree));
+                t.Append(r.Message_Configuration(ec_FcName.Cur_Configuration));
 
                 t.Append("一覧：");
                 this.ForEach_Children(delegate(string sKey, Usercontrol fcUc, ref bool bRemove, ref bool bBreak)
@@ -1693,7 +1693,7 @@ namespace Xenon.MiddleImpl
                 t.Append(Environment.NewLine);
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(cf_RfrConfig_Hint));
+                t.Append(r.Message_Configuration(cf_RfrConfig_Hint));
 
                 r.Message = t.ToString();
                 log_Reports.EndCreateReport();

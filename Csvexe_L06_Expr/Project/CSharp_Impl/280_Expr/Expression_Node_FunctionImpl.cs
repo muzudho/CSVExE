@@ -32,7 +32,10 @@ namespace Xenon.Expr
         /// <param name="parent_Expression">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         /// <param name="cur_Conf">生成時はヌルを入れておいて、#NewInstanceで後から設定することもできます。</param>
         public Expression_Node_FunctionImpl(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf, List<string> list_NameArgumentInitializer)
+            Expression_Node_String parent_Expression,
+            Configuration_Node cur_Conf,
+            List<string> list_NameArgumentInitializer
+            )
             : base(parent_Expression, cur_Conf)
         {
             this.dictionary_Expression_Parameter = new Dictionary_Expression_Node_StringImpl(cur_Conf);
@@ -51,7 +54,7 @@ namespace Xenon.Expr
         /// <returns></returns>
         public virtual Expression_Node_Function NewInstance(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Conf,
+            Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication,
             Log_Reports log_Reports)
         {
@@ -486,8 +489,6 @@ namespace Xenon.Expr
         /// <param name="log_Reports"></param>
         public override void Execute4_OnLr(
             object prm_Sender,
-            object prm_EventMonitor,//EventMonitor
-            string prm_SNode_EventOrigin,
             Log_Reports log_Reports
         )
         {
@@ -500,8 +501,6 @@ namespace Xenon.Expr
             this.Set_OnWrRhn(
                 this,
                 prm_Sender,
-                prm_EventMonitor,//EventMonitor
-                prm_SNode_EventOrigin,
                 log_Reports
             );
 
@@ -514,15 +513,11 @@ namespace Xenon.Expr
         protected void Set_OnWrRhn(
             Expression_Node_Function expr_Func,
             object prm_Sender,
-            object prm_EventMonitor,//EventMonitor
-            string prm_SNode_EventOrigin,
             Log_Reports prm_D_LoggingBuffer
         )
         {
             expr_Func.EnumEventhandler = EnumEventhandler.O_Lr;
             expr_Func.Functionparameterset.Sender = prm_Sender;
-            expr_Func.Functionparameterset.EventMonitor = prm_EventMonitor;
-            expr_Func.Functionparameterset.Node_EventOrigin = prm_SNode_EventOrigin;
         }
 
         //────────────────────────────────────────
@@ -578,7 +573,7 @@ namespace Xenon.Expr
             string sClassName,
             string sMethodName,
             EnumEventhandler enumEH,
-            Configurationtree_Node cf_Node,
+            Configuration_Node conf_Node,
             Log_Reports log_Reports
             )
         {
@@ -598,7 +593,7 @@ namespace Xenon.Expr
                 string sFncName0;
                 ec_CommonFunction.TrySelectAttribute(out sFncName0, PmNames.S_NAME.Name_Pm, EnumHitcount.One_Or_Zero, log_Reports);
                 tmpl.SetParameter(3, sFncName0, log_Reports);//関数名
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(cf_Node), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configuration(conf_Node), log_Reports);//設定位置パンくずリスト
 
                 this.Owner_MemoryApplication.CreateErrorReport("Er:6039;", tmpl, log_Reports);
             }

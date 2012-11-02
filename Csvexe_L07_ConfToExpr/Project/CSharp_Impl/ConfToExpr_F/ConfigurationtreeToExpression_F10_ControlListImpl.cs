@@ -142,7 +142,7 @@ namespace Xenon.ConfToExpr
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sName_Usercontrol, log_Reports);//コントロール名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(cf_FcConfig), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(cf_FcConfig), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:7001;", tmpl, log_Reports);
             }

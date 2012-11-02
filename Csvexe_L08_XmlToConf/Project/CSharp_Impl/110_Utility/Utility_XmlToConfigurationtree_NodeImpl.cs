@@ -19,7 +19,7 @@ namespace Xenon.XmlToConf
         //────────────────────────────────────────
 
         public static Usercontrol GetUsercontrol(
-            Configurationtree_Node cf_Cur,
+            Configurationtree_Node cf_CurTree,
             MemoryApplication memoryApplication,
             Log_Reports log_Reports
             )
@@ -39,9 +39,9 @@ namespace Xenon.XmlToConf
                 Expression_Node_StringImpl ec_String = new Expression_Node_StringImpl(null, memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig);
                 {
                     PmName pmName = PmNames.S_NAME;
-                    if (cf_Cur.Dictionary_Attribute.ContainsKey(pmName.Name_Pm))
+                    if (cf_CurTree.Dictionary_Attribute.ContainsKey(pmName.Name_Pm))
                     {
-                        cf_Cur.Dictionary_Attribute.TryGetValue(pmName, out sFcName, true, log_Reports);
+                        cf_CurTree.Dictionary_Attribute.TryGetValue(pmName, out sFcName, true, log_Reports);
 
                         ec_String.AppendTextNode(
                             sFcName,
@@ -88,7 +88,7 @@ namespace Xenon.XmlToConf
             {
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, err_FcName, log_Reports);//関数名
-                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configurationtree(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig), log_Reports);//設定位置パンくずリスト
+                tmpl.SetParameter(2, Log_RecordReportsImpl.ToText_Configuration(memoryApplication.MemoryValidators.Configurationtree_Validatorsconfig), log_Reports);//設定位置パンくずリスト
 
                 memoryApplication.CreateErrorReport("Er:8001;", tmpl, log_Reports);
             }

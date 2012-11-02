@@ -235,8 +235,8 @@ namespace Xenon.Controls
                 Builder_TexttemplateP1p tmpl = new Builder_TexttemplateP1pImpl();
                 tmpl.SetParameter(1, sName_KeyFld,log_Reports);//キー・フィールド名
                 tmpl.SetParameter(2, err_STableName, log_Reports);//テーブル名
-                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configurationtree(ec_KeyFieldName.Cur_Configurationtree), log_Reports);//キー・フィールド名の設定位置パンくずリスト
-                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configurationtree(ec_ExpectedValue.Cur_Configurationtree), log_Reports);//テーブル名の設定位置パンくずリスト
+                tmpl.SetParameter(3, Log_RecordReportsImpl.ToText_Configuration(ec_KeyFieldName.Cur_Configuration), log_Reports);//キー・フィールド名の設定位置パンくずリスト
+                tmpl.SetParameter(4, Log_RecordReportsImpl.ToText_Configuration(ec_ExpectedValue.Cur_Configuration), log_Reports);//テーブル名の設定位置パンくずリスト
 
                 this.ControlCommon.Owner_MemoryApplication.CreateErrorReport("Er:505;", tmpl, log_Reports);
             }

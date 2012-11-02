@@ -90,6 +90,15 @@ namespace Xenon.Syntax
         void TryGetExtension(out string extension, Log_Reports log_Reports);
 
         //────────────────────────────────────────
+
+        /// <summary>
+        /// ファイル名の頭と末尾に文字列を付けることができます。
+        /// </summary>
+        /// <param name="prefix">ファイル名の頭に付ける文字列。</param>
+        /// <param name="suffix">ファイル名の末尾に付ける文字列。</param>
+        Expression_Node_Filepath Rename_Append(string prefix, string suffix, Log_Reports log_Reports);
+
+        //────────────────────────────────────────
         #endregion
 
 

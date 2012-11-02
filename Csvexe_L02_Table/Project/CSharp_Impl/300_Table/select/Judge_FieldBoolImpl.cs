@@ -24,7 +24,7 @@ namespace Xenon.Table
             string value_Expected,
             bool isRequired_ExpectedValue,
             DataRow row,
-            Configurationtree_Node parent_Query,
+            Configuration_Node parent_Query,
             Log_Reports log_Reports
             )
         {

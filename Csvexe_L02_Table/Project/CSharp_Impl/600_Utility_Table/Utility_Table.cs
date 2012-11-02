@@ -159,7 +159,8 @@ namespace Xenon.Table
 
 
 
-            Table_Humaninput tableH_New = new Table_HumaninputImpl(name_NewTable, expr_Fpath_NewTable, expr_Fpath_NewTable.Cur_Configurationtree);
+            Table_Humaninput tableH_New = new Table_HumaninputImpl(
+                name_NewTable, expr_Fpath_NewTable, expr_Fpath_NewTable.Cur_Configuration);
 
             RecordFielddefinition recordFielddefinigion_New;
             List<List<string>> sFieldListList;

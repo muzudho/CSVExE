@@ -317,7 +317,7 @@ namespace Xenon.Layout
                 s.Newline();
 
                 // ヒント
-                s.Append(r.Message_Configurationtree(o_Table_Form));
+                s.Append(r.Message_Configuration(o_Table_Form));
 
                 r.Message = s.ToString();
                 pg_Logging.EndCreateReport();
@@ -375,7 +375,7 @@ namespace Xenon.Layout
                 t.Newline();
 
                 // ヒント
-                t.Append(r.Message_Configurationtree(o_Table_Form));
+                t.Append(r.Message_Configuration(o_Table_Form));
 
                 r.Message = t.ToString();
                 pg_Logging.EndCreateReport();

@@ -58,7 +58,7 @@ namespace Xenon.ConfToExpr
 
             if (log_Method.CanDebug(2))
             {
-                log_Method.WriteDebug_ToConsole( "「S■ａｒｇ１・３」要素　解析開始┌────────────────┐　自ａｒｇ１・３は、e_Parent=[" + parent_Ec.Cur_Configurationtree.Name + "]の”" + sName_MyFnc + "”属性になる。");
+                log_Method.WriteDebug_ToConsole("「S■ａｒｇ１・３」要素　解析開始┌────────────────┐　自ａｒｇ１・３は、e_Parent=[" + parent_Ec.Cur_Configuration.Name + "]の”" + sName_MyFnc + "”属性になる。");
             }
 
 

@@ -112,7 +112,7 @@ namespace Xenon.Expr
 
             sb.Append(this.GetType().Name);
             sb.Append(" ");
-            sb.Append(this.Cur_Configurationtree.Parent);
+            sb.Append(this.Cur_Configuration.Parent);
             sb.Append(" [");
             sb.Append(this.Dictionary_Expression_Attribute.ToString());//？
             sb.Append("] 変数名");

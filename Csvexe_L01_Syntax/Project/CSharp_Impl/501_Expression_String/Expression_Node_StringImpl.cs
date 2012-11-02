@@ -22,14 +22,14 @@ namespace Xenon.Syntax
         /// </summary>
         /// <param name="parent_Expression"></param>
         /// <param name="cur_Conf">生成時に指定できないものもある。</param>
-        public Expression_Node_StringImpl(Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf)
+        public Expression_Node_StringImpl(Expression_Node_String parent_Expression, Configuration_Node cur_Conf)
         {
             this.parent_Expression = parent_Expression;
-            this.cur_Configurationtree = cur_Conf;
+            this.cur_Configuration = cur_Conf;
 
             enumHitcount = EnumHitcount.Unconstraint;
             this.ecList_Child = new List_Expression_Node_StringImpl(this);
-            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configurationtree);
+            this.dictionary_Expression_Attribute = new Dictionary_Expression_Node_StringImpl(this.Cur_Configuration);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Xenon.Syntax
         /// <param name="cur_Cf"></param>
         public void InitializeBeforeuse(Configurationtree_Node cur_Cf)
         {
-            this.cur_Configurationtree = cur_Cf;
+            this.cur_Configuration = cur_Cf;
         }
 
         //────────────────────────────────────────
@@ -75,7 +75,7 @@ namespace Xenon.Syntax
 
             // ノード名
             s.AppendI(0,"「E■[");
-            s.Append(this.Cur_Configurationtree.Name);
+            s.Append(this.Cur_Configuration.Name);
             s.Append("]　");
 
             // クラス名
@@ -198,7 +198,7 @@ namespace Xenon.Syntax
         /// <param name="log_Reports"></param>
         public void AppendTextNode(
             string sHumanInput,
-            Configurationtree_Node parent_Conf,
+            Configuration_Node parent_Conf,
             Log_Reports log_Reports
             )
         {
@@ -416,7 +416,7 @@ namespace Xenon.Syntax
             // ファイルパス。
             string sFpath = ec_Caller.Execute5_Main(log_Reports);
             {
-                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L01_1", ec_Caller.Cur_Configurationtree);
+                Configurationtree_NodeFilepath cf_Fpath = new Configurationtree_NodeFilepathImpl("ファイルパス出典未指定L01_1", ec_Caller.Cur_Configuration);
                 cf_Fpath.InitPath(sFpath, log_Reports);
                 if (!log_Reports.Successful)
                 {
@@ -464,7 +464,7 @@ namespace Xenon.Syntax
             {
                 result = null;
             }
-            else if (ec_Me.Parent_Expression.Cur_Configurationtree.Name == sName_Node)
+            else if (ec_Me.Parent_Expression.Cur_Configuration.Name == sName_Node)
             {
                 result = ec_Me.Parent_Expression;
             }
@@ -499,7 +499,7 @@ namespace Xenon.Syntax
             {
                 if (log_Reports.Successful)
                 {
-                    if (ec_Child.Cur_Configurationtree.Name == sExpectedNodeName)
+                    if (ec_Child.Cur_Configuration.Name == sExpectedNodeName)
                     {
                         result.Add(ec_Child);
 
@@ -635,7 +635,7 @@ namespace Xenon.Syntax
 
                 if (log_Reports.Successful)
                 {
-                    if (ec_Item.Cur_Configurationtree.Name == sName_ExpectedNode)
+                    if (ec_Item.Cur_Configuration.Name == sName_ExpectedNode)
                     {
                         result.Add(ec_Item);
 
@@ -755,20 +755,20 @@ namespace Xenon.Syntax
         #region プロパティー
         //────────────────────────────────────────
 
-        private Configurationtree_Node cur_Configurationtree;
+        private Configuration_Node cur_Configuration;
 
         /// <summary>
         /// 設定場所のヒント。
         /// </summary>
-        public Configurationtree_Node Cur_Configurationtree
+        public Configuration_Node Cur_Configuration
         {
             get
             {
-                return this.cur_Configurationtree;
+                return this.cur_Configuration;
             }
             set
             {
-                this.cur_Configurationtree = value;
+                this.cur_Configuration = value;
             }
         }
 

@@ -43,12 +43,12 @@ namespace Xenon.Functions
         }
 
         public override Expression_Node_Function NewInstance(
-            Expression_Node_String parent_Expression, Configurationtree_Node cur_Conf,
+            Expression_Node_String parent_Expression, Configuration_Node cur_Conf,
             object/*MemoryApplication*/ owner_MemoryApplication, Log_Reports log_Reports)
         {
             Expression_Node_Function f0 = new Expression_Node_Function44Impl(this.EnumEventhandler,this.List_NameArgumentInitializer,this.Functiontranslatoritem);
             f0.Parent_Expression = parent_Expression;
-            f0.Cur_Configurationtree = cur_Conf;
+            f0.Cur_Configuration = cur_Conf;
             ((Expression_Node_FunctionAbstract)f0).Owner_MemoryApplication = (MemoryApplication)owner_MemoryApplication;
             //関数名初期化
             f0.SetAttribute(PmNames.S_NAME.Name_Pm, new Expression_Leaf_StringImpl(NAME_FUNCTION, null, cur_Conf), log_Reports);
@@ -82,9 +82,6 @@ namespace Xenon.Functions
 
             if (this.EnumEventhandler == EnumEventhandler.O_Lr)
             {
-                this.Functionparameterset.Node_EventOrigin += "＜" + Info_Functions.Name_Library + ":" + this.GetType().Name + "#:＞";
-
-
                 // 日付毎のバックアップ（バックアップ対象ファイルを、設定ファイルから読取り後）
                 if (log_Reports.Successful)
                 {
@@ -109,7 +106,7 @@ namespace Xenon.Functions
                             );
 
                         // 変数名。
-                        Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Configurationtree);
+                        Expression_Leaf_StringImpl ec_Atom = new Expression_Leaf_StringImpl(o_Name_Variable.SValue, null, o_Name_Variable.Cur_Configuration);
 
                         // フォルダーパス。
                         log_Reports.Log_Callstack.Push(log_Method, "⑥");

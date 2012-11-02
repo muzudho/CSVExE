@@ -115,6 +115,15 @@ namespace Xenon.Syntax
         //────────────────────────────────────────
 
         /// <summary>
+        /// メソッド内での、デバッグ出力をする閾値。
+        /// </summary>
+        int Level_DebugMethod
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// ストップウォッチ。処理時間を計測するのに使う。
         /// </summary>
         Log_Stopwatch Log_Stopwatch
@@ -150,7 +159,7 @@ namespace Xenon.Syntax
         /// <summary>
         /// staticメソッドなら真。
         /// </summary>
-        bool Static
+        bool IsStatic
         {
             get;
         }

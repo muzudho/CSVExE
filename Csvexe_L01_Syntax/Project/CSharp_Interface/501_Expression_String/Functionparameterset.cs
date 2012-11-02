@@ -174,26 +174,6 @@ namespace Xenon.Syntax
             set;
         }
 
-        /// <summary>
-        /// イベントハンドラー引数。
-        /// Perform_WrRhn_Main で利用。
-        /// </summary>
-        object EventMonitor
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// イベントハンドラー引数。
-        /// Perform_WrRhn_Main で利用。
-        /// </summary>
-        string Node_EventOrigin
-        {
-            get;
-            set;
-        }
-
         //────────────────────────────────────────
         #endregion
 

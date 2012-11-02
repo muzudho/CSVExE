@@ -27,10 +27,9 @@ namespace Xenon.Middle
         void Perform(
             List<Table_Humaninput> oList_Table_Form,
             Expression_Node_Filepath ec_Fopath_Forms,
-            Configurationtree_Node thisAction_Conf,
+            Configuration_Node thisAction_Conf,
             Form form,
             object sender,
-            EventMonitor eventMonitor,
             Log_Reports log_Reports
             );
 

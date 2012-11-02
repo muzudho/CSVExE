@@ -34,7 +34,6 @@ namespace Xenon.Middle
             Expression_Node_String expr_NameControl,
             XenonName name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             );
 
@@ -51,7 +50,6 @@ namespace Xenon.Middle
             string name_Control_NameStarts,
             XenonName name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             );
 
@@ -70,24 +68,8 @@ namespace Xenon.Middle
             object sender,
             XenonName name_Event,
             MemoryApplication owner_MemoryApplication,
-            string sConfigStack_EventOrigin,
             Log_Reports log_Reports
             );
-
-        ///// <summary>
-        ///// 実行。
-        ///// </summary>
-        ///// <param name="nFcName"></param>
-        ///// <param name="oEventName"></param>
-        ///// <param name="log_Reports"></param>
-        //void Execute2(
-        //    object sender,
-        //    string sName_Usercontrol,
-        //    string sName_Event,
-        //    MemoryApplication owner_MemoryApplication,
-        //    string sConfigStack_EventOrigin,
-        //    Log_Reports log_Reports
-        //    );
 
         //────────────────────────────────────────
         #endregion

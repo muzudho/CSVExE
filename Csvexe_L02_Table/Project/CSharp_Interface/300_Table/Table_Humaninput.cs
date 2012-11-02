@@ -100,7 +100,7 @@ namespace Xenon.Table
         /// </summary>
         /// <param name="sErrorMsg"></param>
         /// <returns></returns>
-        Record_Humaninput CreateNewRecord(Log_Reports log_Reports);
+        Record_Humaninput CreateNewRecord(string config, Log_Reports log_Reports);
 
         /// <summary>
         /// 行の削除。

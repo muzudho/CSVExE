@@ -33,7 +33,7 @@ namespace Xenon.Functions
         /// <param name="form"></param>
         public ConfigurationtreeToFunction_ListImpl(
             Expression_Node_String parent_Expression,
-            Configurationtree_Node cur_Conf,
+            Configuration_Node cur_Conf,
             MemoryApplication owner_MemoryApplication,
             Log_Reports log_Reports
             )

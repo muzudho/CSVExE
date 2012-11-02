@@ -112,7 +112,10 @@ namespace Xenon.Syntax
             s.Newline();
 
             int nErrorCount = 0;
-            foreach (Log_RecordReports log_RecordReport in this.list_Record)
+
+            
+            List<Log_RecordReports> listCopy = new List<Log_RecordReports>(this.list_Record);
+            foreach (Log_RecordReports log_RecordReport in listCopy)//todo:bug:ここで リストが変更されているときに例外を出してしまう。
             {
                 // グループ・タグが指定されていれば、
                 // グループ・タグが一致するメッセージだけを出力します。
@@ -275,11 +278,17 @@ namespace Xenon.Syntax
             //必ず実行。
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("▲エラー！（EndLogging）");
+                sb.Append("▲エラー！（L01 EndLogging）");
 
                 string strMessage = this.ToText();
                 // \n を、実際に改行する命令に変換。
                 strMessage = strMessage.Replace("\\n", System.Environment.NewLine);
+
+                //一定数を超えた文字列は削ります。（ダイアログボックスが表示できなくなるので）
+                if (1000<strMessage.Length)
+                {
+                    strMessage = strMessage.Substring(0, 999);
+                }
 
                 MessageBox.Show(strMessage, sb.ToString());
             }

@@ -52,7 +52,7 @@ namespace Xenon.Table
             List<string[]> list_ArrayString = new List<string[]>();
 
             System.IO.StringReader reader = new System.IO.StringReader(string_Csv);
-            CsvEscapeImpl ce = new CsvEscapeImpl();
+            CsvLineParserImpl csvParser = new CsvLineParserImpl();
 
             // CSVを解析して、テーブル形式で格納。
             {
@@ -64,7 +64,7 @@ namespace Xenon.Table
                     //
                     // 配列の返却値を、ダイレクトに渡します。
                     //
-                    string[] sFields = ce.UnescapeRecordToFieldList(sLine, this.CharSeparator).ToArray();
+                    string[] sFields = csvParser.UnescapeLineToFieldList(sLine, this.CharSeparator).ToArray();
                     list_ArrayString.Add(sFields);
 
                     nRowIndex++;
