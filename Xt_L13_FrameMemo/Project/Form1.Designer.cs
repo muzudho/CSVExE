@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.xyMemoUc1 = new Xenon.FrameMemo.Usercontrol_FrameMemo();
+            this.xyMemoUc1 = new Xenon.FrameMemo.Usercontrol_Canvas();
             this.SuspendLayout();
             // 
             // xyMemoUc1
@@ -58,7 +58,7 @@
 
         #endregion
 
-        private Usercontrol_FrameMemo xyMemoUc1;
+        private Usercontrol_Canvas xyMemoUc1;
     }
 }
 

@@ -24,7 +24,7 @@ namespace Xenon.FrameMemo
         public Bitmap CreateSaveImage(
             Usercontrolview_Infodisplay infodisplay,
             CheckBox pcchkInfo,
-            Usercontrol_FrameMemo uc_FrameMemo
+            Usercontrol_Canvas uc_FrameMemo
             )
         {
             Bitmap bm;

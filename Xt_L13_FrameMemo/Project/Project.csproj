@@ -36,9 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -69,25 +67,26 @@
     <Compile Include="CSharp_Impl\Function\Function3Save1Impl.cs" />
     <Compile Include="CSharp_Impl\Function\Function5Save2Impl.cs" />
     <Compile Include="CSharp_Impl\Function\Function4Save1bImpl.cs" />
+    <Compile Include="CSharp_Impl\PartnumberconfigImpl.cs" />
     <Compile Include="CSharp_Impl\Usercontrolview_Infodisplay.cs" />
-    <Compile Include="CSharp_Impl\Usercontrol_FrameMemo.cs">
+    <Compile Include="CSharp_Impl\Usercontrol_Canvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CSharp_Impl\Usercontrol_FrameMemo.Designer.cs">
-      <DependentUpon>Usercontrol_FrameMemo.cs</DependentUpon>
+    <Compile Include="CSharp_Impl\Usercontrol_Canvas.Designer.cs">
+      <DependentUpon>Usercontrol_Canvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSharp_Impl\Form1.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CSharp_Impl\Form1.Designer.cs">
+    <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CSharp_Impl\Usercontrol_FrameMemo.resx">
-      <DependentUpon>Usercontrol_FrameMemo.cs</DependentUpon>
+    <EmbeddedResource Include="CSharp_Impl\Usercontrol_Canvas.resx">
+      <DependentUpon>Usercontrol_Canvas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CSharp_Impl\Form1.resx">
+    <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

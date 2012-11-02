@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Drawing;//PointF
+using System.Drawing;
 
 namespace Xenon.FrameMemo
 {
@@ -41,6 +41,7 @@ namespace Xenon.FrameMemo
             float imgOpaque,
             bool isImageGrid,
             bool isVisible_Infodisplay,
+            PartnumberconfigImpl partnumberconf,
             Usercontrolview_Infodisplay infoDisplay
             )
         {
@@ -60,19 +61,19 @@ namespace Xenon.FrameMemo
                 //ColorMatrixを設定する
                 ia.SetColorMatrix(cm);
             }
-            float x = 0;
-            float y = 0;
+            float leftSprite = 0;
+            float topSprite = 0;
             if (isOnWindow)
             {
-                x += memorySprite.Lefttop.X;
-                y += memorySprite.Lefttop.Y;
+                leftSprite += memorySprite.Lefttop.X;
+                topSprite += memorySprite.Lefttop.Y;
             }
 
             //
             // 表示画像の長方形（Image rectangle）
             RectangleF dstIrScaled = new RectangleF(
-                x + xBase,
-                y + yBase,
+                leftSprite + xBase,
+                topSprite + yBase,
                 scale * (float)memorySprite.Bitmap.Width,
                 scale * (float)memorySprite.Bitmap.Height
                 );
@@ -96,8 +97,8 @@ namespace Xenon.FrameMemo
 
                 //グリッドのベース
                 dstGrScaled = new RectangleF(
-                                scale * memorySprite.GridLefttop.X + x + xBase,
-                                scale * memorySprite.GridLefttop.Y + y + yBase,
+                                scale * memorySprite.GridLefttop.X + leftSprite + xBase,
+                                scale * memorySprite.GridLefttop.Y + topSprite + yBase,
                                 scale * col * cw,
                                 scale * row * ch
                                 );
@@ -149,13 +150,13 @@ namespace Xenon.FrameMemo
                 {
                     float h2 = infoDisplay.MemorySprite.HeightcellResult * scale;
 
-                    for (int i = 1; i < infoDisplay.MemorySprite.CountrowResult; i++)
+                    for (int row = 1; row < infoDisplay.MemorySprite.CountrowResult; row++)
                     {
                         g.DrawLine(infoDisplay.GridPen,//Pens.Black,
                             dstGrScaled.X + borderWidth,
-                            (float)i * h2 + dstGrScaled.Y,
+                            (float)row * h2 + dstGrScaled.Y,
                             dstGrScaled.Width + dstGrScaled.X - borderWidth - 1,
-                            (float)i * h2 + dstGrScaled.Y
+                            (float)row * h2 + dstGrScaled.Y
                             );
                     }
                 }
@@ -164,12 +165,12 @@ namespace Xenon.FrameMemo
                 {
                     float w2 = infoDisplay.MemorySprite.WidthcellResult * scale;
 
-                    for (int i = 1; i < infoDisplay.MemorySprite.CountcolumnResult; i++)
+                    for (int column = 1; column < infoDisplay.MemorySprite.CountcolumnResult; column++)
                     {
                         g.DrawLine(infoDisplay.GridPen,//Pens.Black,
-                            (float)i * w2 + dstGrScaled.X,
+                            (float)column * w2 + dstGrScaled.X,
                             dstGrScaled.Y + borderWidth - 1,//上辺の枠と隙間を空けないように-1で調整。
-                            (float)i * w2 + dstGrScaled.X,
+                            (float)column * w2 + dstGrScaled.X,
                             dstGrScaled.Height + dstGrScaled.Y - borderWidth - 1
                             );
                     }
@@ -189,6 +190,48 @@ namespace Xenon.FrameMemo
                 dstGrScaled.Height -= 2;
                 g.DrawRectangle(Pens.Green, dstGrScaled.X, dstGrScaled.Y, dstGrScaled.Width, dstGrScaled.Height);
             }
+
+
+            // 部品番号の描画
+            if (partnumberconf.Visibled)
+            {
+                //
+                // 数字は桁が多くなると横幅が伸びます。「0」「32」「105」
+                // 特例で１桁は２桁扱いとして、「横幅÷桁数」が目安です。
+                //
+
+
+                // 最終部品番号
+                int numberLast = (int)(infoDisplay.MemorySprite.CountrowResult * infoDisplay.MemorySprite.CountcolumnResult - 1) + partnumberconf.FirstIndex;
+                // 最終部品番号の桁数
+                int digit = numberLast.ToString().Length;
+                if(1==digit)
+                {
+                    digit = 2;//特例で１桁は２桁扱いとします。
+                }
+                float fontPt = memorySprite.WidthcellResult / digit;
+
+                //partnumberconf.Font = new Font("MS ゴシック", fontPt);
+                partnumberconf.Font = new Font("メイリオ", fontPt);
+
+
+                for (int row = 0; row < infoDisplay.MemorySprite.CountrowResult; row++)
+                {
+                    for (int column = 0; column < infoDisplay.MemorySprite.CountcolumnResult; column++)
+                    {
+                        int number = (int)(row * infoDisplay.MemorySprite.CountcolumnResult + column) + partnumberconf.FirstIndex;
+                        string text = number.ToString();
+                        SizeF stringSize = g.MeasureString(text, partnumberconf.Font);
+
+                        g.DrawString(text, partnumberconf.Font, partnumberconf.Brush,
+                            new PointF(
+                                column * memorySprite.WidthcellResult + leftSprite + memorySprite.WidthcellResult / 2 - stringSize.Width/2,
+                                row * memorySprite.HeightcellResult + topSprite + memorySprite.HeightcellResult / 2 - stringSize.Height/2
+                                ));
+                    }
+                }
+            }
+
 
             // 情報欄の描画
             if (isVisible_Infodisplay)

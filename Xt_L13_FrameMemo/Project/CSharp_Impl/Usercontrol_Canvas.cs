@@ -11,7 +11,7 @@ using Xenon.Lib;
 
 namespace Xenon.FrameMemo
 {
-    public partial class Usercontrol_FrameMemo : UserControl, Usercontrolview
+    public partial class Usercontrol_Canvas : UserControl, Usercontrolview
     {
 
 
@@ -22,11 +22,22 @@ namespace Xenon.FrameMemo
         /// <summary>
         /// コンストラクター。
         /// </summary>
-        public Usercontrol_FrameMemo()
+        public Usercontrol_Canvas()
         {
             InitializeComponent();
 
-            this.infodisplay = new Usercontrolview_Infodisplay();
+            //部品番号
+            {
+                this.Partnumberconfig = new PartnumberconfigImpl();
+                this.Partnumberconfig.FirstIndex = 0;
+
+                this.Partnumberconfig.SetBrushByColor( Color.FromArgb(192, 0, 255, 0));//75%透明の緑。
+            }
+
+            //添付情報
+            {
+                this.infodisplay = new Usercontrolview_Infodisplay();
+            }
 
             MemorySpriteImpl moSprite = new MemorySpriteImpl();
             moSprite.List_Usercontrolview.Add(this.infodisplay);
@@ -68,21 +79,42 @@ namespace Xenon.FrameMemo
             this.pcddlOpaque.SelectedIndex = 0;
             this.imgOpaque = 1.0F;
 
-            this.pcchkImgBorder.Checked = true;
+            this.pcchkGridVisibled.Checked = true;
 
             // 格子枠の色
-            this.pcddlGridcolor.Items.Add("自動");
-            this.pcddlGridcolor.Items.Add("白");
-            this.pcddlGridcolor.Items.Add("灰色");
-            this.pcddlGridcolor.Items.Add("黒");
-            this.pcddlGridcolor.Items.Add("赤");
-            this.pcddlGridcolor.Items.Add("黄");
-            this.pcddlGridcolor.Items.Add("緑");//初期選択
-            this.pcddlGridcolor.Items.Add("青");
-            this.pcddlGridcolor.SelectedIndex = 6;
+            this.pcddlGridColor.Items.Add("自動");
+            this.pcddlGridColor.Items.Add("白");
+            this.pcddlGridColor.Items.Add("灰色");
+            this.pcddlGridColor.Items.Add("黒");
+            this.pcddlGridColor.Items.Add("赤");
+            this.pcddlGridColor.Items.Add("黄");
+            this.pcddlGridColor.Items.Add("緑");//初期選択
+            this.pcddlGridColor.Items.Add("青");
+            this.pcddlGridColor.SelectedIndex = 6;
 
             this.scale = 1;
             this.preScale = 1;
+
+            //部品番号の色
+            this.pcddlPartnumberColor.Items.Add("自動");
+            this.pcddlPartnumberColor.Items.Add("白");
+            this.pcddlPartnumberColor.Items.Add("灰色");
+            this.pcddlPartnumberColor.Items.Add("黒");
+            this.pcddlPartnumberColor.Items.Add("赤");
+            this.pcddlPartnumberColor.Items.Add("黄");
+            this.pcddlPartnumberColor.Items.Add("緑");//初期選択
+            this.pcddlPartnumberColor.Items.Add("青");
+            this.pcddlPartnumberColor.SelectedIndex = 6;
+
+            //部品番号の半透明度
+            this.pcddlPartnumberOpaque.Items.Add("100");
+            this.pcddlPartnumberOpaque.Items.Add(" 75");//初期選択
+            this.pcddlPartnumberOpaque.Items.Add(" 50");
+            this.pcddlPartnumberOpaque.Items.Add(" 25");
+            this.pcddlPartnumberOpaque.SelectedIndex = 1;
+
+            //部品番号の開始インデックス
+            this.pctxtPartnumberFirst.Text = "0";
         }
 
         //────────────────────────────────────────
@@ -184,8 +216,8 @@ namespace Xenon.FrameMemo
                 {
                     // 切抜き
 
-                    Function2DrawcropImpl act2 = new Function2DrawcropImpl();
-                    act2.Perform(
+                    Function2DrawcropImpl f2 = new Function2DrawcropImpl();
+                    f2.Perform(
                         g,
                         bOnWindow,
                         this.infodisplay.MemorySprite,
@@ -194,7 +226,7 @@ namespace Xenon.FrameMemo
                         scale2,
                         this.imgOpaque,
                         this.isImageGrid,
-                        this.pcchkInfo.Checked,
+                        this.pcchkInfoVisibled.Checked,
                         this.infodisplay
                         );
                 }
@@ -202,8 +234,8 @@ namespace Xenon.FrameMemo
                 {
                     // 全体図
 
-                    Function1DrawimageImpl act1 = new Function1DrawimageImpl();
-                    act1.Perform(
+                    Function1DrawimageImpl f1 = new Function1DrawimageImpl();
+                    f1.Perform(
                         g,
                         bOnWindow,
                         this.infodisplay.MemorySprite,
@@ -212,8 +244,9 @@ namespace Xenon.FrameMemo
                         scale2,
                         this.imgOpaque,
                         this.isImageGrid,
-                        this.pcchkInfo.Checked,
-                        this.infodisplay
+                        this.pcchkInfoVisibled.Checked,
+                        this.Partnumberconfig,
+                        this.Infodisplay
                         );
                 }
             }
@@ -283,12 +316,23 @@ namespace Xenon.FrameMemo
                     this.pclblMouseDrag.Enabled = true;
                     this.pclstMouseDrag.Enabled = true;
                     this.pclstMouseDrag.SelectedIndex = 1;//「画像移動」を選択
-                    this.pclblImgBorder.Enabled = true;
-                    this.pcchkImgBorder.Enabled = true;
 
-                    this.pclblInfo.Enabled = true;
-                    this.pcchkInfo.Enabled = true;
+                    //枠線
+                    this.pclblGrid1.Enabled = true;
+                    this.pcchkGridVisibled.Enabled = true;
+                    this.pcddlGridColor.Enabled = true;
 
+                    this.pclblInfo1.Enabled = true;
+                    this.pcchkInfoVisibled.Enabled = true;
+
+                    //部品番号
+                    this.pclblPartnumber1.Enabled = true;
+                    this.pcddlPartnumberOpaque.Enabled = true;
+                    this.pclblPartnumber2.Enabled = true;
+                    this.pcchkPartnumberVisible.Enabled = true;
+                    this.pcddlPartnumberColor.Enabled = true;
+                    this.pclblPartnumber3.Enabled = true;
+                    this.pctxtPartnumberFirst.Enabled = true;
 
 
                     this.infodisplay.Filepath = sFpatha;
@@ -323,8 +367,20 @@ namespace Xenon.FrameMemo
                     this.pclblMouseDrag.Enabled = false;
                     this.pclstMouseDrag.Enabled = false;
                     this.pclstMouseDrag.SelectedIndex = 0;//「なし」を選択
-                    this.pclblImgBorder.Enabled = false;
-                    this.pcchkImgBorder.Enabled = false;
+
+                    //枠線
+                    this.pclblGrid1.Enabled = false;
+                    this.pcchkGridVisibled.Enabled = false;
+                    this.pcddlGridColor.Enabled = false;
+
+                    //部品番号
+                    this.pclblPartnumber1.Enabled = false;
+                    this.pcddlPartnumberOpaque.Enabled = false;
+                    this.pclblPartnumber2.Enabled = false;
+                    this.pcchkPartnumberVisible.Enabled = false;
+                    this.pcddlPartnumberColor.Enabled = false;
+                    this.pclblPartnumber3.Enabled = false;
+                    this.pctxtPartnumberFirst.Enabled = false;
 
                     this.ucFrameParam.OnImageClosed();
 
@@ -433,7 +489,7 @@ namespace Xenon.FrameMemo
             this.Refresh();
         }
 
-        private void FrameMemoUc_MouseDown(object sender, MouseEventArgs e)
+        private void Canvas1_MouseDown(object sender, MouseEventArgs e)
         {
             this.mouseDraggingNone = true;
             this.mouseDragging = true;
@@ -447,7 +503,7 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
-        private void FrameMemoUc_MouseMove(object sender, MouseEventArgs e)
+        private void Canvas1_MouseMove(object sender, MouseEventArgs e)
         {
             if (this.enumMousedragmode == EnumMousedragmode.Image_Move)
             {
@@ -480,12 +536,12 @@ namespace Xenon.FrameMemo
             }
         }
 
-        private void FrameMemoUc_MouseUp(object sender, MouseEventArgs e)
+        private void Canvas1_MouseUp(object sender, MouseEventArgs e)
         {
             this.mouseDragging = false;
         }
 
-        private void FrameMemoUc_Paint(object sender, PaintEventArgs e)
+        private void Canvas1_Paint(object sender, PaintEventArgs e)
         {
 
             // 画像
@@ -527,49 +583,6 @@ namespace Xenon.FrameMemo
             this.Refresh();
         }
 
-        //────────────────────────────────────────
-
-        private void pcddlOpaqueBg_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // ドロップダウンリスト
-            ComboBox pcddl = (ComboBox)sender;
-
-            if (0 <= pcddl.SelectedIndex)
-            {
-                string sSelectedValue = (string)pcddl.Items[pcddl.SelectedIndex];
-
-                if ("100" == sSelectedValue)
-                {
-                    this.imgOpaque = 1.0F;
-                }
-                else if (" 75" == sSelectedValue)
-                {
-                    this.imgOpaque = 0.75F;
-                }
-                else if (" 50" == sSelectedValue)
-                {
-                    this.imgOpaque = 0.50F;
-                }
-                else if (" 25" == sSelectedValue)
-                {
-                    this.imgOpaque = 0.25F;
-                }
-                else
-                {
-                    this.imgOpaque = 1.0F;
-                }
-            }
-            else
-            {
-                // 未選択
-
-                this.imgOpaque = 1.0F;
-            }
-
-            // 再描画
-            this.Refresh();
-        }
-
         private void pclstMouseDrag_SelectedIndexChanged(object sender, EventArgs e)
         {
             // リストボックス
@@ -594,12 +607,6 @@ namespace Xenon.FrameMemo
 
                 this.enumMousedragmode = EnumMousedragmode.None;
             }
-        }
-
-        private void pcchkInfo_CheckedChanged(object sender, EventArgs e)
-        {
-            // 再描画。
-            this.Refresh();
         }
 
         //────────────────────────────────────────
@@ -647,38 +654,6 @@ namespace Xenon.FrameMemo
             this.Refresh();
         }
 
-        private void pcddlGridcolor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // ドロップダウンリスト
-            ComboBox pcddl = (ComboBox)sender;
-
-            Color clr;
-            if (0 <= pcddl.SelectedIndex)
-            {
-                string sSelectedValue = (string)pcddl.Items[pcddl.SelectedIndex];
-
-                if ("自動" == sSelectedValue)
-                {
-                    clr = SystemColors.Control;
-                }
-                else
-                {
-                    clr = new ColorFromName().FromName(sSelectedValue);
-                }
-            }
-            else
-            {
-                // 未選択
-
-                clr = SystemColors.Control;
-            }
-
-            this.infodisplay.GridPen = new Pen(clr);
-
-            // 再描画
-            this.Refresh();
-        }
-
         //────────────────────────────────────────
 
         /// <summary>
@@ -711,6 +686,244 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
         #endregion
+
+
+
+
+        #region イベントハンドラー
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 枠線の色。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pcddlGridcolor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // ドロップダウンリスト
+            ComboBox pcddl = (ComboBox)sender;
+
+            Color clr;
+            if (0 <= pcddl.SelectedIndex)
+            {
+                string valueSelected = (string)pcddl.Items[pcddl.SelectedIndex];
+
+                if ("自動" == valueSelected)
+                {
+                    clr = SystemColors.Control;
+                }
+                else
+                {
+                    clr = new ColorFromName().FromName(valueSelected);
+                }
+            }
+            else
+            {
+                // 未選択
+
+                clr = SystemColors.Control;
+            }
+
+            this.infodisplay.GridPen = new Pen(clr);
+
+            // 再描画
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 部品番号の色。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pcddlPartnumberColor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // ドロップダウンリスト
+            ComboBox pcddl = (ComboBox)sender;
+
+            Color clr;
+            if (0 <= pcddl.SelectedIndex)
+            {
+                string valueSelected = (string)pcddl.Items[pcddl.SelectedIndex];
+
+                if ("自動" == valueSelected)
+                {
+                    clr = SystemColors.Control;
+                }
+                else
+                {
+                    clr = new ColorFromName().FromName(valueSelected);
+                }
+            }
+            else
+            {
+                // 未選択
+
+                clr = SystemColors.Control;
+            }
+
+            this.Partnumberconfig.SetBrushByColor( clr);
+
+            // 再描画
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 画像の不透明度。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pcddlOpaqueBg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // ドロップダウンリスト
+            ComboBox pcddl = (ComboBox)sender;
+
+            if (0 <= pcddl.SelectedIndex)
+            {
+                string valueSelected = (string)pcddl.Items[pcddl.SelectedIndex];
+
+                if ("100" == valueSelected)
+                {
+                    this.imgOpaque = 1.0F;
+                }
+                else if (" 75" == valueSelected)
+                {
+                    this.imgOpaque = 0.75F;
+                }
+                else if (" 50" == valueSelected)
+                {
+                    this.imgOpaque = 0.50F;
+                }
+                else if (" 25" == valueSelected)
+                {
+                    this.imgOpaque = 0.25F;
+                }
+                else
+                {
+                    this.imgOpaque = 1.0F;
+                }
+            }
+            else
+            {
+                // 未選択
+
+                this.imgOpaque = 1.0F;
+            }
+
+            // 再描画
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 部品番号の不透明度。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pcddlPartnumberOpaque_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // ドロップダウンリスト
+            ComboBox pcddl = (ComboBox)sender;
+
+            if (0 <= pcddl.SelectedIndex)
+            {
+                string valueSelected = (string)pcddl.Items[pcddl.SelectedIndex];
+
+                if ("100" == valueSelected)
+                {
+                    this.Partnumberconfig.SetBrushByAlpha( 255);
+                }
+                else if (" 75" == valueSelected)
+                {
+                    this.Partnumberconfig.SetBrushByAlpha( 192);
+                }
+                else if (" 50" == valueSelected)
+                {
+                    this.Partnumberconfig.SetBrushByAlpha( 128);
+                }
+                else if (" 25" == valueSelected)
+                {
+                    this.Partnumberconfig.SetBrushByAlpha( 64);
+                }
+                else
+                {
+                    this.Partnumberconfig.SetBrushByAlpha( 255);
+                }
+            }
+            else
+            {
+                // 未選択
+
+                this.Partnumberconfig.SetBrushByAlpha( 255);
+            }
+
+            // 再描画
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 添付情報表示チェックボックス。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pcchkInfo_CheckedChanged(object sender, EventArgs e)
+        {
+            // 再描画。
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 部品番号表示チェックボックス。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pcchkPartnumberVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox pcchk = (CheckBox)sender;
+
+            this.Partnumberconfig.Visibled = pcchk.Checked;
+
+            // 再描画。
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+
+        /// <summary>
+        /// 部品番号開始インデックス。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pctxtPartnumberFirst_TextChanged(object sender, EventArgs e)
+        {
+            TextBox pctxt = (TextBox)sender;
+
+            int number;
+            if (int.TryParse(pctxt.Text, out number))
+            {
+                this.Partnumberconfig.FirstIndex = number;
+            }
+            else
+            {
+                //エラー
+                this.Partnumberconfig.FirstIndex = 0;
+            }
+
+            // 再描画。
+            this.Refresh();
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
 
 
 
@@ -777,6 +990,22 @@ namespace Xenon.FrameMemo
 
         //────────────────────────────────────────
 
+        private PartnumberconfigImpl partnumberconfig;
+
+        public PartnumberconfigImpl Partnumberconfig
+        {
+            get
+            {
+                return this.partnumberconfig;
+            }
+            set
+            {
+                this.partnumberconfig = value;
+            }
+        }
+
+        //────────────────────────────────────────
+
         protected Usercontrolview_Infodisplay infodisplay;
 
         /// <summary>
@@ -796,7 +1025,7 @@ namespace Xenon.FrameMemo
         {
             get
             {
-                return pcchkInfo;
+                return pcchkInfoVisibled;
             }
         }
 

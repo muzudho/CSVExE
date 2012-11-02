@@ -21,7 +21,7 @@ namespace Xenon.FrameMemo
         public void Save(
             Usercontrolview_Infodisplay infodisplay,
             CheckBox pcchkInfo,
-            Usercontrol_FrameMemo uc_FrameMemo
+            Usercontrol_Canvas uc_FrameMemo
             )
         {
             if (null != infodisplay.MemorySprite.Bitmap)
