@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xenon.Meiidenge
+namespace Xenon.Syntax
 {
-    class Info_MeiidengeSVR
+
+
+
+    public class Info_SpeedCoder
     {
 
 
@@ -17,7 +20,7 @@ namespace Xenon.Meiidenge
         {
             get
             {
-                return "Xt_L13_MeiidengeScriptVariablesReader";
+                return "Xt_L13_SpeedCoder";
             }
         }
 
@@ -27,4 +30,7 @@ namespace Xenon.Meiidenge
 
 
     }
+
+
+
 }

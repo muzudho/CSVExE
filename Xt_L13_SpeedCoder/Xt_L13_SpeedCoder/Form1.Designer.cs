@@ -1,4 +1,4 @@
-﻿namespace Xenon.Meiidenge
+﻿namespace Xenon.SpeedCoder
 {
     partial class Form1
     {
@@ -28,22 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.usercontrol_Canvas1 = new Xenon.SpeedCoder.Usercontrol_Canvas();
             this.SuspendLayout();
+            // 
+            // usercontrol_Canvas1
+            // 
+            this.usercontrol_Canvas1.Location = new System.Drawing.Point(0, 0);
+            this.usercontrol_Canvas1.Name = "usercontrol_Canvas1";
+            this.usercontrol_Canvas1.Size = new System.Drawing.Size(624, 440);
+            this.usercontrol_Canvas1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 444);
+            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Controls.Add(this.usercontrol_Canvas1);
             this.Name = "Form1";
-            this.Text = "東方冥異伝GE（ScriptVariable）";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "スピードコーダー";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private Usercontrol_Canvas usercontrol_Canvas1;
     }
 }
 

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("Xt_L13_MeiidenpScriptVariablesReader")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("スピードコーダー")]
+[assembly: AssemblyDescription("コーディング支援ツールです。")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Xt_L13_MeiidenpScriptVariablesReader")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("ゼノンツールズ")]
+[assembly: AssemblyProduct("Xt_L13_SpeedCoder")]
+[assembly: AssemblyCopyright("Copyright ©  2012 ゼノンツールズ")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 次の GUID は、このプロジェクトが COM に公開される場合の、typelib の ID です
-[assembly: Guid("75996c5a-2b41-459b-90d5-7bd0000053ca")]
+[assembly: Guid("2153d1a9-7db4-4106-b0c3-718f520bffd1")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //

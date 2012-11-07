@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Xenon.Meiidenge
+namespace Xenon.SpeedCoder
 {
     static class Program
     {
@@ -16,9 +16,7 @@ namespace Xenon.Meiidenge
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Application.Run(new Form1());
-            //Application.Run(new Xenon.Table.Form_CsvTest());
         }
     }
 }

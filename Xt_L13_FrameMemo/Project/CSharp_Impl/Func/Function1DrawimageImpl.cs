@@ -209,10 +209,10 @@ namespace Xenon.FrameMemo
                 {
                     digit = 2;//特例で１桁は２桁扱いとします。
                 }
-                float fontPt = memorySprite.WidthcellResult / digit;
+                float fontPtScaled = scale * memorySprite.WidthcellResult / digit;
 
                 //partnumberconf.Font = new Font("MS ゴシック", fontPt);
-                partnumberconf.Font = new Font("メイリオ", fontPt);
+                partnumberconf.Font = new Font("メイリオ", fontPtScaled);
 
 
                 for (int row = 0; row < infoDisplay.MemorySprite.CountrowResult; row++)
@@ -221,12 +221,12 @@ namespace Xenon.FrameMemo
                     {
                         int number = (int)(row * infoDisplay.MemorySprite.CountcolumnResult + column) + partnumberconf.FirstIndex;
                         string text = number.ToString();
-                        SizeF stringSize = g.MeasureString(text, partnumberconf.Font);
+                        SizeF stringSizeScaled = g.MeasureString(text, partnumberconf.Font);
 
                         g.DrawString(text, partnumberconf.Font, partnumberconf.Brush,
                             new PointF(
-                                column * memorySprite.WidthcellResult + leftSprite + memorySprite.WidthcellResult / 2 - stringSize.Width/2 + xBase,
-                                row * memorySprite.HeightcellResult + topSprite + memorySprite.HeightcellResult / 2 - stringSize.Height/2 + yBase
+                                scale * (column * memorySprite.WidthcellResult + memorySprite.WidthcellResult / 2) - stringSizeScaled.Width / 2 + dstGrScaled.X,
+                                scale * (row * memorySprite.HeightcellResult + memorySprite.HeightcellResult / 2) - stringSizeScaled.Height / 2 + dstGrScaled.Y
                                 ));
                     }
                 }
