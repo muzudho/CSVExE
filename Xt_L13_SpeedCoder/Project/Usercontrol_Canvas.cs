@@ -33,6 +33,20 @@ namespace Xenon.SpeedCoder
         public Usercontrol_Canvas()
         {
             InitializeComponent();
+        }
+
+        //────────────────────────────────────────
+        #endregion
+
+
+
+
+
+        #region イベントハンドラー
+        //────────────────────────────────────────
+
+        private void Usercontrol_Canvas_Load(object sender, EventArgs e)
+        {
             this.Textdroparea1 = new TextdropareaImpl();
             this.Textdroparea1.Bounds = new Rectangle(10, 10, 280, 140);
             this.Textdroparea1.ForegroundBrush = Brushes.Blue;
@@ -59,14 +73,6 @@ namespace Xenon.SpeedCoder
             this.Textdroparea2.Font = this.Font;
         }
 
-        //────────────────────────────────────────
-        #endregion
-
-
-
-
-
-        #region イベントハンドラー
         //────────────────────────────────────────
 
         private void Usercontrol_Canvas_Paint(object sender, PaintEventArgs e)
@@ -122,7 +128,6 @@ namespace Xenon.SpeedCoder
                     //log_Method.WriteDebug_ToConsole("ファイルをドロップしたが、枠には入っていない。 fileNames.length=[" + fileNames.Length + "]");
                 }
             }
-            // 文字列
             else if (e.Data.GetDataPresent(DataFormats.StringFormat))
             {
                 // 文字列として読み取れる形式のデータがドロップされた場合、
@@ -158,6 +163,8 @@ namespace Xenon.SpeedCoder
 
             if (isDropped)
             {
+                //log_Method.WriteDebug_ToConsole("ドロップがあったとき。");
+
                 SpeedCodingImpl speedCoding = new SpeedCodingImpl();
                 bool isError;
                 string result = speedCoding.Perform(out isError, this.Textdroparea1, this.Textdroparea2, log_Reports);

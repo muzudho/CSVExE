@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
+using Xenon.Syntax;
 
 namespace Xenon.SpeedCoder
 {
@@ -25,8 +26,8 @@ namespace Xenon.SpeedCoder
             this.Bounds = new Rectangle();
             this.ListFilepath = new List<string>();
             this.Clear();
-            this.ForegroundBrush = Brushes.Black;
-            this.BackgroundBrush = Brushes.White;
+            this.ForegroundBrush = Brushes.Red;// Brushes.Black;
+            this.BackgroundBrush = Brushes.Yellow;// Brushes.White;
             this.BorderPen = Pens.Black;
             this.BackgroundMessage = "Unknown";
             this.ListMessageA = new List<string>();
@@ -49,11 +50,37 @@ namespace Xenon.SpeedCoder
         #region アクション
         //────────────────────────────────────────
 
+        public bool HasText()
+        {
+            bool result = false;
+
+            if (0 < this.ListFilepath.Count)
+            {
+                result = true;
+            }
+            else if(""!=this.DroppedText)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         public void Paint(Graphics g)
         {
+            //Log_Method log_Method = new Log_MethodImpl();
+            //Log_Reports log_Reports_ThisMethod = new Log_ReportsImpl(log_Method);
+            //log_Method.BeginMethod(Info_SpeedCoder.Name_Library, this, "Paint", log_Reports_ThisMethod);
+
+
+            //log_Method.WriteDebug_ToConsole("ドロップエリアの描画。");
+
 
             if (this.IsDropped)
             {
+                //入力があった場合の背景塗りつぶし。
+                //log_Method.WriteDebug_ToConsole("入力があった場合の背景塗りつぶし。this.BackgroundBrush=[" + this.BackgroundBrush + "]");
+
                 g.FillRectangle(this.BackgroundBrush, this.Bounds);
             }
 
@@ -62,8 +89,10 @@ namespace Xenon.SpeedCoder
             g.DrawString( this.BackgroundMessage, new Font("メイリオ", 36.0f), Brushes.White, new PointF(this.Bounds.X+30, this.Bounds.Y+70));
 
             int y = this.Bounds.Y;
-            if (0 == this.ListFilepath.Count)
+            if (this.HasText())
             {
+                //入力があった場合の表示。
+
                 y += 40;
                 foreach(string messageA in this.ListMessageA)
                 {
@@ -73,7 +102,6 @@ namespace Xenon.SpeedCoder
             }
             else
             {
-                string filename = System.IO.Path.GetFileName(this.ListFilepath[0]);
                 y += 40;
                 foreach (string messageB in this.ListMessageB)
                 {
@@ -81,14 +109,22 @@ namespace Xenon.SpeedCoder
                     y += 20;
                 }
 
-                g.DrawString(filename, this.Font, this.ForegroundBrush, new PointF(this.Bounds.X + 30, y));
-                y += 20;
-                if (2 <= this.ListFilepath.Count)
+                if (0 < this.ListFilepath.Count)
                 {
-                    g.DrawString("他 " + (this.ListFilepath.Count - 1) + " ファイル", this.Font, Brushes.Blue, new PointF(this.Bounds.X + 30, y));
+                    string filename = this.ListFilepath[0];
+
+                    // ファイル名が入力されていれば。
+                    g.DrawString(filename, this.Font, this.ForegroundBrush, new PointF(this.Bounds.X + 30, y));
+                    y += 20;
+                    if (2 <= this.ListFilepath.Count)
+                    {
+                        g.DrawString("他 " + (this.ListFilepath.Count - 1) + " ファイル", this.Font, this.ForegroundBrush, new PointF(this.Bounds.X + 30, y));
+                    }
                 }
             }
 
+
+            //log_Reports_ThisMethod.EndLogging(log_Method);
         }
 
         //────────────────────────────────────────

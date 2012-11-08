@@ -108,6 +108,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Usercontrol_Canvas";
             this.Size = new System.Drawing.Size(620, 440);
+            this.Load += new System.EventHandler(this.Usercontrol_Canvas_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Usercontrol_Canvas_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Usercontrol_Canvas_DragEnter);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Usercontrol_Canvas_Paint);
