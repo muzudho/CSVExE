@@ -24,6 +24,7 @@ namespace Xenon.SpeedCoder
         {
             this.Bounds = new Rectangle();
             this.ListFilepath = new List<string>();
+            this.Clear();
             this.ForegroundBrush = Brushes.Black;
             this.BackgroundBrush = Brushes.White;
             this.BorderPen = Pens.Black;
@@ -31,6 +32,12 @@ namespace Xenon.SpeedCoder
             this.ListMessageA = new List<string>();
             this.ListMessageB = new List<string>();
             this.Font = SystemFonts.DefaultFont;
+        }
+
+        public void Clear()
+        {
+            this.DroppedText = "";
+            this.ListFilepath.Clear();
         }
 
         //────────────────────────────────────────
@@ -91,6 +98,25 @@ namespace Xenon.SpeedCoder
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private string droppedText;
+
+        /// <summary>
+        /// ドラッグ＆ドロップしたテキスト。
+        /// </summary>
+        public string DroppedText
+        {
+            get
+            {
+                return this.droppedText;
+            }
+            set
+            {
+                this.droppedText = value;
+            }
+        }
+
         //────────────────────────────────────────
 
         private List<string> listFilepath;

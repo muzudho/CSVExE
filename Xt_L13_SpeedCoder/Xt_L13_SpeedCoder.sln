@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xt_L13_SpeedCoder", "Xt_L13_SpeedCoder\Xt_L13_SpeedCoder.csproj", "{B9DF81F3-AA82-46C6-A51B-AC468FB73DDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xt_L13_SpeedCoder", "Project\Xt_L13_SpeedCoder.csproj", "{B9DF81F3-AA82-46C6-A51B-AC468FB73DDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

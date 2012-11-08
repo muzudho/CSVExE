@@ -87,6 +87,7 @@ namespace Xenon.SpeedCoder
 
             Point locationMouse = this.PointToClient(new Point(e.X, e.Y));
 
+            bool isDropped=false;
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // ファイルドロップ
@@ -106,7 +107,7 @@ namespace Xenon.SpeedCoder
                 if (null!=droppedArea)
                 {
                     droppedArea.IsDropped = true;
-                    droppedArea.ListFilepath.Clear();
+                    droppedArea.Clear();
                     //log_Method.WriteDebug_ToConsole("ファイルをドロップした。 fileNames.length=[" + fileNames.Length + "]");
                     foreach (string fileName in fileNames)
                     {
@@ -114,29 +115,63 @@ namespace Xenon.SpeedCoder
                         //log_Method.WriteDebug_ToConsole("fileName=[" + fileName + "]");
                     }
 
-                    SpeedCodingImpl speedCoding = new SpeedCodingImpl();
-                    bool isError;
-                    string result = speedCoding.Perform(out isError, this.Textdroparea1, this.Textdroparea2, log_Reports);
-                    this.textBox1.Text = result;
-                    if (isError)
-                    {
-                        this.textBox1.ForeColor = Color.Red;
-                    }
-                    else
-                    {
-                        this.textBox1.ForeColor = SystemColors.ControlText;
-                    }
-
-                    this.Refresh();
+                    isDropped = true;
                 }
                 else
                 {
                     //log_Method.WriteDebug_ToConsole("ファイルをドロップしたが、枠には入っていない。 fileNames.length=[" + fileNames.Length + "]");
                 }
             }
+            // 文字列
+            else if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                // 文字列として読み取れる形式のデータがドロップされた場合、
+                // テキストボックスに、その文字列データを表示します。
+                string droppedText = (string)e.Data.GetData(typeof(string));
+
+                
+                TextdropareaImpl droppedArea = null;
+                if (this.Textdroparea1.Bounds.Contains(locationMouse.X, locationMouse.Y))
+                {
+                    droppedArea = this.Textdroparea1;
+                }
+
+                if (this.Textdroparea2.Bounds.Contains(locationMouse.X, locationMouse.Y))
+                {
+                    droppedArea = this.Textdroparea2;
+                }
+
+                if (null != droppedArea)
+                {
+                    droppedArea.IsDropped = true;
+                    droppedArea.Clear();
+
+                    droppedArea.DroppedText = droppedText;
+
+                    isDropped = true;
+                }
+            }
             else
             {
                 //log_Method.WriteDebug_ToConsole("ファイル以外のものをドロップした。");
+            }
+
+            if (isDropped)
+            {
+                SpeedCodingImpl speedCoding = new SpeedCodingImpl();
+                bool isError;
+                string result = speedCoding.Perform(out isError, this.Textdroparea1, this.Textdroparea2, log_Reports);
+                this.textBox1.Text = result;
+                if (isError)
+                {
+                    this.textBox1.ForeColor = Color.Red;
+                }
+                else
+                {
+                    this.textBox1.ForeColor = SystemColors.ControlText;
+                }
+
+                this.Refresh();
             }
 
             //log_Method.WriteDebug_ToConsole("locationMouse.X=[" + locationMouse.X + "] .Y=[" + locationMouse.Y + "]");
@@ -155,11 +190,14 @@ namespace Xenon.SpeedCoder
             log_Method.BeginMethod(Info_SpeedCoder.Name_Library, this, "Usercontrol_Canvas_DragEnter", log_Reports);
 
             // ファイルドロップ
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (
+                e.Data.GetDataPresent(DataFormats.FileDrop)//ファイルパス
+                ||
+                e.Data.GetDataPresent(DataFormats.StringFormat)//文字列
+                )
             {
                 // ドロップした時の効果を Copy として見えるようにします。
                 e.Effect = DragDropEffects.Copy;
-                //log_Method.WriteDebug_ToConsole("ファイルがエンターした。");
             }
             else
             {

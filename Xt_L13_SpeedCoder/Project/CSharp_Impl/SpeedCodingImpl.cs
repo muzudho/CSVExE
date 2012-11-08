@@ -33,7 +33,7 @@ namespace Xenon.SpeedCoder
         #region アクション
         //────────────────────────────────────────
 
-        public string Perform(out bool isError, TextdropareaImpl Textdroparea1, TextdropareaImpl Textdroparea2, Log_Reports log_Reports)
+        public string Perform(out bool isError, TextdropareaImpl textdroparea1, TextdropareaImpl textdroparea2, Log_Reports log_Reports)
         {
             Log_Method log_Method = new Log_MethodImpl();
             log_Method.BeginMethod(Info_SpeedCoder.Name_Library, this, "Perform", log_Reports);
@@ -45,11 +45,11 @@ namespace Xenon.SpeedCoder
 
             StringBuilder result = new StringBuilder();
             string template;
-            if (1 <= Textdroparea1.ListFilepath.Count)
+            if (1 <= textdroparea1.ListFilepath.Count)
             {
-                if (System.IO.File.Exists(Textdroparea1.ListFilepath[0]))
+                if (System.IO.File.Exists(textdroparea1.ListFilepath[0]))
                 {
-                    template = System.IO.File.ReadAllText(Textdroparea1.ListFilepath[0], Encoding.UTF8);
+                    template = System.IO.File.ReadAllText(textdroparea1.ListFilepath[0], Encoding.UTF8);
                 }
                 else
                 {
@@ -63,16 +63,20 @@ namespace Xenon.SpeedCoder
             //log_Method.WriteDebug_ToConsole("template=[" + template + "]");
 
             string argumentfile;
-            if (1 <= Textdroparea2.ListFilepath.Count)
+            if (1 <= textdroparea2.ListFilepath.Count)
             {
-                if (System.IO.File.Exists(Textdroparea2.ListFilepath[0]))
+                if (System.IO.File.Exists(textdroparea2.ListFilepath[0]))
                 {
-                    argumentfile = System.IO.File.ReadAllText(Textdroparea2.ListFilepath[0], Encoding.UTF8);
+                    argumentfile = System.IO.File.ReadAllText(textdroparea2.ListFilepath[0], Encoding.UTF8);
                 }
                 else
                 {
                     argumentfile = "";
                 }
+            }
+            else if ("" != textdroparea2.DroppedText)
+            {
+                argumentfile = textdroparea2.DroppedText;
             }
             else
             {
@@ -346,22 +350,25 @@ namespace Xenon.SpeedCoder
                 //引数を定義している場合。
                 if (0 < paramsBySet)
                 {
-                    int parameterIndex = 0;
+                    // 定義部の先頭行を0とした行番号。
+                    int rowDefinition = 0;
+                    // 入力部の先頭行を0とした行番号。
+                    int rowArgument = 0;
+
                     
                     int sizeArgumentlines = argumentlines.Length;
-                    int indexArgumentline = 0;
-                    while ( indexArgumentline<sizeArgumentlines)
+                    while ( rowArgument<sizeArgumentlines)
                     {
-                        string argumentline = argumentlines[indexArgumentline].TrimEnd('\r', '\n');//行末の改行をchompします。
-                        if ((indexArgumentline+1) == sizeArgumentlines && "" == argumentline)
+                        string argumentline = argumentlines[rowArgument].TrimEnd('\r', '\n');//行末の改行をchompします。
+                        if ((rowArgument+1) == sizeArgumentlines && "" == argumentline)
                         {
                             //最後の改行は無かったことにします。
 
-                            if (0 < parameterIndex)
+                            if (0 < rowDefinition)
                             {
                                 //中途半端なところで引数セットが終わった。
                                 sizeOfSet++;
-                                parameterIndex = 0;
+                                rowDefinition = 0;
                                 //log_Method.WriteDebug_ToConsole("★6★行番号(" + indexArgumentline + "/" + sizeArgumentlines + "):(" + parameterIndex + "/" + paramsBySet + "): line=[" + argumentline + "]を引数リストに追加。★最後の改行は無かったことにしますが、端数があるのでセットは１つ増やします。sizeOfSet=[" + sizeOfSet + "]");
                             }
                             else
@@ -373,15 +380,15 @@ namespace Xenon.SpeedCoder
                         }
                         else
                         {
-                            DefinitionParameterlineImpl currentParam = this.ListDefinitionParameterline[parameterIndex];
+                            DefinitionParameterlineImpl currentParam = this.ListDefinitionParameterline[rowDefinition];
                             int previousNumberLine = currentParam.NumberLine;
 
                             currentParam.AddArgumentline(argumentline);
                             //log_Method.WriteDebug_ToConsole("★2★" + indexArgumentline + ":(" + parameterIndex + "/" + paramsBySet + "): line=[" + argumentline + "]を引数リストに追加。size(" + currentParam.CountArgumentlines() + ") sizeOfSet=[" + sizeOfSet + "]");
 
-                            for (; (parameterIndex + 1) < paramsBySet; parameterIndex++, indexArgumentline++)
+                            for (; (rowDefinition + 1) < paramsBySet; rowDefinition++)
                             {
-                                DefinitionParameterlineImpl nextParam = this.ListDefinitionParameterline[parameterIndex+1];
+                                DefinitionParameterlineImpl nextParam = this.ListDefinitionParameterline[rowDefinition+1];
                                 if (previousNumberLine == nextParam.NumberLine)
                                 {
                                     //同じ行番号が続いていれば。
@@ -398,16 +405,16 @@ namespace Xenon.SpeedCoder
                             }
                         }
 
-                        parameterIndex++;
-                        if (paramsBySet <= parameterIndex)
+                        rowDefinition++;
+                        if (paramsBySet <= rowDefinition)
                         {
                             //引数が１セット分終わった。
                             sizeOfSet++;
-                            parameterIndex = 0;
+                            rowDefinition = 0;
                             //log_Method.WriteDebug_ToConsole("★4★引数が１セット分終わった。sizeOfSet=[" + sizeOfSet + "]");
                         }
 
-                        indexArgumentline++;
+                        rowArgument++;
                     }
                     //log_Method.WriteDebug_ToConsole("★7★ループから抜けた。引数リストの要素数にインデックスの数が達したので。indexArgumentline=[" + indexArgumentline + "] sizeArgumentlines=[" + sizeArgumentlines + "] sizeOfSet=[" + sizeOfSet + "]");
 
@@ -445,13 +452,13 @@ namespace Xenon.SpeedCoder
                 }
                 //log_Method.WriteDebug_ToConsole("isSingleline=[" + isSingleline + "]");
 
-                if (!Textdroparea1.IsDropped)
+                if (!textdroparea1.IsDropped)
                 {
                     result.Append("次は、左上の青い欄にテンプレートもドラッグ＆ドロップしてください。");
                     result.Append(Environment.NewLine);
                     result.Append("（エンコーディングは UTF-8 にするのも忘れずに）");
                 }
-                else if (!Textdroparea2.IsDropped)
+                else if (!textdroparea2.IsDropped)
                 {
                     result.Append("次は、右上の緑色の欄にインプットもドラッグ＆ドロップしてください。");
                     result.Append(Environment.NewLine);
