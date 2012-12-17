@@ -202,11 +202,13 @@ namespace Xenon.Table
             {
                 Value_Humaninput valueH = (Value_Humaninput)obj;
 
-                s.Append("[");
-                s.Append(cur_IndexColumn);
-                s.Append("](");
-                s.Append(valueH.Text);
-                s.Append(")");
+                if ("" != valueH.Text)
+                {
+                    s.Append("[");
+                    s.Append(cur_IndexColumn);
+                    s.Append("]");
+                    s.Append(valueH.Text);
+                }
 
                 cur_IndexColumn++;
             }
@@ -225,11 +227,13 @@ namespace Xenon.Table
             {
                 Value_Humaninput valueH = (Value_Humaninput)obj;
 
-                s.Append("[");
-                s.Append(cur_IndexColumn);
-                s.Append(":");
-                s.Append(valueH.Text);
-                s.Append("]");
+                if ("" != valueH.Text)
+                {
+                    s.Append("[");
+                    s.Append(cur_IndexColumn);
+                    s.Append("]");
+                    s.Append(valueH.Text);
+                }
 
                 cur_IndexColumn++;
             }

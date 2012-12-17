@@ -111,6 +111,8 @@ namespace Xenon.Syntax
             {
                 log_Reports.Log_Callstack.Push(this);
             }
+
+            this.IsActive = true;
         }
 
         public void BeginMethod(string sName_Library, object thisClass, string sName_Method, Log_Reports log_Reports)
@@ -125,6 +127,8 @@ namespace Xenon.Syntax
             {
                 log_Reports.Log_Callstack.Push(this);
             }
+
+            this.IsActive = true;
         }
 
         public void BeginMethod(string sName_Library, string sName_StaticClass, string sName_Method, Log_Reports log_Reports)
@@ -139,6 +143,8 @@ namespace Xenon.Syntax
             {
                 log_Reports.Log_Callstack.Push(this);
             }
+
+            this.IsActive = true;
         }
 
         [Obsolete("ライブラリ名、クラス名、メソッド名も同時にセットするBeginMethodを使うこと。")]
@@ -151,6 +157,8 @@ namespace Xenon.Syntax
             {
                 log_Reports.Log_Callstack.Push(this);
             }
+
+            this.IsActive = true;
         }
 
         public void BeginMethod(string sName_Library, object thisClass, string sName_Method, out Log_Reports log_Reports)
@@ -167,6 +175,8 @@ namespace Xenon.Syntax
             {
                 log_Reports.Log_Callstack.Push(this);
             }
+
+            this.IsActive = true;
         }
 
         public void BeginMethod(string sName_Library, string sName_StaticClass, string sName_Method, out Log_Reports log_Reports)
@@ -183,19 +193,56 @@ namespace Xenon.Syntax
             {
                 log_Reports.Log_Callstack.Push(this);
             }
+
+            this.IsActive = true;
         }
 
         public void EndMethod(Log_Reports log_Reports)
         {
-            if (Log_ReportsImpl.BDebugmode_Static)
+            if (this.IsActive)
             {
-                if (this.Log_Stopwatch.IsRunning && log_Reports.CanStopwatch)
+                if (Log_ReportsImpl.BDebugmode_Static)
                 {
-                    this.Log_Stopwatch.End(log_Reports);
+                    if (this.Log_Stopwatch.IsRunning && log_Reports.CanStopwatch)
+                    {
+                        this.Log_Stopwatch.End(log_Reports);
+                    }
+
+                    log_Reports.Log_Callstack.Pop(this);
                 }
 
-                log_Reports.Log_Callstack.Pop(this);
+                this.IsActive = false;
             }
+            else
+            {
+                //エラー
+                goto gt_Error_NoActiveYet;
+            }
+
+
+            goto gt_EndMethod;
+        //
+            #region 異常系
+            //────────────────────────────────────────
+        gt_Error_NoActiveYet:
+            if (log_Reports.CanCreateReport)
+            {
+                Log_RecordReports r = log_Reports.BeginCreateReport(EnumReport.Error);
+                r.SetTitle("▲エラー31！", this);
+
+                Log_TextIndented s = new Log_TextIndentedImpl();
+                s.Append("BeginMethodしていないのにEndMethodしました。対応の数は合っていますか？");
+                s.Newline();
+
+                r.Message = s.ToString();
+                log_Reports.EndCreateReport();
+            }
+            goto gt_EndMethod;
+            //────────────────────────────────────────
+            #endregion
+            //
+        gt_EndMethod:
+            ;
         }
 
         //────────────────────────────────────────
@@ -281,6 +328,25 @@ namespace Xenon.Syntax
 
 
         #region プロパティー
+        //────────────────────────────────────────
+
+        private bool isActive;
+
+        /// <summary>
+        /// 最初、偽。BeginMethodすると真。EndMethodすると偽。
+        /// </summary>
+        public bool IsActive
+        {
+            get
+            {
+                return this.isActive;
+            }
+            set
+            {
+                this.isActive =value;
+            }
+        }
+
         //────────────────────────────────────────
 
         public string Fullname
